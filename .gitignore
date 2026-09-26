@@ -1,0 +1,29 @@
+# Archivos generados por LaTeX
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.lof
+*.log
+*.lot
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+*.xdv
+
+# Bibliografía y archivos auxiliares generados
+*-blx.bib
+
+# Documento compilado
+*.pdf
+
+# Archivos temporales de editores y del sistema
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
