@@ -1,0 +1,966 @@
+\documentclass[letterpaper,11pt]{article}
+
+% --- PAQUETES DE IDIOMA
+\usepackage[spanish,mexico]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{csquotes}
+\usepackage{iftex}
+
+\usepackage{pdfpages}
+
+% --- PAQUETES MATEMÁTICOS --
+\usepackage{amsmath}
+\usepackage{cancel}
+\usepackage{mathrsfs}
+
+% --- PAQUETES GRÁFICOS Y DE DISEÑO ---
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{placeins}
+\usepackage{subcaption}
+\usepackage[table]{xcolor}
+\usepackage{makecell}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{longtable}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, shapes.multipart, positioning, arrows.meta, calc, shadows, decorations.pathreplacing, fit, babel}
+\usepackage{forest}
+\usepackage{pgfgantt}
+
+% --- LISTAS ---
+\usepackage{enumitem}
+
+% --- PAQUETES DE CÓDIGO ---
+\usepackage{listings}
+% Configuración del estilo de listings
+\definecolor{codebg}{rgb}{0.95,0.95,0.95}   
+\definecolor{keyword}{rgb}{0.0,0.2,0.6}     
+\definecolor{comment}{rgb}{0.25,0.5,0.35}   
+\definecolor{string}{rgb}{0.6,0.0,0.0}      
+\definecolor{number}{rgb}{0.5,0.0,0.5}      
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.95}
+
+\lstset{
+  backgroundcolor=\color{backcolour},
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{blue}\bfseries,
+  stringstyle=\color{codepurple},
+  commentstyle=\color{codegray}\itshape,
+  numbers=left,
+  numberstyle=\tiny\color{codegray},
+  frame=single,
+  rulecolor=\color{black},
+  breaklines=true,
+  tabsize=4,
+  showstringspaces=false,
+  literate={á}{{\'a}}1
+           {é}{{\'e}}1
+           {í}{{\'i}}1
+           {ó}{{\'o}}1
+           {ú}{{\'u}}1
+           {Á}{{\'A}}1
+           {É}{{\'E}}1
+           {Í}{{\'I}}1
+           {Ó}{{\'O}}1
+           {Ú}{{\'U}}1
+           {ñ}{{\~n}}1
+           {Ñ}{{\~N}}1
+           {¿}{{\textquestiondown}}1
+           {¡}{{\textexclamdown}}1
+}
+
+% Estilo para código en C
+\lstdefinestyle{cstyle}{
+  language=C,
+  backgroundcolor=\color{backcolour},
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{blue}\bfseries,
+    keywordstyle=[2]\color{yellow!70!orange}\bfseries,
+    morekeywords=[2]{MPI_Init,MPI_Comm_size,MPI_Comm_rank,MPI_Send,MPI_Recv,MPI_Scatter,MPI_Gather,MPI_Bcast,MPI_Reduce,MPI_Finalize},
+    emph={printf},
+    emphstyle=\color{blue}\bfseries,
+  stringstyle=\color{codepurple},
+  commentstyle=\color{codegray}\itshape,
+  numbers=left,
+  numberstyle=\tiny\color{codegray},
+  frame=single,
+  rulecolor=\color{black},
+  breaklines=true,
+  tabsize=4,
+  showstringspaces=false
+}
+
+% Definición del lenguaje Python para listings
+\lstdefinelanguage[LAB]{Python}{
+    morekeywords={False, None, True, and, as, assert, async, await, break,
+                                class, continue, def, del, elif, else, except, finally,
+                                for, from, global, if, import, in, is, lambda, nonlocal,
+                                not, or, pass, raise, return, try, while, with, yield,
+                                machine, Pin, PWM, ADC, Timer, sleep_ms, sleep_us},
+    morecomment=[l]{\#},
+    morestring=[b]",
+    morestring=[b]',
+    sensitive=true
+}
+
+% Estilo para salidas de consola/terminal
+\lstdefinestyle{output}{
+  backgroundcolor=\color{black!5},
+  basicstyle=\ttfamily\footnotesize,
+  numbers=none,
+  frame=single,
+  rulecolor=\color{black!30},
+  breaklines=true,
+  tabsize=4,
+  showstringspaces=false,
+  xleftmargin=0.5cm,
+  xrightmargin=0.5cm
+}
+
+% --- ESTILOS PARA DIAGRAMAS DE FLUJO (TIKZ) ---
+\tikzset{
+  startstop/.style={rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30},
+  process/.style={rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=orange!30},
+  decision/.style={diamond, aspect=2, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30},
+  io/.style={trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30},
+  arrow/.style={thick,->,>=stealth}
+}
+
+
+\definecolor{azulresultado}{HTML}{0072C6}
+\definecolor{rojoacarreo}{HTML}{FF0000}
+
+% --- RUTAS DE IMÁGENES ---
+\graphicspath{{img/}{portada_img/}}
+
+\definecolor{armblue}{RGB}{0, 113, 188}
+
+% --- ÍNDICE CON PUNTOS ---
+\usepackage{tocloft}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+
+% --- CONFIGURACIÓN DE PÁGINA (GEOMETRÍA) ---
+\usepackage[
+    left=25mm, 
+    right=25mm,
+    top=35mm,
+    bottom=30mm,
+    headheight=77pt, 
+    papersize={21.59cm,27.94cm}
+]{geometry}
+
+% --- FORMATO DE TEXTO ---
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{parskip} 
+\usepackage{lipsum}  
+
+% --- VARIABLES GLOBALES ---
+\newcommand{\materia}{}
+
+% --- ENCABEZADOS Y PIES DE PÁGINA ---
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} 
+\fancyhead[L]{\includegraphics[height=1.5cm]{portada_img/der.png}}
+\fancyhead[R]{\includegraphics[height=1.5cm]{portada_img/izq.png}}
+\fancyfoot[C]{\thepage} 
+\renewcommand{\headrulewidth}{0.4pt} 
+\renewcommand{\footrulewidth}{0pt}  
+
+\fancypagestyle{indice}{
+  \fancyhf{}
+  \fancyhead[L]{\includegraphics[height=1.5cm]{portada_img/der.png}}
+  \fancyhead[R]{\includegraphics[height=1.5cm]{portada_img/izq.png}}
+  \renewcommand{\headrulewidth}{0.4pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \fancyhead[L]{\includegraphics[height=1.5cm]{portada_img/der.png}}
+  \fancyhead[R]{\includegraphics[height=1.5cm]{portada_img/izq.png}}
+  \fancyfoot[C]{\thepage}
+  \renewcommand{\headrulewidth}{0.4pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
+
+% --- BIBLIOGRAFÍA ---
+\usepackage[backend=biber, style=apa, sortcites, url=true]{biblatex}
+\addbibresource{referencias.bib}
+
+% --- HIPERVÍNCULOS ---
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan
+}
+
+\begin{document}
+
+\input{portada.tex}
+
+\newpage
+{%
+  \makeatletter
+  \let\ps@plain\ps@indice
+  \makeatother
+  \pagestyle{indice}
+  \hypersetup{linkcolor=black}\tableofcontents
+}
+
+
+\newpage
+
+\pagestyle{fancy}
+\setcounter{page}{1}
+\singlespacing
+
+% ===============================================================
+\section{Objetivo}
+\subsection{Objetivo}
+
+El presente proyecto tiene como objetiv principal, desarrollar una web, 
+la cual permita a los usuarios comprar y vender cartas de Pókemon
+y videojuegos fisicos de diferentes consolas, con esto 
+haciendo un enfoque en marcas como Playstation, Xbox y Nintendo, mantiendo un modelo 
+de negocio de compraventa entre usuarios, precios actulizados periodicamente mediante APIs externas,
+trasacciones protegidas (integrando un escrow simulado), asi como la integracion de una logistica visual, la aplicacion estara diseñada 
+para convertirse en un aliado estrategico para los usuarios que compran cartas pokemon, asi como a los usuarios que apoyen al formato fisico en los videojuegos.
+
+
+\textbf{Objetivos de negocio}
+\begin{enumerate}[label=\textbf{ON\arabic*.}, leftmargin=*]
+    \item Dar una solucion al comercio diversificado de cartas 
+    de pokemon, esto enfocado en México, con la finalidad de crear un espacio donde los coleccionistas puedan intercambiar sus cartas de manera segura y eficiente.
+    \item Definir el modelo de ingresos (comisión por venta) y demostrar su cálculo automático dentro de la simulacion de compra.
+    \item Establecer un punto de compra y venta para los videojuegos en formato fisico, esto para 
+    los usuarios que esten interesados en adquirir videojegos de forma mas barata y para los usuarios que quieran vender sus videojuegos usados.
+\end{enumerate}
+
+\textbf{Objetivos de desarrollo web}
+\begin{enumerate}[label=\textbf{OD\arabic*.}, leftmargin=*]
+    \item Implementar una arquitectura cliente-servidor con consumo de APIs externas y actualización automatica de precios.
+    \item Desarrollo de un Control de Acceso Basado en Roles para compradores, vendedores, recolectores y administradores.
+    \item Integraciaso de un metodo de pago, esto por medio de el SDK de Mercado Pago.
+\end{enumerate}
+
+\newpage
+
+% ===============================================================
+\section{Definición del Producto o Servicio}
+\subsection{Descripción del producto}
+
+
+El producto es una plataforma web 
+donde el objetivo es el comercio electrónico 
+donde se va a mantener un enfoque en 
+la compraventa de cartas Pokémon TCG (Esto teniendo en cuenta el numero 
+de expanciones que se llevan con año) y videojuegos 
+físicos (PS3, PS4, PS5, PSP, Xbox (original, 360 y X/S) y 
+Nintendo (Nintendo Switch)), 
+esto bajo la modalidad de comprar bajo vendedores particulares,
+ahora bien, a diferencia de los mercados generalistas, la plataforma 
+trata el coleccionismo como un mercado de valores, esto por medio 
+de cada artículo muestra la evolución de su precio (esto se puede saber por medio de el mercado de valores de
+PSA que existe actualmente), las condiciones de venta 
+seran catalogadas en las cartas gradeadas, los datos de su grado y certificado, y las 
+cartas sin gradear, donde son conocidas como (downGrade). 
+
+Las transacciones se realizan con un esquema de compra protegida simulado 
+y el comprador seguira el progreso del envio mismo.
+
+La web ser responsiva y accesible desde el navegador, 
+sin alguna instalación previa.
+
+\subsection{Usuarios y roles}
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{|l|Y|}
+\hline
+\textbf{Rol} & \textbf{Lo que hace} \\ \hline
+Comprador & Encontrar artículos y decidir con datos: historial de precio, datos del grado PSA y compra protegida. \\ \hline
+Vendedor (particular) & Publicar (Agregar descripcion, precio, generacion a la que pertenece y fotografias del producto por todos los lados posibles)y gestionar su inventario y consultar sus ventas. \\ \hline
+Recolector & Actualizar los estados logísticos del pedido (rol operativo de la plataforma). \\ \hline
+Administrador & Moderar publicaciones y usuarios, resolver disputas y supervisar métricas globales. \\ \hline
+\end{tabularx}
+\caption{Roles de la plataforma}
+\end{table}
+
+\newpage
+
+\subsection{Requerimientos funcionales}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{|l|Y|}
+\hline
+\textbf{ID} & \textbf{Funcionalidad} \\ \hline
+RF01 & Registro, inicio de sesión y asignación de roles. \\ \hline
+RF02 & Catálogo de cartas (secciones sin gradear y gradeadas) y de videojuegos, con búsqueda y filtros. \\ \hline
+RF03 & PPublicacion de los articulos con fotos de todos los lados posibles. \\ \hline
+RF04 & Detalle con gráfica histórica de precio esto de las cartas y, en las gradeadas, grado, número de certificado. \\ \hline
+RF05 & Compra con pago en sandbox de Mercado Pago. \\ \hline
+RF06 & Panel del Recolector para actualizar estados del envío. \\ \hline
+RF07 & Comparativa de precios con Mercado Libre. \\ \hline
+RF08 & Vista de la logística del envío. \\ \hline
+RF9  & Dashboard del vendedor y panel de administración. \\ \hline
+RF10 & Wishlist con alertas de cambio de precio. \\ \hline
+\end{tabularx}
+\caption{Requerimientos funcionales}
+\end{table}
+
+\subsection{Estructura del catálogo: cartas sin gradear y gradeadas}
+
+El catálogo de cartas se organiza en dos secciones. 
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{|l|Y|Y|Y|}
+\hline
+\textbf{Sección} & \textbf{Contenido} & \textbf{Condición} & \textbf{Precio de referencia} \\ \hline
+Cartas sin gradear & Cartas sin certificar, descritas por el vendedor con fotografías. & Near Mint, Lightly Played, Moderately Played, Heavily Played, Damaged. & Valor de mercado de PokemonPriceTracker. \\ \hline
+Cartas gradeadas & Cartas certificadas por PSA (de forma exclusiva solo se admitira de esta plataforma) 
+y selladas en su acrilico correspondiente. & Grado numérico de la graduadora (en PSA, del 1 al 10). & Valor de mercado de PokemonPriceTracker. \\ \hline
+Videojuegos & Videojuegos físicos por plataforma. & Nuevo sellado, completo en caja. & Precio fijado por el vendedor y comparativa con Mercado Libre. \\ \hline
+\end{tabularx}
+\caption{Secciones del catálogo}
+\end{table}
+
+\newpage
+La condición de las cartas sin gradear se describe con cinco niveles:
+
+\begin{enumerate}
+    \item Near Mint (prácticamente sin uso, esquinas y bordes intactos)
+    \item Lightly Played (desgaste mínimo, con pequeñas imperfecciones apenas visibles)
+    \item Moderately Played (desgaste visible pero la carta sigue siendo legible y jugable)
+    \item Heavily Played (desgaste notorio, con dobleces, rayones o manchas)
+    \item Damaged (daño estructural importante, como rasgaduras o dobleces pronunciados)
+\end{enumerate}
+
+\textbf{Sección de PSA:} 
+
+Dentro de las cartas gradeadas se tiene la sección 
+para cartas PSA, 
+porque PSA es la graduadora dominante en TCG, esto en el mercado se ve muy reflejado por que 
+muchas personas es la casa graduadora que mas se utiliza.
+
+Cada ficha PSA incluye el grado, el número de certificado y de su etiqueta, la gráfica de el historial de precios para ese grado.
+\subsection{Fuentes de datos y servicios}
+\begin{itemize}
+    \item \textbf{PokemonPriceTracker}: valores de mercado de cartas, tanto sin gradear como gradeadas (incluidas las de PSA).
+    \item \textbf{Pokémon TCG API}: catálogo de cartas.
+    \item \textbf{Mercado Libre}: precios de referencia para la comparativa; se verificará si el endpoint de búsqueda requiere autenticación.
+    \item \textbf{Videojuegos:} la fuente de precios sera PriceCharting. 
+\end{itemize}
+
+\subsection{Diferenciadores}
+El proyecto cuenta con cuatro diferenciadores principales. En primer lugar, ofrece transparencia de precios al mostrar un historial construido mediante snapshots propios y una sección exclusiva para cartas gradeadas por PSA que incluye su respectivo enlace de verificación.
+
+Además, garantiza una compra protegida C2C, ya que el sistema retiene el pago de forma segura hasta que el comprador confirma la recepción del artículo o hasta que vence el plazo de liberación de fondos.
+
+En cuanto a la experiencia del usuario, la plataforma integra una logística visual que sustituye el tradicional estado estático por una animación del envío directamente sobre un mapa. Finalmente, todo el proyecto destaca por su bajo costo de infraestructura, debido a que el sistema se ejecuta íntegramente en contenedores Docker, eliminando por completo la dependencia de proveedores de nube de pago.
+
+\section{Contexto del Negocio / Mercado}
+
+
+
+\newpage
+\section{Estrategia a seguir para el desarrollo}
+
+\subsection{Estructura del trabajo (WBS)}
+\begin{figure}[H]
+\centering
+\begin{forest}
+for tree={font=\footnotesize, s sep=3pt, inner sep=1.5pt, grow'=0, child anchor=west, parent anchor=south, anchor=west, calign=first,
+  edge path={\noexpand\path [draw, \forestoption{edge}] (!u.south west)+(7.5pt,0) |- node[fill,inner sep=1.25pt] {} (.child anchor)\forestoption{edge label};},
+  before typesetting nodes={if n=1{insert before={[,phantom]}}{}},
+  fit=band, before computing xy={l=15pt}}
+[{Plataforma web TCG y Retro Gaming}
+  [{1. Inicio y configuración}
+    [{1.1 Conformación del equipo, roles, tablero y repositorio \textit{(VERSIONCTRL-1.0)}}]
+    [{1.2 Especificación de requisitos (ERS) e historias de usuario \textit{(ERS-1.0)}}]
+    [{1.3 Entornos Docker, CI y credenciales de APIs \textit{(DOCKER-1.0, APIEXT-1.0)}}]
+    [{1.4 Diseño del esquema de BD (ER) y migraciones \textit{(DBMARIA-1.0)}}]
+    [{1.5 Estudio de mercado y modelo de negocio (Canvas) \textit{(MODNEG-1.0)}}]
+  ]
+  [{2. Backend y APIs}
+    [{2.1 Autenticación y RBAC}]
+    [{2.2 Catálogo (sin gradear, gradeadas y PSA) y publicaciones \textit{(API-1.0 (parcial))}}]
+    [{2.3 Adaptadores de APIs externas y scheduler de precios \textit{(PRECIOS-1.0)}}]
+    [{2.4 Contrato OpenAPI y datos de ejemplo \textit{(OPENAPI-1.0)}}]
+  ]
+  [{3. Frontend}
+    [{3.1 Prototipos UI y SPA base (sistema de diseño) \textit{(PROTO-1.0)}}]
+    [{3.2 Catálogo por secciones, búsqueda y detalle con gráfica de precios}]
+    [{3.3 Publicación de artículos (4 fotos) y paneles por rol}]
+  ]
+  [{4. Pagos, escrow y mapas}
+    [{4.1 Mercado Pago (sandbox) y webhooks}]
+    [{4.2 Máquina de estados del escrow y disputas \textit{(API-1.0)}}]
+    [{4.3 Geocodificación Mapbox y mapa animado (Leaflet)}]
+    [{4.4 Paneles de Recolector y Admin \textit{(WEB-1.0)}}]
+  ]
+  [{5. Integración y pruebas}
+    [{5.1 Pruebas unitarias y de integración \textit{(CP-1.0)}}]
+    [{5.2 Pruebas de seguridad y de carga \textit{(SEG-1.0)}}]
+    [{5.3 Corrección de errores y validación con usuarios}]
+  ]
+  [{6. Despliegue y cierre}
+    [{6.1 Empaquetado en Docker y respaldos \textit{(DEPLOY-1.0)}}]
+    [{6.2 Documentación técnica y manual de usuario \textit{(MANUAL-1.0)}}]
+    [{6.3 Cierre: demostración y entrega final \textit{(ENTREGA-1.0)}}]
+  ]
+]
+\end{forest}
+\caption{WBS}
+\end{figure}
+
+Se emplea la estimación por tres valores (PERT), porque el proyecto integra varios servicios externos y tecnologías nuevas para el equipo, con factores que pueden retrasar las actividades (cuotas de las APIs, limitaciones del \textit{sandbox} y del hardware). Para cada actividad se estiman la duración optimista (O), la más probable (M) y la pesimista (P); la duración esperada es $E=(O+4M+P)/6$ y la varianza es $\sigma^2=((P-O)/6)^2$. La duración programada es el valor de $E$ redondeado al día entero más cercano. Todas las dependencias son de tipo fin-inicio y la holgura se calcula con los métodos de ruta crítica.
+
+{\scriptsize
+\setlength{\tabcolsep}{2pt}
+\begin{longtable}{|p{0.9cm}|>{\raggedright\arraybackslash}p{4.4cm}|p{0.5cm}|p{0.5cm}|p{0.5cm}|p{0.8cm}|p{0.8cm}|p{0.75cm}|p{1.1cm}|p{1.1cm}|p{1.6cm}|p{0.75cm}|}
+\caption{Programación PERT del proyecto}\\
+\hline
+\textbf{ID} & \textbf{Actividad} & \textbf{O} & \textbf{M} & \textbf{P} & \textbf{E} & $\sigma^2$ & \textbf{Dur.} & \textbf{Inicio} & \textbf{Fin} & \textbf{Predec.} & \textbf{Holg.} \\ \hline
+\endfirsthead
+\hline
+\textbf{ID} & \textbf{Actividad} & \textbf{O} & \textbf{M} & \textbf{P} & \textbf{E} & $\sigma^2$ & \textbf{Dur.} & \textbf{Inicio} & \textbf{Fin} & \textbf{Predec.} & \textbf{Holg.} \\ \hline
+\endhead
+1.1 & Conformación del equipo, roles, tablero y repositorio & 2 & 3 & 4 & 3.00 & 0.11 & 3 & 24/09 & 26/09 & -- & 0 \\ \hline
+1.2 & Especificación de requisitos (ERS) e historias de usuario & 3 & 4 & 6 & 4.17 & 0.25 & 4 & 27/09 & 30/09 & 1.1 & 0 \\ \hline
+1.3 & Entornos Docker, CI y credenciales de APIs & 3 & 5 & 7 & 5.00 & 0.44 & 5 & 27/09 & 01/10 & 1.1 & 4 \\ \hline
+1.4 & Diseño del esquema de BD (ER) y migraciones & 3 & 5 & 7 & 5.00 & 0.44 & 5 & 01/10 & 05/10 & 1.2 & 0 \\ \hline
+1.5 & Estudio de mercado y modelo de negocio (Canvas) & 4 & 6 & 9 & 6.17 & 0.69 & 6 & 27/09 & 02/10 & 1.1 & 39 \\ \hline
+2.1 & Autenticación y RBAC & 4 & 6 & 9 & 6.17 & 0.69 & 6 & 06/10 & 11/10 & 1.3, 1.4 & 3 \\ \hline
+2.2 & Catálogo (sin gradear, gradeadas y PSA) y publicaciones & 6 & 9 & 14 & 9.33 & 1.78 & 9 & 06/10 & 14/10 & 1.3, 1.4 & 0 \\ \hline
+2.3 & Adaptadores de APIs externas y scheduler de precios & 5 & 7 & 10 & 7.17 & 0.69 & 7 & 06/10 & 12/10 & 1.3, 1.4 & 17 \\ \hline
+2.4 & Contrato OpenAPI y datos de ejemplo & 2 & 3 & 4 & 3.00 & 0.11 & 3 & 06/10 & 08/10 & 1.4 & 6 \\ \hline
+3.1 & Prototipos UI y SPA base (sistema de diseño) & 4 & 6 & 9 & 6.17 & 0.69 & 6 & 09/10 & 14/10 & 2.4, 1.3 & 6 \\ \hline
+3.2 & Catálogo por secciones, búsqueda y detalle con gráfica de precios & 5 & 8 & 11 & 8.00 & 1.00 & 8 & 15/10 & 22/10 & 3.1 & 6 \\ \hline
+3.3 & Publicación de artículos (4 fotos) y paneles por rol & 5 & 7 & 10 & 7.17 & 0.69 & 7 & 15/10 & 21/10 & 3.1, 2.1 & 8 \\ \hline
+4.1 & Mercado Pago (sandbox) y webhooks & 5 & 7 & 10 & 7.17 & 0.69 & 7 & 15/10 & 21/10 & 2.2, 2.1 & 0 \\ \hline
+4.2 & Máquina de estados del escrow y disputas & 5 & 7 & 10 & 7.17 & 0.69 & 7 & 22/10 & 28/10 & 4.1 & 0 \\ \hline
+4.3 & Geocodificación Mapbox y mapa animado (Leaflet) & 5 & 7 & 11 & 7.33 & 1.00 & 7 & 29/10 & 04/11 & 4.2, 3.2 & 0 \\ \hline
+4.4 & Paneles de Recolector y Admin & 4 & 6 & 8 & 6.00 & 0.44 & 6 & 29/10 & 03/11 & 4.2, 3.3 & 1 \\ \hline
+5.1 & Pruebas unitarias y de integración & 4 & 6 & 8 & 6.00 & 0.44 & 6 & 29/10 & 03/11 & 4.2, 2.3, 3.2 & 1 \\ \hline
+5.2 & Pruebas de seguridad y de carga & 4 & 6 & 9 & 6.17 & 0.69 & 6 & 05/11 & 10/11 & 5.1, 4.3, 4.4 & 0 \\ \hline
+5.3 & Corrección de errores y validación con usuarios & 5 & 7 & 10 & 7.17 & 0.69 & 7 & 11/11 & 17/11 & 5.2, 1.5 & 0 \\ \hline
+6.1 & Empaquetado en Docker y respaldos & 2 & 3 & 5 & 3.17 & 0.25 & 3 & 11/11 & 13/11 & 5.2 & 4 \\ \hline
+6.2 & Documentación técnica y manual de usuario & 3 & 4 & 6 & 4.17 & 0.25 & 4 & 04/11 & 07/11 & 5.1 & 10 \\ \hline
+6.3 & Cierre: demostración y entrega final & 2 & 3 & 4 & 3.00 & 0.11 & 3 & 18/11 & 20/11 & 5.3, 6.1, 6.2 & 0 \\ \hline
+\end{longtable}
+}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{@{}p{0.5cm}p{3.6cm}p{0.5cm}p{3.6cm}@{}}
+\tikz{\fill[blue!35] (0,0) rectangle (0.4,0.28);} & Trabajo programado de la actividad &
+\tikz{\fill[red!60] (0,0) rectangle (0.4,0.28);} & Actividad de la ruta crítica \\
+\tikz{\fill[blue!12] (0,0) rectangle (0.4,0.28);} & Holgura: margen en que la actividad podría moverse sin retrasar el proyecto &
+\tikz{\fill[gray!45] (0,0) rectangle (0.4,0.28);} & Reserva de contingencia general \\
+\tikz{\fill[orange!80] (0.2,0.14) -- (0.4,0.28) -- (0.2,0) -- (0,0.14) -- cycle;} & Hito (entrega final o fecha límite) & & \\
+\end{tabular}
+\end{center}
+
+
+\begin{figure}[H]
+\centering
+\begin{ganttchart}[x unit=1.23cm, y unit title=0.5cm, y unit chart=0.6cm, title height=1, bar height=0.6,
+  hgrid, vgrid, title label font=\scriptsize, bar label font=\footnotesize,
+  group label font=\footnotesize\bfseries, bar/.append style={fill=blue!35}, group/.append style={fill=black!65},
+  milestone/.append style={fill=orange!80}]{1}{7}
+\gantttitle{Semana 1: 24/09/2026 -- 30/09/2026}{7} \\
+\gantttitlelist{24,25,26,27,28,29,30}{1} \\
+\ganttgroup{F1. Inicio y configuración}{1}{7} \\
+\ganttbar[bar/.append style={fill=red!60}]{1.1 Equipo, roles y repositorio}{1}{3} \\
+\ganttbar[bar/.append style={fill=red!60}]{1.2 ERS e historias de usuario}{4}{7} \\
+\ganttbar{1.3 Entornos Docker, CI y APIs}{4}{7} \\
+\ganttbar{1.5 Estudio de mercado y Canvas}{4}{7}
+\end{ganttchart}
+\caption{Semana 1 del cronograma (24/09/2026 -- 30/09/2026)}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{ganttchart}[x unit=1.23cm, y unit title=0.5cm, y unit chart=0.6cm, title height=1, bar height=0.6,
+  hgrid, vgrid, title label font=\scriptsize, bar label font=\footnotesize,
+  group label font=\footnotesize\bfseries, bar/.append style={fill=blue!35}, group/.append style={fill=black!65},
+  milestone/.append style={fill=orange!80}]{1}{7}
+\gantttitle{Semana 2: 01/10/2026 -- 07/10/2026}{7} \\
+\gantttitlelist{1,2,3,4,5,6,7}{1} \\
+\ganttgroup{F1. Inicio y configuración}{1}{7} \\
+\ganttbar{1.3 Entornos Docker, CI y APIs}{1}{1} \\
+\ganttbar[bar/.append style={fill=blue!12}]{}{2}{5} \\
+\ganttbar[bar/.append style={fill=red!60}]{1.4 Esquema de BD y migraciones}{1}{5} \\
+\ganttbar{1.5 Estudio de mercado y Canvas}{1}{2} \\
+\ganttbar[bar/.append style={fill=blue!12}]{}{3}{7} \\
+\ganttgroup{F2. Backend y APIs}{6}{7} \\
+\ganttbar{2.1 Autenticación y RBAC}{6}{7} \\
+\ganttbar[bar/.append style={fill=red!60}]{2.2 Catálogo y publicaciones}{6}{7} \\
+\ganttbar{2.3 Adaptadores de APIs y precios}{6}{7} \\
+\ganttbar{2.4 Contrato OpenAPI y fixtures}{6}{7}
+\end{ganttchart}
+\caption{Semana 2 del cronograma (01/10/2026 -- 07/10/2026)}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{ganttchart}[x unit=1.23cm, y unit title=0.5cm, y unit chart=0.6cm, title height=1, bar height=0.6,
+  hgrid, vgrid, title label font=\scriptsize, bar label font=\footnotesize,
+  group label font=\footnotesize\bfseries, bar/.append style={fill=blue!35}, group/.append style={fill=black!65},
+  milestone/.append style={fill=orange!80}]{1}{7}
+\gantttitle{Semana 3: 08/10/2026 -- 14/10/2026}{7} \\
+\gantttitlelist{8,9,10,11,12,13,14}{1} \\
+\ganttgroup{F1. Inicio y configuración}{1}{7} \\
+\ganttbar[bar/.append style={fill=blue!12}]{1.5 Estudio de mercado y Canvas}{1}{7} \\
+\ganttgroup{F2. Backend y APIs}{1}{7} \\
+\ganttbar{2.1 Autenticación y RBAC}{1}{4} \\
+\ganttbar[bar/.append style={fill=blue!12}]{}{5}{7} \\
+\ganttbar[bar/.append style={fill=red!60}]{2.2 Catálogo y publicaciones}{1}{7} \\
+\ganttbar{2.3 Adaptadores de APIs y precios}{1}{5} \\
+\ganttbar[bar/.append style={fill=blue!12}]{}{6}{7} \\
+\ganttbar{2.4 Contrato OpenAPI y fixtures}{1}{1} \\
+\ganttbar[bar/.append style={fill=blue!12}]{}{2}{7} \\
+\ganttgroup{F3. Frontend}{2}{7} \\
+\ganttbar{3.1 Prototipos UI y SPA base}{2}{7}
+\end{ganttchart}
+\caption{Semana 3 del cronograma (08/10/2026 -- 14/10/2026)}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{ganttchart}[x unit=1.23cm, y unit title=0.5cm, y unit chart=0.6cm, title height=1, bar height=0.6,
+  hgrid, vgrid, title label font=\scriptsize, bar label font=\footnotesize,
+  group label font=\footnotesize\bfseries, bar/.append style={fill=blue!35}, group/.append style={fill=black!65},
+  milestone/.append style={fill=orange!80}]{1}{7}
+\gantttitle{Semana 4: 15/10/2026 -- 21/10/2026}{7} \\
+\gantttitlelist{15,16,17,18,19,20,21}{1} \\
+\ganttgroup{F1. Inicio y configuración}{1}{7} \\
+\ganttbar[bar/.append style={fill=blue!12}]{1.5 Estudio de mercado y Canvas}{1}{7} \\
+\ganttgroup{F2. Backend y APIs}{1}{7} \\
+\ganttbar[bar/.append style={fill=blue!12}]{2.3 Adaptadores de APIs y precios}{1}{7} \\
+\ganttgroup{F3. Frontend}{1}{7} \\
+\ganttbar[bar/.append style={fill=blue!12}]{3.1 Prototipos UI y SPA base}{1}{6} \\
+\ganttbar{3.2 Catálogo y gráfica de precios}{1}{7} \\
+\ganttbar{3.3 Publicación y paneles por rol}{1}{7} \\
+\ganttgroup{F4. Pagos, escrow y mapas}{1}{7} \\
+\ganttbar[bar/.append style={fill=red!60}]{4.1 Mercado Pago y webhooks}{1}{7}
+\end{ganttchart}
+\caption{Semana 4 del cronograma (15/10/2026 -- 21/10/2026)}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{ganttchart}[x unit=1.23cm, y unit title=0.5cm, y unit chart=0.6cm, title height=1, bar height=0.6,
+  hgrid, vgrid, title label font=\scriptsize, bar label font=\footnotesize,
+  group label font=\footnotesize\bfseries, bar/.append style={fill=blue!35}, group/.append style={fill=black!65},
+  milestone/.append style={fill=orange!80}]{1}{7}
+\gantttitle{Semana 5: 22/10/2026 -- 28/10/2026}{7} \\
+\gantttitlelist{22,23,24,25,26,27,28}{1} \\
+\ganttgroup{F1. Inicio y configuración}{1}{7} \\
+\ganttbar[bar/.append style={fill=blue!12}]{1.5 Estudio de mercado y Canvas}{1}{7} \\
+\ganttgroup{F2. Backend y APIs}{1}{7} \\
+\ganttbar[bar/.append style={fill=blue!12}]{2.3 Adaptadores de APIs y precios}{1}{7} \\
+\ganttgroup{F3. Frontend}{1}{7} \\
+\ganttbar{3.2 Catálogo y gráfica de precios}{1}{1} \\
+\ganttbar[bar/.append style={fill=blue!12}]{}{2}{7} \\
+\ganttbar[bar/.append style={fill=blue!12}]{3.3 Publicación y paneles por rol}{1}{7} \\
+\ganttgroup{F4. Pagos, escrow y mapas}{1}{7} \\
+\ganttbar[bar/.append style={fill=red!60}]{4.2 Escrow y disputas}{1}{7}
+\end{ganttchart}
+\caption{Semana 5 del cronograma (22/10/2026 -- 28/10/2026)}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{ganttchart}[x unit=1.23cm, y unit title=0.5cm, y unit chart=0.6cm, title height=1, bar height=0.6,
+  hgrid, vgrid, title label font=\scriptsize, bar label font=\footnotesize,
+  group label font=\footnotesize\bfseries, bar/.append style={fill=blue!35}, group/.append style={fill=black!65},
+  milestone/.append style={fill=orange!80}]{1}{7}
+\gantttitle{Semana 6: 29/10/2026 -- 04/11/2026}{7} \\
+\gantttitlelist{29,30,31,1,2,3,4}{1} \\
+\ganttgroup{F1. Inicio y configuración}{1}{7} \\
+\ganttbar[bar/.append style={fill=blue!12}]{1.5 Estudio de mercado y Canvas}{1}{7} \\
+\ganttgroup{F2. Backend y APIs}{1}{1} \\
+\ganttbar[bar/.append style={fill=blue!12}]{2.3 Adaptadores de APIs y precios}{1}{1} \\
+\ganttgroup{F3. Frontend}{1}{1} \\
+\ganttbar[bar/.append style={fill=blue!12}]{3.3 Publicación y paneles por rol}{1}{1} \\
+\ganttgroup{F4. Pagos, escrow y mapas}{1}{7} \\
+\ganttbar[bar/.append style={fill=red!60}]{4.3 Mapbox y mapa animado}{1}{7} \\
+\ganttbar{4.4 Paneles Recolector y Admin}{1}{6} \\
+\ganttbar[bar/.append style={fill=blue!12}]{}{7}{7} \\
+\ganttgroup{F5. Integración y pruebas}{1}{7} \\
+\ganttbar{5.1 Pruebas unitarias e integración}{1}{6} \\
+\ganttbar[bar/.append style={fill=blue!12}]{}{7}{7} \\
+\ganttgroup{F6. Despliegue y cierre}{7}{7} \\
+\ganttbar{6.2 Documentación y manual}{7}{7}
+\end{ganttchart}
+\caption{Semana 6 del cronograma (29/10/2026 -- 04/11/2026)}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{ganttchart}[x unit=1.23cm, y unit title=0.5cm, y unit chart=0.6cm, title height=1, bar height=0.6,
+  hgrid, vgrid, title label font=\scriptsize, bar label font=\footnotesize,
+  group label font=\footnotesize\bfseries, bar/.append style={fill=blue!35}, group/.append style={fill=black!65},
+  milestone/.append style={fill=orange!80}]{1}{7}
+\gantttitle{Semana 7: 05/11/2026 -- 11/11/2026}{7} \\
+\gantttitlelist{5,6,7,8,9,10,11}{1} \\
+\ganttgroup{F1. Inicio y configuración}{1}{6} \\
+\ganttbar[bar/.append style={fill=blue!12}]{1.5 Estudio de mercado y Canvas}{1}{6} \\
+\ganttgroup{F5. Integración y pruebas}{1}{7} \\
+\ganttbar[bar/.append style={fill=red!60}]{5.2 Pruebas de seguridad y carga}{1}{6} \\
+\ganttbar[bar/.append style={fill=red!60}]{5.3 Correcciones y validación}{7}{7} \\
+\ganttgroup{F6. Despliegue y cierre}{1}{7} \\
+\ganttbar{6.1 Empaquetado Docker y respaldos}{7}{7} \\
+\ganttbar{6.2 Documentación y manual}{1}{3} \\
+\ganttbar[bar/.append style={fill=blue!12}]{}{4}{7}
+\end{ganttchart}
+\caption{Semana 7 del cronograma (05/11/2026 -- 11/11/2026)}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{ganttchart}[x unit=1.23cm, y unit title=0.5cm, y unit chart=0.6cm, title height=1, bar height=0.6,
+  hgrid, vgrid, title label font=\scriptsize, bar label font=\footnotesize,
+  group label font=\footnotesize\bfseries, bar/.append style={fill=blue!35}, group/.append style={fill=black!65},
+  milestone/.append style={fill=orange!80}]{1}{7}
+\gantttitle{Semana 8: 12/11/2026 -- 18/11/2026}{7} \\
+\gantttitlelist{12,13,14,15,16,17,18}{1} \\
+\ganttgroup{F5. Integración y pruebas}{1}{6} \\
+\ganttbar[bar/.append style={fill=red!60}]{5.3 Correcciones y validación}{1}{6} \\
+\ganttgroup{F6. Despliegue y cierre}{1}{7} \\
+\ganttbar{6.1 Empaquetado Docker y respaldos}{1}{2} \\
+\ganttbar[bar/.append style={fill=blue!12}]{}{3}{6} \\
+\ganttbar[bar/.append style={fill=blue!12}]{6.2 Documentación y manual}{1}{6} \\
+\ganttbar[bar/.append style={fill=red!60}]{6.3 Cierre y entrega final}{7}{7}
+\end{ganttchart}
+\caption{Semana 8 del cronograma (12/11/2026 -- 18/11/2026)}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{ganttchart}[x unit=1.35cm, y unit title=0.5cm, y unit chart=0.6cm, title height=1, bar height=0.6,
+  hgrid, vgrid, title label font=\scriptsize, bar label font=\footnotesize,
+  group label font=\footnotesize\bfseries, bar/.append style={fill=blue!35}, group/.append style={fill=black!65},
+  milestone/.append style={fill=orange!80}]{1}{6}
+\gantttitle{Semana 9: 19/11/2026 -- 24/11/2026}{6} \\
+\gantttitlelist{19,20,21,22,23,24}{1} \\
+\ganttgroup{F6. Despliegue y cierre}{1}{2} \\
+\ganttbar[bar/.append style={fill=red!60}]{6.3 Cierre y entrega final}{1}{2} \\
+\ganttbar[bar/.append style={fill=gray!45}]{Reserva de contingencia}{3}{6} \\
+\ganttmilestone{Entrega final}{2} \\
+\ganttmilestone{Fecha límite}{6}
+\end{ganttchart}
+\caption{Semana 9 del cronograma (19/11/2026 -- 24/11/2026)}
+\end{figure}
+
+\textbf{Ruta crítica}
+La ruta crítica está formada por las actividades 1.1 $\rightarrow$ 1.2 $\rightarrow$ 1.4 $\rightarrow$ 2.2 $\rightarrow$ 4.1 $\rightarrow$ 4.2 $\rightarrow$ 4.3 $\rightarrow$ 5.2 $\rightarrow$ 5.3 $\rightarrow$ 6.3. Su duración programada es de 58 días (del 24/09/2026 al 20/11/2026, día 58); su duración esperada sin redondeo es de 59.5 días, con desviación estándar de 2.54 días. Como el plazo es de 62 días, existe una reserva de 4 días (del 21/11/2026 al 24/11/2026) para absorber retrasos, ajustes de alcance o imprevistos técnicos. Con la aproximación normal de PERT, la probabilidad de concluir dentro del plazo es aproximadamente 84\,\%; esta cifra debe tomarse como referencia, porque ignora las rutas paralelas cercanas a la crítica.
+
+
+\newpage
+\section{Plan de trabajo (Base line)}
+
+\label{sec:ci}
+
+\bigskip
+\noindent\begin{minipage}{\textwidth}
+\small\renewcommand{\arraystretch}{1.9}
+\begin{tabularx}{\textwidth}{|p{3.3cm}|Y|}
+\hline
+Nombre de CI & Anteproyecto (documento) \\ \hline
+Identificador & ANTE-1.0 \\ \hline
+Descripción de CI & Documento de anteproyecto: objetivos, definición del producto, contexto de negocio, estrategias y plan de trabajo. \\ \hline
+Fecha(s) de CI & 21/09/2026 \\ \hline
+Tipo de CI & Documentación \\ \hline
+Propietario & Líder de proyecto \\ \hline
+Relación de CI & Base de MODNEG-1.0 y ERS-1.0. \\ \hline
+\end{tabularx}
+\end{minipage}\par\bigskip
+\noindent\begin{minipage}{\textwidth}
+\small\renewcommand{\arraystretch}{1.9}
+\begin{tabularx}{\textwidth}{|p{3.3cm}|Y|}
+\hline
+Nombre de CI & Modelo de negocio y estudio de mercado \\ \hline
+Identificador & MODNEG-1.0 \\ \hline
+Descripción de CI & Análisis de competencia, encuesta a coleccionistas, Business Model Canvas y modelo de ingresos. \\ \hline
+Fecha(s) de CI & 02/10/2026 \\ \hline
+Tipo de CI & Documentación \\ \hline
+Propietario & Analista de negocio \\ \hline
+Relación de CI & Alimenta a ERS-1.0; se contrasta en la actividad 5.3. \\ \hline
+\end{tabularx}
+\end{minipage}\par\bigskip
+\noindent\begin{minipage}{\textwidth}
+\small\renewcommand{\arraystretch}{1.9}
+\begin{tabularx}{\textwidth}{|p{3.3cm}|Y|}
+\hline
+Nombre de CI & Especificación de requisitos (ERS) \\ \hline
+Identificador & ERS-1.0 \\ \hline
+Descripción de CI & Requisitos funcionales y no funcionales, historias de usuario y criterios de aceptación. \\ \hline
+Fecha(s) de CI & 30/09/2026 \\ \hline
+Tipo de CI & Documentación \\ \hline
+Propietario & Analista de negocio \\ \hline
+Relación de CI & Derivación: implementado en API-1.0 y WEB-1.0; base de CP-1.0. \\ \hline
+\end{tabularx}
+\end{minipage}\par\bigskip
+\noindent\begin{minipage}{\textwidth}
+\small\renewcommand{\arraystretch}{1.9}
+\begin{tabularx}{\textwidth}{|p{3.3cm}|Y|}
+\hline
+Nombre de CI & Repositorio y control de versiones \\ \hline
+Identificador & VERSIONCTRL-1.0 \\ \hline
+Descripción de CI & Repositorio Git con Git Flow (ramas dev y main), tablero de tareas y protección de ramas. \\ \hline
+Fecha(s) de CI & 26/09/2026 \\ \hline
+Tipo de CI & Control de versiones \\ \hline
+Propietario & Líder de proyecto \\ \hline
+Relación de CI & Base de API-1.0, WEB-1.0 y PRECIOS-1.0. \\ \hline
+\end{tabularx}
+\end{minipage}\par\bigskip
+\noindent\begin{minipage}{\textwidth}
+\small\renewcommand{\arraystretch}{1.9}
+\begin{tabularx}{\textwidth}{|p{3.3cm}|Y|}
+\hline
+Nombre de CI & Entorno Docker y CI \\ \hline
+Identificador & DOCKER-1.0 \\ \hline
+Descripción de CI & Docker Compose para levantar el sistema en cualquier equipo del grupo (entorno de desarrollo en Windows) y pipeline de GitHub Actions para pruebas. \\ \hline
+Fecha(s) de CI & 01/10/2026 \\ \hline
+Tipo de CI & Configuración \\ \hline
+Propietario & Arquitecto / Backend \\ \hline
+Relación de CI & Depende de VERSIONCTRL-1.0; base de API-1.0 y DEPLOY-1.0. \\ \hline
+\end{tabularx}
+\end{minipage}\par\bigskip
+\noindent\begin{minipage}{\textwidth}
+\small\renewcommand{\arraystretch}{1.9}
+\begin{tabularx}{\textwidth}{|p{3.3cm}|Y|}
+\hline
+Nombre de CI & Cuentas y credenciales de APIs \\ \hline
+Identificador & APIEXT-1.0 \\ \hline
+Descripción de CI & Credenciales y cuentas de sandbox: PokemonPriceTracker, pokemontcg.io, Mercado Libre, Mercado Pago y Mapbox. \\ \hline
+Fecha(s) de CI & 01/10/2026 \\ \hline
+Tipo de CI & Servicios externos \\ \hline
+Propietario & Arquitecto / Backend \\ \hline
+Relación de CI & Requerido por PRECIOS-1.0, API-1.0 y WEB-1.0. \\ \hline
+\end{tabularx}
+\end{minipage}\par\bigskip
+\noindent\begin{minipage}{\textwidth}
+\small\renewcommand{\arraystretch}{1.9}
+\begin{tabularx}{\textwidth}{|p{3.3cm}|Y|}
+\hline
+Nombre de CI & Esquema de base de datos \\ \hline
+Identificador & DBMARIA-1.0 \\ \hline
+Descripción de CI & Esquema MariaDB (usuarios, roles, artículos, publicaciones con campos de grado y certificado, órdenes, pagos, envíos, snapshots de precio) y migraciones con Alembic. \\ \hline
+Fecha(s) de CI & 05/10/2026 \\ \hline
+Tipo de CI & Base de datos \\ \hline
+Propietario & Arquitecto / Backend \\ \hline
+Relación de CI & Depende de ERS-1.0; base de API-1.0 y OPENAPI-1.0. \\ \hline
+\end{tabularx}
+\end{minipage}\par\bigskip
+\noindent\begin{minipage}{\textwidth}
+\small\renewcommand{\arraystretch}{1.9}
+\begin{tabularx}{\textwidth}{|p{3.3cm}|Y|}
+\hline
+Nombre de CI & Contrato de API y datos de ejemplo \\ \hline
+Identificador & OPENAPI-1.0 \\ \hline
+Descripción de CI & Especificación OpenAPI de los endpoints y fixtures para desarrollar el frontend en paralelo. \\ \hline
+Fecha(s) de CI & 08/10/2026 \\ \hline
+Tipo de CI & Diseño / Documentación \\ \hline
+Propietario & Arquitecto / Backend \\ \hline
+Relación de CI & Depende de DBMARIA-1.0; contrato para WEB-1.0 y CP-1.0. \\ \hline
+\end{tabularx}
+\end{minipage}\par\bigskip
+\noindent\begin{minipage}{\textwidth}
+\small\renewcommand{\arraystretch}{1.9}
+\begin{tabularx}{\textwidth}{|p{3.3cm}|Y|}
+\hline
+Nombre de CI & Módulo de precios externos \\ \hline
+Identificador & PRECIOS-1.0 \\ \hline
+Descripción de CI & Adaptadores de APIs externas, scheduler de precios, caché y almacenamiento de snapshots. \\ \hline
+Fecha(s) de CI & 12/10/2026 \\ \hline
+Tipo de CI & Código fuente \\ \hline
+Propietario & Arquitecto / Backend \\ \hline
+Relación de CI & Depende de DBMARIA-1.0 y APIEXT-1.0; provee datos a API-1.0. \\ \hline
+\end{tabularx}
+\end{minipage}\par\bigskip
+\noindent\begin{minipage}{\textwidth}
+\small\renewcommand{\arraystretch}{1.9}
+\begin{tabularx}{\textwidth}{|p{3.3cm}|Y|}
+\hline
+Nombre de CI & Backend (API REST) \\ \hline
+Identificador & API-1.0 \\ \hline
+Descripción de CI & FastAPI: autenticación, RBAC, catálogo (sin gradar, gradadas y PSA), publicaciones, pagos en sandbox, escrow, disputas y envíos. \\ \hline
+Fecha(s) de CI & 28/10/2026 \\ \hline
+Tipo de CI & Código fuente \\ \hline
+Propietario & Arquitecto / Backend \\ \hline
+Relación de CI & Depende de DBMARIA-1.0, DOCKER-1.0 y APIEXT-1.0; consumido por WEB-1.0. \\ \hline
+\end{tabularx}
+\end{minipage}\par\bigskip
+\noindent\begin{minipage}{\textwidth}
+\small\renewcommand{\arraystretch}{1.9}
+\begin{tabularx}{\textwidth}{|p{3.3cm}|Y|}
+\hline
+Nombre de CI & Prototipos de interfaz \\ \hline
+Identificador & PROTO-1.0 \\ \hline
+Descripción de CI & Wireframes y sistema de diseño (paleta, tipografía y componentes) de la estética retro-moderna. \\ \hline
+Fecha(s) de CI & 14/10/2026 \\ \hline
+Tipo de CI & Diseño \\ \hline
+Propietario & Desarrollador frontend \\ \hline
+Relación de CI & Depende de ERS-1.0; guía de WEB-1.0. \\ \hline
+\end{tabularx}
+\end{minipage}\par\bigskip
+\noindent\begin{minipage}{\textwidth}
+\small\renewcommand{\arraystretch}{1.9}
+\begin{tabularx}{\textwidth}{|p{3.3cm}|Y|}
+\hline
+Nombre de CI & Frontend (SPA) \\ \hline
+Identificador & WEB-1.0 \\ \hline
+Descripción de CI & SPA React: catálogo por secciones (con sección PSA), detalle con gráficas, publicación, paneles por rol y mapa animado. \\ \hline
+Fecha(s) de CI & 03/11/2026 \\ \hline
+Tipo de CI & Código fuente \\ \hline
+Propietario & Desarrollador frontend \\ \hline
+Relación de CI & Depende de PROTO-1.0, OPENAPI-1.0 y API-1.0. \\ \hline
+\end{tabularx}
+\end{minipage}\par\bigskip
+\noindent\begin{minipage}{\textwidth}
+\small\renewcommand{\arraystretch}{1.9}
+\begin{tabularx}{\textwidth}{|p{3.3cm}|Y|}
+\hline
+Nombre de CI & Casos de prueba \\ \hline
+Identificador & CP-1.0 \\ \hline
+Descripción de CI & Pruebas unitarias y de integración (pytest) de permisos por rol, escrow y adaptadores de APIs. \\ \hline
+Fecha(s) de CI & 03/11/2026 \\ \hline
+Tipo de CI & Pruebas \\ \hline
+Propietario & QA (Tester) \\ \hline
+Relación de CI & Valida API-1.0, PRECIOS-1.0 y WEB-1.0. \\ \hline
+\end{tabularx}
+\end{minipage}\par\bigskip
+\noindent\begin{minipage}{\textwidth}
+\small\renewcommand{\arraystretch}{1.9}
+\begin{tabularx}{\textwidth}{|p{3.3cm}|Y|}
+\hline
+Nombre de CI & Reporte de seguridad y carga \\ \hline
+Identificador & SEG-1.0 \\ \hline
+Descripción de CI & Resultados de pruebas de carga (Locust o k6) y revisión de seguridad con base en OWASP Top 10. \\ \hline
+Fecha(s) de CI & 10/11/2026 \\ \hline
+Tipo de CI & Pruebas \\ \hline
+Propietario & QA (Tester) \\ \hline
+Relación de CI & Depende de CP-1.0; valida API-1.0 y DEPLOY-1.0. \\ \hline
+\end{tabularx}
+\end{minipage}\par\bigskip
+\noindent\begin{minipage}{\textwidth}
+\small\renewcommand{\arraystretch}{1.9}
+\begin{tabularx}{\textwidth}{|p{3.3cm}|Y|}
+\hline
+Nombre de CI & Despliegue y respaldos \\ \hline
+Identificador & DEPLOY-1.0 \\ \hline
+Descripción de CI & Empaquetado del sistema con Docker Compose en un entorno controlado (equipo de desarrollo con Windows) y respaldos automáticos de base de datos e imágenes. \\ \hline
+Fecha(s) de CI & 13/11/2026 \\ \hline
+Tipo de CI & Configuración \\ \hline
+Propietario & Arquitecto / Backend \\ \hline
+Relación de CI & Depende de DOCKER-1.0 y SEG-1.0. \\ \hline
+\end{tabularx}
+\end{minipage}\par\bigskip
+\noindent\begin{minipage}{\textwidth}
+\small\renewcommand{\arraystretch}{1.9}
+\begin{tabularx}{\textwidth}{|p{3.3cm}|Y|}
+\hline
+Nombre de CI & Manual y documentación técnica \\ \hline
+Identificador & MANUAL-1.0 \\ \hline
+Descripción de CI & Manual de usuario por rol, guía de despliegue y documentación técnica. \\ \hline
+Fecha(s) de CI & 07/11/2026 \\ \hline
+Tipo de CI & Documentación \\ \hline
+Propietario & Analista de negocio \\ \hline
+Relación de CI & Describe WEB-1.0, API-1.0 y DEPLOY-1.0. \\ \hline
+\end{tabularx}
+\end{minipage}\par\bigskip
+\noindent\begin{minipage}{\textwidth}
+\small\renewcommand{\arraystretch}{1.9}
+\begin{tabularx}{\textwidth}{|p{3.3cm}|Y|}
+\hline
+Nombre de CI & Entrega final \\ \hline
+Identificador & ENTREGA-1.0 \\ \hline
+Descripción de CI & Presentación y demostración final con todos los elementos de configuración integrados. \\ \hline
+Fecha(s) de CI & 20/11/2026 \\ \hline
+Tipo de CI & Entrega \\ \hline
+Propietario & Líder de proyecto \\ \hline
+Relación de CI & Integra todos los CI anteriores. \\ \hline
+\end{tabularx}
+\end{minipage}\par\bigskip
+
+
+\subsection{Planificaciones}
+
+\subsection{Cronograma de trabajo con hitos clave}
+
+\begin{longtable}{|>{\raggedright\arraybackslash}p{3.1cm}|>{\raggedright\arraybackslash}p{7.1cm}|>{\raggedright\arraybackslash}p{3.7cm}|}
+\caption{Cronograma por fases e hitos}\\
+\hline
+\textbf{Fase} & \textbf{Hito clave} & \textbf{Fecha estimada} \\ \hline
+\endfirsthead
+\hline
+\textbf{Fase} & \textbf{Hito clave} & \textbf{Fecha estimada} \\ \hline
+\endhead
+\textbf{1. Inicio y configuración}\newline (24/09 -- 05/10/2026) & Conformación del equipo, roles, tablero y repositorio (\texttt{VERSIONCTRL-1.0}) & \mbox{24/09 -- 26/09/2026} \\
+\cline{2-3}
+ & Especificación de requisitos (ERS) e historias de usuario (\texttt{ERS-1.0}) & \mbox{27/09 -- 30/09/2026} \\
+\cline{2-3}
+ & Entornos Docker, CI y credenciales de APIs (\texttt{DOCKER-1.0, APIEXT-1.0}) & \mbox{27/09 -- 01/10/2026} \\
+\cline{2-3}
+ & Diseño del esquema de BD (ER) y migraciones (\texttt{DBMARIA-1.0}) & \mbox{01/10 -- 05/10/2026} \\
+\cline{2-3}
+ & Estudio de mercado y modelo de negocio (Canvas) (\texttt{MODNEG-1.0}) & \mbox{27/09 -- 02/10/2026} \\
+\hline
+\textbf{2. Backend y APIs}\newline (06/10 -- 14/10/2026) & Autenticación y RBAC & \mbox{06/10 -- 11/10/2026} \\
+\cline{2-3}
+ & Catálogo (sin gradar, gradadas y PSA) y publicaciones (\texttt{API-1.0 (parcial)}) & \mbox{06/10 -- 14/10/2026} \\
+\cline{2-3}
+ & Adaptadores de APIs externas y scheduler de precios (\texttt{PRECIOS-1.0}) & \mbox{06/10 -- 12/10/2026} \\
+\cline{2-3}
+ & Contrato OpenAPI y datos de ejemplo (\texttt{OPENAPI-1.0}) & \mbox{06/10 -- 08/10/2026} \\
+\hline
+\textbf{3. Frontend}\newline (09/10 -- 22/10/2026) & Prototipos UI y SPA base (sistema de diseño) (\texttt{PROTO-1.0}) & \mbox{09/10 -- 14/10/2026} \\
+\cline{2-3}
+ & Catálogo por secciones, búsqueda y detalle con gráfica de precios & \mbox{15/10 -- 22/10/2026} \\
+\cline{2-3}
+ & Publicación de artículos (4 fotos) y paneles por rol & \mbox{15/10 -- 21/10/2026} \\
+\hline
+\textbf{4. Pagos, escrow y mapas}\newline (15/10 -- 04/11/2026) & Mercado Pago (sandbox) y webhooks & \mbox{15/10 -- 21/10/2026} \\
+\cline{2-3}
+ & Máquina de estados del escrow y disputas (\texttt{API-1.0}) & \mbox{22/10 -- 28/10/2026} \\
+\cline{2-3}
+ & Geocodificación Mapbox y mapa animado (Leaflet) & \mbox{29/10 -- 04/11/2026} \\
+\cline{2-3}
+ & Paneles de Recolector y Admin (\texttt{WEB-1.0}) & \mbox{29/10 -- 03/11/2026} \\
+\hline
+\textbf{5. Integración y pruebas}\newline (29/10 -- 17/11/2026) & Pruebas unitarias y de integración (\texttt{CP-1.0}) & \mbox{29/10 -- 03/11/2026} \\
+\cline{2-3}
+ & Pruebas de seguridad y de carga (\texttt{SEG-1.0}) & \mbox{05/11 -- 10/11/2026} \\
+\cline{2-3}
+ & Corrección de errores y validación con usuarios & \mbox{11/11 -- 17/11/2026} \\
+\hline
+\textbf{6. Despliegue y cierre}\newline (04/11 -- 20/11/2026) & Empaquetado en Docker y respaldos (\texttt{DEPLOY-1.0}) & \mbox{11/11 -- 13/11/2026} \\
+\cline{2-3}
+ & Documentación técnica y manual de usuario (\texttt{MANUAL-1.0}) & \mbox{04/11 -- 07/11/2026} \\
+\cline{2-3}
+ & Cierre: demostración y entrega final (\texttt{ENTREGA-1.0}) & \mbox{18/11 -- 20/11/2026} \\
+\hline
+\end{longtable}
+
+
+\newpage
+
+
+% Impresión Referencias
+\nocite{*}
+\printbibliography[heading=bibintoc, title={Referencias}]
+
+\end{document}
