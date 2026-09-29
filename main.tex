@@ -383,26 +383,36 @@ con un identificador, una fecha de referencia y un responsable.
 
 \subsection{Planteamiento de la problemática}
 
-La problemática central que este proyecto busca atender puede resumirse en una sola pregunta: ¿qué significa realmente que un videojuego sea ``exitoso'', y es posible medir ese éxito de forma confiable con un solo indicador? Esta pregunta no es retórica ni abstracta: tiene consecuencias económicas concretas y documentadas en la industria del videojuego.
+La problemática que este proyecto busca abordar puede resumirse en una sola pregunta: ¿qué significa realmente que un videojuego sea considerado exitoso? ¿Se puede medir ese éxito con un solo indicador de manera confiable? Estas preguntas tienen importancia porque pueden afectar directamente la economía de la industria de los videojuegos.
 
-Desde hace más de una década, editoras, estudios de desarrollo y hasta analistas financieros tratan la calificación de Metacritic (el \textit{Metascore}) como el indicador definitivo del éxito de un juego. Según reportó \textit{The Wall Street Journal}, algunos analistas bursátiles lo utilizan como predictor temprano de las ventas esperadas de un título y, por extensión, del valor de las acciones de la editora  . Esta práctica ha llegado incluso al terreno contractual: el caso más citado en la prensa especializada es el del estudio Obsidian Entertainment, que desarrolló \textit{Fallout: New Vegas} (2010) para la editora Bethesda Softworks bajo un contrato que solo otorgaba un bono económico al equipo de desarrollo si el juego alcanzaba 85 puntos en Metacritic. El juego obtuvo 84 puntos, un solo punto por debajo del umbral, pese a haber vendido cerca de 5 millones de copias y generado alrededor de 300 millones de dólares en ingresos, por lo que Obsidian no recibió el bono pactado  . Este episodio ilustra de manera contundente que un solo punto en una calificación agregada puede tener consecuencias económicas reales para decenas de desarrolladores, independientemente del desempeño comercial efectivo del juego.
+Desde hace más de diez años, las editoras, los estudios de desarrollo y los analistas financieros consideran la calificación de Metacritic (Metascore) como una medida importante del éxito de un videojuego. Según informó The Wall Street Journal, algunos analistas de la bolsa utilizan esta calificación para estimar cuántas copias podría vender un juego y cómo podrían verse afectadas las acciones de la empresa que lo publica.
 
-Sin embargo, la validez del supuesto sobre el que descansa toda esta práctica, que el Metascore predice de forma confiable la satisfacción de los jugadores y el desempeño comercial, ha sido puesta en duda por evidencia empírica independiente. Un estudio presentado en la Game Developers Conference de 2015, que analizó las ventas de 88 juegos de Xbox 360 y 80 juegos de PlayStation 3 lanzados en 2012, concluyó que la calificación de Metacritic no tenía un impacto medible sobre las ventas reales de esos títulos  . A esto se suma la evidencia de que la calificación de usuarios y la de la crítica capturan aspectos solo parcialmente superpuestos de la experiencia de juego   , y de que fenómenos como el \textit{review bombing} pueden distorsionar la calificación de usuarios de forma independiente a la calidad del juego  . En conjunto, esta evidencia sugiere que reducir el éxito de un videojuego a un único número agregado es, en el mejor de los casos, una simplificación arriesgada.
+Esta práctica también ha llegado a los contratos entre empresas. Uno de los casos más conocidos es el de Obsidian Entertainment, estudio que desarrolló Fallout: New Vegas (2010) para Bethesda Softworks. Su contrato establecía que el equipo recibiría un bono económico si el juego alcanzaba 85 puntos en Metacritic. Sin embargo, obtuvo 84 puntos, uno menos de lo necesario. A pesar de haber vendido cerca de 5 millones de copias y generado alrededor de 300 millones de dólares en ingresos, Obsidian no recibió el bono acordado.
 
-Ahora bien, el problema no se limita a la brecha entre usuarios y crítica. Existe una segunda dimensión igualmente relevante y menos explorada: la relación entre calificación y popularidad real. ¿Los juegos mejor calificados son necesariamente los más jugados? ¿Los estudios que producen los títulos con mayor calificación son los mismos que generan la mayor base de jugadores activos? ¿Hay géneros que concentran audiencias masivas pero calificaciones mediocres, o viceversa? Estas preguntas apuntan a un problema concreto para cualquier estudio de desarrollo o editora que necesite tomar decisiones de inversión: si la calificación no predice la popularidad, y la popularidad no garantiza una buena calificación, entonces se necesita un análisis más sofisticado, una segmentación del mercado basada en datos, para entender las diferentes formas en que un juego puede tener éxito.
+Este caso muestra cómo una diferencia de un solo punto en una calificación puede tener consecuencias económicas reales para muchos desarrolladores, incluso cuando el juego tiene buenos resultados de ventas.
 
+Sin embargo, existen dudas sobre si el Metascore realmente permite conocer qué tan satisfechos están los jugadores o cuánto venderá un videojuego. Un estudio presentado en la Game Developers Conference de 2015 analizó las ventas de 88 juegos de Xbox 360 y 80 de PlayStation 3, lanzados en 2012. Sus resultados indicaron que la calificación de Metacritic no tenía una relación medible con las ventas reales de esos juegos.
+
+También se ha encontrado que las calificaciones de los usuarios y las de los críticos no siempre coinciden, ya que cada grupo puede valorar diferentes aspectos de un videojuego. Además, fenómenos como el \textit{review bombing}, que ocurre cuando un gran número de usuarios publica calificaciones negativas de forma coordinada para bajar la puntuación de un juego, pueden afectar las calificaciones de los usuarios sin que esto necesariamente refleje la calidad real del juego.
+
+En conjunto, esta información muestra que medir el éxito de un videojuego con un solo número puede ser una forma poco confiable de entender su verdadero desempeño.
+
+Por ello, este proyecto busca analizar dos aspectos principales utilizando un catálogo de 1512 videojuegos: primero, las diferencias entre las opiniones de los usuarios y las de los críticos especializados; y segundo, la relación entre las calificaciones y la popularidad real de los juegos.
+
+A partir de esto, se busca responder preguntas como: ¿Los videojuegos mejor calificados son necesariamente los más jugados? ¿Los estudios que desarrollan los juegos mejor calificados también son los que reúnen más jugadores activos? ¿Existen géneros con muchos jugadores, pero calificaciones bajas, o géneros con buenas calificaciones, pero poca popularidad?
+
+Si una buena calificación no garantiza que un juego sea popular, y tener muchos jugadores tampoco asegura una buena calificación, es necesario realizar un análisis más completo. Por eso, este proyecto utiliza datos para identificar diferentes grupos de videojuegos y entender las distintas formas en que pueden alcanzar el éxito.
 \subsection{Expectativas del equipo}
 
-Frente a la problemática descrita, la expectativa del equipo es utilizar el catálogo de 1{,}512 videojuegos como un caso de estudio para aportar evidencia empírica sobre las tres dimensiones del problema planteado.
+Frente al problema planteado, el equipo utilizará el catálogo de 1{,}512 videojuegos como un caso de estudio para analizar las diferencias entre las calificaciones, la popularidad y las distintas formas en las que un videojuego puede ser exitoso.
 
-En primer lugar, se espera cuantificar de forma rigurosa la discrepancia entre la percepción de los usuarios y la de la crítica especializada. Esto implica no solo calcular una correlación global entre \textit{Rating} y \textit{Metacritic Rating}, sino descomponer esa correlación por género y por estudio para identificar exactamente en qué segmentos del mercado la brecha es más pronunciada. La expectativa es encontrar que la coincidencia entre ambas calificaciones varía de forma significativa según el tipo de juego, lo que reforzaría el argumento de que tratar el Metascore como un indicador universal es una simplificación injustificada.
+En primer lugar, se busca analizar qué tanta diferencia existe entre las opiniones de los usuarios y las de los críticos especializados. Para esto, se calculará la relación entre \textit{Rating} y \textit{Metacritic Rating}, y también se analizará esta relación por género y por estudio desarrollador. Esto permitirá identificar en qué tipos de juegos las calificaciones de los usuarios y de los críticos son más parecidas o más diferentes. De esta forma, se podrá analizar si el Metascore funciona de la misma manera para todos los tipos de videojuegos o si existen diferencias dependiendo del género y del estudio. 
 
-En segundo lugar, se espera identificar qué estudios desarrolladores y qué géneros dominan en popularidad real (medida en \textit{Plays}, \textit{Wishlist} y \textit{Backlogs}), y determinar si esa dominancia en popularidad coincide con las calificaciones más altas o si se da de forma independiente. La hipótesis es que estudios como Nintendo, que tienen una presencia masiva en el catálogo, dominarán en popularidad pero no necesariamente en calificación promedio, lo que ilustraría la diferencia entre ``ser muy jugado'' y ``ser muy bien evaluado''.
+En segundo lugar, se busca identificar qué estudios desarrolladores y qué géneros tienen mayor popularidad. Para esto, se utilizarán las variables \textit{Plays}, \textit{Wishlist} y \textit{Backlogs}, que permiten observar diferentes formas de interés de los usuarios hacia los videojuegos. También se analizará la relación entre la popularidad y las calificaciones para determinar si los juegos con mejores calificaciones también son los que tienen mayor popularidad. Esto permitirá comparar dos aspectos diferentes del desempeño de un videojuego: qué tan bien es evaluado y qué tanta atención recibe de los usuarios. 
 
-En tercer lugar, y como la contribución más ambiciosa del proyecto, se espera aplicar técnicas de \textit{clustering} para segmentar el catálogo en perfiles de mercado que emerjan de los propios datos: juegos de culto, éxitos masivos, títulos sobrevalorados por la crítica, joyas ocultas poco conocidas, entre otros. Esta segmentación proporcionaría una herramienta de análisis más rica que la simple comparación de promedios, y podría ser de utilidad práctica para estudios de desarrollo que busquen entender en qué ``categoría de éxito'' se ubican sus productos, o para inversores que quieran ir más allá del Metascore como único indicador de desempeño.
+En tercer lugar, se utilizarán técnicas de \textit{clustering} para agrupar los videojuegos que tengan características similares. El objetivo será identificar diferentes grupos dentro del catálogo a partir de variables relacionadas con sus calificaciones y popularidad. Estos grupos podrían ayudar a distinguir diferentes perfiles de videojuegos, como títulos con alta popularidad, juegos con buenas calificaciones pero menor popularidad, o cualquier otra combinación que aparezca en los datos. De esta manera, se podrá analizar el catálogo de una forma más completa que simplemente comparando los promedios.
 
-Se espera, además, que este trabajo siente las bases metodológicas y de datos necesarias para, en etapas posteriores del curso, profundizar en el modelado predictivo y en el análisis de texto sobre las reseñas de usuarios incluidas en el conjunto de datos.
-
+Finalmente, este trabajo también permitirá continuar con el análisis de los videojuegos a partir de los datos obtenidos. Estos datos podrán utilizarse para desarrollar modelos predictivos y analizar el texto de las reseñas de los usuarios. Así, se podrá conocer mejor qué factores se relacionan con las calificaciones y la popularidad de los videojuegos, sin asumir que existe una sola forma de medir su éxito.
 
 
 \newpage
@@ -624,44 +634,24 @@ Relación de CI & Ejecuta CLEAN-SCRIPT-1.0, EDA-REPORT-1.0 y CLUSTER-REPORT-1.0.
 
 \begin{thebibliography}{99}
 
-\bibitem{crisp-dm-overview}
-Data Science PM. \textit{What is CRISP DM?} 2024. Disponible en: \url{https://www.datascience-pm.com/crisp-dm-2/}
+\bibitem{edgeofglory2014}
+Johnson, D., Watling, C. N., Gardner, J., y Nacke, L. E. (2014). The edge of glory: The relationship between metacritic scores and player experience. Recuperado el 28 de septiembre de 2026, de \url{https://hcigames.com/content/files/2024/08/The-Edge-of-Glory-The-Relationship-between-Metacritic-Scores-and-Player-Experience.pdf}
 
-\bibitem{crisp-dm-pmc}
-Ensuring the Robustness and Reliability of Data-Driven Knowledge Discovery Models in Production and Manufacturing. \textit{PMC}. Disponible en: \url{https://pmc.ncbi.nlm.nih.gov/articles/PMC8236533/}
+\bibitem{coronado2024}
+Coronado-Blázquez, J. (2024). A NLP approach to "review bombing" in metacritic PC videogames user ratings. \textit{arXiv}. Recuperado el 28 de septiembre de 2026, de \url{https://arxiv.org/html/2405.06306v1}
 
-\bibitem{backloggd}
-Backloggd. \textit{Backloggd --- A Video Game Collection Tracker}. Disponible en: \url{https://backloggd.com/}
+\bibitem{vandal2026}
+¿Qué es el review bombing? Así afecta tanto a los videojuegos como a los estudios. (2026). \textit{Vandal}. Recuperado el 28 de septiembre de 2026, de \url{https://vandal.elespanol.com/noticia/1350761904/que-es-el-review-bombing-asi-afecta-tanto-a-los-videojuegos-como-a-los-estudios/}
 
-\bibitem{kaggle-backloggd}
-Kaggle. \textit{Backloggd (Games Dataset)}. Disponible en: \url{https://www.kaggle.com/datasets/gsimonx37/backloggd}
+\bibitem{gamedeveloper2023}
+Report: Obsidian missed Fallout: New Vegas bonus by one Metacritic point. (2023). \textit{Game Developer}. Recuperado el 28 de septiembre de 2026, de \url{https://www.gamedeveloper.com/business/report-obsidian-missed-i-fallout-new-vegas-i-bonus-by-one-metacritic-point}
 
-\bibitem{metacritic-wiki}
-Wikipedia. \textit{Metacritic}. Disponible en: \url{https://en.wikipedia.org/wiki/Metacritic}
+\bibitem{as2012}
+Obsidian se quedó sin un bonus monetario por la nota de Fallout New Vegas. (2012). \textit{AS.com}. Recuperado el 28 de septiembre de 2026, de \url{https://as.com/meristation/2012/03/15/noticias/1331817540_101011.html}
 
-\bibitem{newzoo2025}
-Game World Observer. \textit{The Gaming Industry in 2025 by the Numbers --- An Overview from GamesIndustry} (con datos de Newzoo). 2025. Disponible en: \url{https://gameworldobserver.com/2025/12/23/the-gaming-industry-in-2025-by-the-numbers-an-overview-from-gamesindustry}
+\bibitem{dailydot2026}
+Do Metacritic scores affect game sales? (2026). \textit{Daily Dot}. Recuperado el 28 de septiembre de 2026, de \url{https://dailydot.com/metacritic-scores-game-sales-gdc-2015}
 
-\bibitem{edge-of-glory}
-\textit{The edge of glory: The relationship between metacritic scores and player experience}. ResearchGate. Disponible en: \url{https://www.researchgate.net/publication/278017142}
-
-\bibitem{stars-shine}
-\textit{Do all stars shine the same? Investigating the nonlinear effects of user and critic reviews on video game sales}. ScienceDirect. Disponible en: \url{https://www.sciencedirect.com/science/article/pii/S0148296324005381}
-
-\bibitem{review-bombing}
-\textit{A NLP Approach to ``Review Bombing'' in Metacritic PC Videogames User Ratings}. arXiv:2405.06306. Disponible en: \url{https://arxiv.org/pdf/2405.06306}
-
-\bibitem{cohen-effect}
-\textit{Denouncing the use of field-specific effect size distributions to inform magnitude} (revisión de los criterios de Cohen, 1988). PMC. Disponible en: \url{https://pmc.ncbi.nlm.nih.gov/articles/PMC8210805/}
-
-\bibitem{geeksforgeeks-cleaning}
-GeeksforGeeks. \textit{Data Cleaning in Data Mining}. 2025. Disponible en: \url{https://www.geeksforgeeks.org/data-analysis/data-cleaning-in-data-mining/}
-
-\bibitem{fallout-nv-bonus}
-Game Developer. \textit{Report: Obsidian missed Fallout: New Vegas bonus by one Metacritic point}. Disponible en: \url{https://www.gamedeveloper.com/business/report-obsidian-missed-i-fallout-new-vegas-i-bonus-by-one-metacritic-point}
-
-\bibitem{metacritic-sales-study}
-Daily Dot. \textit{Do Metacritic scores affect game sales?} (estudio presentado en la Game Developers Conference, 2015). Disponible en: \url{https://dailydot.com/parsec/metacritic-scores-game-sales-gdc-2015}
 
 \end{thebibliography}
 
