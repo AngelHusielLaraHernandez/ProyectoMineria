@@ -181,6 +181,15 @@
   \fancyhf{}
   \fancyhead[L]{\includegraphics[height=1.5cm]{portada_img/der.png}}
   \fancyhead[R]{\includegraphics[height=1.5cm]{portada_img/izq.png}}
+  \fancyfoot{}
+  \renewcommand{\headrulewidth}{0.4pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
+
+\fancypagestyle{referencias}{
+  \fancyhf{}
+  \fancyhead[L]{\includegraphics[height=1.5cm]{portada_img/der.png}}
+  \fancyhead[R]{\includegraphics[height=1.5cm]{portada_img/izq.png}}
   \renewcommand{\headrulewidth}{0.4pt}
   \renewcommand{\footrulewidth}{0pt}
 }
@@ -205,7 +214,9 @@
   \let\ps@plain\ps@indice
   \makeatother
   \pagestyle{indice}
+  \thispagestyle{indice}
   \hypersetup{linkcolor=black}\tableofcontents
+  \thispagestyle{indice}
 }
 
 \newpage
@@ -245,6 +256,7 @@ El conjunto de datos a analizar consta de 1,512 registros que corresponden a vid
 La relevancia práctica de este proyecto se basa mas que nada en la magnitud y el movimiento de la industria de los videojuegos. Según estimaciones recientes publicadas por Game World Observer a partir de datos de Newzoo, el mercado global alcanzó los 197,000 millones de dólares en 2025, experimentando un crecimiento anual del 7.5\,\%. Este volumen genera una enorme cantidad de datos sobre la recepción comercial y crítica de miles de títulos anuales. La minería de datos permite extender el análisis de métricas agregadas globales. La aplicación de análisis de correlación, exploraciones segmentadas y técnicas de agrupamiento (clustering) nos facilita el descubrimiento de perfiles de mercado y patrones de éxito para estudios de desarrollo, editoras y analistas del sector.
 
 Sin embargo, a pesar de este crecimiento, la industria enfrenta un problema reciente que tiene que ver directamente con el género de los videojuegos que se están lanzando. En los últimos años se ha visto una tendencia fuerte de las grandes compañías por apostar a los llamados juegos por servicios (\textit{Games as a Service}, GaaS), que son títulos diseñados para generar ingresos continuos mediante pases de batalla, contenido descargable y microtransacciones. El problema es que muchos de estos lanzamientos han resultado ser fracasos comerciales importantes, como fue el caso de Concord de Sony, que tuvo que cerrar sus servidores apenas dos semanas después de su lanzamiento, o Marathon de Bungie, que enfrenta un futuro incierto antes siquiera de salir al mercado. Estos fracasos no son casos aislados, sino que representan pérdidas de cientos de millones de dólares para las compañías que apostaron por un tipo de juego sin analizar si el género que estaban eligiendo tenía realmente una base de jugadores dispuesta a adoptarlo. Esto nos lleva a pensar que si las empresas pudieran analizar de forma objetiva qué géneros tienen mayor éxito en términos de recepción y popularidad, podrían tomar mejores decisiones sobre qué tipo de juegos desarrollar y reducir el riesgo de estas pérdidas.
+
 \newpage
 \subsection{Trabajos relacionados y estado del conocimiento}
 
@@ -345,41 +357,56 @@ integrar de forma mas robusta, donde lo que se hara
 sera un analisis final, donde se daran las interpretaciones 
 correspondientes, asi como la solucion a la problematica planteada anteriormente.
 
-\begin{table}[H]
-\centering
-\small
+{\small
 \renewcommand{\arraystretch}{1.5}
-\begin{tabularx}{\textwidth}{|c|l|Y|Y|}
+\begin{longtable}{|>{\centering\arraybackslash}p{0.07\textwidth}|p{0.17\textwidth}|>{\raggedright\arraybackslash}p{0.44\textwidth}|>{\raggedright\arraybackslash}p{0.24\textwidth}|}
+\caption{Fases del proyecto de CRISP-DM.}
+\label{tab:fases}\\
 \hline
 \textbf{Fase} & \textbf{Nombre} & \textbf{Qué se espera} & \textbf{Herramientas} \\ \hline
+\endfirsthead
+\hline
+\textbf{Fase} & \textbf{Nombre} & \textbf{Qué se espera} & \textbf{Herramientas} \\ \hline
+\endhead
+\hline
+\multicolumn{4}{r}{} \\
+\endfoot
+\hline
+\endlastfoot
 1 & Comprensión del negocio & Definir objetivos, documentar el contexto y la problemática del proyecto & Documentación \\ \hline
 2 & Preparación de datos & Limpiar el archivo, convertir tipos, eliminar duplicados y crear variables derivadas & Python (pandas) \\ \hline
 3 & Análisis exploratorio & Generar estadísticas descriptivas, distribuciones y visualizaciones interactivas & Power BI, Python (matplotlib) \\ \hline
 4 & Análisis de relaciones & Correlaciones, comparaciones segmentadas por género y estudio & Orange, Weka \\ \hline
 5 & Modelado & Aplicar algoritmos de clustering para segmentar perfiles de mercado & Orange, Weka, Python \\ \hline
 6 & Documentación & Integrar todos los resultados en el documento final del proyecto & Power BI, Documentación \\ \hline
-\end{tabularx}
-\caption{Fases del proyecto de CRISP-DM.}
-\label{tab:fases}
-\end{table}
+\end{longtable}}
 
 Para el control del avance del proyecto se adopta un enfoque 
 de la base line en el que cada entregable relevante 
 se trata como un elemento de configuración (CI) 
 con un identificador, una fecha de referencia y un responsable.
 
-\newpage
+
 \subsection*{Cronograma del proyecto}
 
 A continuación se presenta el cronograma general del proyecto, donde se muestran las actividades principales, las fechas de inicio y fin de cada una, y el responsable asignado. Las fechas van del 1 de octubre al 25 de noviembre del 2026.
 
-\begin{table}[H]
-\centering
-\small
+{\small
 \renewcommand{\arraystretch}{1.5}
-\begin{tabularx}{\textwidth}{|c|Y|c|c|Y|}
+\begin{longtable}{|>{\centering\arraybackslash}p{0.05\textwidth}|>{\raggedright\arraybackslash}p{0.31\textwidth}|>{\centering\arraybackslash}p{0.11\textwidth}|>{\centering\arraybackslash}p{0.11\textwidth}|>{\raggedright\arraybackslash}p{0.32\textwidth}|}
+\caption{Cronograma general del proyecto.}
+\label{tab:cronograma}\\
 \hline
 \textbf{No.} & \textbf{Actividad} & \textbf{Inicio} & \textbf{Fin} & \textbf{Responsable} \\ \hline
+\endfirsthead
+\hline
+\textbf{No.} & \textbf{Actividad} & \textbf{Inicio} & \textbf{Fin} & \textbf{Responsable} \\ \hline
+\endhead
+\hline
+\multicolumn{5}{r}{ } \\
+\endfoot
+\hline
+\endlastfoot
 1 & Redacción del anteproyecto (objetivos, contexto, problemática y plan de trabajo) & 01/10/2026 & 05/10/2026 & Lara Hernández Angel Husiel, García Cortés Adolfo de Jesús, Lugo Manzano Rodrigo \\ \hline
 2 & Obtención y revisión inicial del conjunto de datos & 01/10/2026 & 03/10/2026 & Lugo Manzano Rodrigo \\ \hline
 3 & Configuración del entorno de desarrollo (Python, Orange, Weka, Power BI, LaTeX) & 01/10/2026 & 05/10/2026 & García Cortés Adolfo de Jesús \\ \hline
@@ -394,12 +421,9 @@ A continuación se presenta el cronograma general del proyecto, donde se muestra
 12 & Integración de resultados y redacción del documento final & 10/11/2026 & 20/11/2026 & García Cortés Adolfo de Jesús \\ \hline
 13 & Revisión general, correcciones y ajustes finales & 20/11/2026 & 24/11/2026 & Equipo de proyecto \\ \hline
 14 & Entrega del documento final & 25/11/2026 & 25/11/2026 & Equipo de proyecto \\ \hline
-\end{tabularx}
-\caption{Cronograma general del proyecto.}
-\label{tab:cronograma}
-\end{table}
+\end{longtable}}
 
-\newpage
+
 \section{Problemática a atender }
 \subsection{Planteamiento de la problemática}
 
@@ -427,6 +451,7 @@ A partir de esto, se busca responder preguntas como: ¿Los videojuegos mejor cal
 
 Si una buena calificación no garantiza que un juego sea popular, y tener muchos jugadores tampoco asegura una buena calificación, es necesario realizar un análisis más completo. Por eso, este proyecto utiliza datos para identificar diferentes grupos de videojuegos y entender las distintas formas en que pueden alcanzar el éxito.
 
+\newpage
 \subsection*{Expectativas de los problemas a resolver}
 
 Frente al problema planteado, el equipo utilizará el catálogo de 1{,}512 videojuegos como un caso de estudio para analizar las diferencias entre las calificaciones, la popularidad y las distintas formas en las que un videojuego puede ser exitoso.
@@ -440,7 +465,7 @@ En tercer lugar, se utilizarán técnicas de clustering para agrupar los videoju
 
 Finalmente, este trabajo también permitirá continuar con el análisis de los videojuegos a partir de los datos obtenidos. Estos datos podrán utilizarse para desarrollar modelos predictivos y analizar el texto de las reseñas de los usuarios. Así, se podrá conocer mejor qué factores se relacionan con las calificaciones y la popularidad de los videojuegos, sin asumir que existe una sola forma de medir su éxito.
 
-
+\newpage
 \section{Plan de trabajo (Baseline)}
 
 Teniendo en cuenta que el proyecto se puede empezar a trabajar a partir del 1 de octubre del 2026, y que la fecha limite de entrega es el miercoles 25 de noviembre del 2026, las fechas de cada CI se ajustaron para que todo quede dentro de ese rango de tiempo.
@@ -656,7 +681,15 @@ Relación de CI & Ejecuta CLEAN-SCRIPT-1.0, EDA-REPORT-1.0 y CLUSTER-REPORT-1.0.
 \end{minipage}\par\bigskip
 
 \nocite{*}
+\clearpage
+\addcontentsline{toc}{section}{Referencias}
+\begingroup
+\makeatletter
+\let\ps@plain\ps@referencias
+\makeatother
+\pagestyle{referencias}
 \bibliographystyle{plainurl}
 \bibliography{referencias}
+\endgroup
 
 \end{document}
