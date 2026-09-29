@@ -217,7 +217,7 @@
 
 \subsection{Objetivo general}
 
-Aplicar técnicas de minería de datos sobre un catálogo de 1,512 videojuegos para analizar de forma práctica la diferencia entre la sensación de la comunidad de jugadores y la crítica especializada, identificar los factores que determinan la popularidad de un título y encontrar grupos de videojuegos con características similares basándonos únicamente en lo que revelan sus datos
+Aplicar técnicas de minería de datos sobre un catálogo de 1,512 videojuegos para analizar de forma práctica la diferencia entre la sensación de la comunidad de jugadores y la crítica especializada, identificar los factores que determinan la popularidad de un título, analizar cómo el género de un videojuego influye en su éxito comercial y de recepción, y encontrar grupos de videojuegos con características similares basándonos únicamente en lo que revelan sus datos
 
 \subsection{Objetivos específicos}
 
@@ -228,10 +228,11 @@ Para alcanzar el objetivo general, se establecen las siguientes metas concretas:
     \item \textbf{Realizar un análisis exploratorio de datos (EDA):} Caracterizar matemáticamente el catálogo mediante estadística descriptiva y visualizaciones interactivas, analizando la distribución de títulos por género, estudio desarrollador, año de lanzamiento y métricas centrales.
     \item \textbf{Cuantificar la discrepancia perceptiva:} Medir el grado de asociación entre la calificación de los usuarios (\textit{Rating}) y la de la prensa (\textit{Metacritic Rating}) utilizando el coeficiente de correlación de Pearson, separando los resultados por género y estudio para identificar variaciones significativas.
     \item \textbf{Identificar tendencias de popularidad real:} Analizar las métricas de interacción comunitaria (\textit{Plays}, \textit{Playing}, \textit{Backlogs} y \textit{Wishlist}) para determinar qué estudios y géneros lideran el mercado en términos de enganche, contrastando la popularidad con sus respectivas calificaciones.
-    \item \textbf{Modelar perfiles de mercado mediante agrupamiento:} Aplicar algoritmos de clustering sobre las variables numéricas del catálogo para dividir los videojuegos en diferentes perfiles (ej. éxitos masivos, juegos de culto, títulos sobrevalorados).
+    \item \textbf{Modelar perfiles de mercado mediante agrupamiento:} Aplicar algoritmos de clustering sobre las variables numéricas del catálogo para dividir los videojuegos en diferentes perfiles (ej. éxitos masivos, juegos de culto, títulos sobrevalorados), teniendo en cuenta el género al que pertenecen, esto debido a que en los últimos años el tipo de género ha sido un factor determinante en el éxito o fracaso de un título, especialmente con la tendencia actual de lanzar juegos por servicios que han representado pérdidas significativas para las compañías, por lo que identificar qué géneros concentran el éxito real del mercado podría orientar mejor las decisiones de desarrollo.
 \end{itemize}
 
 
+\newpage
 
 \section{Contexto del proyecto}
 
@@ -243,6 +244,8 @@ El conjunto de datos a analizar consta de 1,512 registros que corresponden a vid
 
 La relevancia práctica de este proyecto se basa mas que nada en la magnitud y el movimiento de la industria de los videojuegos. Según estimaciones recientes publicadas por Game World Observer a partir de datos de Newzoo, el mercado global alcanzó los 197,000 millones de dólares en 2025, experimentando un crecimiento anual del 7.5\,\%. Este volumen genera una enorme cantidad de datos sobre la recepción comercial y crítica de miles de títulos anuales. La minería de datos permite extender el análisis de métricas agregadas globales. La aplicación de análisis de correlación, exploraciones segmentadas y técnicas de agrupamiento (clustering) nos facilita el descubrimiento de perfiles de mercado y patrones de éxito para estudios de desarrollo, editoras y analistas del sector.
 
+Sin embargo, a pesar de este crecimiento, la industria enfrenta un problema reciente que tiene que ver directamente con el género de los videojuegos que se están lanzando. En los últimos años se ha visto una tendencia fuerte de las grandes compañías por apostar a los llamados juegos por servicios (\textit{Games as a Service}, GaaS), que son títulos diseñados para generar ingresos continuos mediante pases de batalla, contenido descargable y microtransacciones. El problema es que muchos de estos lanzamientos han resultado ser fracasos comerciales importantes, como fue el caso de Concord de Sony, que tuvo que cerrar sus servidores apenas dos semanas después de su lanzamiento, o Marathon de Bungie, que enfrenta un futuro incierto antes siquiera de salir al mercado. Estos fracasos no son casos aislados, sino que representan pérdidas de cientos de millones de dólares para las compañías que apostaron por un tipo de juego sin analizar si el género que estaban eligiendo tenía realmente una base de jugadores dispuesta a adoptarlo. Esto nos lleva a pensar que si las empresas pudieran analizar de forma objetiva qué géneros tienen mayor éxito en términos de recepción y popularidad, podrían tomar mejores decisiones sobre qué tipo de juegos desarrollar y reducir el riesgo de estas pérdidas.
+\newpage
 \subsection{Trabajos relacionados y estado del conocimiento}
 
 El análisis comparativo entre calificaciones de usuarios y de críticos ha sido parte de diferentes investigaciones académicas. Un estudio publicado en la revista \textit{Entertainment Computing} demostró que, aunque ambas métricas se superponen parcialmente con la experiencia del jugador, existen diferencias en sus criterios de evaluación. De igual manera, una investigación de gran escala publicada en \textit{ScienceDirect} sobre una muestra de 1,642 juegos y 680,000 reseñas arrojó que las valoraciones de usuarios y críticos captan aspectos distintos de la calidad percibida, afectando las ventas de manera no lineal. 
@@ -251,7 +254,6 @@ Un fenómeno de importante es el \textit{review bombing}, caracterizado por la e
 
 
 
-\newpage
 \section{Estrategia a seguir}
 
 \subsection*{Metodología}
@@ -367,12 +369,45 @@ se trata como un elemento de configuración (CI)
 con un identificador, una fecha de referencia y un responsable.
 
 \newpage
-\section{Problemática a atender (expectativas)}
-\label{sec:problematica}
+\subsection*{Cronograma del proyecto}
 
+A continuación se presenta el cronograma general del proyecto, donde se muestran las actividades principales, las fechas de inicio y fin de cada una, y el responsable asignado. Las fechas van del 1 de octubre al 25 de noviembre del 2026.
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\textwidth}{|c|Y|c|c|Y|}
+\hline
+\textbf{No.} & \textbf{Actividad} & \textbf{Inicio} & \textbf{Fin} & \textbf{Responsable} \\ \hline
+1 & Redacción del anteproyecto (objetivos, contexto, problemática y plan de trabajo) & 01/10/2026 & 05/10/2026 & Lara Hernández Angel Husiel, García Cortés Adolfo de Jesús, Lugo Manzano Rodrigo \\ \hline
+2 & Obtención y revisión inicial del conjunto de datos & 01/10/2026 & 03/10/2026 & Lugo Manzano Rodrigo \\ \hline
+3 & Configuración del entorno de desarrollo (Python, Orange, Weka, Power BI, LaTeX) & 01/10/2026 & 05/10/2026 & García Cortés Adolfo de Jesús \\ \hline
+4 & Diseño del flujo de trabajo (diagrama CRISP-DM adaptado) & 03/10/2026 & 05/10/2026 & Lara Hernández Angel Husiel \\ \hline
+5 & Desarrollo del script de limpieza y transformación de datos & 06/10/2026 & 10/10/2026 & Lugo Manzano Rodrigo \\ \hline
+6 & Generación del conjunto de datos depurado & 10/10/2026 & 12/10/2026 & Lugo Manzano Rodrigo \\ \hline
+7 & Validación de la limpieza (casos de prueba) & 12/10/2026 & 15/10/2026 & García Cortés Adolfo de Jesús \\ \hline
+8 & Análisis exploratorio de datos (EDA): estadísticas descriptivas y visualizaciones & 15/10/2026 & 22/10/2026 & Lara Hernández Angel Husiel \\ \hline
+9 & Análisis de correlaciones y comparaciones segmentadas por género y estudio & 22/10/2026 & 29/10/2026 & García Cortés Adolfo de Jesús \\ \hline
+10 & Aplicación de algoritmos de clustering (K-Means, DBSCAN) & 29/10/2026 & 05/11/2026 & Lugo Manzano Rodrigo \\ \hline
+11 & Interpretación de perfiles de mercado y resultados del clustering & 05/11/2026 & 10/11/2026 & Lara Hernández Angel Husiel \\ \hline
+12 & Integración de resultados y redacción del documento final & 10/11/2026 & 20/11/2026 & García Cortés Adolfo de Jesús \\ \hline
+13 & Revisión general, correcciones y ajustes finales & 20/11/2026 & 24/11/2026 & Equipo de proyecto \\ \hline
+14 & Entrega del documento final & 25/11/2026 & 25/11/2026 & Equipo de proyecto \\ \hline
+\end{tabularx}
+\caption{Cronograma general del proyecto.}
+\label{tab:cronograma}
+\end{table}
+
+\newpage
+\section{Problemática a atender }
 \subsection{Planteamiento de la problemática}
 
-La problemática que este proyecto busca abordar puede resumirse en una sola pregunta: ¿qué significa realmente que un videojuego sea considerado exitoso? ¿Se puede medir ese éxito con un solo indicador de manera confiable? Estas preguntas tienen importancia porque pueden afectar directamente la economía de la industria de los videojuegos.
+La problemática que este proyecto busca abordar puede resumirse en una sola pregunta: ¿qué significa realmente que un videojuego sea considerado exitoso? ¿Se puede medir ese éxito con un solo indicador de manera confiable? Estas preguntas tienen importancia porque pueden afectar directamente la economía de la industria de los videojuegos, y cobran todavía más relevancia cuando vemos lo que está pasando actualmente con los lanzamientos de juegos por servicios.
+
+En los últimos años, grandes compañías como Sony, Ubisoft y otras editoras han invertido cientos de millones de dólares en desarrollar juegos por servicios (GaaS), apostando a géneros como los shooters multijugador en línea, los battle royale o los juegos de mundo abierto con contenido continuo. Sin embargo, títulos como Concord, que cerró servidores a las dos semanas de su lanzamiento, o como Marathon y otros proyectos GaaS cancelados o en riesgo, han demostrado que esta apuesta no está funcionando. El resultado son pérdidas millonarias que afectan directamente a los estudios de desarrollo y a sus empleados.
+
+El problema de fondo es que estas decisiones de inversión se están tomando sin un análisis real de qué géneros son los que tienen éxito entre los jugadores. Las compañías siguen tendencias de mercado o intentan replicar el modelo de juegos como Fortnite o Genshin Impact, sin preguntarse si el género que están eligiendo realmente tiene la recepción y la base de jugadores necesaria para sostener un juego por servicios. Si pudiéramos analizar de forma objetiva cuáles son los géneros que concentran la mayor popularidad, las mejores calificaciones y el mayor enganche de los jugadores, las empresas tendrían una herramienta para orientar mejor sus decisiones y evitar invertir en géneros que históricamente no han tenido el éxito esperado.
 
 Desde hace más de diez años, las editoras, los estudios de desarrollo y los analistas financieros consideran la calificación de Metacritic (Metascore) como una medida importante del éxito de un videojuego. Según informó The Wall Street Journal, algunos analistas de la bolsa utilizan esta calificación para estimar cuántas copias podría vender un juego y cómo podrían verse afectadas las acciones de la empresa que lo publica.
 
@@ -391,20 +426,21 @@ Por ello, este proyecto busca analizar dos aspectos principales utilizando un ca
 A partir de esto, se busca responder preguntas como: ¿Los videojuegos mejor calificados son necesariamente los más jugados? ¿Los estudios que desarrollan los juegos mejor calificados también son los que reúnen más jugadores activos? ¿Existen géneros con muchos jugadores, pero calificaciones bajas, o géneros con buenas calificaciones, pero poca popularidad?
 
 Si una buena calificación no garantiza que un juego sea popular, y tener muchos jugadores tampoco asegura una buena calificación, es necesario realizar un análisis más completo. Por eso, este proyecto utiliza datos para identificar diferentes grupos de videojuegos y entender las distintas formas en que pueden alcanzar el éxito.
-\subsection{Expectativas del equipo}
+
+\subsection*{Expectativas de los problemas a resolver}
 
 Frente al problema planteado, el equipo utilizará el catálogo de 1{,}512 videojuegos como un caso de estudio para analizar las diferencias entre las calificaciones, la popularidad y las distintas formas en las que un videojuego puede ser exitoso.
 
-En primer lugar, se busca analizar qué tanta diferencia existe entre las opiniones de los usuarios y las de los críticos especializados. Para esto, se calculará la relación entre \textit{Rating} y \textit{Metacritic Rating}, y también se analizará esta relación por género y por estudio desarrollador. Esto permitirá identificar en qué tipos de juegos las calificaciones de los usuarios y de los críticos son más parecidas o más diferentes. De esta forma, se podrá analizar si el Metascore funciona de la misma manera para todos los tipos de videojuegos o si existen diferencias dependiendo del género y del estudio. 
+En primer lugar, se busca analizar qué tanta diferencia existe entre las opiniones de los usuarios y las de los críticos especializados. Para esto, se calculará la relación entre \textit{Rating} y \textit{Metacritic Rating}, y también se analizará esta relación por género y por estudio desarrollador. Esto permitirá identificar en qué tipos de juegos las calificaciones de los usuarios y de los críticos son más parecidas o más diferentes. De esta forma, se podrá analizar si el Metascore funciona de la misma manera para todos los tipos de videojuegos o si existen diferencias dependiendo del género y del estudio,
+esto con el objetivo de dar una orientación a las desarrolladoras sobre qué tipo de géneros tienen mejor recepción tanto por la comunidad como por la crítica, para que puedan tomar decisiones más informadas al momento de elegir qué tipo de juego desarrollar, reduciendo así el riesgo de pérdidas como las que se han visto con los recientes fracasos de juegos por servicios.
 
 En segundo lugar, se busca identificar qué estudios desarrolladores y qué géneros tienen mayor popularidad. Para esto, se utilizarán las variables \textit{Plays}, \textit{Wishlist} y \textit{Backlogs}, que permiten observar diferentes formas de interés de los usuarios hacia los videojuegos. También se analizará la relación entre la popularidad y las calificaciones para determinar si los juegos con mejores calificaciones también son los que tienen mayor popularidad. Esto permitirá comparar dos aspectos diferentes del desempeño de un videojuego: qué tan bien es evaluado y qué tanta atención recibe de los usuarios. 
 
-En tercer lugar, se utilizarán técnicas de clustering para agrupar los videojuegos que tengan características similares. El objetivo será identificar diferentes grupos dentro del catálogo a partir de variables relacionadas con sus calificaciones y popularidad. Estos grupos podrían ayudar a distinguir diferentes perfiles de videojuegos, como títulos con alta popularidad, juegos con buenas calificaciones pero menor popularidad, o cualquier otra combinación que aparezca en los datos. De esta manera, se podrá analizar el catálogo de una forma más completa que simplemente comparando los promedios.
+En tercer lugar, se utilizarán técnicas de clustering para agrupar los videojuegos que tengan características similares. El objetivo será identificar diferentes grupos dentro del catálogo a partir de variables relacionadas con sus calificaciones y popularidad (esto siendo la varaible mas pertinente el genero). Estos grupos podrían ayudar a distinguir diferentes perfiles de videojuegos, como títulos con alta popularidad, juegos con buenas calificaciones pero menor popularidad, o cualquier otra combinación que aparezca en los datos. De esta manera, se podrá analizar el catálogo de una forma más completa que simplemente comparando los promedios.
 
 Finalmente, este trabajo también permitirá continuar con el análisis de los videojuegos a partir de los datos obtenidos. Estos datos podrán utilizarse para desarrollar modelos predictivos y analizar el texto de las reseñas de los usuarios. Así, se podrá conocer mejor qué factores se relacionan con las calificaciones y la popularidad de los videojuegos, sin asumir que existe una sola forma de medir su éxito.
 
 
-\newpage
 \section{Plan de trabajo (Baseline)}
 
 Teniendo en cuenta que el proyecto se puede empezar a trabajar a partir del 1 de octubre del 2026, y que la fecha limite de entrega es el miercoles 25 de noviembre del 2026, las fechas de cada CI se ajustaron para que todo quede dentro de ese rango de tiempo.
@@ -419,7 +455,7 @@ Identificador & ANTE-1.0 \\ \hline
 Descripción de CI & Documento de anteproyecto donde se documentan los objetivos, el contexto, la estrategia, la problemática y este plan de trabajo. \\ \hline
 Fecha(s) de CI & 01/10/2026 \\ \hline
 Tipo de CI & Documentación \\ \hline
-Propietario & Equipo de proyecto \\ \hline
+Propietario & Lara Hernández Angel Husiel, García Cortés Adolfo de Jesús, Lugo Manzano Rodrigo \\ \hline
 Relación de CI & Base de DATA-RAW-1.0 y ESPEC-1.0. \\ \hline
 \end{tabularx}
 \end{minipage}\par\bigskip
@@ -432,7 +468,7 @@ Identificador & DATA-RAW-1.0 \\ \hline
 Descripción de CI & Archivo original con la información de los 1,512 videojuegos y sus 15 columnas, tal como fue entregado al equipo, sin depurar ni transformar. \\ \hline
 Fecha(s) de CI & 01/10/2026 \\ \hline
 Tipo de CI & Dato / insumo \\ \hline
-Propietario & Equipo de proyecto \\ \hline
+Propietario & Lugo Manzano Rodrigo \\ \hline
 Relación de CI & Insumo base para CLEAN-SCRIPT-1.0. \\ \hline
 \end{tabularx}
 \end{minipage}\par\bigskip
@@ -445,7 +481,7 @@ Identificador & CLEAN-SCRIPT-1.0 \\ \hline
 Descripción de CI & Script en Python con pandas que convierte las columnas con sufijo K/M a valores numéricos, parsea las fechas de lanzamiento, trata los valores faltantes del Rating y del Metacritic Rating, y elimina registros duplicados. \\ \hline
 Fecha(s) de CI & 08/10/2026 \\ \hline
 Tipo de CI & Código / herramienta de proceso \\ \hline
-Propietario & Equipo de proyecto \\ \hline
+Propietario & Lugo Manzano Rodrigo \\ \hline
 Relación de CI & Depende de DATA-RAW-1.0 y CONFIG-ENV-1.0; genera DATA-CLEAN-1.0. \\ \hline
 \end{tabularx}
 \end{minipage}\par\bigskip
@@ -458,7 +494,7 @@ Identificador & DATA-CLEAN-1.0 \\ \hline
 Descripción de CI & Versión del conjunto de datos ya limpio, con los tipos corregidos, duplicados eliminados y campos derivados como el año, la década, las listas de géneros descompuestas y la brecha entre Rating y Metacritic. \\ \hline
 Fecha(s) de CI & 12/10/2026 \\ \hline
 Tipo de CI & Dato \\ \hline
-Propietario & Equipo de proyecto \\ \hline
+Propietario & Lugo Manzano Rodrigo \\ \hline
 Relación de CI & Depende de CLEAN-SCRIPT-1.0; insumo para EDA-REPORT-1.0 y CP-1.0. \\ \hline
 \end{tabularx}
 \end{minipage}\par\bigskip
@@ -471,7 +507,7 @@ Identificador & ESPEC-1.0 \\ \hline
 Descripción de CI & Documento con el objetivo general, los cinco objetivos específicos y el alcance del análisis, tal como se definen en el presente anteproyecto. \\ \hline
 Fecha(s) de CI & 01/10/2026 \\ \hline
 Tipo de CI & Documentación \\ \hline
-Propietario & Líder de proyecto \\ \hline
+Propietario & Lara Hernández Angel Husiel \\ \hline
 Relación de CI & Orienta CLEAN-SCRIPT-1.0 y EDA-REPORT-1.0. \\ \hline
 \end{tabularx}
 \end{minipage}\par\bigskip
@@ -484,7 +520,7 @@ Identificador & CP-1.0 \\ \hline
 Descripción de CI & Conjunto de casos de prueba para validar que la conversión de sufijos K/M, el parseo de fechas y la detección de duplicados se hicieron de forma correcta en el proceso de limpieza. \\ \hline
 Fecha(s) de CI & 15/10/2026 \\ \hline
 Tipo de CI & Pruebas \\ \hline
-Propietario & Equipo de proyecto \\ \hline
+Propietario & García Cortés Adolfo de Jesús \\ \hline
 Relación de CI & Valida CLEAN-SCRIPT-1.0 y DATA-CLEAN-1.0. \\ \hline
 \end{tabularx}
 \end{minipage}\par\bigskip
@@ -497,7 +533,7 @@ Identificador & CONFIG-ENV-1.0 \\ \hline
 Descripción de CI & Configuración del entorno de análisis que incluye Python 3, pandas, matplotlib, scikit-learn para el clustering, ademas de Orange y Weka para la minería de datos visual y Power BI para las visualizaciones. \\ \hline
 Fecha(s) de CI & 01/10/2026 \\ \hline
 Tipo de CI & Configuraciones \\ \hline
-Propietario & Equipo de proyecto \\ \hline
+Propietario & García Cortés Adolfo de Jesús \\ \hline
 Relación de CI & Base para CLEAN-SCRIPT-1.0, EDA-REPORT-1.0 y CLUSTER-REPORT-1.0. \\ \hline
 \end{tabularx}
 \end{minipage}\par\bigskip
@@ -510,7 +546,7 @@ Identificador & CONFIGTEC-1.0 \\ \hline
 Descripción de CI & Configuración del entorno LaTeX (TeX Live, paquete babel en español) que se usa para compilar el presente documento. \\ \hline
 Fecha(s) de CI & 01/10/2026 \\ \hline
 Tipo de CI & Configuraciones \\ \hline
-Propietario & Equipo de proyecto \\ \hline
+Propietario & García Cortés Adolfo de Jesús \\ \hline
 Relación de CI & Soporta DOC-PLAN-1.0. \\ \hline
 \end{tabularx}
 \end{minipage}\par\bigskip
@@ -523,7 +559,7 @@ Identificador & EDA-REPORT-1.0 \\ \hline
 Descripción de CI & Conjunto de estadísticas descriptivas, visualizaciones en Power BI y análisis de correlación segmentado por género y estudio, que se generan a partir de los datos limpios. Entregable de la segunda fase del proyecto. \\ \hline
 Fecha(s) de CI & 22/10/2026 \\ \hline
 Tipo de CI & Análisis / entregable \\ \hline
-Propietario & Equipo de proyecto \\ \hline
+Propietario & Lara Hernández Angel Husiel \\ \hline
 Relación de CI & Depende de DATA-CLEAN-1.0 y CP-1.0; insumo para DOC-PLAN-1.0. \\ \hline
 \end{tabularx}
 \end{minipage}\par\bigskip
@@ -536,7 +572,7 @@ Identificador & CLUSTER-REPORT-1.0 \\ \hline
 Descripción de CI & Resultados de aplicar algoritmos de agrupamiento (K-Means, DBSCAN) en Orange, Weka y Python sobre las variables numéricas del catálogo de juegos, donde se identifican e interpretan los perfiles de mercado que salgan. Entregable de la tercera fase. \\ \hline
 Fecha(s) de CI & 05/11/2026 \\ \hline
 Tipo de CI & Análisis / entregable \\ \hline
-Propietario & Equipo de proyecto \\ \hline
+Propietario & Lugo Manzano Rodrigo \\ \hline
 Relación de CI & Depende de DATA-CLEAN-1.0 y EDA-REPORT-1.0; insumo para DOC-PLAN-1.0. \\ \hline
 \end{tabularx}
 \end{minipage}\par\bigskip
@@ -549,7 +585,7 @@ Identificador & SEG-1.0 \\ \hline
 Descripción de CI & Política de respaldo del archivo original y de las versiones intermedias del conjunto de datos, ademas de control de acceso al repositorio compartido del equipo. \\ \hline
 Fecha(s) de CI & 01/10/2026 \\ \hline
 Tipo de CI & Seguridad \\ \hline
-Propietario & Equipo de proyecto \\ \hline
+Propietario & García Cortés Adolfo de Jesús \\ \hline
 Relación de CI & Protege DATA-RAW-1.0 y DATA-CLEAN-1.0. \\ \hline
 \end{tabularx}
 \end{minipage}\par\bigskip
@@ -562,7 +598,7 @@ Identificador & DISEÑO-1.0 \\ \hline
 Descripción de CI & Diagrama del flujo de trabajo del proyecto, siguiendo las fases de CRISP-DM adaptadas al análisis del catálogo de videojuegos. \\ \hline
 Fecha(s) de CI & 05/10/2026 \\ \hline
 Tipo de CI & Documentación \\ \hline
-Propietario & Equipo de proyecto \\ \hline
+Propietario & Lara Hernández Angel Husiel \\ \hline
 Relación de CI & Base para CLEAN-SCRIPT-1.0 y EDA-REPORT-1.0. \\ \hline
 \end{tabularx}
 \end{minipage}\par\bigskip
@@ -575,7 +611,7 @@ Identificador & DOC-PLAN-1.0 \\ \hline
 Descripción de CI & Documento final en LaTeX que integra contexto, objetivos, estrategia, problemática, resultados del EDA, resultados del clustering y esta línea base con su bibliografía. \\ \hline
 Fecha(s) de CI & 25/11/2026 \\ \hline
 Tipo de CI & Documentación \\ \hline
-Propietario & Equipo de proyecto \\ \hline
+Propietario & García Cortés Adolfo de Jesús \\ \hline
 Relación de CI & Depende de ESPEC-1.0, EDA-REPORT-1.0, CLUSTER-REPORT-1.0 y CONFIGTEC-1.0. \\ \hline
 \end{tabularx}
 \end{minipage}\par\bigskip
@@ -588,7 +624,7 @@ Identificador & HW-PC-1.0 \\ \hline
 Descripción de CI & Equipos de cómputo del equipo de proyecto que se utilizan para ejecutar los scripts, correr Orange y Weka, hacer las visualizaciones en Power BI y compilar el documento en LaTeX. \\ \hline
 Fecha(s) de CI & 01/10/2026 \\ \hline
 Tipo de CI & Infraestructura / hardware \\ \hline
-Propietario & Equipo de proyecto \\ \hline
+Propietario & Lugo Manzano Rodrigo \\ \hline
 Relación de CI & Soporta CONFIG-ENV-1.0 y CONFIGTEC-1.0. \\ \hline
 \end{tabularx}
 \end{minipage}\par\bigskip
@@ -601,7 +637,7 @@ Identificador & RH-LIDER-1.0 \\ \hline
 Descripción de CI & Responsable de coordinar al equipo, fijar el alcance y los objetivos (ESPEC-1.0), y aprobar cambios sobre la línea base. \\ \hline
 Fecha(s) de CI & 01/10/2026 \\ \hline
 Tipo de CI & Recurso humano \\ \hline
-Propietario & Equipo de proyecto \\ \hline
+Propietario & Lara Hernández Angel Husiel \\ \hline
 Relación de CI & Supervisa todos los CI de este documento. \\ \hline
 \end{tabularx}
 \end{minipage}\par\bigskip
@@ -614,34 +650,13 @@ Identificador & RH-ANALISTA-1.0 \\ \hline
 Descripción de CI & Responsable de escribir y ejecutar el script de limpieza, generar el reporte de EDA y el reporte de clustering, e interpretar los resultados que se obtengan. \\ \hline
 Fecha(s) de CI & 01/10/2026 \\ \hline
 Tipo de CI & Recurso humano \\ \hline
-Propietario & Equipo de proyecto \\ \hline
+Propietario & Lugo Manzano Rodrigo \\ \hline
 Relación de CI & Ejecuta CLEAN-SCRIPT-1.0, EDA-REPORT-1.0 y CLUSTER-REPORT-1.0. \\ \hline
 \end{tabularx}
 \end{minipage}\par\bigskip
 
-\section{Referencias bibliográficas}
-
-\begin{thebibliography}{99}
-
-\bibitem{edgeofglory2014}
-Johnson, D., Watling, C. N., Gardner, J., y Nacke, L. E. (2014). The edge of glory: The relationship between metacritic scores and player experience. Recuperado el 28 de septiembre de 2026, de \url{https://hcigames.com/content/files/2024/08/The-Edge-of-Glory-The-Relationship-between-Metacritic-Scores-and-Player-Experience.pdf}
-
-\bibitem{coronado2024}
-Coronado-Blázquez, J. (2024). A NLP approach to "review bombing" in metacritic PC videogames user ratings. \textit{arXiv}. Recuperado el 28 de septiembre de 2026, de \url{https://arxiv.org/html/2405.06306v1}
-
-\bibitem{vandal2026}
-¿Qué es el review bombing? Así afecta tanto a los videojuegos como a los estudios. (2026). \textit{Vandal}. Recuperado el 28 de septiembre de 2026, de \url{https://vandal.elespanol.com/noticia/1350761904/que-es-el-review-bombing-asi-afecta-tanto-a-los-videojuegos-como-a-los-estudios/}
-
-\bibitem{gamedeveloper2023}
-Report: Obsidian missed Fallout: New Vegas bonus by one Metacritic point. (2023). \textit{Game Developer}. Recuperado el 28 de septiembre de 2026, de \url{https://www.gamedeveloper.com/business/report-obsidian-missed-i-fallout-new-vegas-i-bonus-by-one-metacritic-point}
-
-\bibitem{as2012}
-Obsidian se quedó sin un bonus monetario por la nota de Fallout New Vegas. (2012). \textit{AS.com}. Recuperado el 28 de septiembre de 2026, de \url{https://as.com/meristation/2012/03/15/noticias/1331817540_101011.html}
-
-\bibitem{dailydot2026}
-Do Metacritic scores affect game sales? (2026). \textit{Daily Dot}. Recuperado el 28 de septiembre de 2026, de \url{https://dailydot.com/metacritic-scores-game-sales-gdc-2015}
-
-
-\end{thebibliography}
+\nocite{*}
+\bibliographystyle{plainurl}
+\bibliography{referencias}
 
 \end{document}
