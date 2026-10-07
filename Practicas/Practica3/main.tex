@@ -1,0 +1,189 @@
+\documentclass[letterpaper,11pt]{article}
+\usepackage[spanish,mexico]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype}
+\usepackage{graphicx,float,placeins}
+\usepackage{booktabs,array,tabularx,longtable}
+\usepackage[table]{xcolor}
+\usepackage{amsmath,enumitem}
+\usepackage{setspace,parskip}
+
+
+\usepackage[
+    left=25mm, 
+    right=25mm,
+    top=35mm,
+    bottom=30mm,
+    headheight=77pt, 
+    papersize={21.59cm,27.94cm}
+]{geometry}
+
+
+\usepackage{fancyhdr}
+\usepackage{caption}
+\usepackage{hyperref}
+\usepackage[notocbib]{apacite}
+
+
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,filecolor=magenta,urlcolor=cyan}
+\hypersetup{pdftitle={Practica 2: Machine Learning I. IBM HR Analytics},pdfauthor={Lara Hernandez, Lugo Manzano y Garcia Cortes}}
+
+
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+
+\captionsetup{font=small,labelfont=bf,skip=7pt}
+\setlength{\parskip}{5pt}
+\setlength{\emergencystretch}{2em}
+\setlist{nosep,leftmargin=*}
+\setcounter{tocdepth}{2}
+\pagestyle{fancy}
+\fancyhf{} 
+
+
+\fancyhead[L]{\includegraphics[height=1.5cm]{portada_img/der.png}}
+\fancyhead[R]{\includegraphics[height=1.5cm]{portada_img/izq.png}}
+\fancyfoot[C]{\thepage} 
+
+
+\renewcommand{\headrulewidth}{0.4pt} 
+\renewcommand{\footrulewidth}{0pt}  
+
+\fancypagestyle{indice}{
+  \fancyhf{}
+  \fancyhead[L]{\includegraphics[height=1.5cm]{portada_img/der.png}}
+  \fancyhead[R]{\includegraphics[height=1.5cm]{portada_img/izq.png}}
+  \fancyfoot{}
+  \renewcommand{\headrulewidth}{0.4pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
+
+\fancypagestyle{referencias}{
+  \fancyhf{}
+  \fancyhead[L]{\includegraphics[height=1.5cm]{portada_img/der.png}}
+  \fancyhead[R]{\includegraphics[height=1.5cm]{portada_img/izq.png}}
+  \renewcommand{\headrulewidth}{0.4pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
+
+\newcommand{\var}[1]{\texttt{#1}}
+\newcommand{\colab}{\href{https://colab.research.google.com/drive/1uTetGGQgdX5gBBdlnDIoX7KXgtDGWbrd}{Practica 2 en Google Colab}}
+
+
+\begin{document}
+\begingroup
+\onehalfspacing
+
+\input{Portada.tex}
+\endgroup
+
+\clearpage
+{
+  \makeatletter
+  \let\ps@plain\ps@indice
+  \makeatother
+  \pagestyle{indice}
+  \thispagestyle{indice}
+  \hypersetup{linkcolor=black}\tableofcontents
+  \thispagestyle{indice}
+}
+\clearpage
+
+
+\setcounter{page}{1}
+\setstretch{1.08}
+
+
+\section{Objetivo}
+
+Implementar y comparar los algoritmos de minería de patrones frecuentes Apriori y FP-Growth sobre un
+conjunto de datos transaccionales de compras, con el fin de extraer, evaluar y optimizar reglas de asociación
+que fundamenten una estrategia comercial de ventas cruzadas (cross-selling) y promociones de descuento
+mediante criterios multiobjetivo (support, confidence y lift).
+
+\newpage
+
+\section{Carga, exloracion e ingenieria de datos transaccionales instrucciones}
+
+\subsection{Preguntas}
+
+\textbf{¿Cuántas transacciones y cuántos productos únicos componen el catálogo analizado?}
+
+\textbf{¿Cuál es el producto con mayor frecuencia de compra individual en la tienda y cuál es su soporte
+empírico?}
+
+\newpage
+
+\section{Extraccion de patrones frecuencias: Apriori vd. FP-Growth intrucciones}
+
+\subsection{Preguntas}
+
+\textbf{¿Coinciden en cantidad y soporte los itemsets frecuentes extraídos por Apriori y FP-Growth?
+Justifica teóricamente el resultado.}
+
+\textbf{Explica la diferencia técnica fundamental entre cómo opera Apriori (estrategia por niveles y poda
+de candidatos) frente a FP-Growth (árbol comprimido y proyección recursiva). ¿Cuál esperarías
+que escale mejor si el catálogo crece a miles de productos?}
+
+\newpage
+
+\section{Generacion y filtrado de reglas de asociacion intrucciones}
+
+\subsection{Preguntas}
+
+\textbf{Si una regla presenta una confianza del 88\% pero su Lift es de 1.01, ¿por qué no representa una
+sinergia real de compra? Explica la relación entre la probabilidad condicionada P(B|A) y la
+probabilidad marginal p(B).}
+
+\textbf{¿Qué diferencia conceptual existe entre una regla con  Lift mayor que 1, Lift igual a 1 y Lift menor que 1?}
+
+\newpage
+
+\section{Visualizacion del espacio de reglas}
+
+\subsection{Preguntas}
+
+\textbf{A partir del gráfico generado, ¿se concentran las reglas de mayor Lift en la zona de soporte alto o
+en la zona de soporte moderado/bajo? Interpreta el fenómeno observado.}
+
+\newpage
+\section{Optimizacion multiobjetivo y propuesta de campaña comercial intrucciones.}
+
+\subsection{Preguntas}
+
+\textbf{¿Por qué seleccionar el top 5 basándose únicamente en el Lift máximo puede resultar riesgoso
+para el negocio en un entorno real de retail?}
+
+\textbf{Para la regla clasificada en la posición \#1 de tu ranking, redacta la propuesta comercial explícita
+indicando:}
+
+\begin{enumerate}
+  \item ¿Cuál producto debe cobrarse a precio regular como ancla (antecedente)?
+  \item ¿A cuál producto debe aplicarse el descuento (consecuente)?
+  \item ¿Cuál es el alcance esperado (soporte) y la tasa de conversión estimada (confianza) de la
+oferta?
+\end{enumerate}
+
+\newpage
+\section{Conclusión}
+
+
+\clearpage
+\addcontentsline{toc}{section}{Bibliografias}
+\begingroup
+\makeatletter
+\let\ps@plain\ps@referencias
+\makeatother
+\pagestyle{referencias}
+\thispagestyle{referencias}
+\renewcommand{\refname}{Bibliografias}
+\nocite{referencia}
+\bibliographystyle{apacite}
+\bibliography{referencias}
+\clearpage
+
+
+\endgroup
+\end{document}
