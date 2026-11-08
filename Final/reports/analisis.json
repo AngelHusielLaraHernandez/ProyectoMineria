@@ -1,0 +1,27 @@
+{
+  "pearson_global": {
+    "grupo": "Todos",
+    "n": 890,
+    "r": 0.5444246197420772,
+    "p": 8.011136339487322e-70,
+    "ic95_inferior": 0.49647234592213263,
+    "ic95_superior": 0.5890642792879073,
+    "media_rating": 3.6578651685393258,
+    "media_critica": 82.35730337078651
+  },
+  "kmeans_k": 2,
+  "dbscan": {
+    "eps": 1.0,
+    "min_samples": 5.0,
+    "clusters": 2.0,
+    "cobertura": 0.9767233661593554,
+    "silhouette_sin_ruido": 0.636983958184242,
+    "criterio": 0.622157115827223
+  },
+  "dbscan_criterio_valido": true,
+  "pca_varianza_explicada": [
+    0.7345125342111725,
+    0.17611649614545963
+  ],
+  "filas_agrupadas": 1117
+}

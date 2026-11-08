@@ -1,0 +1,221 @@
+{
+  "archivo_original": "Proyecto/data/processed/games_curated.csv",
+  "copia_inmutable": "data/raw/games_curated.csv",
+  "filas": 1117,
+  "columnas": 42,
+  "sha256": "b23cc1c4c23e65171bbe8a3436c358773cee15b8e11b446261cd575daa625acd",
+  "esquema": {
+    "ID Original": {
+      "tipo": "int64",
+      "faltantes": 0
+    },
+    "Title": {
+      "tipo": "str",
+      "faltantes": 0
+    },
+    "Release Date": {
+      "tipo": "str",
+      "faltantes": 0
+    },
+    "Team": {
+      "tipo": "str",
+      "faltantes": 1
+    },
+    "Rating": {
+      "tipo": "float64",
+      "faltantes": 13
+    },
+    "Times Listed": {
+      "tipo": "float64",
+      "faltantes": 0
+    },
+    "Number of Reviews": {
+      "tipo": "float64",
+      "faltantes": 0
+    },
+    "Genres": {
+      "tipo": "str",
+      "faltantes": 0
+    },
+    "Summary": {
+      "tipo": "str",
+      "faltantes": 1
+    },
+    "Reviews": {
+      "tipo": "str",
+      "faltantes": 0
+    },
+    "Plays": {
+      "tipo": "float64",
+      "faltantes": 0
+    },
+    "Playing": {
+      "tipo": "float64",
+      "faltantes": 0
+    },
+    "Backlogs": {
+      "tipo": "float64",
+      "faltantes": 0
+    },
+    "Wishlist": {
+      "tipo": "float64",
+      "faltantes": 0
+    },
+    "Metacritic Rating": {
+      "tipo": "int64",
+      "faltantes": 0
+    },
+    "Origen_calificacion": {
+      "tipo": "str",
+      "faltantes": 0
+    },
+    "ingresos_empresa_estimados_USD": {
+      "tipo": "int64",
+      "faltantes": 0
+    },
+    "gastos_estimados_USD": {
+      "tipo": "int64",
+      "faltantes": 0
+    },
+    "unidades_vendidas_estimadas": {
+      "tipo": "int64",
+      "faltantes": 0
+    },
+    "ventas_brutas_estimadas_USD": {
+      "tipo": "int64",
+      "faltantes": 0
+    },
+    "release_date": {
+      "tipo": "str",
+      "faltantes": 3
+    },
+    "year": {
+      "tipo": "float64",
+      "faltantes": 3
+    },
+    "decade": {
+      "tipo": "float64",
+      "faltantes": 3
+    },
+    "genres_list": {
+      "tipo": "str",
+      "faltantes": 0
+    },
+    "team_list": {
+      "tipo": "str",
+      "faltantes": 0
+    },
+    "n_genres": {
+      "tipo": "int64",
+      "faltantes": 0
+    },
+    "studio_main": {
+      "tipo": "str",
+      "faltantes": 1
+    },
+    "publisher_main": {
+      "tipo": "str",
+      "faltantes": 1
+    },
+    "genre_main": {
+      "tipo": "str",
+      "faltantes": 0
+    },
+    "rating_100": {
+      "tipo": "float64",
+      "faltantes": 13
+    },
+    "gap": {
+      "tipo": "float64",
+      "faltantes": 13
+    },
+    "metacritic_real": {
+      "tipo": "bool",
+      "faltantes": 0
+    },
+    "critic_score_final": {
+      "tipo": "float64",
+      "faltantes": 218
+    },
+    "critic_source": {
+      "tipo": "str",
+      "faltantes": 0
+    },
+    "gap_real": {
+      "tipo": "float64",
+      "faltantes": 227
+    },
+    "log_plays": {
+      "tipo": "float64",
+      "faltantes": 0
+    },
+    "log_wishlist": {
+      "tipo": "float64",
+      "faltantes": 0
+    },
+    "log_backlogs": {
+      "tipo": "float64",
+      "faltantes": 0
+    },
+    "log_playing": {
+      "tipo": "float64",
+      "faltantes": 0
+    },
+    "estimates_zero": {
+      "tipo": "bool",
+      "faltantes": 0
+    },
+    "has_rating": {
+      "tipo": "bool",
+      "faltantes": 0
+    },
+    "population": {
+      "tipo": "str",
+      "faltantes": 0
+    }
+  },
+  "rangos_observados": {
+    "Rating": {
+      "min": 0.7,
+      "max": 4.8
+    },
+    "Metacritic Rating": {
+      "min": 45.0,
+      "max": 99.0
+    }
+  },
+  "procedencia_critica": {
+    "Metacritic": 899,
+    "Estimacion propia": 218
+  },
+  "critic_source": {
+    "metacritic_csv": 899,
+    "none": 218
+  },
+  "escala_rating": "Límites teóricos no documentados; rango observado compatible con 0–5.",
+  "reviews_igual_times_listed": true,
+  "conflictos_analiticos": [],
+  "filas_en_conflicto": 0,
+  "duplicados_descartados": 0,
+  "filas_limpias": 1117,
+  "rango_anios": [
+    1980,
+    2025
+  ],
+  "fechas_no_interpretables": [
+    {
+      "Title": "Deltarune",
+      "Release Date": "releases on TBD"
+    },
+    {
+      "Title": "Death Stranding 2",
+      "Release Date": "releases on TBD"
+    },
+    {
+      "Title": "Elden Ring: Shadow of the Erdtree",
+      "Release Date": "releases on TBD"
+    }
+  ],
+  "pares_critica_real": 890,
+  "organizaciones_sin_roles": true
+}
