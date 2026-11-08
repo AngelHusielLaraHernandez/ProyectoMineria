@@ -22,8 +22,8 @@ Se conserva una copia exacta e inmutable en `data/raw/games_curated.csv`; el pip
 Ejecutar desde la carpeta `Final`, con Python 3.14 (entorno validado):
 
 ```bash
-python3 -m venv .venv
-source .venv/bin/activate
+python3.14 -m venv .venv314
+source .venv314/bin/activate
 python -m pip install -r requirements-lock.txt
 python -m src.pipeline
 python -m pytest -q
@@ -82,7 +82,7 @@ K-Means principalmente separa niveles de las señales. Se necesita comprobar est
 
 ## Publicación
 
-La app funciona localmente. **No hay un despliegue público verificado.** Consultar `reports/despliegue.md` para el procedimiento y los requisitos de cuenta.
+La app funciona localmente. **Por decisión explícita del usuario, todo se conserva local: no se hizo push ni despliegue público.** Consultar `reports/despliegue.md` para el estado.
 No subir `.venv`, cachés ni secretos. El CSV contiene contenido de terceros; confirmar su licencia y la de los agregados antes de redistribuirlo públicamente.
 
 ## Que debo verificar manualmente

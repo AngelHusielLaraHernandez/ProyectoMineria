@@ -16,8 +16,8 @@ st.caption(f'Modelo: {metrics["modelo"]}. Prueba reservada: {metrics["n_prueba"]
 genre_encoder = model.named_steps['preparar'].named_transformers_['generos'].encoder_
 org_encoder = model.named_steps['preparar'].named_transformers_['organizaciones'].encoder_
 with st.form('consulta'):
-    genres = st.multiselect('Géneros', genre_encoder.classes_.tolist())
-    orgs = st.multiselect('Organizaciones (función sin verificar)', org_encoder.classes_.tolist())
+    genres = st.multiselect('Géneros', genre_encoder.classes_.tolist(), placeholder='Selecciona géneros')
+    orgs = st.multiselect('Organizaciones (función sin verificar)', org_encoder.classes_.tolist(), placeholder='Selecciona organizaciones')
     decade = st.selectbox('Década de lanzamiento', sorted(df['decada'].dropna().astype(int).unique().tolist()))
     a, b = st.columns(2)
     rating_missing = a.checkbox('Sin Rating de usuarios')

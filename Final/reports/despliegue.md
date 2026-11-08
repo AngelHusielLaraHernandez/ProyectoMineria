@@ -1,8 +1,18 @@
 # Estado y procedimiento de publicación
 
-La publicación pública está pendiente de acceso a una cuenta de Streamlit Community Cloud y de sincronizar el código con GitHub.
+Por decisión explícita del usuario, el proyecto y sus datos se conservan **solo localmente**. La publicación no está autorizada.
 Repositorio remoto detectado: `AngelHusielLaraHernandez/ProyectoMineria`; entrada prevista: `Final/app.py`.
-No se ha hecho push, alterado la rama main ni creado un servicio remoto desde este trabajo.
+No se hizo push ni se creó un servicio remoto. La rama local de trabajo es `codex/final-videojuegos-curated`; los cambios previos del usuario quedaron fuera del commit de Final.
+
+La revisión automática rechazó el intento de push porque faltaba autorización explícita para transmitir el CSV y sus derivados a GitHub. Se solicitó esa autorización y el usuario eligió conservar todo localmente.
+La sesión de Streamlit Cloud sí estaba activa; no hay un bloqueo de cuenta que deba resolverse para usar la app local.
+
+## Ejecución local
+
+Desde Final: `python3.14 -m streamlit run app.py` si las dependencias están instaladas en ese entorno; o `.venv314/bin/python -m streamlit run app.py` con el entorno creado aquí.
+Se validaron 17 pruebas en Python 3.14 y en Python 3.15, y se comprobó una predicción en Chrome.
+
+## Referencia para una eventual publicación autorizada
 
 1. Validar `python -m src.pipeline` y `python -m pytest -q` desde Final.
 2. Revisar y subir el directorio Final, excluyendo lo indicado por su `.gitignore`.
