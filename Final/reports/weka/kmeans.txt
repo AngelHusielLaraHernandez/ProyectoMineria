@@ -1,0 +1,54 @@
+=== Run information ===
+
+Scheme:       weka.clusterers.SimpleKMeans -init 0 -max-candidates 100 -periodic-pruning 10000 -min-density 2.0 -t1 -1.25 -t2 -1.0 -N 2 -A "weka.core.EuclideanDistance -R first-last" -I 500 -num-slots 1 -S 42
+Relation:     clustering
+Instances:    887
+Attributes:   6
+              Plays
+              Playing
+              Backlogs
+              Wishlist
+              Rating
+              Metacritic Rating
+Test mode:    evaluate on training data
+
+
+=== Clustering model (full training set) ===
+
+
+kMeans
+======
+
+Number of iterations: 9
+Within cluster sum of squared errors: 76.63099068257982
+
+Initial starting points (random):
+
+Cluster 0: -0.196953,1.355243,0.909476,1.595141,0.276185,0.693451
+Cluster 1: 0.261114,-0.830836,-0.259536,-0.237306,-1.264545,-0.531098
+
+Missing values globally replaced with mean/mode
+
+Final cluster centroids:
+                                 Cluster#
+Attribute            Full Data          0          1
+                       (887.0)    (477.0)    (410.0)
+====================================================
+Plays                        0       0.41     -0.477
+Playing                      0     0.6189      -0.72
+Backlogs                     0     0.7093    -0.8252
+Wishlist                    -0     0.6912    -0.8042
+Rating                       0     0.4797    -0.5581
+Metacritic Rating           -0      0.427    -0.4968
+
+
+
+
+Time taken to build model (full training data) : 0.02 seconds
+
+=== Model and evaluation on training set ===
+
+Clustered Instances
+
+0      477 ( 54%)
+1      410 ( 46%)

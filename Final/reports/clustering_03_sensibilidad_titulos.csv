@@ -1,0 +1,689 @@
+grupo,variable_a,variable_b,n_juegos,n,estado,pearson_r,pearson_p,spearman_rho,spearman_p,familia,n_registros_pareados
+Catálogo,Rating,Metacritic Rating,876,876,incluido,0.5461596638959354,2.906561175849378e-69,0.5242201118057139,5.352347546638193e-63,catalogo,887
+Adventure,Rating,Metacritic Rating,589,589,incluido,0.5789401869759274,5.230965134598509e-54,0.5452130448346398,6.514436878722739e-47,_generos,598
+Arcade,Rating,Metacritic Rating,39,39,incluido,0.7548462799734558,2.831571508972724e-08,0.6228750072893088,2.2888646689790807e-05,_generos,39
+Brawler,Rating,Metacritic Rating,96,96,incluido,0.6185939604040647,1.8641997031000454e-11,0.6242921162373993,1.0744613254170852e-11,_generos,97
+Card & Board Game,Rating,Metacritic Rating,10,10,excluido: menos de 20 pares completos,,,,,_generos,10
+Fighting,Rating,Metacritic Rating,46,46,incluido,0.6187576546671527,4.576509296157342e-06,0.5825761103734511,2.1592617761750262e-05,_generos,46
+Indie,Rating,Metacritic Rating,166,166,incluido,0.5382860988935546,7.45201381981034e-14,0.5535608050108822,1.0336729702550837e-14,_generos,166
+MOBA,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_generos,2
+Music,Rating,Metacritic Rating,18,18,excluido: menos de 20 pares completos,,,,,_generos,18
+Pinball,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_generos,1
+Platform,Rating,Metacritic Rating,186,186,incluido,0.6448286602288431,3.0176195008986194e-23,0.556026404778368,1.7425781235686878e-16,_generos,188
+Point-and-Click,Rating,Metacritic Rating,27,27,incluido,0.6546139537336925,0.00021170964439504067,0.6394550933913762,0.0003293497130404866,_generos,27
+Puzzle,Rating,Metacritic Rating,107,107,incluido,0.3606361969233893,0.00013570247106225287,0.45831629324678247,6.900561368214722e-07,_generos,110
+Quiz/Trivia,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_generos,2
+RPG,Rating,Metacritic Rating,283,283,incluido,0.500771577005479,2.2716585368616725e-19,0.5179782636716317,7.897145409051516e-21,_generos,286
+Racing,Rating,Metacritic Rating,31,31,incluido,0.49158389362929544,0.004976482726978527,0.43572118842960844,0.014280413777146186,_generos,31
+Real Time Strategy,Rating,Metacritic Rating,9,9,excluido: menos de 20 pares completos,,,,,_generos,9
+Shooter,Rating,Metacritic Rating,219,219,incluido,0.5606570430942861,1.5788754464069394e-19,0.5308579307896928,2.5425884048747593e-17,_generos,223
+Simulator,Rating,Metacritic Rating,77,77,incluido,0.5566312771815833,1.4664474707276162e-07,0.5066761412335601,2.5785754696594084e-06,_generos,79
+Sport,Rating,Metacritic Rating,18,18,excluido: menos de 20 pares completos,,,,,_generos,18
+Strategy,Rating,Metacritic Rating,93,93,incluido,0.4335358059915361,1.4185964349591291e-05,0.33553279679689985,0.0010095171326267541,_generos,94
+Tactical,Rating,Metacritic Rating,37,37,incluido,0.3466854823304534,0.03554336459850076,0.36021261233196844,0.028524893036933768,_generos,37
+Turn Based Strategy,Rating,Metacritic Rating,51,51,incluido,0.2513562995474029,0.07520227606743783,0.38203331218108066,0.005667671837002236,_generos,51
+Visual Novel,Rating,Metacritic Rating,25,25,incluido,-0.1467019666219333,0.4840789477954275,-0.18601106918822205,0.37333416051385304,_generos,27
+(Archive) Square Product Development Division 4,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+07th Expansion,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+0UP Games,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+11 bit studios,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+110 Industries,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+2K Australia,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+2K Boston,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+2K Games,Rating,Metacritic Rating,12,12,excluido: menos de 20 pares completos,,,,,_organizaciones,12
+2K Marin,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+343 Industries,Rating,Metacritic Rating,4,4,excluido: menos de 20 pares completos,,,,,_organizaciones,4
+38 Studios,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+3909,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+3D: Doom Daddy Digital,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+4A Games,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+505 Games,Rating,Metacritic Rating,5,5,excluido: menos de 20 pares completos,,,,,_organizaciones,5
+5pb.,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+5th Cell,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+8-4,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+A Grumpy Fox,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+ASCII Entertainment,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Access Games,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Acid Nerve,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Acid Wizard Studio,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Activision,Rating,Metacritic Rating,26,26,incluido,0.4132476361260267,0.035873399452453894,0.385104941946172,0.05204481875101349,_organizaciones,26
+Activision Blizzard,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Adult Swim Games,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Agetec,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Airdorf Games,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Airship Syndicate,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Aksys Games,Rating,Metacritic Rating,3,3,excluido: menos de 20 pares completos,,,,,_organizaciones,3
+All In! Games,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+AlphaDream,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Amanita Design,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Ambrella,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Andrew Shouldice,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Aniplex,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Annapurna Interactive,Rating,Metacritic Rating,12,12,excluido: menos de 20 pares completos,,,,,_organizaciones,12
+Ape,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Aquaplus,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Arc System Works,Rating,Metacritic Rating,6,6,excluido: menos de 20 pares completos,,,,,_organizaciones,6
+Ark Heiral,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Arkane Studios,Rating,Metacritic Rating,3,3,excluido: menos de 20 pares completos,,,,,_organizaciones,3
+Armor Project,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Askiisoft,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Asobo Studio,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Aspect Co. Ltd,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Aspyr Media,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Atari,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+"Atari, Inc.",Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Atlus,Rating,Metacritic Rating,21,21,incluido,0.5728251536069748,0.006645077414559531,0.45696105429996664,0.037293523248426386,_organizaciones,23
+Atlus USA,Rating,Metacritic Rating,8,8,excluido: menos de 20 pares completos,,,,,_organizaciones,8
+Avalanche Software,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Avalanche Studios,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+B.B. Studio,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Bandai,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Bandai Namco Entertainment,Rating,Metacritic Rating,25,25,incluido,0.7965865041903424,1.897231267560704e-06,0.737088808192282,2.6361959294576907e-05,_organizaciones,25
+Bandai Namco Entertainment America,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Bandai Namco Entertainment Europe,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Bandai Namco Games,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Bandai Namco Studios,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Bay 12 Games,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Bedtime Digital Games,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Beenox,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Beethoven & Dinosaur,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Behaviour Interactive,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Ben Esposito,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Berserk Games,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Bethesda Game Studios,Rating,Metacritic Rating,7,7,excluido: menos de 20 pares completos,,,,,_organizaciones,7
+Bethesda Softworks,Rating,Metacritic Rating,15,15,excluido: menos de 20 pares completos,,,,,_organizaciones,16
+Big Trash Games,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Binary Haze Interactive,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+BioWare,Rating,Metacritic Rating,5,5,excluido: menos de 20 pares completos,,,,,_organizaciones,5
+BioWare Edmonton,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Black Isle Studios,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Black Mermaid,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+BlitWorks,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Blizzard Entertainment,Rating,Metacritic Rating,5,5,excluido: menos de 20 pares completos,,,,,_organizaciones,5
+Blue Mammoth Games,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Blue Tongue Entertainment,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+BlueTwelve Studio,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Bluehole Studio,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Bluepoint Games,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Boneloaf,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Brace Yourself Games,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Buena Vista Games,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Bungie,Rating,Metacritic Rating,3,3,excluido: menos de 20 pares completos,,,,,_organizaciones,3
+CD Projekt,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+CD Projekt RED,Rating,Metacritic Rating,5,5,excluido: menos de 20 pares completos,,,,,_organizaciones,5
+Camelot Software Planning,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Campo Santo,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Capcom,Rating,Metacritic Rating,49,49,incluido,0.6696867758332192,1.4258713823891875e-07,0.5458553717276392,4.97897844260849e-05,_organizaciones,51
+Capcom Development Division 1,Rating,Metacritic Rating,3,3,excluido: menos de 20 pares completos,,,,,_organizaciones,3
+Capcom Development Division 2,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Capcom Planning Room 2,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Capcom Production Studio 1,Rating,Metacritic Rating,7,7,excluido: menos de 20 pares completos,,,,,_organizaciones,7
+Capcom Production Studio 2,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Capcom Production Studio 3,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Capcom Production Studio 4,Rating,Metacritic Rating,6,6,excluido: menos de 20 pares completos,,,,,_organizaciones,6
+Capcom USA,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Cardboard Computer,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Cavia,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Certain Affinity,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Chris Nordgren,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Chucklefish Games,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Chunsoft,Rating,Metacritic Rating,4,4,excluido: menos de 20 pares completos,,,,,_organizaciones,4
+Cing,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Clickteam,Rating,Metacritic Rating,3,3,excluido: menos de 20 pares completos,,,,,_organizaciones,3
+Clover Studio,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Coffee Stain Publishing,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Coffee Stain Studios,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Cold Symmetry,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+ConcernedApe,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Core Design,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Creatures Inc.,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Criterion Games,Rating,Metacritic Rating,3,3,excluido: menos de 20 pares completos,,,,,_organizaciones,3
+Crowbar Collective,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Crows Crows Crows,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Crunching Koalas,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Crystal Dynamics,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Crytek Frankfurt,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Curve Digital,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+CyberConnect2,Rating,Metacritic Rating,4,4,excluido: menos de 20 pares completos,,,,,_organizaciones,4
+CyberFront,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+DANGEN Entertainment,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+DC Entertainment,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+DMA Design,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+DON'T NOD,Rating,Metacritic Rating,3,3,excluido: menos de 20 pares completos,,,,,_organizaciones,3
+Dani,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Daniel Mullins Games,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+David Szymanski,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Daybreak Game Company,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+"DeNA Co., Ltd.",Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Dead Mage,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+"Dean ""ppy"" Herbert",Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Dear Villagers,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Deck Nine,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Deck13 Interactive,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Deck13 Spotlight,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Deep Silver,Rating,Metacritic Rating,5,5,excluido: menos de 20 pares completos,,,,,_organizaciones,5
+Delightworks,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Delphine Software,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Dennaton Games,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Devolver Digital,Rating,Metacritic Rating,15,15,excluido: menos de 20 pares completos,,,,,_organizaciones,15
+Digital Sun Games,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Dimps,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Dingaling,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Disney Interactive Studios,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Distractionware,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Dodge Roll,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+DotEmu,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Double Fine,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Double Fine Productions,Rating,Metacritic Rating,3,3,excluido: menos de 20 pares completos,,,,,_organizaciones,3
+Double Helix Games,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Dramatic Create,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Drinkbox Studios,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+EA,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+EA Black Box,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+EA Canada,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+EA Digital Illusions CE,Rating,Metacritic Rating,5,5,excluido: menos de 20 pares completos,,,,,_organizaciones,5
+EA Redwood Shores,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+EA Sports,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+EA Vancouver,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Eat Sleep Play Inc.,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Ebb Software,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Eidos Interactive,Rating,Metacritic Rating,6,6,excluido: menos de 20 pares completos,,,,,_organizaciones,6
+Eidos Montréal,Rating,Metacritic Rating,3,3,excluido: menos de 20 pares completos,,,,,_organizaciones,3
+Eighting,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Electronic Arts,Rating,Metacritic Rating,41,41,incluido,0.5490254927613029,0.00020148585946163836,0.5192130493720492,0.0005043643754467531,_organizaciones,42
+Ember Lab,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Endnight Games Ltd,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Enhance Games,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Enix America Corporation,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Epic Games,Rating,Metacritic Rating,4,4,excluido: menos de 20 pares completos,,,,,_organizaciones,4
+Eric Lost,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Euphoric Brothers,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Everything Unlimited Ltd.,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Extremely OK Games,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+FUN Labs,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Facepalm Games,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Facepunch Studios,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Factor 5,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Fancy Force,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Fellow Traveller,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Feral Interactive,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Finji,Rating,Metacritic Rating,3,3,excluido: menos de 20 pares completos,,,,,_organizaciones,3
+Firaxis Games,Rating,Metacritic Rating,3,3,excluido: menos de 20 pares completos,,,,,_organizaciones,3
+Fizz Creations,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Flying Wild Hog,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Focus Entertainment,Rating,Metacritic Rating,3,3,excluido: menos de 20 pares completos,,,,,_organizaciones,3
+Fox Interactive,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Freebird Games,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+French Bread,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Frictional Games,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+FromSoftware,Rating,Metacritic Rating,13,13,excluido: menos de 20 pares completos,,,,,_organizaciones,13
+Frontwing,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Fruitbat Factory,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Furious Bee Limited,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+FuturLab,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+GOA Games Services Ltd.,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+GR3 Project,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+GSC Game World,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Gabe Cuzzillo,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Gaijin Games,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Galactic Cafe,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Game Freak,Rating,Metacritic Rating,16,16,excluido: menos de 20 pares completos,,,,,_organizaciones,16
+Game Mill Entertainment,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Gameloft,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Gathering of Developers,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Gearbox Publishing,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Gearbox Software,Rating,Metacritic Rating,5,5,excluido: menos de 20 pares completos,,,,,_organizaciones,5
+Gears for Breakfast,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+General Computer Corporation (GCC),Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Geography of Robots,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Ghost Games,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Ghost Story Games,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Ghost Town Games,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Ghostlight Ltd.,Rating,Metacritic Rating,4,4,excluido: menos de 20 pares completos,,,,,_organizaciones,4
+Giant Sparrow,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Giant Squid,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+GoodbyeWorld Games,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Google,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Grasshopper Manufacture,Rating,Metacritic Rating,7,7,excluido: menos de 20 pares completos,,,,,_organizaciones,7
+Greg Lobanov,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Grezzo,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Grinding Gear Games,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Griptonite Games,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Guerrilla Games,Rating,Metacritic Rating,3,3,excluido: menos de 20 pares completos,,,,,_organizaciones,3
+Gun Interactive,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Gunfire Games,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+HAL Laboratory,Rating,Metacritic Rating,5,5,excluido: menos de 20 pares completos,,,,,_organizaciones,5
+HAMSTER Corporation,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Half Asleep,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Half Mermaid,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Halfbrick Studios,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Hangar 13,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Happy Paintings,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Harmonix Music Systems,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Hazelight Studios,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Headup Games,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Heart Machine,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Heavy Iron Studios,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Hi-Rez Studios,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+High Impact Games,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Hitmaker,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+HoYoverse,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+House House,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Housemarque,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Hudson Soft,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Humble Bundle,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Humble Games,Rating,Metacritic Rating,3,3,excluido: menos de 20 pares completos,,,,,_organizaciones,3
+Hypnos Entertainment,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+"ILCA, Inc.",Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+IMGN.PRO,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+IO Interactive,Rating,Metacritic Rating,3,3,excluido: menos de 20 pares completos,,,,,_organizaciones,3
+Ice-Pick Lodge,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Iggymob,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Ignition Entertainment,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Illfonic,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Infinite Fall,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Infinity Ward,Rating,Metacritic Rating,4,4,excluido: menos de 20 pares completos,,,,,_organizaciones,4
+Infogrames Europe,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Inlusio Interactive,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+InnerSloth,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Insomniac Games,Rating,Metacritic Rating,5,5,excluido: menos de 20 pares completos,,,,,_organizaciones,5
+Intelligent Systems,Rating,Metacritic Rating,4,4,excluido: menos de 20 pares completos,,,,,_organizaciones,4
+"Intelligent Systems Co., Ltd.",Rating,Metacritic Rating,11,11,excluido: menos de 20 pares completos,,,,,_organizaciones,11
+Intergrow,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Interplay Entertainment,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Inti Creates,Rating,Metacritic Rating,6,6,excluido: menos de 20 pares completos,,,,,_organizaciones,6
+Invisible Handlebar,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Ion Storm,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Iron Gate AB,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Irrational Games,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+JAST USA,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+JVC Musical Industries,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+"Jackbox Games, Inc.",Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Jason Roberts,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Josh Wardle,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Jump Over The Age,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Jumpship,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Jupiter Corp.,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Jupiter Corporation,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+K2,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Kadokawa Shoten,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Kepler Interactive,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Kikiyama,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Kitfox Games,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Klei Entertainment,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Koch Media,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Koei Tecmo,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Koei Tecmo Games,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Kojima Productions,Rating,Metacritic Rating,7,7,excluido: menos de 20 pares completos,,,,,_organizaciones,7
+Konami,Rating,Metacritic Rating,22,22,incluido,0.6180229723702502,0.002174729479690124,0.44387471593164857,0.03851077718483142,_organizaciones,22
+Konami Computer Entertainment Japan,Rating,Metacritic Rating,4,4,excluido: menos de 20 pares completos,,,,,_organizaciones,4
+Konami Computer Entertainment Tokyo,Rating,Metacritic Rating,3,3,excluido: menos de 20 pares completos,,,,,_organizaciones,3
+Konami Digital Entertainment,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Krafton,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+LW Media,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Lab Zero Games,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Larian Studios,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Leonard Menchiari,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Level Infinite,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Level-5,Rating,Metacritic Rating,4,4,excluido: menos de 20 pares completos,,,,,_organizaciones,4
+Light Brick Studio,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Lionhead Studios,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Live Wire,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Lizardcube,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Lo-Fi Games,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Looking Glass Studios,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Love-de-Lic,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Lowtech Studios,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Lucas Pope,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+LucasArts,Rating,Metacritic Rating,5,5,excluido: menos de 20 pares completos,,,,,_organizaciones,5
+Lucasfilm Games,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Ludeon Studios,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Ludosity,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Luis Antonio,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Luminous Productions,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+MONKEYCRAFT Co. Ltd,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+MTV Games,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+MachineGames,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Maddy Makes Games,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Majesco Entertainment,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Makura,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+MangaGamer,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Marvelous Entertainment,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Massive Entertainment,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Massive Monster,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Matheus Valadares,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Maxis,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Media Molecule,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Mediatonic,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+MercurySteam,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Microsoft,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Microsoft Game Studios,Rating,Metacritic Rating,11,11,excluido: menos de 20 pares completos,,,,,_organizaciones,11
+Microsoft Studios,Rating,Metacritic Rating,7,7,excluido: menos de 20 pares completos,,,,,_organizaciones,7
+Midway,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Midway Games,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Millennium Kitchen,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Miniclip.com,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Miro Haverinen,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Misfits Attic,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Mobius Digital,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Modern Storyteller,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Mojang Studios,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Monolith Productions,Rating,Metacritic Rating,3,3,excluido: menos de 20 pares completos,,,,,_organizaciones,3
+Monolith Soft,Rating,Metacritic Rating,5,5,excluido: menos de 20 pares completos,,,,,_organizaciones,5
+Moon Studios,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Moonsprout Games,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Moppin,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Motion Twin,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Motive Studios,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Mundfish,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+NEOWIZ,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+NIS America,Rating,Metacritic Rating,6,6,excluido: menos de 20 pares completos,,,,,_organizaciones,6
+NOVECT,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+NOW Production,Rating,Metacritic Rating,3,3,excluido: menos de 20 pares completos,,,,,_organizaciones,3
+Namco,Rating,Metacritic Rating,8,8,excluido: menos de 20 pares completos,,,,,_organizaciones,8
+Namco Bandai Games,Rating,Metacritic Rating,3,3,excluido: menos de 20 pares completos,,,,,_organizaciones,3
+Namco Hometek,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+"Namco Networks America, Inc.",Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Namco Tales Studio,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Nankidai,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Naughty Dog,Rating,Metacritic Rating,11,11,excluido: menos de 20 pares completos,,,,,_organizaciones,11
+Nazca Corporation,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Ndemic Creations,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Necrophone Games,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+NetherRealm Studios,Rating,Metacritic Rating,5,5,excluido: menos de 20 pares completos,,,,,_organizaciones,5
+Neversoft Entertainment,Rating,Metacritic Rating,3,3,excluido: menos de 20 pares completos,,,,,_organizaciones,3
+New Blood Interactive,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Nex Entertainment,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Next Level Games,Rating,Metacritic Rating,3,3,excluido: menos de 20 pares completos,,,,,_organizaciones,3
+Niantic Labs,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+"Nicalis, Inc.",Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Night School Studio,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Nihon Falcom,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Nikita Kaf Publishing,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Nikita Kryukov,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Ninja Kiwi,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Ninja Theory,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Nintendo,Rating,Metacritic Rating,125,125,incluido,0.44103093881359035,2.636460327842793e-07,0.46108392610165205,6.256822068620133e-08,_organizaciones,125
+Nintendo Australia,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Nintendo EAD,Rating,Metacritic Rating,15,15,excluido: menos de 20 pares completos,,,,,_organizaciones,15
+Nintendo EAD Group No. 1,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Nintendo EAD Group No. 2,Rating,Metacritic Rating,4,4,excluido: menos de 20 pares completos,,,,,_organizaciones,4
+Nintendo EAD Software Development Group No.3,Rating,Metacritic Rating,3,3,excluido: menos de 20 pares completos,,,,,_organizaciones,3
+Nintendo EAD Software Development Group No.4,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Nintendo EAD Tokyo,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Nintendo EPD,Rating,Metacritic Rating,7,7,excluido: menos de 20 pares completos,,,,,_organizaciones,7
+Nintendo EPD Production Group No. 3,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Nintendo R&D1,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Nintendo R&D4,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Nintendo SPD Group No. 1,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Nintendo SPD Group No. 2,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Nintendo Software Technology,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Nintendo of America,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Nintendo of Europe,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Nippon Ichi Software,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Nitroplus,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Nokia,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Nomada Studio,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Nordic Games Publishing,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Number None Inc.,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+OMOCAT,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Obsidian Entertainment,Rating,Metacritic Rating,3,3,excluido: menos de 20 pares completos,,,,,_organizaciones,3
+Omega Force,Rating,Metacritic Rating,4,4,excluido: menos de 20 pares completos,,,,,_organizaciones,4
+One More Level,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Orange_Juice,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Origin Systems,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Overkill Software,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+PLAYISM,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+PUBG Corp,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+PagodaWest Games,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Palcom,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Pandemic Studios,Rating,Metacritic Rating,3,3,excluido: menos de 20 pares completos,,,,,_organizaciones,3
+Panic,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Paradox Development Studio,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Paradox Interactive,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Parsec Productions,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+People Can Fly,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Perfect World Entertainment,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+PeroPeroGames,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Phobia Game Studio,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Piacci,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Pillow Castle Games,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Pionner LDC,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+PlatinumGames,Rating,Metacritic Rating,9,9,excluido: menos de 20 pares completos,,,,,_organizaciones,9
+Playdead,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Player First Games,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Playground Games,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Playstack,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Playtonic Friends,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Poncle,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+PopCap Games,Rating,Metacritic Rating,4,4,excluido: menos de 20 pares completos,,,,,_organizaciones,4
+Portkey Games,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Private Division,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Project Moon,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Project Sora,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Psyonix,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Punchline,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+QLOC,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Quantic Dream,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Radical Entertainment,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Radical Fish Games,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Rare,Rating,Metacritic Rating,5,5,excluido: menos de 20 pares completos,,,,,_organizaciones,5
+Raw Fury,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Re-Logic,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Ready at Dawn,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Rebellion Developments,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Red Barrels,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Red Entertainment,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Red Hook Studios,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Red Kite Games,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Reikon Games,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Remedy Entertainment,Rating,Metacritic Rating,6,6,excluido: menos de 20 pares completos,,,,,_organizaciones,6
+Respawn Entertainment,Rating,Metacritic Rating,3,3,excluido: menos de 20 pares completos,,,,,_organizaciones,3
+Retro Studios,Rating,Metacritic Rating,5,5,excluido: menos de 20 pares completos,,,,,_organizaciones,5
+Riot Forge,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Riot Games,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Rising Star Games,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+RobTop Games,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Roblox Corporation,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Rockstar Games,Rating,Metacritic Rating,11,11,excluido: menos de 20 pares completos,,,,,_organizaciones,11
+Rockstar North,Rating,Metacritic Rating,5,5,excluido: menos de 20 pares completos,,,,,_organizaciones,5
+Rockstar Toronto,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Rockstar Vancouver,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Rocksteady Studios,Rating,Metacritic Rating,3,3,excluido: menos de 20 pares completos,,,,,_organizaciones,3
+Rogue Entertainment,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Roll7,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Round8 Studio,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Rozner Labs Software Group,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Running with Scissors,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Ryu ga Gotoku Studios,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Ryū Ga Gotoku Studios,Rating,Metacritic Rating,6,6,excluido: menos de 20 pares completos,,,,,_organizaciones,6
+SCE Japan Studio,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+SCE Santa Monica Studio,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+SEGA of America,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+SEGA of Japan,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+SIE Bend Studio,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+SIE Japan Studio,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+SIE Santa Monica Studio,Rating,Metacritic Rating,4,4,excluido: menos de 20 pares completos,,,,,_organizaciones,4
+SNK,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+SNK Corporation,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+SUKEBAN,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+SUPERHOT Team,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Sabotage,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Scott Slucher,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Scottgames,Rating,Metacritic Rating,3,3,excluido: menos de 20 pares completos,,,,,_organizaciones,3
+Second Dinner,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Sega,Rating,Metacritic Rating,31,31,incluido,0.6937272250412806,1.5086044007714972e-05,0.6595089398695217,5.4490944640086255e-05,_organizaciones,31
+Sega AM2,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Sega Games,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Sega Technical Institute,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Shedworks,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Shift,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Siactro,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Sierra Entertainment,Rating,Metacritic Rating,4,4,excluido: menos de 20 pares completos,,,,,_organizaciones,4
+Silicon Knights,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Simogo,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Skip Ltd.,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Skybound Games,Rating,Metacritic Rating,3,3,excluido: menos de 20 pares completos,,,,,_organizaciones,3
+Sledgehammer Games,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Sloclap,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Smilebit,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Sold Out Sales & Marketing,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Soleil,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Sonic Team,Rating,Metacritic Rating,12,12,excluido: menos de 20 pares completos,,,,,_organizaciones,12
+Sonic Team USA,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Sony Computer Entertainment,Rating,Metacritic Rating,15,15,excluido: menos de 20 pares completos,,,,,_organizaciones,15
+Sony Computer Entertainment Europe,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+"Sony Computer Entertainment, Inc. (SCEI)",Rating,Metacritic Rating,14,14,excluido: menos de 20 pares completos,,,,,_organizaciones,14
+Sony Interactive Entertainment,Rating,Metacritic Rating,22,22,incluido,0.7309384586544398,0.00011157600436808122,0.634099935748493,0.0015291418026586153,_organizaciones,22
+Sora,Rating,Metacritic Rating,4,4,excluido: menos de 20 pares completos,,,,,_organizaciones,4
+Sorath,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Spicy Horse Games,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Spike,Rating,Metacritic Rating,4,4,excluido: menos de 20 pares completos,,,,,_organizaciones,4
+Spike ChunSoft,Rating,Metacritic Rating,7,7,excluido: menos de 20 pares completos,,,,,_organizaciones,7
+Splashteam,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Square,Rating,Metacritic Rating,10,10,excluido: menos de 20 pares completos,,,,,_organizaciones,10
+Square Electronic Arts,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Square Enix,Rating,Metacritic Rating,49,49,incluido,0.5977220884329697,5.767489936531473e-06,0.5984945845210566,5.56925277510264e-06,_organizaciones,49
+Square Enix Creative Business Unit III,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Square Soft,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Squaresoft,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+St. GIGA,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Starbreeze Studios,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Starbreeze publishing AB,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Steel Crate Games,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Steve Howse,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Striking Distance Studios,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Studio MDHR,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Studio Pixel,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Studio Zero,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Subset Games,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Sucker Punch Productions,Rating,Metacritic Rating,5,5,excluido: menos de 20 pares completos,,,,,_organizaciones,5
+Sumo Digital,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Supercell,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Supergiant Games,Rating,Metacritic Rating,3,3,excluido: menos de 20 pares completos,,,,,_organizaciones,3
+Supermassive Games,Rating,Metacritic Rating,3,3,excluido: menos de 20 pares completos,,,,,_organizaciones,3
+Surefire.Games,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+System Erasure,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+THQ,Rating,Metacritic Rating,9,9,excluido: menos de 20 pares completos,,,,,_organizaciones,9
+THQ Wireless,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+TT Fusion,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+TYPE-MOON,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Taito Corporation,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Take-Two Interactive,Rating,Metacritic Rating,3,3,excluido: menos de 20 pares completos,,,,,_organizaciones,3
+Taleworlds,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Tango Gameworks,Rating,Metacritic Rating,4,4,excluido: menos de 20 pares completos,,,,,_organizaciones,4
+Tarsier Studios,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Team Cherry,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Team Ico,Rating,Metacritic Rating,3,3,excluido: menos de 20 pares completos,,,,,_organizaciones,3
+Team Meat,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Team NINJA,Rating,Metacritic Rating,4,4,excluido: menos de 20 pares completos,,,,,_organizaciones,4
+Team Salvato,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Team Shanghai Alice,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Team Shinobi,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Team Silent,Rating,Metacritic Rating,4,4,excluido: menos de 20 pares completos,,,,,_organizaciones,4
+Team17,Rating,Metacritic Rating,3,3,excluido: menos de 20 pares completos,,,,,_organizaciones,3
+Techland,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Techland Publishing,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Tecmo,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+"Tecmo Co., Ltd.",Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Telltale Games,Rating,Metacritic Rating,5,5,excluido: menos de 20 pares completos,,,,,_organizaciones,5
+Terrible Toybox,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Terry Cavanagh,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+ThatGameCompany,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+The Behemoth,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+The Coalition,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+The Collective,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+The Game Kitchen,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+The Indie Stone,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+The LEGO Group,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+The New York Times,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+The Outsiders,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+The Pokémon Company,Rating,Metacritic Rating,6,6,excluido: menos de 20 pares completos,,,,,_organizaciones,6
+The Sims Studio,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+"Thekla, Inc",Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Thomas Happ Games,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Thunder Lotus Games,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Timi,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Titus Software,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Torn Banner Studios,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Tose,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Tour De Pizza,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Toylogic,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Toys for Bob,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Traveller's Tales,Rating,Metacritic Rating,6,6,excluido: menos de 20 pares completos,,,,,_organizaciones,6
+Treasure,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Treyarch,Rating,Metacritic Rating,5,5,excluido: menos de 20 pares completos,,,,,_organizaciones,5
+Tribute Games,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Tripwire Interactive,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Turtle Rock Studios,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+U.S. Gold,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Ubisoft,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Ubisoft Chengdu,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Ubisoft Entertainment,Rating,Metacritic Rating,27,27,incluido,0.6418505142818183,0.00030761713984663004,0.6829796694230295,8.648186107010273e-05,_organizaciones,27
+Ubisoft Montpellier,Rating,Metacritic Rating,3,3,excluido: menos de 20 pares completos,,,,,_organizaciones,3
+Ubisoft Montreal,Rating,Metacritic Rating,16,16,excluido: menos de 20 pares completos,,,,,_organizaciones,16
+Ubisoft Paris,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Ubisoft Québec,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Ubisoft San Francisco,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Ubisoft Shanghai,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Ubisoft Sofia,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Ubisoft Toronto,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Ultra Games,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+United Front Games,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Universal Interactive Studios,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Unknown Worlds Entertainment,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Valve,Rating,Metacritic Rating,11,11,excluido: menos de 20 pares completos,,,,,_organizaciones,11
+Vanillaware,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Vanripper,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Vicarious Visions,Rating,Metacritic Rating,3,3,excluido: menos de 20 pares completos,,,,,_organizaciones,3
+Victor Interactive Software,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Videocult,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Virgin Interactive Entertainment,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Virgin Interactive Entertainment (Europe) Ltd.,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+"Virgin Interactive Entertainment, Inc.",Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Virtuos,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Visceral Games,Rating,Metacritic Rating,3,3,excluido: menos de 20 pares completos,,,,,_organizaciones,3
+Vivendi Universal,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Vlambeer,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Volition,Rating,Metacritic Rating,4,4,excluido: menos de 20 pares completos,,,,,_organizaciones,4
+WB Games,Rating,Metacritic Rating,15,15,excluido: menos de 20 pares completos,,,,,_organizaciones,15
+WB Games Montréal,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+WSS playground,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+Warhorse Studios,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Warner Bros. Interactive Entertainment,Rating,Metacritic Rating,3,3,excluido: menos de 20 pares completos,,,,,_organizaciones,3
+WayForward,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+WayForward Technologies,Rating,Metacritic Rating,4,4,excluido: menos de 20 pares completos,,,,,_organizaciones,4
+Whippoorwill,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Whiptail Interactive,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+White Owls Inc.,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Witch Beam,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Witchcraft Inc.,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Wiz,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+WolfEye Studios,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Wube Software LTD.,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+X.D. Network Inc.,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+XSEED Games,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Xbox Game Studios,Rating,Metacritic Rating,7,7,excluido: menos de 20 pares completos,,,,,_organizaciones,7
+"YUKE'S Co., Ltd.",Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Yacht Club Games,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+Young Horses,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Ysbryd Games,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+ZA/UM,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+ZeniMax Media,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+Zenimax Europe,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+adamgryu,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+etherane,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+h.a.n.d. Inc.,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+hempuli,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+id Software,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,3
+kouri,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+miHoYo,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+niceplay game,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+ninja_muffin99,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+nuverse,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+panstasz,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+rose-engine,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1
+sprite,Rating,Metacritic Rating,0,0,excluido: menos de 20 pares completos,,,,,_organizaciones,0
+tinyBuild,Rating,Metacritic Rating,3,3,excluido: menos de 20 pares completos,,,,,_organizaciones,3
+tobyfox,Rating,Metacritic Rating,2,2,excluido: menos de 20 pares completos,,,,,_organizaciones,2
+tri-Crescendo,Rating,Metacritic Rating,1,1,excluido: menos de 20 pares completos,,,,,_organizaciones,1

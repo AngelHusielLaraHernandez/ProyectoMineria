@@ -1,0 +1,20 @@
+{
+  "clustering": {
+    "origen": "data/export/clustering.csv",
+    "copia": "data/export/clustering.arff",
+    "filas": 887,
+    "atributos": 6,
+    "valores_verificados": true,
+    "sha256_csv": "9b0627ba170dba5eed9b1fc22fe02020d175f07d71addd91280279cfe43f8a1d",
+    "sha256_arff": "17b890b65e6231eabd16a864cf8e3691394b9d203e5c5d80e61ea297df1dbbce"
+  },
+  "clasificacion": {
+    "origen": "data/export/clasificacion.csv",
+    "copia": "data/export/clasificacion.arff",
+    "filas": 892,
+    "atributos": 53,
+    "valores_verificados": true,
+    "sha256_csv": "f1040a9670bf08c0a717d39951971c3ec0335bf605b2b69b228f26b0d38c9908",
+    "sha256_arff": "487963cb9dcd5937ffe5ebb2135db544dfdf00d56223e8bf7c8fccd1ed46c0a9"
+  }
+}

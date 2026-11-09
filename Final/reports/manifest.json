@@ -1,0 +1,23 @@
+{
+  "huella_pipeline": "2997b4954e8901c664771bcac6da39dd2bc11ac09936678c09e4bb5c8ce3a830",
+  "fuente_clustering": "data/clean/dataset_depurado.csv",
+  "artefacto_clustering": "data/clean/dataset_con_clusters.csv",
+  "modelo_popularidad": "models/modelo_popularidad.joblib",
+  "metadata_modelo": "models/metadata.json",
+  "sha256_modelo_popularidad": "d6fec69526a815e254f7d1e4c6b09a91224d004102430fa0926347dcebcc6706",
+  "sha256_metadata_modelo": "2e64011575e520a616bd43d10b763d837293f48ef3c6bdeb2fd21e98c8afbedf",
+  "sha256_vecinos": "23d0ad2353a64b567cd1c40d40b70735e4450ae9a2b731519ba5aa65a1f95415",
+  "sha256_dataset_depurado": "f0448fccc82b140fec956d8522b8dfa675c029875029bca6f3f8b396a67a7652",
+  "sha256_dataset_con_clusters": "d35537b44658aeeefbacd0ebac8c6cd785e73004e5ec0b1ac7baf3c82fd4077a",
+  "sha256_reportes_app": {
+    "clustering_03_parametros.json": "df298240ede139bee39b1c275e326993fdebc7df6a2250854864a839b8d0089b",
+    "clustering_03_correlaciones_catalogo.csv": "73efe968de1a24e4d8f7418e59345b20b71f5730d3c8f7dc9eb65b64b7ee2175",
+    "clustering_03_correlaciones_generos.csv": "5869c0c310fe9e29da498effb41c0134dcb473c8d659db8004a7d7b7f5a1cdda",
+    "clustering_03_correlaciones_organizaciones.csv": "86304ee58a3749c71dbfed9eded58fee43a3d7dd81232f33082909e42f53cd95",
+    "clustering_03_correlaciones_ranking_generos.csv": "149d78bb3b84b1aeb32e3dbdb34cf0eef72ae8e2947d5333a3af132965ce5131",
+    "clustering_03_perfiles.csv": "21a24f23191e0353093d3ec65790da70a7398ec27f5c8d158f8acbaf59b01265",
+    "clustering_03_alternativas_k.csv": "83a307d8df56e722e89679c47b445303b69b3f23e61a06ec2a51670a85e09391",
+    "clustering_03_seleccion_kmeans.csv": "968c7e54bdb423d4d1e19af7dde2461978bf2a0edae28277919620f154ab26ff",
+    "clustering_03_sensibilidad_dbscan.csv": "59c1d25653df3a03d79885db1dca9bda619767e6349516f6b4228578690305e8"
+  }
+}

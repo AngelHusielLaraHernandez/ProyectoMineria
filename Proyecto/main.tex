@@ -4,6 +4,9 @@
 \usepackage[spanish,mexico]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage{csquotes}
+\usepackage[backend=biber,style=apa]{biblatex}
+\DeclareLanguageMapping{spanish}{spanish-apa}
+\addbibresource{referencias.bib}
 \usepackage{iftex}
 
 \usepackage{pdfpages}
@@ -228,7 +231,7 @@
 
 \subsection{Objetivo general}
 
-Aplicar técnicas de minería de datos sobre un catálogo de 1,512 videojuegos para analizar de forma práctica la diferencia entre la sensación de la comunidad de jugadores y la crítica especializada, identificar los factores que determinan la popularidad de un título, analizar cómo el género de un videojuego influye en su éxito comercial y de recepción, y encontrar grupos de videojuegos con características similares basándonos únicamente en lo que revelan sus datos
+Aplicar técnicas de minería de datos sobre un catálogo de videojuegos (1,512 registros originales, que tras la depuración quedan en 1,117 juegos únicos) para analizar de forma práctica la diferencia entre la sensación de la comunidad de jugadores y la crítica especializada, identificar los factores que determinan la popularidad de un título, analizar cómo el género de un videojuego influye en su éxito comercial y de recepción, encontrar grupos de videojuegos con características similares basándonos únicamente en lo que revelan sus datos, clasificar nuevos títulos dentro de esos perfiles de mercado mediante un modelo supervisado, y poner todos los resultados a disposición mediante una aplicación web interactiva
 
 \subsection{Objetivos específicos}
 
@@ -236,10 +239,12 @@ Para alcanzar el objetivo general, se establecen las siguientes metas concretas:
 
 \begin{itemize}
     \item \textbf{Depurar y estructurar el conjunto de datos:} Limpiar las inconsistencias del archivo original, como registros duplicados, valores faltantes y formatos erróneos (conversión de sufijos numéricos y estandarización de fechas), garantizando la calidad de los datos para su análisis.
-    \item \textbf{Realizar un análisis exploratorio de datos (EDA):} Caracterizar matemáticamente el catálogo mediante estadística descriptiva y visualizaciones interactivas, analizando la distribución de títulos por género, estudio desarrollador, año de lanzamiento y métricas centrales.
+    \item \textbf{Realizar un análisis exploratorio de datos (EDA):} Caracterizar matemáticamente el catálogo mediante estadística descriptiva y visualizaciones, analizando la distribución de títulos por género, estudio desarrollador, año de lanzamiento y métricas centrales.
     \item \textbf{Cuantificar la discrepancia perceptiva:} Medir el grado de asociación entre la calificación de los usuarios (\textit{Rating}) y la de la prensa (\textit{Metacritic Rating}) utilizando el coeficiente de correlación de Pearson, separando los resultados por género y estudio para identificar variaciones significativas.
     \item \textbf{Identificar tendencias de popularidad real:} Analizar las métricas de interacción comunitaria (\textit{Plays}, \textit{Playing}, \textit{Backlogs} y \textit{Wishlist}) para determinar qué estudios y géneros lideran el mercado en términos de enganche, contrastando la popularidad con sus respectivas calificaciones.
     \item \textbf{Modelar perfiles de mercado mediante agrupamiento:} Aplicar algoritmos de clustering sobre las variables numéricas del catálogo para dividir los videojuegos en diferentes perfiles (ej. éxitos masivos, juegos de culto, títulos sobrevalorados), teniendo en cuenta el género al que pertenecen, esto debido a que en los últimos años el tipo de género ha sido un factor determinante en el éxito o fracaso de un título, especialmente con la tendencia actual de lanzar juegos por servicios que han representado pérdidas significativas para las compañías, por lo que identificar qué géneros concentran el éxito real del mercado podría orientar mejor las decisiones de desarrollo.
+    \item \textbf{Clasificar el perfil de mercado con un modelo supervisado:} Entrenar y comparar modelos de clasificación (Naive Bayes y árbol de decisión en Orange y Weka, y una propuesta propia en Python con scikit-learn que incluye además un perceptrón multicapa como punto de comparación) para predecir el perfil de mercado de un videojuego a partir de su género, década y calificaciones, evaluando su desempeño con validación cruzada.
+    \item \textbf{Comunicar los resultados mediante una aplicación web:} Desarrollar y desplegar una aplicación en Streamlit que integre el EDA, la brecha entre usuarios y crítica, los perfiles de mercado y el clasificador, y que sirva como demostración del proyecto.
 \end{itemize}
 
 
@@ -249,13 +254,27 @@ Para alcanzar el objetivo general, se establecen las siguientes metas concretas:
 
 \subsection{El conjunto de datos y su origen}
 
-El conjunto de datos a analizar consta de 1,512 registros que corresponden a videojuegos de diversas plataformas, géneros y épocas, con fechas de lanzamiento que abarcan desde 1980 hasta 2025. Cada registro incluye atributos descriptivos e indicadores de interacción de la comunidad procedentes de Backloggd, una plataforma comunitaria de catalogación. Entre las variables destacan calificaciones de usuarios (\textit{Rating}), métricas de participación (\textit{Plays}, \textit{Playing}, \textit{Backlogs}, \textit{Wishlist}) y revisiones o comentarios. Además, se ha mejorado el conjunto incorporando la variable \textit{Metacritic Rating}, la cual nos da un panorame del acuerdo de la prensa especializada para otorgar una calificación a cada título. Contar con ambas perspectivas tanto la comunitaria como la especializada sobre un mismo catálogo de juegos nos proporciona el fundamento práctico necesario para el análisis de diferencias propuesta en este proyecto.
+El conjunto de datos original consta de 1,512 registros (1,117 videojuegos únicos tras la depuración, descrita en la subsección de calidad de los datos) que corresponden a videojuegos de diversas plataformas, géneros y épocas, con fechas de lanzamiento que abarcan desde 1980 hasta 2025. Cada registro incluye atributos descriptivos e indicadores de interacción de la comunidad procedentes de Backloggd, una plataforma comunitaria de catalogación. Entre las variables destacan calificaciones de usuarios (\textit{Rating}), métricas de participación (\textit{Plays}, \textit{Playing}, \textit{Backlogs}, \textit{Wishlist}) y revisiones o comentarios. Además, se ha mejorado el conjunto incorporando la variable \textit{Metacritic Rating}, la cual nos da un panorama del acuerdo de la prensa especializada para otorgar una calificación a cada título. Contar con ambas perspectivas tanto la comunitaria como la especializada sobre un mismo catálogo de juegos nos proporciona el fundamento práctico necesario para el análisis de diferencias propuesta en este proyecto. La versión de trabajo del archivo (\texttt{games\_actualizado\_metacritic.csv}) incluye, además de las 15 columnas originales, columnas de enriquecimiento (origen de la calificación y estimaciones de ingresos, gastos, unidades vendidas y ventas brutas); al tratarse de valores estimados cuya fuente no está documentada, el equipo los usará solo como apoyo exploratorio y verificará su procedencia antes de basar conclusiones en ellos.
 
 \subsection{El videojuego como industria y como objeto de análisis de datos}
 
 La relevancia práctica de este proyecto se basa mas que nada en la magnitud y el movimiento de la industria de los videojuegos. Según estimaciones recientes publicadas por Game World Observer a partir de datos de Newzoo, el mercado global alcanzó los 197,000 millones de dólares en 2025, experimentando un crecimiento anual del 7.5\,\%. Este volumen genera una enorme cantidad de datos sobre la recepción comercial y crítica de miles de títulos anuales. La minería de datos permite extender el análisis de métricas agregadas globales. La aplicación de análisis de correlación, exploraciones segmentadas y técnicas de agrupamiento (clustering) nos facilita el descubrimiento de perfiles de mercado y patrones de éxito para estudios de desarrollo, editoras y analistas del sector.
 
 Sin embargo, a pesar de este crecimiento, la industria enfrenta un problema reciente que tiene que ver directamente con el género de los videojuegos que se están lanzando. En los últimos años se ha visto una tendencia fuerte de las grandes compañías por apostar a los llamados juegos por servicios (\textit{Games as a Service}, GaaS), que son títulos diseñados para generar ingresos continuos mediante pases de batalla, contenido descargable y microtransacciones. El problema es que muchos de estos lanzamientos han resultado ser fracasos comerciales importantes, como fue el caso de Concord de Sony, que tuvo que cerrar sus servidores apenas dos semanas después de su lanzamiento, o Marathon de Bungie, que enfrenta un futuro incierto antes siquiera de salir al mercado. Estos fracasos no son casos aislados, sino que representan pérdidas de cientos de millones de dólares para las compañías que apostaron por un tipo de juego sin analizar si el género que estaban eligiendo tenía realmente una base de jugadores dispuesta a adoptarlo. Esto nos lleva a pensar que si las empresas pudieran analizar de forma objetiva qué géneros tienen mayor éxito en términos de recepción y popularidad, podrían tomar mejores decisiones sobre qué tipo de juegos desarrollar y reducir el riesgo de estas pérdidas.
+
+\subsection{Calidad de los datos y limitaciones}
+
+Una auditoría del archivo original (realizada con el script \texttt{src/cleaning.py} y \texttt{src/curate.py}) identificó los siguientes puntos, que condicionan el análisis:
+
+\begin{itemize}
+  \item \textbf{Duplicados:} 395 registros repetidos por título y fecha de lanzamiento (382 idénticos salvo el identificador). El conjunto único es de 1,117 juegos.
+  \item \textbf{Calificación de crítica estimada:} 265 de los 1,512 registros originales (218 de los 1,117 únicos) tienen \textit{Metacritic Rating} marcado como ``Estimacion propia''. En las filas con \textit{Rating} disponible, ese valor es una función lineal exacta del \textit{Rating} de usuarios (aproximadamente $8.59\cdot Rating + 50.95$), por lo que no constituye una calificación independiente de la crítica. Estas filas se excluyen de la comparación usuarios--crítica.
+  \item \textbf{Efecto en la correlación:} con todos los registros, el coeficiente de Pearson entre \textit{Rating} y \textit{Metacritic Rating} es $r=0.600$ (1,104 pares); usando solo Metacritic real (890 pares) es $r=0.544$.
+  \item \textbf{Columnas estimadas:} las columnas de ingresos, gastos, unidades y ventas brutas siguen relaciones fijas (ingresos $=0.70\times$ ventas brutas y precios unitarios en escalones de 12, 18, 20 y 30 dólares), por lo que no tienen fuente empírica. Se conservan en el archivo procesado para análisis exploratorio, pero se excluyen de los modelos predictivos y del clustering sin antes contar con fuentes verificadas.
+  \item \textbf{Sesgo de selección:} el catálogo contiene principalmente juegos populares y bien calificados (Metacritic medio de 83), sin fracasos comerciales como los que motivan el proyecto. Los resultados no deben interpretarse como causalidad ni como probabilidad de éxito de un lanzamiento nuevo.
+  \item \textbf{Cobertura temporal:} hay muy pocos juegos de 2024 y 2025, y 13 registros sin \textit{Rating} de usuarios.
+  \item \textbf{Trabajo de enriquecimiento:} se planea ampliar el conjunto con una población complementaria (fracasos y juegos poco calificados) y datos de plataformas y modelo de negocio provenientes de fuentes públicas (IGDB, RAWG, OpenCritic, Steam). Esta ampliación está pendiente de ejecutarse y de verificar los términos de uso de cada fuente; hasta entonces, las conclusiones se limitan al conjunto de 1,117 juegos.
+\end{itemize}
 
 \newpage
 \subsection{Trabajos relacionados y estado del conocimiento}
@@ -266,18 +285,12 @@ Un fenómeno de importante es el \textit{review bombing}, caracterizado por la e
 
 
 
+
 \section{Estrategia a seguir}
 
 \subsection*{Metodología}
 
-Para esto, vamos empezar a utilizar la metodologia
-CRISP-DM, que es basicament un modelo que se 
-publico por empresas como SPSS, NCR, 
-y que hasta el dia de hoy se sigue utlizando dia a dia
-en proyectos de minería de datos. 
-
-Lo que hace esta metodologia es organizar el 
-proyecto en seis fases: 
+Para este proyecto se utilizará la metodología CRISP-DM (\textit{Cross-Industry Standard Process for Data Mining}), un modelo publicado por un consorcio de empresas entre las que se encuentran SPSS y NCR, que hasta hoy se sigue empleando en proyectos de minería de datos \parencite{chapman2000crisp}. Esta metodología organiza el trabajo en seis fases:
 
 \begin{enumerate}
   \item Comprensión del negocio
@@ -288,74 +301,24 @@ proyecto en seis fases:
   \item Despliegue
 \end{enumerate}
 
-Lo que importa para esta metodologia y la razon 
-por la que se elijio es por que se puede regresar
-a fases anteriores si es necesario, ademas de 
-por que tambien se descartaron otras metodologias como fue el caso 
-de KDD,esto por que CRISP-DM incluye de manera directa la fase 
-de entendimiento del negocio esto, por que su enfoque empieza
-en los objetivos de la organización y no de los datos, que en nuestro 
-caso es entender el lugar directo de los videojuegos.
+Se eligió CRISP-DM porque permite regresar a fases anteriores cuando es necesario y porque se descartaron otras metodologías como KDD: CRISP-DM incluye de forma directa la fase de comprensión del negocio y su enfoque parte de los objetivos de la organización y no de los datos, que en este caso consiste en entender el mercado de los videojuegos.
 
+A continuación se describe cómo se adapta cada fase al proyecto. La numeración de las fases es la misma en todo el documento (tabla \ref{tab:fases}, cronograma y elementos de configuración).
 
-Antes de empezar, el desarrollo del proyecto 
-se tieen que hacer las adaptaciones de CRISP-DM al 
-proyecto, lo que vamos a hacer es que en el caso de 
-la primera fase que es la de comprensión del negocio 
-y de los datos, vamos a adapatarla 
-para que ahora esta se la parte de documentacion, 
-donde sera este documento, esto por que 
-lo que se hizo fue identificar el problema a resolver, donde lo que 
-se hace es una vista inicial de nuestro archivo que elejimos para 
-analizar que tiene todos los juegos para conocer 
-sus columnas y sus tipos de datos, asi tambien como el
-definir los objetivos que van a guiar todo el trabajo.
+\begin{itemize}
+  \item \textbf{Fase 1. Comprensión del negocio.} Se identifica el problema (qué significa que un videojuego sea exitoso y si puede medirse con un solo indicador) y se definen los objetivos. El entregable de esta fase es el presente documento.
+  \item \textbf{Fase 2. Comprensión de los datos.} Se hace una revisión inicial del archivo para conocer sus columnas, tipos de datos y calidad, y se realiza el análisis exploratorio (EDA): estadísticas, distribuciones, tablas comparativas por género, estudio y periodo, y gráficas con Python (pandas, matplotlib y seaborn). Para esta fase \textbf{no se utilizará Power BI}; las visualizaciones interactivas se integrarán directamente en la aplicación web de la fase 6.
+  \item \textbf{Fase 3. Preparación de los datos.} Con Python y pandas se detectan y tratan valores faltantes, se eliminan duplicados, se convierten a valores numéricos los campos con sufijos K o M, se estandarizan las fechas y se crean variables derivadas (año, década, géneros descompuestos y la brecha entre el \textit{Rating} normalizado y el \textit{Metacritic Rating}). Todo queda como un elemento de configuración del proyecto.
+  \item \textbf{Fase 4. Modelado.} Incluye el análisis de relaciones (correlación de Pearson segmentada por género y estudio, interpretada con umbrales de fuerza del efecto) y tres tareas de modelado: (a) clustering no supervisado con K-Means y DBSCAN para obtener perfiles de mercado; (b) clasificación supervisada del perfil de mercado con Naive Bayes y árbol de decisión; y (c) una propuesta propia del equipo en Python con scikit-learn que replica los modelos anteriores y añade un perceptrón multicapa (\texttt{MLPClassifier}) como comparación. Dado el tamaño del catálogo (1,117 juegos únicos), no se espera que la red neuronal supere a los modelos más sencillos; su inclusión sirve para contrastar complejidad contra interpretabilidad.
+  \item \textbf{Fase 5. Evaluación.} Se evalúa la calidad de cada modelo (coeficiente de silueta, estabilidad y utilidad interpretativa de los clústeres; exactitud, \textit{F1} y matriz de confusión con validación cruzada de 10 pliegues para los clasificadores) y se contrastan los resultados de Orange y Weka con los de Python. Se evitará la fuga de información excluyendo de los predictores las variables con las que se construyeron los clústeres. Aquí también se comparará el plan real contra la línea base.
+  \item \textbf{Fase 6. Despliegue y documentación.} Los resultados se publican en una aplicación web (Streamlit) con una demostración y se integran en el documento final con interpretaciones y conclusiones sobre la problemática planteada.
+\end{itemize}
 
-En el caso de la segunda fase que es la de preparación 
-de los datos, esta es donde vamos a limpiar y 
-practicamente cambiar todo el archivo, esto por que 
-lo que se hara es detectar y tratar valores faltantes, 
-eliminar registros duplicados, 
-convertir los campos numéricos que vienen como texto
-con sufijos como K o M a valores numéricos reales, 
-y crear variables que nos sirvan para el análisis, 
-como el año de lanzamiento, asi como tambien descomponer 
-las listas de géneros, y calcular la la diferentecia que existe 
-entre el Rating normalizado y el Metacritic Rating. 
-Para esta parte vamos a utilizar Python con la biblioteca pandas, 
-y todo va a quedar como un elemento de configuración del proyecto.
+\subsection*{Herramientas y distribución del trabajo}
 
-En seguida, tenemos la tercera fase que es el analisis 
-exploratorio de datos, donde lo que vamos a hacer 
-es generar estadísticas, distribuciones y 
-graficos para cada variable importante, esto tambien traera 
-tablas comparativas por género de videojuego, 
-por estudio y por periodo, para esto ultimo 
-laen cuestion de las graficas 
-vamos a usar Power BI, esto por que lo que hara es que nos 
-permitira hacer dashboards interactivos donde se nos hara 
-mas facil la interpretacion de los datos.
+El equipo trabajará con Python (pandas, matplotlib, seaborn, scikit-learn, Streamlit y Plotly), Orange y Weka, las dos últimas por haberse utilizado ya en clase, y LaTeX para el documento. \textbf{Power BI queda descartado} del proyecto.
 
-En la cuarta fase, esta se centra en el análisis de 
-relaciones entre variables, donde lo que se hara es 
-calcular correlaciones, hacer comparaciones segmentadas 
-y aplicar agrupamientos, esto para poder
-interpretar la fuerza de los efectos vamos a usar 
-los umbrales, en cuestion de esta parte la vamos a trabajar 
-con Orange y Weka, esto para poder tener mejor ayuda visual 
-esto tambien, por que ya las hemos utilizado en clase.
-
-En la penultima fase, que es la quinta, esta 
-corresponde al modelado, donde vamos a aplicar algoritmos 
-de clustering como K-Means para la segmentación 
-de perfiles de mercado. 
-De igual forma para esta fase nos apoyaremos de Orange y Weka, ademas de Python.
-
-La sexta y la fase final es la documentación y 
-comunicación de resultados, donde todo lo que se consiga se va a 
-integrar de forma mas robusta, donde lo que se hara 
-sera un analisis final, donde se daran las interpretaciones 
-correspondientes, asi como la solucion a la problematica planteada anteriormente.
+Como apoyo, el equipo empleará asistentes de inteligencia artificial para generar y revisar código y texto. Las tareas que requieren manejo de interfaz gráfica (Orange y Weka: carga de datos, configuración de algoritmos, captura de resultados y capturas de pantalla) las ejecutará manualmente el asistente Codex, que cuenta con acceso controlado a un equipo de cómputo del equipo; otro asistente se utilizará como revisor cruzado del trabajo de los demás. Los integrantes del equipo son responsables de verificar cada resultado y de aprobar cualquier decisión metodológica, de modo que ningún dato, cifra o justificación quede sin validación humana.
 
 {\small
 \renewcommand{\arraystretch}{1.5}
@@ -373,28 +336,99 @@ correspondientes, asi como la solucion a la problematica planteada anteriormente
 \endfoot
 \hline
 \endlastfoot
-1 & Comprensión del negocio & Definir objetivos, documentar el contexto y la problemática del proyecto & Documentación \\ \hline
-2 & Preparación de datos & Limpiar el archivo, convertir tipos, eliminar duplicados y crear variables derivadas & Python (pandas) \\ \hline
-3 & Análisis exploratorio & Generar estadísticas descriptivas, distribuciones y visualizaciones interactivas & Power BI, Python (matplotlib) \\ \hline
-4 & Análisis de relaciones & Correlaciones, comparaciones segmentadas por género y estudio & Orange, Weka \\ \hline
-5 & Modelado & Aplicar algoritmos de clustering para segmentar perfiles de mercado & Orange, Weka, Python \\ \hline
-6 & Documentación & Integrar todos los resultados en el documento final del proyecto & Power BI, Documentación \\ \hline
+1 & Comprensión del negocio & Definir objetivos, documentar el contexto y la problemática del proyecto & Documentación (LaTeX) \\ \hline
+2 & Comprensión de los datos & Revisión inicial del archivo, estadísticas descriptivas, distribuciones y visualizaciones por género, estudio y año & Python (pandas, matplotlib, seaborn) \\ \hline
+3 & Preparación de los datos & Limpiar el archivo, convertir tipos, eliminar duplicados y crear variables derivadas & Python (pandas) \\ \hline
+4 & Modelado & Correlaciones segmentadas; clustering (K-Means, DBSCAN); clasificación supervisada del perfil de mercado (Naive Bayes, árbol de decisión, MLP) & Orange y Weka (operados por Codex), Python (scikit-learn) \\ \hline
+5 & Evaluación & Evaluar clústeres y clasificadores, comparar Orange/Weka contra Python y plan real contra línea base & Python, Orange, Weka \\ \hline
+6 & Despliegue y documentación & Aplicación web con demostración, pruebas y documento final & Streamlit, Python, LaTeX \\ \hline
 \end{longtable}}
 
-Para el control del avance del proyecto se adopta un enfoque 
-de la base line en el que cada entregable relevante 
-se trata como un elemento de configuración (CI) 
-con un identificador, una fecha de referencia y un responsable.
+Para el control del avance del proyecto se adopta un enfoque de línea base (\textit{baseline}) en el que cada entregable relevante se trata como un elemento de configuración (CI) con un identificador, una fecha de referencia y un responsable.
 
+\subsection*{Arquitectura de la aplicación web y del repositorio}
+
+Para que el código, los datos, los modelos y los documentos sean coherentes entre sí, todo el proyecto se organiza en un único repositorio con una sola fuente de verdad para los datos y un único conjunto de módulos reutilizados por los \textit{notebooks}, los \textit{scripts} y la aplicación web. La aplicación se desarrolla con Streamlit, con una página principal y varias páginas temáticas (estructura multipágina), y se despliega en Streamlit Community Cloud \parencite{streamlit2024}.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[node distance=0.9cm and 0.7cm, every node/.style={font=\small}]
+  \node[io, text width=2.4cm] (raw) {CSV original\\(\texttt{data/raw})};
+  \node[process, right=of raw, text width=2.4cm] (clean) {Limpieza\\(\texttt{src/cleaning})};
+  \node[io, right=of clean, text width=2.4cm] (proc) {Datos limpios\\(\texttt{data/processed})};
+  \node[process, below=1.1cm of proc, text width=2.6cm] (model) {Modelado\\(\texttt{src/models})};
+  \node[io, left=of model, text width=2.4cm] (art) {Modelos y resultados\\(\texttt{artifacts/}, \texttt{reports/})};
+  \node[process, left=of art, text width=2.4cm] (gui) {Orange y Weka\\(Codex, manual)};
+  \node[startstop, below=1.1cm of art, text width=3.4cm] (app) {Aplicación Streamlit\\(\texttt{app/})};
+  \draw[arrow] (raw)--(clean);
+  \draw[arrow] (clean)--(proc);
+  \draw[arrow] (proc)--(model);
+  \draw[arrow] (model)--(art);
+  \draw[arrow] (proc.south west)--(gui.north east);
+  \draw[arrow] (gui)--(art);
+  \draw[arrow] (art)--(app);
+  \draw[arrow] (proc.south)  |- (app.east);
+\end{tikzpicture}
+\caption{Flujo de datos y componentes de la arquitectura.}
+\label{fig:arquitectura}
+\end{figure}
+
+\noindent La estructura del repositorio propuesta es la siguiente:
+
+\begin{lstlisting}[style=output,basicstyle=\ttfamily\footnotesize]
+ProyectoMineria/
+|-- app/
+|   |-- Inicio.py                  # pagina principal de Streamlit
+|   |-- pages/
+|   |   |-- 1_EDA.py               # genero, estudio, anio
+|   |   |-- 2_Brecha_usuarios_critica.py
+|   |   |-- 3_Popularidad.py
+|   |   |-- 4_Perfiles_de_mercado.py   # K-Means / DBSCAN
+|   |   |-- 5_Clasificador.py          # modelo supervisado
+|   |   `-- 6_Metodologia.py       # CRISP-DM, Orange/Weka vs Python
+|   `-- components/                # graficas y filtros reutilizables
+|-- src/
+|   |-- config.py                  # rutas, columnas, semilla aleatoria
+|   |-- cleaning.py                # limpieza y variables derivadas
+|   |-- features.py                # escalado y codificacion
+|   |-- analysis.py                # correlaciones y segmentos
+|   |-- clustering.py              # K-Means y DBSCAN
+|   `-- classification.py          # Naive Bayes, arbol, MLP
+|-- data/
+|   |-- raw/                       # CSV original (solo lectura)
+|   |-- processed/                 # datos limpios
+|   `-- external/                  # datos de Orange/Weka (ARFF/CSV)
+|-- notebooks/                     # 01_limpieza, 02_eda, 03_modelado
+|-- artifacts/                     # modelos entrenados (.joblib), metricas
+|-- reports/                       # figuras, tablas y capturas Orange/Weka
+|-- tests/                         # casos de prueba (CP-1.0)
+|-- docs/
+|   `-- anteproyecto/              # main.tex, referencias.bib
+|-- requirements.txt
+|-- .streamlit/config.toml
+`-- README.md
+\end{lstlisting}
+
+Las reglas que mantienen la coherencia entre archivos son las siguientes:
+
+\begin{itemize}
+  \item \textbf{Una sola fuente de datos:} \texttt{data/raw} nunca se modifica; todo el análisis y la aplicación leen únicamente de \texttt{data/processed}, que genera \texttt{src/cleaning.py}.
+  \item \textbf{Un solo lugar para la lógica:} las funciones de limpieza, correlación, clustering y clasificación viven en \texttt{src/}; los \textit{notebooks} y la aplicación solo las importan, por lo que los resultados mostrados en la web son los mismos que los del documento.
+  \item \textbf{Configuración centralizada:} \texttt{src/config.py} define rutas, nombres de columnas y la semilla aleatoria para que los resultados sean reproducibles.
+  \item \textbf{Resultados precalculados:} la aplicación carga modelos y tablas ya generados (\texttt{artifacts/}, \texttt{reports/}) con el almacenamiento en caché de Streamlit, de manera que la demostración sea rápida y estable.
+  \item \textbf{Orange y Weka integrados:} los archivos que usan estas herramientas se exportan desde \texttt{data/processed} a \texttt{data/external}, y sus resultados (métricas y capturas) se guardan en \texttt{reports/} para compararlos con Python en la página de metodología.
+  \item \textbf{Dependencias fijas:} un entorno virtual y \texttt{requirements.txt} con versiones fijas, necesarios también para el despliegue.
+  \item \textbf{Datos y licencia:} antes de publicar el repositorio o el conjunto de datos, se revisará la licencia del \textit{dataset} de Kaggle y de Backloggd y los requisitos vigentes de Streamlit Community Cloud.
+\end{itemize}
 
 \subsection*{Cronograma del proyecto}
 
-A continuación se presenta el cronograma general del proyecto, donde se muestran las actividades principales, las fechas de inicio y fin de cada una, y el responsable asignado. Las fechas van del 1 de octubre al 25 de noviembre del 2026.
+A continuación se presenta el cronograma general del proyecto, donde se muestran las actividades principales, las fechas de inicio y fin de cada una, y el responsable asignado. Las fechas van del 1 de octubre al 25 de noviembre del 2026. Esta versión (2.0) incorpora el modelo supervisado, la arquitectura y aplicación web, el despliegue y la demostración.
 
 {\small
 \renewcommand{\arraystretch}{1.5}
 \begin{longtable}{|>{\centering\arraybackslash}p{0.05\textwidth}|>{\raggedright\arraybackslash}p{0.31\textwidth}|>{\centering\arraybackslash}p{0.11\textwidth}|>{\centering\arraybackslash}p{0.11\textwidth}|>{\raggedright\arraybackslash}p{0.32\textwidth}|}
-\caption{Cronograma general del proyecto.}
+\caption{Cronograma general del proyecto (versión 2.0).}
 \label{tab:cronograma}\\
 \hline
 \textbf{No.} & \textbf{Actividad} & \textbf{Inicio} & \textbf{Fin} & \textbf{Responsable} \\ \hline
@@ -409,7 +443,7 @@ A continuación se presenta el cronograma general del proyecto, donde se muestra
 \endlastfoot
 1 & Redacción del anteproyecto (objetivos, contexto, problemática y plan de trabajo) & 01/10/2026 & 05/10/2026 & Lara Hernández Angel Husiel, García Cortés Adolfo de Jesús, Lugo Manzano Rodrigo \\ \hline
 2 & Obtención y revisión inicial del conjunto de datos & 01/10/2026 & 03/10/2026 & Lugo Manzano Rodrigo \\ \hline
-3 & Configuración del entorno de desarrollo (Python, Orange, Weka, Power BI, LaTeX) & 01/10/2026 & 05/10/2026 & García Cortés Adolfo de Jesús \\ \hline
+3 & Configuración del entorno de desarrollo (Python, Orange, Weka, LaTeX) & 01/10/2026 & 05/10/2026 & García Cortés Adolfo de Jesús \\ \hline
 4 & Diseño del flujo de trabajo (diagrama CRISP-DM adaptado) & 03/10/2026 & 05/10/2026 & Lara Hernández Angel Husiel \\ \hline
 5 & Desarrollo del script de limpieza y transformación de datos & 06/10/2026 & 10/10/2026 & Lugo Manzano Rodrigo \\ \hline
 6 & Generación del conjunto de datos depurado & 10/10/2026 & 12/10/2026 & Lugo Manzano Rodrigo \\ \hline
@@ -418,9 +452,14 @@ A continuación se presenta el cronograma general del proyecto, donde se muestra
 9 & Análisis de correlaciones y comparaciones segmentadas por género y estudio & 22/10/2026 & 29/10/2026 & García Cortés Adolfo de Jesús \\ \hline
 10 & Aplicación de algoritmos de clustering (K-Means, DBSCAN) & 29/10/2026 & 05/11/2026 & Lugo Manzano Rodrigo \\ \hline
 11 & Interpretación de perfiles de mercado y resultados del clustering & 05/11/2026 & 10/11/2026 & Lara Hernández Angel Husiel \\ \hline
-12 & Integración de resultados y redacción del documento final & 10/11/2026 & 20/11/2026 & García Cortés Adolfo de Jesús \\ \hline
-13 & Revisión general, correcciones y ajustes finales & 20/11/2026 & 24/11/2026 & Equipo de proyecto \\ \hline
-14 & Entrega del documento final & 25/11/2026 & 25/11/2026 & Equipo de proyecto \\ \hline
+12 & Modelo supervisado: Naive Bayes, árbol de decisión y MLP (Orange y Weka operados por Codex; Python) & 05/11/2026 & 11/11/2026 & Lugo Manzano Rodrigo \\ \hline
+13 & Diseño de la arquitectura web y de la estructura del repositorio & 08/11/2026 & 09/11/2026 & Lara Hernández Angel Husiel \\ \hline
+14 & Desarrollo de la aplicación web en Streamlit & 10/11/2026 & 16/11/2026 & García Cortés Adolfo de Jesús \\ \hline
+15 & Despliegue de la aplicación (Streamlit Community Cloud) & 16/11/2026 & 18/11/2026 & García Cortés Adolfo de Jesús \\ \hline
+16 & Pruebas de la aplicación, ensayo y preparación de la demostración & 18/11/2026 & 20/11/2026 & Equipo de proyecto \\ \hline
+17 & Integración de resultados y redacción del documento final (incluye comparación del plan real contra la línea base) & 10/11/2026 & 20/11/2026 & García Cortés Adolfo de Jesús \\ \hline
+18 & Revisión general, correcciones y ajustes finales & 20/11/2026 & 24/11/2026 & Equipo de proyecto \\ \hline
+19 & Entrega del documento final y demostración & 25/11/2026 & 25/11/2026 & Equipo de proyecto \\ \hline
 \end{longtable}}
 
 
@@ -445,7 +484,7 @@ También se ha encontrado que las calificaciones de los usuarios y las de los cr
 
 En conjunto, esta información muestra que medir el éxito de un videojuego con un solo número puede ser una forma poco confiable de entender su verdadero desempeño.
 
-Por ello, este proyecto busca analizar dos aspectos principales utilizando un catálogo de 1512 videojuegos: primero, las diferencias entre las opiniones de los usuarios y las de los críticos especializados; y segundo, la relación entre las calificaciones y la popularidad real de los juegos.
+Por ello, este proyecto busca analizar dos aspectos principales utilizando un catálogo de 1,117 videojuegos únicos (depurado a partir de 1,512 registros): primero, las diferencias entre las opiniones de los usuarios y las de los críticos especializados; y segundo, la relación entre las calificaciones y la popularidad real de los juegos.
 
 A partir de esto, se busca responder preguntas como: ¿Los videojuegos mejor calificados son necesariamente los más jugados? ¿Los estudios que desarrollan los juegos mejor calificados también son los que reúnen más jugadores activos? ¿Existen géneros con muchos jugadores, pero calificaciones bajas, o géneros con buenas calificaciones, pero poca popularidad?
 
@@ -454,34 +493,37 @@ Si una buena calificación no garantiza que un juego sea popular, y tener muchos
 \newpage
 \subsection*{Expectativas de los problemas a resolver}
 
-Frente al problema planteado, el equipo utilizará el catálogo de 1{,}512 videojuegos como un caso de estudio para analizar las diferencias entre las calificaciones, la popularidad y las distintas formas en las que un videojuego puede ser exitoso.
+Frente al problema planteado, el equipo utilizará el catálogo de 1{,}117 videojuegos únicos como un caso de estudio para analizar las diferencias entre las calificaciones, la popularidad y las distintas formas en las que un videojuego puede ser exitoso.
 
 En primer lugar, se busca analizar qué tanta diferencia existe entre las opiniones de los usuarios y las de los críticos especializados. Para esto, se calculará la relación entre \textit{Rating} y \textit{Metacritic Rating}, y también se analizará esta relación por género y por estudio desarrollador. Esto permitirá identificar en qué tipos de juegos las calificaciones de los usuarios y de los críticos son más parecidas o más diferentes. De esta forma, se podrá analizar si el Metascore funciona de la misma manera para todos los tipos de videojuegos o si existen diferencias dependiendo del género y del estudio,
 esto con el objetivo de dar una orientación a las desarrolladoras sobre qué tipo de géneros tienen mejor recepción tanto por la comunidad como por la crítica, para que puedan tomar decisiones más informadas al momento de elegir qué tipo de juego desarrollar, reduciendo así el riesgo de pérdidas como las que se han visto con los recientes fracasos de juegos por servicios.
 
 En segundo lugar, se busca identificar qué estudios desarrolladores y qué géneros tienen mayor popularidad. Para esto, se utilizarán las variables \textit{Plays}, \textit{Wishlist} y \textit{Backlogs}, que permiten observar diferentes formas de interés de los usuarios hacia los videojuegos. También se analizará la relación entre la popularidad y las calificaciones para determinar si los juegos con mejores calificaciones también son los que tienen mayor popularidad. Esto permitirá comparar dos aspectos diferentes del desempeño de un videojuego: qué tan bien es evaluado y qué tanta atención recibe de los usuarios. 
 
-En tercer lugar, se utilizarán técnicas de clustering para agrupar los videojuegos que tengan características similares. El objetivo será identificar diferentes grupos dentro del catálogo a partir de variables relacionadas con sus calificaciones y popularidad (esto siendo la varaible mas pertinente el genero). Estos grupos podrían ayudar a distinguir diferentes perfiles de videojuegos, como títulos con alta popularidad, juegos con buenas calificaciones pero menor popularidad, o cualquier otra combinación que aparezca en los datos. De esta manera, se podrá analizar el catálogo de una forma más completa que simplemente comparando los promedios.
+En tercer lugar, se utilizarán técnicas de clustering para agrupar los videojuegos que tengan características similares. El objetivo será identificar diferentes grupos dentro del catálogo a partir de variables relacionadas con sus calificaciones y popularidad (siendo el género la variable más pertinente). Estos grupos podrían ayudar a distinguir diferentes perfiles de videojuegos, como títulos con alta popularidad, juegos con buenas calificaciones pero menor popularidad, o cualquier otra combinación que aparezca en los datos. De esta manera, se podrá analizar el catálogo de una forma más completa que simplemente comparando los promedios.
 
-Finalmente, este trabajo también permitirá continuar con el análisis de los videojuegos a partir de los datos obtenidos. Estos datos podrán utilizarse para desarrollar modelos predictivos y analizar el texto de las reseñas de los usuarios. Así, se podrá conocer mejor qué factores se relacionan con las calificaciones y la popularidad de los videojuegos, sin asumir que existe una sola forma de medir su éxito.
+En cuarto lugar, se entrenará un modelo supervisado (Naive Bayes y árbol de decisión, con una red neuronal sencilla como comparación) para clasificar el perfil de mercado de un videojuego a partir de su género, década y calificaciones. Esto permitirá responder qué géneros concentran el éxito y evaluar qué tan predecible es el perfil de un título, lo que se relaciona directamente con la motivación de reducir el riesgo de inversión.
+
+Finalmente, todos los resultados se integrarán en una aplicación web interactiva que servirá como demostración. Además, estos datos podrán utilizarse en trabajos futuros para modelos predictivos más complejos y para analizar el texto de las reseñas de los usuarios, sin asumir que existe una sola forma de medir el éxito de un videojuego.
+
 
 \newpage
 \section{Plan de trabajo (Baseline)}
 
-Teniendo en cuenta que el proyecto se puede empezar a trabajar a partir del 1 de octubre del 2026, y que la fecha limite de entrega es el miercoles 25 de noviembre del 2026, las fechas de cada CI se ajustaron para que todo quede dentro de ese rango de tiempo.
+Teniendo en cuenta que el proyecto se puede empezar a trabajar a partir del 1 de octubre del 2026, y que la fecha limite de entrega es el miércoles 25 de noviembre del 2026, las fechas de cada CI se ajustaron para que todo quede dentro de ese rango de tiempo. Los CI marcados con versión 2.0 o creados el 08/11/2026 o después corresponden a la actualización del anteproyecto.
 
 \bigskip
 \noindent\begin{minipage}{\textwidth}
 \small\renewcommand{\arraystretch}{1.9}
 \begin{tabularx}{\textwidth}{|p{3.3cm}|Y|}
 \hline
-Nombre de CI & Conjunto de datos original \\ \hline
-Identificador & ANTE-1.0 \\ \hline
-Descripción de CI & Documento de anteproyecto donde se documentan los objetivos, el contexto, la estrategia, la problemática y este plan de trabajo. \\ \hline
-Fecha(s) de CI & 01/10/2026 \\ \hline
+Nombre de CI & Documento de anteproyecto \\ \hline
+Identificador & ANTE-2.0 \\ \hline
+Descripción de CI & Documento de anteproyecto (versión 2.0) donde se documentan los objetivos, el contexto, la estrategia, la arquitectura web, la problemática y este plan de trabajo. Sustituye a la versión 1.0. \\ \hline
+Fecha(s) de CI & 08/11/2026 \\ \hline
 Tipo de CI & Documentación \\ \hline
 Propietario & Lara Hernández Angel Husiel, García Cortés Adolfo de Jesús, Lugo Manzano Rodrigo \\ \hline
-Relación de CI & Base de DATA-RAW-1.0 y ESPEC-1.0. \\ \hline
+Relación de CI & Base de DATA-RAW-1.0 y ESPEC-2.0. \\ \hline
 \end{tabularx}
 \end{minipage}\par\bigskip
 \noindent\begin{minipage}{\textwidth}
@@ -490,7 +532,7 @@ Relación de CI & Base de DATA-RAW-1.0 y ESPEC-1.0. \\ \hline
 \hline
 Nombre de CI & Archivo con los datos de todos los juegos \\ \hline
 Identificador & DATA-RAW-1.0 \\ \hline
-Descripción de CI & Archivo original con la información de los 1,512 videojuegos y sus 15 columnas, tal como fue entregado al equipo, sin depurar ni transformar. \\ \hline
+Descripción de CI & Archivo original con la información de 1,512 registros de videojuegos (15 columnas originales y columnas de enriquecimiento), tal como fue entregado al equipo, sin depurar ni transformar. Se conserva en \texttt{data/raw} como solo lectura. \\ \hline
 Fecha(s) de CI & 01/10/2026 \\ \hline
 Tipo de CI & Dato / insumo \\ \hline
 Propietario & Lugo Manzano Rodrigo \\ \hline
@@ -503,7 +545,7 @@ Relación de CI & Insumo base para CLEAN-SCRIPT-1.0. \\ \hline
 \hline
 Nombre de CI & Script de limpieza y transformación \\ \hline
 Identificador & CLEAN-SCRIPT-1.0 \\ \hline
-Descripción de CI & Script en Python con pandas que convierte las columnas con sufijo K/M a valores numéricos, parsea las fechas de lanzamiento, trata los valores faltantes del Rating y del Metacritic Rating, y elimina registros duplicados. \\ \hline
+Descripción de CI & Módulo en Python con pandas (\texttt{src/cleaning.py}) que convierte las columnas con sufijo K/M a valores numéricos, parsea las fechas de lanzamiento, trata los valores faltantes del Rating y del Metacritic Rating, y elimina registros duplicados. \\ \hline
 Fecha(s) de CI & 08/10/2026 \\ \hline
 Tipo de CI & Código / herramienta de proceso \\ \hline
 Propietario & Lugo Manzano Rodrigo \\ \hline
@@ -516,11 +558,11 @@ Relación de CI & Depende de DATA-RAW-1.0 y CONFIG-ENV-1.0; genera DATA-CLEAN-1.
 \hline
 Nombre de CI & Conjunto de datos depurado \\ \hline
 Identificador & DATA-CLEAN-1.0 \\ \hline
-Descripción de CI & Versión del conjunto de datos ya limpio, con los tipos corregidos, duplicados eliminados y campos derivados como el año, la década, las listas de géneros descompuestas y la brecha entre Rating y Metacritic. \\ \hline
+Descripción de CI & Versión del conjunto de datos ya limpio (\texttt{data/processed}), con los tipos corregidos, duplicados eliminados y campos derivados como el año, la década, las listas de géneros descompuestas y la brecha entre Rating y Metacritic. \\ \hline
 Fecha(s) de CI & 12/10/2026 \\ \hline
 Tipo de CI & Dato \\ \hline
 Propietario & Lugo Manzano Rodrigo \\ \hline
-Relación de CI & Depende de CLEAN-SCRIPT-1.0; insumo para EDA-REPORT-1.0 y CP-1.0. \\ \hline
+Relación de CI & Depende de CLEAN-SCRIPT-1.0; insumo para EDA-REPORT-1.0, CP-1.0, CLUSTER-REPORT-1.0 y MODEL-SUP-1.0. \\ \hline
 \end{tabularx}
 \end{minipage}\par\bigskip
 \noindent\begin{minipage}{\textwidth}
@@ -528,12 +570,12 @@ Relación de CI & Depende de CLEAN-SCRIPT-1.0; insumo para EDA-REPORT-1.0 y CP-1
 \begin{tabularx}{\textwidth}{|p{3.3cm}|Y|}
 \hline
 Nombre de CI & Especificación de objetivos y alcance \\ \hline
-Identificador & ESPEC-1.0 \\ \hline
-Descripción de CI & Documento con el objetivo general, los cinco objetivos específicos y el alcance del análisis, tal como se definen en el presente anteproyecto. \\ \hline
-Fecha(s) de CI & 01/10/2026 \\ \hline
+Identificador & ESPEC-2.0 \\ \hline
+Descripción de CI & Documento con el objetivo general, los siete objetivos específicos y el alcance del análisis, tal como se definen en el presente anteproyecto. \\ \hline
+Fecha(s) de CI & 08/11/2026 \\ \hline
 Tipo de CI & Documentación \\ \hline
 Propietario & Lara Hernández Angel Husiel \\ \hline
-Relación de CI & Orienta CLEAN-SCRIPT-1.0 y EDA-REPORT-1.0. \\ \hline
+Relación de CI & Orienta CLEAN-SCRIPT-1.0, EDA-REPORT-1.0 y MODEL-SUP-1.0. \\ \hline
 \end{tabularx}
 \end{minipage}\par\bigskip
 \noindent\begin{minipage}{\textwidth}
@@ -542,7 +584,7 @@ Relación de CI & Orienta CLEAN-SCRIPT-1.0 y EDA-REPORT-1.0. \\ \hline
 \hline
 Nombre de CI & Casos de prueba de limpieza \\ \hline
 Identificador & CP-1.0 \\ \hline
-Descripción de CI & Conjunto de casos de prueba para validar que la conversión de sufijos K/M, el parseo de fechas y la detección de duplicados se hicieron de forma correcta en el proceso de limpieza. \\ \hline
+Descripción de CI & Conjunto de casos de prueba (\texttt{tests/}) para validar que la conversión de sufijos K/M, el parseo de fechas y la detección de duplicados se hicieron de forma correcta en el proceso de limpieza. \\ \hline
 Fecha(s) de CI & 15/10/2026 \\ \hline
 Tipo de CI & Pruebas \\ \hline
 Propietario & García Cortés Adolfo de Jesús \\ \hline
@@ -555,11 +597,11 @@ Relación de CI & Valida CLEAN-SCRIPT-1.0 y DATA-CLEAN-1.0. \\ \hline
 \hline
 Nombre de CI & Configuraciones del entorno de desarrollo \\ \hline
 Identificador & CONFIG-ENV-1.0 \\ \hline
-Descripción de CI & Configuración del entorno de análisis que incluye Python 3, pandas, matplotlib, scikit-learn para el clustering, ademas de Orange y Weka para la minería de datos visual y Power BI para las visualizaciones. \\ \hline
+Descripción de CI & Configuración del entorno de análisis: Python 3 con entorno virtual y \texttt{requirements.txt} (pandas, matplotlib, seaborn, scikit-learn, Streamlit, Plotly), además de Orange y Weka para la minería de datos visual. No incluye Power BI. \\ \hline
 Fecha(s) de CI & 01/10/2026 \\ \hline
 Tipo de CI & Configuraciones \\ \hline
 Propietario & García Cortés Adolfo de Jesús \\ \hline
-Relación de CI & Base para CLEAN-SCRIPT-1.0, EDA-REPORT-1.0 y CLUSTER-REPORT-1.0. \\ \hline
+Relación de CI & Base para CLEAN-SCRIPT-1.0, EDA-REPORT-1.0, CLUSTER-REPORT-1.0, MODEL-SUP-1.0 y APP-WEB-1.0. \\ \hline
 \end{tabularx}
 \end{minipage}\par\bigskip
 \noindent\begin{minipage}{\textwidth}
@@ -568,7 +610,7 @@ Relación de CI & Base para CLEAN-SCRIPT-1.0, EDA-REPORT-1.0 y CLUSTER-REPORT-1.
 \hline
 Nombre de CI & Configuraciones técnicas de documentación \\ \hline
 Identificador & CONFIGTEC-1.0 \\ \hline
-Descripción de CI & Configuración del entorno LaTeX (TeX Live, paquete babel en español) que se usa para compilar el presente documento. \\ \hline
+Descripción de CI & Configuración del entorno LaTeX (TeX Live, paquetes babel en español y biblatex con estilo APA) que se usa para compilar el presente documento. \\ \hline
 Fecha(s) de CI & 01/10/2026 \\ \hline
 Tipo de CI & Configuraciones \\ \hline
 Propietario & García Cortés Adolfo de Jesús \\ \hline
@@ -581,24 +623,89 @@ Relación de CI & Soporta DOC-PLAN-1.0. \\ \hline
 \hline
 Nombre de CI & Reporte de análisis exploratorio (EDA) \\ \hline
 Identificador & EDA-REPORT-1.0 \\ \hline
-Descripción de CI & Conjunto de estadísticas descriptivas, visualizaciones en Power BI y análisis de correlación segmentado por género y estudio, que se generan a partir de los datos limpios. Entregable de la segunda fase del proyecto. \\ \hline
+Descripción de CI & Conjunto de estadísticas descriptivas, visualizaciones en Python y análisis de correlación segmentado por género y estudio, que se generan a partir de los datos limpios. Entregable de la fase 2 y parte de la fase 4 de CRISP-DM. \\ \hline
 Fecha(s) de CI & 22/10/2026 \\ \hline
 Tipo de CI & Análisis / entregable \\ \hline
 Propietario & Lara Hernández Angel Husiel \\ \hline
-Relación de CI & Depende de DATA-CLEAN-1.0 y CP-1.0; insumo para DOC-PLAN-1.0. \\ \hline
+Relación de CI & Depende de DATA-CLEAN-1.0 y CP-1.0; insumo para APP-WEB-1.0 y DOC-PLAN-1.0. \\ \hline
 \end{tabularx}
 \end{minipage}\par\bigskip
 \noindent\begin{minipage}{\textwidth}
 \small\renewcommand{\arraystretch}{1.9}
 \begin{tabularx}{\textwidth}{|p{3.3cm}|Y|}
 \hline
-Nombre de CI & Reporte de segmentación y modelado (Clustering) \\ \hline
+Nombre de CI & Reporte de segmentación (clustering) \\ \hline
 Identificador & CLUSTER-REPORT-1.0 \\ \hline
-Descripción de CI & Resultados de aplicar algoritmos de agrupamiento (K-Means, DBSCAN) en Orange, Weka y Python sobre las variables numéricas del catálogo de juegos, donde se identifican e interpretan los perfiles de mercado que salgan. Entregable de la tercera fase. \\ \hline
+Descripción de CI & Resultados de aplicar K-Means y DBSCAN en Orange, Weka y Python sobre las variables numéricas del catálogo, donde se identifican e interpretan los perfiles de mercado que salgan. Entregable de la fase 4 de CRISP-DM. \\ \hline
 Fecha(s) de CI & 05/11/2026 \\ \hline
 Tipo de CI & Análisis / entregable \\ \hline
 Propietario & Lugo Manzano Rodrigo \\ \hline
-Relación de CI & Depende de DATA-CLEAN-1.0 y EDA-REPORT-1.0; insumo para DOC-PLAN-1.0. \\ \hline
+Relación de CI & Depende de DATA-CLEAN-1.0 y EDA-REPORT-1.0; insumo para MODEL-SUP-1.0, APP-WEB-1.0 y DOC-PLAN-1.0. \\ \hline
+\end{tabularx}
+\end{minipage}\par\bigskip
+\noindent\begin{minipage}{\textwidth}
+\small\renewcommand{\arraystretch}{1.9}
+\begin{tabularx}{\textwidth}{|p{3.3cm}|Y|}
+\hline
+Nombre de CI & Reporte del modelo supervisado \\ \hline
+Identificador & MODEL-SUP-1.0 \\ \hline
+Descripción de CI & Entrenamiento y comparación de Naive Bayes, árbol de decisión (Orange y Weka, operados por Codex) y propuesta propia en Python con scikit-learn (incluye MLP), para clasificar el perfil de mercado, con validación cruzada, métricas y control de fuga de información. Entregable de las fases 4 y 5 de CRISP-DM. \\ \hline
+Fecha(s) de CI & 11/11/2026 \\ \hline
+Tipo de CI & Análisis / entregable \\ \hline
+Propietario & Lugo Manzano Rodrigo \\ \hline
+Relación de CI & Depende de CLUSTER-REPORT-1.0; insumo para APP-WEB-1.0 y DOC-PLAN-1.0. \\ \hline
+\end{tabularx}
+\end{minipage}\par\bigskip
+\noindent\begin{minipage}{\textwidth}
+\small\renewcommand{\arraystretch}{1.9}
+\begin{tabularx}{\textwidth}{|p{3.3cm}|Y|}
+\hline
+Nombre de CI & Arquitectura web y estructura del repositorio \\ \hline
+Identificador & APP-ARQ-1.0 \\ \hline
+Descripción de CI & Diseño de la aplicación Streamlit, del flujo de datos y de la estructura de carpetas del repositorio descrita en este documento, con las reglas que garantizan la coherencia entre archivos. \\ \hline
+Fecha(s) de CI & 09/11/2026 \\ \hline
+Tipo de CI & Documentación / diseño \\ \hline
+Propietario & Lara Hernández Angel Husiel \\ \hline
+Relación de CI & Base para APP-WEB-1.0 y DEPLOY-1.0. \\ \hline
+\end{tabularx}
+\end{minipage}\par\bigskip
+\noindent\begin{minipage}{\textwidth}
+\small\renewcommand{\arraystretch}{1.9}
+\begin{tabularx}{\textwidth}{|p{3.3cm}|Y|}
+\hline
+Nombre de CI & Aplicación web en Streamlit \\ \hline
+Identificador & APP-WEB-1.0 \\ \hline
+Descripción de CI & Aplicación multipágina que integra EDA, brecha entre usuarios y crítica, popularidad, perfiles de mercado, clasificador y metodología, y que carga modelos y tablas precalculados. \\ \hline
+Fecha(s) de CI & 16/11/2026 \\ \hline
+Tipo de CI & Código / entregable \\ \hline
+Propietario & García Cortés Adolfo de Jesús \\ \hline
+Relación de CI & Depende de APP-ARQ-1.0, EDA-REPORT-1.0, CLUSTER-REPORT-1.0 y MODEL-SUP-1.0. \\ \hline
+\end{tabularx}
+\end{minipage}\par\bigskip
+\noindent\begin{minipage}{\textwidth}
+\small\renewcommand{\arraystretch}{1.9}
+\begin{tabularx}{\textwidth}{|p{3.3cm}|Y|}
+\hline
+Nombre de CI & Despliegue de la aplicación \\ \hline
+Identificador & DEPLOY-1.0 \\ \hline
+Descripción de CI & Publicación de la aplicación en Streamlit Community Cloud, con revisión previa de la licencia de los datos y del archivo \texttt{requirements.txt}. \\ \hline
+Fecha(s) de CI & 18/11/2026 \\ \hline
+Tipo de CI & Infraestructura / despliegue \\ \hline
+Propietario & García Cortés Adolfo de Jesús \\ \hline
+Relación de CI & Depende de APP-WEB-1.0 y SEG-1.0. \\ \hline
+\end{tabularx}
+\end{minipage}\par\bigskip
+\noindent\begin{minipage}{\textwidth}
+\small\renewcommand{\arraystretch}{1.9}
+\begin{tabularx}{\textwidth}{|p{3.3cm}|Y|}
+\hline
+Nombre de CI & Pruebas y demostración \\ \hline
+Identificador & DEMO-1.0 \\ \hline
+Descripción de CI & Pruebas funcionales de la aplicación y guion de la demostración que se presentará en la entrega final. \\ \hline
+Fecha(s) de CI & 20/11/2026 \\ \hline
+Tipo de CI & Pruebas / entregable \\ \hline
+Propietario & Equipo de proyecto \\ \hline
+Relación de CI & Valida APP-WEB-1.0 y DEPLOY-1.0. \\ \hline
 \end{tabularx}
 \end{minipage}\par\bigskip
 \noindent\begin{minipage}{\textwidth}
@@ -607,7 +714,7 @@ Relación de CI & Depende de DATA-CLEAN-1.0 y EDA-REPORT-1.0; insumo para DOC-PL
 \hline
 Nombre de CI & Elementos de seguridad y respaldo \\ \hline
 Identificador & SEG-1.0 \\ \hline
-Descripción de CI & Política de respaldo del archivo original y de las versiones intermedias del conjunto de datos, ademas de control de acceso al repositorio compartido del equipo. \\ \hline
+Descripción de CI & Política de respaldo del archivo original y de las versiones intermedias del conjunto de datos, además de control de acceso al repositorio compartido del equipo y revisión de la licencia de los datos antes de publicarlos. \\ \hline
 Fecha(s) de CI & 01/10/2026 \\ \hline
 Tipo de CI & Seguridad \\ \hline
 Propietario & García Cortés Adolfo de Jesús \\ \hline
@@ -633,11 +740,11 @@ Relación de CI & Base para CLEAN-SCRIPT-1.0 y EDA-REPORT-1.0. \\ \hline
 \hline
 Nombre de CI & Documento del proyecto final \\ \hline
 Identificador & DOC-PLAN-1.0 \\ \hline
-Descripción de CI & Documento final en LaTeX que integra contexto, objetivos, estrategia, problemática, resultados del EDA, resultados del clustering y esta línea base con su bibliografía. \\ \hline
+Descripción de CI & Documento final en LaTeX que integra contexto, objetivos, estrategia, problemática, resultados del EDA, del clustering y del modelo supervisado, la comparación del plan real contra la línea base y la bibliografía en formato APA. \\ \hline
 Fecha(s) de CI & 25/11/2026 \\ \hline
 Tipo de CI & Documentación \\ \hline
 Propietario & García Cortés Adolfo de Jesús \\ \hline
-Relación de CI & Depende de ESPEC-1.0, EDA-REPORT-1.0, CLUSTER-REPORT-1.0 y CONFIGTEC-1.0. \\ \hline
+Relación de CI & Depende de ESPEC-2.0, EDA-REPORT-1.0, CLUSTER-REPORT-1.0, MODEL-SUP-1.0 y CONFIGTEC-1.0. \\ \hline
 \end{tabularx}
 \end{minipage}\par\bigskip
 \noindent\begin{minipage}{\textwidth}
@@ -646,7 +753,7 @@ Relación de CI & Depende de ESPEC-1.0, EDA-REPORT-1.0, CLUSTER-REPORT-1.0 y CON
 \hline
 Nombre de CI & Equipo de cómputo \\ \hline
 Identificador & HW-PC-1.0 \\ \hline
-Descripción de CI & Equipos de cómputo del equipo de proyecto que se utilizan para ejecutar los scripts, correr Orange y Weka, hacer las visualizaciones en Power BI y compilar el documento en LaTeX. \\ \hline
+Descripción de CI & Equipos de cómputo del equipo de proyecto, uno de ellos con acceso controlado para el asistente Codex, que se utilizan para ejecutar los scripts, correr Orange y Weka, desarrollar la aplicación web y compilar el documento en LaTeX. \\ \hline
 Fecha(s) de CI & 01/10/2026 \\ \hline
 Tipo de CI & Infraestructura / hardware \\ \hline
 Propietario & Lugo Manzano Rodrigo \\ \hline
@@ -657,9 +764,22 @@ Relación de CI & Soporta CONFIG-ENV-1.0 y CONFIGTEC-1.0. \\ \hline
 \small\renewcommand{\arraystretch}{1.9}
 \begin{tabularx}{\textwidth}{|p{3.3cm}|Y|}
 \hline
+Nombre de CI & Asistente de IA operador de herramientas (rol) \\ \hline
+Identificador & RH-CODEX-1.0 \\ \hline
+Descripción de CI & Codex ejecuta manualmente las tareas con interfaz gráfica (Orange y Weka) y deja registro de configuraciones y resultados; sus salidas son verificadas por un integrante del equipo. \\ \hline
+Fecha(s) de CI & 05/11/2026 \\ \hline
+Tipo de CI & Recurso humano / herramienta \\ \hline
+Propietario & García Cortés Adolfo de Jesús \\ \hline
+Relación de CI & Opera Orange y Weka para CLUSTER-REPORT-1.0 y MODEL-SUP-1.0. \\ \hline
+\end{tabularx}
+\end{minipage}\par\bigskip
+\noindent\begin{minipage}{\textwidth}
+\small\renewcommand{\arraystretch}{1.9}
+\begin{tabularx}{\textwidth}{|p{3.3cm}|Y|}
+\hline
 Nombre de CI & Líder de proyecto (rol) \\ \hline
 Identificador & RH-LIDER-1.0 \\ \hline
-Descripción de CI & Responsable de coordinar al equipo, fijar el alcance y los objetivos (ESPEC-1.0), y aprobar cambios sobre la línea base. \\ \hline
+Descripción de CI & Responsable de coordinar al equipo, fijar el alcance y los objetivos (ESPEC-2.0), y aprobar cambios sobre la línea base. \\ \hline
 Fecha(s) de CI & 01/10/2026 \\ \hline
 Tipo de CI & Recurso humano \\ \hline
 Propietario & Lara Hernández Angel Husiel \\ \hline
@@ -672,15 +792,14 @@ Relación de CI & Supervisa todos los CI de este documento. \\ \hline
 \hline
 Nombre de CI & Analista de datos (rol) \\ \hline
 Identificador & RH-ANALISTA-1.0 \\ \hline
-Descripción de CI & Responsable de escribir y ejecutar el script de limpieza, generar el reporte de EDA y el reporte de clustering, e interpretar los resultados que se obtengan. \\ \hline
+Descripción de CI & Responsable de escribir y ejecutar el script de limpieza, generar el reporte de EDA, el de clustering y el del modelo supervisado, e interpretar los resultados que se obtengan. \\ \hline
 Fecha(s) de CI & 01/10/2026 \\ \hline
 Tipo de CI & Recurso humano \\ \hline
 Propietario & Lugo Manzano Rodrigo \\ \hline
-Relación de CI & Ejecuta CLEAN-SCRIPT-1.0, EDA-REPORT-1.0 y CLUSTER-REPORT-1.0. \\ \hline
+Relación de CI & Ejecuta CLEAN-SCRIPT-1.0, EDA-REPORT-1.0, CLUSTER-REPORT-1.0 y MODEL-SUP-1.0. \\ \hline
 \end{tabularx}
 \end{minipage}\par\bigskip
 
-\nocite{*}
 \clearpage
 \addcontentsline{toc}{section}{Referencias}
 \begingroup
@@ -688,8 +807,8 @@ Relación de CI & Ejecuta CLEAN-SCRIPT-1.0, EDA-REPORT-1.0 y CLUSTER-REPORT-1.0.
 \let\ps@plain\ps@referencias
 \makeatother
 \pagestyle{referencias}
-\bibliographystyle{plainurl}
-\bibliography{referencias}
+\nocite{*}
+\printbibliography[heading=none]
 \endgroup
 
 \end{document}

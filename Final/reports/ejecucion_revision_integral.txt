@@ -1,0 +1,28 @@
+/Users/angellara/Documents/NovenoSemestre/ProyectoMineria/Final/.venv314/lib/python3.14/site-packages/joblib/externals/loky/backend/context.py:134: UserWarning: Could not find the number of physical cores for the following reason:
+invalid literal for int() with base 10: ''
+Returning the number of logical cores instead. You can silence this warning by setting LOKY_MAX_CPU_COUNT to the number of cores you want to use.
+  warnings.warn(
+  File "/Users/angellara/Documents/NovenoSemestre/ProyectoMineria/Final/.venv314/lib/python3.14/site-packages/joblib/externals/loky/backend/context.py", line 264, in _count_physical_cores
+    cpu_count_physical = _count_physical_cores_darwin()
+  File "/Users/angellara/Documents/NovenoSemestre/ProyectoMineria/Final/.venv314/lib/python3.14/site-packages/joblib/externals/loky/backend/context.py", line 420, in _count_physical_cores_darwin
+    return int(cpu_info)
+Limpieza completada: 1117 → 1117 juegos; 2682 pertenencias de género. Ver reports/limpieza_log.md.
+Análisis completado: 1117 juegos conservados; 887 agrupados; k=2; eps=1.6663; ruido=21. Ver reports/clustering.md.
+Modelo guardado: RandomForestClassifier; entrenamiento=892, prueba=222, F1 macro=0.5577; referencia=0.1546.
+# Hallazgos de la cadena canónica
+
+Fuente maestra: data/raw/games_curated.csv, sin modificar. Historia de 1,512 registros y decisiones heredadas: trazabilidad_historica.md.
+La inspección, limpieza, clustering y app comparten dataset_depurado.csv y dataset_con_clusters.csv. El análisis completo de asociación está en clustering.md, con mínimo de 20 pares por grupo.
+
+Fase 4A: 887 casos completos elegibles de 1117 registros conservados; 3 conflictos históricos pendientes excluidos del análisis principal.
+K-Means usa seis variables y k=2 entre 2 y 10. DBSCAN usa eps=1.666296, min_samples=12; clusters=1, ruido=21.
+Un solo grupo de DBSCAN no acredita segmentación comercial útil. Ver comparación de k=2/3/4 y sensibilidad a títulos compartidos en clustering.md.
+
+Clasificador independiente por terciles del promedio de rangos percentiles de Plays, Wishlist y Backlogs: RandomForestClassifier; n prueba=222, F1 macro=0.5577, base=0.1546. Los clusters descriptivos no se utilizan como objetivo ni predictores.
+
+## Que debo verificar manualmente
+
+- Resolver plataformas de discrepancias históricas y roles de Team.
+- Interpretar distancias de puntuaciones separadas de asociación de orden.
+- Confirmar estabilidad de perfiles; popularidad no equivale a éxito comercial.
+

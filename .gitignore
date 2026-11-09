@@ -27,3 +27,7 @@
 *.swp
 *.swo
 *~
+
+# Claves y respuestas crudas de APIs
+.env
+Proyecto/data/external/

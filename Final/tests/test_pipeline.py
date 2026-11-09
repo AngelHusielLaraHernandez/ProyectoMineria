@@ -36,9 +36,10 @@ def test_estimates_and_conflicts_excluded():
     df = load_clean()
     assert not df.duplicated(['Title', 'Release Date']).any()
     assert df.loc[df['Origen_calificacion'].ne('Metacritic'), 'critica_verificada_csv'].isna().all()
-    conflicts = pd.read_csv(CLEAN / 'conflictos_duplicados.csv')
-    assert not set(zip(df['Title'], df['Release Date'])) & set(zip(conflicts['Title'], conflicts['Release Date']))
-    assert not any('estimad' in c.lower() for c in df.columns)
+    pendientes = df.loc[df.conflicto_historico_pendiente]
+    assert set(pendientes.id_juego) == {117, 140, 296}
+    assert not pendientes.elegible_analisis.any()
+    assert not any(c.endswith('_USD') or c == 'unidades_vendidas_estimadas' for c in df.columns)
     assert len(df) == json.loads((REPORTS / 'inspeccion.json').read_text())['filas_limpias']
     assert not set(['rating_100', 'gap', 'gap_real', 'studio_main', 'publisher_main']) & set(df.columns)
     original = ROOT.parent / 'Proyecto' / 'data' / 'processed' / 'games_curated.csv'
@@ -46,18 +47,23 @@ def test_estimates_and_conflicts_excluded():
         assert RAW.read_bytes() == original.read_bytes()
 
 
-def test_test_set_does_not_define_terciles_or_features():
+def test_objetivo_fijo_y_predictores_no_contienen_senales():
+    from src.objetivo import ajustar_referencia, aplicar_referencia
+    from collections import Counter
     df = pd.read_csv(CLEAN / 'juegos_modelo.csv')
     train = df[df.particion.eq('entrenamiento')]
     test = df[df.particion.eq('prueba')]
-    bundle = joblib.load(MODELS / 'popularidad.joblib')
+    model = joblib.load(MODELS / 'modelo_popularidad.joblib')
+    metadata = json.loads((MODELS / 'metadata.json').read_text())
     assert set(train.grupo_titulo).isdisjoint(test.grupo_titulo)
-    np.testing.assert_allclose(bundle['cortes'], thresholds(train.popularidad_indice))
-    assert (levels(test.popularidad_indice, bundle['cortes']) == test.nivel_popularidad).all()
-    assert set(FEATURES).isdisjoint(SIGNALS + ['popularidad_indice', 'nivel_popularidad', 'Metacritic Rating'])
-    encoder = bundle['pipeline'].named_steps['preparar'].named_transformers_['organizaciones'].encoder_
-    seen_train = {v for row in train.organizaciones.map(json.loads) for v in row}
-    assert set(encoder.classes_) == seen_train
+    definicion = ajustar_referencia(train)
+    esperado = aplicar_referencia(df, definicion)
+    np.testing.assert_allclose(metadata['definicion_objetivo']['cortes'], definicion['cortes'])
+    assert (esperado.nivel_popularidad.to_numpy() == df.nivel_popularidad.to_numpy()).all()
+    assert set(FEATURES).isdisjoint(SIGNALS + ['popularidad_indice', 'nivel_popularidad'])
+    encoder = model.named_steps['preparar'].named_transformers_['estudio']
+    conteos = Counter(v for row in train.estudio.map(json.loads) for v in row)
+    assert set(encoder.vocabulario_) == {v for v, n in conteos.items() if n >= 10}
 
 
 def test_small_groups_do_not_produce_correlations():
@@ -68,10 +74,10 @@ def test_small_groups_do_not_produce_correlations():
 
 
 def test_unknown_organizations_and_missing_ratings():
-    bundle = joblib.load(MODELS / 'popularidad.joblib')
-    row = pd.DataFrame([{'generos': ['Género desconocido'], 'organizaciones': ['Estudio nuevo'],
-                         'decada': 2030, 'Rating': np.nan, 'critica_verificada_csv': np.nan}])
-    assert bundle['pipeline'].predict(row)[0] in ['bajo', 'medio', 'alto']
+    model = joblib.load(MODELS / 'modelo_popularidad.joblib')
+    row = pd.DataFrame([{'generos': ['Género desconocido'], 'estudio': ['Estudio nuevo'],
+                         'decada': 2030, 'Rating': np.nan, 'Metacritic Rating': np.nan}])
+    assert model.predict(row)[0] in ['bajo', 'medio', 'alto']
 
 
 def test_arff_partitions_readable():
@@ -82,12 +88,12 @@ def test_arff_partitions_readable():
         assert len(meta.names()) == len(exported.columns)
 
 
-@pytest.mark.parametrize('page', ['app.py', 'pages/1_Usuarios_y_prensa.py',
-                                  'pages/2_Perfiles.py', 'pages/3_Consultar_modelo.py'])
+@pytest.mark.parametrize('page', ['app.py', 'pages/1_Exploracion.py',
+                                  'pages/2_Prediccion.py', 'pages/3_Acerca_del_modelo.py'])
 def test_app_pages(page):
     app = AppTest.from_file(str(ROOT / page)).run(timeout=60)
     assert not app.exception, [x.message for x in app.exception]
-    if 'Consultar' in page:
+    if 'Prediccion' in page:
         app.button[0].click().run(timeout=30)
         assert not app.exception
         assert any('Nivel estimado' in x.value for x in app.subheader)

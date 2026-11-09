@@ -1,0 +1,22 @@
+{
+  "original_intacto": true,
+  "artefactos_y_reportes_concuerdan": true,
+  "filas_y_brecha": {
+    "conservadas": 1117,
+    "agrupadas": 887,
+    "no_agrupadas": 230
+  },
+  "correlacion_recalculada": {
+    "n": 887,
+    "pearson_r": 0.5439095219775958,
+    "pearson_p": 1.9359671271969552e-69,
+    "spearman_rho": 0.5241770101377499,
+    "spearman_p": 9.340096498724198e-64
+  },
+  "clusters_y_espacio_concordantes": true,
+  "metricas_recalculadas": {
+    "n_prueba": 222,
+    "f1_macro": 0.5577027296634777,
+    "exactitud": 0.5675675675675675
+  }
+}

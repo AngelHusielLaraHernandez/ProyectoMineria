@@ -1,0 +1,206 @@
+[
+  {
+    "reporte": "Python-2026-11-08-171716.ips",
+    "captura": "2026-11-08 17:17:14.1490 -0600",
+    "proceso": "/Applications/Orange.app/Contents/MacOS/PythonApp",
+    "excepcion": "EXC_BAD_ACCESS",
+    "senal": "SIGSEGV",
+    "terminacion": "Segmentation fault: 11",
+    "hilo": 0,
+    "pila_inicial": [
+      {
+        "biblioteca": "libobjc.A.dylib",
+        "simbolo": "objc_release"
+      },
+      {
+        "biblioteca": "CoreFoundation",
+        "simbolo": "__RELEASE_OBJECTS_IN_THE_ARRAY__"
+      },
+      {
+        "biblioteca": "CoreFoundation",
+        "simbolo": "-[__NSArrayM dealloc]"
+      },
+      {
+        "biblioteca": "libqcocoa.dylib",
+        "simbolo": null
+      },
+      {
+        "biblioteca": "CoreFoundation",
+        "simbolo": "__RELEASE_OBJECTS_IN_THE_ARRAY__"
+      },
+      {
+        "biblioteca": "CoreFoundation",
+        "simbolo": "-[__NSArrayM dealloc]"
+      },
+      {
+        "biblioteca": "libobjc.A.dylib",
+        "simbolo": "AutoreleasePoolPage::releaseUntil(objc_object**)"
+      },
+      {
+        "biblioteca": "libobjc.A.dylib",
+        "simbolo": "objc_autoreleasePoolPop"
+      },
+      {
+        "biblioteca": "CoreFoundation",
+        "simbolo": "_CFAutoreleasePoolPop"
+      },
+      {
+        "biblioteca": "CoreFoundation",
+        "simbolo": "__CFRunLoopPerCalloutARPEnd"
+      }
+    ]
+  },
+  {
+    "reporte": "Python-2026-11-08-170816.ips",
+    "captura": "2026-11-08 17:08:15.0191 -0600",
+    "proceso": "/Volumes/VOLUME/*/Orange.app/Contents/MacOS/PythonApp",
+    "excepcion": "EXC_BAD_ACCESS",
+    "senal": "SIGSEGV",
+    "terminacion": "Segmentation fault: 11",
+    "hilo": 0,
+    "pila_inicial": [
+      {
+        "biblioteca": "libobjc.A.dylib",
+        "simbolo": "objc_release"
+      },
+      {
+        "biblioteca": "CoreFoundation",
+        "simbolo": "__RELEASE_OBJECTS_IN_THE_ARRAY__"
+      },
+      {
+        "biblioteca": "CoreFoundation",
+        "simbolo": "-[__NSArrayM dealloc]"
+      },
+      {
+        "biblioteca": "libqcocoa.dylib",
+        "simbolo": null
+      },
+      {
+        "biblioteca": "CoreFoundation",
+        "simbolo": "__RELEASE_OBJECTS_IN_THE_ARRAY__"
+      },
+      {
+        "biblioteca": "CoreFoundation",
+        "simbolo": "-[__NSArrayM dealloc]"
+      },
+      {
+        "biblioteca": "libobjc.A.dylib",
+        "simbolo": "AutoreleasePoolPage::releaseUntil(objc_object**)"
+      },
+      {
+        "biblioteca": "libobjc.A.dylib",
+        "simbolo": "objc_autoreleasePoolPop"
+      },
+      {
+        "biblioteca": "CoreFoundation",
+        "simbolo": "_CFAutoreleasePoolPop"
+      },
+      {
+        "biblioteca": "CoreFoundation",
+        "simbolo": "__CFRunLoopPerCalloutARPEnd"
+      }
+    ]
+  },
+  {
+    "reporte": "Python-2026-11-08-170148.ips",
+    "captura": "2026-11-08 17:01:45.7171 -0600",
+    "proceso": "/Volumes/VOLUME/*/Orange.app/Contents/MacOS/PythonApp",
+    "excepcion": "EXC_BAD_ACCESS",
+    "senal": "SIGSEGV",
+    "terminacion": "Segmentation fault: 11",
+    "hilo": 0,
+    "pila_inicial": [
+      {
+        "biblioteca": "libobjcMsgSend.dylib",
+        "simbolo": "objc_msgSend"
+      },
+      {
+        "biblioteca": "CoreFoundation",
+        "simbolo": "__RELEASE_OBJECTS_IN_THE_ARRAY__"
+      },
+      {
+        "biblioteca": "CoreFoundation",
+        "simbolo": "-[__NSArrayM dealloc]"
+      },
+      {
+        "biblioteca": "libqcocoa.dylib",
+        "simbolo": null
+      },
+      {
+        "biblioteca": "CoreFoundation",
+        "simbolo": "__RELEASE_OBJECTS_IN_THE_ARRAY__"
+      },
+      {
+        "biblioteca": "CoreFoundation",
+        "simbolo": "-[__NSArrayM dealloc]"
+      },
+      {
+        "biblioteca": "libobjc.A.dylib",
+        "simbolo": "AutoreleasePoolPage::releaseUntil(objc_object**)"
+      },
+      {
+        "biblioteca": "libobjc.A.dylib",
+        "simbolo": "objc_autoreleasePoolPop"
+      },
+      {
+        "biblioteca": "CoreFoundation",
+        "simbolo": "_CFAutoreleasePoolPop"
+      },
+      {
+        "biblioteca": "CoreFoundation",
+        "simbolo": "__CFRunLoopPerCalloutARPEnd"
+      }
+    ]
+  },
+  {
+    "reporte": "Python-2026-11-08-165714.ips",
+    "captura": "2026-11-08 16:56:58.7058 -0600",
+    "proceso": "/Volumes/VOLUME/*/Orange.app/Contents/MacOS/PythonApp",
+    "excepcion": "EXC_BAD_ACCESS",
+    "senal": "SIGSEGV",
+    "terminacion": "Segmentation fault: 11",
+    "hilo": 0,
+    "pila_inicial": [
+      {
+        "biblioteca": "libobjc.A.dylib",
+        "simbolo": "objc_release"
+      },
+      {
+        "biblioteca": "CoreFoundation",
+        "simbolo": "__RELEASE_OBJECTS_IN_THE_ARRAY__"
+      },
+      {
+        "biblioteca": "CoreFoundation",
+        "simbolo": "-[__NSArrayM dealloc]"
+      },
+      {
+        "biblioteca": "libqcocoa.dylib",
+        "simbolo": null
+      },
+      {
+        "biblioteca": "CoreFoundation",
+        "simbolo": "__RELEASE_OBJECTS_IN_THE_ARRAY__"
+      },
+      {
+        "biblioteca": "CoreFoundation",
+        "simbolo": "-[__NSArrayM dealloc]"
+      },
+      {
+        "biblioteca": "libobjc.A.dylib",
+        "simbolo": "AutoreleasePoolPage::releaseUntil(objc_object**)"
+      },
+      {
+        "biblioteca": "libobjc.A.dylib",
+        "simbolo": "objc_autoreleasePoolPop"
+      },
+      {
+        "biblioteca": "CoreFoundation",
+        "simbolo": "_CFAutoreleasePoolPop"
+      },
+      {
+        "biblioteca": "CoreFoundation",
+        "simbolo": "__CFRunLoopPerCalloutARPEnd"
+      }
+    ]
+  }
+]

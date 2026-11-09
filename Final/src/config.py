@@ -12,5 +12,5 @@ REQUIRED = ['ID Original', 'Title', 'Release Date', 'Team', 'Rating',
             'Times Listed', 'Number of Reviews', 'Genres', 'Summary', 'Reviews',
             *SIGNALS, 'Metacritic Rating', 'Origen_calificacion',
             'critic_score_final', 'critic_source']
-FEATURES = ['generos', 'organizaciones', 'decada', 'Rating', 'critica_verificada_csv']
+FEATURES = ['generos', 'estudio', 'decada', 'Metacritic Rating', 'Rating']
 LEVELS = ['bajo', 'medio', 'alto']

@@ -10,7 +10,7 @@ La sesión de Streamlit Cloud sí estaba activa; no hay un bloqueo de cuenta que
 ## Ejecución local
 
 Desde Final: `python3.14 -m streamlit run app.py` si las dependencias están instaladas en ese entorno; o `.venv314/bin/python -m streamlit run app.py` con el entorno creado aquí.
-Se validaron 17 pruebas en Python 3.14 y en Python 3.15, y se comprobó una predicción en Chrome.
+La comprobación inicial tuvo 17 pruebas. La revisión vigente se realiza con Python 3.14 y 84 pruebas aprobadas; ver pruebas_revision_integral.txt y revision_integral.md. No se afirma una nueva validación de estas correcciones en Python 3.15.
 
 ## Referencia para una eventual publicación autorizada
 

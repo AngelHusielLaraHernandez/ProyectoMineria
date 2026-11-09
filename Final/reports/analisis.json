@@ -1,27 +1,35 @@
 {
-  "pearson_global": {
-    "grupo": "Todos",
-    "n": 890,
-    "r": 0.5444246197420772,
-    "p": 8.011136339487322e-70,
-    "ic95_inferior": 0.49647234592213263,
-    "ic95_superior": 0.5890642792879073,
-    "media_rating": 3.6578651685393258,
-    "media_critica": 82.35730337078651
-  },
-  "kmeans_k": 2,
-  "dbscan": {
-    "eps": 1.0,
-    "min_samples": 5.0,
-    "clusters": 2.0,
-    "cobertura": 0.9767233661593554,
-    "silhouette_sin_ruido": 0.636983958184242,
-    "criterio": 0.622157115827223
-  },
-  "dbscan_criterio_valido": true,
-  "pca_varianza_explicada": [
-    0.7345125342111725,
-    0.17611649614545963
+  "sha256_entrada": "f0448fccc82b140fec956d8522b8dfa675c029875029bca6f3f8b396a67a7652",
+  "semilla": 42,
+  "variables": [
+    "Plays",
+    "Playing",
+    "Backlogs",
+    "Wishlist",
+    "Rating",
+    "Metacritic Rating"
   ],
-  "filas_agrupadas": 1117
+  "log1p": [
+    "Plays",
+    "Playing",
+    "Backlogs",
+    "Wishlist"
+  ],
+  "n_entrada": 1117,
+  "n_completos": 887,
+  "n_excluidos_clustering": 230,
+  "n_cohorte_analitica": 1114,
+  "n_conflictos_historicos": 3,
+  "minimo_pares_correlacion": 20,
+  "kmeans_k": 2,
+  "dbscan_eps": 1.6662963557646437,
+  "dbscan_min_samples": 12,
+  "dbscan_ruido": 21,
+  "dbscan_clusters": 1,
+  "dbscan_silhouette_sin_ruido": null,
+  "pca_varianza": [
+    0.5838385635506382,
+    0.16724298816152772
+  ],
+  "regla_eps": "Máxima separación x−y respecto de la cuerda, tras normalizar ambos ejes a [0,1]."
 }

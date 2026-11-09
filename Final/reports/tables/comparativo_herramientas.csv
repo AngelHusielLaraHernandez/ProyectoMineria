@@ -1,0 +1,13 @@
+herramienta,modelo,exactitud,f1,notas
+Weka Explorer,SimpleKMeans,,,Weka 3.8.7 GUI; n=887; k=2; semilla=42; tamaños 477 y 410. Exactitud y F1 no aplican a esta corrida sin clase de referencia. Ver reports/weka/kmeans.txt.
+Weka Explorer,DBSCAN,,,No ejecutado: paquete oficial optics_dbScan 1.0.6 disponible y no instalado; autorización de instalación pendiente.
+Weka Explorer,ZeroR,33.0717,?,"Weka 3.8.7 GUI; exactitud en % tal como se muestra; F1 corresponde a F-Measure de Weighted Avg., no F1 macro; CV estratificada de 10 pliegues, n=892. Parámetros en la salida completa. Weka muestra ?; se conserva sin calcular un reemplazo."
+Weka Explorer,NaiveBayes,50.8969,0.503,"Weka 3.8.7 GUI; exactitud en % tal como se muestra; F1 corresponde a F-Measure de Weighted Avg., no F1 macro; CV estratificada de 10 pliegues, n=892. Parámetros en la salida completa."
+Weka Explorer,J48,51.009,0.506,"Weka 3.8.7 GUI; exactitud en % tal como se muestra; F1 corresponde a F-Measure de Weighted Avg., no F1 macro; CV estratificada de 10 pliegues, n=892. Parámetros en la salida completa."
+Weka Explorer,RandomForest,53.4753,0.530,"Weka 3.8.7 GUI; exactitud en % tal como se muestra; F1 corresponde a F-Measure de Weighted Avg., no F1 macro; CV estratificada de 10 pliegues, n=892. Parámetros en la salida completa."
+Orange,Constant,,,Sin corrida GUI verificada: control perdió la ventana al abrir File; lanzador alternativo abortó por requisito neon. Ver codex_log.md y reports/orange/inicio_dialogos_qt_arm64.log.
+Orange,Naive Bayes,,,Sin corrida GUI verificada: control perdió la ventana al abrir File; lanzador alternativo abortó por requisito neon. Ver codex_log.md y reports/orange/inicio_dialogos_qt_arm64.log.
+Orange,Tree,,,Sin corrida GUI verificada: control perdió la ventana al abrir File; lanzador alternativo abortó por requisito neon. Ver codex_log.md y reports/orange/inicio_dialogos_qt_arm64.log.
+Orange,Random Forest,,,Sin corrida GUI verificada: control perdió la ventana al abrir File; lanzador alternativo abortó por requisito neon. Ver codex_log.md y reports/orange/inicio_dialogos_qt_arm64.log.
+Orange,k-Means,,,Sin corrida GUI verificada: control perdió la ventana al abrir File; lanzador alternativo abortó por requisito neon. Ver codex_log.md y reports/orange/inicio_dialogos_qt_arm64.log.
+Orange,DBSCAN,,,Sin corrida GUI verificada: control perdió la ventana al abrir File; lanzador alternativo abortó por requisito neon. Ver codex_log.md y reports/orange/inicio_dialogos_qt_arm64.log.

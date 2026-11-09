@@ -188,34 +188,39 @@
     "Metacritic": 899,
     "Estimacion propia": 218
   },
-  "critic_source": {
-    "metacritic_csv": 899,
-    "none": 218
-  },
-  "escala_rating": "Límites teóricos no documentados; rango observado compatible con 0–5.",
-  "reviews_igual_times_listed": true,
-  "conflictos_analiticos": [],
-  "filas_en_conflicto": 0,
-  "duplicados_descartados": 0,
   "filas_limpias": 1117,
+  "duplicados_descartados": 0,
+  "historia": {
+    "estado": "verificado",
+    "sha256_historico": "6073f43d0c0bd5722b03789ff51c97c4ecd53686cdedbef93fc69d0c990245b6",
+    "sha256_maestro": "b23cc1c4c23e65171bbe8a3436c358773cee15b8e11b446261cd575daa625acd",
+    "filas_historicas": 1512,
+    "filas_maestro": 1117,
+    "descartes_heredados": 395,
+    "grupos_con_diferencias": 13,
+    "grupos_con_conflicto_analitico": 3,
+    "ids_analiticos_pendientes": [
+      117,
+      140,
+      296
+    ],
+    "columnas_reconstruidas": 42,
+    "diferencias_reconstruccion": [],
+    "critica_estimada_maestro": 218,
+    "estimaciones_con_rating": 214,
+    "coeficientes_ajuste_sintetico": [
+      8.583326609989347,
+      50.95839691488483
+    ],
+    "residuo_maximo_tras_redondear": 0.0
+  },
   "rango_anios": [
     1980,
     2025
   ],
-  "fechas_no_interpretables": [
-    {
-      "Title": "Deltarune",
-      "Release Date": "releases on TBD"
-    },
-    {
-      "Title": "Death Stranding 2",
-      "Release Date": "releases on TBD"
-    },
-    {
-      "Title": "Elden Ring: Shadow of the Erdtree",
-      "Release Date": "releases on TBD"
-    }
-  ],
   "pares_critica_real": 890,
+  "conflictos_historicos_pendientes": 3,
+  "registros_titulo_compartido": 35,
+  "titulos_compartidos": 17,
   "organizaciones_sin_roles": true
 }
