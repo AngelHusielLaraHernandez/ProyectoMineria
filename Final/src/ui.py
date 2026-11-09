@@ -3,6 +3,7 @@ import base64
 import hashlib
 import json
 import unicodedata
+import textwrap
 from pathlib import Path
 
 import joblib
@@ -14,6 +15,7 @@ import streamlit.components.v1 as components
 
 from .config import CLEAN, MODELS, RAW, REPORTS, ROOT
 from .data import load_clean
+from .visualizacion import PALETA, COLORWAY
 
 ASSETS = ROOT / 'assets'
 FONTS_DIR = ASSETS / 'fonts'
@@ -22,25 +24,18 @@ IMG_DIR = ASSETS / 'img'
 CSS_DIR = ASSETS / 'css'
 
 P5_COLORS = {
-    'black': '#0d0d0d',
-    'surface': '#141414',
-    'red': '#d92323',
-    'dark_red': '#732424',
-    'white': '#ffffff',
-    'gray': '#7b7b7b',
-    'yellow': '#ffe600',
-    'cyan': '#0dd9ff',
+    'black': PALETA['bg-primary'], 'surface': PALETA['bg-panel'],
+    'red': PALETA['primary'], 'dark_red': PALETA['bg-chart'],
+    'white': PALETA['text-primary'], 'gray': PALETA['text-secondary'],
+    'yellow': PALETA['accent'], 'cyan': PALETA['primary'],
 }
-
-P5_COLORWAY = ['#d92323', '#ffffff', '#ffe600', '#0dd9ff', '#7b7b7b', '#732424']
-_UI_VERSION = 'p5-v7-delegated'
+P5_COLORWAY = COLORWAY
+_UI_VERSION = 'p5-v8-neon'
 
 
 def _p5_ascii(text: str) -> str:
-    """Normaliza cadenas para la fuente Persona5Main (contiene glifos ASCII sin tildes)."""
-    norm = unicodedata.normalize('NFKD', str(text))
-    sin_tildes = ''.join(c for c in norm if not unicodedata.combining(c))
-    return sin_tildes.replace('–', '-').replace('—', '-')
+    """Conserva tildes y signos admitidos por la fuente cómic local."""
+    return unicodedata.normalize('NFC', str(text))
 
 
 def clean_html(raw_html: str) -> str:
@@ -63,13 +58,13 @@ def asset_b64(rel_path: str) -> str:
 
 
 @st.cache_data(show_spinner=False)
-def _build_global_css(css_hash: str) -> str:
-    """Construye la hoja de estilo global con Persona5main.ttf registrada como Persona5 y Persona5Main."""
-    font_b64 = asset_b64('fonts/Persona5main.ttf')
+def _build_global_css(css_hash: str, font_hash: str) -> str:
+    """Construye el tema con la fuente cómic local y caché ligada a sus bytes."""
+    font_b64 = base64.b64encode((FONTS_DIR / 'Persona5main.ttf').read_bytes()).decode('ascii')
     font_face = ''
     if font_b64:
         font_face = (
-            "@font-face { font-family: 'Persona5'; "
+            "@font-face { font-family: 'ComicProyecto'; "
             f"src: url(data:font/truetype;charset=utf-8;base64,{font_b64}) format('truetype'); "
             "font-weight: normal; font-style: normal; font-display: swap; } "
             "@font-face { font-family: 'Persona5Main'; "
@@ -78,23 +73,25 @@ def _build_global_css(css_hash: str) -> str:
         )
     css_file = CSS_DIR / 'persona5.css'
     base_css = css_file.read_text(encoding='utf-8') if css_file.exists() else ''
-    return f'<style>{font_face}\n{base_css}</style>'
+    tokens = ':root {' + ''.join(f'--{k}: {v};' for k, v in PALETA.items()) + '}'
+    return f'<style>{font_face}\n{tokens}\n{base_css}</style>'
 
 
 def inject_p5_css() -> None:
     """Inyecta el tema visual Persona 5 y la tipografía Base64 en la vista actual."""
     css_file = CSS_DIR / 'persona5.css'
     css_hash = hashlib.sha256(css_file.read_bytes()).hexdigest() if css_file.exists() else 'v0'
-    st.markdown(_build_global_css(css_hash), unsafe_allow_html=True)
+    font_hash = hashlib.sha256((FONTS_DIR / 'Persona5main.ttf').read_bytes()).hexdigest()
+    st.markdown(_build_global_css(css_hash, font_hash), unsafe_allow_html=True)
 
 
 def render_page_transition(variant: str = 'default') -> None:
     """Renderiza las cortinas de transición animadas exactas de PageTransition.jsx."""
     if variant == 'about':
         panels = [
-            ('#0d0d0d', '-12vh', '-18vw', '86vw', '0s', 999),
-            ('#ffffff', '24vh', '-10vw', '72vw', '0.05s', 998),
-            ('#ffffff', '58vh', '-14vw', '82vw', '0.10s', 997),
+            (PALETA['bg-primary'], '-12vh', '-18vw', '86vw', '0s', 999),
+            (PALETA['text-primary'], '24vh', '-10vw', '72vw', '0.05s', 998),
+            (PALETA['text-primary'], '58vh', '-14vw', '82vw', '0.10s', 997),
         ]
         items_html = ''.join(
             f'<div class="p5-trans-panel" style="background:{c};top:{t};left:{l};width:{w};animation-delay:{d};z-index:{z};"></div>'
@@ -102,10 +99,10 @@ def render_page_transition(variant: str = 'default') -> None:
         )
     elif variant == 'resume':
         cards = [
-            ('14vh', '#732424', '0s', 'none', 999),
-            ('31vh', '#ffffff', '0.05s', '10px 0 0 #d92323', 998),
-            ('48vh', '#ffffff', '0.10s', '10px 0 0 #d92323', 997),
-            ('65vh', '#732424', '0.15s', 'none', 996),
+            ('14vh', PALETA['bg-chart'], '0s', 'none', 999),
+            ('31vh', PALETA['text-primary'], '0.05s', '10px 0 0 #00CFFF', 998),
+            ('48vh', PALETA['text-primary'], '0.10s', '10px 0 0 #00CFFF', 997),
+            ('65vh', PALETA['bg-chart'], '0.15s', 'none', 996),
         ]
         items_html = ''.join(
             f'<div class="p5-trans-card" style="top:{t};background:{c};animation-delay:{d};box-shadow:{sh};z-index:{z};"></div>'
@@ -113,9 +110,9 @@ def render_page_transition(variant: str = 'default') -> None:
         )
     else:
         stripes = [
-            ('#0d0d0d', '72vw', '24vw', '0s', 999),
-            ('#d92323', '80vw', '14vw', '0.06s', 998),
-            ('#ffffff', '88vw', '8vw', '0.12s', 997),
+            (PALETA['bg-primary'], '72vw', '24vw', '0s', 999),
+            (PALETA['primary'], '80vw', '14vw', '0.06s', 998),
+            (PALETA['text-primary'], '88vw', '8vw', '0.12s', 997),
         ]
         items_html = ''.join(
             f'<div class="p5-trans-stripe" style="background:{c};left:{l};width:{w};animation-delay:{d};z-index:{z};"></div>'
@@ -348,8 +345,8 @@ def render_sidebar_audio() -> None:
         )
         render_html(
             f"""
-            <div style="border-top:2px solid #d92323;padding-top:0.65rem;margin-top:0.2rem;margin-bottom:0.4rem;">
-                <div class="p5-font" style="font-size:1.05rem;color:#ffe600;letter-spacing:0.06em;">
+            <div style="border-top:2px solid #00CFFF;padding-top:0.65rem;margin-top:0.2rem;margin-bottom:0.4rem;">
+                <div class="p5-font" style="font-size:1.05rem;color:var(--accent);letter-spacing:0.06em;">
                     {icon_html}PHANTOM SOUND
                 </div>
             </div>
@@ -390,16 +387,16 @@ def render_critical_alert(detalle: str) -> None:
         <div class="p5-critical-alert">
             {img_html}
             <div class="p5-critical-title">CRITICAL ALERT // MISSION FAILED</div>
-            <p style="font-size:1.05rem;color:#ffffff;margin-bottom:0.6rem;">
+            <p style="font-size:1.05rem;color:var(--text-primary);margin-bottom:0.6rem;">
                 No se encontraron o no pudieron validarse los artefactos de datos o modelos requeridos para iniciar el Observatorio Phantom Thieves.
             </p>
-            <p style="font-family:monospace;background:#0d0d0d;padding:0.6rem 0.9rem;border:1px solid #d92323;color:#ffe600;">
+            <p style="font-family:monospace;background:var(--bg-primary);padding:0.6rem 0.9rem;border:1px solid #00CFFF;color:var(--accent);">
                 Detalle técnico: {detalle}
             </p>
-            <p style="font-size:0.98rem;color:#ffffff;margin-top:0.8rem;margin-bottom:0.3rem;">
+            <p style="font-size:0.98rem;color:var(--text-primary);margin-top:0.8rem;margin-bottom:0.3rem;">
                 <strong>Instrucciones de recuperación:</strong> Ejecuta el pipeline de entrenamiento desde la carpeta <code>Final/</code>:
             </p>
-            <pre style="background:#000000;color:#ffe600;padding:0.75rem;border:2px solid #ffffff;">cd Final · python -m src.pipeline · streamlit run app.py</pre>
+            <pre style="background:#000000;color:var(--accent);padding:0.75rem;border:2px solid #F5F7FF;">cd Final · python -m src.pipeline · streamlit run app.py</pre>
         </div>
         """
     )
@@ -555,44 +552,51 @@ def section_banner(title: str, subtitle: str = '') -> None:
 
 def p5_plotly_layout(fig: go.Figure, title: str = '', height: int = 430) -> go.Figure:
     """Aplica el tema personalizado Persona 5 a cualquier figura de Plotly."""
+    lineas_titulo = textwrap.wrap(_p5_ascii(title).upper(), width=56) if title else []
     fig.update_layout(
         title=dict(
-            text=_p5_ascii(title).upper() if title else '',
-            font=dict(family='Persona5Main, Bebas Neue, Roboto, sans-serif', size=24, color='#ffffff'),
+            text='<br>'.join(lineas_titulo),
+            font=dict(family='ComicProyecto, sans-serif', size=18, color=PALETA['text-primary']),
             x=0.01,
         ),
-        paper_bgcolor='#0d0d0d',
-        plot_bgcolor='#121212',
-        font=dict(family='Roboto, sans-serif', size=13, color='#ffffff'),
+        paper_bgcolor=PALETA['bg-chart-deep'],
+        plot_bgcolor=PALETA['bg-chart'],
+        font=dict(family='ComicProyecto, sans-serif', size=13, color=PALETA['text-primary']),
         colorway=P5_COLORWAY,
         height=height,
-        margin=dict(l=48, r=28, t=58 if title else 28, b=48),
+        margin=dict(l=64, r=32, t=35 + 26 * len(lineas_titulo) if title else 28, b=64),
         legend=dict(
-            bgcolor='rgba(20, 20, 20, 0.9)',
-            bordercolor='#d92323',
+            bgcolor=PALETA['bg-panel'],
+            bordercolor=PALETA['primary'],
             borderwidth=1,
-            font=dict(color='#ffffff', size=12),
+            font=dict(color=PALETA['text-primary'], size=12),
         ),
         hoverlabel=dict(
-            bgcolor='#0d0d0d',
-            bordercolor='#d92323',
-            font=dict(family='Roboto, sans-serif', size=13, color='#ffffff'),
+            bgcolor=PALETA['bg-primary'],
+            bordercolor=PALETA['primary'],
+            font=dict(family='ComicProyecto, sans-serif', size=13, color=PALETA['text-primary']),
         ),
     )
     fig.update_xaxes(
-        gridcolor='#222222',
-        zerolinecolor='#444444',
-        linecolor='#d92323',
-        tickfont=dict(color='#e6e6e6'),
-        title_font=dict(family='Bebas Neue, Roboto, sans-serif', size=16, color='#ffe600'),
+        gridcolor=PALETA['grid-color'],
+        zerolinecolor=PALETA['purple-deep'],
+        linecolor=PALETA['primary'],
+        tickfont=dict(color=PALETA['text-secondary']),
+        automargin=True,
+        title_font=dict(family='ComicProyecto, sans-serif', size=16, color=PALETA['accent']),
     )
     fig.update_yaxes(
-        gridcolor='#222222',
-        zerolinecolor='#444444',
-        linecolor='#d92323',
-        tickfont=dict(color='#e6e6e6'),
-        title_font=dict(family='Bebas Neue, Roboto, sans-serif', size=16, color='#ffe600'),
+        gridcolor=PALETA['grid-color'],
+        zerolinecolor=PALETA['purple-deep'],
+        linecolor=PALETA['primary'],
+        tickfont=dict(color=PALETA['text-secondary']),
+        automargin=True,
+        title_font=dict(family='ComicProyecto, sans-serif', size=16, color=PALETA['accent']),
     )
+    # Solo etiquetas de potencias de diez: evita dígitos menores amontonados.
+    for eje in list(fig.select_xaxes()) + list(fig.select_yaxes()):
+        if eje.type == 'log':
+            eje.update(dtick=1, tickformat='~s', minor=dict(showgrid=False, ticks=''))
     return fig
 
 

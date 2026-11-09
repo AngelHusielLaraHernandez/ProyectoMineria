@@ -5,11 +5,13 @@ import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 
+from src.visualizacion import PALETA
 import src.ui as _ui
 
-if not hasattr(_ui, 'asset_b64') or getattr(_ui, '_UI_VERSION', None) != 'p5-v7-delegated':
+if not hasattr(_ui, 'asset_b64') or getattr(_ui, '_UI_VERSION', None) != 'p5-v8-neon':
     importlib.reload(_ui)
 
+from src.visualizacion import etiquetas_fuera_del_error
 from src.ui import (
     manual_checks,
     p5_plotly_layout,
@@ -148,9 +150,9 @@ fig_comp.add_trace(
         name='F1 Macro Validación Cruzada (10-fold)',
         x=tabla_comp['Algoritmo'],
         y=tabla_comp['f1_macro_cv'],
-        error_y=dict(type='data', array=tabla_comp['desviacion_cv'], color='#ffe600'),
-        marker_color='#d92323',
-        marker_line_color='#ffffff',
+        error_y=dict(type='data', array=tabla_comp['desviacion_cv'], color=PALETA['accent']),
+        marker_color=PALETA['primary'],
+        marker_line_color=PALETA['text-primary'],
         marker_line_width=1.5,
         text=tabla_comp['f1_macro_cv'].map(lambda v: f'{v:.3f}'),
         textposition='outside',
@@ -161,7 +163,7 @@ fig_comp.add_trace(
         name='F1 Macro Conjunto de Prueba (Holdout)',
         x=tabla_comp['Algoritmo'],
         y=tabla_comp['f1_macro_prueba'],
-        marker_color='#ffffff',
+        marker_color=PALETA['secondary'],
         marker_line_color='#000000',
         marker_line_width=1.5,
         text=tabla_comp['f1_macro_prueba'].map(lambda v: f'{v:.3f}'),
@@ -173,17 +175,22 @@ fig_comp.add_trace(
         name='Exactitud en Prueba (Accuracy)',
         x=tabla_comp['Algoritmo'],
         y=tabla_comp['exactitud_prueba'],
-        marker_color='#7b7b7b',
+        marker_color=PALETA['accent'],
         marker_line_color='#000000',
         marker_line_width=1.5,
         text=tabla_comp['exactitud_prueba'].map(lambda v: f'{v:.3f}'),
         textposition='outside',
     )
 )
-fig_comp.update_layout(barmode='group', yaxis_range=[0, 0.72])
+fig_comp.update_layout(barmode='group', bargap=0.2, bargroupgap=0, yaxis_range=[0, 0.72])
+# Tres barras por categoría: el centro de CV está 0.8/3 a la izquierda.
+etiquetas_fuera_del_error(fig_comp, desplazamiento_categoria=-0.8 / 3)
 fig_comp.update_xaxes(title_text='Familia Algorítmica')
 fig_comp.update_yaxes(title_text='Puntaje (0.0 – 1.0)')
-p5_plotly_layout(fig_comp, title='Desempeño Comparativo: Validación Cruzada vs. Prueba', height=430)
+p5_plotly_layout(fig_comp, title='Desempeño Comparativo: Validación Cruzada vs. Prueba', height=500)
+fig_comp.update_layout(legend=dict(orientation='h', x=0, y=-0.24, yanchor='top'), margin_b=126)
+fig_comp.update_xaxes(tickmode='array', tickvals=tabla_comp['Algoritmo'].tolist(),
+                     ticktext=['Dummy', 'Naive Bayes', 'Árbol de decisión', 'Random Forest'], tickangle=0)
 st.plotly_chart(fig_comp, use_container_width=True)
 
 st.caption(
@@ -195,12 +202,13 @@ st.caption(
 )
 
 # ---------------------------------------------------------------------------
-# 3. MATRIZ DE CONFUSIÓN Y VARIABLES MÁS INFLUYENTES (LADO A LADO)
+# 3. MATRIZ DE CONFUSIÓN Y VARIABLES MÁS INFLUYENTES (ANCHO COMPLETO)
 # ---------------------------------------------------------------------------
-col_cm, col_pi = st.columns(2)
+# El ancho completo mantiene legibles títulos, intervalos y etiquetas.
+col_cm, col_pi = st.container(), st.container()
 
 with col_cm:
-    section_banner('Matriz de Confusión (Holdout n = 222)', 'Mapa de Calor en Tonos Oscuros y Carmesí')
+    section_banner('Matriz de Confusión (Holdout n = 222)', 'Mapa de Calor en Azul y Violeta')
     clases = metricas['clases']  # ['bajo', 'medio', 'alto']
     etiquetas_clases = [f'Real/Pred: {c.upper()}' for c in clases]
     matriz = np.asarray(resumen_m['matriz_confusion'], dtype=int)
@@ -212,18 +220,24 @@ with col_cm:
             x=[c.upper() for c in clases],
             y=[c.upper() for c in clases],
             text=texto_celdas,
-            texttemplate='<b>%{text}</b>',
-            textfont=dict(size=18, color='#ffffff', family='Bebas Neue, sans-serif'),
+            texttemplate='',
+            textfont=dict(size=18, color=PALETA['text-primary'], family='ComicProyecto, sans-serif'),
             colorscale=[
-                [0.0, '#0d0d0d'],
-                [0.35, '#3a0a0a'],
-                [0.7, '#732424'],
-                [1.0, '#d92323'],
+                [0.0, PALETA['bg-chart-deep']],
+                [0.35, PALETA['purple-deep']],
+                [0.7, PALETA['secondary']],
+                [1.0, PALETA['text-primary']],
             ],
             showscale=True,
             hovertemplate='Clase Real: <b>%{y}</b><br>Clase Predicha: <b>%{x}</b><br>Juegos: <b>%{z}</b><extra></extra>',
         )
     )
+    for fila, clase_real in enumerate(clases):
+        for columna, clase_predicha in enumerate(clases):
+            valor = int(matriz[fila, columna])
+            fig_cm.add_annotation(x=clase_predicha.upper(), y=clase_real.upper(),
+                                  text=str(valor), showarrow=False,
+                                  font=dict(size=18, color=PALETA['bg-primary'] if valor >= .65 * matriz.max() else PALETA['text-primary']))
     fig_cm.update_xaxes(title_text='Nivel Predicho por el Modelo')
     fig_cm.update_yaxes(title_text='Nivel Real en Prueba', autorange='reversed')
     p5_plotly_layout(fig_cm, title='Matriz de Confusión (RandomForestClassifier)', height=420)
@@ -248,10 +262,10 @@ with col_pi:
             x=df_perm['caida_f1_macro_media'],
             y=df_perm['Variable'],
             orientation='h',
-            error_x=dict(type='data', array=df_perm['desviacion'], color='#ffe600'),
+            error_x=dict(type='data', array=df_perm['desviacion'], color=PALETA['accent']),
             marker=dict(
-                color=['#732424', '#7b7b7b', '#d92323', '#d92323', '#ffe600'][-len(df_perm) :],
-                line=dict(color='#ffffff', width=1.5),
+                color=[PALETA['bg-chart'], PALETA['primary'], PALETA['primary'], PALETA['secondary'], PALETA['accent']][-len(df_perm):],
+                line=dict(color=PALETA['text-primary'], width=1.5),
             ),
             text=df_perm['caida_f1_macro_media'].map(lambda v: f'−{v:.4f} F1'),
             textposition='outside',
@@ -261,6 +275,9 @@ with col_pi:
     fig_perm.update_xaxes(title_text='Caída Media en F1 Macro al Permutar (30 repeticiones)', range=[0, 0.115])
     fig_perm.update_yaxes(title_text='Atributo de Entrada')
     p5_plotly_layout(fig_perm, title='Importancia por Permutación en Prueba', height=420)
+    etiquetas_fuera_del_error(fig_perm, sufijo=' F1')
+    # Espacio para las etiquetas a la derecha, conservando el rango estadístico.
+    fig_perm.update_layout(margin_r=126)
     st.plotly_chart(fig_perm, use_container_width=True)
 
 # ---------------------------------------------------------------------------

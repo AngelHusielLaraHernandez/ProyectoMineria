@@ -128,7 +128,7 @@ models/modelo_popularidad.joblib contiene directamente el Pipeline y acepta un D
 
 models/metadata.json conserva referencia de entrenamiento, cortes, versiones, clases, fecha y métricas. models/vecinos_popularidad.joblib guarda NearestNeighbors ajustado únicamente al espacio predictivo de entrenamiento: las etiquetas de clusters solo se adjuntan por ID después de buscar, no intervienen en las distancias ni en la clasificación.
 
-Fecha: 2026-11-08T13:44:14-06:00; sklearn 1.9.1; Python 3.14.6. Las métricas previas de objetivo global están archivadas y no son directamente comparables con las nuevas.
+Fecha: 2026-11-09T08:35:00-06:00; sklearn 1.9.1; Python 3.15.2. Las métricas previas de objetivo global están archivadas y no son directamente comparables con las nuevas.
 
 ## Que debo verificar manualmente
 

@@ -1,16 +1,16 @@
 """Página 2 — Predicción e Inferencia: Menú de Batalla Persona 5 y Vecinos Más Cercanos."""
 import importlib
-import json
 import numpy as np
 import pandas as pd
 import streamlit as st
 
 import src.ui as _ui
 
-if not hasattr(_ui, 'asset_b64') or getattr(_ui, '_UI_VERSION', None) != 'p5-v7-delegated':
+if not hasattr(_ui, 'asset_b64') or getattr(_ui, '_UI_VERSION', None) != 'p5-v8-neon':
     importlib.reload(_ui)
 
 from src.similitud import cinco_vecinos
+from src.inferencia import predecir_formulario
 from src.ui import (
     _p5_ascii,
     asset_b64,
@@ -42,7 +42,7 @@ metricas = bundle['metricas']
 prep = pipeline.named_steps['preparar']
 taxonomia_generos = sorted(prep.named_transformers_['generos'].vocabulario_)
 estudios_frecuentes = sorted(prep.named_transformers_['estudio'].vocabulario_)
-opciones_estudio = ['Otro / Estudio Independiente', *estudios_frecuentes]
+opciones_estudio = ['Otro / Organización no frecuente', *estudios_frecuentes]
 
 char_b64 = asset_b64('img/char1.png')
 char_html = (
@@ -55,7 +55,7 @@ render_html(
     f"""
     <div class="p5-card-accent">
         {char_html}
-        <div class="p5-font" style="font-size:1.45rem;color:#ffe600;">
+        <div class="p5-font" style="font-size:1.45rem;color:var(--accent);">
             BATTLE MENU // SIMULADOR DE PROYECTO DE VIDEOJUEGO
         </div>
         <p style="margin:0.35rem 0 0 0;color:#f0f0f0;font-size:0.95rem;line-height:1.5;">
@@ -85,7 +85,7 @@ with st.form('p5_battle_inference_form'):
             'Estudio / Organización (Team)',
             options=opciones_estudio,
             index=0,
-            help='Estudios con presencia frecuente (>= 10 títulos en entrenamiento) u "Otro / Estudio Independiente".',
+            help='Estudios con presencia frecuente (>= 10 títulos en entrenamiento) u "Otro / Organización no frecuente".',
         )
         decada_seleccionada = st.selectbox(
             'Década de lanzamiento',
@@ -127,27 +127,15 @@ else:
 
     estudio_valor = (
         ['Otro']
-        if estudio_seleccionado == 'Otro / Estudio Independiente'
+        if estudio_seleccionado == 'Otro / Organización no frecuente'
         else [estudio_seleccionado]
     )
     meta_valor = np.nan if sin_metacritic else float(metacritic_esperado)
 
-    fila = pd.DataFrame(
-        [
-            {
-                'generos': json.dumps(generos_seleccionados, ensure_ascii=False),
-                'estudio': json.dumps(estudio_valor, ensure_ascii=False),
-                'decada': int(decada_seleccionada),
-                'Metacritic Rating': meta_valor,
-                'Rating': float(rating_esperado),
-            }
-        ]
+    fila, prediccion, mapa_probs = predecir_formulario(
+        pipeline, generos_seleccionados, estudio_valor, decada_seleccionada,
+        meta_valor, rating_esperado,
     )
-
-    prediccion = str(pipeline.predict(fila)[0])
-    clases_modelo = list(pipeline.classes_)
-    probs_raw = pipeline.predict_proba(fila)[0]
-    mapa_probs = {str(c): float(p) for c, p in zip(clases_modelo, probs_raw)}
 
     # Vecinos más cercanos en el espacio predictivo de entrenamiento
     vecinos = cinco_vecinos(fila, pipeline)
@@ -165,19 +153,25 @@ else:
     section_banner('Resultado de la Inferencia Supervisada', f'Modelo Activo: {metricas["modelo"]}')
 
     st.subheader(f'Nivel estimado de popularidad: {prediccion.upper()}')
+    if sin_metacritic:
+        st.warning(
+            'Sin crítica de prensa: se usa la mediana del entrenamiento. '
+            'La clase estimada puede cambiar al incorporar la nota real; '
+            'la ausencia de una nota no equivale a mala recepción.'
+        )
 
     col_r1, col_r2 = st.columns([1.25, 1])
 
     with col_r1:
         st.markdown(
-            '<div class="p5-font" style="font-size:1.25rem;color:#ffe600;margin-bottom:0.6rem;">'
+            '<div class="p5-font" style="font-size:1.25rem;color:var(--accent);margin-bottom:0.6rem;">'
             '1 // PROBABILIDADES DE CLASE (MODELO SUPERVISADO)</div>',
             unsafe_allow_html=True,
         )
         barras_html = ''
         for nivel_key, etiqueta in [('alto', 'ALTO (Tercil Superior)'), ('medio', 'MEDIO (Tercil Central)'), ('bajo', 'BAJO (Tercil Inferior)')]:
             pct = mapa_probs.get(nivel_key, 0.0) * 100.0
-            destacado = 'color:#ffe600;font-weight:900;' if nivel_key == prediccion else 'color:#ffffff;'
+            destacado = 'color:var(--primary);font-weight:900;' if nivel_key == prediccion else 'color:var(--text-primary);'
             barras_html += f"""
             <div class="p5-prob-row">
                 <div class="p5-prob-header" style="{destacado}">
@@ -185,7 +179,7 @@ else:
                     <span>{pct:.1f}%</span>
                 </div>
                 <div class="p5-prob-track">
-                    <div class="p5-prob-fill" style="width:{max(2.0, pct):.1f}%;"></div>
+                    <div class="p5-prob-fill" style="width:{pct:.4f}%;"></div>
                 </div>
             </div>
             """
@@ -245,22 +239,22 @@ else:
         render_html(
             f"""
             <div class="p5-card">
-                <div class="p5-font" style="font-size:1.2rem;color:#ffe600;margin-bottom:0.4rem;">
+                <div class="p5-font" style="font-size:1.2rem;color:var(--accent);margin-bottom:0.4rem;">
                     2 // PERFIL DE MERCADO ASOCIADO (CLUSTER)
                 </div>
-                <div style="font-family:'Bebas Neue',sans-serif;font-size:1.5rem;color:#ffffff;">
+                <div style="font-family:'ComicProyecto',sans-serif;font-size:1.5rem;color:var(--text-primary);">
                     {etiqueta_comercial}
                 </div>
                 <p style="font-size:0.9rem;color:#dddddd;margin:0.25rem 0 0.9rem 0;">
                     {desc_perfil} (según mayoría de vecinos cercanos en Fase 4A; el cluster no entra como predictor al modelo supervisado).
                 </p>
-                <hr style="border-color:#732424;margin:0.65rem 0;"/>
-                <div class="p5-font" style="font-size:1.2rem;color:#ffe600;margin-bottom:0.4rem;">
+                <hr style="border-color:var(--primary);margin:0.65rem 0;"/>
+                <div class="p5-font" style="font-size:1.2rem;color:var(--accent);margin-bottom:0.4rem;">
                     4 // BRECHA TIPICA CONTEXTUAL ({_p5_ascii(genero_principal).upper()})
                 </div>
                 <p style="font-size:0.92rem;color:#f0f0f0;margin:0;">
                     {texto_brecha}<br/>
-                    <span style="color:#ffe600;">Tu configuración actual (Rating×20 − Metacritic): <strong>{brecha_usuario_input}</strong></span>
+                    <span style="color:var(--accent);">Tu configuración actual (Rating×20 − Metacritic): <strong>{brecha_usuario_input}</strong></span>
                 </p>
             </div>
             """
@@ -309,21 +303,21 @@ else:
                     <div class="sc-stats">
                         <div class="sc-stat">
                             <div class="sc-stat-top">
-                                <span class="sc-stat-tag" style="color:#d92323;border-color:#d92323;">YEAR</span>
+                                <span class="sc-stat-tag" style="color:var(--primary);border-color:var(--primary);">YEAR</span>
                                 <span class="sc-stat-num">{row_v['anio']}</span>
                             </div>
                             <div class="sc-stat-bars">
-                                <div class="sc-stat-bar-color" style="background:#d92323;"></div>
+                                <div class="sc-stat-bar-color" style="background:var(--primary);"></div>
                                 <div class="sc-stat-bar-black"></div>
                             </div>
                         </div>
                         <div class="sc-stat">
                             <div class="sc-stat-top">
-                                <span class="sc-stat-tag" style="color:#7b7b7b;border-color:#7b7b7b;">DIST</span>
+                                <span class="sc-stat-tag" style="color:var(--secondary);border-color:var(--secondary);">DIST</span>
                                 <span class="sc-stat-num">{row_v['distancia']:.2f}</span>
                             </div>
                             <div class="sc-stat-bars">
-                                <div class="sc-stat-bar-color" style="background:#7b7b7b;"></div>
+                                <div class="sc-stat-bar-color" style="background:var(--secondary);"></div>
                                 <div class="sc-stat-bar-black"></div>
                             </div>
                         </div>

@@ -1,5 +1,5 @@
 {
-  "fecha": "2026-11-08T19:00:05.569654-06:00",
+  "fecha": "2026-11-08T19:23:33.499228-06:00",
   "version_weka": "3.8.7",
   "origen": "Salidas del panel de Explorer; no son ejecuciones CLI.",
   "clasificacion": {
@@ -122,5 +122,27 @@
     ],
     "suma_verificada": true
   },
-  "dbscan": "Paquete oficial optics_dbScan 1.0.6 disponible y no instalado; autorización pendiente."
+  "dbscan": {
+    "paquete": "optics_dbScan",
+    "version_paquete": "1.0.6",
+    "instalado_y_cargado_verificado_en_gui": true,
+    "n": 887,
+    "atributos": 6,
+    "epsilon": 1.666296,
+    "minPoints": 12,
+    "opciones_distancia_mostradas": "weka.core.EuclideanDistance -R first-last",
+    "clusters_mostrados": 1,
+    "instancias_cluster_0_mostradas": 887,
+    "porcentaje_mostrado": "100%",
+    "asignaciones_verificadas": 887,
+    "etiquetas": {
+      "0": 887
+    },
+    "ruido_verificado": 0,
+    "criterio_ruido": "Las 887 asignaciones de la salida están etiquetadas 0; no hay etiquetas de ruido. Weka muestra 887 (100%) en Clustered Instances.",
+    "salida": "reports/weka/dbscan.txt",
+    "captura": "reports/weka/dbscan_resultado.png",
+    "sha256_salida": "7d0866476ee480a90daee39e1469861c532b52da9dbef7bfb9c05eedcf11de94"
+  },
+  "estado_weka": "Seis corridas gráficas completas: SimpleKMeans, DBSCAN, ZeroR, NaiveBayes, J48 y RandomForest."
 }

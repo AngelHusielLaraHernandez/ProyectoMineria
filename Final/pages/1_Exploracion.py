@@ -6,12 +6,14 @@ import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
 
+from src.visualizacion import PALETA
 import src.ui as _ui
 
-if not hasattr(_ui, 'asset_b64') or getattr(_ui, '_UI_VERSION', None) != 'p5-v7-delegated':
+if not hasattr(_ui, 'asset_b64') or getattr(_ui, '_UI_VERSION', None) != 'p5-v8-neon':
     importlib.reload(_ui)
 
 from src.config import CLEAN
+from src.visualizacion import COLOR_SENALES
 from src.ui import (
     asset_b64,
     manual_checks,
@@ -44,7 +46,7 @@ elegibles['brecha_vista'] = elegibles['rating_100_vista'] - elegibles['critica_v
 # ---------------------------------------------------------------------------
 with st.sidebar:
     st.markdown(
-        '<div class="p5-font" style="font-size:1.25rem;color:#ffe600;margin-top:0.5rem;">'
+        '<div class="p5-font" style="font-size:1.25rem;color:var(--accent);margin-top:0.5rem;">'
         'FILTROS TACTICOS // EDA</div>',
         unsafe_allow_html=True,
     )
@@ -174,14 +176,14 @@ if filas_gen:
         x='Genero',
         y=senal_sel,
         category_orders={'Genero': orden_gen},
-        color_discrete_sequence=['#d92323'],
+        color_discrete_sequence=[PALETA['primary']],
         points='outliers',
         hover_data=['Title'],
     )
     fig_box.update_traces(
-        marker=dict(color='#ffe600', size=5, opacity=0.75),
-        line=dict(color='#ffffff', width=1.5),
-        fillcolor='rgba(217, 35, 35, 0.65)',
+        marker=dict(color=PALETA['accent'], size=5, opacity=0.8),
+        line=dict(color=PALETA['secondary'], width=1.5),
+        fillcolor='rgba(165, 107, 255, 0.75)',
     )
     fig_box.update_yaxes(type='log', title_text=f'{senal_sel} (Escala Log10)')
     fig_box.update_xaxes(title_text='Género')
@@ -214,7 +216,7 @@ if filas_gen:
             .reset_index()
         )
         fig_bar_log = go.Figure()
-        colores_bar = {'Plays': '#d92323', 'Backlogs': '#ffffff', 'Wishlist': '#7b7b7b'}
+        colores_bar = COLOR_SENALES
         for senal in ['Plays', 'Backlogs', 'Wishlist']:
             fig_bar_log.add_trace(
                 go.Bar(
@@ -261,7 +263,7 @@ if len(pares_filtrados):
             y='Rating',
             nbinsx=22,
             nbinsy=22,
-            color_continuous_scale=['#0d0d0d', '#3d0a0a', '#732424', '#d92323', '#ffe600', '#ffffff'],
+            color_continuous_scale=[PALETA['bg-primary'], PALETA['bg-chart'], PALETA['primary'], PALETA['secondary'], PALETA['accent'], PALETA['text-primary']],
             labels={
                 'critica_verificada_csv': 'Metacritic Rating (0–100)',
                 'Rating': 'Rating Usuarios Backloggd (0–5)',
@@ -274,9 +276,9 @@ if len(pares_filtrados):
                 go.Histogram2dContour(
                     x=pares_filtrados['critica_verificada_csv'],
                     y=pares_filtrados['Rating'],
-                    colorscale=[[0, 'rgba(13,13,13,0)'], [0.5, 'rgba(115,36,36,0.35)'], [1, 'rgba(217,35,35,0.65)']],
+                    colorscale=[[0, 'rgba(5,13,34,0)'], [0.5, 'rgba(23,13,55,0.55)'], [1, 'rgba(0,207,255,0.65)']],
                     showscale=False,
-                    line=dict(color='#732424', width=1),
+                    line=dict(color=PALETA['secondary'], width=1),
                     hoverinfo='skip',
                 )
             )
@@ -301,10 +303,10 @@ if len(pares_filtrados):
                     'Brecha (Rating×20 − Meta): %{customdata[1]:+.1f} pts<extra></extra>'
                 ),
                 marker=dict(
-                    color='#d92323',
+                    color=PALETA['primary'],
                     size=7,
                     opacity=0.82,
-                    line=dict(color='#ffffff', width=0.8),
+                    line=dict(color=PALETA['text-primary'], width=0.8),
                 ),
             )
         )
@@ -320,7 +322,7 @@ if len(pares_filtrados):
                 y=x_ref / 20.0,
                 mode='lines',
                 name='Paridad exacta (Rating×20 = Metacritic)',
-                line=dict(color='#ffe600', width=2, dash='dash'),
+                line=dict(color=PALETA['accent'], width=2, dash='dash'),
             )
         )
         fig_sc.update_xaxes(title_text='Metacritic Rating (Escala 0–100)')
@@ -380,7 +382,7 @@ metrica_orden = st.selectbox(
 
 df_plot_b = df_brecha.sort_values(metrica_orden, ascending=True)
 colores_brecha = [
-    '#ffe600' if i >= len(df_plot_b) - 3 else '#d92323'
+    PALETA['accent'] if i >= len(df_plot_b) - 3 else PALETA['primary']
     for i in range(len(df_plot_b))
 ]
 
@@ -389,7 +391,7 @@ fig_gap = go.Figure(
         x=df_plot_b[metrica_orden],
         y=df_plot_b['grupo'],
         orientation='h',
-        marker=dict(color=colores_brecha, line=dict(color='#ffffff', width=1)),
+        marker=dict(color=colores_brecha, line=dict(color=PALETA['text-primary'], width=1)),
         text=df_plot_b[metrica_orden].map(lambda v: f'{v:.2f} pts'),
         textposition='outside',
         customdata=np.stack(
@@ -490,7 +492,7 @@ fig_pca = px.scatter(
     color='perfil',
     hover_name='Title',
     hover_data=['Release Date', 'Rating', 'Metacritic Rating', 'Plays'],
-    color_discrete_sequence=['#d92323', '#ffe600', '#ffffff', '#7b7b7b'],
+    color_discrete_sequence=[PALETA['primary'], PALETA['accent'], PALETA['secondary'], PALETA['text-primary']],
     labels={
         'componente_1': 'Componente Principal 1 (Tracción / Popularidad)',
         'componente_2': 'Componente Principal 2 (Recepción Crítica / Usuarios)',

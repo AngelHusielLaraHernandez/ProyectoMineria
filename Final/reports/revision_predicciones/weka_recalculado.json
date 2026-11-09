@@ -1,0 +1,138 @@
+[
+  {
+    "modelo": "ZeroR",
+    "n": 892,
+    "aciertos": 295,
+    "exactitud_pct": 33.0717,
+    "f1_macro_promedio_mostrado": 0.25333333333333335,
+    "f1_macro_desde_matriz": 0.25307162121666166,
+    "f1_ponderado": 0.25329318243206017,
+    "ponderado_calculado": 0.25329318243206017,
+    "ponderado_es_recalculado": true,
+    "clases": [
+      "alto",
+      "bajo",
+      "medio"
+    ],
+    "matriz": [
+      [
+        87,
+        210,
+        0
+      ],
+      [
+        90,
+        208,
+        0
+      ],
+      [
+        90,
+        207,
+        0
+      ]
+    ],
+    "sha256": "abc7807ce09733680834ddcfcbf72f7a71f72e62ad1d519db547385bc4fe1cad"
+  },
+  {
+    "modelo": "NaiveBayes",
+    "n": 892,
+    "aciertos": 454,
+    "exactitud_pct": 50.8969,
+    "f1_macro_promedio_mostrado": 0.5033333333333333,
+    "f1_macro_desde_matriz": 0.5033953898573705,
+    "f1_ponderado": 0.503,
+    "ponderado_calculado": 0.5034553457668585,
+    "ponderado_es_recalculado": false,
+    "clases": [
+      "alto",
+      "bajo",
+      "medio"
+    ],
+    "matriz": [
+      [
+        193,
+        28,
+        76
+      ],
+      [
+        47,
+        164,
+        87
+      ],
+      [
+        101,
+        99,
+        97
+      ]
+    ],
+    "sha256": "5aac3e1f7f662eb504b71c7f77d1e31f2121a15ba7771c97b630a65bfd3027c6"
+  },
+  {
+    "modelo": "J48",
+    "n": 892,
+    "aciertos": 455,
+    "exactitud_pct": 51.009,
+    "f1_macro_promedio_mostrado": 0.5063333333333334,
+    "f1_macro_desde_matriz": 0.5063108540376969,
+    "f1_ponderado": 0.506,
+    "ponderado_calculado": 0.5063502534846777,
+    "ponderado_es_recalculado": false,
+    "clases": [
+      "alto",
+      "bajo",
+      "medio"
+    ],
+    "matriz": [
+      [
+        193,
+        29,
+        75
+      ],
+      [
+        42,
+        160,
+        96
+      ],
+      [
+        91,
+        104,
+        102
+      ]
+    ],
+    "sha256": "88ceace97d84c7c67628688f9876a4d3de22c07935e6111dd954f3c401a88c8c"
+  },
+  {
+    "modelo": "RandomForest",
+    "n": 892,
+    "aciertos": 477,
+    "exactitud_pct": 53.4753,
+    "f1_macro_promedio_mostrado": 0.5299999999999999,
+    "f1_macro_desde_matriz": 0.5303083703633139,
+    "f1_ponderado": 0.53,
+    "ponderado_calculado": 0.5303645618510748,
+    "ponderado_es_recalculado": false,
+    "clases": [
+      "alto",
+      "bajo",
+      "medio"
+    ],
+    "matriz": [
+      [
+        195,
+        29,
+        73
+      ],
+      [
+        39,
+        175,
+        84
+      ],
+      [
+        89,
+        101,
+        107
+      ]
+    ],
+    "sha256": "bed5274c54f92bc20ff70c7d64d600839b65e76ea4860e88d8e003dcd5bb47df"
+  }
+]

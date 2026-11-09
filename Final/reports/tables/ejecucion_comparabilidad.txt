@@ -1,0 +1,13 @@
+catalogo_completo DummyClassifier {'exactitud_pct': 33.84064458370636, 'f1_macro': 0.168561872909699, 'f1_ponderado': 0.17112727294503013}
+catalogo_completo GaussianNB {'exactitud_pct': 45.568487018800354, 'f1_macro': 0.39557135751585726, 'f1_ponderado': 0.39333606382696396}
+catalogo_completo DecisionTreeClassifier {'exactitud_pct': 47.62757385854969, 'f1_macro': 0.4753482040990488, 'f1_ponderado': 0.4746645859511323}
+catalogo_completo RandomForestClassifier {'exactitud_pct': 55.68487018800358, 'f1_macro': 0.55551827267702, 'f1_ponderado': 0.5548180432114216}
+catalogo_elegible DummyClassifier {'exactitud_pct': 33.84201077199282, 'f1_macro': 0.16856695729935167, 'f1_ponderado': 0.17113934354180138}
+catalogo_elegible GaussianNB {'exactitud_pct': 43.71633752244165, 'f1_macro': 0.37816970382484855, 'f1_ponderado': 0.37604899066748126}
+catalogo_elegible DecisionTreeClassifier {'exactitud_pct': 49.012567324955114, 'f1_macro': 0.49198194725893063, 'f1_ponderado': 0.49138034277100057}
+catalogo_elegible RandomForestClassifier {'exactitud_pct': 54.937163375224415, 'f1_macro': 0.5457646494859345, 'f1_ponderado': 0.5449023237635472}
+enlace_exportacion_weka DummyClassifier {'exactitud_pct': 33.07174887892377, 'f1_macro': 0.25307162121666166, 'f1_ponderado': 0.25329318243206017}
+enlace_exportacion_weka GaussianNB {'exactitud_pct': 47.421524663677125, 'f1_macro': 0.44367965237950174, 'f1_ponderado': 0.4438026387093977}
+enlace_exportacion_weka DecisionTreeClassifier {'exactitud_pct': 46.97309417040359, 'f1_macro': 0.4693485084364956, 'f1_ponderado': 0.46937728433656195}
+enlace_exportacion_weka RandomForestClassifier {'exactitud_pct': 54.82062780269058, 'f1_macro': 0.544155803135885, 'f1_ponderado': 0.5442067660700024}
+Verificaciones de matrices, métricas y particiones: correctas.

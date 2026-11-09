@@ -4,7 +4,7 @@ import streamlit as st
 
 import src.ui as _ui
 
-if not hasattr(_ui, 'asset_b64') or getattr(_ui, '_UI_VERSION', None) != 'p5-v7-delegated':
+if not hasattr(_ui, 'asset_b64') or getattr(_ui, '_UI_VERSION', None) != 'p5-v8-neon':
     importlib.reload(_ui)
 
 from src.config import SIGNALS
@@ -87,27 +87,27 @@ render_html(
                     <div class="sc-main">
                         <div class="sc-label">01 // INDUSTRIA &amp; TRACCION</div>
                         <div class="sc-subdesc">
-                            Separamos alcance acumulado (Plays) de interés pendiente (Wishlist / Backlogs) sobre 1,117 títulos únicos depurados de 1,512 registros brutos.
+                            Separamos alcance acumulado (Plays) de interés pendiente (Wishlist / Backlogs) sobre los 1,117 registros del maestro games_curated.csv; el antecedente histórico contiene 1,512 registros.
                         </div>
                     </div>
                     <div class="sc-stats">
                         <div class="sc-stat">
                             <div class="sc-stat-top">
-                                <span class="sc-stat-tag" style="color:#d92323;border-color:#d92323;">RAW</span>
+                                <span class="sc-stat-tag" style="color:var(--primary);border-color:var(--primary);">HIST</span>
                                 <span class="sc-stat-num">1,512</span>
                             </div>
                             <div class="sc-stat-bars">
-                                <div class="sc-stat-bar-color" style="background:#d92323;"></div>
+                                <div class="sc-stat-bar-color" style="background:var(--primary);"></div>
                                 <div class="sc-stat-bar-black"></div>
                             </div>
                         </div>
                         <div class="sc-stat">
                             <div class="sc-stat-top">
-                                <span class="sc-stat-tag" style="color:#7b7b7b;border-color:#7b7b7b;">CLEAN</span>
+                                <span class="sc-stat-tag" style="color:var(--secondary);border-color:var(--secondary);">MAESTRO</span>
                                 <span class="sc-stat-num">1,117</span>
                             </div>
                             <div class="sc-stat-bars">
-                                <div class="sc-stat-bar-color" style="background:#7b7b7b;"></div>
+                                <div class="sc-stat-bar-color" style="background:var(--secondary);"></div>
                                 <div class="sc-stat-bar-black"></div>
                             </div>
                         </div>
@@ -134,21 +134,21 @@ render_html(
                     <div class="sc-stats">
                         <div class="sc-stat">
                             <div class="sc-stat-top">
-                                <span class="sc-stat-tag" style="color:#d92323;border-color:#d92323;">PAIRS</span>
+                                <span class="sc-stat-tag" style="color:var(--primary);border-color:var(--primary);">PAIRS</span>
                                 <span class="sc-stat-num">887</span>
                             </div>
                             <div class="sc-stat-bars">
-                                <div class="sc-stat-bar-color" style="background:#d92323;"></div>
+                                <div class="sc-stat-bar-color" style="background:var(--primary);"></div>
                                 <div class="sc-stat-bar-black"></div>
                             </div>
                         </div>
                         <div class="sc-stat">
                             <div class="sc-stat-top">
-                                <span class="sc-stat-tag" style="color:#732424;border-color:#732424;">PEARSON</span>
+                                <span class="sc-stat-tag" style="color:var(--accent);border-color:var(--accent);">PEARSON</span>
                                 <span class="sc-stat-num">0.544</span>
                             </div>
                             <div class="sc-stat-bars">
-                                <div class="sc-stat-bar-color" style="background:#732424;"></div>
+                                <div class="sc-stat-bar-color" style="background:var(--accent);"></div>
                                 <div class="sc-stat-bar-black"></div>
                             </div>
                         </div>
@@ -175,21 +175,21 @@ render_html(
                     <div class="sc-stats">
                         <div class="sc-stat">
                             <div class="sc-stat-top">
-                                <span class="sc-stat-tag" style="color:#d92323;border-color:#d92323;">F1 TEST</span>
+                                <span class="sc-stat-tag" style="color:var(--primary);border-color:var(--primary);">F1 TEST</span>
                                 <span class="sc-stat-num">{metricas_modelo['metricas']['f1_macro']:.3f}</span>
                             </div>
                             <div class="sc-stat-bars">
-                                <div class="sc-stat-bar-color" style="background:#d92323;"></div>
+                                <div class="sc-stat-bar-color" style="background:var(--primary);"></div>
                                 <div class="sc-stat-bar-black"></div>
                             </div>
                         </div>
                         <div class="sc-stat">
                             <div class="sc-stat-top">
-                                <span class="sc-stat-tag" style="color:#7b7b7b;border-color:#7b7b7b;">KNN</span>
+                                <span class="sc-stat-tag" style="color:var(--secondary);border-color:var(--secondary);">KNN</span>
                                 <span class="sc-stat-num">TOP 5</span>
                             </div>
                             <div class="sc-stat-bars">
-                                <div class="sc-stat-bar-color" style="background:#7b7b7b;"></div>
+                                <div class="sc-stat-bar-color" style="background:var(--secondary);"></div>
                                 <div class="sc-stat-bar-black"></div>
                             </div>
                         </div>
@@ -228,7 +228,7 @@ render_html(
                         </div>
                     </div>
                     <div class="resume-subtitle-bar">
-                        <div class="resume-subtitle">1,117 TITULOS UNICOS TRAS DEDUPLICACION DE 1,512 REGISTROS</div>
+                        <div class="resume-subtitle">1,117 REGISTROS EN EL MAESTRO CURADO; ANTECEDENTE HISTORICO DE 1,512</div>
                     </div>
                 </div>
             </div>

@@ -1,11 +1,11 @@
 {
-  "huella_pipeline": "2997b4954e8901c664771bcac6da39dd2bc11ac09936678c09e4bb5c8ce3a830",
+  "huella_pipeline": "3f9e936a176da82a4b2a92be4fa565002546a7ee98cdef1901f3d30ee6a907a1",
   "fuente_clustering": "data/clean/dataset_depurado.csv",
   "artefacto_clustering": "data/clean/dataset_con_clusters.csv",
   "modelo_popularidad": "models/modelo_popularidad.joblib",
   "metadata_modelo": "models/metadata.json",
-  "sha256_modelo_popularidad": "d6fec69526a815e254f7d1e4c6b09a91224d004102430fa0926347dcebcc6706",
-  "sha256_metadata_modelo": "2e64011575e520a616bd43d10b763d837293f48ef3c6bdeb2fd21e98c8afbedf",
+  "sha256_modelo_popularidad": "ee362dae946d18981714171de2d66c0b93fc00a364e6990f698ed3b68ae8550e",
+  "sha256_metadata_modelo": "07ba1ce664747e68c06c7ab9dc799e8ccb565cf71e7222b3a6de9f8548eed2fa",
   "sha256_vecinos": "23d0ad2353a64b567cd1c40d40b70735e4450ae9a2b731519ba5aa65a1f95415",
   "sha256_dataset_depurado": "f0448fccc82b140fec956d8522b8dfa675c029875029bca6f3f8b396a67a7652",
   "sha256_dataset_con_clusters": "d35537b44658aeeefbacd0ebac8c6cd785e73004e5ec0b1ac7baf3c82fd4077a",
@@ -17,7 +17,7 @@
     "clustering_03_correlaciones_ranking_generos.csv": "149d78bb3b84b1aeb32e3dbdb34cf0eef72ae8e2947d5333a3af132965ce5131",
     "clustering_03_perfiles.csv": "21a24f23191e0353093d3ec65790da70a7398ec27f5c8d158f8acbaf59b01265",
     "clustering_03_alternativas_k.csv": "83a307d8df56e722e89679c47b445303b69b3f23e61a06ec2a51670a85e09391",
-    "clustering_03_seleccion_kmeans.csv": "968c7e54bdb423d4d1e19af7dde2461978bf2a0edae28277919620f154ab26ff",
+    "clustering_03_seleccion_kmeans.csv": "344e5e4cbe1fde8c00e6ad22b368c76fa71d800896b68872e550bd10463ad038",
     "clustering_03_sensibilidad_dbscan.csv": "59c1d25653df3a03d79885db1dca9bda619767e6349516f6b4228578690305e8"
   }
 }

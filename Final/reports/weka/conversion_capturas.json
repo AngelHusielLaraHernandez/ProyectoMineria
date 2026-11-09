@@ -1,0 +1,137 @@
+{
+  "motivo": "La herramienta entregó JPEG bajo nombres .png; se conservaron los originales y se corrigió únicamente la codificación, sin alterar los píxeles.",
+  "capturas": [
+    {
+      "png": "reports/weka/kmeans_resultado.png",
+      "jpeg_original": "reports/weka/capturas_originales_jpeg/kmeans_resultado.jpg",
+      "sha256_jpeg_original": "0b8e0b0cbf449189b3e9e1003676ad081605321116834da5ee59b1346ff32af2",
+      "sha256_png": "a6f5223cb9b6f6d0cbeb70cc3da84f89396cd8fc68fa2195d4e8f7fc63548e00",
+      "dimensiones": [
+        2048,
+        1536
+      ],
+      "pixeles_identicos": true
+    },
+    {
+      "png": "reports/weka/dbscan_resultado.png",
+      "jpeg_original": "reports/weka/capturas_originales_jpeg/dbscan_resultado.jpg",
+      "sha256_jpeg_original": "764cab40e6644b9f38d3db5e999cb46efa59847754796ab7af598f7e61c55839",
+      "sha256_png": "a5b1fd50d6f42054ceff60a26a5528d8813b86d1efebff71e5d0053d85f30ee2",
+      "dimensiones": [
+        2048,
+        1536
+      ],
+      "pixeles_identicos": true
+    },
+    {
+      "png": "reports/weka/ZeroR.png",
+      "jpeg_original": "reports/weka/capturas_originales_jpeg/ZeroR.jpg",
+      "sha256_jpeg_original": "5bf5855dbbfabc490600a2b84b17daad9634618f25b6e7bc3d9379bb1ec6b322",
+      "sha256_png": "b7859929328baea3540730ab9e0494eec18e983a56f8fb5d1c26ddb77f91766f",
+      "dimensiones": [
+        2048,
+        1536
+      ],
+      "pixeles_identicos": true
+    },
+    {
+      "png": "reports/weka/NaiveBayes.png",
+      "jpeg_original": "reports/weka/capturas_originales_jpeg/NaiveBayes.jpg",
+      "sha256_jpeg_original": "3183edf0097177d334337adae81965d64b6745681817a9130eee0e2a26c3db6f",
+      "sha256_png": "ef00fe5af3442fbbaa129aeef2a23c3c42e642d69773f6924fd261ada6056928",
+      "dimensiones": [
+        2048,
+        1536
+      ],
+      "pixeles_identicos": true
+    },
+    {
+      "png": "reports/weka/J48.png",
+      "jpeg_original": "reports/weka/capturas_originales_jpeg/J48.jpg",
+      "sha256_jpeg_original": "2cf229718717fc3574bc2af3c45de908c0ddfc74a4273c560ebfdff745fbefa2",
+      "sha256_png": "72296d14f03af1520c8e07ca86310cb171b5a1b7f46b189701f3df514e184afd",
+      "dimensiones": [
+        2048,
+        1536
+      ],
+      "pixeles_identicos": true
+    },
+    {
+      "png": "reports/weka/RandomForest.png",
+      "jpeg_original": "reports/weka/capturas_originales_jpeg/RandomForest.jpg",
+      "sha256_jpeg_original": "17df8a4eb2e4bfc4b3fa628b4a94265ce9c36fd8c7d0922c4b938ea201bc86e6",
+      "sha256_png": "75fd874d38afb1b00f10cf700ec2a5adede66120ac7d87f702d4d0c7a6367d8c",
+      "dimensiones": [
+        2048,
+        1536
+      ],
+      "pixeles_identicos": true
+    },
+    {
+      "png": "reports/weka/kmeans_parametros.png",
+      "jpeg_original": "reports/weka/capturas_originales_jpeg/kmeans_parametros.jpg",
+      "sha256_jpeg_original": "2ff878e825f3e6fcb0055d9a40a69d57016a8074007afb72febc748b07414dfd",
+      "sha256_png": "02701adf007ea00754e5a08b072612409728475c99ad457ce314f52f1bd78f27",
+      "dimensiones": [
+        982,
+        1584
+      ],
+      "pixeles_identicos": true
+    },
+    {
+      "png": "reports/weka/dbscan_parametros.png",
+      "jpeg_original": "reports/weka/capturas_originales_jpeg/dbscan_parametros.jpg",
+      "sha256_jpeg_original": "078094306545235ed1c67e4468cee9bad306737338cc4ebeb5d38395cfb61451",
+      "sha256_png": "0893afea5b536cf905d0d8d1d2a212e68370679a22cc5ab5d25d1d83b5ccaa3e",
+      "dimensiones": [
+        982,
+        726
+      ],
+      "pixeles_identicos": true
+    },
+    {
+      "png": "reports/weka/dbscan_paquete_instalado.png",
+      "jpeg_original": "reports/weka/capturas_originales_jpeg/dbscan_paquete_instalado.jpg",
+      "sha256_jpeg_original": "1555840562cc1419d058e30801225e554784bb42e370f0ff4dfa58a7d34d74e4",
+      "sha256_png": "d116101ee2b08af4959b56657aceebbc52e1708afbe6c2cfef50ec082b55761f",
+      "dimensiones": [
+        2736,
+        1778
+      ],
+      "pixeles_identicos": true
+    },
+    {
+      "png": "reports/weka/preprocess_887_6.png",
+      "jpeg_original": "reports/weka/capturas_originales_jpeg/preprocess_887_6.jpg",
+      "sha256_jpeg_original": "ddd1c3c24514a7ceca94436e617187d1a0612c22544d6c8df476dae5ad46df25",
+      "sha256_png": "4a12b27fee62542fd9e54b8a1a0f0860013d9a9b9d17eadb01afc3cf06c17e9e",
+      "dimensiones": [
+        2048,
+        1536
+      ],
+      "pixeles_identicos": true
+    },
+    {
+      "png": "reports/weka/preprocess_clasificacion_892_53.png",
+      "jpeg_original": "reports/weka/capturas_originales_jpeg/preprocess_clasificacion_892_53.jpg",
+      "sha256_jpeg_original": "777b212a752b5a8e951352cf07a10fac9983ad477db5b92a6033994a7e60da47",
+      "sha256_png": "3528c55e62a3c2c4756a4c20a396350944a355ef5094a225e4023b394bf2da93",
+      "dimensiones": [
+        2048,
+        1536
+      ],
+      "pixeles_identicos": true
+    },
+    {
+      "png": "reports/weka/verificacion_final_ventana.png",
+      "jpeg_original": "reports/weka/capturas_originales_jpeg/verificacion_final_ventana.jpg",
+      "sha256_jpeg_original": "521b7bdc5119b1c28295646d2e41cb7b242b0d994ce3a2e7fec17a7da82da6f0",
+      "sha256_png": "db55f2c6708c8697f387317f5753d787c2132ebcf87b75c995378729edd6cde4",
+      "dimensiones": [
+        2048,
+        1536
+      ],
+      "pixeles_identicos": true
+    }
+  ]
+}

@@ -1,86 +1,63 @@
 # Observatorio de Videojuegos — Edición Phantom Thieves (Persona 5 UI)
 
-Aplicación web interactiva de minería de datos construida con **Python**, **Streamlit**, **Plotly** y **scikit-learn**, diseñada bajo la identidad visual y sonora de **Persona 5 (Phantom Thieves / UI Shujin)**.
+Proyecto de minería de datos sobre un catálogo curado de videojuegos de Backloggd y Metacritic (1,117 registros, 1,114 elegibles). Contiene un pipeline reproducible (inspección, limpieza, clustering, clasificación) y una app Streamlit con estética Persona 5.
 
-Analiza la relación entre la recepción comunitaria (`Rating` en Backloggd), la crítica especializada (`Metacritic Rating`) y las señales de tracción de jugadores (`Plays`, `Playing`, `Backlogs`, `Wishlist`) sobre un catálogo curado de **1,117 títulos únicos** (depurados a partir de **1,512 registros históricos**).
+> Alcance: popularidad **relativa** (interacciones en Backloggd) y brecha usuarios–prensa. No mide ventas ni éxito comercial. Resultados y límites: [`reports/evaluacion.md`](reports/evaluacion.md).
 
----
-
-## 1. Arquitectura y Estructura del Repositorio
-
-Todas las rutas se resuelven de forma estrictamente relativa a la raíz de `Final/` mediante `pathlib.Path`, garantizando portabilidad total entre entornos locales (macOS, Linux, Windows) y **Streamlit Community Cloud**:
-
-```text
-Final/
-├── app.py                      # Página 1: Inicio (Hero P5, propósito, KPIs y callout de sesgos)
-├── pages/
-│   ├── 1_Exploracion.py        # Página 2: EDA logarítmico, brecha usuarios-crítica y clustering
-│   ├── 2_Prediccion.py         # Página 3: Menú de Batalla P5 (inferencia + 5 NearestNeighbors)
-│   └── 3_Acerca_del_modelo.py  # Página 4: Comparativa de modelos, matriz de confusión e importancia
-├── assets/
-│   ├── fonts/                  # Persona5main.ttf (inyectada vía Base64)
-│   ├── audio/                  # select.mp3, background.mp3 (Velvet Audio Console)
-│   ├── img/                    # hero.png, card.png, jokerface2.png, char1-3.png, icons
-│   └── css/                    # persona5.css (polígonos irregulares, Calling Cards, hover invertido)
-├── .streamlit/
-│   └── config.toml             # Tema oscuro P5 (primary #d92323, bg #0d0d0d)
-├── data/
-│   ├── raw/                    # games_curated.csv (fuente maestra inmutable)
-│   ├── historical/             # games_actualizado_metacritic.csv (trazabilidad 1,512 filas)
-│   └── clean/                  # games_curated.csv, dataset_depurado.csv, dataset_con_clusters.csv
-├── models/                     # modelo_popularidad.joblib, vecinos_popularidad.joblib, metadata.json
-├── reports/                    # Métricas, correlaciones BH-FDR, perfiles y manifest.json
-├── src/                        # Pipeline canónico (01_inspeccion a 04_modelo), ui.py y similitud.py
-├── tests/                      # Suite automatizada pytest + Streamlit AppTest
-└── requirements.txt            # Dependencias con versiones fijas (scikit-learn==1.9.1)
-```
-
----
-
-## 2. Requisitos e Instalación
-
-1. **Crear y activar un entorno virtual** (Python 3.11+ / 3.14):
-   ```bash
-   cd Final
-   python3 -m venv .venv
-   source .venv/bin/activate  # En Windows: .venv\Scripts\activate
-   ```
-
-2. **Instalar dependencias con versiones fijas** (la versión de `scikit-learn==1.9.1` coincide con `models/metadata.json`):
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. **(Opcional) Regenerar todos los artefactos de datos, clustering y modelos desde cero:**
-   Si falta algún archivo en `data/clean/`, `models/` o `reports/`, la interfaz mostrará una pantalla temática **`CRITICAL ALERT // MISSION FAILED`** indicando ejecutar:
-   ```bash
-   python -m src.pipeline
-   ```
-
----
-
-## 3. Ejecución de la Aplicación Web
-
-Desde el directorio `Final/`, ejecuta:
+## 1. Ejecución rápida
 
 ```bash
-streamlit run app.py
+cd Final
+python3 -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+streamlit run app.py          # http://localhost:8501
+pytest -q                     # pruebas
 ```
+> [!NOTE]
+> En caso de regenerar datos, clústeres y modelos es necesario ejecutar el script `python -m src.pipeline`.
 
-La aplicación abrirá automáticamente en tu navegador (por defecto en `http://localhost:8501`).
+`requirements.txt` fija las versiones (`scikit-learn==1.9.1`, igual que `models/metadata.json`). `requirements-lock.txt` guarda el entorno completo. Se validó con Python 3.14. Los entornos `.venv`, `.venv314` y `.cache` no se versionan.
 
-### Navegación de Páginas
-- **Inicio (`app.py`):** Cabecera Hero *"Take Your Heart"*, contexto ejecutivo sobre la brecha crítica y riesgos en modelos *GaaS*, tarjetas KPI angulares (1,117 títulos únicos, rango 1980–2025, géneros y organizaciones), advertencia de sesgo de supervivencia y explorador rápido del catálogo.
-- **Exploración (`pages/1_Exploracion.py`):** Filtros tácticos en barra lateral (género, década, rangos de calificación), distribuciones logarítmicas (`Plays`, `Wishlist`, `Backlogs`), diagrama de dispersión/densidad `Rating` vs. `Metacritic`, ranking de brecha usuarios-crítica (`Rating × 20 − Metacritic`) por género y estudio, y proyección PCA 2D de clustering (`K-Means` y `DBSCAN`).
-- **Predicción (`pages/2_Prediccion.py`):** Formulario estilo *Menú de Batalla P5* con validación de entrada, probabilidades del clasificador supervisado (`RandomForestClassifier`), perfil de mercado por cluster, los **5 videojuegos más similares** (`NearestNeighbors` ajustado exclusivamente en entrenamiento), brecha típica contextual del género y leyenda legal obligatoria.
-- **Acerca del Modelo (`pages/3_Acerca_del_modelo.py`):** Lectura dinámica de `models/metadata.json` y `reports/`, tabla y gráfico comparativo (`DummyClassifier`, `CategoricalNB`, `DecisionTreeClassifier`, `RandomForestClassifier`), mapa de calor de la matriz de confusión (`n = 222` en prueba) e importancia por permutación (`Permutation Importance`).
+## 2. Código fuente (`src/`)
 
----
+| Archivo | Función |
+|---|---|
+| `pipeline.py` | Orquesta 01 → 02 → 03 → 04, escribe `reports/manifest.json` con hashes y `huella_pipeline()` (hash de `src/*.py` + `requirements.txt`). |
+| `01_inspeccion.py` | Esquema, procedencia de notas, seis figuras EDA → `reports/inspeccion.md/json`, `figures/`. |
+| `02_limpieza.py` | Valida el maestro, genera `dataset_depurado.csv`, `generos_largo.csv` y `limpieza_log.md`. |
+| `procedencia.py` | Reconstruye 1,512 → 1,117 filas, descartes y conflictos históricos (117, 140, 296). |
+| `03_clustering.py` | Correlaciones (Pearson/Spearman, mín. 20 pares, corrección BH), K-Means k = 2…10, DBSCAN, PCA, sensibilidad por título → `reports/clustering*.csv/md`, `dataset_con_clusters.csv`. |
+| `comparar_weka.py` | K-Means de Weka 3.8.6 por CLI sobre el mismo espacio (`--descargar` baja los JAR) → `reports/weka/`. |
+| `objetivo.py` | Define el índice de popularidad (promedio de rangos percentiles de Plays, Wishlist, Backlogs) y los terciles, ajustados solo con entrenamiento. |
+| `features.py` | Preprocesamiento: géneros multi-hot, estudio, década, notas con mediana. |
+| `04_modelo.py` | Compara Dummy, CategoricalNB, DecisionTree y RandomForest con `StratifiedGroupKFold` de 10 pliegues. Guarda `models/`. |
+| `similitud.py` | `NearestNeighbors` en el espacio predictivo, solo con entrenamiento. |
+| `config.py`, `data.py`, `analysis.py`, `modeling.py` | Rutas, carga con caché y adaptadores para la app. |
+| `ui.py` | Tema Persona 5: CSS, fuente en Base64, menú lateral, audio, tema Plotly. |
 
-## 4. Pruebas Automatizadas
+## 3. Datos, modelos y reportes
 
-Para verificar la integridad científica, ausencia de fuga de información y renderizado de las 4 páginas con `AppTest`:
+- `data/raw/games_curated.csv`: maestro inmutable (42 columnas).
+- `data/historical/`: antecedente de 1,512 filas, solo para auditoría.
+- `data/clean/`: `dataset_depurado.csv`, `dataset_con_clusters.csv`, `generos_largo.csv`, `juegos_modelo.csv` y exportaciones para Weka/Orange.
+- `data/export/`: `clustering.*` y `clasificacion.*` (CSV, ARFF, TAB) usados en Weka.
+- `models/`: `modelo_popularidad.joblib` (Pipeline portátil con cloudpickle), `vecinos_popularidad.joblib`, `clustering_03.joblib`, `metadata.json`, `referencias_folds.json`.
+- `reports/`: `evaluacion.md` (evaluación final), `inspeccion.md`, `limpieza_log.md`, `clustering.md`, `modelo.md`, `hallazgos.md`, `comparacion_weka.md`, `weka/` (corridas gráficas de Weka 3.8.7), `orange/` (diagnóstico de cierres), `tables/comparativo_herramientas.csv`, `manifest.json`. Las carpetas `archivo_*` guardan resultados anteriores a las auditorías.
+- `tests/`: pruebas de limpieza, clustering, modelo, auditorías y pipeline.
 
-```bash
-pytest -q
-```
+## 4. Aplicación web
+
+| Página | Archivo | Contenido |
+|---|---|---|
+| Inicio | `app.py` | Hero, propósito, KPIs, aviso de limitaciones. |
+| Exploración | `pages/1_Exploracion.py` | Filtros, distribuciones logarítmicas, Rating frente a Metacritic, brecha por género y estudio, clusters. |
+| Predicción | `pages/2_Prediccion.py` | Formulario, probabilidades (bajo/medio/alto, sin calibrar) y 5 vecinos similares. |
+| Acerca del modelo | `pages/3_Acerca_del_modelo.py` | Comparación de modelos, matriz de confusión, importancia por permutación. |
+
+Recursos: `assets/css/persona5.css`, `assets/js/interacciones.js`, `assets/fonts/Persona5main.ttf`, `assets/audio/` (BGM y efecto de selección), `assets/img/`. El tema oscuro está en `.streamlit/config.toml`. Los modelos y datos se cachean con `@st.cache_resource` y `@st.cache_data`. Todas las rutas usan `pathlib.Path` relativo a `Final/`. Si falta un artefacto, la app indica ejecutar `python -m src.pipeline`.
+
+## 5. Notas importantes
+
+- No hay despliegue público (ver `reports/despliegue.md`).
+- Orange no tiene corridas verificadas. Weka sí (ver `reports/weka/resumen_gui.md`).
+- No editar `src/*.py` ni `requirements.txt` sin regenerar el pipeline, porque su hash se registra en el manifiesto.
