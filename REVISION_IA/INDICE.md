@@ -74,7 +74,7 @@ Los CSV/ARFF/TAB, binarios, imágenes, ZIP y fuentes grandes se enumeran con tam
 
 - [Final/reports/archivo_pre_auditoria/reports/figures](Final/reports/archivo_pre_auditoria/reports/figures/CONTEXTO.md): 2 archivos.
 
-- [Final/reports/figures](Final/reports/figures/CONTEXTO.md): 9 archivos.
+- [Final/reports/figures](Final/reports/figures/CONTEXTO.md): 11 archivos.
 
 - [Final/reports/orange](Final/reports/orange/CONTEXTO.md): 6 archivos.
 

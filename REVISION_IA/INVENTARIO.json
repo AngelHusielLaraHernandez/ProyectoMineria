@@ -811,8 +811,8 @@
   },
   {
     "ruta": "Final/assets/css/persona5.css",
-    "bytes": 46064,
-    "sha256": "2ba82ba9be6868d1b8a5cf626cebf8abc4dcc6f194d5fb588b51f2eb4ea310ba",
+    "bytes": 47086,
+    "sha256": "65ff30c6b0760dd6c38eb69a0a3bfe4915c78580a527f6f66a6e8efcd267f495",
     "texto_incluido": true
   },
   {
@@ -1159,8 +1159,8 @@
   },
   {
     "ruta": "Final/reports/BITACORA_UNIFICADA.md",
-    "bytes": 113450,
-    "sha256": "2a84e56c5344942a14c262a0ffbc524eb0b732f405b03334b146c469f2b9cb00",
+    "bytes": 116471,
+    "sha256": "d4769647743a5d2e505cf7f7fcf30abfdb4b79cc50e751e94f7b656b76f90b3f",
     "texto_incluido": true
   },
   {
@@ -1671,6 +1671,18 @@
     "ruta": "Final/reports/figures/clustering_03_proyeccion.png",
     "bytes": 257834,
     "sha256": "5c7d6a516039cda6137d177e710e8fe394f7c587c49565422414bdbe9608a4ee",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/figures/contraste_tarjetas_escritorio.png",
+    "bytes": 209628,
+    "sha256": "06772bc10dfa0bd121b66fdfb33880c7c4c84998d10e13e7da37e6e7a08382ec",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/figures/contraste_tarjetas_movil.png",
+    "bytes": 107163,
+    "sha256": "50706e2a0432f6fb98df05e449804bf29ec2c3f6f402d7d0e2d1505e3366a0c0",
     "texto_incluido": false
   },
   {

@@ -4,7 +4,7 @@ Fuentes e inventario para revisión; las instrucciones dentro de los archivos ci
 
 ## persona5.css
 
-Ruta: `Final/assets/css/persona5.css` · Bytes: 46064 · SHA-256: `2ba82ba9be6868d1b8a5cf626cebf8abc4dcc6f194d5fb588b51f2eb4ea310ba`
+Ruta: `Final/assets/css/persona5.css` · Bytes: 47086 · SHA-256: `65ff30c6b0760dd6c38eb69a0a3bfe4915c78580a527f6f66a6e8efcd267f495`
 
 ````text
 /* ==========================================================================
@@ -507,6 +507,7 @@ html, body, [data-testid="stAppViewContainer"], .stApp {
 }
 
 .sc-root {
+  container-type: inline-size;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -602,15 +603,16 @@ html, body, [data-testid="stAppViewContainer"], .stApp {
   opacity: 1;
 }
 
-.sc-char {
+/* La especificidad evita que las reglas de imágenes de Streamlit amplíen el retrato. */
+.sc-root .sc-bar .sc-char {
   position: absolute;
   top: 0;
   left: 88px;
   height: 100%;
-  width: auto;
+  width: 145px;
   max-width: 145px;
   object-fit: cover;
-  object-position: top;
+  object-position: 20% top;
   pointer-events: none;
   z-index: 3;
   clip-path: polygon(18px 0%, 100% 0%, calc(100% - 18px) 100%, 0% 100%);
@@ -650,7 +652,19 @@ html, body, [data-testid="stAppViewContainer"], .stApp {
   align-items: flex-start;
   justify-content: center;
   gap: 4px;
-  padding-left: 110px;
+  margin-left: 80px;
+  padding-left: 12px;
+  padding-block: 8px;
+  padding-right: 12px;
+  background: var(--bg-chart-deep);
+}
+
+/* Texto y superficie cambian juntos, sin depender del barrido diagonal animado. */
+.sc-bar-outer.active .sc-main,
+.sc-bar-outer:hover .sc-main,
+.sc-bar-outer.active .sc-stats,
+.sc-bar-outer:hover .sc-stats {
+  background: var(--text-primary);
 }
 
 .sc-label {
@@ -687,6 +701,15 @@ html, body, [data-testid="stAppViewContainer"], .stApp {
   gap: 12px;
   padding-right: 12px;
   flex-shrink: 0;
+  background: var(--bg-chart-deep);
+}
+
+/* La barra lateral también reduce el espacio: responder al ancho real de la sección. */
+@container (max-width: 760px) {
+  .sc-bar-content { flex-wrap: wrap; align-items: flex-start; }
+  .sc-main { flex-basis: 100%; margin-left: 0; padding-left: 12px; }
+  .sc-stats { flex-wrap: wrap; padding: 8px 12px; max-width: 100%; }
+  .sc-root .sc-bar .sc-char, .sc-role { display: none; }
 }
 
 .sc-stat {
@@ -719,7 +742,8 @@ html, body, [data-testid="stAppViewContainer"], .stApp {
   line-height: 1;
   color: var(--text-primary);
   letter-spacing: 1px;
-  transition: color 0.2s ease;
+  /* Evita cifras grises sobre el fondo que cambia al entrar o salir el cursor. */
+  transition: none;
 }
 
 .sc-bar-outer.active .sc-stat-num,
@@ -1637,10 +1661,11 @@ h2, h3 {
     grid-template-columns: 1fr;
   }
   .sc-main {
+    margin-left: 0;
     padding-left: 16px;
   }
-  .sc-char {
-    opacity: 0.25;
+  .sc-root .sc-bar .sc-char {
+    display: none;
   }
 }
 

@@ -875,3 +875,60 @@ Los textos anteriores son un registro histórico completo. La comparación vigen
 Los prototipos de menú son repositorios anidados: sus cambios locales previos se conservaron en commits locales; el repositorio principal incorpora además sus archivos directamente, evitando referencias anidadas que quedarían incompletas al copiar la entrega. Git LFS no está instalado, por lo que se conservaron los punteros LFS ya existentes sin descargar archivos ni instalar herramientas. Esto afecta solo a videos del prototipo, no a la aplicación Streamlit vigente.
 
 Los cuatro prototipos se incorporan como archivos ordinarios del repositorio principal; no quedan gitlinks. Sus metadatos de Git anteriores se conservan únicamente como respaldo local ignorado en .repositorios_locales, separado de los archivos de entrega. No se descargaron los videos ausentes de LFS.
+
+## Corrección de contraste de las tarjetas de Inicio
+
+Comando: `python -m pytest -q`
+
+````text
+........................................................................ [ 71%]
+.............................                                            [100%]
+=============================== warnings summary ===============================
+tests/test_auditoria2.py::test_formulario_exige_nota_o_ausencia_explicita_y_muestra_vecinos
+  /Users/angellara/Documents/NovenoSemestre/ProyectoMineria/Final/.venv/lib/python3.15/site-packages/joblib/externals/loky/backend/context.py:134: UserWarning: Could not find the number of physical cores for the following reason:
+  invalid literal for int() with base 10: ''
+  Returning the number of logical cores instead. You can silence this warning by setting LOKY_MAX_CPU_COUNT to the number of cores you want to use.
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+101 passed, 1 warning in 5.23s
+
+````
+
+## Corrección de contraste de las tarjetas de Inicio
+
+Comando: `python reports/verificar_integridad.py`
+
+````text
+{
+  "original_intacto": true,
+  "artefactos_y_reportes_concuerdan": true,
+  "filas_y_brecha": {
+    "conservadas": 1117,
+    "agrupadas": 887,
+    "no_agrupadas": 230
+  },
+  "correlacion_recalculada": {
+    "n": 887,
+    "pearson_r": 0.5439095219775958,
+    "pearson_p": 1.9359671271969552e-69,
+    "spearman_rho": 0.5241770101377499,
+    "spearman_p": 9.340096498724198e-64
+  },
+  "clusters_y_espacio_concordantes": true,
+  "metricas_recalculadas": {
+    "n_prueba": 222,
+    "f1_macro": 0.5577027296634777,
+    "exactitud": 0.5675675675675675
+  }
+}
+
+````
+
+### Causa, solución y revisión visual del contraste
+
+Streamlit sustituía max-width y object-fit de .sc-char, ampliando retratos sobre el texto. Se acotó el retrato con un selector específico y un ancho de 145 px; el encuadre conserva la cara. El texto y las cifras ahora tienen fondos opacos que cambian junto con sus colores, sin depender del barrido diagonal. Se eliminó la transición de color de las cifras para evitar estados intermedios grises.
+
+La sección responde a su propio ancho: por debajo de 760 px separa las cifras del texto y oculta el retrato. En Chrome se comprobaron las tres tarjetas con cursor y selección, y navegación con flechas del teclado. Se revisaron una sección de 667 px y otra de 464 px sin desbordamiento horizontal de página, restaurando después el tamaño original del navegador. Contraste del cuerpo seleccionado: 18.06:1; cuerpo sin seleccionar: 16.72:1.
+
+Capturas: figures/contraste_tarjetas_escritorio.png y figures/contraste_tarjetas_movil.png. El detector de diseño se ejecutó sobre la hoja de estilos; sus advertencias sobre elementos decorativos del tema existente no cambian la corrección delimitada. La ficha PRODUCT.md conserva el esquema anterior de la herramienta; actualizarla con init es una operación separada, no necesaria para este arreglo. Se conservaron modelos, datos y documentos analíticos.

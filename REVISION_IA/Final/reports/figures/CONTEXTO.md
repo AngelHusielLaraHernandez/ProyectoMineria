@@ -20,6 +20,18 @@ Ruta: `Final/reports/figures/clustering_03_proyeccion.png` · Bytes: 257834 · S
 
 Contenido no textual o tabla de datos: consultar el original para inspección visual o recálculo.
 
+## contraste_tarjetas_escritorio.png
+
+Ruta: `Final/reports/figures/contraste_tarjetas_escritorio.png` · Bytes: 209628 · SHA-256: `06772bc10dfa0bd121b66fdfb33880c7c4c84998d10e13e7da37e6e7a08382ec`
+
+Contenido no textual o tabla de datos: consultar el original para inspección visual o recálculo.
+
+## contraste_tarjetas_movil.png
+
+Ruta: `Final/reports/figures/contraste_tarjetas_movil.png` · Bytes: 107163 · SHA-256: `50706e2a0432f6fb98df05e449804bf29ec2c3f6f402d7d0e2d1505e3366a0c0`
+
+Contenido no textual o tabla de datos: consultar el original para inspección visual o recálculo.
+
 ## eda_decadas.png
 
 Ruta: `Final/reports/figures/eda_decadas.png` · Bytes: 22950 · SHA-256: `4f9f44af3109b8201b4b1a8e52376873a120008c81f86146e902683f230d97c2`
