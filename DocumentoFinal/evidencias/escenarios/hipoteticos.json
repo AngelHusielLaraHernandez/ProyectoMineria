@@ -1,0 +1,145 @@
+[
+  {
+    "id": "S1",
+    "escenario": "Notas bajas",
+    "generos": [
+      "Adventure",
+      "RPG"
+    ],
+    "organizaciones": [
+      "Otro"
+    ],
+    "decada": 2020,
+    "metacritic": 45,
+    "rating": 1.0,
+    "prediccion": "bajo",
+    "p_alto": 0.11482340781897761,
+    "p_bajo": 0.5996677783176304,
+    "p_medio": 0.28550881386339216
+  },
+  {
+    "id": "S2",
+    "escenario": "Notas altas",
+    "generos": [
+      "Adventure",
+      "RPG"
+    ],
+    "organizaciones": [
+      "Otro"
+    ],
+    "decada": 2020,
+    "metacritic": 99,
+    "rating": 4.8,
+    "prediccion": "alto",
+    "p_alto": 0.5408269453085124,
+    "p_bajo": 0.20861964106899933,
+    "p_medio": 0.25055341362248806
+  },
+  {
+    "id": "S3",
+    "escenario": "Usuarios altos y prensa baja",
+    "generos": [
+      "Adventure",
+      "RPG"
+    ],
+    "organizaciones": [
+      "Otro"
+    ],
+    "decada": 2020,
+    "metacritic": 45,
+    "rating": 4.8,
+    "prediccion": "bajo",
+    "p_alto": 0.20911329702511197,
+    "p_bajo": 0.4393136619116028,
+    "p_medio": 0.35157304106328496
+  },
+  {
+    "id": "S4",
+    "escenario": "Usuarios bajos y prensa alta",
+    "generos": [
+      "Adventure",
+      "RPG"
+    ],
+    "organizaciones": [
+      "Otro"
+    ],
+    "decada": 2020,
+    "metacritic": 99,
+    "rating": 1.0,
+    "prediccion": "alto",
+    "p_alto": 0.3824562843459407,
+    "p_bajo": 0.30789091633601195,
+    "p_medio": 0.30965279931804734
+  },
+  {
+    "id": "S5",
+    "escenario": "Usuarios altos sin prensa",
+    "generos": [
+      "Adventure",
+      "RPG"
+    ],
+    "organizaciones": [
+      "Otro"
+    ],
+    "decada": 2020,
+    "metacritic": null,
+    "rating": 4.8,
+    "prediccion": "bajo",
+    "p_alto": 0.2779815193893014,
+    "p_bajo": 0.44206113209632525,
+    "p_medio": 0.27995734851437365
+  },
+  {
+    "id": "S6",
+    "escenario": "Cambio de organización",
+    "generos": [
+      "Adventure",
+      "RPG"
+    ],
+    "organizaciones": [
+      "Nintendo"
+    ],
+    "decada": 2020,
+    "metacritic": 99,
+    "rating": 4.8,
+    "prediccion": "alto",
+    "p_alto": 0.587149162448355,
+    "p_bajo": 0.1514191359361513,
+    "p_medio": 0.2614317016154936
+  },
+  {
+    "id": "S7",
+    "escenario": "Cambio de década",
+    "generos": [
+      "Adventure",
+      "RPG"
+    ],
+    "organizaciones": [
+      "Otro"
+    ],
+    "decada": 1980,
+    "metacritic": 99,
+    "rating": 4.8,
+    "prediccion": "alto",
+    "p_alto": 0.5719369254431956,
+    "p_bajo": 0.1919206007241524,
+    "p_medio": 0.2361424738326517
+  },
+  {
+    "id": "S8",
+    "escenario": "Cambio de género",
+    "generos": [
+      "Shooter"
+    ],
+    "organizaciones": [
+      "Otro"
+    ],
+    "decada": 2020,
+    "metacritic": 99,
+    "rating": 4.8,
+    "prediccion": "alto",
+    "p_alto": 0.4966212185337543,
+    "p_bajo": 0.24060322520525224,
+    "p_medio": 0.2627755562609934
+  }
+]

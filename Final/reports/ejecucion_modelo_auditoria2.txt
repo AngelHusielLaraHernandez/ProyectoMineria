@@ -1,1 +1,0 @@
-Modelo guardado: RandomForestClassifier; entrenamiento=892, prueba=222, F1 macro=0.5577; referencia=0.1546.

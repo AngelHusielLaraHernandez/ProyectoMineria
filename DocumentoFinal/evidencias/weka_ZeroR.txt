@@ -1,0 +1,93 @@
+=== Run information ===
+
+Scheme:       weka.classifiers.rules.ZeroR 
+Relation:     clasificacion
+Instances:    892
+Attributes:   53
+              generos__Adventure
+              generos__RPG
+              generos__Shooter
+              generos__Platform
+              generos__Indie
+              generos__Puzzle
+              generos__Strategy
+              generos__Brawler
+              generos__Simulator
+              generos__Fighting
+              generos__Turn Based Strategy
+              generos__Arcade
+              generos__Visual Novel
+              generos__Racing
+              generos__Tactical
+              generos__Otro
+              generos__Sin dato
+              estudio__Nintendo
+              estudio__Capcom
+              estudio__Square Enix
+              estudio__Sega
+              estudio__Electronic Arts
+              estudio__Konami
+              estudio__Bandai Namco Entertainment
+              estudio__Activision
+              estudio__Ubisoft Entertainment
+              estudio__Atlus
+              estudio__Sony Interactive Entertainment
+              estudio__Nintendo EAD
+              estudio__Game Freak
+              estudio__WB Games
+              estudio__Bethesda Softworks
+              estudio__Sony Computer Entertainment
+              estudio__Square
+              estudio__Ubisoft Montreal
+              estudio__Intelligent Systems Co., Ltd.
+              estudio__Sonic Team
+              estudio__Sony Computer Entertainment, Inc. (SCEI)
+              estudio__Devolver Digital
+              estudio__FromSoftware
+              estudio__Annapurna Interactive
+              estudio__Microsoft Game Studios
+              estudio__Otro
+              estudio__Sin dato
+              decada__decada_-1.0
+              decada__decada_1980.0
+              decada__decada_1990.0
+              decada__decada_2000.0
+              decada__decada_2010.0
+              decada__decada_2020.0
+              notas__Metacritic Rating
+              notas__Rating
+              nivel_popularidad
+Test mode:    10-fold cross-validation
+
+=== Classifier model (full training set) ===
+
+ZeroR predicts class value: bajo
+
+Time taken to build model: 0 seconds
+
+=== Stratified cross-validation ===
+=== Summary ===
+
+Correctly Classified Instances         295               33.0717 %
+Incorrectly Classified Instances       597               66.9283 %
+Kappa statistic                         -0.0045
+Mean absolute error                      0.4444
+Root mean squared error                  0.4714
+Relative absolute error                100      %
+Root relative squared error            100      %
+Total Number of Instances              892     
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.293    0.303    0.326      0.293    0.309      -0.010   0.494     0.330     alto
+                 0.698    0.702    0.333      0.698    0.451      -0.004   0.495     0.332     bajo
+                 0.000    0.000    ?          0.000    ?          ?        0.494     0.330     medio
+Weighted Avg.    0.331    0.335    ?          0.331    ?          ?        0.495     0.331     
+
+=== Confusion Matrix ===
+
+   a   b   c   <-- classified as
+  87 210   0 |   a = alto
+  90 208   0 |   b = bajo
+  90 207   0 |   c = medio

@@ -19,6 +19,15 @@
 
 # Documento compilado
 *.pdf
+!DocumentoFinal/main.pdf
+!DocumentoFinal/evidencias/rubrica_proyecto.pdf
+
+# Intermedios de revisión y preferencias locales; las evidencias finales sí se conservan.
+DocumentoFinal/revision/cache_matplotlib/
+DocumentoFinal/revision/revisada/*.png
+Final/reports/revision_predicciones/render_documento/
+Final/reports/weka/.home/
+Final/reports/weka/.preferencias/
 
 # Archivos temporales de editores y del sistema
 .DS_Store
@@ -31,3 +40,11 @@
 # Claves y respuestas crudas de APIs
 .env
 Proyecto/data/external/
+.venv/
+.venv314/
+__pycache__/
+.pytest_cache/
+.cache/
+node_modules/
+.streamlit/secrets.toml
+.repositorios_locales/

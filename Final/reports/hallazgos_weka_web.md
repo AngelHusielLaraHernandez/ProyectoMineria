@@ -81,7 +81,7 @@ Se corrigieron las cifras atravesadas por barras de error en los gráficos de de
 
 La revisión del formulario añadió validación explícita de Rating de 0 a 5 y Metacritic de 0 a 100, conservando los nulos para la imputación entrenada. Se eliminó el ancho mínimo artificial de 2 % de las barras. Otro ahora significa organización no frecuente y no presume que sea un estudio independiente.
 
-Fuentes: pages/2_Prediccion.py; src/inferencia.py; reports/revision_graficas.md; revision_predicciones/casos_formulario.json.
+Fuentes: pages/2_Prediccion.py; src/inferencia.py; reports/BITACORA_UNIFICADA.md; revision_predicciones/casos_formulario.json.
 
 ## Verificación de las predicciones
 
@@ -145,4 +145,4 @@ Orange se descartó por cierres de la aplicación en Qt y Cocoa al usar selector
 
 La popularidad se refiere a rangos percentiles relativos de Plays, Wishlist y Backlogs. La muestra tiene sesgo de visibilidad comunitaria; Team no separa desarrolladores y publishers. Las notas con origen estimado se excluyen como evidencia independiente de prensa. Las columnas financieras estimadas del maestro no se utilizan para demostrar éxito comercial.
 
-Trazabilidad principal: data/raw/games_curated.csv; reports/inspeccion.md; reports/trazabilidad_historica.md; reports/weka/; reports/codex_log.md; reports/tables/comparativo_herramientas.csv; reports/revision_predicciones/.
+Trazabilidad principal: data/raw/games_curated.csv; reports/inspeccion.md; reports/trazabilidad_historica.md; reports/weka/; reports/BITACORA_UNIFICADA.md; reports/tables/comparativo_herramientas.csv; reports/revision_predicciones/.

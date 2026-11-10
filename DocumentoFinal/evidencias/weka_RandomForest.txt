@@ -1,0 +1,97 @@
+=== Run information ===
+
+Scheme:       weka.classifiers.trees.RandomForest -P 100 -I 100 -num-slots 1 -K 0 -M 1.0 -V 0.001 -S 1
+Relation:     clasificacion
+Instances:    892
+Attributes:   53
+              generos__Adventure
+              generos__RPG
+              generos__Shooter
+              generos__Platform
+              generos__Indie
+              generos__Puzzle
+              generos__Strategy
+              generos__Brawler
+              generos__Simulator
+              generos__Fighting
+              generos__Turn Based Strategy
+              generos__Arcade
+              generos__Visual Novel
+              generos__Racing
+              generos__Tactical
+              generos__Otro
+              generos__Sin dato
+              estudio__Nintendo
+              estudio__Capcom
+              estudio__Square Enix
+              estudio__Sega
+              estudio__Electronic Arts
+              estudio__Konami
+              estudio__Bandai Namco Entertainment
+              estudio__Activision
+              estudio__Ubisoft Entertainment
+              estudio__Atlus
+              estudio__Sony Interactive Entertainment
+              estudio__Nintendo EAD
+              estudio__Game Freak
+              estudio__WB Games
+              estudio__Bethesda Softworks
+              estudio__Sony Computer Entertainment
+              estudio__Square
+              estudio__Ubisoft Montreal
+              estudio__Intelligent Systems Co., Ltd.
+              estudio__Sonic Team
+              estudio__Sony Computer Entertainment, Inc. (SCEI)
+              estudio__Devolver Digital
+              estudio__FromSoftware
+              estudio__Annapurna Interactive
+              estudio__Microsoft Game Studios
+              estudio__Otro
+              estudio__Sin dato
+              decada__decada_-1.0
+              decada__decada_1980.0
+              decada__decada_1990.0
+              decada__decada_2000.0
+              decada__decada_2010.0
+              decada__decada_2020.0
+              notas__Metacritic Rating
+              notas__Rating
+              nivel_popularidad
+Test mode:    10-fold cross-validation
+
+=== Classifier model (full training set) ===
+
+RandomForest
+
+Bagging with 100 iterations and base learner
+
+weka.classifiers.trees.RandomTree -K 0 -M 1.0 -V 0.001 -S 1 -do-not-check-capabilities
+
+Time taken to build model: 0.2 seconds
+
+=== Stratified cross-validation ===
+=== Summary ===
+
+Correctly Classified Instances         477               53.4753 %
+Incorrectly Classified Instances       415               46.5247 %
+Kappa statistic                          0.3021
+Mean absolute error                      0.3619
+Root mean squared error                  0.4355
+Relative absolute error                 81.4156 %
+Root relative squared error             92.3813 %
+Total Number of Instances              892     
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.657    0.215    0.604      0.657    0.629      0.433    0.816     0.679     alto
+                 0.587    0.219    0.574      0.587    0.580      0.366    0.769     0.613     bajo
+                 0.360    0.264    0.405      0.360    0.381      0.100    0.596     0.402     medio
+Weighted Avg.    0.535    0.233    0.528      0.535    0.530      0.300    0.727     0.565     
+
+=== Confusion Matrix ===
+
+   a   b   c   <-- classified as
+ 195  29  73 |   a = alto
+  39 175  84 |   b = bajo
+  89 101 107 |   c = medio

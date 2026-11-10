@@ -1,0 +1,170 @@
+[
+  {
+    "id_juego": 1335,
+    "titulo": "Resident Evil 4: Wii Edition",
+    "real": "bajo",
+    "prediccion": "alto",
+    "acierto": false,
+    "probabilidad_maxima": 0.6684665448473315,
+    "Plays": 1100.0,
+    "Wishlist": 76.0,
+    "Backlogs": 213.0,
+    "indice": 0.132660687593423,
+    "generos": [
+      "Adventure",
+      "Shooter"
+    ],
+    "estudio": [
+      "Capcom Production Studio 4",
+      "Capcom"
+    ],
+    "decada": 2000,
+    "Rating": 4.4,
+    "Metacritic": 91.0,
+    "probabilidades": {
+      "alto": 0.6684665448473315,
+      "bajo": 0.08935785908152606,
+      "medio": 0.24217559607114222
+    }
+  },
+  {
+    "id_juego": 1054,
+    "titulo": "Pokémon Unite",
+    "real": "bajo",
+    "prediccion": "bajo",
+    "acierto": true,
+    "probabilidad_maxima": 0.7715811749543512,
+    "Plays": 4500.0,
+    "Wishlist": 65.0,
+    "Backlogs": 184.0,
+    "indice": 0.2702416542102641,
+    "generos": [
+      "MOBA"
+    ],
+    "estudio": [
+      "Timi",
+      "The Pokémon Company"
+    ],
+    "decada": 2020,
+    "Rating": 2.7,
+    "Metacritic": 70.0,
+    "probabilidades": {
+      "alto": 0.05151646177093161,
+      "bajo": 0.7715811749543512,
+      "medio": 0.17690236327471673
+    }
+  },
+  {
+    "id_juego": 658,
+    "titulo": "Uncharted: The Nathan Drake Collection",
+    "real": "medio",
+    "prediccion": "alto",
+    "acierto": false,
+    "probabilidad_maxima": 0.6983971867015208,
+    "Plays": 4300.0,
+    "Wishlist": 319.0,
+    "Backlogs": 1300.0,
+    "indice": 0.570814648729447,
+    "generos": [
+      "Adventure",
+      "Platform",
+      "Shooter"
+    ],
+    "estudio": [
+      "Naughty Dog",
+      "Sony Computer Entertainment, Inc. (SCEI)"
+    ],
+    "decada": 2010,
+    "Rating": 4.1,
+    "Metacritic": 86.0,
+    "probabilidades": {
+      "alto": 0.6983971867015208,
+      "bajo": 0.09558917580731595,
+      "medio": 0.20601363749116358
+    }
+  },
+  {
+    "id_juego": 1050,
+    "titulo": "Pokémon Red",
+    "real": "medio",
+    "prediccion": "medio",
+    "acierto": true,
+    "probabilidad_maxima": 0.5198829656017434,
+    "Plays": 8800.0,
+    "Wishlist": 154.0,
+    "Backlogs": 425.0,
+    "indice": 0.4481502242152466,
+    "generos": [
+      "Adventure",
+      "RPG",
+      "Turn Based Strategy"
+    ],
+    "estudio": [
+      "Nintendo",
+      "Game Freak"
+    ],
+    "decada": 1990,
+    "Rating": 3.4,
+    "Metacritic": null,
+    "probabilidades": {
+      "alto": 0.25742434866068536,
+      "bajo": 0.22269268573757106,
+      "medio": 0.5198829656017434
+    }
+  },
+  {
+    "id_juego": 1057,
+    "titulo": "Jet Set Radio",
+    "real": "alto",
+    "prediccion": "bajo",
+    "acierto": false,
+    "probabilidad_maxima": 0.49152792529567263,
+    "Plays": 3500.0,
+    "Wishlist": 671.0,
+    "Backlogs": 1900.0,
+    "indice": 0.6787849669015588,
+    "generos": [
+      "Platform"
+    ],
+    "estudio": [
+      "BlitWorks",
+      "Sega"
+    ],
+    "decada": 2010,
+    "Rating": 3.7,
+    "Metacritic": 70.0,
+    "probabilidades": {
+      "alto": 0.13003255527395496,
+      "bajo": 0.49152792529567263,
+      "medio": 0.3784395194303722
+    }
+  },
+  {
+    "id_juego": 78,
+    "titulo": "The Last of Us",
+    "real": "alto",
+    "prediccion": "alto",
+    "acierto": true,
+    "probabilidad_maxima": 0.8235016355289921,
+    "Plays": 17000.0,
+    "Wishlist": 1400.0,
+    "Backlogs": 2000.0,
+    "indice": 0.8959267563527654,
+    "generos": [
+      "Adventure",
+      "Shooter"
+    ],
+    "estudio": [
+      "Naughty Dog",
+      "Sony Computer Entertainment"
+    ],
+    "decada": 2010,
+    "Rating": 4.2,
+    "Metacritic": 95.0,
+    "probabilidades": {
+      "alto": 0.8235016355289921,
+      "bajo": 0.053934428207451146,
+      "medio": 0.12256393626355631
+    }
+  }
+]

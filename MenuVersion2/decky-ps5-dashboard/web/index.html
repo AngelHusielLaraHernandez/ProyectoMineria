@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PS5 Dashboard Web</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="dashboard">
+      <div class="backdrop" id="backdrop"></div>
+      <div class="shade"></div>
+
+      <header class="topbar">
+        <nav class="tabs" aria-label="Secciones">
+          <button class="tab active" data-tab="games">Juegos</button>
+          <button class="tab" data-tab="media">Medios</button>
+          <button class="tab" data-tab="library">Biblioteca</button>
+        </nav>
+        <div class="top-actions">
+          <button class="icon-button" id="searchButton" aria-label="Buscar">⌕</button>
+          <button class="icon-button" id="settingsButton" aria-label="Ajustes">⚙</button>
+          <button class="avatar" id="profileButton" aria-label="Perfil">A</button>
+        </div>
+      </header>
+
+      <section class="view active" id="gamesView">
+        <div class="game-strip" id="gameStrip"></div>
+        <div class="hero-content">
+          <div class="hero-copy">
+            <p class="eyebrow">JUGADO RECIENTEMENTE</p>
+            <h1 id="gameTitle"></h1>
+            <p class="game-meta" id="gameMeta"></p>
+            <div class="hero-actions">
+              <button class="play-button" id="playButton">▶ <span>Jugar</span></button>
+              <button class="more-button" id="moreButton" aria-label="Más opciones">•••</button>
+            </div>
+            <div class="cards" id="infoCards"></div>
+          </div>
+        </div>
+        <section class="lower-section">
+          <h2>Continuar jugando</h2>
+          <div class="lower-row" id="lowerRow"></div>
+        </section>
+      </section>
+
+      <section class="view" id="mediaView">
+        <div class="section-page">
+          <p class="eyebrow">EXPLORAR</p>
+          <h1>Medios</h1>
+          <div class="media-grid">
+            <button class="media-card featured">Galería multimedia <span>Capturas y vídeos</span></button>
+            <button class="media-card">Tienda <span>Descubre nuevos juegos</span></button>
+            <button class="media-card">Amigos <span>Comprueba quién está conectado</span></button>
+            <button class="media-card">Descargas <span>Actualizaciones pendientes</span></button>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" id="libraryView">
+        <div class="section-page">
+          <p class="eyebrow">TU COLECCIÓN</p>
+          <h1>Biblioteca de juegos</h1>
+          <div class="filters">
+            <button class="filter active">Todos</button>
+            <button class="filter">Instalados</button>
+            <button class="filter">Favoritos</button>
+            <button class="filter">Apps</button>
+          </div>
+          <div class="library-grid" id="libraryGrid"></div>
+        </div>
+      </section>
+
+      <div class="toast" id="toast" role="status"></div>
+      <dialog id="searchDialog">
+        <form method="dialog">
+          <button class="close" aria-label="Cerrar">×</button>
+          <p class="eyebrow">BUSCAR</p>
+          <h2>Encuentra un juego</h2>
+          <input id="searchInput" type="search" placeholder="Escribe un título..." autofocus />
+          <p class="dialog-hint">Prueba con Spider-Man, God of War o Returnal.</p>
+        </form>
+      </dialog>
+    </main>
+    <script src="./app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,3860 @@
+[
+  {
+    "ruta": ".gitignore",
+    "bytes": 854,
+    "sha256": "aad6d0d5ba7ea3f16c751406489e0b2cdc75d3c49a272c4211ce3ebc46f6a215",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "README.md",
+    "bytes": 2234,
+    "sha256": "7bbaa11ec0377d49bf7940581098710baeffb688a504300a6d5691f462f25068",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "DocumentoFinal/BITACORA_UNIFICADA.md",
+    "bytes": 158808,
+    "sha256": "277ed97567851a21b9cd1e263637e10e978002010cabc9faf9acfb3bb07065de",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "DocumentoFinal/MANIFIESTO.json",
+    "bytes": 7508,
+    "sha256": "7c7e7dfed3ec4d59439f48499ecd1e744bf9569524eab9aeb1b46f54024523d3",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "DocumentoFinal/Portada.tex",
+    "bytes": 1525,
+    "sha256": "b3e42fed7089a96b098d943df8e31757520f5fdb26d7ffdbafe0f9f85259dd39",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "DocumentoFinal/ProyectoMineriaDatos_LaTeX.zip",
+    "bytes": 9506293,
+    "sha256": "bbfb3791826500203c74cd6cd757891920b9aa7ea7134043baef45291c4744df",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/README.md",
+    "bytes": 2274,
+    "sha256": "d88e0996dea891007e36552e6f5ca26874d6c850bd94b0ccb3a0ce61ca8bd89d",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "DocumentoFinal/ajustar_formato_redaccion.py",
+    "bytes": 23380,
+    "sha256": "8dc5729db16290837e88ae14b8d6e3c202f77e571d1935b138778bb96caf33bd",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "DocumentoFinal/analizar_escenarios.py",
+    "bytes": 4614,
+    "sha256": "41dc3c586a5b23f396dae38bf53f6622e61df0bb8e6a65a737047fae3a366a01",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "DocumentoFinal/generar_documento.py",
+    "bytes": 48196,
+    "sha256": "351f04d33a50c2ecf8575826ea23e91efd442d9233c4426557669e887b746901",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "DocumentoFinal/main.pdf",
+    "bytes": 4491883,
+    "sha256": "b9100eba375c8bb3a2a30f88a5fda4932cec022651a178b67c6881be12c71626",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/main.tex",
+    "bytes": 67155,
+    "sha256": "0258b1bcbf7a1060d5a22dce03aa0e37a1a0c7a8d9b7075b499cd60d968a9a14",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "DocumentoFinal/referencias.bib",
+    "bytes": 2589,
+    "sha256": "a10e45204dbea594b675a723f8a97a91a56a1a0e56bab9cd61933a92da039b8f",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "DocumentoFinal/evidencias/BITACORA_UNIFICADA.md",
+    "bytes": 1265,
+    "sha256": "9e2c60880eb9761c3d68d33e0955be14856d39029ad99cc391db1f6ba85bc4f1",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "DocumentoFinal/evidencias/auditoria.json",
+    "bytes": 690,
+    "sha256": "32b012b07dc1ceb64c76dbce53f2edd2b63d9322a23962af7f8019405d11edc2",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "DocumentoFinal/evidencias/clustering.md",
+    "bytes": 21886,
+    "sha256": "9f9f8a377f6920035fb8388546e68118bb28dc9e35924c4de2c5b6b8f944193d",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "DocumentoFinal/evidencias/comparativo_herramientas.csv",
+    "bytes": 14198,
+    "sha256": "16e8e53c939be9db1802c5da0d55f5c474484408a5b3dc5aa4f3ac5413066893",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/evidencias/decision.json",
+    "bytes": 1000,
+    "sha256": "cd3c19e80e1eef1cd9b55801e659edd5d653e8dc0450b2cf2ef08ed5dfcf9e38",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "DocumentoFinal/evidencias/inspeccion.md",
+    "bytes": 3232,
+    "sha256": "52ae5a3d981eb4808a1107714f45469794e804b3222ab3a0e0c18b2e27a12c2b",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "DocumentoFinal/evidencias/integridad_final.json",
+    "bytes": 169,
+    "sha256": "90e1137d1c8fcc542b15d7f84670248c35134f5288086b6c057dc1ab4667a7b5",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "DocumentoFinal/evidencias/limpieza_log.md",
+    "bytes": 7436,
+    "sha256": "dd4b45eb48ce4f385f86d51166ea06cc0347fe85bf67370a74a70b86f8ae8d45",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "DocumentoFinal/evidencias/metadata.json",
+    "bytes": 63731,
+    "sha256": "07ba1ce664747e68c06c7ab9dc799e8ccb565cf71e7222b3a6de9f8548eed2fa",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "DocumentoFinal/evidencias/modelo.md",
+    "bytes": 9206,
+    "sha256": "1c384f25685efe5bd987fe7249452b892edf120a035f1fbaffb06ee74a5bb96d",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "DocumentoFinal/evidencias/rubrica_proyecto.pdf",
+    "bytes": 81737,
+    "sha256": "dd62ef24a2822d83205eb0352095519af4d94900e146df55d207b23b0c892dbc",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/evidencias/trazabilidad_historica.md",
+    "bytes": 1744,
+    "sha256": "59ab6b572a61f5b3b2eba4dbde7a599a47e9f02cbc5c239e6daf1094fc2f2a9a",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "DocumentoFinal/evidencias/weka_J48.txt",
+    "bytes": 17362,
+    "sha256": "88ceace97d84c7c67628688f9876a4d3de22c07935e6111dd954f3c401a88c8c",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "DocumentoFinal/evidencias/weka_NaiveBayes.txt",
+    "bytes": 20846,
+    "sha256": "5aac3e1f7f662eb504b71c7f77d1e31f2121a15ba7771c97b630a65bfd3027c6",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "DocumentoFinal/evidencias/weka_RandomForest.txt",
+    "bytes": 3521,
+    "sha256": "bed5274c54f92bc20ff70c7d64d600839b65e76ea4860e88d8e003dcd5bb47df",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "DocumentoFinal/evidencias/weka_ZeroR.txt",
+    "bytes": 3346,
+    "sha256": "abc7807ce09733680834ddcfcbf72f7a71f72e62ad1d519db547385bc4fe1cad",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "DocumentoFinal/evidencias/weka_dbscan.txt",
+    "bytes": 76228,
+    "sha256": "7d0866476ee480a90daee39e1469861c532b52da9dbef7bfb9c05eedcf11de94",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "DocumentoFinal/evidencias/weka_kmeans.txt",
+    "bytes": 1554,
+    "sha256": "b6be17cf0eaf134d171be3850e8e4c683ef631592cb3e142195ae0358191983a",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "DocumentoFinal/evidencias/escenarios/BITACORA_UNIFICADA.md",
+    "bytes": 1538,
+    "sha256": "b499805b116a5bb16a7d87810de44b6883fc2b46bf21c34240656ae401ab3af3",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "DocumentoFinal/evidencias/escenarios/contraejemplos.csv",
+    "bytes": 1763,
+    "sha256": "06367ca6046ea2e626ecf309f125f71aa9421b9d66b03c58d6900262f657dbdd",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/evidencias/escenarios/contraejemplos.json",
+    "bytes": 3684,
+    "sha256": "931cecb65532e3a1823da15569d6890713b5e82b3d67dc8e3e80086429ef6403",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "DocumentoFinal/evidencias/escenarios/hipoteticos.csv",
+    "bytes": 1149,
+    "sha256": "d55fc932ca7140456083308af47746a1efb11005d6820791b2434927eff6d117",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/evidencias/escenarios/hipoteticos.json",
+    "bytes": 2835,
+    "sha256": "7c22668556909dace3401d5314190e7c1c257d0a4e99a47c9a3dac96984225bd",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "DocumentoFinal/evidencias/escenarios/rejilla.csv",
+    "bytes": 1835,
+    "sha256": "2ce1fadc1cd4b7afdf169e9cdd2ab6813971c4fded353c3a05470277e3baa41f",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/figuras/RandomForest.png",
+    "bytes": 675186,
+    "sha256": "75fd874d38afb1b00f10cf700ec2a5adede66120ac7d87f702d4d0c7a6367d8c",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/figuras/clustering_03_dbscan_kdistancia.png",
+    "bytes": 46042,
+    "sha256": "a93d6ab341dd4acb891beca3400aa92f323839b4c12db2a2976678e29d45dc3e",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/figuras/clustering_03_kmeans.png",
+    "bytes": 77963,
+    "sha256": "de7fbe2d10efb23f90f682d5edc829bd7c511f6992f94d672e6f09170bab75b7",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/figuras/clustering_03_proyeccion.png",
+    "bytes": 257834,
+    "sha256": "5c7d6a516039cda6137d177e710e8fe394f7c587c49565422414bdbe9608a4ee",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/figuras/dbscan_resultado.png",
+    "bytes": 955565,
+    "sha256": "a5b1fd50d6f42054ceff60a26a5528d8813b86d1efebff71e5d0053d85f30ee2",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/figuras/der.png",
+    "bytes": 210257,
+    "sha256": "99dbfff9fda6ba78364f314688169e8ea2260c59ec2398a77e5f130b6e43e983",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/figuras/eda_decadas.png",
+    "bytes": 22950,
+    "sha256": "4f9f44af3109b8201b4b1a8e52376873a120008c81f86146e902683f230d97c2",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/figuras/eda_generos_top15.png",
+    "bytes": 48049,
+    "sha256": "97e8cd9427a31665e88b23d81e01d315dd0569dc70d5e64018ee046be89ebcd1",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/figuras/eda_metacritic.png",
+    "bytes": 26557,
+    "sha256": "8e8f59559b5f1e3f7307f5e27d44866a85ebcf6109bb7336cfcebff178ba8aa2",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/figuras/eda_plays_log.png",
+    "bytes": 25053,
+    "sha256": "98fa2e089196009093ebb4b81541724bbbc532fcdd8298df130adc9dc7c87c61",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/figuras/eda_rating.png",
+    "bytes": 23622,
+    "sha256": "3816988b211c3dd994d0ea14b20e505d368d4cb60f0512ab71f0e0102478d623",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/figuras/eda_rating_vs_metacritic.png",
+    "bytes": 61497,
+    "sha256": "5c53a6dd10e6ef5de174f9671e93246273a302280ba75a679568ad611b90ba44",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/figuras/escenario_S1.jpg",
+    "bytes": 140208,
+    "sha256": "f0030471221edf02f4585f21dae9415dce7da61817aa254103259b64f0ea686c",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/figuras/escenario_S2.jpg",
+    "bytes": 139509,
+    "sha256": "6a688c2b61121e2342250dabcf328b25d0b11f04ef5bee5f8ba868ade852ced1",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/figuras/escenario_S3.jpg",
+    "bytes": 140376,
+    "sha256": "9d866a73fc4a17293d7a5da45a04ebb0e806fda6bc64c53927c469ffd585b3f1",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/figuras/escenario_S4.jpg",
+    "bytes": 139630,
+    "sha256": "d1ae83c671e629b96ac4503ec33c604a61c812cdd46d36e52e74b12639a98e85",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/figuras/escenario_S5.jpg",
+    "bytes": 137005,
+    "sha256": "f1056822c3dee121815001cd29c2ae436655a817c7a89b5a21ea8b5c77e0cf67",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/figuras/exploracion_actual.jpg",
+    "bytes": 147885,
+    "sha256": "d8dabe6403e3f95ef4ca4c3dbc6271955107f444fc9daa3b7a28880ed0695207",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/figuras/formulario_verificado.jpg",
+    "bytes": 138668,
+    "sha256": "3cd54dcfd4cdbf08df46f28af97f92ecb43e198dccd9f2124cb5ad41220c383b",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/figuras/graficas_comparacion_corregida.jpg",
+    "bytes": 111632,
+    "sha256": "892d698cf3d396c3b073baf9f26b4f475a5294bb1ac6e4e6eb3a9a9e4f960c05",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/figuras/graficas_logaritmicas_corregidas.jpg",
+    "bytes": 120421,
+    "sha256": "996ea8350196b45432fab66f31facd042b0c8d620f734a94e1da6114c08d9d7d",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/figuras/graficas_movil_corregidas.jpg",
+    "bytes": 43548,
+    "sha256": "82b2455e83ab4e2dfef1dd9839f2b66bf22f4503c96a4c208025b1eb7bb67e5d",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/figuras/graficas_permutacion_corregida.jpg",
+    "bytes": 120924,
+    "sha256": "ff7bb67d0b45a90155873507e0b08446e8b53efedee89267c876cd5e48f027ea",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/figuras/inicio_actual.jpg",
+    "bytes": 129482,
+    "sha256": "879aaf7d332078df2dac05b500daddac0f128fd553a1a83996f79396da42f742",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/figuras/izq.png",
+    "bytes": 32490,
+    "sha256": "dc30f458781af02df77bccdb4af094c6e2f3aa1d161ad54c8e37c6f7a04b8a95",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/figuras/kmeans_resultado.png",
+    "bytes": 580823,
+    "sha256": "a6f5223cb9b6f6d0cbeb70cc3da84f89396cd8fc68fa2195d4e8f7fc63548e00",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/figuras/modelo_actual.jpg",
+    "bytes": 125997,
+    "sha256": "523c7363e6234720147144c4c7a0842c448db5bfed03b204c4e01d1b45fba6d9",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/figuras/prediccion_actual.jpg",
+    "bytes": 136423,
+    "sha256": "126796db4d066f230c9c09cc7b39ad0206dd19a39fe0d24fff57e76741e003d1",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/figuras/sensibilidad_escenarios.png",
+    "bytes": 113964,
+    "sha256": "20acc80a5d0e5f13cd8ac8c0ce505a599bd4d0c1ffd22703ef59ff6cb1cb7b2a",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/figuras/sin_critica_verificado.jpg",
+    "bytes": 147412,
+    "sha256": "c9f42e216d9c1ca2928c64ad965b607d0861e5d9c315a7d321d9337553818d0a",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/portada_img/der.png",
+    "bytes": 210257,
+    "sha256": "99dbfff9fda6ba78364f314688169e8ea2260c59ec2398a77e5f130b6e43e983",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/portada_img/izq.png",
+    "bytes": 32490,
+    "sha256": "dc30f458781af02df77bccdb4af094c6e2f3aa1d161ad54c8e37c6f7a04b8a95",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/revision/BITACORA_UNIFICADA.md",
+    "bytes": 54139,
+    "sha256": "a8a560a139c8a06ec600f9f3f40bccfbdd92c313d240c3345d910b7122cc348e",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "DocumentoFinal/revision/contacto_1.png",
+    "bytes": 545359,
+    "sha256": "0da704c7a81c95ff3c608f9c844dc1c31d719ffa440c321b333de9a8b0f44760",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/revision/contacto_2.png",
+    "bytes": 915400,
+    "sha256": "1300758642a3dbd729b5d0a8819b0ebba6a6280933dc75e8f41fb3caddf4b844",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/revision/contacto_3.png",
+    "bytes": 597145,
+    "sha256": "878ef479f9ac48d199488846dea7ccd5a5207257c9fd9abb3278fa0ba52aba01",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/revision/contacto_4.png",
+    "bytes": 759609,
+    "sha256": "bc93044aba99b022719c74b510586b545cc5ab789c89216d9097ddcfd4c5517c",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/revision/contacto_5.png",
+    "bytes": 660723,
+    "sha256": "60780921a4a69765808eb084a563167b368cdeb1fe7264a85874ef2d99f653a4",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/revision/contacto_6.png",
+    "bytes": 1244471,
+    "sha256": "1fea6caa2338883605cb39db83d89ef094320753e4062ce9a80f89816d98486f",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/revision/contacto_7.png",
+    "bytes": 1394087,
+    "sha256": "2f153d2edb1cbb35a275003c6a711808a41a0fe503f156c53d7a0b61d740ab6d",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/revision/contacto_8.png",
+    "bytes": 171260,
+    "sha256": "d6e1322d55f9860e76cf72a65eccc940ff3bdab3b6880621630f72d5884ab679",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/revision/final_1.png",
+    "bytes": 545792,
+    "sha256": "b9d5da8d90a332575168ed8e289573d34fd83de98f4fbc896ad589e9de66804f",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/revision/final_2.png",
+    "bytes": 899246,
+    "sha256": "771879cfb2b3859039e2079cf5ccf52ed884655e6c7f76c4b39e7b9ccb7692de",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/revision/final_3.png",
+    "bytes": 612649,
+    "sha256": "d0d423ec312f993f5beba745dc14443aaa126923d6db099b8ac6287e5d3e987d",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/revision/final_4.png",
+    "bytes": 765268,
+    "sha256": "354b93e9d551dc682bd04b0fa6d005e61f7daab1589cef7923d672c5ddaf6a99",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/revision/final_5.png",
+    "bytes": 505021,
+    "sha256": "a11735395eec6617977441a5b05c1cb2177820aa32d68fe78e0d55ec958f1b27",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/revision/final_6.png",
+    "bytes": 1219465,
+    "sha256": "930330622da8d87bbd28b84fb9e76c51439039df5447f9b0dd4835d305dde749",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/revision/final_7.png",
+    "bytes": 1064214,
+    "sha256": "6d1eb2952eca8a3449006d0c9c5d148ba125a92fa8927f0f112d49c65de48f4c",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/revision/final_8.png",
+    "bytes": 718831,
+    "sha256": "52a6fd377e70144011ac6baf54f7200f61e5718dda877a9e5c90523147eeb8d2",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/revision/pagina-01.png",
+    "bytes": 89146,
+    "sha256": "02446b5d7a4556827359790479f8f07ae693642acf121e549570e26994818ac3",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/revision/pagina-02.png",
+    "bytes": 162662,
+    "sha256": "27cc29538d002e2a3ac951a95ec23db6e97e469c7c1ca26eafbf28a1ae8e066c",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/revision/pagina-03.png",
+    "bytes": 92363,
+    "sha256": "fbee66abf59abd18db2fe2a03ae9acb74f7339f15837785c209234e6b1ab64c3",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/revision/pagina-04.png",
+    "bytes": 187905,
+    "sha256": "467ffddba9f825d0ef2ffd488ba845fdd219a8347009c077159392f7718ad841",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/revision/pagina-05.png",
+    "bytes": 220666,
+    "sha256": "db545aa72c7bc0183320a41b02e71bc2c237f4564ecb5346bab7d0d51003151f",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/revision/pagina-06.png",
+    "bytes": 228447,
+    "sha256": "76c2d13e94437b0cc22d708c196b392da48efc8fb8a11ecb06a46324aa9a0a53",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/revision/pagina-07.png",
+    "bytes": 109862,
+    "sha256": "31797bc261d4cc79ffe392bfbc55dafa38a799a18bd5147f1626f87b7fed789e",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/revision/pagina-08.png",
+    "bytes": 309231,
+    "sha256": "c3a620b661d3a417d6bc66714c84f44c950be972cd5dcf47dc4e4309027d6bfb",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/revision/pagina-09.png",
+    "bytes": 160401,
+    "sha256": "c2a7fba0b898c0f01b602bbc1e0d8ce41cbb9df96bf2410730b8d9497d20ad3e",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/revision/pagina-10.png",
+    "bytes": 143243,
+    "sha256": "a118602d461bbdb45f6cea45363edfa23cbdb68dd76a328164910275ee31ae77",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/revision/pagina-11.png",
+    "bytes": 122375,
+    "sha256": "afa7b240b6fb6a95d76b29f4040526dede1308962a5d658cb03f6915d5da4a1f",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/revision/pagina-12.png",
+    "bytes": 180331,
+    "sha256": "d07cf3310d8e56a6a06617773bc772816fbdcfdfb32a5e50f85c101dfcf013e7",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/revision/pagina-13.png",
+    "bytes": 104970,
+    "sha256": "4334daea2e5c8ffaf71a4f654c7c32fa0c05c8a83f701dc7a44d9a5fc7ec88ff",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/revision/pagina-14.png",
+    "bytes": 152419,
+    "sha256": "c5ff8cedde574213dc629be3111e04eb50c521a4196f817478e682cc38142060",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/revision/pagina-15.png",
+    "bytes": 191616,
+    "sha256": "28d672247fb78a6d5374c09456f0a483719251c5b8cbbb7af0cfe1bfbdfe041b",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/revision/pagina-16.png",
+    "bytes": 288586,
+    "sha256": "f14875d15a20417da59ae5aaa6e4466b95bae915cecc0e44cb6f88903f662ff8",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/revision/pagina-17.png",
+    "bytes": 124221,
+    "sha256": "991e1c3a122f484eee5589e59af3a2ec7817f675f2aecdf71724c5f26073e786",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/revision/pagina-18.png",
+    "bytes": 129285,
+    "sha256": "9fac11f21c91fcdc4cb1926b8bd36da2f932b6ef3e1904881072fd348c317002",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/revision/pagina-19.png",
+    "bytes": 124136,
+    "sha256": "efa5c4e8a8146e897b402df37fae09b45473889b91052761cd230f305b0cd79b",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/revision/pagina-20.png",
+    "bytes": 114592,
+    "sha256": "11c39247cd0f7d11f3a34b595508f7d550311d76c8ce9b9e268e49d3b666dee5",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/revision/pagina-21.png",
+    "bytes": 275257,
+    "sha256": "b0edb75374ceff4f2117c862a0513a74d0e912437c446578aa8237cc9ae87220",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/revision/pagina-22.png",
+    "bytes": 298920,
+    "sha256": "5aaa5fb81504c16d8f3c2c0f51c7621a12ebe62e2522b919dfe84384d862e3cb",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/revision/pagina-23.png",
+    "bytes": 301506,
+    "sha256": "d4805da34f525a97ffd348394d91b84981837428c7bab32caaec336be2fcbca0",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/revision/pagina-24.png",
+    "bytes": 385209,
+    "sha256": "35a80b587f8e171e683f8ac1a80a4997240a1f17e0b83ed4d1c07c0a1420f21b",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/revision/pagina-25.png",
+    "bytes": 216296,
+    "sha256": "00a10a63d497f2479fab797ef9752deb616859ec697fc7b575e47e11277e9029",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/revision/pagina-26.png",
+    "bytes": 230979,
+    "sha256": "f0105c5ddcc5a57f97f30871d20e35d603d508f98778418ab880f9835f34114b",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/revision/pagina-27.png",
+    "bytes": 206459,
+    "sha256": "4b587f659d2d784ba11b0ccc233bd65470877e301e7ae1007fdab6a1a4b9beb4",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/revision/pagina-28.png",
+    "bytes": 391470,
+    "sha256": "8b531ace09ca2b9673363ec760c27ec2226613e47c19479f70840c9164a680df",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/revision/pagina-29.png",
+    "bytes": 513161,
+    "sha256": "76afb0601054a895534d6f6ac5686f17f4f920272082cc5df84acb853086156c",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/revision/pagina-30.png",
+    "bytes": 150716,
+    "sha256": "b459b681384336b4917298e4dcee8fa5761ee0bf5e360180ea88ca04a76d1c24",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/revision/verificacion.json",
+    "bytes": 1072,
+    "sha256": "81207318dfba815c38c59298fcc99b71ddfdbdaa80a64b4f2b2eafa923d1dd5d",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "DocumentoFinal/tablas/busqueda_resumen.csv",
+    "bytes": 621,
+    "sha256": "08f959d3c26813eff03a0c8643f43df75daf36b031a33f0c53ff302580177fec",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/tablas/clustering_03_correlaciones_generos.csv",
+    "bytes": 4359,
+    "sha256": "5869c0c310fe9e29da498effb41c0134dcb473c8d659db8004a7d7b7f5a1cdda",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/tablas/clustering_03_correlaciones_organizaciones.csv",
+    "bytes": 70129,
+    "sha256": "86304ee58a3749c71dbfed9eded58fee43a3d7dd81232f33082909e42f53cd95",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/tablas/clustering_03_correlaciones_ranking_generos.csv",
+    "bytes": 3530,
+    "sha256": "149d78bb3b84b1aeb32e3dbdb34cf0eef72ae8e2947d5333a3af132965ce5131",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/tablas/clustering_03_correlaciones_senales.csv",
+    "bytes": 2729,
+    "sha256": "c56c343f3b8b0b6b7acaebc9c831f18cbeefd81726457fb88a4e7243507d8a7a",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/tablas/clustering_03_ejemplos.csv",
+    "bytes": 771,
+    "sha256": "da04a559e0664d3f002be8225a2d058577a92cd13572d029a67bace4e371e1bf",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "DocumentoFinal/tablas/modelo_comparacion.csv",
+    "bytes": 804,
+    "sha256": "e29e9984a2a4db275cc02c9c4537e8a4417b10fbc0340bb5c3ac36f2fcf18eb7",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/.gitignore",
+    "bytes": 90,
+    "sha256": "658d308e80f75dd757ed5f3db735c1d93221874cb4f847a155258e80c8b1693f",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/DESIGN.md",
+    "bytes": 889,
+    "sha256": "5e3013c1ee6b3b5e3c028db957f28371cb5dafb7d12381af4634283a3e273a18",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/PRODUCT.md",
+    "bytes": 1056,
+    "sha256": "27fca0e0604363e4f2db64f2796d050370a00a6beec98bfb02b6ec2ebcffa2e4",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/README.md",
+    "bytes": 5012,
+    "sha256": "1ab587da492fcad734d3e8235b3cf3545c87e41416a19bbf8b40dc21b9e77353",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/app.py",
+    "bytes": 25837,
+    "sha256": "3767e5a232bedb83904964014893c25f05875066cd521e8a949fa5445923d2fe",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/pytest.ini",
+    "bytes": 42,
+    "sha256": "b160d82f7811555051f8966d8e02750a985227c1d022208c784e606946f2eada",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/requirements-lock.txt",
+    "bytes": 849,
+    "sha256": "11d78966be859ebd62255cf07c4c36fcaaf8660cfa3ee4182b0b18e54a93a0f6",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/requirements.txt",
+    "bytes": 159,
+    "sha256": "7452f835f1a463ef3f4a6a9e624750e9fea9c404f02d7438b7a060a98a02a249",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/.streamlit/config.toml",
+    "bytes": 217,
+    "sha256": "acb435f004f4a96dcb81fcb9fc5edb609b6ec9483d6bc4e14a565300b3cb4daf",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/assets/audio/background.mp3",
+    "bytes": 7748963,
+    "sha256": "8427464831e25c091b8573730f849496f03410d270e3b2817299282942cc9a1e",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/assets/audio/select.mp3",
+    "bytes": 35526,
+    "sha256": "b9a896bf6b3cedb45f8263d6ff9215c6310393779e2f3e93211ae21ffca969f1",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/assets/css/persona5.css",
+    "bytes": 46064,
+    "sha256": "2ba82ba9be6868d1b8a5cf626cebf8abc4dcc6f194d5fb588b51f2eb4ea310ba",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/assets/fonts/Persona5main.ttf",
+    "bytes": 221484,
+    "sha256": "04bc106970b51bf365ac2d6f7c88d4171f489e512f42229d39a0fd375ca0f956",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/assets/img/P5MMChapter7Promo2.png",
+    "bytes": 54510,
+    "sha256": "0ef66a7f7acc55a7a7c20bde38ec9ff9823870409cc49380d2b12d8ce8e13472",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/assets/img/P5S_Protagonist_Dialogue2.png",
+    "bytes": 41732,
+    "sha256": "ad5c81a1eef1165658a32f269e108625eb68acd0f066d6eaea893f8829d6f479",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/assets/img/P5S_Protagonist_Dialogue3.png",
+    "bytes": 51952,
+    "sha256": "6838547d8bcc63e94100499c56dd58eaa9ff022933ae602fcd5b2a2390c8d9f3",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/assets/img/P5_Joker_Chain_Chronicle_1.png",
+    "bytes": 38184,
+    "sha256": "fdce12670240636b0c4d9e06eb6efacb8526d57898e57dee5a46f8e6d6f098e3",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/assets/img/card.png",
+    "bytes": 1416629,
+    "sha256": "5c15f0b4bd9e7661222503f5eb1f2278f9d9fac45815d9c66a118025592aef9f",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/assets/img/char1.png",
+    "bytes": 117795,
+    "sha256": "f2094430c033b5475774ecc516eb4fb0986e98d818a52e1504764280797d82b7",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/assets/img/char2.png",
+    "bytes": 56123,
+    "sha256": "d961b74c37fa95c4f51c5f9088c2e725b9e777b339b22a90987c77d435007b01",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/assets/img/char3.png",
+    "bytes": 114740,
+    "sha256": "c1ce5e2bc626bc5820cbebd2602e7d30e789f87c7fca23c612945842f3d76cb0",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/assets/img/hero.png",
+    "bytes": 44919,
+    "sha256": "72a860570eddf1dd9988f26c7106c67be286bc9f2fd3303c465ce87edb1ae6cd",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/assets/img/icon1.png",
+    "bytes": 1335,
+    "sha256": "c737da1a1858a2807fb3665e45b7b88c841ce8812fa5f1c8d11151566a8cd86d",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/assets/img/icon2.png",
+    "bytes": 1308,
+    "sha256": "5dd205da30c920a84dabc5d55c41d325e0ef2a419e6e2632552c12ff6498b60d",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/assets/img/icon3.png",
+    "bytes": 1911,
+    "sha256": "c108c045d1558f770012280ee4952ff78e4d27883b0a708f70047623e981c369",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/assets/img/jokerface2.png",
+    "bytes": 56658,
+    "sha256": "a389932f4ec190dd246368a5c449fc9786c4d5b2e69bc8ee552a01019e3b4ec2",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/assets/img/mainf.jpeg",
+    "bytes": 244181,
+    "sha256": "a599fdd921fba4f5a1bf5588882a4afb381e17b143ffec3ed2c6307c53f109d1",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/assets/img/mainm.jpeg",
+    "bytes": 307125,
+    "sha256": "cf65d8d4e7cb2013d7256e1ce5cbed716cce42c48fba7888604bf9d9a228f58b",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/assets/img/mainm2.jpeg",
+    "bytes": 298729,
+    "sha256": "38eadebccd4b671d568128cbab12ffb41e2cad0ef06c0a67bca044d9bb2fb0c6",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/assets/img/newsign.png",
+    "bytes": 1447783,
+    "sha256": "e5da344c670df19928efc325e1129d001742104b49023cb33e3899fa073becd7",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/assets/js/interacciones.js",
+    "bytes": 3420,
+    "sha256": "3cccdd60929a1a661ff15ffd2aeb2e7e71bb19bd8c0b0b3a3e49fa7e1d773f38",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/data/clean/clustering_espacio.csv",
+    "bytes": 104242,
+    "sha256": "9b0627ba170dba5eed9b1fc22fe02020d175f07d71addd91280279cfe43f8a1d",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/data/clean/clustering_orden.csv",
+    "bytes": 22293,
+    "sha256": "e70aea9dd1d83f78ce7b5b0aeaa7f4d7d5b85baf9cf686860cbbaba418a0128d",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/data/clean/clustering_weka.arff",
+    "bytes": 107276,
+    "sha256": "78e7c49499f1f2112d22a991a5edcc0400b5778fe7413011b71413c34433aea7",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/data/clean/dataset_con_clusters.csv",
+    "bytes": 596183,
+    "sha256": "d35537b44658aeeefbacd0ebac8c6cd785e73004e5ec0b1ac7baf3c82fd4077a",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/data/clean/dataset_depurado.csv",
+    "bytes": 403761,
+    "sha256": "f0448fccc82b140fec956d8522b8dfa675c029875029bca6f3f8b396a67a7652",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/data/clean/diccionario_weka.csv",
+    "bytes": 1784,
+    "sha256": "c3cf64a5d5c74e02c4a7f7fb0f78b66cfaf5d25ccc155dcbb4461093a4bbaf4d",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/data/clean/duplicados_limpieza.csv",
+    "bytes": 432,
+    "sha256": "50ce0e30026c21e4892332b916a924b85703fb494815dba160431a84a49efa6a",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/data/clean/entrenamiento_orange.csv",
+    "bytes": 219278,
+    "sha256": "f1040a9670bf08c0a717d39951971c3ec0335bf605b2b69b228f26b0d38c9908",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/data/clean/entrenamiento_weka.arff",
+    "bytes": 122538,
+    "sha256": "05f32bfce2ee083011da37866380b53a2beb6d79f627a991ec87ff29a1f04138",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/data/clean/games_curated.csv",
+    "bytes": 2495886,
+    "sha256": "b23cc1c4c23e65171bbe8a3436c358773cee15b8e11b446261cd575daa625acd",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/data/clean/generos_largo.csv",
+    "bytes": 90299,
+    "sha256": "22d1c569bad95b50f0c880296a0ac85e5c44d4939b7c2d54c72276574e30beb0",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/data/clean/juegos_modelo.csv",
+    "bytes": 604391,
+    "sha256": "cfc50959cc9e65ba6ba50004d84215e5eb06d58ce67df31cf1c8671e80457685",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/data/clean/prueba_orange.csv",
+    "bytes": 55456,
+    "sha256": "1c6f667c3c34904f1ade594308cfc8efc5f25609589b74b55f3e2220608160b9",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/data/clean/prueba_weka.arff",
+    "bytes": 31776,
+    "sha256": "75bf00752c63bbedce8e533ba8733ffe53a85a4847057000831007d7ec51f3bd",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/data/export/README.md",
+    "bytes": 1256,
+    "sha256": "b6c0e9a51b285f279e5b5407b4fc931ee8dc3ab3237228d6decbb77ee2a01130",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/data/export/clasificacion.arff",
+    "bytes": 222285,
+    "sha256": "487963cb9dcd5937ffe5ebb2135db544dfdf00d56223e8bf7c8fccd1ed46c0a9",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/data/export/clasificacion.csv",
+    "bytes": 219278,
+    "sha256": "f1040a9670bf08c0a717d39951971c3ec0335bf605b2b69b228f26b0d38c9908",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/data/export/clasificacion.tab",
+    "bytes": 219913,
+    "sha256": "aef344720fd3ae26f3de15cb607983beb5da44e289687fc640645ba8c3120130",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/data/export/clustering.arff",
+    "bytes": 104463,
+    "sha256": "17b890b65e6231eabd16a864cf8e3691394b9d203e5c5d80e61ea297df1dbbce",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/data/export/clustering.csv",
+    "bytes": 104242,
+    "sha256": "9b0627ba170dba5eed9b1fc22fe02020d175f07d71addd91280279cfe43f8a1d",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/data/export/procedencia.json",
+    "bytes": 517,
+    "sha256": "308b9b1ccdee3bb3893811e9f728558e1a0c7df999c4b0b4d1a6842102f09409",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/data/export/procedencia_arff.json",
+    "bytes": 721,
+    "sha256": "c4f04f6eb9a09996254dbcf51015019e1b522963fe3b284cb25a9a1a3bc8691c",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/data/historical/README.md",
+    "bytes": 452,
+    "sha256": "889a86eb7b4bd74ad4e504e72e2b794130505c7df474219a03efa1bd945e6495",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/data/historical/games_actualizado_metacritic.csv",
+    "bytes": 2949718,
+    "sha256": "6073f43d0c0bd5722b03789ff51c97c4ecd53686cdedbef93fc69d0c990245b6",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/data/raw/games_curated.csv",
+    "bytes": 2495886,
+    "sha256": "b23cc1c4c23e65171bbe8a3436c358773cee15b8e11b446261cd575daa625acd",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/fonts/COMIC.TTF",
+    "bytes": 63648,
+    "sha256": "d7757e5eeb0c3e9e095423534f3f7bedc3fdbaaee7613033b0d118320bbbc880",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/fonts/ComicSansMS3.ttf",
+    "bytes": 128244,
+    "sha256": "efc796015f16eac73bd2ef09c9f88556dc5d16a7237e9a4ba19a7381f6263f02",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/fonts/comicz.ttf",
+    "bytes": 219004,
+    "sha256": "c301881da0894256a919e819b944f1cad7eea8060330ff1a48acacd6323fd4b2",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/fonts/design.graffiti.comicsansms.ttf",
+    "bytes": 126366,
+    "sha256": "02e1cfeefd6341c7ad49d1dc2423810655f44ca809e6f8cf8ae0f17f0f3fe94c",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/fonts/design.graffiti.comicsansmsgras.ttf",
+    "bytes": 111478,
+    "sha256": "cc23265836f508b49dd15ab342ed32a7b79e0370fc07042e0de07a43f28e27ec",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/models/clustering_03.joblib",
+    "bytes": 60014,
+    "sha256": "a84cced97483f68cde7884d2422bd1e12d85d3e15edf350246417deeb43d36ff",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/models/metadata.json",
+    "bytes": 63731,
+    "sha256": "07ba1ce664747e68c06c7ab9dc799e8ccb565cf71e7222b3a6de9f8548eed2fa",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/models/modelo_popularidad.joblib",
+    "bytes": 1792800,
+    "sha256": "ee362dae946d18981714171de2d66c0b93fc00a364e6990f698ed3b68ae8550e",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/models/referencias_folds.json",
+    "bytes": 689038,
+    "sha256": "68a602b49e37bba5d190b571b7afcd4f876957780a02bae1456635d14e4a0cf8",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/models/vecinos_popularidad.joblib",
+    "bytes": 378914,
+    "sha256": "23d0ad2353a64b567cd1c40d40b70735e4450ae9a2b731519ba5aa65a1f95415",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/pages/1_Exploracion.py",
+    "bytes": 20192,
+    "sha256": "69fabd13766d77ce15fa55983df9a9f69d8f170d5c05a81770be70c808d47c12",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/pages/2_Prediccion.py",
+    "bytes": 15276,
+    "sha256": "82f8f2b436794f0474c55efb11dcd64672705978698a03bcf42b718b24ebf3ec",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/pages/3_Acerca_del_modelo.py",
+    "bytes": 15719,
+    "sha256": "886c2a07a860d5727064c83028d4a9aff55bc628f6e411966ec742a011c6d8ca",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/BITACORA_UNIFICADA.md",
+    "bytes": 113450,
+    "sha256": "2a84e56c5344942a14c262a0ffbc524eb0b732f405b03334b146c469f2b9cb00",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/analisis.json",
+    "bytes": 819,
+    "sha256": "df298240ede139bee39b1c275e326993fdebc7df6a2250854864a839b8d0089b",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/clustering.md",
+    "bytes": 21886,
+    "sha256": "9f9f8a377f6920035fb8388546e68118bb28dc9e35924c4de2c5b6b8f944193d",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/clustering_03_alternativas_k.csv",
+    "bytes": 2506,
+    "sha256": "83a307d8df56e722e89679c47b445303b69b3f23e61a06ec2a51670a85e09391",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/clustering_03_correlaciones_catalogo.csv",
+    "bytes": 298,
+    "sha256": "73efe968de1a24e4d8f7418e59345b20b71f5730d3c8f7dc9eb65b64b7ee2175",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/clustering_03_correlaciones_generos.csv",
+    "bytes": 4359,
+    "sha256": "5869c0c310fe9e29da498effb41c0134dcb473c8d659db8004a7d7b7f5a1cdda",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/clustering_03_correlaciones_organizaciones.csv",
+    "bytes": 70129,
+    "sha256": "86304ee58a3749c71dbfed9eded58fee43a3d7dd81232f33082909e42f53cd95",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/clustering_03_correlaciones_ranking_generos.csv",
+    "bytes": 3530,
+    "sha256": "149d78bb3b84b1aeb32e3dbdb34cf0eef72ae8e2947d5333a3af132965ce5131",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/clustering_03_correlaciones_senales.csv",
+    "bytes": 2729,
+    "sha256": "c56c343f3b8b0b6b7acaebc9c831f18cbeefd81726457fb88a4e7243507d8a7a",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/clustering_03_ejemplos.csv",
+    "bytes": 771,
+    "sha256": "da04a559e0664d3f002be8225a2d058577a92cd13572d029a67bace4e371e1bf",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/clustering_03_ejemplos_alternativas.csv",
+    "bytes": 1820,
+    "sha256": "d7d9ccfa85d4895ba760f289bec87d4b6411c71946bd997de400f31b3e171c20",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/clustering_03_kdistancia.csv",
+    "bytes": 20126,
+    "sha256": "fe7a8de755530ad3d2136cfbf1e425ac22a3f1d5c7b48249676c7d076310c191",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/clustering_03_parametros.json",
+    "bytes": 819,
+    "sha256": "df298240ede139bee39b1c275e326993fdebc7df6a2250854864a839b8d0089b",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/clustering_03_perfiles.csv",
+    "bytes": 1166,
+    "sha256": "21a24f23191e0353093d3ec65790da70a7398ec27f5c8d158f8acbaf59b01265",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/clustering_03_seleccion_kmeans.csv",
+    "bytes": 380,
+    "sha256": "344e5e4cbe1fde8c00e6ad22b368c76fa71d800896b68872e550bd10463ad038",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/clustering_03_sensibilidad_dbscan.csv",
+    "bytes": 137,
+    "sha256": "59c1d25653df3a03d79885db1dca9bda619767e6349516f6b4228578690305e8",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/clustering_03_sensibilidad_titulos.csv",
+    "bytes": 73246,
+    "sha256": "e27273d0d4b1f2adb654f58d36298a2eea992755eba86576370ce0375e3ef145",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/comparacion_weka.md",
+    "bytes": 2407,
+    "sha256": "9a9e959d2dc8e3a81511c846b8bdc947d46913c7d8837bfb011736caaf11cb7c",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/conflictos_historicos.csv",
+    "bytes": 1047,
+    "sha256": "4a6138a89f326cbc3014585dd102df51f9b9ffa153edc9e0d5bc30a3a91a59b9",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/deduplicacion_historica.csv",
+    "bytes": 50132,
+    "sha256": "8bfc7afe321893a7891d085d01adfcbc095e23ed3509230bcaa186f531b51aa3",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/despliegue.md",
+    "bytes": 2378,
+    "sha256": "e3de05696702f565640e30968dca0b671d89bc9552f9b18eb499cef0dcc69b11",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/escalas.md",
+    "bytes": 1483,
+    "sha256": "417c4f52bc14c5db26ec0bd1594ffd33a37ec48c5139a17597bb30c07325be6e",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/evaluacion.md",
+    "bytes": 7393,
+    "sha256": "efbda1b45a1beb914db98816c2ac22d1586a0e99b7a7491775e4317ca24554a7",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/fase_1_alcance.md",
+    "bytes": 3526,
+    "sha256": "b75cd6e137c83f4a4986b4992caa2eb95f68e717c0f3d89b6e14d326adf5ab69",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/hallazgos.md",
+    "bytes": 1283,
+    "sha256": "1831b8e7455498ff69f788cb17d0c09c3def5cb6f502b0f5137d9582c7c19a2c",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/hallazgos_weka_web.docx",
+    "bytes": 811697,
+    "sha256": "293d515d455d9297401cb2dff6ffd4b390d0a707dc4d3c05288aeb57aa9fd9a0",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/hallazgos_weka_web.md",
+    "bytes": 12997,
+    "sha256": "0882706612b3036d5ed7863ec8c769bf8040b46e405fe34ee9ff003b8d1fcf05",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/inspeccion.json",
+    "bytes": 4572,
+    "sha256": "b287ad7e6f0127adade28748019cd9a67eb975e9076ab7cb5aec6fb978bf11cb",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/inspeccion.md",
+    "bytes": 3232,
+    "sha256": "52ae5a3d981eb4808a1107714f45469794e804b3222ab3a0e0c18b2e27a12c2b",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/limpieza_log.md",
+    "bytes": 7436,
+    "sha256": "dd4b45eb48ce4f385f86d51166ea06cc0347fe85bf67370a74a70b86f8ae8d45",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/maestro_reconstruido_solo_auditoria.csv",
+    "bytes": 2500342,
+    "sha256": "71f92cd365674936574fbec253addf1f03ef79c7123f495bc8edf6f7c0083fff",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/manifest.json",
+    "bytes": 1845,
+    "sha256": "aa739070d576a48ff8d888975bb95d0ae857f5ddf99b2aa8d04bd3157f6747a9",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/modelo.md",
+    "bytes": 9206,
+    "sha256": "1c384f25685efe5bd987fe7249452b892edf120a035f1fbaffb06ee74a5bb96d",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/modelo_ausencia_entrenamiento.csv",
+    "bytes": 199,
+    "sha256": "e71eff4b1c50ce8b117a3452e01b5d3a6f9ed03c607ebb9cf123e5685306fbed",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/modelo_ausencia_prueba.csv",
+    "bytes": 170,
+    "sha256": "d71c889b9e4f0808b06c72fe6687041c3541750ef4af501c7ecb36b703673f7e",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/modelo_comparacion.csv",
+    "bytes": 804,
+    "sha256": "e29e9984a2a4db275cc02c9c4537e8a4417b10fbc0340bb5c3ac36f2fcf18eb7",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/modelo_confusion_CategoricalNB.csv",
+    "bytes": 75,
+    "sha256": "8790218792d11544a9aaae236e6bbd9a175534ae7c4a3766ac35afed36ad5ddf",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/modelo_confusion_DecisionTreeClassifier.csv",
+    "bytes": 73,
+    "sha256": "8fa606d4f41c317c07ac0ffedcdb683f36e9f58ebb3f844f10a38c7a83cba5d9",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/modelo_confusion_DummyClassifier.csv",
+    "bytes": 69,
+    "sha256": "f374dbc71336d72e07924480fff03af8fc598f0c84eb8835386e45fb3ca23608",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/modelo_confusion_RandomForestClassifier.csv",
+    "bytes": 74,
+    "sha256": "6e8923011f35fbe970d2569dba66daf31d6b737b7f1923dcf0ab2433ea7ae6d1",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/modelo_error_por_clase.csv",
+    "bytes": 539,
+    "sha256": "8bf4ef9e1881b4d8055e5937f015272e3890cd5ea8bab6d89e699c726f0c4ca5",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/modelo_etiquetas_validacion_locales.csv",
+    "bytes": 10530,
+    "sha256": "cb6e26a253dd4b6d51e09fec4edb14f75b76bd2ae4052503215a30bdf2875147",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/modelo_grid_cv.csv",
+    "bytes": 16579,
+    "sha256": "d0e823f28f0986d56bcd2fc864972ea081bb5a9168127d7857e871f4f6eda26e",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/modelo_permutaciones_repeticiones.csv",
+    "bytes": 3082,
+    "sha256": "f564deb6980e5af2275ca2e9ebcce2501539d8a2c2eca406afa54c9804044ce6",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/modelo_permutation_importance.csv",
+    "bytes": 299,
+    "sha256": "252e443a21922e0962fafe1269f4c8b757921f59bf0fe918857c299b22ae050c",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/modelo_predicciones_prueba.csv",
+    "bytes": 6814,
+    "sha256": "366838a783ce7da31a39be2968a41a4413d5bf2b33194267a57425a45f044d18",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/modelo_sensibilidad_critica.csv",
+    "bytes": 4358,
+    "sha256": "800ccbc0a2b2b4e1c0eb1ec775889b58683951ff1d9075a0a3de2db350b360b9",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/trazabilidad_historica.json",
+    "bytes": 688,
+    "sha256": "9d4ca38697409a6673cdc8ffdecb5712b70144469eafa791c72204a8084edc2d",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/trazabilidad_historica.md",
+    "bytes": 1744,
+    "sha256": "59ab6b572a61f5b3b2eba4dbde7a599a47e9f02cbc5c239e6daf1094fc2f2a9a",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/variantes_historicas.csv",
+    "bytes": 68909,
+    "sha256": "46323af2f92e799509ad167146a5eff72c65dc31dec481536d5c2b57ff5467e3",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/verificacion_independiente.json",
+    "bytes": 550,
+    "sha256": "acddeb63f69e204756722b28b1624f3c2fe2ec3602d2c949d8d35b3c94e14dda",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/verificar_integridad.py",
+    "bytes": 4987,
+    "sha256": "fa84515eef53c5e7e70af632c03ff44f2e5dd059aa87e2776043f9c2feb4813f",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/weka_prueba_salida.txt",
+    "bytes": 6238,
+    "sha256": "a64f49b86a8e56c6abcb5a5dcc39d8e58c8c24ce1c51d181b648975e77f8cd34",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/archivo_modelo_anterior/models/popularidad.joblib",
+    "bytes": 42889,
+    "sha256": "e6c01553ad9793289d2669b398ce833cddc3c18bd40a7f4e29feee436193ea6f",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/archivo_modelo_anterior/reports/comparacion_modelos.csv",
+    "bytes": 188,
+    "sha256": "461b85b883863f0d8af535702a0f7caa191be33accc19db96d5d3a8143dd6bb2",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/archivo_modelo_anterior/reports/matriz_confusion.csv",
+    "bytes": 73,
+    "sha256": "f82204bede4be9bf74d657477eb94d470d87647e8c0fb531801f968b910b71f2",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/archivo_modelo_anterior/reports/metricas.json",
+    "bytes": 1772,
+    "sha256": "1f792b4dbee8cfb87e73c61c0f43ae298296062b84c262260596b53b154c7f55",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/archivo_modelo_anterior/reports/validacion_cruzada.csv",
+    "bytes": 911,
+    "sha256": "dc52f71020f960a75ab688a268c529b5bf6298d0922831794276c9e5869b3cc2",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/archivo_modelo_anterior/src/modeling.py",
+    "bytes": 7973,
+    "sha256": "72458131140415468acd2b6630cf17e8110b696cae42c3a4188c0a46044abaa2",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/archivo_modelo_pre_auditoria2/data/clean/juegos_modelo.csv",
+    "bytes": 604572,
+    "sha256": "ee1d424f97f5ced17183851fd440129ce2afd9c5009f1a32f6d1f7a64f2aab6d",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/archivo_modelo_pre_auditoria2/models/metadata.json",
+    "bytes": 57770,
+    "sha256": "b4dfaebd2603db415fde0101aaa7a06db630df502dea2e0a04a4a5404a0e2e81",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/archivo_modelo_pre_auditoria2/models/modelo_popularidad.joblib",
+    "bytes": 4756435,
+    "sha256": "f4c969c6ff3dc8fd9674ab487fc6b1b90e0888f5012735248ecc21b3fa7c5739",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/archivo_modelo_pre_auditoria2/reports/modelo.md",
+    "bytes": 7957,
+    "sha256": "2f283598f1a8883190899e141b891666c22442dc5cac059c491dc2ba198ab93b",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/archivo_modelo_pre_auditoria2/reports/modelo_comparacion.csv",
+    "bytes": 764,
+    "sha256": "cbc2cc19dbd48c702f3c3b43768c76d5f99418ffd5bfb6fb91a806765d704169",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/archivo_modelo_pre_auditoria2/reports/modelo_confusion_GaussianNB.csv",
+    "bytes": 73,
+    "sha256": "dc40bde62d3af2e0926331d4daae307c8c0edf9ab232c2208592b6da16cbd354",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/archivo_modelo_pre_auditoria2/reports/modelo_grid_cv.csv",
+    "bytes": 14503,
+    "sha256": "4cfd46177f999520c86bb0aa647f357a83bde1ae7020d4dc1ef18198c13076b7",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/archivo_modelo_pre_auditoria2/reports/modelo_permutation_importance.csv",
+    "bytes": 299,
+    "sha256": "6f0bec02f2971394ea3271a347687a2838189424c7867d6cfe4107e5b490012b",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/archivo_pre_auditoria/README.md",
+    "bytes": 226,
+    "sha256": "37448d8c8d9d94f065094fe157c391698e068a2e42b3fbb05708956a8491703a",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/archivo_pre_auditoria/data/clean/conflictos_duplicados.csv",
+    "bytes": 527,
+    "sha256": "553434e7e6ace0fc2306a17e66f7af6e8e193688cde18824c503b55157ee382c",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/archivo_pre_auditoria/data/clean/duplicados_descartados.csv",
+    "bytes": 527,
+    "sha256": "553434e7e6ace0fc2306a17e66f7af6e8e193688cde18824c503b55157ee382c",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/archivo_pre_auditoria/data/clean/games.csv",
+    "bytes": 357993,
+    "sha256": "207b6debfe4bae05085ce613b382b73993acc6f6a5b736ab015e5cb13ece984d",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/archivo_pre_auditoria/data/clean/perfiles.csv",
+    "bytes": 124372,
+    "sha256": "430b5861353019af072f0f5d0d49977195dc357b5907599e68c6e0a1ccdc9cb8",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/archivo_pre_auditoria/models/clusters.joblib",
+    "bytes": 59271,
+    "sha256": "036ef549908b2fccfe59fe4b82af3d429d67c1517c51c853fe98f1c3f3eabc4c",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/archivo_pre_auditoria/reports/BITACORA_UNIFICADA.md",
+    "bytes": 2583,
+    "sha256": "daf5239785d15f3dca90ab72fa883ba7d966d816c829bd629a32dc6daf08a02c",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/archivo_pre_auditoria/reports/pearson_generos.csv",
+    "bytes": 3055,
+    "sha256": "922a566dd0c119575b4337190bd6be8ee172bce175c57a423fa919a48bef45dc",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/archivo_pre_auditoria/reports/pearson_global.csv",
+    "bytes": 194,
+    "sha256": "ab41027f13b2bc57d23119b471e7ca0c40e3ca07defe00c745a2beead29707d9",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/archivo_pre_auditoria/reports/pearson_organizaciones.csv",
+    "bytes": 25263,
+    "sha256": "21a5d6c43cb207e40d1332e684935615ccce1a304506fa76df7eab54efc39fce",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/archivo_pre_auditoria/reports/perfiles_dbscan.csv",
+    "bytes": 194,
+    "sha256": "7f76688f383a50c65a557b931e1827f28771dd126d5f5969e6689ff90bdaa588",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/archivo_pre_auditoria/reports/perfiles_kmeans.csv",
+    "bytes": 157,
+    "sha256": "c801ae6995bbc27e09c85f58371faf9c3902c6621a86666689b2377b60c36b64",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/archivo_pre_auditoria/reports/seleccion_dbscan.csv",
+    "bytes": 595,
+    "sha256": "f15852560c5cc1f724ed3013a2f04d0e2c772df04ee7c502a8d58f9ec9c7ab5e",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/archivo_pre_auditoria/reports/seleccion_kmeans.csv",
+    "bytes": 300,
+    "sha256": "7c57f3d2b6cce06c1c9b923aebee8ab8d6d8afb15211d21e41576f1644cc8524",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/archivo_pre_auditoria/reports/figures/perfiles.png",
+    "bytes": 311975,
+    "sha256": "f14a46c54992d0c78aaa45683ee27463fbcf3c70bafd5b63cc6cd33eb09b8419",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/archivo_pre_auditoria/reports/figures/usuarios_critica.png",
+    "bytes": 82242,
+    "sha256": "03d26f0e93801df72e7cf0f0b828bad5e981de7b2300dd4301f0640a50ac32e4",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/figures/clustering_03_dbscan_kdistancia.png",
+    "bytes": 46042,
+    "sha256": "a93d6ab341dd4acb891beca3400aa92f323839b4c12db2a2976678e29d45dc3e",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/figures/clustering_03_kmeans.png",
+    "bytes": 77963,
+    "sha256": "de7fbe2d10efb23f90f682d5edc829bd7c511f6992f94d672e6f09170bab75b7",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/figures/clustering_03_proyeccion.png",
+    "bytes": 257834,
+    "sha256": "5c7d6a516039cda6137d177e710e8fe394f7c587c49565422414bdbe9608a4ee",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/figures/eda_decadas.png",
+    "bytes": 22950,
+    "sha256": "4f9f44af3109b8201b4b1a8e52376873a120008c81f86146e902683f230d97c2",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/figures/eda_generos_top15.png",
+    "bytes": 48049,
+    "sha256": "97e8cd9427a31665e88b23d81e01d315dd0569dc70d5e64018ee046be89ebcd1",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/figures/eda_metacritic.png",
+    "bytes": 26557,
+    "sha256": "8e8f59559b5f1e3f7307f5e27d44866a85ebcf6109bb7336cfcebff178ba8aa2",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/figures/eda_plays_log.png",
+    "bytes": 25053,
+    "sha256": "98fa2e089196009093ebb4b81541724bbbc532fcdd8298df130adc9dc7c87c61",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/figures/eda_rating.png",
+    "bytes": 23622,
+    "sha256": "3816988b211c3dd994d0ea14b20e505d368d4cb60f0512ab71f0e0102478d623",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/figures/eda_rating_vs_metacritic.png",
+    "bytes": 61497,
+    "sha256": "5c53a6dd10e6ef5de174f9671e93246273a302280ba75a679568ad611b90ba44",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/orange/BITACORA_UNIFICADA.md",
+    "bytes": 3404,
+    "sha256": "24f4d96a7e3afdf47d7dbb88012b8a33b78ba28b7f64320a66aec4b993b01853",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/orange/aviso_inicial.png",
+    "bytes": 220084,
+    "sha256": "c844c333eb36b0861607bfe5d75a69362d6754f6307bd7419774b61aabe9607f",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/orange/diagnostico_cierres.json",
+    "bytes": 5427,
+    "sha256": "773b6625956d23aaaed860ec884881a84bb281172c6cda3dadfc771b56a00010",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/orange/dialogo_recuperacion.png",
+    "bytes": 40472,
+    "sha256": "4e83ac945e4ec63e233141916b3395f55a7c58ad9b112a29e7e0874a6ae2991c",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/orange/iniciar_con_dialogos_qt.py",
+    "bytes": 667,
+    "sha256": "f01d8e873f71b1bdda7b06e363a817aeff3a34b63341345ace51f56d457a0a54",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/orange/inicio_tras_fallo_tab.png",
+    "bytes": 86002,
+    "sha256": "76185c90171abdb2dde36a00b92c71f32d235332b9c635705fd2a5dc132a1176",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/revision_predicciones/BITACORA_UNIFICADA.md",
+    "bytes": 2871,
+    "sha256": "a1fa73e8a1c2763b593643a2bcce16a7a79a139ecfcca92c7626b5ae82022d3f",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/revision_predicciones/auditoria.json",
+    "bytes": 690,
+    "sha256": "32b012b07dc1ceb64c76dbce53f2edd2b63d9322a23962af7f8019405d11edc2",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/revision_predicciones/busqueda_folds.csv",
+    "bytes": 5770,
+    "sha256": "d1c0923c7c99d0f5c4e4896cc7d3ae71bb37bb05bc926dbf313d869f731d4c80",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/revision_predicciones/busqueda_resumen.csv",
+    "bytes": 621,
+    "sha256": "08f959d3c26813eff03a0c8643f43df75daf36b031a33f0c53ff302580177fec",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/revision_predicciones/casos_formulario.json",
+    "bytes": 973,
+    "sha256": "3f052447ed86df1ee48104ec3f2af953f712282a513bd5c8a42368a6dad8026c",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/revision_predicciones/crear_informe.py",
+    "bytes": 17956,
+    "sha256": "a936769e528fd287e8a3ccce853df8808995cd944c47a0d4aca0ed65ea61e035",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/revision_predicciones/decision.json",
+    "bytes": 1000,
+    "sha256": "cd3c19e80e1eef1cd9b55801e659edd5d653e8dc0450b2cf2ef08ed5dfcf9e38",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/revision_predicciones/formulario_verificado.jpg",
+    "bytes": 138668,
+    "sha256": "3cd54dcfd4cdbf08df46f28af97f92ecb43e198dccd9f2124cb5ad41220c383b",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/revision_predicciones/integridad_final.json",
+    "bytes": 169,
+    "sha256": "90e1137d1c8fcc542b15d7f84670248c35134f5288086b6c057dc1ab4667a7b5",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/revision_predicciones/qa_documento.json",
+    "bytes": 207,
+    "sha256": "01f686eb15364a6032fec96f62af11b112b013a37083cfce67ae41ddc3cac3db",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/revision_predicciones/sin_critica_verificado.jpg",
+    "bytes": 147412,
+    "sha256": "c9f42e216d9c1ca2928c64ad965b607d0861e5d9c315a7d321d9337553818d0a",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/revision_predicciones/verificar_weka.py",
+    "bytes": 1922,
+    "sha256": "d818e9cbed6c2744fcd36e7d877ba5aee56de2eaa167cc13abd76c34681e3086",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/revision_predicciones/weka_recalculado.json",
+    "bytes": 2585,
+    "sha256": "bdae11e086f67b81c5accbdc02878a6c6dc9c06fd6ec0dac8917fe05e246653d",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/tables/BITACORA_UNIFICADA.md",
+    "bytes": 9462,
+    "sha256": "5f890fdb219c06c1c044791635f54f9a6b047f39a9bfa9d01b312f081d2613b7",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/tables/comparativo_detalle.json",
+    "bytes": 31092,
+    "sha256": "0316b13e1db7522ddaa97aa671c773f02f5116bf9096fbaef4334f0071d91304",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/tables/comparativo_folds.csv",
+    "bytes": 97207,
+    "sha256": "4efe3a7a75dd2e00310a38045a9be880f4b289ab7be505e82e7fb05fc60dbd32",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/tables/comparativo_herramientas.csv",
+    "bytes": 14198,
+    "sha256": "16e8e53c939be9db1802c5da0d55f5c474484408a5b3dc5aa4f3ac5413066893",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/tables/comparativo_predicciones_oof.csv",
+    "bytes": 657427,
+    "sha256": "70cbe0ea4d0175e36f9be3e23347f49a8bcf586227ea7bfcb4063adf7eab1822",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/tables/detector_revision_graficas.json",
+    "bytes": 2843,
+    "sha256": "ca77f8404b01b5d8fe3707eb8a20cc9a72957891ffecc8d01d0aa31b065917c9",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/tables/evaluar_comparabilidad.py",
+    "bytes": 8880,
+    "sha256": "1f0c178f4dba03c4922e5cf948770211637a01e7d47a9044b2bbcd57af0178cd",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/tables/graficas_comparacion_corregida.jpg",
+    "bytes": 111632,
+    "sha256": "892d698cf3d396c3b073baf9f26b4f475a5294bb1ac6e4e6eb3a9a9e4f960c05",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/tables/graficas_logaritmicas_corregidas.jpg",
+    "bytes": 120421,
+    "sha256": "996ea8350196b45432fab66f31facd042b0c8d620f734a94e1da6114c08d9d7d",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/tables/graficas_movil_corregidas.jpg",
+    "bytes": 43548,
+    "sha256": "82b2455e83ab4e2dfef1dd9839f2b66bf22f4503c96a4c208025b1eb7bb67e5d",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/tables/graficas_permutacion_corregida.jpg",
+    "bytes": 120924,
+    "sha256": "ff7bb67d0b45a90155873507e0b08446e8b53efedee89267c876cd5e48f027ea",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/tables/integridad_visual_antes.json",
+    "bytes": 2083,
+    "sha256": "5d825727e56e27d23954ed0c918a86376e0cb8003ed1e4cbebed11a7b830bad5",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/tables/integridad_visual_resultado.json",
+    "bytes": 114,
+    "sha256": "9d2d590cd5306c91c13a911c98a217e7c447c4da2498559806e10976ee0895c6",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/tables/revision_tipografia.json",
+    "bytes": 2843,
+    "sha256": "ca77f8404b01b5d8fe3707eb8a20cc9a72957891ffecc8d01d0aa31b065917c9",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/tables/test_comparabilidad.py",
+    "bytes": 2664,
+    "sha256": "844c10c6186a711cef430c8ac193c3241792482ee3e20e458c6cab824cd10f52",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/tables/tipografia_comic_formulario.jpg",
+    "bytes": 102549,
+    "sha256": "d41bfd03033b1b007844a5291077275ba789d1b48858797436884addb9112549",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/tables/tipografia_comic_inicio.jpg",
+    "bytes": 142160,
+    "sha256": "d4e01c5f34a91e7146074c4458c69f042d598badeb8c004cad42f81f53a67fb0",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/tables/tipografia_comic_movil.jpg",
+    "bytes": 65153,
+    "sha256": "a6a6c99c92c81c72bce17aeddb669d3d768004d3caabf2bad144e618de14372c",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/tables/web_prediccion.png",
+    "bytes": 146425,
+    "sha256": "b16916293898e32cebd824b6bea9b4803e396c84bd3fc951005a5f86dc890049",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/tables/web_submenu_modelo.png",
+    "bytes": 132979,
+    "sha256": "8a870bf65a05cbd28bfb6c1588aa355f573f6d1e2843fd45f5e88637238c81f2",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/tables/web_submenu_tras_filtro.png",
+    "bytes": 141664,
+    "sha256": "dbf2c64ac33c32e07da3302e6b672685bbc9f1fb9011245caaf55b9f0c76d1c8",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/weka/BITACORA_UNIFICADA.md",
+    "bytes": 13576,
+    "sha256": "04d259e72c3cebba3aa8c2b8a72eafc04da2d4838a7931ed2fbe20376e058a6f",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/weka/J48.png",
+    "bytes": 630962,
+    "sha256": "72296d14f03af1520c8e07ca86310cb171b5a1b7f46b189701f3df514e184afd",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/weka/J48.txt",
+    "bytes": 17362,
+    "sha256": "88ceace97d84c7c67628688f9876a4d3de22c07935e6111dd954f3c401a88c8c",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/weka/NaiveBayes.png",
+    "bytes": 623033,
+    "sha256": "ef00fe5af3442fbbaa129aeef2a23c3c42e642d69773f6924fd261ada6056928",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/weka/NaiveBayes.txt",
+    "bytes": 20846,
+    "sha256": "5aac3e1f7f662eb504b71c7f77d1e31f2121a15ba7771c97b630a65bfd3027c6",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/weka/RESPALDO_UNIFICADO.zip",
+    "bytes": 11472033,
+    "sha256": "82a3b7217c62eff0fdf74c070608479239659bc0af71e8546d47c91d77d70b03",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/weka/RandomForest.png",
+    "bytes": 675186,
+    "sha256": "75fd874d38afb1b00f10cf700ec2a5adede66120ac7d87f702d4d0c7a6367d8c",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/weka/RandomForest.txt",
+    "bytes": 3521,
+    "sha256": "bed5274c54f92bc20ff70c7d64d600839b65e76ea4860e88d8e003dcd5bb47df",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/weka/ZeroR.png",
+    "bytes": 597808,
+    "sha256": "b7859929328baea3540730ab9e0494eec18e983a56f8fb5d1c26ddb77f91766f",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/weka/ZeroR.txt",
+    "bytes": 3346,
+    "sha256": "abc7807ce09733680834ddcfcbf72f7a71f72e62ad1d519db547385bc4fe1cad",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/weka/auditoria_cierre_2026_11_09.json",
+    "bytes": 1641,
+    "sha256": "e40d7fd52f04c7f67a654c8f0cfe301d0e34bfedba7b8de7ddf424c99e539549",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/weka/ayuda_simplekmeans.txt",
+    "bytes": 3011,
+    "sha256": "58ad204090c1a112e8c658001e8d33bc5f2dbefd7501bcd7d66500ebf42d2ccc",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/weka/bloqueo_selector_reanudacion.png",
+    "bytes": 131964,
+    "sha256": "85965f2266409001768b0c002be1b480c60b9602795d2c180e67987ca9d60215",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/weka/clic_weka.js",
+    "bytes": 1778,
+    "sha256": "a18f25837076eaf480e513a9f0f678a35b2eaf9805b14458b690ba6f430755e1",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/weka/comparacion.csv",
+    "bytes": 704,
+    "sha256": "70d69fdb4c4945ab54fec101100c11700af1d04db90b09376b26cef6dfa956a1",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/weka/conversion_capturas.json",
+    "bytes": 5286,
+    "sha256": "faa3a6f86b515d59e45a1f383580bf405eeeff13f3a68d45da111685d9d0b7bd",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/weka/dbscan.txt",
+    "bytes": 76228,
+    "sha256": "7d0866476ee480a90daee39e1469861c532b52da9dbef7bfb9c05eedcf11de94",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/weka/dbscan_encabezado.png",
+    "bytes": 634116,
+    "sha256": "49e5a296f7a1c62729338f28b9edcf8de4378e0a70b74c60343d02d3eff68305",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/weka/dbscan_paquete_instalado.png",
+    "bytes": 744567,
+    "sha256": "d116101ee2b08af4959b56657aceebbc52e1708afbe6c2cfef50ec082b55761f",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/weka/dbscan_paquete_pendiente.png",
+    "bytes": 231387,
+    "sha256": "14033da787cdd22635bd48f4c77c183cabfefa0d30a7d0a98177dea2995b79f6",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/weka/dbscan_parametros.png",
+    "bytes": 193074,
+    "sha256": "0893afea5b536cf905d0d8d1d2a212e68370679a22cc5ab5d25d1d83b5ccaa3e",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/weka/dbscan_resultado.png",
+    "bytes": 955565,
+    "sha256": "a5b1fd50d6f42054ceff60a26a5528d8813b86d1efebff71e5d0053d85f30ee2",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/weka/ejecucion.json",
+    "bytes": 2118,
+    "sha256": "2201928e6ce9a51ec63c47386436056bcf8ae31ff2c6a77027e43d76fd52604a",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/weka/error_csv_sin_origen.png",
+    "bytes": 38368,
+    "sha256": "8f603c2c51a0c9cd5fb7983e98c5e1c11128890657a09a6e063d1f424f59e077",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/weka/estado_antes_cierre.jpg",
+    "bytes": 367766,
+    "sha256": "4abf224a8f1570b588c2c9491c3b3db787e3d4fa05322d15994b7bd185bdd91d",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/weka/gui_chooser_3_8_7.png",
+    "bytes": 119632,
+    "sha256": "48b27f446204ea43447766801f0467df5441e8d20d5a78215220f503326944a9",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/weka/k2_asignaciones.csv",
+    "bytes": 25869,
+    "sha256": "6011fea6e55d662fbc2f367280161352f207d47c1c00f6e9e469641c01739be9",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/weka/k2_stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/weka/k2_stdout.txt",
+    "bytes": 6238,
+    "sha256": "a64f49b86a8e56c6abcb5a5dcc39d8e58c8c24ce1c51d181b648975e77f8cd34",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/weka/k3_asignaciones.csv",
+    "bytes": 25869,
+    "sha256": "3a6a05c3e79f47d3c4858dfe61a2444abd406684590fb498fa79594b7246546d",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/weka/k3_stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/weka/k3_stdout.txt",
+    "bytes": 6238,
+    "sha256": "c2ab96b9573386de5db92f96b1715774fea55fd2afe31bfd2bfc2bd778b82d1d",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/weka/k4_asignaciones.csv",
+    "bytes": 25869,
+    "sha256": "eade2a070ff467864e387e3e9dc620726ba815f21eb21978d4487d78e3fa68e6",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/weka/k4_stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/weka/k4_stdout.txt",
+    "bytes": 6238,
+    "sha256": "9f2835ace5f2bf0ca9489e65d77c183baf02ce4cfed7bcce2d60cdb855f13387",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/weka/kmeans.txt",
+    "bytes": 1554,
+    "sha256": "b6be17cf0eaf134d171be3850e8e4c683ef631592cb3e142195ae0358191983a",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/weka/kmeans_parametros.png",
+    "bytes": 315719,
+    "sha256": "02701adf007ea00754e5a08b072612409728475c99ad457ce314f52f1bd78f27",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/weka/kmeans_resultado.png",
+    "bytes": 580823,
+    "sha256": "a6f5223cb9b6f6d0cbeb70cc3da84f89396cd8fc68fa2195d4e8f7fc63548e00",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/weka/leer_menu_ax.js",
+    "bytes": 1857,
+    "sha256": "02f23f39da2f9f4edb082bedacf3d6c903efa26bf05867ce2662e9a50d19f4f6",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/weka/manifiesto_evidencias_gui.json",
+    "bytes": 9368,
+    "sha256": "8e51f08ff5c121c789408e79f40796dfd02fdfb27fb6b1e4c99393e52a46a6c0",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/weka/menu_clusterers_ax.json",
+    "bytes": 3,
+    "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/weka/preprocess_887_6.png",
+    "bytes": 328737,
+    "sha256": "4a12b27fee62542fd9e54b8a1a0f0860013d9a9b9d17eadb01afc3cf06c17e9e",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/weka/preprocess_clasificacion_892_53.png",
+    "bytes": 474369,
+    "sha256": "3528c55e62a3c2c4756a4c20a396350944a355ef5094a225e4023b394bf2da93",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/weka/revision_explorer_2026_11_09.jpg",
+    "bytes": 335490,
+    "sha256": "c747aaf6b50600ba4fcc166df07612f40ed6e6b60ed5487be8ffd70d275703c4",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/weka/selector_csv_pendiente.png",
+    "bytes": 125317,
+    "sha256": "4c9736fb48c9067662f1f960e6cb291e5416ef730a95ed3e369e4a35140420f1",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/weka/verificacion_comparativo_python_weka.json",
+    "bytes": 1469,
+    "sha256": "a3bff1c6308093cdae72d550e90b2ae5d732d2565c15800bb0f3ec76545bcd30",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/weka/verificacion_final_ventana.png",
+    "bytes": 925607,
+    "sha256": "db55f2c6708c8697f387317f5753d787c2132ebcf87b75c995378729edd6cde4",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/weka/verificacion_gui.json",
+    "bytes": 3665,
+    "sha256": "be902c717117cd70c74115abe9422a476a27290227664fa7c08563b005dbc584",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/reports/weka/capturas_originales_jpeg/J48.jpg",
+    "bytes": 393832,
+    "sha256": "2cf229718717fc3574bc2af3c45de908c0ddfc74a4273c560ebfdff745fbefa2",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/weka/capturas_originales_jpeg/NaiveBayes.jpg",
+    "bytes": 388942,
+    "sha256": "3183edf0097177d334337adae81965d64b6745681817a9130eee0e2a26c3db6f",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/weka/capturas_originales_jpeg/RandomForest.jpg",
+    "bytes": 417861,
+    "sha256": "17df8a4eb2e4bfc4b3fa628b4a94265ce9c36fd8c7d0922c4b938ea201bc86e6",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/weka/capturas_originales_jpeg/ZeroR.jpg",
+    "bytes": 369757,
+    "sha256": "5bf5855dbbfabc490600a2b84b17daad9634618f25b6e7bc3d9379bb1ec6b322",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/weka/capturas_originales_jpeg/dbscan_paquete_instalado.jpg",
+    "bytes": 488781,
+    "sha256": "1555840562cc1419d058e30801225e554784bb42e370f0ff4dfa58a7d34d74e4",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/weka/capturas_originales_jpeg/dbscan_parametros.jpg",
+    "bytes": 127518,
+    "sha256": "078094306545235ed1c67e4468cee9bad306737338cc4ebeb5d38395cfb61451",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/weka/capturas_originales_jpeg/dbscan_resultado.jpg",
+    "bytes": 632626,
+    "sha256": "764cab40e6644b9f38d3db5e999cb46efa59847754796ab7af598f7e61c55839",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/weka/capturas_originales_jpeg/kmeans_parametros.jpg",
+    "bytes": 201718,
+    "sha256": "2ff878e825f3e6fcb0055d9a40a69d57016a8074007afb72febc748b07414dfd",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/weka/capturas_originales_jpeg/kmeans_resultado.jpg",
+    "bytes": 375510,
+    "sha256": "0b8e0b0cbf449189b3e9e1003676ad081605321116834da5ee59b1346ff32af2",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/weka/capturas_originales_jpeg/preprocess_887_6.jpg",
+    "bytes": 281696,
+    "sha256": "ddd1c3c24514a7ceca94436e617187d1a0612c22544d6c8df476dae5ad46df25",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/weka/capturas_originales_jpeg/preprocess_clasificacion_892_53.jpg",
+    "bytes": 338311,
+    "sha256": "777b212a752b5a8e951352cf07a10fac9983ad477db5b92a6033994a7e60da47",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/reports/weka/capturas_originales_jpeg/verificacion_final_ventana.jpg",
+    "bytes": 624234,
+    "sha256": "521b7bdc5119b1c28295646d2e41cb7b242b0d994ce3a2e7fec17a7da82da6f0",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Final/src/01_inspeccion.py",
+    "bytes": 6482,
+    "sha256": "fb93e2c5c2466254ff2138631df23ae49749901c8b5cbb29fccff29adec24506",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/src/02_limpieza.py",
+    "bytes": 19606,
+    "sha256": "8f1aaf78713d94560fe89d2e52379a013bafe54992d4ffcf5953003d2e7c560d",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/src/03_clustering.py",
+    "bytes": 33309,
+    "sha256": "9451a90f1db4994b813fc697ef05e5f16759d16ee63e878535c4a4810034bc38",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/src/04_modelo.py",
+    "bytes": 27386,
+    "sha256": "c68c4ea59027dd3fcfa04600c39dd1a0eefcece63e684f4288fec172b23b9023",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/src/05_revision_predicciones.py",
+    "bytes": 6852,
+    "sha256": "e791c3a31abef6505f13f6226d49ca03764e7c4cb5e8a9a018d3f051053f3cca",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/src/__init__.py",
+    "bytes": 45,
+    "sha256": "9d9fcc3e68f3573f40a262363aae95848921cde9865bee99147f560667cfa536",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/src/analysis.py",
+    "bytes": 698,
+    "sha256": "c3c7ad613676c085eeb37ae0ebc36b984d04740f673a468533b5ed82702809d5",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/src/comparar_weka.py",
+    "bytes": 7552,
+    "sha256": "b16d4904d9da77ecfe1a3bd1dda59a7bd7bd55e28bde3342493967f46468d2a1",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/src/config.py",
+    "bytes": 718,
+    "sha256": "09d1460f1fa12ac7fff9811a4fe874c0f5de4527d8b168a250227d6655961042",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/src/data.py",
+    "bytes": 1415,
+    "sha256": "4f8b7a139c47ad8c54dd0c3ac578c211c897764538bd7a32855f002fcf6c182b",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/src/features.py",
+    "bytes": 3257,
+    "sha256": "3faa9dfb1cf0c771b2ccba37a6af476f1532f33cfa7983bd0e8fb408a5bf454a",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/src/inferencia.py",
+    "bytes": 1699,
+    "sha256": "3df0a6f805057fbdfe3645671ea94907a1b2482c80fc8cff47fb10b92576fc7c",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/src/modeling.py",
+    "bytes": 514,
+    "sha256": "8a6339965efb35991a06e494a49487978b46f9559e8b476c46bf7ec57a8b78f6",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/src/objetivo.py",
+    "bytes": 4390,
+    "sha256": "bf07800118e1c2bd8310bbb6600b82fdaa6d037db4551531ec65cb22a5394072",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/src/pipeline.py",
+    "bytes": 4535,
+    "sha256": "aca23ce69dc620612f2bc8078b4cdc4beec4e98ddd2b8360e0f1488d2e3e9150",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/src/procedencia.py",
+    "bytes": 8666,
+    "sha256": "99a7f75372627638bffec4d16070f66cea0e6a584e9c716788107a6ae48fc9e1",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/src/similitud.py",
+    "bytes": 783,
+    "sha256": "251232ca02ef085037050c37c5a68ce0257a772b1ff1bf83cc8b9fd46602d73c",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/src/ui.py",
+    "bytes": 26081,
+    "sha256": "c9da4cb356e5f43fda63e58e2d4eeacd8d74891032254ebdd76efd50a41f3d59",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/src/visualizacion.py",
+    "bytes": 2184,
+    "sha256": "7008c52adbb14e66db73df60ed0207f28a3a57ed9e1860abd29e902d9f212344",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/tests/test_auditoria.py",
+    "bytes": 4119,
+    "sha256": "f48de30c66b70472f8af5d85902f55e556cda8af37e21af7a3c1b693294c8ada",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/tests/test_auditoria2.py",
+    "bytes": 9418,
+    "sha256": "272c725d250f6c74b89e84c94b4dffbb7129447f5c59c73476e1bdb0f90eef85",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/tests/test_clustering.py",
+    "bytes": 4024,
+    "sha256": "99f28c00c7328cad44fd3b87656d83bf3d48dddf6393932e69dedb700f8917a2",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/tests/test_inferencia.py",
+    "bytes": 2246,
+    "sha256": "30235d88ef5acc7071ea03646fd7d447cca5b86c3acfb73a115264f2c0dccc3c",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/tests/test_limpieza.py",
+    "bytes": 8464,
+    "sha256": "ececa278a6d9d0c76c574d8c1b24ad191e9ed420713334e48b5da47d888f63ff",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/tests/test_modelo.py",
+    "bytes": 4547,
+    "sha256": "142e7514396204e881183b5b96793a723d53ca5411e30552bd165d7faee8e23a",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/tests/test_pipeline.py",
+    "bytes": 4625,
+    "sha256": "b8c010effa91fc3edb8823da62132dc9d40325cda7d192f18433019e62dc014e",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Final/tests/test_visualizacion.py",
+    "bytes": 1955,
+    "sha256": "15673f94de9e3f85a948e14c049a14ecd489b129350cd3e8ae0624b6b10d5c51",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "MenuVersion2/package-lock.json",
+    "bytes": 91,
+    "sha256": "da8e289907e43d247df4295a828f767c0f60b208dbcf23e640875860d198c8dc",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "MenuVersion2/PS5-CONSOLE/README.md",
+    "bytes": 1196,
+    "sha256": "400faae9d56284a52d5f51f58d8212bf42fb66f8bae3a120ee8b9932490dd57c",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "MenuVersion2/PS5-CONSOLE/index.html",
+    "bytes": 4073,
+    "sha256": "78c4ea310254ad98047448e63db3aaafd0146896911d131e83bc24e649c5eeec",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "MenuVersion2/PS5-CONSOLE/style.css",
+    "bytes": 2948,
+    "sha256": "12a984a64b559ded53eed643a1ede3e8c9fd8369ee047f6cca4d0b252db1b0ec",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "MenuVersion2/PS5-CONSOLE/assets/Ghostoftsushima.webp",
+    "bytes": 69352,
+    "sha256": "2d54df943861592c84016df3f7b852bc7c77d2f1cfd8131dfff10d51e7f60229",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/PS5-CONSOLE/assets/Returnal.webp",
+    "bytes": 101146,
+    "sha256": "36375c37d299a288e68cd771c3d4fee488199204727eb0117ae4aa49f9ccf3da",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/PS5-CONSOLE/assets/Spider Man.webp",
+    "bytes": 51740,
+    "sha256": "4e4e2f10fa902ad775f4c68c9a397184ae1d8589f1f3a96d772b98e4e7d97a0c",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/PS5-CONSOLE/assets/fps.png",
+    "bytes": 734890,
+    "sha256": "7431bbd0886cea548d863f5aa23a6ca34f7b426edd96d9bb53b71fd774c24e07",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/PS5-CONSOLE/assets/horizonforbiddonwest.webp",
+    "bytes": 98148,
+    "sha256": "4cca02e870cc76667212558337c6ddfc3f246eb77e024f3ef50536043abea92e",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/PS5-CONSOLE/assets/logo.webp",
+    "bytes": 2090,
+    "sha256": "d15f97774bb10dc24f290096da801e9a4ad8672e94c142fbaafc844b6fb8f560",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/PS5-CONSOLE/assets/ps5-console3.jpg",
+    "bytes": 48444,
+    "sha256": "46e6cd1e6840c19109d0425f69155e1c519126884d7904c8bc097119be54636e",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/PS5-CONSOLE/assets/ratchetandclank.webp",
+    "bytes": 78984,
+    "sha256": "1f3d7d9cb205775ffb2d8e50a1647c3fd4ae990d2fd383ba18f585ca81916c50",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/PS5-CONSOLE/assets/raytracing.png",
+    "bytes": 1537068,
+    "sha256": "6dd501103d23b0f1881eb8fb65ac5acc69e5298c0b09bc8d333251cc49c5e64f",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/decky-ps5-dashboard/.gitignore",
+    "bytes": 83,
+    "sha256": "2149caecd4c27b84223fd7183e749125be6eeb2e8564e5672cebfc3f51d81817",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "MenuVersion2/decky-ps5-dashboard/CHANGELOG.md",
+    "bytes": 6849,
+    "sha256": "14e425baed28e188d019fcf2619938023bb105adb7a615cdf28f76247d71c9f3",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "MenuVersion2/decky-ps5-dashboard/LICENSE",
+    "bytes": 1067,
+    "sha256": "0e7a71c62e915d523de51d987d42a597c19621b7ab713f240334004cb424e775",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/decky-ps5-dashboard/README.md",
+    "bytes": 11755,
+    "sha256": "cac42ecef28ed9c66f606d9e948006afc21ad6f4c6f2cb916455b27cdcfe2b97",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "MenuVersion2/decky-ps5-dashboard/main.py",
+    "bytes": 1693,
+    "sha256": "c8f38735d766026c3260fd8bc759fbc65a837ff87e8242473b6ad2cd60742517",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "MenuVersion2/decky-ps5-dashboard/package-lock.json",
+    "bytes": 72679,
+    "sha256": "2dfedf550109d7bf2d6891ea507b20775f7870fcabdc86fac1367ae260cc7471",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "MenuVersion2/decky-ps5-dashboard/package.json",
+    "bytes": 739,
+    "sha256": "ced8a1eb902ffaaeb0cf3a96c3e61f5590702911e8e84081a74651cf63af22a1",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "MenuVersion2/decky-ps5-dashboard/plugin.json",
+    "bytes": 523,
+    "sha256": "9d3338fa143b8a77173f27eba288b562462963ea7f227c4f7e18418bcea59cdb",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "MenuVersion2/decky-ps5-dashboard/ps5-dashboard.zip",
+    "bytes": 73472,
+    "sha256": "764951db3858f42ed7fe12c0925557c1c1b51640a5554d7ff218edfad734381e",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/decky-ps5-dashboard/rollup.config.js",
+    "bytes": 74,
+    "sha256": "95e1c5a32396bed80b2d4148507520b9504e277ff954e993979679b14336ea45",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "MenuVersion2/decky-ps5-dashboard/tsconfig.json",
+    "bytes": 498,
+    "sha256": "fa7f552df07f3bb2fded576b1ddd9b41284ef93df89b252baafb472c062c0662",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "MenuVersion2/decky-ps5-dashboard/.github/FUNDING.yml",
+    "bytes": 29,
+    "sha256": "e2647241978394ebf013f1f44c3cf984c3d70414454724fa83eb1ebcce5e6d6f",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "MenuVersion2/decky-ps5-dashboard/docs/photos/handheld-home.jpg",
+    "bytes": 353737,
+    "sha256": "d08955cf594b851891b3859287498d9c81b3f5852a1f1308f166e608d2dd7cd1",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/decky-ps5-dashboard/docs/photos/handheld-store.jpg",
+    "bytes": 245203,
+    "sha256": "5ca82712d263c1c230e355b3b2ba954701aba324e56b13e93218d250da8e0fab",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/decky-ps5-dashboard/docs/screenshots/home.jpg",
+    "bytes": 186195,
+    "sha256": "ec1d35f8b2257a03c64c66229b8edc1a464075ef9d995ef61d58bc417f03bd8d",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/decky-ps5-dashboard/docs/screenshots/library.jpg",
+    "bytes": 188808,
+    "sha256": "c4130c805df8f762c0d4a0bd8b2619a8de700a7be700688b085d50579a0d7ba8",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/decky-ps5-dashboard/docs/screenshots/media.jpg",
+    "bytes": 73381,
+    "sha256": "94149c8e36db773f8b56d2b1cc97808143a11ca8b3882fa5237500dd2756985d",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/decky-ps5-dashboard/docs/screenshots/play.jpg",
+    "bytes": 189381,
+    "sha256": "d5317e41825f84cbc9894320856ca7204c5cdebbb7846cd95efe23569b9ecf2d",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/decky-ps5-dashboard/docs/screenshots/rows.jpg",
+    "bytes": 172510,
+    "sha256": "db5c50515779164a3b98761f86ef91740c88aba26d49706498a9c28d5ce9219d",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/decky-ps5-dashboard/docs/screenshots/store.jpg",
+    "bytes": 86962,
+    "sha256": "1c99c2497c99527607699a585f596d405f4d6f6761259668ad146e5030b89003",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/decky-ps5-dashboard/py_modules/hltb_client.py",
+    "bytes": 10112,
+    "sha256": "522e96d2fb3fef65abf00f4e78ed1afaade653715d5208c40ff8c307fb462a84",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "MenuVersion2/decky-ps5-dashboard/scripts/package.sh",
+    "bytes": 947,
+    "sha256": "cbbf4d4b10c00f0da0d3b8c09c4681bb0146369334c4a8cffc7e6eca0ffc7838",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "MenuVersion2/decky-ps5-dashboard/src/InfoCards.tsx",
+    "bytes": 7338,
+    "sha256": "9ea5f90da40fbe87c664935d592b6e76744b61b8a54b945a3105ee6851150b4c",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/decky-ps5-dashboard/src/Library.tsx",
+    "bytes": 3437,
+    "sha256": "9d4f8bf6c082b9d9c41a515004591617570bbc57c0ff88aaa623a62d1b07c4a1",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/decky-ps5-dashboard/src/Ps5Home.tsx",
+    "bytes": 12415,
+    "sha256": "db78b7b2bc9049288e492adbb14f92971f9390f3e120654432bbef458d4e4e70",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/decky-ps5-dashboard/src/Shell.tsx",
+    "bytes": 6882,
+    "sha256": "7c5673040bd351aef6c33732923e5ad965c7f27dd77a0a0e8a935714f487b8e5",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/decky-ps5-dashboard/src/classes.ts",
+    "bytes": 4035,
+    "sha256": "128e79cae7ab919fa888fb9f6bd2a2b735bd032ae65e7226548d1f790360e2db",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/decky-ps5-dashboard/src/components.tsx",
+    "bytes": 10594,
+    "sha256": "a4f2da0602a41fe59b4a7b77dc658fde7aaa4fc45a068805f3406170b9835cfc",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/decky-ps5-dashboard/src/gameinfo.ts",
+    "bytes": 4403,
+    "sha256": "398080d8c1a6f84ebd1cba267b1b6b57b5089f56a27bb1e0f2ef54aae57a4998",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/decky-ps5-dashboard/src/i18n.ts",
+    "bytes": 2749,
+    "sha256": "f4eccffed016ef84d8274c516b29422ec9aa3dae9b842345186ab6df535129b3",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/decky-ps5-dashboard/src/index.tsx",
+    "bytes": 10156,
+    "sha256": "e6603c07edb1e9b919f02c8d6def8ab179d90652f11f8dbae1ce99f582926b85",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/decky-ps5-dashboard/src/injector.ts",
+    "bytes": 2956,
+    "sha256": "d1b31f2a7619807397e62aad208befe77fd9d2e4e2d71a8bc9beab250c9baa77",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/decky-ps5-dashboard/src/palette.ts",
+    "bytes": 6708,
+    "sha256": "1a5ae98ad10d521ff090663d2d52f270a2228c45140b90cd0f27116e5e325af4",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/decky-ps5-dashboard/src/settings.ts",
+    "bytes": 3130,
+    "sha256": "6fea3e43ec80f6afe23c7047738adb336621fb3189c9e82a637278bf60502500",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/decky-ps5-dashboard/src/steam.ts",
+    "bytes": 8036,
+    "sha256": "90ddb55625af026fa6c5f297fabf92e02ad796b85a0bee4e4a8ed265d8a1101f",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/decky-ps5-dashboard/src/styles.ts",
+    "bytes": 19658,
+    "sha256": "1eee4ca40a949780ef69c8723d8dec6743256a4c8524d4c9445ff37fd6828f80",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/decky-ps5-dashboard/src/theme.ts",
+    "bytes": 15742,
+    "sha256": "1b2958ea49e219b3cc8be94c7fcd0aa06227104b999790473f44ed36e8175b4b",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/decky-ps5-dashboard/src/locales/de.ts",
+    "bytes": 5924,
+    "sha256": "88388aead8145868be5f55c19e4f253d5bbe8665fdd2559932717661dc169ac0",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/decky-ps5-dashboard/src/locales/en.ts",
+    "bytes": 5553,
+    "sha256": "2238b946db4d752a6e0660b4d063a5d4c925aeb71cc8fb77aa9ece92947e739c",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/decky-ps5-dashboard/src/locales/es.ts",
+    "bytes": 6051,
+    "sha256": "f17796c93ebc3644e8cafbce84d0eba2c0930981c01ad2a97743b392a35468f1",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/decky-ps5-dashboard/src/locales/fr.ts",
+    "bytes": 6012,
+    "sha256": "ef27810cf07af02f24b001b5884a1f1406e72b528f64b14686bc7292d22c3db2",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/decky-ps5-dashboard/src/locales/it.ts",
+    "bytes": 5911,
+    "sha256": "3f9169ab53b479b3427606850c6a5f4db51f582ef686b5dc24f5691858bd6973",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/decky-ps5-dashboard/src/locales/ja.ts",
+    "bytes": 6673,
+    "sha256": "b346934286e17f40a31053c4b5e6412294ba0366f12462eede3a5c4b432adb78",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/decky-ps5-dashboard/src/locales/ko.ts",
+    "bytes": 6058,
+    "sha256": "dd31a3e5ecd62e074defccb8089c0b59438cc914b360b26374c57587dc93301c",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/decky-ps5-dashboard/src/locales/pl.ts",
+    "bytes": 6041,
+    "sha256": "9657ceed8c61f78f55b6af0483f987f5c0b7805ab52eb85f9feb43ea5b0bd1f3",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/decky-ps5-dashboard/src/locales/pt.ts",
+    "bytes": 5991,
+    "sha256": "842c0bed02aa2893fe917acf7d285439f3303751b99b99e5ab27f190da708003",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/decky-ps5-dashboard/src/locales/ru.ts",
+    "bytes": 8412,
+    "sha256": "0b4b0eac32e021c6d5872623cd2e68793537fffa40936280d358d2670aac049b",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/decky-ps5-dashboard/src/locales/tr.ts",
+    "bytes": 5905,
+    "sha256": "c1030aa3171ba8cdf6f73bfce0b4108d4c1c0209165236f4a73d91bd8466761f",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/decky-ps5-dashboard/src/locales/uk.ts",
+    "bytes": 8391,
+    "sha256": "85e748f8dd928c6a61f1395878b83e4b4eabe89a5f4b626acbe3e4885af79ead",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/decky-ps5-dashboard/src/locales/zh-CN.ts",
+    "bytes": 5393,
+    "sha256": "855d6575e08afffa238353dedc1d9380334d6412bd7b122a9ac9b1fd341304da",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/decky-ps5-dashboard/src/locales/zh-TW.ts",
+    "bytes": 5493,
+    "sha256": "77c53d23b88ebeb0a11e1e255157bbd0ad9697097e5b16a12e28efc5af477c93",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/decky-ps5-dashboard/web/app.js",
+    "bytes": 3644,
+    "sha256": "e1d43836efdaa82e708848454cfa4e8fbc9f869479e34f40ff7572413e65c376",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "MenuVersion2/decky-ps5-dashboard/web/index.html",
+    "bytes": 3514,
+    "sha256": "e317ee620fc40e14548b8dfcc135da2219f7237dcdf2d77adb41d2794d241c2a",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "MenuVersion2/decky-ps5-dashboard/web/styles.css",
+    "bytes": 5310,
+    "sha256": "55cd7699e5ddec98e828cd874043a5362ff9bb7902b38c8939ee27e1295ea992",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "MenuVersion2/ps5/README.md",
+    "bytes": 353,
+    "sha256": "6ca6439665ee76b521bf2841a36f072ad7f8cc7c7a8d01d3984d5d62a1c8b0e5",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "MenuVersion2/ps5/index.html",
+    "bytes": 3937,
+    "sha256": "d1d6bcc954a962ba499f07704a93f016cf4c988691b0ca56622e72155cb64e3e",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "MenuVersion2/ps5/profile.html",
+    "bytes": 2681,
+    "sha256": "4fc41d03e149c4919b317cbad81a9886cc86a23f7834ad88244133e7dd5f47c9",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "MenuVersion2/ps5/css/style.css",
+    "bytes": 5171,
+    "sha256": "35365d4007c65d5b57c67a0ff22044c8ba7700dfdb71bd1136643d68a3cdc7f2",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "MenuVersion2/ps5/img/God-of-War-2018.jpg",
+    "bytes": 563965,
+    "sha256": "c55ccc8c67901bdc85c542dcadee97f557042bf11375aedb73b87fa104713378",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/ps5/img/Majedjpg.jpg",
+    "bytes": 2959,
+    "sha256": "7a09b869639baa3673fbbc51080227f1aeadd3c6f8a47f66ad223cfe2fb893bf",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/ps5/img/bg-demons-souls.png",
+    "bytes": 2518201,
+    "sha256": "08cc620b9f70f9d8521cfe6c38b0a2a23f3fddf9d845a34ea2bdc70c6c8ec612",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/ps5/img/bg-dirt-5.png",
+    "bytes": 3874106,
+    "sha256": "88c29ff583506201f9c85fc0ecaf3811141bc7c3df5ecc21c8287e08ee0169e3",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/ps5/img/bg-spider-man.png",
+    "bytes": 655249,
+    "sha256": "45bc33c8bc364b5d3cd9022fb49c26fd4bb3f6a0031f1e1910e0598cb9add68a",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/ps5/img/bg-watch-dogs.png",
+    "bytes": 3208843,
+    "sha256": "0b50d255eb6b0298676a7acda3dfcdda23b216a98dbc95d9fa96fe5a86853624",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/ps5/img/call-of-duty.jpg",
+    "bytes": 757138,
+    "sha256": "2013c962b03cb275b29a370a9dbc76f40a17b311b79861210d769f307bd7a33e",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/ps5/img/call.jpg",
+    "bytes": 24686,
+    "sha256": "6593e2ca221f4c6f7b2f13ee0faf9dbfc188f8a0d83a47799e9aef4e514d3cf0",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/ps5/img/for-cry.jpg",
+    "bytes": 24613,
+    "sha256": "004fa33470bd06dd17f71d3238c7049d9c267560b29c1f98944a7db8055379bd",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/ps5/img/game-thumbnail-XIII.png",
+    "bytes": 2513859,
+    "sha256": "c783eb25997f2cc8d8947e66fe1d61de57b7a26cdd1da4fa216e0771a39cafb3",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/ps5/img/game-thumbnail-demons-souls.png",
+    "bytes": 106911,
+    "sha256": "3eae6fc229dde979ac3ba772ceac8615431b8117022366902b939bef67c64894",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/ps5/img/game-thumbnail-dirt-5.png",
+    "bytes": 98851,
+    "sha256": "2d543c4de05b108a30f830a9a71d097f510fabd5400b84abc5fad6df4c4d0d43",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/ps5/img/game-thumbnail-sackboy.png",
+    "bytes": 98355,
+    "sha256": "47857550b880d7111fd776d067934c61290fd9b9710570fd849866bbce58f317",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/ps5/img/game-thumbnail-spider-man.png",
+    "bytes": 56202,
+    "sha256": "35430d70dc4b59bc7764191722fececc45de395c39435b3a56a60acc3ef9f6f0",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/ps5/img/game-thumbnail-watch-dogs.png",
+    "bytes": 101711,
+    "sha256": "89470ebeb0af1b90946146c226ec6b8921b972ac4d983d52b55a72b4df1fdb56",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/ps5/img/game-thumbnail-yakuza.png",
+    "bytes": 98461,
+    "sha256": "352ee42fb1d192f6cca0ad0401a07bc29752ffa4e558b0683b5fc38450dac81c",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/ps5/img/god-of-war.jpg",
+    "bytes": 19698,
+    "sha256": "7489bb73d236ca265244998ef934d3731b5e61c6994a28bf9ef167babb76b69f",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/ps5/img/icon.png",
+    "bytes": 36648,
+    "sha256": "133d1c16ffa4f643e7e41ace58ff787885770d501a405f903fffaf364085fed3",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/ps5/img/leage just.jpg",
+    "bytes": 1474053,
+    "sha256": "ccf94ffb43b069f0b05f5fc9c7e4ca9f84db7b9d2230a014c41e93da56406d48",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/ps5/img/profile background.jpg",
+    "bytes": 16406,
+    "sha256": "8e5f96dc16a63748420fdd7dba210e04454a11938d03c1b0be533dfc590d4279",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/ps5/img/rednotice.jpeg",
+    "bytes": 268890,
+    "sha256": "10e95593fa2d9640dd06e0e7cfcf7abf28b0285d9ce7987011787faa7b44c4ff",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "MenuVersion2/ps5/js/main.js",
+    "bytes": 402,
+    "sha256": "b61041c5ed2d92212ce2e0e50775b86439c79c6fee0bbc60688ac399e9e9d070",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Practicas/Practica2/BITACORA_UNIFICADA.md",
+    "bytes": 50843,
+    "sha256": "bd6ebed062978f728147d277fe95da53be14f808bc69858dfa9ddd49875f7899",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Practicas/Practica2/Portada.tex",
+    "bytes": 1036,
+    "sha256": "93e7370deda00e703a408d0c35b6eca3fade9eb54eb83a4011c518e100c646d5",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Practicas/Practica2/main.synctex.gz",
+    "bytes": 144787,
+    "sha256": "cbd69dda80cff0d389210c0567925eb67f0ca0f3c4cc7696a539188bc7420ceb",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Practicas/Practica2/main.tex",
+    "bytes": 48805,
+    "sha256": "ee6e6f315689006114253df94a894b84c6feaaa319f6520e6251a6a7d872822c",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Practicas/Practica2/referencias.bib",
+    "bytes": 961,
+    "sha256": "65ea7ba7bba53912f21c405371d2eb4adf9d394c721921c25f50b54a612647f2",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Practicas/Practica2/img/image1.png",
+    "bytes": 335125,
+    "sha256": "51b635efcae5825fdb807867ef3d37247ef534b6aeb26898cc60c227b5151ba5",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Practicas/Practica2/img/image10.png",
+    "bytes": 248379,
+    "sha256": "a7e3b8a0fb22649a9fd2bea9a9f4880c0a4551829d4d3ecdcec14472c4cbe317",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Practicas/Practica2/img/image11.png",
+    "bytes": 218587,
+    "sha256": "cad096c209a6a05e01d65e75586b64b73e1503b3ec5a2241e9d175c09a1bebc9",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Practicas/Practica2/img/image12.png",
+    "bytes": 308163,
+    "sha256": "bf7288893274a4386269cc2722f356d863adf6ee1b54d75a7475dd0b950d94ef",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Practicas/Practica2/img/image13.png",
+    "bytes": 322011,
+    "sha256": "b0529415c36d3d11e2c90ba19daf158c6eda65ddea1a2cf2bda9a84f77b0ead3",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Practicas/Practica2/img/image14.png",
+    "bytes": 539266,
+    "sha256": "c71689491d03ae7a51c17b317f7b66f70af11359ff4f418ef2e89a4bff18cd6a",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Practicas/Practica2/img/image15.png",
+    "bytes": 252113,
+    "sha256": "541a643f1780af6245cb98ffcc98ec04188033d5cfc8fea6b2675131a0b99693",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Practicas/Practica2/img/image16.png",
+    "bytes": 293239,
+    "sha256": "8615734a1ff24c078e2cd70d1609b59dbd991f93810a6678c0ba2fe9452248a8",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Practicas/Practica2/img/image17.png",
+    "bytes": 223034,
+    "sha256": "315ae4bac5cf53c0d6b573012095c671f9c1d9b0efddecfc45c028171aa5f612",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Practicas/Practica2/img/image18.png",
+    "bytes": 531217,
+    "sha256": "ee7ec7f033025fd469ef046d74617ea843be43506df33802ec9a55e895a36914",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Practicas/Practica2/img/image19.png",
+    "bytes": 357253,
+    "sha256": "e45c2d8f0e2386299a4adbcb9b317fb36355f6366fd8da8c00115c588edfdb1c",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Practicas/Practica2/img/image2.png",
+    "bytes": 254703,
+    "sha256": "e2418280459314779c8d39d4c8220b11237107c4b204c5a59396d8f8f44d35b5",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Practicas/Practica2/img/image20.png",
+    "bytes": 851304,
+    "sha256": "5c32eeae03d4b92ac5ccd196e4b06faf126127dd0e36dba763aac81e288547ca",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Practicas/Practica2/img/image21.png",
+    "bytes": 177758,
+    "sha256": "e093bbaa30c3b24815ea48369cef32d3ae50dc6f4bb89aef7af2dd6491597ee1",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Practicas/Practica2/img/image22.png",
+    "bytes": 79706,
+    "sha256": "347b3aa7ecf7cb02f04a2742ead2bd5688b878e31fc2d2ce2f147e25f29da133",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Practicas/Practica2/img/image23.png",
+    "bytes": 61414,
+    "sha256": "c9151242d8f16e36b9e5908d4d8f18b70dc508f1bfaa8bcdd4bb17ab8ca50747",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Practicas/Practica2/img/image3.png",
+    "bytes": 364950,
+    "sha256": "49be7ae20023429bcabee177c3144b54ec5ece672b1bdc7c7e7050046a9b0167",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Practicas/Practica2/img/image4.png",
+    "bytes": 301866,
+    "sha256": "7168e327dfddd38705577ac053646fea57584ab7a5e6f23cc2facd6e760493c5",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Practicas/Practica2/img/image5.png",
+    "bytes": 341508,
+    "sha256": "124b28475f425f569a8de797c192ecd8de5f562f919b7a720a0cad3e8f46085f",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Practicas/Practica2/img/image6.png",
+    "bytes": 495626,
+    "sha256": "9fc1b9df8f778f9e0cdde413dc79a791a0852e353bd56089c8880ec791e0ffdf",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Practicas/Practica2/img/image7.png",
+    "bytes": 289623,
+    "sha256": "aec17532adc43c3c829eaf0bb62f8645267dfce259ded5401f6978b868a1890b",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Practicas/Practica2/img/image8.png",
+    "bytes": 64074,
+    "sha256": "670f2c549281e4d03f3c67612e3cc2db7619480c21bbf3fe64da6fe19fb6eae2",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Practicas/Practica2/img/image9.png",
+    "bytes": 156933,
+    "sha256": "c3ffbdd43279bd22fa4efd10d38dd62013c377adc1f9e4ae0b1ac061b62b2c24",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Practicas/Practica2/notebook/Practica3_TiendaAlimentos_Secciones_1_2.ipynb",
+    "bytes": 177927,
+    "sha256": "5c05f6b4eb3808fc5d0ddcab715c3e6234a8ac698d325a833a0b2021d48a87db",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Practicas/Practica2/portada_img/der.png",
+    "bytes": 210257,
+    "sha256": "99dbfff9fda6ba78364f314688169e8ea2260c59ec2398a77e5f130b6e43e983",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Practicas/Practica2/portada_img/escudofi_negro.jpg",
+    "bytes": 162117,
+    "sha256": "25d8b8fd75ea5024f1515c39bb17a50f1d61a6d29f3b6c8790e6c2280424a0f9",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Practicas/Practica2/portada_img/escudounam_negro.jpg",
+    "bytes": 166501,
+    "sha256": "bf55b1c40af7a0c87dbf7e87830dd8c639bd2c6cf18276f83eddd3354c56d92b",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Practicas/Practica2/portada_img/izq.png",
+    "bytes": 32490,
+    "sha256": "dc30f458781af02df77bccdb4af094c6e2f3aa1d161ad54c8e37c6f7a04b8a95",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Practicas/Practica3/BITACORA_UNIFICADA.md",
+    "bytes": 35125,
+    "sha256": "d9b7a1adfa1aa071443cea310b8fbadf3d45e492fa29a75995cce79b444a40d4",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Practicas/Practica3/Portada.tex",
+    "bytes": 1038,
+    "sha256": "d21cb96a990d32863be1f44823a90d4d999013fdaa9aa4afc9a6590da3ab000a",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Practicas/Practica3/main.pdf",
+    "bytes": 406823,
+    "sha256": "94b6c03957b44f3e16c4b1dadc898a910d283dd1b4a386902aed3db86b7af5f2",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Practicas/Practica3/main.synctex.gz",
+    "bytes": 19643,
+    "sha256": "31baa8c4c0a8fb76b6dcf8ea2bff045aca4dd1a28668f571524156cd70d15182",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Practicas/Practica3/main.tex",
+    "bytes": 5394,
+    "sha256": "d6714c1eb2e39203604fbb611851c168c01fe057fafbe9d5f448122bebe36091",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Practicas/Practica3/referencias.bib",
+    "bytes": 961,
+    "sha256": "65ea7ba7bba53912f21c405371d2eb4adf9d394c721921c25f50b54a612647f2",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Practicas/Practica3/img/colab_cardinalidad.png",
+    "bytes": 207319,
+    "sha256": "bd99593f89df5c74e07c09509b55f2617a59257de9e127a115c0ba156f3cb25d",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Practicas/Practica3/portada_img/der.png",
+    "bytes": 210257,
+    "sha256": "99dbfff9fda6ba78364f314688169e8ea2260c59ec2398a77e5f130b6e43e983",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Practicas/Practica3/portada_img/escudofi_negro.jpg",
+    "bytes": 162117,
+    "sha256": "25d8b8fd75ea5024f1515c39bb17a50f1d61a6d29f3b6c8790e6c2280424a0f9",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Practicas/Practica3/portada_img/escudounam_negro.jpg",
+    "bytes": 166501,
+    "sha256": "bf55b1c40af7a0c87dbf7e87830dd8c639bd2c6cf18276f83eddd3354c56d92b",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Practicas/Practica3/portada_img/izq.png",
+    "bytes": 32490,
+    "sha256": "dc30f458781af02df77bccdb4af094c6e2f3aa1d161ad54c8e37c6f7a04b8a95",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Proyecto/.env.example",
+    "bytes": 247,
+    "sha256": "a7d9f2a7f47388f1b19dbf2fe2460e694c5801102b4cca297200e52ff5fb6ae2",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Proyecto/Anteproyecto_320317264_320060829_320206968.pdf",
+    "bytes": 368165,
+    "sha256": "f1893d2ad1de58719af15d982fe5e66bde96307b76f1dda8cea1babce8feb308",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Proyecto/Anteproyecto_v2_320317264_320060829_320206968.pdf",
+    "bytes": 441500,
+    "sha256": "fcffc00b050095e06367aecc2df5b4ef6fad1009ba718de96148bd98bed6dc6e",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Proyecto/BITACORA_UNIFICADA.md",
+    "bytes": 65538,
+    "sha256": "b09ca2920ea684db364fdf8e3fe47032da365f9eb77e70cd983c8b80e67208b1",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Proyecto/Portada.tex",
+    "bytes": 1479,
+    "sha256": "a9ff4d30831f58cfc88f76710486e92cf84852b2b9e04264310040811c82865c",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Proyecto/main 2.synctex.gz",
+    "bytes": 141298,
+    "sha256": "ce6518836fe0517f0954835e4118f76bea35dd13cef0d9eea3b7e9d9ec070d93",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Proyecto/main-blx.bib",
+    "bytes": 343,
+    "sha256": "0e10c5dcce561ed75035d35befd00e346a50ec8e0f7dd693cfab075cbc4209fb",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Proyecto/main.pdf",
+    "bytes": 441500,
+    "sha256": "fcffc00b050095e06367aecc2df5b4ef6fad1009ba718de96148bd98bed6dc6e",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Proyecto/main.tex",
+    "bytes": 58119,
+    "sha256": "8c0fe2dd6eb57f521320dfda349da60adbde76448cca43c80fce409afa504150",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Proyecto/main_v1_backup.tex",
+    "bytes": 41568,
+    "sha256": "a2cfe0b7e6b5156b6b9a2945e3b303b0a3fac4ae0b55b78b88bb60700cd07207",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Proyecto/referencias.bib",
+    "bytes": 5300,
+    "sha256": "dda45af7bf6d4e10dacf856adf932c055f9dc4494355da412e43dd969ee6830c",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Proyecto/referencias_v1_backup.bib",
+    "bytes": 2973,
+    "sha256": "85d67a0377b43d6e310d59c289b18c58eb47a99ac0efa1cf3562eae25013689e",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Proyecto/requirements.txt",
+    "bytes": 69,
+    "sha256": "e8c55143e8d03af88fcfa0c14cc6cd7a8c5da28eb4f88455714fa60882967fa5",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Proyecto/data/curated/complement_seeds.csv",
+    "bytes": 13350,
+    "sha256": "e6259526ab3692ed5eb5792d03b2b2af4f88551bd6d72280b1f554a06fcbe121",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Proyecto/data/curated/manual_review.csv",
+    "bytes": 29402,
+    "sha256": "ecd9bed2f618ee893d3b4577d75659ea185e39317cd81c990c1fa1c753082290",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Proyecto/data/processed/games_curated.csv",
+    "bytes": 2495886,
+    "sha256": "b23cc1c4c23e65171bbe8a3436c358773cee15b8e11b446261cd575daa625acd",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Proyecto/docs/DATA_SOURCES.md",
+    "bytes": 5619,
+    "sha256": "d0d22449883eab635df7af6fc9cf6f61577ca91c9e79563c0974dcefff12d50b",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Proyecto/docs/games_actualizado_metacritic.csv",
+    "bytes": 2949718,
+    "sha256": "6073f43d0c0bd5722b03789ff51c97c4ecd53686cdedbef93fc69d0c990245b6",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Proyecto/instruct/ProyectoMineríaDatos.pdf",
+    "bytes": 81737,
+    "sha256": "dd62ef24a2822d83205eb0352095519af4d94900e146df55d207b23b0c892dbc",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Proyecto/portada_img/der.png",
+    "bytes": 210257,
+    "sha256": "99dbfff9fda6ba78364f314688169e8ea2260c59ec2398a77e5f130b6e43e983",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Proyecto/portada_img/escudofi_negro.jpg",
+    "bytes": 162117,
+    "sha256": "25d8b8fd75ea5024f1515c39bb17a50f1d61a6d29f3b6c8790e6c2280424a0f9",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Proyecto/portada_img/escudounam_negro.jpg",
+    "bytes": 166501,
+    "sha256": "bf55b1c40af7a0c87dbf7e87830dd8c639bd2c6cf18276f83eddd3354c56d92b",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Proyecto/portada_img/izq.png",
+    "bytes": 32490,
+    "sha256": "dc30f458781af02df77bccdb4af094c6e2f3aa1d161ad54c8e37c6f7a04b8a95",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "Proyecto/reports/pearson_before_after.md",
+    "bytes": 978,
+    "sha256": "c783534d81a9c4090c35a79642899bb3f52b3618e3be0296d091e2b90e0d4237",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Proyecto/src/__init__.py",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Proyecto/src/cleaning.py",
+    "bytes": 3560,
+    "sha256": "ed82d7c08ef30362d9496359472aeb6e212fe458c6ebba2d2ff566573ecb30c7",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Proyecto/src/config.py",
+    "bytes": 864,
+    "sha256": "89c4688efca334427b3659fd99c4e7675541eb099be07283c310818ee4031807",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Proyecto/src/curate.py",
+    "bytes": 4368,
+    "sha256": "4eaa78d005510e5e9b5353c794293f928e30a2e076560c3e6138f5ca923dc022",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Proyecto/tests/test_cleaning.py",
+    "bytes": 1381,
+    "sha256": "ea65939c224b0a1e42fafc3d4c50343ba5de60d97f90bc23383447e62f4ae2b1",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "Proyecto/tests/test_curate.py",
+    "bytes": 969,
+    "sha256": "dfe23b66f5d409678a0e9dcb315aadef3683606250eb21e2d3b8a5ea85fd4621",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/.codex",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/.directory",
+    "bytes": 33,
+    "sha256": "33aac5b70d7738da9bc414dc9563755c1546cefbc2383ef74772e9201b55e152",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/.gitattributes",
+    "bytes": 42,
+    "sha256": "bfe2e7093f352205764534b2fc590dd92addf7e46dc6e29e66e6701706a9e581",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/.gitignore",
+    "bytes": 253,
+    "sha256": "fe718e7babb14f3cbad2d97f08889b9ce5215ed3fe0e43b2b8cfbfb3b9b844e8",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/BITACORA_UNIFICADA.md",
+    "bytes": 5276,
+    "sha256": "5cc1009d4dda13c48a2ea9281d217bbe169db059e9f209858c0653ccac83b827",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/Persona5main.ttf",
+    "bytes": 7528,
+    "sha256": "75464e8ad48fa648764b571e659b92fa93d2753c209caae9357bc5331dc7c4c2",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/README.md",
+    "bytes": 2313,
+    "sha256": "cb8852c77537681ed06b0e5ab9c4187a6e1624c99225e0502fd73575cbc8d6b5",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/eslint.config.js",
+    "bytes": 758,
+    "sha256": "da0cbf3213f2994741024e2aa5165d017e0345f389dcd2f8a0db97fee7289d1b",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/fix-audio.mjs",
+    "bytes": 2256,
+    "sha256": "07faedccef50fc024ea5036a98074f609c2c00534878a8878216c2155968c727",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/flask_app.py",
+    "bytes": 758,
+    "sha256": "091cb380727e28c27d5bcae7a11e775f5ec65752e63dbe961c84d58928a03ac0",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/index.html",
+    "bytes": 595,
+    "sha256": "42c6be3975bf6b4095d2b6027dbe208244c4fe489a513a6736de3db8db32ba16",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/package-lock.json",
+    "bytes": 93660,
+    "sha256": "3c0bb53d3f29f15b41ca568398e7b9a6816f1b4f7ac54acd691fbc74fb153daf",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/package.json",
+    "bytes": 735,
+    "sha256": "023eb02750922c7638cf4d11f1f3fdd9d72270d3c29f18d596e14e0a33ee2393",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/requirements.txt",
+    "bytes": 13,
+    "sha256": "267e2c6c3a55cf611ef9f26a7eaee92be8667769659b6546fdfe17f40d130384",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/update-imports.mjs",
+    "bytes": 630,
+    "sha256": "3aa7eac7c6854d70dab99f1858041a52d91db8817e038ba59f4fbfb9ea8038b0",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/vite.config.js",
+    "bytes": 168,
+    "sha256": "5cabb639b6b62e19064337abc9f5b4fda0f83e50a47396ca9a3bba388abfdd13",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/public/favicon.svg",
+    "bytes": 9522,
+    "sha256": "61bc9a161de58248288e6905425d7180f0624c2865007b97d763fdac12043a66",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/public/icons.svg",
+    "bytes": 5031,
+    "sha256": "b45fa506195cfcdef406ba9f0c77b36ddc1a7c224040926ec70abc2fdea7b93a",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/public/audio/README.txt",
+    "bytes": 253,
+    "sha256": "5e8841459b2bb744d3074add9cbcc34ce28ec520e4b67cd7b165f07548d53d3f",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/public/audio/background.mp3",
+    "bytes": 7748963,
+    "sha256": "8427464831e25c091b8573730f849496f03410d270e3b2817299282942cc9a1e",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/public/audio/select.mp3",
+    "bytes": 35526,
+    "sha256": "b9a896bf6b3cedb45f8263d6ff9215c6310393779e2f3e93211ae21ffca969f1",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/scripts/watch-build.mjs",
+    "bytes": 1555,
+    "sha256": "ef743a2be962f3cac44b2a94b407c8283e7c6c016d914a21807f5890de4bff91",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/src/AboutMe.jsx",
+    "bytes": 20307,
+    "sha256": "209fc67f13ef877c2dac37aecb44230977ee0c7ad702cb739b22a42ada82c6bd",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/src/App.css",
+    "bytes": 2171,
+    "sha256": "f0d68f89896d4ae891ef44f6c77096499383d9f2a44223b00de39966d27dc12c",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/src/App.jsx",
+    "bytes": 6371,
+    "sha256": "f96c8147a9fd4dd40f895298698283420b79fdc18e484456e70419a8cec69d7d",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/src/FontPreview.jsx",
+    "bytes": 1595,
+    "sha256": "507e4e1649e16b2d0865eff9e0672984df91f624f49e61f23cf163917d01e1d8",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/src/P5Menu.jsx",
+    "bytes": 11756,
+    "sha256": "fdcc8304e34aebe283cbfba3bf0ffe63b770a19c98c66fe886f5b4fd6c34fc3c",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/src/PageTransition.jsx",
+    "bytes": 4757,
+    "sha256": "b86a635837b14442ff644d7d5dcf80f26a5bac7c78a54780d0333c6a19ada924",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/src/ResumePage.jsx",
+    "bytes": 14327,
+    "sha256": "6bad91ec1ab2fc75e65500511c3f527315758fbfb6eacc78a6e6ff8b882a0e09",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/src/SideProjectsPage.jsx",
+    "bytes": 7876,
+    "sha256": "b3d325cc1e650535461dbcaa76300b502456a3860695fd99013b896335c52299",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/src/Socials.jsx",
+    "bytes": 22878,
+    "sha256": "12083739ad4a26219fa698208d0f93eb150c8fd9f7ff7bb9b516d85ffc61079b",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/src/VideoPage.jsx",
+    "bytes": 507,
+    "sha256": "d79442b4eabb222cb21c45978c60254fe9e434a1541b860ead7972c479d9fa7b",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/src/index.css",
+    "bytes": 738,
+    "sha256": "f262fc6df1d454d28b7f3ca1dc917d9194232fee45bc5c12a440a2dc53d6bbbf",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/src/main.jsx",
+    "bytes": 321,
+    "sha256": "5e7aff51c18b9e1a6f047668a0c3e3fe362bc2c7ad990149e51f030593b7c476",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/src/assets/P5MMChapter7Promo2.png",
+    "bytes": 54510,
+    "sha256": "0ef66a7f7acc55a7a7c20bde38ec9ff9823870409cc49380d2b12d8ce8e13472",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/src/assets/P5S_Protagonist_Dialogue2.png",
+    "bytes": 41732,
+    "sha256": "ad5c81a1eef1165658a32f269e108625eb68acd0f066d6eaea893f8829d6f479",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/src/assets/P5S_Protagonist_Dialogue3.png",
+    "bytes": 51952,
+    "sha256": "6838547d8bcc63e94100499c56dd58eaa9ff022933ae602fcd5b2a2390c8d9f3",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/src/assets/P5_Joker_Chain_Chronicle_1.png",
+    "bytes": 24316,
+    "sha256": "b8c725b0e9e1a5bb2ca047e2fc346762c7f28efc6c05b2fb5166c0246461828f",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/src/assets/card.png",
+    "bytes": 1416629,
+    "sha256": "5c15f0b4bd9e7661222503f5eb1f2278f9d9fac45815d9c66a118025592aef9f",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/src/assets/char1.png",
+    "bytes": 117795,
+    "sha256": "f2094430c033b5475774ecc516eb4fb0986e98d818a52e1504764280797d82b7",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/src/assets/char2.png",
+    "bytes": 56123,
+    "sha256": "d961b74c37fa95c4f51c5f9088c2e725b9e777b339b22a90987c77d435007b01",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/src/assets/char3.png",
+    "bytes": 114740,
+    "sha256": "c1ce5e2bc626bc5820cbebd2602e7d30e789f87c7fca23c612945842f3d76cb0",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/src/assets/circletransition.mp4",
+    "bytes": 131,
+    "sha256": "6b0b0cd60fe5cd3443e7038e5ba4cbc3191d5e1d82946adb291714fe8610ba7e",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/src/assets/hero.png",
+    "bytes": 44919,
+    "sha256": "72a860570eddf1dd9988f26c7106c67be286bc9f2fd3303c465ce87edb1ae6cd",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/src/assets/icon1.png",
+    "bytes": 1335,
+    "sha256": "c737da1a1858a2807fb3665e45b7b88c841ce8812fa5f1c8d11151566a8cd86d",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/src/assets/icon2.png",
+    "bytes": 1308,
+    "sha256": "5dd205da30c920a84dabc5d55c41d325e0ef2a419e6e2632552c12ff6498b60d",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/src/assets/icon3.png",
+    "bytes": 1911,
+    "sha256": "c108c045d1558f770012280ee4952ff78e4d27883b0a708f70047623e981c369",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/src/assets/jokerface2.png",
+    "bytes": 56658,
+    "sha256": "a389932f4ec190dd246368a5c449fc9786c4d5b2e69bc8ee552a01019e3b4ec2",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/src/assets/jokerfail.mp4",
+    "bytes": 131,
+    "sha256": "cc56f514d4d3cc05f8da019c148ac5743aff4f739f78618a285cba57a291eae9",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/src/assets/jokerfailchromaF.mp4",
+    "bytes": 131,
+    "sha256": "bccd89b10f76dc74bef65df844a77c70067e1dd2dafddbb47f503f9ca140ab22",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/src/assets/jokerlanding.mp4",
+    "bytes": 131,
+    "sha256": "d6130fc70b756a7fb2942bf384f0ad0ab445a0a61efa4bec820cbd89678f699d",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/src/assets/jokerlandingchromaF.mp4",
+    "bytes": 132,
+    "sha256": "c55d3a5d99e1e04f4884f069b05c2b67fdb7249e78bd7238f3a21f92cd3eea4b",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/src/assets/main1.mp4",
+    "bytes": 134,
+    "sha256": "791918566e3e24644d754791cf1deb18e56c732eea72d747e10543f34bc8da06",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/src/assets/mainf.jpeg",
+    "bytes": 244181,
+    "sha256": "a599fdd921fba4f5a1bf5588882a4afb381e17b143ffec3ed2c6307c53f109d1",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/src/assets/mainm.jpeg",
+    "bytes": 307125,
+    "sha256": "cf65d8d4e7cb2013d7256e1ce5cbed716cce42c48fba7888604bf9d9a228f58b",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/src/assets/mainm2.jpeg",
+    "bytes": 298729,
+    "sha256": "38eadebccd4b671d568128cbab12ffb41e2cad0ef06c0a67bca044d9bb2fb0c6",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/src/assets/newsign.png",
+    "bytes": 1447783,
+    "sha256": "e5da344c670df19928efc325e1129d001742104b49023cb33e3899fa073becd7",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/src/assets/react.svg",
+    "bytes": 4126,
+    "sha256": "35ef61ed53b323ae94a16a8ec659b3d0af3880698791133f23b084085ab1c2e5",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/src/assets/vite.svg",
+    "bytes": 8709,
+    "sha256": "5be21acd42eb7b896e517f4e0f0f11eb5c5d9e54fbbcebe9453f033008fcca6f",
+    "texto_incluido": false
+  },
+  {
+    "ruta": "PruebasMenu/persona5-website-theme/src/utils/audio.js",
+    "bytes": 144,
+    "sha256": "fe47838e41c31ac21a6320a2dacbe39e2e67d875821b37bc4415150e0223e329",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "herramientas/consolidacion.json",
+    "bytes": 10697,
+    "sha256": "d281b0e0ad18888e6dbd695a248b2d5c4495430ce6a35f629658118d5b7405eb",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "herramientas/consolidar_bitacoras.py",
+    "bytes": 4133,
+    "sha256": "5706eb82bf59c190626f2f39f2ed67b4fffcf6feacd364fa36c96e9597e803b6",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "herramientas/empaquetar_documento.py",
+    "bytes": 1595,
+    "sha256": "7c6e16ebd7af2fa187c8338adf2657b065d598964ab3ba291688d544e4023abb",
+    "texto_incluido": true
+  },
+  {
+    "ruta": "herramientas/preparar_revision_ia.py",
+    "bytes": 4882,
+    "sha256": "5def6dbaa0ca104e56622b021b0f78e9deb06d6793a51cf570581db64e815b72",
+    "texto_incluido": true
+  }
+]

@@ -59,5 +59,5 @@ Recursos: `assets/css/persona5.css`, `assets/js/interacciones.js`, `assets/fonts
 ## 5. Notas importantes
 
 - No hay despliegue público (ver `reports/despliegue.md`).
-- Orange no tiene corridas verificadas. Weka sí (ver `reports/weka/resumen_gui.md`).
+- Orange no tiene corridas verificadas. Weka sí (ver `reports/weka/BITACORA_UNIFICADA.md`).
 - No editar `src/*.py` ni `requirements.txt` sin regenerar el pipeline, porque su hash se registra en el manifiesto.

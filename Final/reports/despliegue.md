@@ -2,7 +2,7 @@
 
 Por decisión explícita del usuario, el proyecto y sus datos se conservan **solo localmente**. La publicación no está autorizada.
 Repositorio remoto detectado: `AngelHusielLaraHernandez/ProyectoMineria`; entrada prevista: `Final/app.py`.
-No se hizo push ni se creó un servicio remoto. La rama local de trabajo es `codex/final-videojuegos-curated`; los cambios previos del usuario quedaron fuera del commit de Final.
+No se hizo push ni se creó un servicio remoto. La entrega local se integra en la rama `main`; no se publica en el remoto.
 
 La revisión automática rechazó el intento de push porque faltaba autorización explícita para transmitir el CSV y sus derivados a GitHub. Se solicitó esa autorización y el usuario eligió conservar todo localmente.
 La sesión de Streamlit Cloud sí estaba activa; no hay un bloqueo de cuenta que deba resolverse para usar la app local.
@@ -10,7 +10,7 @@ La sesión de Streamlit Cloud sí estaba activa; no hay un bloqueo de cuenta que
 ## Ejecución local
 
 Desde Final: `python3.14 -m streamlit run app.py` si las dependencias están instaladas en ese entorno; o `.venv314/bin/python -m streamlit run app.py` con el entorno creado aquí.
-La comprobación inicial tuvo 17 pruebas. La revisión vigente se realiza con Python 3.14 y 84 pruebas aprobadas; ver pruebas_revision_integral.txt y revision_integral.md. No se afirma una nueva validación de estas correcciones en Python 3.15.
+La comprobación inicial tuvo 17 pruebas. El entorno histórico se validó con Python 3.14. En el cierre actual, la suite completa aprobó 101 pruebas con el entorno local Python 3.15. Los registros anteriores y el cierre están en BITACORA_UNIFICADA.md. Esto no demuestra compatibilidad con un servicio remoto.
 
 ## Referencia para una eventual publicación autorizada
 
@@ -25,9 +25,3 @@ La documentación oficial describe la selección de repositorio y entrada:
 [Desplegar una aplicación](https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app/deploy).
 Las dependencias pueden colocarse junto a la entrada:
 [Organización de archivos](https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app/file-organization).
-
-## Que debo verificar manualmente
-
-- Cuenta, acceso al repositorio, rama y revisión efectivamente desplegada.
-- Licencia del CSV, compatibilidad de Python y ausencia de secretos en el commit.
-- URL accesible desde una sesión sin autenticar y predicción funcional con datos faltantes.

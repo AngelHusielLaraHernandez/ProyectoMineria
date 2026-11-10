@@ -1,62 +1,29 @@
-# Observatorio de Videojuegos — Edición Phantom Thieves (Persona 5 UI)
+# Proyecto de minería de datos: videojuegos
 
-Proyecto de minería de datos sobre un catálogo curado de videojuegos de Backloggd y Metacritic (1,117 registros, 1,114 elegibles). Contiene un pipeline reproducible (inspección, limpieza, clustering, clasificación) y una app Streamlit con estética Persona 5.
+La implementación vigente está en **Final/** y el documento de entrega en **DocumentoFinal/**. Todo se conserva localmente en la rama main; no hay publicación ni subida de datos.
 
-> Alcance: popularidad **relativa** (interacciones en Backloggd) y brecha usuarios–prensa. No mide ventas ni éxito comercial. Resultados y límites: [`reports/evaluacion.md`](reports/evaluacion.md).
+- [Guía de ejecución de la web y del pipeline](Final/README.md).
+- [Documento LaTeX y compilación](DocumentoFinal/README.md).
+- [PDF final](DocumentoFinal/main.pdf).
+- [Índice para revisión por otras IAs](REVISION_IA/INDICE.md).
+- [Registro consolidado de cierre](Final/reports/BITACORA_UNIFICADA.md).
 
-## 1. Ejecución rápida
+Desde Final, ejecutar `.venv/bin/python -m streamlit run app.py` para la web y `.venv/bin/python -m pytest -q` para las pruebas. La suite de cierre tiene 101 pruebas aprobadas. El equipo declara cumplido el calendario técnico; no se inventan fechas exactas de terminación.
 
-```bash
-cd Final
-python3 -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt
-python -m src.pipeline        # opcional: regenera datos, clusters y modelo
-streamlit run app.py          # http://localhost:8501
-pytest -q                     # pruebas
-```
+## Organización
 
-`requirements.txt` fija las versiones (`scikit-learn==1.9.1`, igual que `models/metadata.json`). `requirements-lock.txt` guarda el entorno completo. Se validó con Python 3.14. Los entornos `.venv`, `.venv314` y `.cache` no se versionan.
-
-## 2. Código fuente (`src/`)
-
-| Archivo | Función |
+| Carpeta | Función |
 |---|---|
-| `pipeline.py` | Orquesta 01 → 02 → 03 → 04, escribe `reports/manifest.json` con hashes y `huella_pipeline()` (hash de `src/*.py` + `requirements.txt`). |
-| `01_inspeccion.py` | Esquema, procedencia de notas, seis figuras EDA → `reports/inspeccion.md/json`, `figures/`. |
-| `02_limpieza.py` | Valida el maestro, genera `dataset_depurado.csv`, `generos_largo.csv` y `limpieza_log.md`. |
-| `procedencia.py` | Reconstruye 1,512 → 1,117 filas, descartes y conflictos históricos (117, 140, 296). |
-| `03_clustering.py` | Correlaciones (Pearson/Spearman, mín. 20 pares, corrección BH), K-Means k = 2…10, DBSCAN, PCA, sensibilidad por título → `reports/clustering*.csv/md`, `dataset_con_clusters.csv`. |
-| `comparar_weka.py` | K-Means de Weka 3.8.6 por CLI sobre el mismo espacio (`--descargar` baja los JAR) → `reports/weka/`. |
-| `objetivo.py` | Define el índice de popularidad (promedio de rangos percentiles de Plays, Wishlist, Backlogs) y los terciles, ajustados solo con entrenamiento. |
-| `features.py` | Preprocesamiento: géneros multi-hot, estudio, década, notas con mediana. |
-| `04_modelo.py` | Compara Dummy, CategoricalNB, DecisionTree y RandomForest con `StratifiedGroupKFold` de 10 pliegues. Guarda `models/`. |
-| `similitud.py` | `NearestNeighbors` en el espacio predictivo, solo con entrenamiento. |
-| `config.py`, `data.py`, `analysis.py`, `modeling.py` | Rutas, carga con caché y adaptadores para la app. |
-| `ui.py` | Tema Persona 5: CSS, fuente en Base64, menú lateral, audio, tema Plotly. |
+| Final | Código vigente, web, datos, modelos, pruebas y evidencias Python/Weka. |
+| DocumentoFinal | Fuente LaTeX, PDF, figuras, tablas y evidencias de la entrega. |
+| Proyecto | Anteproyecto y antecedentes del trabajo; conserva la plantilla original. |
+| Practicas | Prácticas de la materia, independientes de la aplicación final. |
+| PruebasMenu y MenuVersion2 | Prototipos de interfaz conservados como antecedentes e incluidos directamente en main. |
+| herramientas | Consolidación reproducible de bitácoras y preparación de la revisión por IA. |
+| REVISION_IA | Un documento por carpeta, con fuentes de texto e inventario de binarios. |
 
-## 3. Datos, modelos y reportes
+## Criterio de limpieza
 
-- `data/raw/games_curated.csv`: maestro inmutable (42 columnas).
-- `data/historical/`: antecedente de 1,512 filas, solo para auditoría.
-- `data/clean/`: `dataset_depurado.csv`, `dataset_con_clusters.csv`, `generos_largo.csv`, `juegos_modelo.csv` y exportaciones para Weka/Orange.
-- `data/export/`: `clustering.*` y `clasificacion.*` (CSV, ARFF, TAB) usados en Weka.
-- `models/`: `modelo_popularidad.joblib` (Pipeline portátil con cloudpickle), `vecinos_popularidad.joblib`, `clustering_03.joblib`, `metadata.json`, `referencias_folds.json`.
-- `reports/`: `evaluacion.md` (evaluación final), `inspeccion.md`, `limpieza_log.md`, `clustering.md`, `modelo.md`, `hallazgos.md`, `comparacion_weka.md`, `weka/` (corridas gráficas de Weka 3.8.7), `orange/` (diagnóstico de cierres), `tables/comparativo_herramientas.csv`, `manifest.json`. Las carpetas `archivo_*` guardan resultados anteriores a las auditorías.
-- `tests/`: pruebas de limpieza, clustering, modelo, auditorías y pipeline.
+Los logs y auditorías de texto se reúnen, conservando contenido y procedencia, en una BITACORA_UNIFICADA.md por carpeta. Los reportes analíticos vigentes, tablas, JSON de resultados, capturas y salidas originales de Weka permanecen como evidencia verificable. El log de limpieza se conserva por ser una salida contractual del pipeline. No se modifican data/raw ni los modelos para ordenar la entrega.
 
-## 4. Aplicación web
-
-| Página | Archivo | Contenido |
-|---|---|---|
-| Inicio | `app.py` | Hero, propósito, KPIs, aviso de limitaciones. |
-| Exploración | `pages/1_Exploracion.py` | Filtros, distribuciones logarítmicas, Rating frente a Metacritic, brecha por género y estudio, clusters. |
-| Predicción | `pages/2_Prediccion.py` | Formulario, probabilidades (bajo/medio/alto, sin calibrar) y 5 vecinos similares. |
-| Acerca del modelo | `pages/3_Acerca_del_modelo.py` | Comparación de modelos, matriz de confusión, importancia por permutación. |
-
-Recursos: `assets/css/persona5.css`, `assets/js/interacciones.js`, `assets/fonts/Persona5main.ttf`, `assets/audio/` (BGM y efecto de selección), `assets/img/`. El tema oscuro está en `.streamlit/config.toml`. Los modelos y datos se cachean con `@st.cache_resource` y `@st.cache_data`. Todas las rutas usan `pathlib.Path` relativo a `Final/`. Si falta un artefacto, la app indica ejecutar `python -m src.pipeline`.
-
-## 5. Notas importantes
-
-- No hay despliegue público (ver `reports/despliegue.md`).
-- Orange no tiene corridas verificadas. Weka sí (ver `reports/weka/resumen_gui.md`).
-- No editar `src/*.py` ni `requirements.txt` sin regenerar el pipeline, porque su hash se registra en el manifiesto.
+La publicación pública permanece sin autorización. Orange no tiene resultados y su descarte queda documentado. Los archivos de revisión por IA se generan con `python3 herramientas/preparar_revision_ia.py`; la consolidación se repite con `python3 herramientas/consolidar_bitacoras.py`.
