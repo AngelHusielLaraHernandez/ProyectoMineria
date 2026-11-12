@@ -79,7 +79,7 @@ def test_manifest_app_y_reporte_comparten_artefactos():
     app = (ROOT / 'pages/1_Exploracion.py').read_text()
     assert 'dataset_con_clusters.csv' in app
     assert "CLEAN / 'perfiles.csv'" not in app
-    assert 'clustering_03_perfiles.csv' in app
+    assert "tables/perfiles_clusters.csv" in app
 
 
 def test_comparacion_weka_es_ejecucion_y_misma_fuente():

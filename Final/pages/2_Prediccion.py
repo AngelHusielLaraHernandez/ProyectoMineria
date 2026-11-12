@@ -71,6 +71,7 @@ render_html(
 # 1. FORMULARIO DE ENTRADA ESTILO "MENÚ DE BATALLA P5"
 # ---------------------------------------------------------------------------
 section_banner('Configuración Táctica del Lanzamiento', 'Selecciona Atributos del Videojuego')
+st.info('Estimación orientativa basada en interacciones de Backloggd. No se estiman ventas. El modelo puede favorecer géneros populares y desfavorecer géneros de nicho.')
 
 with st.form('p5_battle_inference_form'):
     col_f1, col_f2 = st.columns(2)

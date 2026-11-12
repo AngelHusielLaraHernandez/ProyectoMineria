@@ -348,3 +348,10 @@ Si DBSCAN devuelve un solo grupo, no se inventa una silhouette ni se fuerza eps 
 - Resolver plataformas de conflictos heredados y validar títulos compartidos.
 - Elegir entre parsimonia de k=2 y utilidad descriptiva de k=3/4 antes de convertir perfiles en decisiones.
 - No usar etiquetas ni scaler descriptivo como entrada de la clasificación supervisada.
+
+## Validación de los tres métodos y popularidad por grupo
+
+- `tables/metricas_clusters.csv` contiene silueta, Calinski–Harabasz y Davies–Bouldin para K-Means y Ward entre 2 y 10 grupos. DBSCAN se explora variando eps con min_samples fijo. Su k es el número observado de grupos. Se excluye ruido de las métricas internas y quedan vacías si hay menos de dos grupos.
+- `tables/bic_gmm.csv` evalúa mezclas gaussianas de 1 a 10 componentes. El BIC mide ajuste penalizado de la mezcla y sirve como diagnóstico complementario. El k operativo de K-Means y Ward sigue la silueta.
+- `tables/perfiles_clusters.csv` muestra tamaño, medias, géneros dominantes y ejemplos en los tres métodos. `tables/pca_clusters.csv` y `figures/pca_tres_metodos.png` muestran sus etiquetas sobre la misma proyección exploratoria.
+- `tables/popularidad_genero.csv` y `tables/popularidad_estudio.csv` excluyen grupos de menos de 20 juegos elegibles. Cada variable tiene su propio n observado, media y mediana. Pearson y Spearman comparan las dos notas cuando hay al menos 20 pares válidos. Team identifica organizaciones mencionadas y un juego puede pertenecer a varios grupos.

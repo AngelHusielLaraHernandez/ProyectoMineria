@@ -206,8 +206,9 @@ def entrenar_datos(entrada, raiz=RAIZ):
     variables = [nombre.split('__', 1)[1] if nombre.startswith('notas__')
                  else nombre.split('__', 1)[0] for nombre in columnas]
     gini = pd.DataFrame({'variable': variables, 'importancia': valores})
-    gini.groupby('variable', as_index=False)['importancia'].sum().to_csv(
-        informes / 'modelo_importancia_gini.csv', index=False)
+    gini = gini.groupby('variable', as_index=False)['importancia'].sum()
+    gini.to_csv(informes / 'modelo_importancia_gini.csv', index=False)
+    gini.to_csv(tablas / 'modelo_importancia_gini.csv', index=False)
     importancia = permutation_importance(mejor, X_test, y_test, scoring='f1_macro', n_repeats=30, random_state=SEED, n_jobs=1)
     perm = pd.DataFrame({'variable_cruda': FEATURES, 'caida_f1_macro_media': importancia.importances_mean,
                          'desviacion': importancia.importances_std}).sort_values('caida_f1_macro_media', ascending=False)

@@ -7,6 +7,8 @@ from .config import ROOT, RAW, REPORTS
 from .data import load_clean
 from .modeling import train
 from .metodos_clase import evaluar_ward
+from .analisis_integral import ejecutar as analizar
+from .comparativo_integral import ejecutar as comparar
 
 REPORTES_APP = (
     'clustering_03_parametros.json', 'clustering_03_correlaciones_catalogo.csv',
@@ -16,7 +18,11 @@ REPORTES_APP = (
     'clustering_03_sensibilidad_dbscan.csv',
     'clase_comparacion_clustering.csv', 'clase_ward_cortes.csv',
     'clase_ward_asignaciones.csv', 'clase_ward_perfiles.csv', 'clase_ward_dendrograma.json',
-    'modelo_importancia_gini.csv',
+    'tables/modelo_importancia_gini.csv', 'tables/calibracion.csv', 'tables/comparativo_modelos.csv',
+    'tables/comparacion_estadistica.csv', 'tables/comparacion_prueba_actual_e_historica.csv',
+    'tables/perfiles_clusters.csv', 'tables/metricas_clusters.csv', 'tables/bic_gmm.csv',
+    'tables/popularidad_genero.csv', 'tables/popularidad_estudio.csv',
+    'tables/correlacion_catalogo.csv', 'tables/procedencia_datos.csv', 'tables/parametros_clustering.csv',
 )
 
 
@@ -39,7 +45,9 @@ def main():
         ejecutar()
     # Fase supervisada: solo datos depurados; nunca etiquetas ni scaler de clusters.
     evaluar_ward()
+    analizar()
     metricas = train(load_clean())
+    comparar()
     (REPORTS / 'analisis.json').write_text(json.dumps(parametros, ensure_ascii=False, indent=2))
     texto = f"""# Hallazgos de la cadena canónica
 
@@ -59,6 +67,11 @@ Clasificador independiente por terciles del promedio de rangos percentiles de Pl
 - Confirmar estabilidad de perfiles; popularidad no equivale a éxito comercial.
 """
     (REPORTS / 'hallazgos.md').write_text(texto, encoding='utf-8')
+    actualizar_manifiesto()
+    print(texto)
+
+
+def actualizar_manifiesto():
     manifest = {'huella_pipeline': huella_pipeline(), 'fuente_clustering': 'data/clean/dataset_depurado.csv',
                 'artefacto_clustering': 'data/clean/dataset_con_clusters.csv',
                 'modelo_popularidad': 'models/modelo_popularidad.joblib',
@@ -71,7 +84,6 @@ Clasificador independiente por terciles del promedio de rangos percentiles de Pl
                 'sha256_reportes_app': {nombre: hashlib.sha256((REPORTS / nombre).read_bytes()).hexdigest()
                                        for nombre in REPORTES_APP}}
     (REPORTS / 'manifest.json').write_text(json.dumps(manifest, indent=2))
-    print(texto)
 
 
 if __name__ == '__main__':

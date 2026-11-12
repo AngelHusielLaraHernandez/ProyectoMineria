@@ -450,13 +450,21 @@ with st.expander('Análisis complementario de correlaciones y corrección por co
 # ---------------------------------------------------------------------------
 section_banner(
     'Perfiles de Popularidad y Recepción (Clustering Fase 4A)',
-    'K-Means y agrupamiento jerárquico con enlace de Ward',
+    'Exploración · K-Means, agrupamiento jerárquico de Ward y DBSCAN',
 )
 
 profiles = pd.read_csv(CLEAN / 'dataset_con_clusters.csv')
-metodo = st.radio('Método de agrupamiento', ['K-Means', 'Ward'], horizontal=True)
-comparacion = read_report('clase_comparacion_clustering.csv')
-st.caption('Mismos juegos y variables para ambos métodos. Cada corte se eligió por silueta entre 2 y 10 grupos.')
+metodo = st.radio('Método de agrupamiento', ['K-Means', 'Ward', 'DBSCAN'], horizontal=True)
+metricas_clusters = read_report('tables/metricas_clusters.csv')
+parametros = read_report('tables/parametros_clustering.csv').iloc[0]
+comparacion = metricas_clusters.loc[
+    ((metricas_clusters.metodo == 'K-Means') & metricas_clusters.k.eq(parametros.kmeans_k))
+    | ((metricas_clusters.metodo == 'Ward') & metricas_clusters.silhouette.eq(
+        metricas_clusters.loc[metricas_clusters.metodo.eq('Ward'), 'silhouette'].max()))
+    | ((metricas_clusters.metodo == 'DBSCAN') & metricas_clusters.factor_eps.eq(1)),
+    ['metodo', 'k', 'n_evaluado', 'ruido', 'silhouette', 'davies_bouldin', 'calinski_harabasz'],
+]
+st.caption('Comparación informativa. K-Means y Ward se eligen por silueta. DBSCAN ajusta eps y puede marcar ruido. Los índices requieren dos grupos y excluyen los puntos de ruido.')
 st.dataframe(comparacion, hide_index=True, width='stretch', column_config={
     'metodo': 'Método', 'k': 'Grupos',
     'silhouette': st.column_config.NumberColumn('Silueta ↑', format='%.3f'),
@@ -469,7 +477,6 @@ if metodo == 'Ward':
     asignaciones = read_report('clase_ward_asignaciones.csv')
     agrupados = agrupados.merge(asignaciones, on='id_juego', validate='one_to_one')
     columna = 'cluster_ward'
-    resumen = read_report('clase_ward_perfiles.csv')
     arbol = json.loads((REPORTS / 'clase_ward_dendrograma.json').read_text())
     figura_ward = go.Figure()
     for x, y in zip(arbol['x'], arbol['y']):
@@ -481,12 +488,15 @@ if metodo == 'Ward':
     mostrar_grafica(figura_ward, 'Dendrograma de Ward', alto=360)
     st.caption('Vista de las 12 últimas ramas del ajuste completo. Los paréntesis indican cuántos juegos resume cada rama.')
 else:
-    columna = 'cluster_kmeans'
-    resumen = read_report('clustering_03_perfiles.csv').query("metodo == 'kmeans'")
+    columna = 'cluster_dbscan' if metodo == 'DBSCAN' else 'cluster_kmeans'
 
-st.caption('La tabla describe los grupos completos. El mapa PCA responde a los filtros del dashboard.')
+resumen = read_report('tables/perfiles_clusters.csv').loc[lambda t: t.metodo.eq(metodo)]
+if metodo == 'DBSCAN':
+    st.caption(f'Con eps={parametros.dbscan_eps:.4f} y min_samples={parametros.dbscan_min_samples}, '
+               f'quedaron {parametros.dbscan_clusters} grupos y {parametros.dbscan_ruido} juegos marcados como ruido.')
+st.caption('La tabla informa sobre los grupos completos. El mapa exploratorio de PCA responde a los filtros del dashboard.')
 st.dataframe(resumen, hide_index=True, width='stretch')
-agrupados['perfil'] = agrupados[columna].astype(int).astype(str)
+agrupados['perfil'] = agrupados[columna].astype(int).map(lambda x: 'Ruido' if x == -1 else f'Grupo {x}')
 
 fig_pca = px.scatter(
     agrupados,
@@ -495,10 +505,10 @@ fig_pca = px.scatter(
     color='perfil',
     hover_name='Title',
     hover_data=['Release Date', 'Rating', 'Metacritic Rating', 'Plays'],
-    color_discrete_map={'0': PALETA['primary'], '1': PALETA['accent'], '-1': PALETA['secondary']},
+    color_discrete_map={'Grupo 0': PALETA['primary'], 'Grupo 1': PALETA['accent'], 'Ruido': PALETA['secondary']},
     labels={
-        'componente_1': 'Componente 1',
-        'componente_2': 'Componente 2',
+        'componente_1': 'Componente principal 1 (sin unidad)',
+        'componente_2': 'Componente principal 2 (sin unidad)',
         'perfil': 'Cluster',
     },
 )
@@ -513,14 +523,22 @@ with st.expander('Selección de grupos y comparación de K-Means con Weka'):
     st.dataframe(read_report('clustering_03_alternativas_k.csv'), hide_index=True, width='stretch')
     st.markdown('**Búsqueda de parámetros:**')
     st.dataframe(
-        read_report('clustering_03_seleccion_kmeans.csv' if metodo == 'K-Means' else 'clase_ward_cortes.csv'),
+        metricas_clusters.loc[metricas_clusters.metodo.eq(metodo)].dropna(axis=1, how='all'),
         hide_index=True,
         width='stretch',
     )
+    st.markdown('**BIC de mezclas gaussianas · menor es mejor:**')
+    st.dataframe(read_report('tables/bic_gmm.csv'), hide_index=True, width='stretch')
     try:
         st.markdown('**Comparación reproducible contra Weka 3.8.6:**')
         st.dataframe(read_report('weka/comparacion.csv'), hide_index=True, width='stretch')
     except FileNotFoundError:
         st.info('Reporte de Weka no encontrado en este entorno.')
+
+with st.expander('Popularidad por género y organización'):
+    st.caption('Vista informativa. Se muestran grupos con al menos 20 juegos. Las correlaciones usan al menos 20 pares de notas.')
+    nivel = st.radio('Agrupar por', ['Género', 'Organización'], horizontal=True)
+    archivo = 'genero' if nivel == 'Género' else 'estudio'
+    st.dataframe(read_report(f'tables/popularidad_{archivo}.csv'), hide_index=True, width='stretch')
 
 manual_checks()

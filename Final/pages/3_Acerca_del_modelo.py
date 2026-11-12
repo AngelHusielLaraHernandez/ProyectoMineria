@@ -24,7 +24,7 @@ from src.ui import (
 
 setup(
     'Acerca del Modelo Supervisado',
-    'Evaluación Fase 4B · StratifiedGroupKFold (10 Pliegues) · Matriz de Confusión · Importancia por Gini',
+    'Evaluación supervisada · CV anidada 10 × 5 · Matriz de confusión · Importancia por Gini',
     transition='default',
     menu_idx=3,
     compact_menu=True,
@@ -39,7 +39,7 @@ resumen_m = metricas['metricas']
 # ---------------------------------------------------------------------------
 # 1. KPIs DINÁMICOS DESDE models/metadata.json
 # ---------------------------------------------------------------------------
-section_banner('Ficha Técnica del Modelo Ganador', f'Algoritmo Seleccionado por CV: {metricas["modelo"]}')
+section_banner('Ficha del modelo activo', metricas['modelo'])
 
 render_html(
     f"""
@@ -52,7 +52,7 @@ render_html(
         <div class="p5-kpi-card">
             <div class="p5-kpi-label">F1 Macro (Prueba)</div>
             <div class="p5-kpi-value">{resumen_m['f1_macro']:.4f}</div>
-            <div class="p5-kpi-note">CV 10-fold: {resumen_m['f1_macro_cv']:.4f} (Base Dummy: {resumen_m['f1_macro_referencia']:.4f})</div>
+            <div class="p5-kpi-note">CV externa 10 × 5: {resumen_m['f1_macro_cv']:.4f} (Base Dummy: {resumen_m['f1_macro_referencia']:.4f})</div>
         </div>
         <div class="p5-kpi-card">
             <div class="p5-kpi-label">Exactitud / Bal. Acc</div>
@@ -72,11 +72,11 @@ render_html(
 # 2. COMPARACIÓN DE ALGORITMOS (reports/modelo_comparacion.csv)
 # ---------------------------------------------------------------------------
 section_banner(
-    'Comparación de Algoritmos Supervisados',
+    f'Comparación de {len(metricas["evaluacion_anidada"])} modelos supervisados',
     'Naive Bayes · CART · Random Forest · Red neuronal MLP · Referencia mayoritaria',
 )
 
-tabla_comp = read_report('modelo_comparacion.csv').copy()
+tabla_comp = read_report('tables/comparacion_prueba_actual_e_historica.csv').copy()
 nombres_legibles = {
     'DummyClassifier': 'DummyClassifier (Base Mayoritaria)',
     'CategoricalNB': 'Naive Bayes (CategoricalNB Discretizado)',
@@ -89,14 +89,14 @@ nombres_cortos = {'DummyClassifier': 'REFERENCIA MAYORITARIA', 'CategoricalNB': 
                  'MLPClassifier': 'RED NEURONAL MLP'}
 tabla_comp['Algoritmo'] = tabla_comp['modelo'].map(lambda m: nombres_legibles.get(m, m))
 
-# Interactive SideProjectsPage.jsx Split Shell (.sp-shell) for the 4 evaluated algorithms
+# Menú de candidatos. El modelo activo abre la vista.
 sp_left_html = '<div class="sp-title">ALGORITHM LOG</div>'
 sp_right_html = ''
-orden_sp = tabla_comp.sort_values('f1_macro_cv', ascending=False).reset_index(drop=True)
+orden_sp = tabla_comp.assign(activo=tabla_comp.modelo.eq(metricas['modelo'])).sort_values(['activo', 'f1_macro_cv'], ascending=False).reset_index(drop=True)
 for idx_m, row_m in orden_sp.iterrows():
     act_cls = 'active' if idx_m == 0 else ''
     disp_style = 'block' if idx_m == 0 else 'none'
-    tag_txt = 'WINNER // CV 10-FOLD' if idx_m == 0 else f'CANDIDATE #{idx_m + 1}'
+    tag_txt = 'MODELO ACTIVO' if idx_m == 0 else 'CANDIDATO COMPARADO'
     sp_left_html += f"""
     <div class="sp-item {act_cls}" data-sp-target="alg-{idx_m}">
         <div class="sp-item-title">{nombres_cortos[row_m['modelo']]}</div>
@@ -109,8 +109,8 @@ for idx_m, row_m in orden_sp.iterrows():
         <div class="sp-right-title">{nombres_cortos[row_m['modelo']]}</div>
         <div class="sp-right-summary">
             <strong>{row_m['Algoritmo']}</strong><br/>
-            F1 Macro CV (10-fold): {row_m['f1_macro_cv']:.4f} (±{row_m['desviacion_cv']:.4f})<br/>
-            F1 Macro Prueba (Holdout n={metricas["n_prueba"]}): {row_m['f1_macro_prueba']:.4f}<br/>
+            F1 macro CV externa: {row_m['f1_macro_cv']:.4f} (±{row_m['desviacion_cv']:.4f})<br/>
+            F1 macro · {row_m['origen_prueba']} (n={metricas["n_prueba"]}): {row_m['f1_macro_prueba']:.4f}<br/>
             Exactitud Prueba: {row_m['exactitud_prueba']:.1%} · Balanced Accuracy: {row_m['balanced_accuracy_prueba']:.1%}<br/>
         </div>
         <div class="sp-link">PARAMS: {row_m['mejores_parametros']}</div>
@@ -130,18 +130,20 @@ st.dataframe(
             'exactitud_prueba',
             'f1_macro_prueba',
             'balanced_accuracy_prueba',
+            'origen_prueba',
             'mejores_parametros',
         ]
     ],
     hide_index=True,
     width='stretch',
     column_config={
-        'f1_macro_cv': st.column_config.NumberColumn('F1 Macro CV (10-fold)', format='%.4f'),
+        'f1_macro_cv': st.column_config.NumberColumn('F1 macro CV externa', format='%.4f'),
         'desviacion_cv': st.column_config.NumberColumn('Desv. Est. CV', format='%.4f'),
         'exactitud_prueba': st.column_config.NumberColumn('Exactitud (Test)', format='%.4f'),
         'f1_macro_prueba': st.column_config.NumberColumn('F1 Macro (Test)', format='%.4f'),
         'balanced_accuracy_prueba': st.column_config.NumberColumn('Balanced Accuracy (Test)', format='%.4f'),
-        'mejores_parametros': 'Hiperparámetros Óptimos (CV)',
+        'origen_prueba': 'Origen de la prueba',
+        'mejores_parametros': 'Parámetros de ajuste',
     },
 )
 
@@ -167,32 +169,30 @@ for desplazamiento, etiqueta, campo, color in [
         x=tabla_comp[campo],
         error_x=dict(array=tabla_comp['desviacion_cv'], color=color, thickness=2, width=5) if es_cv else None,
         text=tabla_comp['Algoritmo'],
-        customdata=tabla_comp['desviacion_cv'] if es_cv else None,
+        customdata=tabla_comp['desviacion_cv'] if es_cv else tabla_comp['origen_prueba'],
         marker=dict(color=color, size=10, line=dict(color=PALETA['text-primary'], width=1)),
         hovertemplate='<b>%{text}</b><br>' + etiqueta + ': %{x:.3f}'
-        + (' · DE %{customdata:.3f}' if es_cv else '') + '<extra></extra>',
+        + (' · DE %{customdata:.3f}' if es_cv else '<br>%{customdata}') + '<extra></extra>',
     ))
 fig_comp.update_xaxes(title_text='Puntaje (0–1)', range=[0, 1])
 fig_comp.update_yaxes(
     tickmode='array', tickvals=filas_modelos,
     ticktext=[etiquetas_modelos.get(modelo, modelo) for modelo in tabla_comp['modelo']],
-    range=[len(filas_modelos) - .5, -.5], fixedrange=True, ticklabelstandoff=8,
+    range=[len(filas_modelos) - .5, -.5], fixedrange=True, ticklabelstandoff=8, title_text='Modelo',
 )
 mostrar_grafica(fig_comp, 'Desempeño en validación cruzada y prueba', alto=465)
 st.caption('Cada punto muestra el puntaje. El segmento azul indica ±1 desviación estándar del F1 macro entre los pliegues.')
 
-st.caption(
-    'La MLP se evalúa con los mismos pliegues y la misma prueba reservada que los otros clasificadores. '
-    'Se ajusta una capa oculta y su regularización con F1 macro de validación cruzada.'
-)
-
-fila_prueba = tabla_comp.loc[tabla_comp['f1_macro_prueba'].idxmax()]
-if fila_prueba['modelo'] != metricas['modelo']:
-    st.caption(
-        f"Modelo activo por validación cruzada: {nombres_legibles[metricas['modelo']]}. "
-        f"Mayor F1 macro en prueba: {fila_prueba['Algoritmo']} "
-        f"({fila_prueba['f1_macro_prueba']:.4f})."
-    )
+cv = read_report('tables/comparativo_modelos.csv').set_index('modelo')
+contrastes = read_report('tables/comparacion_estadistica.csv')
+rf, mlp = cv.loc['RandomForestClassifier'], cv.loc['MLPClassifier']
+rf_mlp = contrastes.loc[contrastes.modelo_a.eq('RandomForestClassifier') & contrastes.modelo_b.eq('MLPClassifier')]
+p_t = rf_mlp.loc[rf_mlp.prueba.str.startswith('t corregida'), 'p_valor'].iloc[0]
+st.caption(f'Vista informativa. Random Forest conserva menor dispersión de F1 macro ({rf.f1_macro_de:.4f}) que la MLP ({mlp.f1_macro_de:.4f}). '
+           f'La t corregida para su diferencia da p={p_t:.4f}. La prueba de los demás candidatos es histórica.')
+with st.expander('Métricas de validación externa y contrastes'):
+    st.dataframe(cv.reset_index(), hide_index=True, width='stretch')
+    st.dataframe(contrastes, hide_index=True, width='stretch')
 
 # ---------------------------------------------------------------------------
 # 3. MATRIZ DE CONFUSIÓN Y VARIABLES MÁS INFLUYENTES (ANCHO COMPLETO)
@@ -201,7 +201,7 @@ if fila_prueba['modelo'] != metricas['modelo']:
 col_cm, col_pi = st.container(), st.container()
 
 with col_cm:
-    section_banner('Matriz de Confusión (Holdout n = 222)', 'Mapa de Calor en Azul y Violeta')
+    section_banner('Matriz de confusión', f'Vista informativa · Prueba reservada de {metricas["n_prueba"]} juegos')
     clases = metricas['clases']  # ['bajo', 'medio', 'alto']
     matriz = np.asarray(resumen_m['matriz_confusion'], dtype=int)
 
@@ -236,7 +236,7 @@ with col_cm:
 
 with col_pi:
     section_banner('Importancia de variables en Random Forest', 'Reducción de impureza de Gini')
-    df_gini = read_report('modelo_importancia_gini.csv').sort_values('importancia')
+    df_gini = read_report('tables/modelo_importancia_gini.csv').sort_values('importancia')
     etiquetas = {'Rating': 'Usuarios', 'Metacritic Rating': 'Metacritic',
                  'generos': 'Géneros', 'estudio': 'Organización', 'decada': 'Década'}
     figura_gini = go.Figure(go.Bar(
@@ -245,7 +245,7 @@ with col_pi:
         hovertemplate='%{y}: %{x:.2f} %<extra></extra>',
     ))
     figura_gini.update_xaxes(title_text='Importancia relativa (%)', rangemode='tozero')
-    figura_gini.update_yaxes(ticklabelstandoff=8)
+    figura_gini.update_yaxes(ticklabelstandoff=8, title_text='Entrada del modelo')
     mostrar_grafica(figura_gini, 'Contribución a la reducción de impureza', alto=360)
     st.caption('Se suman las contribuciones de las columnas codificadas de cada variable original. '
                f'Esta gráfica explica Random Forest. Modelo activo: {nombres_legibles[metricas["modelo"]]}. ')
@@ -282,7 +282,8 @@ with col_d1:
     )
 
 with col_d2:
-    st.markdown('**Recall Comparativo por Clase entre los 4 Modelos:**')
+    st.markdown(f'**Recall por clase para {len(tabla_comp)} modelos**')
+    st.caption('Prueba actual del bosque y resultados históricos para los demás candidatos.')
     err_df = read_report('modelo_error_por_clase.csv')
     st.dataframe(
         err_df,
@@ -303,9 +304,25 @@ with st.expander('Diagnóstico de Imputación de Metacritic y Prevención de Fug
         f"""
         - **Definición del objetivo sin fuga:** `{metricas['definicion_objetivo']['formula']}` calculado exclusivamente sobre los `n = {metricas['n_entrenamiento']}` juegos de entrenamiento (`{metricas['definicion_objetivo']['version']}`).
         - **Partición por grupos de título (`GroupShuffleSplit`):** Garantiza 0 títulos compartidos entre entrenamiento y prueba (evita contaminar ediciones multiplataforma).
-        - **Sensibilidad al ocultar crítica (`n = {diag.get('n_criticas_ocultadas', 180)}` casos en prueba):** Cambio mediano en probabilidad de clase baja = `{diag.get('delta_probabilidad_bajo_mediana', 0.0):.4f}` · F1 macro en ablación sin Metacritic = `{diag.get('f1_macro_ablacion_sin_critica', 0.0):.4f}`.
+        - **Sensibilidad al ocultar crítica (`n = {diag['n_criticas_ocultadas']}` casos en prueba):** Cambio mediano en probabilidad de clase baja = `{diag['delta_probabilidad_bajo_mediana']:.4f}` · F1 macro en ablación sin Metacritic = `{diag['f1_macro_ablacion_sin_critica']:.4f}`.
         """
     )
+
+section_banner('Fiabilidad de las probabilidades', 'Vista informativa · Prueba del modelo activo')
+fiabilidad = read_report('tables/calibracion.csv')
+curva = go.Figure()
+curva.add_scatter(x=[0, 1], y=[0, 1], mode='lines', name='Referencia ideal',
+                  line=dict(color=PALETA['text-primary'], dash='dot'))
+for (clase, filas), color in zip(fiabilidad.groupby('clase'),
+                               [PALETA['primary'], PALETA['secondary'], PALETA['accent']]):
+    curva.add_scatter(x=filas.probabilidad_media, y=filas.fraccion_observada, customdata=filas.n,
+                      mode='lines+markers', name=clase.title(), line=dict(color=color),
+                      hovertemplate='Probabilidad media %{x:.1%}<br>Fracción observada %{y:.1%}<br>Juegos %{customdata}<extra></extra>')
+curva.update_xaxes(title_text='Probabilidad estimada media (%)', tickformat='.0%', range=[0, 1])
+curva.update_yaxes(title_text='Fracción observada de la clase (%)', tickformat='.0%', range=[0, 1])
+mostrar_grafica(curva, 'Fiabilidad por clase', alto=400)
+st.caption(f'Brier multiclase {resumen_m["brier_multiclase"]:.4f} y log-loss {resumen_m["log_loss"]:.4f}. '
+           'Los puntos representan intervalos con observaciones. Las probabilidades del bosque no se recalibraron.')
 
 manual_checks()
 

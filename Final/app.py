@@ -11,6 +11,7 @@ from src.config import SIGNALS
 from src.ui import (
     asset_b64,
     manual_checks,
+    read_report,
     render_html,
     render_lb_rb_nav,
     resources,
@@ -27,9 +28,14 @@ setup(
 )
 
 st.page_link('pages/1_Exploracion.py', label='Abrir dashboard interactivo')
+st.info('El observatorio mide interacciones de Backloggd. El modelo ofrece una estimación orientativa que puede favorecer géneros populares y desfavorecer géneros de nicho. Los datos no incluyen ventas observadas.')
 
 df, bundle, analysis = resources()
 metricas_modelo = bundle['metricas']
+linaje = read_report('tables/procedencia_datos.csv').set_index('etapa')
+n_maestro = linaje.loc['Maestro curado', 'filas']
+n_antecedente = linaje.loc['Antecedente enriquecido', 'filas']
+asociacion = read_report('tables/correlacion_catalogo.csv').iloc[0]
 
 # ---------------------------------------------------------------------------
 # 1. CABECERA HERO ("TAKE YOUR HEART" CON ASSETS/IMG/)
@@ -89,14 +95,14 @@ render_html(
                     <div class="sc-main">
                         <div class="sc-label">01 // INDUSTRIA &amp; TRACCION</div>
                         <div class="sc-subdesc">
-                            Separamos alcance acumulado (Plays) de interés pendiente (Wishlist / Backlogs) sobre los 1,117 registros del maestro games_curated.csv; el antecedente histórico contiene 1,512 registros.
+                            Separamos alcance acumulado (Plays) de interés pendiente (Wishlist / Backlogs) sobre los {n_maestro:,} registros del maestro games_curated.csv; el antecedente histórico contiene {n_antecedente:,} registros.
                         </div>
                     </div>
                     <div class="sc-stats">
                         <div class="sc-stat">
                             <div class="sc-stat-top">
                                 <span class="sc-stat-tag" style="color:var(--primary);border-color:var(--primary);">HIST</span>
-                                <span class="sc-stat-num">1,512</span>
+                                <span class="sc-stat-num">{n_antecedente:,}</span>
                             </div>
                             <div class="sc-stat-bars">
                                 <div class="sc-stat-bar-color" style="background:var(--primary);"></div>
@@ -106,7 +112,7 @@ render_html(
                         <div class="sc-stat">
                             <div class="sc-stat-top">
                                 <span class="sc-stat-tag" style="color:var(--secondary);border-color:var(--secondary);">MAESTRO</span>
-                                <span class="sc-stat-num">1,117</span>
+                                <span class="sc-stat-num">{n_maestro:,}</span>
                             </div>
                             <div class="sc-stat-bars">
                                 <div class="sc-stat-bar-color" style="background:var(--secondary);"></div>
@@ -130,14 +136,14 @@ render_html(
                     <div class="sc-main">
                         <div class="sc-label">02 // BRECHA COMUNIDAD-PRENSA</div>
                         <div class="sc-subdesc">
-                            Correlación moderada (r = 0.544 en 887 pares elegibles según CSV). La brecha y la asociación por género y organización se consultan en Exploración; Team no acredita funciones de desarrollador.
+                            Correlación moderada (r = {asociacion.pearson_r:.3f} en {int(asociacion.n):,} pares elegibles según CSV). La brecha y la asociación por género y organización se consultan en Exploración; Team no acredita funciones de desarrollador.
                         </div>
                     </div>
                     <div class="sc-stats">
                         <div class="sc-stat">
                             <div class="sc-stat-top">
                                 <span class="sc-stat-tag" style="color:var(--primary);border-color:var(--primary);">PAIRS</span>
-                                <span class="sc-stat-num">887</span>
+                                <span class="sc-stat-num">{int(asociacion.n):,}</span>
                             </div>
                             <div class="sc-stat-bars">
                                 <div class="sc-stat-bar-color" style="background:var(--primary);"></div>
@@ -147,7 +153,7 @@ render_html(
                         <div class="sc-stat">
                             <div class="sc-stat-top">
                                 <span class="sc-stat-tag" style="color:var(--accent);border-color:var(--accent);">PEARSON</span>
-                                <span class="sc-stat-num">0.544</span>
+                                <span class="sc-stat-num">{asociacion.pearson_r:.3f}</span>
                             </div>
                             <div class="sc-stat-bars">
                                 <div class="sc-stat-bar-color" style="background:var(--accent);"></div>
@@ -230,7 +236,7 @@ render_html(
                         </div>
                     </div>
                     <div class="resume-subtitle-bar">
-                        <div class="resume-subtitle">1,117 REGISTROS EN EL MAESTRO CURADO; ANTECEDENTE HISTORICO DE 1,512</div>
+                        <div class="resume-subtitle">{n_maestro:,} REGISTROS EN EL MAESTRO CURADO; ANTECEDENTE HISTORICO DE {n_antecedente:,}</div>
                     </div>
                 </div>
             </div>
@@ -290,18 +296,18 @@ render_html(
                 <div class="resume-detail-top">
                     <div class="resume-detail-top-index">01</div>
                     <div class="resume-detail-top-title">CATALOGO LOG</div>
-                    <div class="resume-detail-top-progress">1,117</div>
+                    <div class="resume-detail-top-progress">{n_maestro:,}</div>
                 </div>
                 <div class="resume-detail-list">
                     <div class="resume-detail-row">
                         <div class="resume-detail-row-index">01</div>
                         <div class="resume-detail-row-title">Registros Históricos Originales</div>
-                        <div class="resume-detail-status">1,512 FILAS</div>
+                        <div class="resume-detail-status">{n_antecedente:,} FILAS</div>
                     </div>
                     <div class="resume-detail-row">
                         <div class="resume-detail-row-index">02</div>
                         <div class="resume-detail-row-title">Títulos Únicos por Nombre y Fecha</div>
-                        <div class="resume-detail-status">1,117 JUEGOS</div>
+                        <div class="resume-detail-status">{n_maestro:,} JUEGOS</div>
                     </div>
                     <div class="resume-detail-row">
                         <div class="resume-detail-row-index">03</div>

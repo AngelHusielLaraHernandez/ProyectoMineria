@@ -53,7 +53,7 @@
 @attribute 'decada__decada_2020.0' numeric
 @attribute 'notas__Metacritic Rating' numeric
 @attribute 'notas__Rating' numeric
-@attribute 'nivel_popularidad' {'alto','bajo','medio'}
+@attribute nivel_popularidad {bajo,medio,alto}
 
 @data
 1.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.8091804739651431,1.5676826619834217,'alto'
