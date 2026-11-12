@@ -71,7 +71,7 @@ No hay referencias visuales vinculantes. Se priorizan legibilidad y acceso a met
 
 ## README.md
 
-Ruta: `Final/README.md` · Bytes: 5012 · SHA-256: `1ab587da492fcad734d3e8235b3cf3545c87e41416a19bbf8b40dc21b9e77353`
+Ruta: `Final/README.md` · Bytes: 5107 · SHA-256: `8d5ba6743c4d6eeb6c1fd160343259ec15b3975f02004f96bf52f0cf4f957e8c`
 
 ````text
 # Observatorio de Videojuegos — Edición Phantom Thieves (Persona 5 UI)
@@ -106,7 +106,7 @@ pytest -q                     # pruebas
 | `comparar_weka.py` | K-Means de Weka 3.8.6 por CLI sobre el mismo espacio (`--descargar` baja los JAR) → `reports/weka/`. |
 | `objetivo.py` | Define el índice de popularidad (promedio de rangos percentiles de Plays, Wishlist, Backlogs) y los terciles, ajustados solo con entrenamiento. |
 | `features.py` | Preprocesamiento: géneros multi-hot, estudio, década, notas con mediana. |
-| `04_modelo.py` | Compara Dummy, CategoricalNB, DecisionTree y RandomForest con `StratifiedGroupKFold` de 10 pliegues. Guarda `models/`. |
+| `04_modelo.py` | Compara Dummy, CategoricalNB, DecisionTree, RandomForest y MLP con `StratifiedGroupKFold` de 10 pliegues. Guarda `models/`. |
 | `similitud.py` | `NearestNeighbors` en el espacio predictivo, solo con entrenamiento. |
 | `config.py`, `data.py`, `analysis.py`, `modeling.py` | Rutas, carga con caché y adaptadores para la app. |
 | `ui.py` | Tema Persona 5: CSS, fuente en Base64, menú lateral, audio, tema Plotly. |
@@ -126,9 +126,9 @@ pytest -q                     # pruebas
 | Página | Archivo | Contenido |
 |---|---|---|
 | Inicio | `app.py` | Hero, propósito, KPIs, aviso de limitaciones. |
-| Exploración | `pages/1_Exploracion.py` | Filtros, distribuciones logarítmicas, Rating frente a Metacritic, brecha por género y estudio, clusters. |
+| Exploración | `pages/1_Exploracion.py` | Dashboard con filtros, indicadores, selección de juegos en la dispersión, tabla y descarga CSV. Incluye distribuciones, brechas, comparación K-Means/Ward, dendrograma y mapas PCA. |
 | Predicción | `pages/2_Prediccion.py` | Formulario, probabilidades (bajo/medio/alto, sin calibrar) y 5 vecinos similares. |
-| Acerca del modelo | `pages/3_Acerca_del_modelo.py` | Comparación de modelos, matriz de confusión, importancia por permutación. |
+| Acerca del modelo | `pages/3_Acerca_del_modelo.py` | Comparación de modelos, matriz de confusión e importancia por Gini del bosque comparado. |
 
 Recursos: `assets/css/persona5.css`, `assets/js/interacciones.js`, `assets/fonts/Persona5main.ttf`, `assets/audio/` (BGM y efecto de selección), `assets/img/`. El tema oscuro está en `.streamlit/config.toml`. Los modelos y datos se cachean con `@st.cache_resource` y `@st.cache_data`. Todas las rutas usan `pathlib.Path` relativo a `Final/`. Si falta un artefacto, la app indica ejecutar `python -m src.pipeline`.
 
@@ -142,7 +142,7 @@ Recursos: `assets/css/persona5.css`, `assets/js/interacciones.js`, `assets/fonts
 
 ## app.py
 
-Ruta: `Final/app.py` · Bytes: 25837 · SHA-256: `3767e5a232bedb83904964014893c25f05875066cd521e8a949fa5445923d2fe`
+Ruta: `Final/app.py` · Bytes: 25914 · SHA-256: `291fe19f91e7b35da873acf3a3f28420b9e09522942083c69f7f4618e2387e00`
 
 ````text
 """Página de Inicio: Observatorio de Videojuegos — Edición Phantom Thieves (Persona 5 UI)."""
@@ -172,6 +172,8 @@ setup(
     menu_idx=0,
     compact_menu=False,
 )
+
+st.page_link('pages/1_Exploracion.py', label='Abrir dashboard interactivo')
 
 df, bundle, analysis = resources()
 metricas_modelo = bundle['metricas']
@@ -734,6 +736,33 @@ pytest==9.2.0
 scikit-learn==1.9.1
 scipy==1.18.1
 streamlit==1.67.0
+
+````
+
+## vista_graficas.py
+
+Ruta: `Final/vista_graficas.py` · Bytes: 786 · SHA-256: `573c615ea3e8bc4bdf0a65211e5ed927f0086355ec651e4f4dbd47a078f209d7`
+
+````text
+"""Presentación adaptable para las gráficas de Streamlit."""
+
+import streamlit as st
+
+from src.ui import p5_plotly_layout
+
+
+def mostrar_grafica(figura, titulo, *, alto=400, **opciones):
+    """Coloca el título fuera del lienzo para que pueda ajustarse al ancho."""
+    st.subheader(titulo)
+    p5_plotly_layout(figura, height=alto)
+    figura.update_layout(
+        margin=dict(l=20, r=18, t=20, b=40),
+        legend=dict(orientation='h', x=0, y=-0.23, yanchor='top', font_size=11),
+    )
+    figura.update_xaxes(title_font_size=13, tickfont_size=11)
+    figura.update_yaxes(title_font_size=13, tickfont_size=11)
+    config = dict(displaylogo=False, responsive=True, modeBarButtonsToRemove=['toImage'])
+    return st.plotly_chart(figura, width='stretch', config=config, **opciones)
 
 ````
 

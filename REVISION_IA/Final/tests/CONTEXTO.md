@@ -409,6 +409,33 @@ def test_salida_real_conserva_juegos_y_distingue_ausencias_de_ruido():
 
 ````
 
+## test_dashboard.py
+
+Ruta: `Final/tests/test_dashboard.py` · Bytes: 839 · SHA-256: `0256d739058db5a2af565a9c0f0f684b6d06517d9b073bd8b51387d9c310c555`
+
+````text
+from streamlit.testing.v1 import AppTest
+
+from src.config import ROOT
+
+
+def test_dashboard_filtra_restablece_y_admite_consulta_vacia():
+    app = AppTest.from_file(str(ROOT / 'pages/1_Exploracion.py')).run(timeout=30)
+    total = app.metric[0].value
+    app.multiselect(key='eda_generos_0').set_value(['Pinball']).run()
+    assert not app.exception
+    assert app.metric[0].value == f'1 / {total.split(" / ")[1]}'
+    app.slider(key='eda_rating_0').set_value((0.0, 0.1)).run()
+    assert not app.exception
+    assert app.metric[0].value.startswith('0 / ')
+    next(boton for boton in app.button if boton.label == 'Restablecer filtros').click().run()
+    assert not app.exception
+    assert app.metric[0].value == total
+    assert not app.multiselect(key='eda_generos_1').value
+    assert app.slider(key='eda_rating_1').value == (0.0, 5.0)
+
+````
+
 ## test_inferencia.py
 
 Ruta: `Final/tests/test_inferencia.py` · Bytes: 2246 · SHA-256: `30235d88ef5acc7071ea03646fd7d447cca5b86c3acfb73a115264f2c0dccc3c`
@@ -672,7 +699,7 @@ def test_exportacion_repetida_es_reproducible(tmp_path):
 
 ## test_modelo.py
 
-Ruta: `Final/tests/test_modelo.py` · Bytes: 4547 · SHA-256: `142e7514396204e881183b5b96793a723d53ca5411e30552bd165d7faee8e23a`
+Ruta: `Final/tests/test_modelo.py` · Bytes: 4564 · SHA-256: `b6f5c81f43ad7e047696b06aac9083a5e79902b9dd35bfd2016070e24700504f`
 
 ````text
 """Regresiones de la fase 04: target explícito, folds, categorías y artefacto crudo."""
@@ -743,7 +770,7 @@ def test_ganador_se_elige_por_cv_y_permuta_solo_campos_crudos():
     tabla = pd.read_csv(ROOT / 'reports/modelo_comparacion.csv')
     meta = json.loads((ROOT / 'models/metadata.json').read_text())
     assert meta['modelo'] == tabla.sort_values('f1_macro_cv', ascending=False).iloc[0].modelo
-    assert set(tabla.modelo) == {'DummyClassifier', 'CategoricalNB', 'DecisionTreeClassifier', 'RandomForestClassifier'}
+    assert set(tabla.modelo) == {'DummyClassifier', 'CategoricalNB', 'DecisionTreeClassifier', 'RandomForestClassifier', 'MLPClassifier'}
     perm = pd.read_csv(ROOT / 'reports/modelo_permutation_importance.csv')
     assert set(perm.variable_cruda) == set(FEATURES)
     assert len(pd.read_csv(ROOT / 'reports/modelo_permutaciones_repeticiones.csv')) == 30

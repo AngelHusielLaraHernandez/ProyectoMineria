@@ -8,7 +8,7 @@ La implementación vigente está en **Final/** y el documento de entrega en **Do
 - [Índice para revisión por otras IAs](REVISION_IA/INDICE.md).
 - [Registro consolidado de cierre](Final/reports/BITACORA_UNIFICADA.md).
 
-Desde Final, ejecutar `.venv/bin/python -m streamlit run app.py` para la web y `.venv/bin/python -m pytest -q` para las pruebas. La suite de cierre tiene 101 pruebas aprobadas. El equipo declara cumplido el calendario técnico; no se inventan fechas exactas de terminación.
+Desde Final, ejecutar `.venv/bin/python -m streamlit run app.py` para la web y `.venv/bin/python -m pytest -q` para las pruebas. La suite de cierre tiene 102 pruebas aprobadas. El equipo declara cumplido el calendario técnico; no se inventan fechas exactas de terminación.
 
 ## Organización
 

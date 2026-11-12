@@ -8,6 +8,12 @@ Ruta: `DocumentoFinal/figuras/RandomForest.png` · Bytes: 675186 · SHA-256: `75
 
 Contenido no textual o tabla de datos: consultar el original para inspección visual o recálculo.
 
+## clase_ward_dendrograma.png
+
+Ruta: `DocumentoFinal/figuras/clase_ward_dendrograma.png` · Bytes: 37708 · SHA-256: `a98f0f2b12ec4a2d0a00937e1921cfe2469508de337fc6b35fce598156fac7ea`
+
+Contenido no textual o tabla de datos: consultar el original para inspección visual o recálculo.
+
 ## clustering_03_dbscan_kdistancia.png
 
 Ruta: `DocumentoFinal/figuras/clustering_03_dbscan_kdistancia.png` · Bytes: 46042 · SHA-256: `a93d6ab341dd4acb891beca3400aa92f323839b4c12db2a2976678e29d45dc3e`
@@ -23,6 +29,18 @@ Contenido no textual o tabla de datos: consultar el original para inspección vi
 ## clustering_03_proyeccion.png
 
 Ruta: `DocumentoFinal/figuras/clustering_03_proyeccion.png` · Bytes: 257834 · SHA-256: `5c7d6a516039cda6137d177e710e8fe394f7c587c49565422414bdbe9608a4ee`
+
+Contenido no textual o tabla de datos: consultar el original para inspección visual o recálculo.
+
+## comparacion_mlp.png
+
+Ruta: `DocumentoFinal/figuras/comparacion_mlp.png` · Bytes: 75804 · SHA-256: `e21b87b301c62502b16f4cfc613154ad53773fe47320d7288d3a0ebd9035fee1`
+
+Contenido no textual o tabla de datos: consultar el original para inspección visual o recálculo.
+
+## dashboard_interactivo.png
+
+Ruta: `DocumentoFinal/figuras/dashboard_interactivo.png` · Bytes: 110049 · SHA-256: `85f4fdb18a451962642900462eb6c9839ca523ae82dbf6d45f4abdede28aa2dc`
 
 Contenido no textual o tabla de datos: consultar el original para inspección visual o recálculo.
 
@@ -116,6 +134,12 @@ Ruta: `DocumentoFinal/figuras/formulario_verificado.jpg` · Bytes: 138668 · SHA
 
 Contenido no textual o tabla de datos: consultar el original para inspección visual o recálculo.
 
+## gini_web.png
+
+Ruta: `DocumentoFinal/figuras/gini_web.png` · Bytes: 83684 · SHA-256: `de0ccdda8a55275786310646cd62d3edcdb3e5b5aa4bda27c77371a3130d4fc1`
+
+Contenido no textual o tabla de datos: consultar el original para inspección visual o recálculo.
+
 ## graficas_comparacion_corregida.jpg
 
 Ruta: `DocumentoFinal/figuras/graficas_comparacion_corregida.jpg` · Bytes: 111632 · SHA-256: `892d698cf3d396c3b073baf9f26b4f475a5294bb1ac6e4e6eb3a9a9e4f960c05`
@@ -170,15 +194,27 @@ Ruta: `DocumentoFinal/figuras/prediccion_actual.jpg` · Bytes: 136423 · SHA-256
 
 Contenido no textual o tabla de datos: consultar el original para inspección visual o recálculo.
 
+## prediccion_mlp_web.png
+
+Ruta: `DocumentoFinal/figuras/prediccion_mlp_web.png` · Bytes: 115451 · SHA-256: `d122ec0d59bc5b57da4e36d11013e344af75e6d0a6fd4a2ac29af702a3c53e54`
+
+Contenido no textual o tabla de datos: consultar el original para inspección visual o recálculo.
+
 ## sensibilidad_escenarios.png
 
-Ruta: `DocumentoFinal/figuras/sensibilidad_escenarios.png` · Bytes: 113964 · SHA-256: `20acc80a5d0e5f13cd8ac8c0ce505a599bd4d0c1ffd22703ef59ff6cb1cb7b2a`
+Ruta: `DocumentoFinal/figuras/sensibilidad_escenarios.png` · Bytes: 110950 · SHA-256: `463854bfda71dbf08dbb53dccfe72e8ada3c33b867cad5007c6ba78fd3d382ef`
 
 Contenido no textual o tabla de datos: consultar el original para inspección visual o recálculo.
 
 ## sin_critica_verificado.jpg
 
 Ruta: `DocumentoFinal/figuras/sin_critica_verificado.jpg` · Bytes: 147412 · SHA-256: `c9f42e216d9c1ca2928c64ad965b607d0861e5d9c315a7d321d9337553818d0a`
+
+Contenido no textual o tabla de datos: consultar el original para inspección visual o recálculo.
+
+## ward_web.png
+
+Ruta: `DocumentoFinal/figuras/ward_web.png` · Bytes: 79036 · SHA-256: `7c3cdcddc8ea51ed3b5f2870a7d84a3d11f44e3be15e32212eba35712f3ef361`
 
 Contenido no textual o tabla de datos: consultar el original para inspección visual o recálculo.
 

@@ -41,13 +41,13 @@ Uncharted: The Nathan Drake Collection medio       alto    False             0.6
 
 ## contraejemplos.csv
 
-Ruta: `DocumentoFinal/evidencias/escenarios/contraejemplos.csv` · Bytes: 1763 · SHA-256: `06367ca6046ea2e626ecf309f125f71aa9421b9d66b03c58d6900262f657dbdd`
+Ruta: `DocumentoFinal/evidencias/escenarios/contraejemplos.csv` · Bytes: 1915 · SHA-256: `f9d4fbc2df1ddb6754df1d333f2a58437edc6cb33ee2aa6a72232c2fe4aa1ea4`
 
 Contenido no textual o tabla de datos: consultar el original para inspección visual o recálculo.
 
 ## contraejemplos.json
 
-Ruta: `DocumentoFinal/evidencias/escenarios/contraejemplos.json` · Bytes: 3684 · SHA-256: `931cecb65532e3a1823da15569d6890713b5e82b3d67dc8e3e80086429ef6403`
+Ruta: `DocumentoFinal/evidencias/escenarios/contraejemplos.json` · Bytes: 3670 · SHA-256: `38843bf9711f5443e2c9e80caea013a76cd119026f35e9b31362dc31d6866c2a`
 
 ````text
 [
@@ -57,7 +57,7 @@ Ruta: `DocumentoFinal/evidencias/escenarios/contraejemplos.json` · Bytes: 3684 
     "real": "bajo",
     "prediccion": "alto",
     "acierto": false,
-    "probabilidad_maxima": 0.6684665448473315,
+    "probabilidad_maxima": 0.8962994150630624,
     "Plays": 1100.0,
     "Wishlist": 76.0,
     "Backlogs": 213.0,
@@ -74,9 +74,9 @@ Ruta: `DocumentoFinal/evidencias/escenarios/contraejemplos.json` · Bytes: 3684 
     "Rating": 4.4,
     "Metacritic": 91.0,
     "probabilidades": {
-      "alto": 0.6684665448473315,
-      "bajo": 0.08935785908152606,
-      "medio": 0.24217559607114222
+      "alto": 0.8962994150630624,
+      "bajo": 0.0377525676158464,
+      "medio": 0.06594801732109117
     }
   },
   {
@@ -85,7 +85,7 @@ Ruta: `DocumentoFinal/evidencias/escenarios/contraejemplos.json` · Bytes: 3684 
     "real": "bajo",
     "prediccion": "bajo",
     "acierto": true,
-    "probabilidad_maxima": 0.7715811749543512,
+    "probabilidad_maxima": 0.9502326177365681,
     "Plays": 4500.0,
     "Wishlist": 65.0,
     "Backlogs": 184.0,
@@ -101,38 +101,36 @@ Ruta: `DocumentoFinal/evidencias/escenarios/contraejemplos.json` · Bytes: 3684 
     "Rating": 2.7,
     "Metacritic": 70.0,
     "probabilidades": {
-      "alto": 0.05151646177093161,
-      "bajo": 0.7715811749543512,
-      "medio": 0.17690236327471673
+      "alto": 0.000697734096383338,
+      "bajo": 0.9502326177365681,
+      "medio": 0.049069648167048376
     }
   },
   {
-    "id_juego": 658,
-    "titulo": "Uncharted: The Nathan Drake Collection",
+    "id_juego": 1137,
+    "titulo": "Back 4 Blood",
     "real": "medio",
-    "prediccion": "alto",
+    "prediccion": "bajo",
     "acierto": false,
-    "probabilidad_maxima": 0.6983971867015208,
-    "Plays": 4300.0,
-    "Wishlist": 319.0,
-    "Backlogs": 1300.0,
-    "indice": 0.570814648729447,
+    "probabilidad_maxima": 0.8567213802407476,
+    "Plays": 2900.0,
+    "Wishlist": 335.0,
+    "Backlogs": 489.0,
+    "indice": 0.41704035874439466,
     "generos": [
-      "Adventure",
-      "Platform",
       "Shooter"
     ],
     "estudio": [
-      "Naughty Dog",
-      "Sony Computer Entertainment, Inc. (SCEI)"
+      "Warner Bros. Interactive Entertainment",
+      "Turtle Rock Studios"
     ],
-    "decada": 2010,
-    "Rating": 4.1,
-    "Metacritic": 86.0,
+    "decada": 2020,
+    "Rating": 2.5,
+    "Metacritic": 77.0,
     "probabilidades": {
-      "alto": 0.6983971867015208,
-      "bajo": 0.09558917580731595,
-      "medio": 0.20601363749116358
+      "alto": 0.011548234160186344,
+      "bajo": 0.8567213802407476,
+      "medio": 0.13173038559906602
     }
   },
   {
@@ -141,7 +139,7 @@ Ruta: `DocumentoFinal/evidencias/escenarios/contraejemplos.json` · Bytes: 3684 
     "real": "medio",
     "prediccion": "medio",
     "acierto": true,
-    "probabilidad_maxima": 0.5198829656017434,
+    "probabilidad_maxima": 0.8081365688044989,
     "Plays": 8800.0,
     "Wishlist": 154.0,
     "Backlogs": 425.0,
@@ -159,36 +157,37 @@ Ruta: `DocumentoFinal/evidencias/escenarios/contraejemplos.json` · Bytes: 3684 
     "Rating": 3.4,
     "Metacritic": null,
     "probabilidades": {
-      "alto": 0.25742434866068536,
-      "bajo": 0.22269268573757106,
-      "medio": 0.5198829656017434
+      "alto": 0.1133384435190292,
+      "bajo": 0.07852498767647191,
+      "medio": 0.8081365688044989
     }
   },
   {
-    "id_juego": 1057,
-    "titulo": "Jet Set Radio",
+    "id_juego": 111,
+    "titulo": "Doki Doki Literature Club!",
     "real": "alto",
-    "prediccion": "bajo",
+    "prediccion": "medio",
     "acierto": false,
-    "probabilidad_maxima": 0.49152792529567263,
-    "Plays": 3500.0,
-    "Wishlist": 671.0,
-    "Backlogs": 1900.0,
-    "indice": 0.6787849669015588,
+    "probabilidad_maxima": 0.7968512917026201,
+    "Plays": 14000.0,
+    "Wishlist": 460.0,
+    "Backlogs": 1500.0,
+    "indice": 0.7389760837070254,
     "generos": [
-      "Platform"
+      "Adventure",
+      "Indie",
+      "Visual Novel"
     ],
     "estudio": [
-      "BlitWorks",
-      "Sega"
+      "Team Salvato"
     ],
     "decada": 2010,
-    "Rating": 3.7,
-    "Metacritic": 70.0,
+    "Rating": 3.3,
+    "Metacritic": 78.0,
     "probabilidades": {
-      "alto": 0.13003255527395496,
-      "bajo": 0.49152792529567263,
-      "medio": 0.3784395194303722
+      "alto": 0.08912285683093057,
+      "bajo": 0.11402585146644932,
+      "medio": 0.7968512917026201
     }
   },
   {
@@ -197,7 +196,7 @@ Ruta: `DocumentoFinal/evidencias/escenarios/contraejemplos.json` · Bytes: 3684 
     "real": "alto",
     "prediccion": "alto",
     "acierto": true,
-    "probabilidad_maxima": 0.8235016355289921,
+    "probabilidad_maxima": 0.974551664282916,
     "Plays": 17000.0,
     "Wishlist": 1400.0,
     "Backlogs": 2000.0,
@@ -214,9 +213,9 @@ Ruta: `DocumentoFinal/evidencias/escenarios/contraejemplos.json` · Bytes: 3684 
     "Rating": 4.2,
     "Metacritic": 95.0,
     "probabilidades": {
-      "alto": 0.8235016355289921,
-      "bajo": 0.053934428207451146,
-      "medio": 0.12256393626355631
+      "alto": 0.974551664282916,
+      "bajo": 0.0072490383463705635,
+      "medio": 0.018199297370713435
     }
   }
 ]
@@ -224,13 +223,13 @@ Ruta: `DocumentoFinal/evidencias/escenarios/contraejemplos.json` · Bytes: 3684 
 
 ## hipoteticos.csv
 
-Ruta: `DocumentoFinal/evidencias/escenarios/hipoteticos.csv` · Bytes: 1149 · SHA-256: `d55fc932ca7140456083308af47746a1efb11005d6820791b2434927eff6d117`
+Ruta: `DocumentoFinal/evidencias/escenarios/hipoteticos.csv` · Bytes: 1152 · SHA-256: `672f66943f8c5a18311b6bb6a6e6b0cdc9ced4606de7409f572ea4383e3d128a`
 
 Contenido no textual o tabla de datos: consultar el original para inspección visual o recálculo.
 
 ## hipoteticos.json
 
-Ruta: `DocumentoFinal/evidencias/escenarios/hipoteticos.json` · Bytes: 2835 · SHA-256: `7c22668556909dace3401d5314190e7c1c257d0a4e99a47c9a3dac96984225bd`
+Ruta: `DocumentoFinal/evidencias/escenarios/hipoteticos.json` · Bytes: 2838 · SHA-256: `5308e852cdfe812cd83164e1bb96c4b2191429bac71b328e870e8b21b5334a28`
 
 ````text
 [
@@ -248,9 +247,9 @@ Ruta: `DocumentoFinal/evidencias/escenarios/hipoteticos.json` · Bytes: 2835 · 
     "metacritic": 45,
     "rating": 1.0,
     "prediccion": "bajo",
-    "p_alto": 0.11482340781897761,
-    "p_bajo": 0.5996677783176304,
-    "p_medio": 0.28550881386339216
+    "p_alto": 0.024709216246924653,
+    "p_bajo": 0.7856088712884108,
+    "p_medio": 0.18968191246466454
   },
   {
     "id": "S2",
@@ -265,10 +264,10 @@ Ruta: `DocumentoFinal/evidencias/escenarios/hipoteticos.json` · Bytes: 2835 · 
     "decada": 2020,
     "metacritic": 99,
     "rating": 4.8,
-    "prediccion": "alto",
-    "p_alto": 0.5408269453085124,
-    "p_bajo": 0.20861964106899933,
-    "p_medio": 0.25055341362248806
+    "prediccion": "medio",
+    "p_alto": 0.3642178402326618,
+    "p_bajo": 0.16670624906177417,
+    "p_medio": 0.46907591070556415
   },
   {
     "id": "S3",
@@ -284,9 +283,9 @@ Ruta: `DocumentoFinal/evidencias/escenarios/hipoteticos.json` · Bytes: 2835 · 
     "metacritic": 45,
     "rating": 4.8,
     "prediccion": "bajo",
-    "p_alto": 0.20911329702511197,
-    "p_bajo": 0.4393136619116028,
-    "p_medio": 0.35157304106328496
+    "p_alto": 0.011175747745535702,
+    "p_bajo": 0.6337399671898403,
+    "p_medio": 0.3550842850646239
   },
   {
     "id": "S4",
@@ -301,10 +300,10 @@ Ruta: `DocumentoFinal/evidencias/escenarios/hipoteticos.json` · Bytes: 2835 · 
     "decada": 2020,
     "metacritic": 99,
     "rating": 1.0,
-    "prediccion": "alto",
-    "p_alto": 0.3824562843459407,
-    "p_bajo": 0.30789091633601195,
-    "p_medio": 0.30965279931804734
+    "prediccion": "bajo",
+    "p_alto": 0.0804394838533213,
+    "p_bajo": 0.56597282925134,
+    "p_medio": 0.3535876868953387
   },
   {
     "id": "S5",
@@ -320,9 +319,9 @@ Ruta: `DocumentoFinal/evidencias/escenarios/hipoteticos.json` · Bytes: 2835 · 
     "metacritic": null,
     "rating": 4.8,
     "prediccion": "bajo",
-    "p_alto": 0.2779815193893014,
-    "p_bajo": 0.44206113209632525,
-    "p_medio": 0.27995734851437365
+    "p_alto": 0.1800233838641886,
+    "p_bajo": 0.6161544573148573,
+    "p_medio": 0.2038221588209541
   },
   {
     "id": "S6",
@@ -338,9 +337,9 @@ Ruta: `DocumentoFinal/evidencias/escenarios/hipoteticos.json` · Bytes: 2835 · 
     "metacritic": 99,
     "rating": 4.8,
     "prediccion": "alto",
-    "p_alto": 0.587149162448355,
-    "p_bajo": 0.1514191359361513,
-    "p_medio": 0.2614317016154936
+    "p_alto": 0.65647546113451,
+    "p_bajo": 0.050318432284600395,
+    "p_medio": 0.29320610658088964
   },
   {
     "id": "S7",
@@ -355,10 +354,10 @@ Ruta: `DocumentoFinal/evidencias/escenarios/hipoteticos.json` · Bytes: 2835 · 
     "decada": 1980,
     "metacritic": 99,
     "rating": 4.8,
-    "prediccion": "alto",
-    "p_alto": 0.5719369254431956,
-    "p_bajo": 0.1919206007241524,
-    "p_medio": 0.2361424738326517
+    "prediccion": "medio",
+    "p_alto": 0.38674478235785464,
+    "p_bajo": 0.22648014163816976,
+    "p_medio": 0.38677507600397565
   },
   {
     "id": "S8",
@@ -373,16 +372,16 @@ Ruta: `DocumentoFinal/evidencias/escenarios/hipoteticos.json` · Bytes: 2835 · 
     "metacritic": 99,
     "rating": 4.8,
     "prediccion": "alto",
-    "p_alto": 0.4966212185337543,
-    "p_bajo": 0.24060322520525224,
-    "p_medio": 0.2627755562609934
+    "p_alto": 0.4141998066856576,
+    "p_bajo": 0.20879069754399057,
+    "p_medio": 0.37700949577035187
   }
 ]
 ````
 
 ## rejilla.csv
 
-Ruta: `DocumentoFinal/evidencias/escenarios/rejilla.csv` · Bytes: 1835 · SHA-256: `2ce1fadc1cd4b7afdf169e9cdd2ab6813971c4fded353c3a05470277e3baa41f`
+Ruta: `DocumentoFinal/evidencias/escenarios/rejilla.csv` · Bytes: 1842 · SHA-256: `973e0354ee882fc9f44375e1600daa669ee4fbc8d7cfc7caedda0cf61016369e`
 
 Contenido no textual o tabla de datos: consultar el original para inspección visual o recálculo.
 

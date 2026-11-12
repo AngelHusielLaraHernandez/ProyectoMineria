@@ -11,10 +11,9 @@ import src.ui as _ui
 if not hasattr(_ui, 'asset_b64') or getattr(_ui, '_UI_VERSION', None) != 'p5-v8-neon':
     importlib.reload(_ui)
 
-from src.visualizacion import etiquetas_fuera_del_error
+from vista_graficas import mostrar_grafica
 from src.ui import (
     manual_checks,
-    p5_plotly_layout,
     read_report,
     render_html,
     render_lb_rb_nav,
@@ -25,7 +24,7 @@ from src.ui import (
 
 setup(
     'Acerca del Modelo Supervisado',
-    'Evaluación Fase 4B · StratifiedGroupKFold (10 Pliegues) · Matriz de Confusión · Permutation Importance',
+    'Evaluación Fase 4B · StratifiedGroupKFold (10 Pliegues) · Matriz de Confusión · Importancia por Gini',
     transition='default',
     menu_idx=3,
     compact_menu=True,
@@ -74,7 +73,7 @@ render_html(
 # ---------------------------------------------------------------------------
 section_banner(
     'Comparación de Algoritmos Supervisados',
-    'Naive Bayes (CategoricalNB) vs. Árbol de Decisión vs. Random Forest vs. Referencia Dummy',
+    'Naive Bayes · CART · Random Forest · Red neuronal MLP · Referencia mayoritaria',
 )
 
 tabla_comp = read_report('modelo_comparacion.csv').copy()
@@ -82,10 +81,12 @@ nombres_legibles = {
     'DummyClassifier': 'DummyClassifier (Base Mayoritaria)',
     'CategoricalNB': 'Naive Bayes (CategoricalNB Discretizado)',
     'DecisionTreeClassifier': 'Árbol de Decisión (CART)',
-    'RandomForestClassifier': 'Random Forest (Ensamble Ganador)',
+    'RandomForestClassifier': 'Random Forest',
+    'MLPClassifier': 'Red neuronal MLP',
 }
 nombres_cortos = {'DummyClassifier': 'REFERENCIA MAYORITARIA', 'CategoricalNB': 'NAIVE BAYES',
-                 'DecisionTreeClassifier': 'ARBOL DE DECISION', 'RandomForestClassifier': 'RANDOM FOREST'}
+                 'DecisionTreeClassifier': 'ARBOL DE DECISION', 'RandomForestClassifier': 'RANDOM FOREST',
+                 'MLPClassifier': 'RED NEURONAL MLP'}
 tabla_comp['Algoritmo'] = tabla_comp['modelo'].map(lambda m: nombres_legibles.get(m, m))
 
 # Interactive SideProjectsPage.jsx Split Shell (.sp-shell) for the 4 evaluated algorithms
@@ -145,61 +146,53 @@ st.dataframe(
 )
 
 fig_comp = go.Figure()
-fig_comp.add_trace(
-    go.Bar(
-        name='F1 Macro Validación Cruzada (10-fold)',
-        x=tabla_comp['Algoritmo'],
-        y=tabla_comp['f1_macro_cv'],
-        error_y=dict(type='data', array=tabla_comp['desviacion_cv'], color=PALETA['accent']),
-        marker_color=PALETA['primary'],
-        marker_line_color=PALETA['text-primary'],
-        marker_line_width=1.5,
-        text=tabla_comp['f1_macro_cv'].map(lambda v: f'{v:.3f}'),
-        textposition='outside',
-    )
+filas_modelos = np.arange(len(tabla_comp))
+etiquetas_modelos = {
+    'DummyClassifier': 'Referencia<br>mayoritaria',
+    'CategoricalNB': 'Naive Bayes',
+    'DecisionTreeClassifier': 'Árbol de<br>decisión',
+    'RandomForestClassifier': 'Random Forest',
+    'MLPClassifier': 'Red neuronal<br>MLP',
+}
+for desplazamiento, etiqueta, campo, color in [
+    (-.22, 'F1 macro CV', 'f1_macro_cv', PALETA['primary']),
+    (0, 'F1 macro prueba', 'f1_macro_prueba', PALETA['secondary']),
+    (.22, 'Exactitud prueba', 'exactitud_prueba', PALETA['accent']),
+]:
+    es_cv = campo == 'f1_macro_cv'
+    fig_comp.add_trace(go.Scatter(
+        name=etiqueta,
+        mode='markers',
+        y=filas_modelos + desplazamiento,
+        x=tabla_comp[campo],
+        error_x=dict(array=tabla_comp['desviacion_cv'], color=color, thickness=2, width=5) if es_cv else None,
+        text=tabla_comp['Algoritmo'],
+        customdata=tabla_comp['desviacion_cv'] if es_cv else None,
+        marker=dict(color=color, size=10, line=dict(color=PALETA['text-primary'], width=1)),
+        hovertemplate='<b>%{text}</b><br>' + etiqueta + ': %{x:.3f}'
+        + (' · DE %{customdata:.3f}' if es_cv else '') + '<extra></extra>',
+    ))
+fig_comp.update_xaxes(title_text='Puntaje (0–1)', range=[0, 1])
+fig_comp.update_yaxes(
+    tickmode='array', tickvals=filas_modelos,
+    ticktext=[etiquetas_modelos.get(modelo, modelo) for modelo in tabla_comp['modelo']],
+    range=[len(filas_modelos) - .5, -.5], fixedrange=True, ticklabelstandoff=8,
 )
-fig_comp.add_trace(
-    go.Bar(
-        name='F1 Macro Conjunto de Prueba (Holdout)',
-        x=tabla_comp['Algoritmo'],
-        y=tabla_comp['f1_macro_prueba'],
-        marker_color=PALETA['secondary'],
-        marker_line_color='#000000',
-        marker_line_width=1.5,
-        text=tabla_comp['f1_macro_prueba'].map(lambda v: f'{v:.3f}'),
-        textposition='outside',
-    )
-)
-fig_comp.add_trace(
-    go.Bar(
-        name='Exactitud en Prueba (Accuracy)',
-        x=tabla_comp['Algoritmo'],
-        y=tabla_comp['exactitud_prueba'],
-        marker_color=PALETA['accent'],
-        marker_line_color='#000000',
-        marker_line_width=1.5,
-        text=tabla_comp['exactitud_prueba'].map(lambda v: f'{v:.3f}'),
-        textposition='outside',
-    )
-)
-fig_comp.update_layout(barmode='group', bargap=0.2, bargroupgap=0, yaxis_range=[0, 0.72])
-# Tres barras por categoría: el centro de CV está 0.8/3 a la izquierda.
-etiquetas_fuera_del_error(fig_comp, desplazamiento_categoria=-0.8 / 3)
-fig_comp.update_xaxes(title_text='Familia Algorítmica')
-fig_comp.update_yaxes(title_text='Puntaje (0.0 – 1.0)')
-p5_plotly_layout(fig_comp, title='Desempeño Comparativo: Validación Cruzada vs. Prueba', height=500)
-fig_comp.update_layout(legend=dict(orientation='h', x=0, y=-0.24, yanchor='top'), margin_b=126)
-fig_comp.update_xaxes(tickmode='array', tickvals=tabla_comp['Algoritmo'].tolist(),
-                     ticktext=['Dummy', 'Naive Bayes', 'Árbol de decisión', 'Random Forest'], tickangle=0)
-st.plotly_chart(fig_comp, use_container_width=True)
+mostrar_grafica(fig_comp, 'Desempeño en validación cruzada y prueba', alto=465)
+st.caption('Cada punto muestra el puntaje. El segmento azul indica ±1 desviación estándar del F1 macro entre los pliegues.')
 
 st.caption(
-    'Nota sobre arquitecturas neuronales (MLP) y Weka: Con n = 892 registros de entrenamiento y representación '
-    'dispersa multi-hot, los ensambles de árboles (`RandomForestClassifier`) y el modelo probabilístico '
-    'discretizado (`CategoricalNB`) ofrecen mejor estabilidad y menor varianza que perceptrones multicapa (MLP) '
-    'sobre datos tabulares pequeños. Los archivos `.arff` y `.csv` de partición idéntica están disponibles en '
-    '`data/clean/entrenamiento_weka.arff` y `data/clean/prueba_weka.arff` para contraste externo.'
+    'La MLP se evalúa con los mismos pliegues y la misma prueba reservada que los otros clasificadores. '
+    'Se ajusta una capa oculta y su regularización con F1 macro de validación cruzada.'
 )
+
+fila_prueba = tabla_comp.loc[tabla_comp['f1_macro_prueba'].idxmax()]
+if fila_prueba['modelo'] != metricas['modelo']:
+    st.caption(
+        f"Modelo activo por validación cruzada: {nombres_legibles[metricas['modelo']]}. "
+        f"Mayor F1 macro en prueba: {fila_prueba['Algoritmo']} "
+        f"({fila_prueba['f1_macro_prueba']:.4f})."
+    )
 
 # ---------------------------------------------------------------------------
 # 3. MATRIZ DE CONFUSIÓN Y VARIABLES MÁS INFLUYENTES (ANCHO COMPLETO)
@@ -210,7 +203,6 @@ col_cm, col_pi = st.container(), st.container()
 with col_cm:
     section_banner('Matriz de Confusión (Holdout n = 222)', 'Mapa de Calor en Azul y Violeta')
     clases = metricas['clases']  # ['bajo', 'medio', 'alto']
-    etiquetas_clases = [f'Real/Pred: {c.upper()}' for c in clases]
     matriz = np.asarray(resumen_m['matriz_confusion'], dtype=int)
 
     texto_celdas = [[f'{val}' for val in fila] for fila in matriz]
@@ -228,7 +220,7 @@ with col_cm:
                 [0.7, PALETA['secondary']],
                 [1.0, PALETA['text-primary']],
             ],
-            showscale=True,
+            colorbar=dict(title='Juegos', thickness=10),
             hovertemplate='Clase Real: <b>%{y}</b><br>Clase Predicha: <b>%{x}</b><br>Juegos: <b>%{z}</b><extra></extra>',
         )
     )
@@ -238,47 +230,25 @@ with col_cm:
             fig_cm.add_annotation(x=clase_predicha.upper(), y=clase_real.upper(),
                                   text=str(valor), showarrow=False,
                                   font=dict(size=18, color=PALETA['bg-primary'] if valor >= .65 * matriz.max() else PALETA['text-primary']))
-    fig_cm.update_xaxes(title_text='Nivel Predicho por el Modelo')
-    fig_cm.update_yaxes(title_text='Nivel Real en Prueba', autorange='reversed')
-    p5_plotly_layout(fig_cm, title='Matriz de Confusión (RandomForestClassifier)', height=420)
-    st.plotly_chart(fig_cm, use_container_width=True)
+    fig_cm.update_xaxes(title_text='Clase predicha')
+    fig_cm.update_yaxes(title_text='Clase real', autorange='reversed')
+    mostrar_grafica(fig_cm, 'Clases reales frente a predicciones', alto=390)
 
 with col_pi:
-    section_banner('Variables Más Influyentes', 'Permutation Importance sobre Variables Crudas')
-    df_perm = read_report('modelo_permutation_importance.csv').sort_values(
-        'caida_f1_macro_media', ascending=True
-    )
-    etiquetas_vars = {
-        'Rating': 'Rating de Usuarios (0–5)',
-        'Metacritic Rating': 'Metacritic Rating (0–100)',
-        'generos': 'Géneros (Multi-hot)',
-        'estudio': 'Estudio / Organización (Team)',
-        'decada': 'Década de Lanzamiento',
-    }
-    df_perm['Variable'] = df_perm['variable_cruda'].map(lambda v: etiquetas_vars.get(v, v))
-
-    fig_perm = go.Figure(
-        go.Bar(
-            x=df_perm['caida_f1_macro_media'],
-            y=df_perm['Variable'],
-            orientation='h',
-            error_x=dict(type='data', array=df_perm['desviacion'], color=PALETA['accent']),
-            marker=dict(
-                color=[PALETA['bg-chart'], PALETA['primary'], PALETA['primary'], PALETA['secondary'], PALETA['accent']][-len(df_perm):],
-                line=dict(color=PALETA['text-primary'], width=1.5),
-            ),
-            text=df_perm['caida_f1_macro_media'].map(lambda v: f'−{v:.4f} F1'),
-            textposition='outside',
-            hovertemplate='<b>%{y}</b><br>Caída media en F1 macro: %{x:.4f}<extra></extra>',
-        )
-    )
-    fig_perm.update_xaxes(title_text='Caída Media en F1 Macro al Permutar (30 repeticiones)', range=[0, 0.115])
-    fig_perm.update_yaxes(title_text='Atributo de Entrada')
-    p5_plotly_layout(fig_perm, title='Importancia por Permutación en Prueba', height=420)
-    etiquetas_fuera_del_error(fig_perm, sufijo=' F1')
-    # Espacio para las etiquetas a la derecha, conservando el rango estadístico.
-    fig_perm.update_layout(margin_r=126)
-    st.plotly_chart(fig_perm, use_container_width=True)
+    section_banner('Importancia de variables en Random Forest', 'Reducción de impureza de Gini')
+    df_gini = read_report('modelo_importancia_gini.csv').sort_values('importancia')
+    etiquetas = {'Rating': 'Usuarios', 'Metacritic Rating': 'Metacritic',
+                 'generos': 'Géneros', 'estudio': 'Organización', 'decada': 'Década'}
+    figura_gini = go.Figure(go.Bar(
+        x=df_gini['importancia'] * 100, y=df_gini['variable'].map(etiquetas),
+        orientation='h', marker_color=PALETA['primary'],
+        hovertemplate='%{y}: %{x:.2f} %<extra></extra>',
+    ))
+    figura_gini.update_xaxes(title_text='Importancia relativa (%)', rangemode='tozero')
+    figura_gini.update_yaxes(ticklabelstandoff=8)
+    mostrar_grafica(figura_gini, 'Contribución a la reducción de impureza', alto=360)
+    st.caption('Se suman las contribuciones de las columnas codificadas de cada variable original. '
+               f'Esta gráfica explica Random Forest. Modelo activo: {nombres_legibles[metricas["modelo"]]}. ')
 
 # ---------------------------------------------------------------------------
 # 4. REPORTE DETALLADO POR CLASE Y AUDITORÍA DE IMPUTACIÓN

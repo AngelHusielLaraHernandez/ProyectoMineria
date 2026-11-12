@@ -66,7 +66,7 @@ def test_ganador_se_elige_por_cv_y_permuta_solo_campos_crudos():
     tabla = pd.read_csv(ROOT / 'reports/modelo_comparacion.csv')
     meta = json.loads((ROOT / 'models/metadata.json').read_text())
     assert meta['modelo'] == tabla.sort_values('f1_macro_cv', ascending=False).iloc[0].modelo
-    assert set(tabla.modelo) == {'DummyClassifier', 'CategoricalNB', 'DecisionTreeClassifier', 'RandomForestClassifier'}
+    assert set(tabla.modelo) == {'DummyClassifier', 'CategoricalNB', 'DecisionTreeClassifier', 'RandomForestClassifier', 'MLPClassifier'}
     perm = pd.read_csv(ROOT / 'reports/modelo_permutation_importance.csv')
     assert set(perm.variable_cruda) == set(FEATURES)
     assert len(pd.read_csv(ROOT / 'reports/modelo_permutaciones_repeticiones.csv')) == 30

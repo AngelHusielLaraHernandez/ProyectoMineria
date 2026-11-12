@@ -2,7 +2,7 @@
 
 Compilar desde esta carpeta con `latexmk -pdf -interaction=nonstopmode main.tex`. Requiere LaTeX, biblatex APA y biber.
 
-`ajustar_formato_redaccion.py` reconstruye la versión revisada usando el generador base y la plantilla original; la compilación de main.tex es autónoma con las figuras incluidas. Fecha de corte: 9 de noviembre de 2026. No se atribuye entrega formal ni publicación pública.
+`ajustar_formato_redaccion.py` reconstruye la versión revisada usando el generador base y la plantilla original; la compilación de main.tex es autónoma con las figuras incluidas. Fecha de corte: 11 de noviembre de 2026. No se atribuye entrega formal ni publicación pública.
 
 ## Versión revisada con el formato del anteproyecto
 
@@ -12,8 +12,8 @@ Para regenerar desde el workspace, ejecutar primero `Final/.venv/bin/python Docu
 
 La compilación es autónoma: `latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex` desde esta carpeta, sin regenerar nada. Requiere la distribución TeX y biber.
 
-Los escenarios hipotéticos no tienen una clase real conocida; los contraejemplos corresponden a seis registros de la prueba histórica y se seleccionaron después de observar errores y aciertos. No constituyen una validación independiente. Las capturas S1 a S5 fueron tomadas de la web y contrastadas con los cálculos del Pipeline; S6 a S8 y la rejilla se calcularon directamente. No se reentrenó ni cambió el modelo para acomodar los ejemplos.
+Los escenarios hipotéticos no tienen una clase real conocida; los contraejemplos corresponden a seis registros de la prueba histórica y se seleccionaron después de observar errores y aciertos. No constituyen una validación independiente. Los ocho escenarios y la rejilla se recalcularon con la MLP. La captura de la página Predicción documenta una ejecución del formulario. No se reentrenó ni cambió el modelo para acomodar los ejemplos.
 
 ## Cierre y revisión por otras IAs
 
-El equipo declara cumplido el calendario técnico, sin asignar fechas exactas no registradas. La suite completa aprobó 101 pruebas en el cierre. Los logs históricos de cada carpeta se reúnen en BITACORA_UNIFICADA.md; los resultados cuantitativos y las capturas se conservan separados. El paquete REVISION_IA, en la raíz, contiene una ficha por carpeta con código y documentación para revisión.
+El equipo declara cumplido el calendario técnico, sin asignar fechas exactas no registradas. La suite completa aprobó 102 pruebas en el cierre. Los logs históricos de cada carpeta se reúnen en BITACORA_UNIFICADA.md; los resultados cuantitativos y las capturas se conservan separados. El paquete REVISION_IA, en la raíz, contiene una ficha por carpeta con código y documentación para revisión.

@@ -30,7 +30,7 @@ pytest -q                     # pruebas
 | `comparar_weka.py` | K-Means de Weka 3.8.6 por CLI sobre el mismo espacio (`--descargar` baja los JAR) → `reports/weka/`. |
 | `objetivo.py` | Define el índice de popularidad (promedio de rangos percentiles de Plays, Wishlist, Backlogs) y los terciles, ajustados solo con entrenamiento. |
 | `features.py` | Preprocesamiento: géneros multi-hot, estudio, década, notas con mediana. |
-| `04_modelo.py` | Compara Dummy, CategoricalNB, DecisionTree y RandomForest con `StratifiedGroupKFold` de 10 pliegues. Guarda `models/`. |
+| `04_modelo.py` | Compara Dummy, CategoricalNB, DecisionTree, RandomForest y MLP con `StratifiedGroupKFold` de 10 pliegues. Guarda `models/`. |
 | `similitud.py` | `NearestNeighbors` en el espacio predictivo, solo con entrenamiento. |
 | `config.py`, `data.py`, `analysis.py`, `modeling.py` | Rutas, carga con caché y adaptadores para la app. |
 | `ui.py` | Tema Persona 5: CSS, fuente en Base64, menú lateral, audio, tema Plotly. |
@@ -50,9 +50,9 @@ pytest -q                     # pruebas
 | Página | Archivo | Contenido |
 |---|---|---|
 | Inicio | `app.py` | Hero, propósito, KPIs, aviso de limitaciones. |
-| Exploración | `pages/1_Exploracion.py` | Filtros, distribuciones logarítmicas, Rating frente a Metacritic, brecha por género y estudio, clusters. |
+| Exploración | `pages/1_Exploracion.py` | Dashboard con filtros, indicadores, selección de juegos en la dispersión, tabla y descarga CSV. Incluye distribuciones, brechas, comparación K-Means/Ward, dendrograma y mapas PCA. |
 | Predicción | `pages/2_Prediccion.py` | Formulario, probabilidades (bajo/medio/alto, sin calibrar) y 5 vecinos similares. |
-| Acerca del modelo | `pages/3_Acerca_del_modelo.py` | Comparación de modelos, matriz de confusión, importancia por permutación. |
+| Acerca del modelo | `pages/3_Acerca_del_modelo.py` | Comparación de modelos, matriz de confusión e importancia por Gini del bosque comparado. |
 
 Recursos: `assets/css/persona5.css`, `assets/js/interacciones.js`, `assets/fonts/Persona5main.ttf`, `assets/audio/` (BGM y efecto de selección), `assets/img/`. El tema oscuro está en `.streamlit/config.toml`. Los modelos y datos se cachean con `@st.cache_resource` y `@st.cache_data`. Todas las rutas usan `pathlib.Path` relativo a `Final/`. Si falta un artefacto, la app indica ejecutar `python -m src.pipeline`.
 

@@ -525,7 +525,7 @@ def setup(
         page_title=f'{title} · P5 Data Observatory',
         page_icon='🎭',
         layout='wide',
-        initial_sidebar_state='expanded',
+        initial_sidebar_state='auto',
     )
     inject_p5_css()
     render_page_transition(transition)

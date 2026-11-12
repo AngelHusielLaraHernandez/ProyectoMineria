@@ -405,7 +405,7 @@ if __name__ == '__main__':
 
 ## preparar_revision_ia.py
 
-Ruta: `herramientas/preparar_revision_ia.py` · Bytes: 4882 · SHA-256: `5def6dbaa0ca104e56622b021b0f78e9deb06d6793a51cf570581db64e815b72`
+Ruta: `herramientas/preparar_revision_ia.py` · Bytes: 4897 · SHA-256: `c70ce1c21cd83e4677f0ba5d8cb4aed702842cf95ee1f51491efdc30b5426f4e`
 
 ````text
 """Prepara una ficha autocontenida por carpeta para revisión local por otras IAs.
@@ -439,7 +439,7 @@ def main():
               'DocumentoFinal. Los archivos históricos se identifican por su ruta. '
               'No atribuir métricas de una revisión antigua al modelo vigente.\n',
               'El equipo declara cumplido el calendario técnico; no se inventan fechas '
-              'exactas. Suite completa de cierre: 101 pruebas aprobadas. No hay '
+              'exactas. La bitácora del proyecto registra las verificaciones vigentes. No hay '
               'resultados de Orange ni despliegue público.\n',
               'Los CSV/ARFF/TAB, binarios, imágenes, ZIP y fuentes grandes se enumeran '
               'con tamaño y hash, sin volcar datos ni imágenes como texto. Para '

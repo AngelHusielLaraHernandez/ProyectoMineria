@@ -16,11 +16,13 @@ Predictores: ['generos', 'estudio', 'decada', 'Metacritic Rating', 'Rating']. Ni
 
 Géneros frecuentes: multi-hot de hasta 15 con frecuencia mínima 20 en cada ajuste. Estudio representa organizaciones de Team con mínimo 10; Otro se activa solo cuando no existe ninguna organización frecuente en la lista. Las listas vacías usan Sin dato; no se atribuye rol desarrollador por posición.
 
-Notas: mediana ajustada solo con entrenamiento, sin MissingIndicator. StandardScaler se aplica exclusivamente a las dos notas continuas para árboles/bosque/referencia; los otros indicadores se mantienen en 0/1. La curación de Metacritic sigue siendo una fuente posible de sesgo no aleatorio, aun sin bandera explícita.
+Notas: mediana ajustada solo con entrenamiento, sin MissingIndicator. StandardScaler se aplica exclusivamente a las dos notas continuas para árboles, bosque, referencia y MLP; los otros indicadores se mantienen en 0/1. La curación de Metacritic sigue siendo una fuente posible de sesgo no aleatorio, aun sin bandera explícita.
 
 Se reemplaza GaussianNB por CategoricalNB: la mayoría de atributos son indicadores categóricos y las dos notas se discretizan en cinco intervalos de ancho uniforme entre los extremos de entrenamiento de cada fold. min_categories=5 permite códigos nuevos dentro del rango; alpha se ajusta en tres valores. Se reconoce pérdida de resolución por discretización e independencia condicional aproximada; no se ajustan gaussianas a decenas de dummies raras.
 
 ## Comparación y selección
+
+La MLP usa una capa oculta con activación tanh de 16 o 32 neuronas y optimización L-BFGS. Se comparan dos valores de regularización L2 dentro de los mismos pliegues que los demás candidatos.
 
 | modelo | f1_macro_cv | desviacion_cv | exactitud_prueba | f1_macro_prueba | balanced_accuracy_prueba | mejores_parametros |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -28,10 +30,11 @@ Se reemplaza GaussianNB por CategoricalNB: la mayoría de atributos son indicado
 | CategoricalNB | 0.5490 | 0.0625 | 0.5090 | 0.4925 | 0.5192 | {"pipeline__clasificar__alpha": 5.0} |
 | DecisionTreeClassifier | 0.5053 | 0.0458 | 0.5315 | 0.5119 | 0.5433 | {"pipeline__clasificar__max_depth": 8, "pipeline__clasificar__min_samples_leaf": 10} |
 | RandomForestClassifier | 0.5567 | 0.0451 | 0.5676 | 0.5577 | 0.5753 | {"pipeline__clasificar__max_depth": null, "pipeline__clasificar__min_samples_leaf": 5} |
+| MLPClassifier | 0.5608 | 0.0679 | 0.5090 | 0.5008 | 0.5171 | {"pipeline__clasificar__alpha": 5.0, "pipeline__clasificar__hidden_layer_sizes": [32]} |
 
-Ganador por F1 macro media de CV: **RandomForestClassifier**. Supera al modelo de referencia en esta partición; no se ha probado significancia estadística de la diferencia. Diferencia en prueba frente a referencia: 0.4031. No se usa la prueba para ajustar parámetros o cambiar ganador.
+Ganador por F1 macro media de CV: **MLPClassifier**. Supera al modelo de referencia en esta partición; no se ha probado significancia estadística de la diferencia. Diferencia en prueba frente a referencia: 0.3462. No se usa la prueba para ajustar parámetros o cambiar ganador.
 
-**Limitación visible del ganador:** recall de la clase medio = 33.8%. Una exactitud global razonable no permite afirmar que identifique bien esa clase; no se hizo una nueva búsqueda usando estos errores de prueba.
+**Limitación visible del ganador:** recall de la clase medio = 28.7%. Una exactitud global razonable no permite afirmar que identifique bien esa clase; no se hizo una nueva búsqueda usando estos errores de prueba.
 
 Dummy usa la clase realmente más frecuente en cada ajuste, con etiquetas locales; si hay empate, sklearn desempata por orden de clases. Los terciles tienden a equilibrar por construcción incluso sin fuga, por lo que una referencia mayoritaria cercana a F1 macro 1/6 es esperable y no un modelo comercial inteligente.
 
@@ -71,6 +74,14 @@ Filas reales y columnas predichas: bajo, medio, alto.
 | medio | 32 | 27 | 21 |
 | alto | 9 | 10 | 56 |
 
+### MLPClassifier
+
+| real | bajo | medio | alto |
+| --- | --- | --- | --- |
+| bajo | 40 | 17 | 10 |
+| medio | 31 | 23 | 26 |
+| alto | 10 | 15 | 50 |
+
 | modelo | clase | n | aciertos | recall |
 | --- | --- | --- | --- | --- |
 | DummyClassifier | bajo | 67 | 67 | 1.0000 |
@@ -85,6 +96,9 @@ Filas reales y columnas predichas: bajo, medio, alto.
 | RandomForestClassifier | bajo | 67 | 43 | 0.6418 |
 | RandomForestClassifier | medio | 80 | 27 | 0.3375 |
 | RandomForestClassifier | alto | 75 | 56 | 0.7467 |
+| MLPClassifier | bajo | 67 | 40 | 0.5970 |
+| MLPClassifier | medio | 80 | 23 | 0.2875 |
+| MLPClassifier | alto | 75 | 50 | 0.6667 |
 
 La clase media se evalúa explícitamente: sus notas y géneros pueden solaparse con ambos extremos y sus fronteras son cortes artificiales de un continuo. Es una hipótesis interpretativa, no una causa demostrada; el recall observado no se oculta bajo la exactitud global. El rendimiento de CategoricalNB se informa por clase y no se presenta la antigua matriz de GaussianNB como resultado vigente.
 
@@ -92,11 +106,11 @@ La clase media se evalúa explícitamente: sus notas y géneros pueden solaparse
 
 | variable_cruda | caida_f1_macro_media | desviacion |
 | --- | --- | --- |
-| Rating | 0.0832 | 0.0221 |
-| Metacritic Rating | 0.0817 | 0.0226 |
-| generos | 0.0753 | 0.0211 |
-| estudio | 0.0276 | 0.0164 |
-| decada | 0.0193 | 0.0149 |
+| Rating | 0.0370 | 0.0218 |
+| Metacritic Rating | 0.0250 | 0.0180 |
+| generos | 0.0191 | 0.0270 |
+| estudio | 0.0048 | 0.0203 |
+| decada | -0.0064 | 0.0188 |
 
 Caída de F1 macro sobre la prueba al permutar cada entrada cruda (listas completas para género/estudio), con 30 repeticiones y semilla 42. No es efecto causal ni intervalo de confianza; las variables correlacionadas comparten información. No se reoptimiza después de verla.
 
@@ -114,9 +128,9 @@ Caída de F1 macro sobre la prueba al permutar cada entrada cruda (listas comple
     }
   ],
   "n_criticas_ocultadas": 180,
-  "delta_probabilidad_bajo_media": 0.03884582502696399,
-  "delta_probabilidad_bajo_mediana": 0.008101477935920781,
-  "f1_macro_ablacion_sin_critica": 0.5149234278266537,
+  "delta_probabilidad_bajo_media": -0.01602453445539611,
+  "delta_probabilidad_bajo_mediana": -0.002133754519910963,
+  "f1_macro_ablacion_sin_critica": 0.5097804936615579,
   "limitacion": "La imputación puede seguir codificando cobertura; eliminar el indicador no garantiza ausencia de sesgo MNAR. Ablación de prueba solo diagnóstica, no reselección."
 }
 
@@ -128,7 +142,7 @@ models/modelo_popularidad.joblib contiene directamente el Pipeline y acepta un D
 
 models/metadata.json conserva referencia de entrenamiento, cortes, versiones, clases, fecha y métricas. models/vecinos_popularidad.joblib guarda NearestNeighbors ajustado únicamente al espacio predictivo de entrenamiento: las etiquetas de clusters solo se adjuntan por ID después de buscar, no intervienen en las distancias ni en la clasificación.
 
-Fecha: 2026-11-09T08:35:00-06:00; sklearn 1.9.1; Python 3.15.2. Las métricas previas de objetivo global están archivadas y no son directamente comparables con las nuevas.
+Fecha: 2026-11-11T18:00:45-06:00; sklearn 1.9.1; Python 3.15.2. Las métricas previas de objetivo global están archivadas y no son directamente comparables con las nuevas.
 
 ## Que debo verificar manualmente
 

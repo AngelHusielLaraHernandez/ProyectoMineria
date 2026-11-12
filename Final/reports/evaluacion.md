@@ -10,8 +10,8 @@ Todas las cifras provienen de los reportes de `Final/reports/` y de `models/meta
 | 2 | EDA (distribuciones, géneros, décadas) | `inspeccion.md`: seis figuras EDA; Rating 0.7–4.8 con 13 ausencias; `clustering_03_correlaciones_generos.csv`: 16 géneros incluidos y 7 excluidos | Cumplido | Los roles de `Team` no se acreditan como desarrolladores, y faltan 3 fechas. |
 | 3 | Discrepancia usuarios–prensa | `clustering.md`: n = 887, Pearson r = 0.5439, Spearman ρ = 0.5242; brecha absoluta media por género, de 8.222 (Visual Novel) a 12.82 (Shooter) | Cumplido | Con correcciones BH por género. La conversión Rating/5×100 no implica equivalencia entre plataformas. |
 | 4 | Popularidad con interacciones | `clustering_03_correlaciones_senales.csv`: Plays–Rating r = 0.1517; Plays–Metacritic r = 0.4144; Backlogs–Wishlist r = 0.7912 | Parcial | Se mide popularidad en Backloggd, no ventas. Las señales están muy correlacionadas entre sí. |
-| 5 | Perfiles (K-Means y DBSCAN) | `clustering.md`: K-Means k = 2, silhouette 0.3188, grupos de 465 y 422; DBSCAN: 1 cluster de 866 y 21 de ruido | Parcial | El resultado de K-Means separa principalmente magnitud. DBSCAN no segmenta; no acredita segmentación comercial. |
-| 6 | Clasificador de popularidad | `modelo.md` y `metadata.json`: RandomForest, n prueba = 222, exactitud 0.5676, F1 macro 0.5577, frente a 0.1546 del Dummy | Parcial | Supera la referencia en esta partición, sin prueba de significancia. Recall de la clase media = 0.3375. |
+| 5 | Perfiles (K-Means y Ward) | `clustering.md`: K-Means k = 2, silhouette 0.3188, grupos de 465 y 422; Ward: silueta 0.2807, grupos de 558 y 329 | Parcial | El resultado de K-Means separa principalmente magnitud. K-Means obtiene mejores valores en los tres índices internos. DBSCAN se conserva como corrida histórica. |
+| 6 | Clasificador de popularidad | `modelo.md` y `metadata.json`: MLP seleccionada por CV, n prueba = 222, exactitud 0.5090, F1 macro 0.5008, frente a 0.1546 del Dummy | Parcial | Supera la referencia en esta partición, sin prueba de significancia. Recall de la clase media = 0.2875. Random Forest obtiene F1 macro 0.5577 en prueba. |
 | 7 | App y comunicación | `pages/2_Prediccion.py`, `pages/3_Acerca_del_modelo.py`; `verificacion_funcional.md`; `pruebas_web.txt` (87 pruebas) | Parcial | App local funcional. No hay despliegue público (`despliegue.md`). |
 
 **Comparación de herramientas (Python, Orange, Weka).** Weka 3.8.7 tiene seis corridas gráficas completas (`weka/resumen_gui.md`). En clasificación, RandomForest alcanzó 53.4753 % y NaiveBayes 50.8969 % (CV de 10 pliegues, n = 892). En K-Means con k = 2 hay ARI = 1.0 contra Python en la ejecución CLI 3.8.6. **Orange no tiene ninguna corrida verificada** (`diagnostico_cierres.md`: cierres con SIGSEGV). Esta comparación queda **parcial**.
@@ -36,19 +36,19 @@ Las diferencias entre r de distintos géneros no están probadas como diferencia
 
 ## 3. Análisis de errores del clasificador
 
-Matriz del RandomForest (filas reales, columnas predichas bajo / medio / alto):
+Matriz de la MLP (filas reales, columnas predichas bajo / medio / alto):
 
 | real | bajo | medio | alto |
 |---|---|---|---|
-| bajo | 43 | 14 | 10 |
-| medio | 32 | 27 | 21 |
-| alto | 9 | 10 | 56 |
+| bajo | 40 | 17 | 10 |
+| medio | 31 | 23 | 26 |
+| alto | 10 | 15 | 50 |
 
-- **Recall por clase:** bajo 0.6418, medio 0.3375, alto 0.7467.
-- **Confusión principal:** medio → bajo (32 de 80) y medio → alto (21 de 80).
+- **Recall por clase:** bajo 0.5970, medio 0.2875, alto 0.6667.
+- **Confusión principal:** medio → bajo (31 de 80) y medio → alto (26 de 80).
 - **Por qué es plausible:** la clase media es un tramo de un continuo, delimitado por cortes artificiales en los terciles [0.3623, 0.6267]. Sus notas y géneros pueden solaparse con ambos extremos (`modelo.md`). Es una hipótesis interpretativa, no una causa demostrada.
 - **Otros modelos:** DecisionTree tiene recall medio 0.225 y CategoricalNB 0.2375. Todos fallan sobre todo en esa clase.
-- **Cobertura de prensa:** al ocultar las 180 notas críticas conocidas de prueba, la probabilidad de "bajo" sube 0.03885 en promedio. La ablación sin crítica da F1 macro 0.5149. Esto es diagnóstico, no una prueba causal.
+- **Cobertura de prensa:** al ocultar las 180 notas críticas conocidas de prueba, la probabilidad de "bajo" baja 0.01602 en promedio. La ablación sin crítica da F1 macro 0.5098. Esto es diagnóstico, no una prueba causal.
 
 ## 4. Limitaciones
 
@@ -66,5 +66,5 @@ Matriz del RandomForest (filas reales, columnas predichas bajo / medio / alto):
 
 ## 5. Conclusión
 
-Este trabajo puede orientar a una desarrolladora sobre qué asociaciones aparecen entre recepción de usuarios, prensa e interés declarado en Backloggd, y sobre qué géneros muestran mayor o menor acuerdo entre usuarios y crítica. Un clasificador de popularidad relativa supera a la referencia en esta partición, con un F1 macro de 0.5577. Es modesto y falla sobre todo en la clase media. No puede afirmar que una nota alta cause más juego, ni predecir ventas o éxito comercial, ni evaluar riesgos de juegos como servicio. Tampoco acredita segmentos de mercado a partir de DBSCAN y K-Means. Tampoco sirve como predicción previa al lanzamiento, porque usa notas ya publicadas.
+Este trabajo puede orientar a una desarrolladora sobre qué asociaciones aparecen entre recepción de usuarios, prensa e interés declarado en Backloggd, y sobre qué géneros muestran mayor o menor acuerdo entre usuarios y crítica. Un clasificador de popularidad relativa supera a la referencia en esta partición, con un F1 macro de 0.5008. Es modesto y falla sobre todo en la clase media. No puede afirmar que una nota alta cause más juego, ni predecir ventas o éxito comercial, ni evaluar riesgos de juegos como servicio. Tampoco acredita segmentos de mercado a partir de DBSCAN y K-Means. Tampoco sirve como predicción previa al lanzamiento, porque usa notas ya publicadas.
 

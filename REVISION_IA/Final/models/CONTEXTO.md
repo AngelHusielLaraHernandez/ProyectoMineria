@@ -10,16 +10,16 @@ Contenido no textual o tabla de datos: consultar el original para inspección vi
 
 ## metadata.json
 
-Ruta: `Final/models/metadata.json` · Bytes: 63731 · SHA-256: `07ba1ce664747e68c06c7ab9dc799e8ccb565cf71e7222b3a6de9f8548eed2fa`
+Ruta: `Final/models/metadata.json` · Bytes: 64133 · SHA-256: `286c2c752b2be6d110bb9fa33ed752ce1912ff953b054d8df23602b7ae0a8f7d`
 
 ````text
 {
   "version_sklearn": "1.9.1",
   "python": "3.15.2",
-  "fecha": "2026-11-09T08:35:00-06:00",
+  "fecha": "2026-11-11T18:00:45-06:00",
   "zona_horaria": "America/Mexico_City",
   "semilla": 42,
-  "modelo": "RandomForestClassifier",
+  "modelo": "MLPClassifier",
   "variables": [
     "generos",
     "estudio",
@@ -2511,63 +2511,65 @@ Ruta: `Final/models/metadata.json` · Bytes: 63731 · SHA-256: `07ba1ce664747e68
     }
   },
   "mejores_parametros": {
-    "pipeline__clasificar__max_depth": null,
-    "pipeline__clasificar__min_samples_leaf": 5
+    "pipeline__clasificar__alpha": 5.0,
+    "pipeline__clasificar__hidden_layer_sizes": [
+      32
+    ]
   },
   "metricas": {
-    "exactitud": 0.5675675675675675,
-    "f1_macro": 0.5577027296634777,
-    "balanced_accuracy": 0.5753192371475954,
+    "exactitud": 0.509009009009009,
+    "f1_macro": 0.5007997645678804,
+    "balanced_accuracy": 0.5170605306799336,
     "f1_macro_referencia": 0.15455594002306805,
-    "diferencia_f1_referencia": 0.4031467896404096,
-    "f1_macro_cv": 0.5566561802699771,
+    "diferencia_f1_referencia": 0.3462438245448124,
+    "f1_macro_cv": 0.5607870550207656,
     "matriz_confusion": [
       [
-        43,
-        14,
+        40,
+        17,
         10
       ],
       [
-        32,
-        27,
-        21
+        31,
+        23,
+        26
       ],
       [
-        9,
         10,
-        56
+        15,
+        50
       ]
     ],
     "reporte_clases": {
       "bajo": {
-        "precision": 0.5119047619047619,
-        "recall": 0.6417910447761194,
-        "f1-score": 0.5695364238410596,
+        "precision": 0.49382716049382713,
+        "recall": 0.5970149253731343,
+        "f1-score": 0.5405405405405406,
         "support": 67.0
       },
       "medio": {
-        "precision": 0.5294117647058824,
-        "recall": 0.3375,
-        "f1-score": 0.4122137404580153,
+        "precision": 0.41818181818181815,
+        "recall": 0.2875,
+        "f1-score": 0.34074074074074073,
         "support": 80.0
       },
       "alto": {
-        "precision": 0.6436781609195402,
-        "recall": 0.7466666666666667,
-        "f1-score": 0.691358024691358,
+        "precision": 0.5813953488372093,
+        "recall": 0.6666666666666666,
+        "f1-score": 0.6211180124223602,
         "support": 75.0
       },
-      "accuracy": 0.5675675675675675,
+      "accuracy": 0.509009009009009,
       "macro avg": {
-        "precision": 0.5616648958433949,
-        "recall": 0.5753192371475954,
-        "f1-score": 0.5577027296634777,
+        "precision": 0.4978014425042849,
+        "recall": 0.5170605306799336,
+        "f1-score": 0.5007997645678804,
         "support": 222.0
       },
       "weighted avg": {
-        "precision": 0.5627316319506989,
-        "recall": 0.5675675675675675,
-        "f1-score": 0.5539995111974958,
+        "precision": 0.49615142509199356,
+        "recall": 0.509009009009009,
+        "f1-score": 0.49576273156375,
         "support": 222.0
       }
     }
@@ -2608,6 +2610,15 @@ Ruta: `Final/models/metadata.json` · Bytes: 63731 · SHA-256: `07ba1ce664747e68
       "f1_macro_prueba": 0.5577027296634777,
       "balanced_accuracy_prueba": 0.5753192371475954,
       "mejores_parametros": "{\"pipeline__clasificar__max_depth\": null, \"pipeline__clasificar__min_samples_leaf\": 5}"
+    },
+    {
+      "modelo": "MLPClassifier",
+      "f1_macro_cv": 0.5607870550207656,
+      "desviacion_cv": 0.06787159489040459,
+      "exactitud_prueba": 0.509009009009009,
+      "f1_macro_prueba": 0.5007997645678804,
+      "balanced_accuracy_prueba": 0.5170605306799336,
+      "mejores_parametros": "{\"pipeline__clasificar__alpha\": 5.0, \"pipeline__clasificar__hidden_layer_sizes\": [32]}"
     }
   ],
   "evaluacion_referencia": "Supera al modelo de referencia en esta partición; no se ha probado significancia estadística de la diferencia.",
@@ -2631,9 +2642,9 @@ Ruta: `Final/models/metadata.json` · Bytes: 63731 · SHA-256: `07ba1ce664747e68
       }
     ],
     "n_criticas_ocultadas": 180,
-    "delta_probabilidad_bajo_media": 0.03884582502696399,
-    "delta_probabilidad_bajo_mediana": 0.008101477935920781,
-    "f1_macro_ablacion_sin_critica": 0.5149234278266537,
+    "delta_probabilidad_bajo_media": -0.01602453445539611,
+    "delta_probabilidad_bajo_mediana": -0.002133754519910963,
+    "f1_macro_ablacion_sin_critica": 0.5097804936615579,
     "limitacion": "La imputación puede seguir codificando cobertura; eliminar el indicador no garantiza ausencia de sesgo MNAR. Ablación de prueba solo diagnóstica, no reselección."
   },
   "formato_artefacto": "Pipeline serializado por valor con cloudpickle; compatible con joblib.load sin src en PYTHONPATH.",
@@ -2643,7 +2654,7 @@ Ruta: `Final/models/metadata.json` · Bytes: 63731 · SHA-256: `07ba1ce664747e68
 
 ## modelo_popularidad.joblib
 
-Ruta: `Final/models/modelo_popularidad.joblib` · Bytes: 1792800 · SHA-256: `ee362dae946d18981714171de2d66c0b93fc00a364e6990f698ed3b68ae8550e`
+Ruta: `Final/models/modelo_popularidad.joblib` · Bytes: 57989 · SHA-256: `1f1dc0d785c54056044ff5612e9b636fbaabb0ee154774fbc766b7b13349f9af`
 
 Contenido no textual o tabla de datos: consultar el original para inspección visual o recálculo.
 

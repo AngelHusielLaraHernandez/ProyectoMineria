@@ -26,6 +26,7 @@ from sklearn.metrics import (accuracy_score, balanced_accuracy_score, classifica
                              confusion_matrix, f1_score)
 from sklearn.model_selection import GridSearchCV, StratifiedGroupKFold, GroupShuffleSplit
 from sklearn.naive_bayes import CategoricalNB
+from sklearn.neural_network import MLPClassifier
 from sklearn.neighbors import NearestNeighbors
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import FunctionTransformer, OneHotEncoder, StandardScaler, KBinsDiscretizer
@@ -128,6 +129,9 @@ def entrenar_datos(entrada, raiz=RAIZ):
                                    {'clasificar__max_depth': [4, 8, None], 'clasificar__min_samples_leaf': [3, 10]}),
         'RandomForestClassifier': (RandomForestClassifier(n_estimators=200, random_state=SEED, n_jobs=1),
                                   {'clasificar__max_depth': [8, None], 'clasificar__min_samples_leaf': [2, 5]}),
+        'MLPClassifier': (MLPClassifier(activation='tanh', solver='lbfgs', max_iter=2000, tol=1e-3, random_state=SEED),
+                          {'clasificar__hidden_layer_sizes': [(16,), (32,)],
+                           'clasificar__alpha': [1., 5.]}),
     }
     informes, modelos, limpio = raiz / 'reports', raiz / 'models', raiz / 'data/clean'
     for p in [informes, modelos, limpio]:
@@ -164,6 +168,14 @@ def entrenar_datos(entrada, raiz=RAIZ):
     tabla.to_csv(informes / 'modelo_comparacion.csv', index=False)
     pd.DataFrame(filas_cv).to_csv(informes / 'modelo_grid_cv.csv', index=False)
     predicciones.to_csv(informes / 'modelo_predicciones_prueba.csv', index=False)
+    bosque = busquedas['RandomForestClassifier'].best_estimator_.pipeline_
+    columnas = bosque.named_steps['preparar'].get_feature_names_out()
+    valores = bosque.named_steps['clasificar'].feature_importances_
+    variables = [nombre.split('__', 1)[1] if nombre.startswith('notas__')
+                 else nombre.split('__', 1)[0] for nombre in columnas]
+    gini = pd.DataFrame({'variable': variables, 'importancia': valores})
+    gini.groupby('variable', as_index=False)['importancia'].sum().to_csv(
+        informes / 'modelo_importancia_gini.csv', index=False)
     importancia = permutation_importance(mejor, X_test, y_test, scoring='f1_macro', n_repeats=30, random_state=SEED, n_jobs=1)
     perm = pd.DataFrame({'variable_cruda': FEATURES, 'caida_f1_macro_media': importancia.importances_mean,
                          'desviacion': importancia.importances_std}).sort_values('caida_f1_macro_media', ascending=False)
@@ -287,9 +299,11 @@ def escribir_reporte(informes, m, tabla, perm, matrices):
         '## Entradas y Naive Bayes', '',
         f'Predictores: {m["variables"]}. Ningún conteo, índice, cluster, componente PCA, indicador de procedencia o bandera de ausencia entra al Pipeline final.', '',
         'Géneros frecuentes: multi-hot de hasta 15 con frecuencia mínima 20 en cada ajuste. Estudio representa organizaciones de Team con mínimo 10; Otro se activa solo cuando no existe ninguna organización frecuente en la lista. Las listas vacías usan Sin dato; no se atribuye rol desarrollador por posición.', '',
-        'Notas: mediana ajustada solo con entrenamiento, sin MissingIndicator. StandardScaler se aplica exclusivamente a las dos notas continuas para árboles/bosque/referencia; los otros indicadores se mantienen en 0/1. La curación de Metacritic sigue siendo una fuente posible de sesgo no aleatorio, aun sin bandera explícita.', '',
+        'Notas: mediana ajustada solo con entrenamiento, sin MissingIndicator. StandardScaler se aplica exclusivamente a las dos notas continuas para árboles, bosque, referencia y MLP; los otros indicadores se mantienen en 0/1. La curación de Metacritic sigue siendo una fuente posible de sesgo no aleatorio, aun sin bandera explícita.', '',
         'Se reemplaza GaussianNB por CategoricalNB: la mayoría de atributos son indicadores categóricos y las dos notas se discretizan en cinco intervalos de ancho uniforme entre los extremos de entrenamiento de cada fold. min_categories=5 permite códigos nuevos dentro del rango; alpha se ajusta en tres valores. Se reconoce pérdida de resolución por discretización e independencia condicional aproximada; no se ajustan gaussianas a decenas de dummies raras.', '',
-        '## Comparación y selección', '', tabla_md(tabla), '',
+        '## Comparación y selección', '',
+        'La MLP usa una capa oculta con activación tanh de 16 o 32 neuronas y optimización L-BFGS. Se comparan dos valores de regularización L2 dentro de los mismos pliegues que los demás candidatos.', '',
+        tabla_md(tabla), '',
         f'Ganador por F1 macro media de CV: **{m["modelo"]}**. {m["evaluacion_referencia"]} Diferencia en prueba frente a referencia: {m["metricas"]["diferencia_f1_referencia"]:.4f}. No se usa la prueba para ajustar parámetros o cambiar ganador.', '',
         f'**Limitación visible del ganador:** recall de la clase medio = {m["metricas"]["reporte_clases"]["medio"]["recall"]:.1%}. Una exactitud global razonable no permite afirmar que identifique bien esa clase; no se hizo una nueva búsqueda usando estos errores de prueba.', '',
         'Dummy usa la clase realmente más frecuente en cada ajuste, con etiquetas locales; si hay empate, sklearn desempata por orden de clases. Los terciles tienden a equilibrar por construcción incluso sin fuga, por lo que una referencia mayoritaria cercana a F1 macro 1/6 es esperable y no un modelo comercial inteligente.', '',

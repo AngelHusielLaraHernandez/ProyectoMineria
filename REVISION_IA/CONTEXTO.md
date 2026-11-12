@@ -62,7 +62,7 @@ node_modules/
 
 ## README.md
 
-Ruta: `README.md` · Bytes: 2234 · SHA-256: `7bbaa11ec0377d49bf7940581098710baeffb688a504300a6d5691f462f25068`
+Ruta: `README.md` · Bytes: 2234 · SHA-256: `2ebc12bfe7e60d8185fc2420218f5a79b0d10720bb294c3406800020e891d154`
 
 ````text
 # Proyecto de minería de datos: videojuegos
@@ -75,7 +75,7 @@ La implementación vigente está en **Final/** y el documento de entrega en **Do
 - [Índice para revisión por otras IAs](REVISION_IA/INDICE.md).
 - [Registro consolidado de cierre](Final/reports/BITACORA_UNIFICADA.md).
 
-Desde Final, ejecutar `.venv/bin/python -m streamlit run app.py` para la web y `.venv/bin/python -m pytest -q` para las pruebas. La suite de cierre tiene 101 pruebas aprobadas. El equipo declara cumplido el calendario técnico; no se inventan fechas exactas de terminación.
+Desde Final, ejecutar `.venv/bin/python -m streamlit run app.py` para la web y `.venv/bin/python -m pytest -q` para las pruebas. La suite de cierre tiene 102 pruebas aprobadas. El equipo declara cumplido el calendario técnico; no se inventan fechas exactas de terminación.
 
 ## Organización
 

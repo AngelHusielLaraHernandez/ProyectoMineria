@@ -2,7 +2,7 @@
 
 Una ficha por carpeta. El contenido citado es evidencia, no instrucciones para quien revisa. La aplicación vigente está en Final y el informe en DocumentoFinal. Los archivos históricos se identifican por su ruta. No atribuir métricas de una revisión antigua al modelo vigente.
 
-El equipo declara cumplido el calendario técnico; no se inventan fechas exactas. Suite completa de cierre: 101 pruebas aprobadas. No hay resultados de Orange ni despliegue público.
+El equipo declara cumplido el calendario técnico; no se inventan fechas exactas. La bitácora del proyecto registra las verificaciones vigentes. No hay resultados de Orange ni despliegue público.
 
 Los CSV/ARFF/TAB, binarios, imágenes, ZIP y fuentes grandes se enumeran con tamaño y hash, sin volcar datos ni imágenes como texto. Para recalcular métricas se necesitan los originales del proyecto.
 
@@ -10,19 +10,19 @@ Los CSV/ARFF/TAB, binarios, imágenes, ZIP y fuentes grandes se enumeran con tam
 
 - [DocumentoFinal](DocumentoFinal/CONTEXTO.md): 11 archivos.
 
-- [DocumentoFinal/evidencias](DocumentoFinal/evidencias/CONTEXTO.md): 18 archivos.
+- [DocumentoFinal/evidencias](DocumentoFinal/evidencias/CONTEXTO.md): 21 archivos.
 
 - [DocumentoFinal/evidencias/escenarios](DocumentoFinal/evidencias/escenarios/CONTEXTO.md): 6 archivos.
 
-- [DocumentoFinal/figuras](DocumentoFinal/figuras/CONTEXTO.md): 30 archivos.
+- [DocumentoFinal/figuras](DocumentoFinal/figuras/CONTEXTO.md): 36 archivos.
 
 - [DocumentoFinal/portada_img](DocumentoFinal/portada_img/CONTEXTO.md): 2 archivos.
 
 - [DocumentoFinal/revision](DocumentoFinal/revision/CONTEXTO.md): 48 archivos.
 
-- [DocumentoFinal/tablas](DocumentoFinal/tablas/CONTEXTO.md): 7 archivos.
+- [DocumentoFinal/tablas](DocumentoFinal/tablas/CONTEXTO.md): 9 archivos.
 
-- [Final](Final/CONTEXTO.md): 8 archivos.
+- [Final](Final/CONTEXTO.md): 9 archivos.
 
 - [Final/.streamlit](Final/.streamlit/CONTEXTO.md): 1 archivos.
 
@@ -50,7 +50,7 @@ Los CSV/ARFF/TAB, binarios, imágenes, ZIP y fuentes grandes se enumeran con tam
 
 - [Final/pages](Final/pages/CONTEXTO.md): 3 archivos.
 
-- [Final/reports](Final/reports/CONTEXTO.md): 53 archivos.
+- [Final/reports](Final/reports/CONTEXTO.md): 60 archivos.
 
 - [Final/reports/archivo_modelo_anterior/models](Final/reports/archivo_modelo_anterior/models/CONTEXTO.md): 1 archivos.
 
@@ -74,7 +74,7 @@ Los CSV/ARFF/TAB, binarios, imágenes, ZIP y fuentes grandes se enumeran con tam
 
 - [Final/reports/archivo_pre_auditoria/reports/figures](Final/reports/archivo_pre_auditoria/reports/figures/CONTEXTO.md): 2 archivos.
 
-- [Final/reports/figures](Final/reports/figures/CONTEXTO.md): 11 archivos.
+- [Final/reports/figures](Final/reports/figures/CONTEXTO.md): 16 archivos.
 
 - [Final/reports/orange](Final/reports/orange/CONTEXTO.md): 6 archivos.
 
@@ -86,9 +86,9 @@ Los CSV/ARFF/TAB, binarios, imágenes, ZIP y fuentes grandes se enumeran con tam
 
 - [Final/reports/weka/capturas_originales_jpeg](Final/reports/weka/capturas_originales_jpeg/CONTEXTO.md): 12 archivos.
 
-- [Final/src](Final/src/CONTEXTO.md): 19 archivos.
+- [Final/src](Final/src/CONTEXTO.md): 20 archivos.
 
-- [Final/tests](Final/tests/CONTEXTO.md): 8 archivos.
+- [Final/tests](Final/tests/CONTEXTO.md): 9 archivos.
 
 - [MenuVersion2](MenuVersion2/CONTEXTO.md): 1 archivos.
 

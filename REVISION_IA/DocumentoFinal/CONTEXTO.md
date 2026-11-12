@@ -4070,31 +4070,34 @@ PDF statistics:
 
 ## MANIFIESTO.json
 
-Ruta: `DocumentoFinal/MANIFIESTO.json` · Bytes: 7508 · SHA-256: `7c7e7dfed3ec4d59439f48499ecd1e744bf9569524eab9aeb1b46f54024523d3`
+Ruta: `DocumentoFinal/MANIFIESTO.json` · Bytes: 8670 · SHA-256: `a17e2075f4a0e74aadd85a1c8f78e74d9effa9c1abed6c7ee3a642b4754f2b7c`
 
 ````text
 {
   "BITACORA_UNIFICADA.md": "277ed97567851a21b9cd1e263637e10e978002010cabc9faf9acfb3bb07065de",
-  "Portada.tex": "b3e42fed7089a96b098d943df8e31757520f5fdb26d7ffdbafe0f9f85259dd39",
-  "README.md": "d88e0996dea891007e36552e6f5ca26874d6c850bd94b0ccb3a0ce61ca8bd89d",
-  "ajustar_formato_redaccion.py": "8dc5729db16290837e88ae14b8d6e3c202f77e571d1935b138778bb96caf33bd",
+  "Portada.tex": "27e8cb63fb4453d869652ccc50f6277e929723e733d135011de86745423e6b5a",
+  "README.md": "f0309d8682a5993ad73af6caad4103ff0b975dfb54c77307e348bb4e64b26718",
+  "ajustar_formato_redaccion.py": "18929864c6c21d77bc1a56944010754e15b5a1faaa5033efa1830c9cd234bdb6",
   "analizar_escenarios.py": "41dc3c586a5b23f396dae38bf53f6622e61df0bb8e6a65a737047fae3a366a01",
   "evidencias/BITACORA_UNIFICADA.md": "9e2c60880eb9761c3d68d33e0955be14856d39029ad99cc391db1f6ba85bc4f1",
   "evidencias/auditoria.json": "32b012b07dc1ceb64c76dbce53f2edd2b63d9322a23962af7f8019405d11edc2",
+  "evidencias/clase_ward_cortes.csv": "81f5b1e7280fd69929d57122b3d8aa7c600b5345a01c51c9d8d54913e7fa4ab7",
+  "evidencias/clase_ward_perfiles.csv": "47de46769cd8969ad459e83934f2b6460bfde556beee0f0dcd9b0ceef37b88b3",
   "evidencias/clustering.md": "9f9f8a377f6920035fb8388546e68118bb28dc9e35924c4de2c5b6b8f944193d",
   "evidencias/comparativo_herramientas.csv": "16e8e53c939be9db1802c5da0d55f5c474484408a5b3dc5aa4f3ac5413066893",
   "evidencias/decision.json": "cd3c19e80e1eef1cd9b55801e659edd5d653e8dc0450b2cf2ef08ed5dfcf9e38",
   "evidencias/escenarios/BITACORA_UNIFICADA.md": "b499805b116a5bb16a7d87810de44b6883fc2b46bf21c34240656ae401ab3af3",
-  "evidencias/escenarios/contraejemplos.csv": "06367ca6046ea2e626ecf309f125f71aa9421b9d66b03c58d6900262f657dbdd",
-  "evidencias/escenarios/contraejemplos.json": "931cecb65532e3a1823da15569d6890713b5e82b3d67dc8e3e80086429ef6403",
-  "evidencias/escenarios/hipoteticos.csv": "d55fc932ca7140456083308af47746a1efb11005d6820791b2434927eff6d117",
-  "evidencias/escenarios/hipoteticos.json": "7c22668556909dace3401d5314190e7c1c257d0a4e99a47c9a3dac96984225bd",
-  "evidencias/escenarios/rejilla.csv": "2ce1fadc1cd4b7afdf169e9cdd2ab6813971c4fded353c3a05470277e3baa41f",
+  "evidencias/escenarios/contraejemplos.csv": "f9d4fbc2df1ddb6754df1d333f2a58437edc6cb33ee2aa6a72232c2fe4aa1ea4",
+  "evidencias/escenarios/contraejemplos.json": "38843bf9711f5443e2c9e80caea013a76cd119026f35e9b31362dc31d6866c2a",
+  "evidencias/escenarios/hipoteticos.csv": "672f66943f8c5a18311b6bb6a6e6b0cdc9ced4606de7409f572ea4383e3d128a",
+  "evidencias/escenarios/hipoteticos.json": "5308e852cdfe812cd83164e1bb96c4b2191429bac71b328e870e8b21b5334a28",
+  "evidencias/escenarios/rejilla.csv": "973e0354ee882fc9f44375e1600daa669ee4fbc8d7cfc7caedda0cf61016369e",
   "evidencias/inspeccion.md": "52ae5a3d981eb4808a1107714f45469794e804b3222ab3a0e0c18b2e27a12c2b",
   "evidencias/integridad_final.json": "90e1137d1c8fcc542b15d7f84670248c35134f5288086b6c057dc1ab4667a7b5",
   "evidencias/limpieza_log.md": "dd4b45eb48ce4f385f86d51166ea06cc0347fe85bf67370a74a70b86f8ae8d45",
-  "evidencias/metadata.json": "07ba1ce664747e68c06c7ab9dc799e8ccb565cf71e7222b3a6de9f8548eed2fa",
-  "evidencias/modelo.md": "1c384f25685efe5bd987fe7249452b892edf120a035f1fbaffb06ee74a5bb96d",
+  "evidencias/metadata.json": "286c2c752b2be6d110bb9fa33ed752ce1912ff953b054d8df23602b7ae0a8f7d",
+  "evidencias/modelo.md": "0eeb8c17cb144e08f4cf15d45624523e6935e62c53407b6878bc2a9366950579",
+  "evidencias/modelo_confusion_MLPClassifier.csv": "7b8e141735bd2c5bfdfa423a32fe8b3a941117778560fdb391a8fbeed787e3f5",
   "evidencias/rubrica_proyecto.pdf": "dd62ef24a2822d83205eb0352095519af4d94900e146df55d207b23b0c892dbc",
   "evidencias/trazabilidad_historica.md": "59ab6b572a61f5b3b2eba4dbde7a599a47e9f02cbc5c239e6daf1094fc2f2a9a",
   "evidencias/weka_J48.txt": "88ceace97d84c7c67628688f9876a4d3de22c07935e6111dd954f3c401a88c8c",
@@ -4104,9 +4107,12 @@ Ruta: `DocumentoFinal/MANIFIESTO.json` · Bytes: 7508 · SHA-256: `7c7e7dfed3ec4
   "evidencias/weka_dbscan.txt": "7d0866476ee480a90daee39e1469861c532b52da9dbef7bfb9c05eedcf11de94",
   "evidencias/weka_kmeans.txt": "b6be17cf0eaf134d171be3850e8e4c683ef631592cb3e142195ae0358191983a",
   "figuras/RandomForest.png": "75fd874d38afb1b00f10cf700ec2a5adede66120ac7d87f702d4d0c7a6367d8c",
+  "figuras/clase_ward_dendrograma.png": "a98f0f2b12ec4a2d0a00937e1921cfe2469508de337fc6b35fce598156fac7ea",
   "figuras/clustering_03_dbscan_kdistancia.png": "a93d6ab341dd4acb891beca3400aa92f323839b4c12db2a2976678e29d45dc3e",
   "figuras/clustering_03_kmeans.png": "de7fbe2d10efb23f90f682d5edc829bd7c511f6992f94d672e6f09170bab75b7",
   "figuras/clustering_03_proyeccion.png": "5c7d6a516039cda6137d177e710e8fe394f7c587c49565422414bdbe9608a4ee",
+  "figuras/comparacion_mlp.png": "e21b87b301c62502b16f4cfc613154ad53773fe47320d7288d3a0ebd9035fee1",
+  "figuras/dashboard_interactivo.png": "85f4fdb18a451962642900462eb6c9839ca523ae82dbf6d45f4abdede28aa2dc",
   "figuras/dbscan_resultado.png": "a5b1fd50d6f42054ceff60a26a5528d8813b86d1efebff71e5d0053d85f30ee2",
   "figuras/der.png": "99dbfff9fda6ba78364f314688169e8ea2260c59ec2398a77e5f130b6e43e983",
   "figuras/eda_decadas.png": "4f9f44af3109b8201b4b1a8e52376873a120008c81f86146e902683f230d97c2",
@@ -4122,6 +4128,7 @@ Ruta: `DocumentoFinal/MANIFIESTO.json` · Bytes: 7508 · SHA-256: `7c7e7dfed3ec4
   "figuras/escenario_S5.jpg": "f1056822c3dee121815001cd29c2ae436655a817c7a89b5a21ea8b5c77e0cf67",
   "figuras/exploracion_actual.jpg": "d8dabe6403e3f95ef4ca4c3dbc6271955107f444fc9daa3b7a28880ed0695207",
   "figuras/formulario_verificado.jpg": "3cd54dcfd4cdbf08df46f28af97f92ecb43e198dccd9f2124cb5ad41220c383b",
+  "figuras/gini_web.png": "de0ccdda8a55275786310646cd62d3edcdb3e5b5aa4bda27c77371a3130d4fc1",
   "figuras/graficas_comparacion_corregida.jpg": "892d698cf3d396c3b073baf9f26b4f475a5294bb1ac6e4e6eb3a9a9e4f960c05",
   "figuras/graficas_logaritmicas_corregidas.jpg": "996ea8350196b45432fab66f31facd042b0c8d620f734a94e1da6114c08d9d7d",
   "figuras/graficas_movil_corregidas.jpg": "82b2455e83ab4e2dfef1dd9839f2b66bf22f4503c96a4c208025b1eb7bb67e5d",
@@ -4131,29 +4138,33 @@ Ruta: `DocumentoFinal/MANIFIESTO.json` · Bytes: 7508 · SHA-256: `7c7e7dfed3ec4
   "figuras/kmeans_resultado.png": "a6f5223cb9b6f6d0cbeb70cc3da84f89396cd8fc68fa2195d4e8f7fc63548e00",
   "figuras/modelo_actual.jpg": "523c7363e6234720147144c4c7a0842c448db5bfed03b204c4e01d1b45fba6d9",
   "figuras/prediccion_actual.jpg": "126796db4d066f230c9c09cc7b39ad0206dd19a39fe0d24fff57e76741e003d1",
-  "figuras/sensibilidad_escenarios.png": "20acc80a5d0e5f13cd8ac8c0ce505a599bd4d0c1ffd22703ef59ff6cb1cb7b2a",
+  "figuras/prediccion_mlp_web.png": "d122ec0d59bc5b57da4e36d11013e344af75e6d0a6fd4a2ac29af702a3c53e54",
+  "figuras/sensibilidad_escenarios.png": "463854bfda71dbf08dbb53dccfe72e8ada3c33b867cad5007c6ba78fd3d382ef",
   "figuras/sin_critica_verificado.jpg": "c9f42e216d9c1ca2928c64ad965b607d0861e5d9c315a7d321d9337553818d0a",
-  "generar_documento.py": "351f04d33a50c2ecf8575826ea23e91efd442d9233c4426557669e887b746901",
-  "main.pdf": "b9100eba375c8bb3a2a30f88a5fda4932cec022651a178b67c6881be12c71626",
-  "main.tex": "0258b1bcbf7a1060d5a22dce03aa0e37a1a0c7a8d9b7075b499cd60d968a9a14",
+  "figuras/ward_web.png": "7c3cdcddc8ea51ed3b5f2870a7d84a3d11f44e3be15e32212eba35712f3ef361",
+  "generar_documento.py": "b92e9a229883ecb0888e886d844147fbe6cc12bc03345394a42e67f8f1be043a",
+  "main.pdf": "e43c87340a8b47d2568e682b3c4bf5bf5064dd545984b0bf9ba14d75b5372208",
+  "main.tex": "7f8890b6c9ff66bb18d6939047895ad484478b2633f40a503122f0ca3c25d1a4",
   "portada_img/der.png": "99dbfff9fda6ba78364f314688169e8ea2260c59ec2398a77e5f130b6e43e983",
   "portada_img/izq.png": "dc30f458781af02df77bccdb4af094c6e2f3aa1d161ad54c8e37c6f7a04b8a95",
   "referencias.bib": "a10e45204dbea594b675a723f8a97a91a56a1a0e56bab9cd61933a92da039b8f",
-  "revision/verificacion.json": "81207318dfba815c38c59298fcc99b71ddfdbdaa80a64b4f2b2eafa923d1dd5d",
+  "revision/verificacion.json": "938b51801639ef51b88d9751aef24058a8463d4279d370b4920edcbf20bdb285",
   "tablas/busqueda_resumen.csv": "08f959d3c26813eff03a0c8643f43df75daf36b031a33f0c53ff302580177fec",
+  "tablas/clase_comparacion_clustering.csv": "dde60cb80ed624af021692903140847d31c5802f0713e53237c557e5af303128",
   "tablas/clustering_03_correlaciones_generos.csv": "5869c0c310fe9e29da498effb41c0134dcb473c8d659db8004a7d7b7f5a1cdda",
   "tablas/clustering_03_correlaciones_organizaciones.csv": "86304ee58a3749c71dbfed9eded58fee43a3d7dd81232f33082909e42f53cd95",
   "tablas/clustering_03_correlaciones_ranking_generos.csv": "149d78bb3b84b1aeb32e3dbdb34cf0eef72ae8e2947d5333a3af132965ce5131",
   "tablas/clustering_03_correlaciones_senales.csv": "c56c343f3b8b0b6b7acaebc9c831f18cbeefd81726457fb88a4e7243507d8a7a",
   "tablas/clustering_03_ejemplos.csv": "da04a559e0664d3f002be8225a2d058577a92cd13572d029a67bace4e371e1bf",
-  "tablas/modelo_comparacion.csv": "e29e9984a2a4db275cc02c9c4537e8a4417b10fbc0340bb5c3ac36f2fcf18eb7"
+  "tablas/modelo_comparacion.csv": "9295a693f84aaf366e568d9e1db06755bf1ac1776684e3b5fc9490625af4c986",
+  "tablas/modelo_importancia_gini.csv": "c62d7edb420d7105006553b0fd58672a6ab6afdf93b771856ccc9c0a47b40708"
 }
 
 ````
 
 ## Portada.tex
 
-Ruta: `DocumentoFinal/Portada.tex` · Bytes: 1525 · SHA-256: `b3e42fed7089a96b098d943df8e31757520f5fdb26d7ffdbafe0f9f85259dd39`
+Ruta: `DocumentoFinal/Portada.tex` · Bytes: 1527 · SHA-256: `27e8cb63fb4453d869652ccc50f6277e929723e733d135011de86745423e6b5a`
 
 ````text
 \thispagestyle{empty} % Sin encabezado ni pie en la portada
@@ -4197,27 +4208,27 @@ Ruta: `DocumentoFinal/Portada.tex` · Bytes: 1525 · SHA-256: `b3e42fed7089a96b0
     {\Large MTRO. GERARDO GABRIEL CARRASCO ZUÑIGA}\\[0.45cm]
 
     {\Large \textbf{Fecha de corte:}}\\[0.2cm]
-    {\Large 9 de noviembre de 2026}\\[0.4cm]
-    {\large Versión final revisada -- evidencia al 9 de noviembre de 2026}
+    {\Large 11 de noviembre de 2026}\\[0.4cm]
+    {\large Versión final revisada -- evidencia al 11 de noviembre de 2026}
 \end{center}
 ````
 
 ## ProyectoMineriaDatos_LaTeX.zip
 
-Ruta: `DocumentoFinal/ProyectoMineriaDatos_LaTeX.zip` · Bytes: 9506293 · SHA-256: `bbfb3791826500203c74cd6cd757891920b9aa7ea7134043baef45291c4744df`
+Ruta: `DocumentoFinal/ProyectoMineriaDatos_LaTeX.zip` · Bytes: 8800038 · SHA-256: `162c26758235fed254ac25a154751561e97b6deec8f5b14f53ca178b7f5fe70e`
 
 Contenido no textual o tabla de datos: consultar el original para inspección visual o recálculo.
 
 ## README.md
 
-Ruta: `DocumentoFinal/README.md` · Bytes: 2274 · SHA-256: `d88e0996dea891007e36552e6f5ca26874d6c850bd94b0ccb3a0ce61ca8bd89d`
+Ruta: `DocumentoFinal/README.md` · Bytes: 2272 · SHA-256: `f0309d8682a5993ad73af6caad4103ff0b975dfb54c77307e348bb4e64b26718`
 
 ````text
 # Documento final
 
 Compilar desde esta carpeta con `latexmk -pdf -interaction=nonstopmode main.tex`. Requiere LaTeX, biblatex APA y biber.
 
-`ajustar_formato_redaccion.py` reconstruye la versión revisada usando el generador base y la plantilla original; la compilación de main.tex es autónoma con las figuras incluidas. Fecha de corte: 9 de noviembre de 2026. No se atribuye entrega formal ni publicación pública.
+`ajustar_formato_redaccion.py` reconstruye la versión revisada usando el generador base y la plantilla original; la compilación de main.tex es autónoma con las figuras incluidas. Fecha de corte: 11 de noviembre de 2026. No se atribuye entrega formal ni publicación pública.
 
 ## Versión revisada con el formato del anteproyecto
 
@@ -4227,17 +4238,17 @@ Para regenerar desde el workspace, ejecutar primero `Final/.venv/bin/python Docu
 
 La compilación es autónoma: `latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex` desde esta carpeta, sin regenerar nada. Requiere la distribución TeX y biber.
 
-Los escenarios hipotéticos no tienen una clase real conocida; los contraejemplos corresponden a seis registros de la prueba histórica y se seleccionaron después de observar errores y aciertos. No constituyen una validación independiente. Las capturas S1 a S5 fueron tomadas de la web y contrastadas con los cálculos del Pipeline; S6 a S8 y la rejilla se calcularon directamente. No se reentrenó ni cambió el modelo para acomodar los ejemplos.
+Los escenarios hipotéticos no tienen una clase real conocida; los contraejemplos corresponden a seis registros de la prueba histórica y se seleccionaron después de observar errores y aciertos. No constituyen una validación independiente. Los ocho escenarios y la rejilla se recalcularon con la MLP. La captura de la página Predicción documenta una ejecución del formulario. No se reentrenó ni cambió el modelo para acomodar los ejemplos.
 
 ## Cierre y revisión por otras IAs
 
-El equipo declara cumplido el calendario técnico, sin asignar fechas exactas no registradas. La suite completa aprobó 101 pruebas en el cierre. Los logs históricos de cada carpeta se reúnen en BITACORA_UNIFICADA.md; los resultados cuantitativos y las capturas se conservan separados. El paquete REVISION_IA, en la raíz, contiene una ficha por carpeta con código y documentación para revisión.
+El equipo declara cumplido el calendario técnico, sin asignar fechas exactas no registradas. La suite completa aprobó 102 pruebas en el cierre. Los logs históricos de cada carpeta se reúnen en BITACORA_UNIFICADA.md; los resultados cuantitativos y las capturas se conservan separados. El paquete REVISION_IA, en la raíz, contiene una ficha por carpeta con código y documentación para revisión.
 
 ````
 
 ## ajustar_formato_redaccion.py
 
-Ruta: `DocumentoFinal/ajustar_formato_redaccion.py` · Bytes: 23380 · SHA-256: `8dc5729db16290837e88ae14b8d6e3c202f77e571d1935b138778bb96caf33bd`
+Ruta: `DocumentoFinal/ajustar_formato_redaccion.py` · Bytes: 20846 · SHA-256: `18929864c6c21d77bc1a56944010754e15b5a1faaa5033efa1830c9cd234bdb6`
 
 ````text
 """Restaura la plantilla del anteproyecto y añade discusión verificable de escenarios."""
@@ -4259,7 +4270,7 @@ inicio=r'''\begin{document}
 \pagestyle{indice}\thispagestyle{indice}\hypersetup{linkcolor=black}\tableofcontents\thispagestyle{indice}}
 \newpage\setcounter{page}{1}\hypersetup{pageanchor=true}\singlespacing
 '''
-port=(P/'Portada.tex').read_text().replace('Anteproyecto','Proyecto final').replace('Análisis del mercado de videojuegos mediante minería de datos','Análisis de recepción y popularidad de videojuegos mediante minería de datos').replace('Fecha de Entrega:','Fecha de corte:').replace('30 de Septiembre del 2026','9 de noviembre de 2026').replace('Versión 2.0 -- actualizada el 8 de noviembre del 2026','Versión final revisada -- evidencia al 9 de noviembre de 2026').replace('[1cm]','[0.45cm]').replace('\\Huge','\\LARGE')
+port=(P/'Portada.tex').read_text().replace('Anteproyecto','Proyecto final').replace('Análisis del mercado de videojuegos mediante minería de datos','Análisis de recepción y popularidad de videojuegos mediante minería de datos').replace('Fecha de Entrega:','Fecha de corte:').replace('30 de Septiembre del 2026','11 de noviembre de 2026').replace('Versión 2.0 -- actualizada el 8 de noviembre del 2026','Versión final revisada -- evidencia al 11 de noviembre de 2026').replace('[1cm]','[0.45cm]').replace('\\Huge','\\LARGE')
 (D/'Portada.tex').write_text(port)
 # Se conserva la organización de inicio del anteproyecto.
 head,rest=body.split(r'\section{Introducción y problemática}',1)
@@ -4313,11 +4324,8 @@ for h in hip:
  prob=max(h['p_alto'],h['p_medio'],h['p_bajo']);crit='Ausente' if h['metacritic'] is None else str(h['metacritic'])
  casos+=' & '.join(map(e,[h['id'],h['escenario'],h['rating'],crit,h['prediccion'],f'{prob:.1%}']))+r'\\\hline'+'\n'
 casos+=r'''\end{longtable}
-Al comparar S1 y S2 se observa el comportamiento que esperaríamos en una primera revisión: con ambas notas bajas se estima bajo y con ambas altas se estima alto. Sin embargo, los casos cruzados muestran una situación menos sencilla. S3 tiene Rating de 4.8 y prensa de 45, pero el modelo responde bajo con 43.9\,\%. En S4 sucede lo contrario: Rating de 1.0 y prensa de 99 producen alto con solamente 38.2\,\%. Es la clase con mayor probabilidad, pero ni siquiera alcanza la mitad. Esto impide presentar esa etiqueta como una respuesta segura.
+La tabla muestra cómo responde la MLP cuando se modifican las notas y los demás atributos. S2, con ambas notas altas, estima popularidad media. S5 conserva el Rating de S2 y oculta Metacritic. En ese caso se estima la clase baja y se usa la mediana aprendida para sustituir el faltante. Los escenarios S6 a S8 ilustran la sensibilidad a organización, década y género. Las probabilidades son salidas del modelo y carecen de calibración.
 
-S5 conserva la calificación de usuarios de S2 y oculta Metacritic. La predicción cambia de alto a bajo, con 44.2\,\% para bajo. Esta comparación cuestiona una lectura demasiado simple de la pantalla: que falte una nota no significa que la prensa haya evaluado mal al juego. El resultado aparece porque el Pipeline sustituye el dato ausente por su mediana entrenada y el bosque utiliza esa entrada junto con las demás variables. La web conserva un aviso para que esa situación no pase desapercibida.
-
-También se observa que cambiar únicamente la organización o la década modifica las probabilidades, aunque en estos ejemplos se mantiene la clase alta. No podemos concluir que Nintendo o una década causen popularidad; solo estamos describiendo cómo responde un modelo entrenado sobre este catálogo. En S8, cambiar los géneros por Shooter deja alto como primera clase con 49.7\,\%, otra respuesta que debe leerse con cautela.
 \begin{figure}[htbp]\centering\includegraphics[width=\linewidth]{figuras/sensibilidad_escenarios.png}\caption{Veinticinco combinaciones de Rating y Metacritic con el resto de atributos fijos. La etiqueta es la clase estimada y el color muestra la probabilidad no calibrada de alto.}\end{figure}\FloatBarrier
 \subsection{Contraejemplos con juegos del conjunto de prueba}
 Para no quedarnos solamente con escenarios inventados, seleccionamos un acierto y un error por cada clase real. Dentro de cada caso se tomó el registro con mayor probabilidad máxima del modelo. Esta selección es posterior a observar las predicciones y busca ilustrar sus límites; no sirve para estimar una nueva exactitud ni representa una muestra aleatoria de casos.
@@ -4328,21 +4336,18 @@ Juego&Clase real&Predicción&Resultado&Probabilidad\\\hline\endhead
 '''
 for h in real:casos+=' & '.join(map(e,[h['titulo']+' (ID '+str(h['id_juego'])+')',h['real'],h['prediccion'],'Acierto' if h['acierto'] else 'Error',f"{h['probabilidad_maxima']:.1%}"]))+r'\\\hline'+'\n'
 casos+=r'''\end{longtable}
-Uncharted: The Nathan Drake Collection es un contraejemplo importante. Su clase real es medio, pero el modelo lo coloca en alto con 69.8\,\%. Resident Evil 4: Wii Edition pertenece a bajo y también se estima alto, con 66.8\,\%. Estos casos refutan la idea de que una probabilidad elevada en la pantalla garantice que el modelo acertará. Por otro lado, The Last of Us sí se identifica como alto con 82.4\,\%; incluirlo muestra que tampoco sería correcto concluir, a partir de los errores, que el modelo nunca funciona.
-
-Jet Set Radio permite ver el error en sentido contrario: su nivel real es alto y la estimación es bajo, con 49.2\,\%. La comparación se hace contra los terciles y la referencia de entrenamiento utilizados en el proyecto. Que un juego sea conocido fuera de Backloggd no cambia esa definición ni convierte la clasificación en un juicio sobre su calidad.
+Los tres errores de la tabla muestran que una probabilidad máxima alta puede acompañar una clasificación equivocada. La comparación usa los terciles de entrenamiento y los conteos observados de Backloggd. Los tres aciertos sirven para contrastar cómo se comporta el mismo modelo cuando coincide con esa etiqueta.
 
 Para estos registros se conservaron ID, listas completas de género y organización, calificaciones, década, conteos y probabilidades. La comprobación numérica se hizo directamente con las entradas crudas del Pipeline. No se presenta una captura del formulario como réplica exacta de un registro con varias organizaciones o categorías que el formulario no permite seleccionar: esa distinción evita confundir una demostración simplificada con una reproducción del dato real.
 \subsection{Qué aprendimos de las pruebas}
 Los escenarios permiten cuestionar dos expectativas del planteamiento inicial: una calificación alta no basta para asignar popularidad alta en todos los casos y una probabilidad mayor tampoco garantiza una predicción correcta. La ausencia de prensa, el género y la organización cambian el espacio de entrada, mientras que la clase real depende de actividad e interés observados que deliberadamente no se entregan como predictores.
 
-Por eso la aplicación debe entenderse como una estimación orientativa que ayuda a contrastar situaciones. Los contraejemplos no se utilizaron para volver a escoger parámetros sobre la prueba. La forma adecuada de evaluar una mejora futura sería reservar una muestra temporal nueva y establecer antes los criterios de comparación. Reentrenar hasta que desaparezcan estos seis errores solo memorizaría una parte de la evaluación que ya conocemos.
+Por eso la aplicación debe entenderse como una estimación orientativa que ayuda a contrastar situaciones. Los contraejemplos no se utilizaron para volver a escoger parámetros sobre la prueba. La forma adecuada de evaluar una mejora futura sería reservar una muestra temporal nueva y establecer antes los criterios de comparación. Reentrenar hasta que desaparezcan los errores elegidos solo memorizaría una parte de la evaluación que ya conocemos.
 '''
 # Inserción anterior al plan; las referencias de la rúbrica se corrigen con etiquetas.
-capturas = '\\subsection{Resultados capturados en el formulario}\n'
-for caso,leyenda in [('S1','Notas bajas: Rating 1.0 y prensa 45. Se muestra la clase baja como referencia del contraste.'),('S2','Notas altas: Rating 4.8 y prensa 99. El resultado alto tiene una probabilidad de 54.1 por ciento.'),('S3','Opiniones cruzadas: Rating 4.8 y prensa 45. El resultado bajo alcanza 43.9 por ciento.'),('S4','Opiniones cruzadas: Rating 1.0 y prensa 99. Alto es la primera clase con 38.2 por ciento, sin mayoría absoluta.'),('S5','Rating 4.8 y prensa ausente. El aviso explica la imputación; el perfil contextual no es la clase del clasificador.')]:
- capturas += '\\begin{figure}[htbp]\\centering\\includegraphics[width=\\linewidth,height=.49\\textheight,keepaspectratio]{figuras/escenario_'+caso+'.jpg}\\caption{'+caso+'. '+leyenda+'}\\end{figure}\\FloatBarrier\n'
-capturas += 'En S5 la pantalla puede mostrar una clase baja y un perfil contextual de tracción alta. No son dos respuestas del mismo clasificador: el perfil se adjunta desde los vecinos y sus clusters, mientras que la clase proviene del bosque. Que ambos utilicen atributos parecidos no convierte al perfil en una validación independiente de la predicción.\n'
+capturas = r"""\subsection{Verificación del formulario}
+\begin{figure}[htbp]\centering\includegraphics[width=\linewidth,height=.49\textheight,keepaspectratio]{figuras/prediccion_mlp_web.png}\caption{Ejecución del formulario en la web con la MLP activa.}\end{figure}\FloatBarrier
+"""
 casos = casos.replace(r'\subsection{Contraejemplos con juegos del conjunto de prueba}',capturas+r'\subsection{Contraejemplos con juegos del conjunto de prueba}')
 meta=json.loads((D.parent/'Final/models/metadata.json').read_text());c1,c2=meta['definicion_objetivo']['cortes']
 senales = r'\subsection{Cómo comprobamos la clase real de los ejemplos}'+'\n'+f'Los cortes de entrenamiento son {c1:.6f} y {c2:.6f}. Bajo corresponde a un índice menor o igual al primer corte; medio supera el primero sin rebasar el segundo; alto supera el segundo. La tabla conserva los conteos y el índice calculado frente a esa referencia, no frente a una referencia ajustada con estos seis casos.\n'
@@ -4422,7 +4427,7 @@ print(pd.DataFrame(seleccion)[['titulo','real','prediccion','acierto','probabili
 
 ## generar_documento.py
 
-Ruta: `DocumentoFinal/generar_documento.py` · Bytes: 48196 · SHA-256: `351f04d33a50c2ecf8575826ea23e91efd442d9233c4426557669e887b746901`
+Ruta: `DocumentoFinal/generar_documento.py` · Bytes: 50019 · SHA-256: `b92e9a229883ecb0888e886d844147fbe6cc12bc03345394a42e67f8f1be043a`
 
 ````text
 """Compone LaTeX y copia evidencias tabulares sin entrenar ni modificar el proyecto."""
@@ -4430,8 +4435,13 @@ from pathlib import Path
 import csv,json,shutil,re,hashlib
 D=Path(__file__).resolve().parent;R=D.parent/'Final/reports'
 def esc(s):
- s={'RandomForestClassifier':'Random Forest','DecisionTreeClassifier':'Árbol CART','DummyClassifier':'Dummy','CategoricalNB':'Naive Bayes'}.get(str(s),str(s))
+ s={'RandomForestClassifier':'Random Forest','DecisionTreeClassifier':'Árbol CART','DummyClassifier':'Dummy','CategoricalNB':'Naive Bayes','MLPClassifier':'Red neuronal MLP','generos':'Géneros','estudio':'Organización','decada':'Década','Rating':'Usuarios','Metacritic Rating':'Metacritic'}.get(str(s),str(s))
  return ''.join({'&':r'\&','%':r'\%','_':r'\_\allowbreak{}','#':r'\#','$':r'\$','{':r'\{','}':r'\}','−':'-'}.get(c,c) for c in str(s))
+for nombre in ['clase_ward_dendrograma.png','comparacion_mlp.png','dashboard_interactivo.png']:
+ shutil.copy2(R/'figures'/nombre,D/'figuras'/nombre)
+for nombre in ['modelo.md','modelo_confusion_MLPClassifier.csv','clase_ward_perfiles.csv','clase_ward_cortes.csv']:
+ shutil.copy2(R/nombre,D/'evidencias'/nombre)
+shutil.copy2(D.parent/'Final/models/metadata.json',D/'evidencias/metadata.json')
 partes=[]
 def texto(t):partes.append(t)
 def tabla(archivo,campos,titulos,caption,fmt=None,limite=None):
@@ -4470,13 +4480,13 @@ Lugo Manzano Rodrigo -- 320206968\\[.2cm]
 García Cortés Adolfo de Jesús -- 320317264\\[.8cm]
 Grupo 01\quad Semestre 2027-1\\[.7cm]
 Profesor\\MTRO. GERARDO GABRIEL CARRASCO ZUÑIGA\\[1cm]
-Documento integrado con evidencia disponible al 9 de noviembre de 2026\\[.3cm]
+Documento integrado con evidencia disponible al 11 de noviembre de 2026\\[.3cm]
 Entrega prevista en la línea base: 25 de noviembre de 2026
 \vfill\end{titlepage}
 \section*{Resumen}\addcontentsline{toc}{section}{Resumen}
 En este proyecto analizamos la recepción y popularidad relativa de los videojuegos a partir de registros de Backloggd y notas de prensa incorporadas al archivo curado. Partimos de un problema: una calificación alta no equivale necesariamente a una comunidad grande, y el interés pendiente tampoco equivale a ventas. Por eso distinguimos las notas, la actividad acumulada y las listas de interés antes de construir perfiles y un clasificador.
 
-El original designado, \texttt{games\_curated.csv}, contiene 1,117 registros y 42 columnas; 1,114 son elegibles para el análisis principal y 887 tienen las seis variables completas para clustering. Pearson entre usuarios y prensa es 0.5439 en esos 887 pares. K-Means con dos grupos alcanza silhouette de 0.3188 en Python. El Random Forest de la web obtiene 56.76\,\% de exactitud y F1 macro de 0.5577 sobre 222 casos de prueba. En Weka, RandomForest obtiene 53.4753\,\% con validación cruzada de diez pliegues sobre 892 registros exportados. Las evaluaciones no son equivalentes y se presentan por separado.
+El original designado, \texttt{games\_curated.csv}, contiene 1,117 registros y 42 columnas; 1,114 son elegibles para el análisis principal y 887 tienen las seis variables completas para clustering. Pearson entre usuarios y prensa es 0.5439 en esos 887 pares. K-Means y Ward seleccionaron dos grupos, con siluetas de 0.3188 y 0.2807. La MLP activa en la web obtiene 50.90\,\% de exactitud y F1 macro de 0.5008 sobre 222 casos de prueba. Random Forest obtiene 0.5577 de F1 macro en esa misma prueba. En Weka, RandomForest obtiene 53.4753\,\% con validación cruzada de diez pliegues sobre 892 registros exportados. Las evaluaciones no son equivalentes y se presentan por separado.
 
 La aplicación permite explorar los hallazgos, enviar atributos crudos al Pipeline y consultar vecinos del entrenamiento. El resultado más importante es que podemos describir diferencias de recepción y popularidad dentro del catálogo, pero no demostrar rentabilidad, causalidad ni riesgo financiero de juegos como servicio. La clase media y la cobertura de prensa limitan la utilidad predictiva.
 \tableofcontents\clearpage
@@ -4494,7 +4504,7 @@ Analizar la relación entre recepción y popularidad relativa en el catálogo cu
 \item Verificar el esquema, las escalas, los faltantes y la procedencia del maestro, conservando su integridad y documentando cada transformación.
 \item Estimar Pearson y Spearman entre notas, reportando tamaño muestral y p-valor por catálogo, género y organización, con un mínimo de veinte pares completos por grupo.
 \item Describir Plays, Playing, Backlogs y Wishlist; distinguir actividad observada de interés pendiente sin equipararlas a ventas.
-\item Comparar K-Means de dos a diez grupos y DBSCAN sobre seis variables transformadas, informando silhouette cuando sea definida, tamaño, ruido y composición de los perfiles.
+\item Comparar K-Means y Ward de dos a diez grupos sobre seis variables transformadas, informando métricas internas y tamaños. Conservar DBSCAN como contraste exploratorio histórico.
 \item Comparar una referencia mayoritaria, Naive Bayes, árbol y bosque para clasificar terciles de popularidad con entradas que no incluyan las señales del objetivo.
 \item Verificar el formulario contra el Pipeline guardado y ofrecer una demo local con exploración, predicción y explicación de las limitaciones.
 \end{enumerate}
@@ -4542,7 +4552,7 @@ La distribución de actividad e interés es asimétrica. Por eso presentamos con
 Plays se interpreta como alcance registrado y Backlogs y Wishlist como interés pendiente. Playing se conserva como contexto de actividad. Un juego con muchas listas pendientes puede tener demanda potencial dentro de la plataforma, pero también puede acumular espera sin convertirse en actividad. Por esta razón evitamos llamar éxito comercial a un valor alto del índice.
 ''')
 fig('eda_plays_log.png','Distribución de Plays en la inspección del maestro. Fuente: figura reproducible del proyecto.', '.42')
-fig('graficas_logaritmicas_corregidas.jpg','Distribución de interacción por género en la aplicación. Escala logarítmica y etiquetas mayores legibles.', '.48')
+fig('graficas_logaritmicas_corregidas.jpg','Captura histórica de la distribución por género en la aplicación. Escala logarítmica y etiquetas mayores legibles.', '.48')
 tabla('clustering_03_correlaciones_senales.csv',['variable_a','variable_b','n','spearman_rho','spearman_p'],['Variable A','Variable B','Pares','Spearman','p Spearman'],'Relaciones de rango entre señales y notas; pares completos para cada comparación.',{'spearman_rho':lambda x:f'{x:.4f}','spearman_p':lambda x:f'{x:.2e}'})
 texto(r'''\subsection{Usuarios y prensa}
 En el catálogo elegible, Pearson es 0.5439 con $p=1.936\times10^{-69}$ y Spearman es 0.5242 con $p=9.34\times10^{-64}$, sobre 887 pares completos. La asociación positiva es moderada; el p-valor pequeño no transforma esa asociación en acuerdo perfecto ni en efecto causal.
@@ -4575,6 +4585,13 @@ La elección de eps usa la curva de distancia al vecino y una regla geométrica 
 No se reporta silhouette para un solo grupo válido. La etiqueta $-1$ significa ruido dentro de los casos analizados; una etiqueta vacía significa que el juego no fue agrupable por ausencia o conflicto. DBSCAN no aportó aquí una segmentación múltiple útil del mercado: funcionó como descripción de núcleo y atípicos. Forzar eps para producir más perfiles hubiera ocultado este resultado.
 ''')
 fig('clustering_03_dbscan_kdistancia.png','Curva utilizada para seleccionar eps en Python.', '.44')
+texto(r"""\subsection{Agrupamiento jerárquico con Ward}
+Aplicamos Ward con distancia euclidiana sobre los mismos 887 juegos y las mismas seis variables transformadas que K-Means. Se compararon cortes de dos a diez grupos y se eligió el de mayor silueta. Con dos grupos, Ward obtuvo tamaños de 558 y 329 juegos. El dendrograma presenta las últimas fusiones y resume cuántos juegos contiene cada rama.
+""")
+tabla('clase_comparacion_clustering.csv',['metodo','k','silhouette','davies_bouldin','calinski_harabasz'],['Método','Grupos','Silueta','Davies--Bouldin','Calinski--Harabasz'],'Comparación de los cortes elegidos por silueta en el mismo espacio.',{c:(lambda x:f'{x:.4f}') for c in ['silhouette','davies_bouldin','calinski_harabasz']})
+texto(r"""K-Means obtuvo mayor silueta y Calinski--Harabasz, y menor Davies--Bouldin. Los tres índices favorecen K-Means en esta muestra y con esta representación. Los perfiles se interpretan mediante sus variables originales. El mapa PCA solo proyecta los grupos ya ajustados.
+""")
+fig('clase_ward_dendrograma.png','Últimas fusiones del dendrograma de Ward. Cada etiqueta entre paréntesis indica la cantidad de juegos representada.', '.42')
 texto(r'''\section{Clasificación supervisada}
 \subsection{Definición de popularidad relativa}
 Comparamos conceptualmente dos objetivos. Solo Plays es más simple y representa alcance acumulado; el índice compuesto incorpora interés pendiente, aunque da dos tercios del peso a Wishlist y Backlogs, dos señales relacionadas. Se eligió el índice por ese alcance más amplio y se declara la redundancia como limitación:
@@ -4589,20 +4606,21 @@ Las entradas del Pipeline son géneros, organizaciones, década y las dos notas.
 \subsection{Representación y comparación de modelos}
 Los géneros se codifican multi-hot con hasta quince categorías y frecuencia mínima veinte dentro de cada ajuste. Las organizaciones usan frecuencia mínima diez; Otro se activa si no hay ninguna organización conocida. Las notas se imputan por mediana entrenada. La década se codifica mediante one-hot, conservando una categoría de ausencia.
 
-La referencia es DummyClassifier con la clase más frecuente. CategoricalNB discretiza las notas en cinco intervalos; se prefiere a ajustar gaussianas sobre decenas de indicadores binarios raros, reconociendo la pérdida de resolución y la independencia aproximada. Se comparan además árbol CART y Random Forest. La selección se cierra por F1 macro media de CV antes de evaluar la prueba.
+La referencia es DummyClassifier con la clase más frecuente. CategoricalNB discretiza las notas en cinco intervalos; se prefiere a ajustar gaussianas sobre decenas de indicadores binarios raros, reconociendo la pérdida de resolución y la independencia aproximada. Se comparan además árbol CART, Random Forest y una red neuronal MLP. Se probaron capas ocultas de 16 y 32 neuronas con activación tanh, optimizador L-BFGS y regularización L2. El ajuste elegido usa 32 neuronas y alpha de 5. La selección se cierra por F1 macro media de CV antes de evaluar la prueba.
 ''')
-tabla('modelo_comparacion.csv',['modelo','f1_macro_cv','desviacion_cv','exactitud_prueba','f1_macro_prueba'],['Modelo','F1 CV','Desv CV','Exactitud prueba','F1 prueba'],'Comparación de producción. Exactitud expresada como fracción; prueba independiente de 222 casos.',{c:(lambda x:f'{x:.4f}') for c in ['f1_macro_cv','desviacion_cv','exactitud_prueba','f1_macro_prueba']})
-texto(r'''Random Forest obtiene el mejor F1 de CV, 0.5567. Sus 200 árboles usan semilla 42, profundidad sin límite y mínimo de cinco ejemplos por hoja. En prueba logra F1 macro 0.5577 y exactitud 56.76\,\%, frente a F1 0.1546 de Dummy. La diferencia es amplia dentro de esta partición, pero no se realizó una prueba de significancia ni validación externa.
+tabla('modelo_comparacion.csv',['modelo','f1_macro_cv','desviacion_cv','exactitud_prueba','f1_macro_prueba'],['Modelo','F1 CV','Desv CV','Exactitud prueba','F1 prueba'],'Comparación de candidatos en la prueba reservada de 222 casos. Exactitud expresada como fracción.',{c:(lambda x:f'{x:.4f}') for c in ['f1_macro_cv','desviacion_cv','exactitud_prueba','f1_macro_prueba']})
+texto(r"""La MLP obtiene el mayor F1 macro medio de validación cruzada, 0.5608 frente a 0.5567 de Random Forest. La diferencia de 0.0041 es pequeña y no se sometió a una prueba de significancia. En la prueba reservada, la MLP obtiene F1 macro 0.5008 y exactitud de 50.90\,\%. Random Forest alcanza F1 macro 0.5577 y exactitud de 56.76\,\% en esos mismos juegos. La app carga la MLP según la regla fijada de selección por validación cruzada.
 
-La matriz, en orden bajo, medio y alto para filas reales y columnas predichas, es:
-\begin{equation}\begin{pmatrix}43&14&10\\32&27&21\\9&10&56\end{pmatrix}.\end{equation}
-La clase medio solo recupera 27 de 80 casos, 33.75\,\%. Por ello una cifra global moderada no significa que identifique correctamente todos los niveles. La cercanía entre las fronteras artificiales de terciles es una posible explicación del solapamiento, no una causa demostrada por el experimento.
+La matriz de la MLP, en orden bajo, medio y alto para filas reales y columnas predichas, es:
+\begin{equation}\begin{pmatrix}40&17&10\\31&23&26\\10&15&50\end{pmatrix}.\end{equation}
+La clase media recupera 23 de 80 casos, 28.75\,\%. La comparación utiliza una prueba histórica que el equipo ya había observado en corridas anteriores. Haría falta una muestra externa para medir generalización prospectiva.
 \subsection{Interpretación y revisión del entrenamiento}
-La importancia por permutación mide la caída de F1 macro al permutar entradas crudas en prueba, con treinta repeticiones y semilla 42. Rating y Metacritic aportan las mayores caídas medias. No es una atribución causal; las variables correlacionadas pueden compartir información. Las barras muestran desviación de repeticiones, no intervalos de confianza inferenciales.
-''')
-fig('graficas_permutacion_corregida.jpg','Importancia por permutación mostrada en la web. Las cifras se separan del extremo de las barras de error.', '.51')
-tabla('revision_predicciones/busqueda_resumen.csv',['candidato','f1_macro_cv','recall_medio_cv'],['Candidato','F1 CV','Recall medio CV'],'Auditoría adicional con el vigente y siete variantes del bosque, usando únicamente entrenamiento.',{'f1_macro_cv':lambda x:f'{x:.4f}','recall_medio_cv':lambda x:f'{x:.4f}'})
-texto(r'''Se hicieron ochenta ajustes, ocho candidatos por diez pliegues, variando mínimo por hoja, ponderación y número de variables por división. El criterio previo de sustitución exigía al menos 0.01 de mejora en F1 macro y superioridad en seis pliegues. Ninguna variante superó la media del modelo vigente y no se reemplazó el artefacto.
+La web muestra la importancia por reducción de impureza de Gini de Random Forest, el bosque incluido en la comparación. Se suman las contribuciones de las columnas codificadas de cada variable original. La importancia describe las divisiones aprendidas por ese bosque y depende de la codificación y del número de atributos disponibles por variable. La MLP se revisa con su matriz, casos de prueba y escenarios. Los CSV de permutación se conservan como diagnóstico complementario del modelo activo.
+""")
+tabla('modelo_importancia_gini.csv',['variable','importancia'],['Variable','Importancia relativa'],'Importancia agrupada por variable original en Random Forest.',{'importancia':lambda x:f'{float(x):.2%}'})
+fig('gini_web.png','Importancia de Gini del bosque comparado en la página Modelo.', '.48')
+tabla('revision_predicciones/busqueda_resumen.csv',['candidato','f1_macro_cv','recall_medio_cv'],['Candidato','F1 CV','Recall medio CV'],'Auditoría histórica con el bosque original y siete variantes, usando únicamente entrenamiento.',{'f1_macro_cv':lambda x:f'{x:.4f}','recall_medio_cv':lambda x:f'{x:.4f}'})
+texto(r'''Se hicieron ochenta ajustes, ocho candidatos por diez pliegues, variando mínimo por hoja, ponderación y número de variables por división. El criterio previo de sustitución exigía al menos 0.01 de mejora en F1 macro y superioridad en seis pliegues. Ninguna de esas variantes superó al bosque de referencia de esa revisión. La MLP se incorporó después como familia adicional.
 
 La búsqueda amplía la exploración sobre los mismos pliegues y no es una CV anidada. La prueba histórica ya fue observada. Por ello no afirmamos que estas medias midan mejora prospectiva ni presentamos un entrenamiento nuevo como mejor solo por haberlo ejecutado.
 \section{Corridas gráficas y contraste con Weka}
@@ -4611,7 +4629,7 @@ Weka Explorer 3.8.7 es la herramienta de la materia utilizada para contrastar cl
 La clasificación usa 892 instancias y 53 atributos, incluida nivel\_popularidad nominal, con diez pliegues. Las cuatro matrices se recalcularon: cada una suma 892 y sus diagonales reproducen la exactitud mostrada por el programa. El F1 macro se obtiene del promedio simple de F Measure por clase impreso; el ponderado se toma de Weighted Avg salvo ZeroR, donde los valores no definidos se resuelven desde la matriz y se identifican como calculados.
 ''')
 filas=json.loads((R/'revision_predicciones/weka_recalculado.json').read_text());texto(r'\begin{table}[htbp]\centering\caption{Clasificación en Weka sobre 892 casos.}\begin{tabular}{lrrr}\toprule Modelo&Exactitud (\%)&F1 macro&F1 ponderado\\\midrule'+'\n'+''.join(esc(f['modelo'])+f" & {f['exactitud_pct']:.4f} & {f['f1_macro_promedio_mostrado']:.4f} & {f['f1_ponderado']:.4f}"+r'\\'+'\n' for f in filas)+r'\bottomrule\end{tabular}\end{table}')
-fig('RandomForest.png','Evidencia de la corrida gráfica de RandomForest en Weka; incluye resumen, métricas por clase y matriz.', '.6')
+fig('RandomForest.png','Evidencia de la corrida gráfica de RandomForest en Weka; incluye resumen, métricas por clase y matriz.', '.44')
 texto(r'''RandomForest fue el mejor de las cuatro corridas, con 477 aciertos. Su recall de medio fue 0.360, lo que coincide cualitativamente con la dificultad de la clase central en Python. Sin embargo, no se debe comparar directamente su 53.4753\,\% con el 56.76\,\% de prueba de la app: son poblaciones y protocolos distintos.
 
 La comparación de enlace de Python usa los mismos 892 registros y 52 atributos numéricos exportados. Allí Random Forest obtiene 54.8206\,\% y F1 macro 0.5442. Las particiones Java y sklearn no son idénticas, la semilla de CV de la sesión Weka no se recuperó, y los algoritmos difieren: J48 no es CART; Weka NaiveBayes no garantiza estimadores numéricos iguales a GaussianNB. Weka RandomForest usa cien árboles y semilla del estimador uno, frente a cien y 42 en el enlace de Python.
@@ -4624,18 +4642,17 @@ fig('kmeans_resultado.png','Salida gráfica de SimpleKMeans en Weka. Los centroi
 texto(r'''Weka DBSCAN, con eps 1.666296 y minPoints doce, agrupó los 887 casos en un solo grupo sin ruido. Python dejó veintiún puntos como ruido. Compartir parámetros nominales no demuestra equivalencia de la distancia interna de EuclideanDistance y la implementación de sklearn. No se modificaron resultados ni se ajustó eps para forzar coincidencia.
 ''')
 fig('dbscan_resultado.png','Salida original de DBSCAN en Weka. Un grupo dominante no demuestra múltiples segmentos de mercado.', '.52')
-texto(r'''Orange no produjo evaluaciones utilizables. Hubo cierres en Qt/Cocoa al emplear selectores; se probaron instalación local, recuperación y reinicio del lienzo, importación CSV y TAB y un lanzador con selectores Qt. El cierre de esta vía se documentó como desviación del plan. Power BI no se utilizó y no hay una corrida MLP que pueda reportarse.
+texto(r'''Orange no produjo evaluaciones utilizables. Hubo cierres en Qt/Cocoa al emplear selectores; se probaron instalación local, recuperación y reinicio del lienzo, importación CSV y TAB y un lanzador con selectores Qt. El cierre de esta vía se documentó como desviación del plan. Power BI no se utilizó. La corrida MLP se realizó en Python.
 \section{Aplicación y demostración}
 La web se implementó en Streamlit con cuatro páginas. Inicio presenta alcance, límites y consulta del catálogo. Exploración ofrece señales, brechas y perfiles; Predicción recibe atributos crudos y muestra la clase y sus probabilidades; Modelo documenta resultados por algoritmo, errores por clase y el diagnóstico de ausencias. El artefacto incluye su preprocesamiento y los vecinos se calculan exclusivamente en el espacio predictivo de entrenamiento.
 
 El formulario utiliza géneros, organización, década y notas. No solicita Plays ni listas de interés porque serían las señales con las que se construyó la respuesta. Las pruebas comparan sus salidas con el Pipeline y usan el orden real de clases; una inversión entre el orden de las probabilidades y el de las etiquetas habría producido una interfaz errónea aun con un buen modelo.
 ''')
-fig('inicio_actual.jpg','Página Inicio capturada durante la integración del documento, el 9 de noviembre de 2026.', '.44')
-fig('formulario_verificado.jpg','Demostración verificada: Adventure y RPG, Otro, década 2020, Rating 5 y Metacritic 100 producen alto con 54.1 por ciento no calibrado.', '.5')
-texto(r'''En ese caso, ocultar Metacritic manteniendo Rating cinco cambia la clase a bajo con 44.2\,\%. El cálculo coincide con el modelo guardado; no es un error de etiqueta del formulario. Se añadió un aviso visible de imputación porque la ausencia de prensa no implica mala recepción. Esta sensibilidad muestra el límite de usar cobertura de prensa en un catálogo curado, incluso sin una bandera explícita de ausencia como predictor.
-''')
-fig('sin_critica_verificado.jpg','Aviso y resultado del caso sin calificación crítica. El cambio no se interpreta como certeza de baja popularidad.', '.48')
-texto(r'''La identidad gráfica combina azul marino, morado, cian y dorado con fuente cómic local. Se centralizaron colores, se separaron etiquetas de barras de error, se quitaron marcas logarítmicas menores amontonadas y se dio ancho suficiente a las figuras. En móvil, las gráficas densas conservan lectura mediante desplazamiento horizontal dentro del panel. Estos cambios son de presentación: no alteran escalas estadísticas ni mediciones.
+fig('dashboard_interactivo.png','Dashboard con filtros e indicadores de la consulta.', '.48')
+fig('comparacion_mlp.png','Comparación de los cinco candidatos con puntos y segmentos de desviación estándar en CV.', '.48')
+texto(r'''Exploración incluye filtros por género, década y calificaciones. El dashboard actualiza indicadores y la selección de puntos de la dispersión acota la tabla y el CSV. El selector de agrupamiento ofrece K-Means y Ward. El dendrograma resume el ajuste completo y el mapa PCA responde a los filtros de la consulta. Pearson, Spearman y la corrección de comparaciones múltiples quedan en la sección complementaria de brechas.
+
+La web conserva la identidad azul marino, morado, cian y dorado. Se ajustaron títulos, etiquetas y anchos para escritorio y pantallas estrechas. La gráfica de comparación usa puntos para las métricas y segmentos de una desviación estándar para el F1 de CV.
 
 Se corrigió también el mínimo visual artificial de dos por ciento en las barras de probabilidad y la etiqueta que confundía una organización no frecuente con un estudio independiente. Los inputs validan escalas y dejan los nulos a la imputación entrenada. Las probabilidades no están calibradas y no se presentan como posibilidades actuariales de éxito.
 
@@ -4643,13 +4660,13 @@ La aplicación se entrega para ejecución local con \texttt{streamlit run app.py
 \section{Plan real frente a la línea base}
 La línea base del anteproyecto v2.0 programaba actividades del 1 de octubre al 25 de noviembre de 2026. El equipo declara que las actividades técnicas realizadas cumplieron el calendario previsto. La tabla contrasta ese plan con los productos disponibles y las desviaciones de alcance documentadas. No se asignan fechas exactas de terminación porque no se cuenta con un registro por actividad; la entrega y exposición académicas se distinguen de la ejecución técnica.
 \begin{longtable}{p{.22\textwidth}p{.19\textwidth}p{.49\textwidth}}
-\caption{Línea base frente a evidencia disponible al 9 de noviembre de 2026.}\\\toprule Actividad & Línea base & Estado real y justificación\\\midrule\endfirsthead
+\caption{Línea base frente a evidencia disponible al 11 de noviembre de 2026.}\\\toprule Actividad & Línea base & Estado real y justificación\\\midrule\endfirsthead
 Actividad&Línea base&Estado real y justificación\\\midrule\endhead
 Anteproyecto y revisión & 1--5 octubre & Documento v2.0 conservado como antecedente; auditorías posteriores revisaron su alcance. No se reconstruye su fecha de terminación.\\
 Limpieza y validación & 6--15 octubre & Scripts, dataset y log disponibles. Se recibe un maestro ya curado y se auditan decisiones heredadas.\\
 EDA y correlaciones & 15--29 octubre & Tablas y figuras ejecutadas. Se distingue asociación de brecha y se exige cobertura mínima por grupo.\\
-Clustering e interpretación & 29 octubre--10 noviembre & K-Means y DBSCAN ejecutados en Python y Weka; DBSCAN no produjo varios perfiles útiles.\\
-Clasificación & 5--11 noviembre & Cuatro familias de producción evaluadas. Se reemplazó la comparación MLP prevista por bosque; no hay resultado MLP.\\
+Clustering e interpretación & 29 octubre--10 noviembre & K-Means y DBSCAN quedaron documentados en Python y Weka. La vista principal compara K-Means con Ward.\\
+Clasificación & 5--11 noviembre & Cinco candidatos evaluados. Se incorporó la MLP prevista y se seleccionó por validación cruzada.\\
 Arquitectura y web & 8--16 noviembre & Web funcional comprobada al corte, anterior al fin planeado; no se atribuyen horas de adelanto sin bitácora temporal completa.\\
 Despliegue público & 16--18 noviembre & Cancelado por preferencia de mantener datos y modelos locales; demo en localhost.\\
 Evaluación en Orange & Durante modelado & Descartada por cierres; Weka sí conserva seis corridas gráficas.\\
@@ -4662,7 +4679,7 @@ El objetivo de inspección se cumple con un esquema comprobado, log de preparaci
 
 El objetivo de relaciones se cumple con Pearson, Spearman, tamaños y p-valores segmentados. La hipótesis de coincidencia perfecta entre comunidad y prensa no se sostiene. Tampoco puede concluirse que un género sea mejor oportunidad comercial por su correlación o por su brecha media: esas medidas no evalúan demanda no satisfecha, competencia ni ingresos.
 
-El objetivo de perfiles se cumple de forma descriptiva con dos grupos K-Means. DBSCAN aporta un resultado negativo para segmentación múltiple, que también es un hallazgo. La silhouette moderada y la dominancia de magnitud conjunta aconsejan no convertir los nombres de los grupos en categorías naturales o permanentes del mercado.
+K-Means y Ward produjeron dos grupos. Los tres índices internos favorecen K-Means en el mismo espacio de datos. Los grupos resumen diferencias de actividad, interés y recepción en esta muestra.
 
 El clasificador supera a la referencia en la partición disponible, pero sigue confundiendo especialmente la clase media. Su etiqueta es un tercil artificial y depende de una referencia histórica del catálogo. Una predicción no puede comprobarse contra ventas ni contra el futuro solo porque el formulario funcione; son validaciones distintas.
 
@@ -4672,7 +4689,7 @@ El análisis confirma que no conviene reducir la situación de un videojuego a u
 
 K-Means ofrece una síntesis interpretable de dos niveles conjuntos de actividad y recepción, pero no demuestra mercados naturales. DBSCAN no generó una segmentación múltiple útil bajo el protocolo fijado. Conservar ese resultado, y la diferencia de ruido entre Weka y Python, permite explicar lo que cada herramienta produjo sin acomodarlo a una expectativa.
 
-La clasificación funciona de manera reproducible y supera a Dummy, pero su rendimiento es moderado y la clase media conserva baja recuperación. Las siete variantes adicionales no mejoraron el F1 de CV, por lo que mantener el modelo existente fue una decisión sustentada en resultados, no falta de entrenamiento. Más complejidad no habría sido una mejora por sí misma.
+La clasificación funciona de manera reproducible y supera a Dummy, pero su rendimiento es moderado y la clase media conserva baja recuperación. La MLP ganó por el criterio de CV fijado y Random Forest logró el mayor F1 en la prueba reservada. La evidencia apoya distinguir selección, desempeño en prueba y generalización a datos nuevos.
 
 La web convierte el análisis en una demostración consultable y mantiene visibles los límites de las estimaciones. La ausencia de Metacritic puede alterar mucho una respuesta y requiere cautela. Para estudiar nuevos lanzamientos o rentabilidad necesitaríamos una muestra temporal externa, métricas comerciales observadas, control de plataforma y fecha, y un diseño específico para esa pregunta.
 
@@ -4680,7 +4697,7 @@ Por tanto, resolvemos la exploración de recepción y popularidad relativa dentr
 \section{Reproducibilidad y alcance de la verificación}
 El repositorio organiza original en data/raw, derivados en data/clean, código en src, artefactos en models, pruebas en tests y evidencias en reports. Los scripts usan pathlib y semilla 42 cuando el método dispone de aleatoriedad. La carpeta de este documento copia figuras y tablas para poder compilar sin rutas absolutas ni conexión a los directorios originales.
 
-Se aprobaron 101 pruebas en la ejecución completa más reciente de la suite; la revisión específica anterior de inferencia, modelo, pipeline y visualización incluyó 39 pruebas. Las 222 predicciones almacenadas coinciden con el artefacto; las probabilidades son válidas y los vecinos contienen solo IDs de entrenamiento en el mismo espacio. Veinte archivos de datos y modelos conservaron sus hashes durante esa revisión. Esto comprueba integridad e implementación, no la verdad externa de cada calificación.
+Se aprobaron 102 pruebas en la ejecución completa más reciente de la suite; la revisión específica anterior de inferencia, modelo, pipeline y visualización incluyó 39 pruebas. Las 222 predicciones almacenadas coinciden con el artefacto; las probabilidades son válidas y los vecinos contienen solo IDs de entrenamiento en el mismo espacio. Los hashes del manifiesto vinculan los resultados vigentes con sus entradas y artefactos. Esto comprueba integridad e implementación, no la verdad externa de cada calificación.
 
 El informe se puede compilar con \texttt{latexmk -pdf main.tex}. El manifiesto local identifica hashes de las evidencias copiadas. La bibliografía distingue documentos metodológicos y fuentes de software de las mediciones propias del proyecto. La consulta al sitio de Kaggle confirma su identificación, pero no sustituye el archivo local por una versión actual del servicio.
 
@@ -4701,20 +4718,19 @@ Fuentes & Bibliografía APA y referencias internas a evidencias.\\\bottomrule\en
 \begin{enumerate}
 \item Abrir Inicio y explicar que el maestro tiene 1,117 registros y el antecedente 1,512; mostrar la limitación de ventas.
 \item En Exploración, cambiar Plays a Wishlist y distinguir asociación de brecha. Identificar el tamaño de pares del grupo consultado.
-\item En Modelo, leer la matriz: medio tiene 27 aciertos de 80. Explicar por qué esto limita una exactitud global moderada.
-\item En Predicción, seleccionar Adventure y RPG, organización Otro, década 2020, Rating cinco y Metacritic cien. La evidencia guardada muestra alto con 54.1\,\%.
-\item Ocultar Metacritic y enviar de nuevo: bajo con 44.2\,\%. Mostrar el aviso y explicar sensibilidad, imputación y probabilidades sin calibrar.
+\item En Modelo, leer la matriz: medio tiene 23 aciertos de 80. Explicar por qué esto limita una exactitud global moderada.
+\item En Predicción, probar el formulario con la MLP. Usar los valores de la tabla de escenarios para reproducir S2 y S5 y comparar qué sucede al ocultar Metacritic.
+\item En Exploración, alternar K-Means y Ward, revisar el dendrograma y explicar la comparación de índices.
 \item Abrir las capturas originales de Weka y contrastar 892 casos de CV con 222 de prueba de producción. No atribuir silhouette de Python ni resultados a Orange.
 \end{enumerate}
 \section{Fuentes locales y trazabilidad}
 La inspección y limpieza están en reports/inspeccion.md y limpieza\_log.md. Las relaciones, perfiles y sensibilidad se conservan en reports/clustering.md y sus CSV. Las métricas de producción están en models/metadata.json y reports/modelo\_comparacion.csv. El contraste entre herramientas está en reports/tables/comparativo\_herramientas.csv. Las seis corridas y capturas están en reports/weka y su respaldo ZIP verificado. La revisión adicional de predicción se conserva en reports/revision\_predicciones, incluyendo auditoria.json, decision.json y la bitácora unificada de esa carpeta.
 
 Los nombres completos se conservan en el manifiesto y las tablas copiadas. No se atribuyen nuevas corridas a las capturas históricas. El PDF de criterios del profesor se adjunta como evidencia/rubrica\_proyecto.pdf y se utiliza como guía de cobertura, no como fuente de mediciones.
+\section{Vinculación con las presentaciones de la materia}
+El proyecto aplica la preparación y exploración de datos de Descubrimiento de Conocimiento, y el dashboard como capa de consulta de Arquitectura. Del Proceso de Minería de Datos se incorporaron Naive Bayes, CART, Random Forest, MLP, K-Means, Ward y PCA. Las métricas de clasificación y agrupamiento siguen los ejemplos de Evaluación de MD. La gráfica de Gini sigue el ejemplo del bosque en Evaluación de MD, p.~66. Ward se describe en las pp.~101--107 y la comparación interna de agrupamientos en las pp.~108--115. Las páginas corresponden al orden de los archivos PDF. La visualización y explicación de límites retoman Aplicación de la Minería de Datos.
 \section{Capturas actuales de la aplicación}
-Las siguientes capturas se tomaron durante la integración de este documento, tras iniciar el servidor local. Se distinguen de las evidencias históricas de Weka y de los casos de predicción ya verificados. Weka permaneció cerrado.
-\begin{figure}[htbp]\centering\includegraphics[width=\linewidth]{figuras/exploracion_actual.jpg}\caption{Página Exploración capturada al corte documental.}\end{figure}\FloatBarrier
-\begin{figure}[htbp]\centering\includegraphics[width=\linewidth]{figuras/prediccion_actual.jpg}\caption{Página Predicción y acceso al formulario crudo.}\end{figure}\FloatBarrier
-\begin{figure}[htbp]\centering\includegraphics[width=\linewidth]{figuras/modelo_actual.jpg}\caption{Página Modelo con métricas del artefacto vigente.}\end{figure}\FloatBarrier
+\begin{figure}[htbp]\centering\includegraphics[width=\linewidth]{figuras/ward_web.png}\caption{Dendrograma en la vista de agrupamiento del dashboard.}\end{figure}\FloatBarrier
 \nocite{chaki2023popular,chapman2000crisp,pedregosa2011scikit,mckinney2010pandas,frank2016weka,ester1996dbscan}
 \printbibliography[heading=bibintoc,title={Referencias}]
 \end{document}
@@ -4724,19 +4740,19 @@ bib=(D.parent/'Proyecto/referencias.bib').read_text().replace('urldate    = {202
 @online{sklearncv,author={{scikit-learn developers}},title={Cross-validation evaluating estimator performance},url={https://scikit-learn.org/stable/modules/cross_validation.html},urldate={2026-11-09}}
 @online{wekaweb,author={{University of Waikato}},title={The Weka Workbench},url={https://ml.cms.waikato.ac.nz/weka/},urldate={2026-11-09}}
 ''')
-(D/'README.md').write_text('# Documento final\n\nCompilar desde esta carpeta con `latexmk -pdf -interaction=nonstopmode main.tex`. Requiere LaTeX, biblatex APA y biber.\n\n`ajustar_formato_redaccion.py` reconstruye la versión revisada usando el generador base y la plantilla original; la compilación de main.tex es autónoma con las figuras incluidas. Fecha de corte: 9 de noviembre de 2026. No se atribuye entrega formal ni publicación pública.\n\n## Versión revisada con el formato del anteproyecto\n\nEl archivo vigente es `main.tex`, con portada en `Portada.tex` y escudos en `portada_img`. Su preámbulo procede de `Proyecto/main.tex`: conserva encabezados, márgenes, estilos del índice, numeración y espaciado del anteproyecto. La copia anterior se conserva en `version_anterior` y no es la versión vigente.\n\nPara regenerar desde el workspace, ejecutar primero `Final/.venv/bin/python DocumentoFinal/analizar_escenarios.py` y después `python3 DocumentoFinal/ajustar_formato_redaccion.py`. Este último utiliza el generador base, restaura la plantilla y aplica la redacción y escenarios revisados. No ejecutar solo `generar_documento.py` para reconstruir la versión final: ese archivo es el generador base de la versión previa.\n\nLa compilación es autónoma: `latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex` desde esta carpeta, sin regenerar nada. Requiere la distribución TeX y biber.\n\nLos escenarios hipotéticos no tienen una clase real conocida; los contraejemplos corresponden a seis registros de la prueba histórica y se seleccionaron después de observar errores y aciertos. No constituyen una validación independiente. Las capturas S1 a S5 fueron tomadas de la web y contrastadas con los cálculos del Pipeline; S6 a S8 y la rejilla se calcularon directamente. No se reentrenó ni cambió el modelo para acomodar los ejemplos.\n\n## Cierre y revisión por otras IAs\n\nEl equipo declara cumplido el calendario técnico, sin asignar fechas exactas no registradas. La suite completa aprobó 101 pruebas en el cierre. Los logs históricos de cada carpeta se reúnen en BITACORA_UNIFICADA.md; los resultados cuantitativos y las capturas se conservan separados. El paquete REVISION_IA, en la raíz, contiene una ficha por carpeta con código y documentación para revisión.\n')
+(D/'README.md').write_text('# Documento final\n\nCompilar desde esta carpeta con `latexmk -pdf -interaction=nonstopmode main.tex`. Requiere LaTeX, biblatex APA y biber.\n\n`ajustar_formato_redaccion.py` reconstruye la versión revisada usando el generador base y la plantilla original; la compilación de main.tex es autónoma con las figuras incluidas. Fecha de corte: 11 de noviembre de 2026. No se atribuye entrega formal ni publicación pública.\n\n## Versión revisada con el formato del anteproyecto\n\nEl archivo vigente es `main.tex`, con portada en `Portada.tex` y escudos en `portada_img`. Su preámbulo procede de `Proyecto/main.tex`: conserva encabezados, márgenes, estilos del índice, numeración y espaciado del anteproyecto. La copia anterior se conserva en `version_anterior` y no es la versión vigente.\n\nPara regenerar desde el workspace, ejecutar primero `Final/.venv/bin/python DocumentoFinal/analizar_escenarios.py` y después `python3 DocumentoFinal/ajustar_formato_redaccion.py`. Este último utiliza el generador base, restaura la plantilla y aplica la redacción y escenarios revisados. No ejecutar solo `generar_documento.py` para reconstruir la versión final: ese archivo es el generador base de la versión previa.\n\nLa compilación es autónoma: `latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex` desde esta carpeta, sin regenerar nada. Requiere la distribución TeX y biber.\n\nLos escenarios hipotéticos no tienen una clase real conocida; los contraejemplos corresponden a seis registros de la prueba histórica y se seleccionaron después de observar errores y aciertos. No constituyen una validación independiente. Los ocho escenarios y la rejilla se recalcularon con la MLP. La captura de la página Predicción documenta una ejecución del formulario. No se reentrenó ni cambió el modelo para acomodar los ejemplos.\n\n## Cierre y revisión por otras IAs\n\nEl equipo declara cumplido el calendario técnico, sin asignar fechas exactas no registradas. La suite completa aprobó 102 pruebas en el cierre. Los logs históricos de cada carpeta se reúnen en BITACORA_UNIFICADA.md; los resultados cuantitativos y las capturas se conservan separados. El paquete REVISION_IA, en la raíz, contiene una ficha por carpeta con código y documentación para revisión.\n')
 
 ````
 
 ## main.pdf
 
-Ruta: `DocumentoFinal/main.pdf` · Bytes: 4491883 · SHA-256: `b9100eba375c8bb3a2a30f88a5fda4932cec022651a178b67c6881be12c71626`
+Ruta: `DocumentoFinal/main.pdf` · Bytes: 3339558 · SHA-256: `e43c87340a8b47d2568e682b3c4bf5bf5064dd545984b0bf9ba14d75b5372208`
 
 Contenido no textual o tabla de datos: consultar el original para inspección visual o recálculo.
 
 ## main.tex
 
-Ruta: `DocumentoFinal/main.tex` · Bytes: 67155 · SHA-256: `0258b1bcbf7a1060d5a22dce03aa0e37a1a0c7a8d9b7075b499cd60d968a9a14`
+Ruta: `DocumentoFinal/main.tex` · Bytes: 65028 · SHA-256: `7f8890b6c9ff66bb18d6939047895ad484478b2633f40a503122f0ca3c25d1a4`
 
 ````text
 \documentclass[letterpaper,11pt]{article}
@@ -4959,7 +4975,7 @@ Ruta: `DocumentoFinal/main.tex` · Bytes: 67155 · SHA-256: `0258b1bcbf7a1060d5a
 \section*{Resumen}\addcontentsline{toc}{section}{Resumen}
 Este proyecto tiene como finalidad analizar de forma práctica cómo se relacionan la opinión de los jugadores, la crítica especializada y la popularidad que alcanza un videojuego dentro de Backloggd. La idea surge porque normalmente se utiliza una calificación para hablar del éxito de un título, aunque esa nota no nos dice cuántas personas lo juegan ni cuántas tienen interés en hacerlo. Para atender esta situación se revisaron las calificaciones y las métricas de interacción por separado, después se buscaron grupos de juegos similares y finalmente se construyó una aplicación que permite consultar los resultados y probar un modelo supervisado.
 
-El original designado, \texttt{games\_curated.csv}, contiene 1,117 registros y 42 columnas; 1,114 son elegibles para el análisis principal y 887 tienen las seis variables completas para clustering. Pearson entre usuarios y prensa es 0.5439 en esos 887 pares. K-Means con dos grupos alcanza silhouette de 0.3188 en Python. El Random Forest de la web obtiene 56.76\,\% de exactitud y F1 macro de 0.5577 sobre 222 casos de prueba. En Weka, RandomForest obtiene 53.4753\,\% con validación cruzada de diez pliegues sobre 892 registros exportados. Las evaluaciones no son equivalentes y se presentan por separado.
+El original designado, \texttt{games\_curated.csv}, contiene 1,117 registros y 42 columnas; 1,114 son elegibles para el análisis principal y 887 tienen las seis variables completas para clustering. Pearson entre usuarios y prensa es 0.5439 en esos 887 pares. K-Means y Ward seleccionaron dos grupos, con siluetas de 0.3188 y 0.2807. La MLP activa en la web obtiene 50.90\,\% de exactitud y F1 macro de 0.5008 sobre 222 casos de prueba. Random Forest obtiene 0.5577 de F1 macro en esa misma prueba. En Weka, RandomForest obtiene 53.4753\,\% con validación cruzada de diez pliegues sobre 892 registros exportados. Las evaluaciones no son equivalentes y se presentan por separado.
 
 La aplicación permite explorar los hallazgos, enviar atributos crudos al Pipeline y consultar vecinos del entrenamiento. El resultado más importante es que podemos describir diferencias de recepción y popularidad dentro del catálogo, pero no demostrar rentabilidad, causalidad ni riesgo financiero de juegos como servicio. La clase media y la cobertura de prensa limitan la utilidad predictiva.
 
@@ -4971,7 +4987,7 @@ Aplicar técnicas de minería de datos sobre el catálogo de videojuegos conteni
 \item Verificar el esquema, las escalas, los faltantes y la procedencia del maestro, conservando su integridad y documentando cada transformación.
 \item Estimar Pearson y Spearman entre notas, reportando tamaño muestral y p-valor por catálogo, género y organización, con un mínimo de veinte pares completos por grupo.
 \item Describir Plays, Playing, Backlogs y Wishlist; distinguir actividad observada de interés pendiente sin equipararlas a ventas.
-\item Comparar K-Means de dos a diez grupos y DBSCAN sobre seis variables transformadas, informando silhouette cuando sea definida, tamaño, ruido y composición de los perfiles.
+\item Comparar K-Means y Ward de dos a diez grupos sobre seis variables transformadas, informando métricas internas y tamaños. Conservar DBSCAN como contraste exploratorio histórico.
 \item Comparar una referencia mayoritaria, Naive Bayes, árbol y bosque para clasificar terciles de popularidad con entradas que no incluyan las señales del objetivo.
 \item Verificar el formulario contra el Pipeline guardado y ofrecer una demo local con exploración, predicción y explicación de las limitaciones.
 \end{enumerate}
@@ -5028,7 +5044,7 @@ Plays se interpreta como alcance registrado y Backlogs y Wishlist como interés 
 \caption{Distribución de Plays en la inspección del maestro. Fuente: figura reproducible del proyecto.}\end{figure}\FloatBarrier
 
 \begin{figure}[htbp]\centering\includegraphics[width=\linewidth,height=.48\textheight,keepaspectratio]{figuras/graficas_logaritmicas_corregidas.jpg}
-\caption{Distribución de interacción por género en la aplicación. Escala logarítmica y etiquetas mayores legibles.}\end{figure}\FloatBarrier
+\caption{Captura histórica de la distribución por género en la aplicación. Escala logarítmica y etiquetas mayores legibles.}\end{figure}\FloatBarrier
 
 \begin{longtable}{p{0.174\textwidth}p{0.174\textwidth}p{0.174\textwidth}p{0.174\textwidth}p{0.174\textwidth}}
 \caption{Relaciones de rango entre señales y notas; pares completos para cada comparación. Un p impreso como cero corresponde al límite numérico del cálculo, no a una probabilidad matemática exactamente nula.}\\
@@ -5038,18 +5054,18 @@ Variable A & Variable B & Pares & Spearman & p Spearman\\\midrule\endhead
 Plays & Playing & 1114 & 0.5471 & 5.44e-88\\
 Plays & Backlogs & 1114 & 0.5973 & 1.15e-108\\
 Plays & Wishlist & 1114 & 0.3413 & 8.70e-32\\
-Plays & Rating & 1101 & 0.0874 & 3.72e-03\\
-Plays & Metacritic Rating & 896 & 0.4230 & 3.29e-40\\
+Plays & Usuarios & 1101 & 0.0874 & 3.72e-03\\
+Plays & Metacritic & 896 & 0.4230 & 3.29e-40\\
 Playing & Backlogs & 1114 & 0.7505 & 3.14e-202\\
 Playing & Wishlist & 1114 & 0.7013 & 1.13e-165\\
-Playing & Rating & 1101 & 0.4017 & 5.98e-44\\
-Playing & Metacritic Rating & 896 & 0.3458 & 1.45e-26\\
+Playing & Usuarios & 1101 & 0.4017 & 5.98e-44\\
+Playing & Metacritic & 896 & 0.3458 & 1.45e-26\\
 Backlogs & Wishlist & 1114 & 0.8542 & 0.00e+00\\
-Backlogs & Rating & 1101 & 0.4133 & 1.14e-46\\
-Backlogs & Metacritic Rating & 896 & 0.4330 & 3.10e-42\\
-Wishlist & Rating & 1101 & 0.5035 & 7.76e-72\\
-Wishlist & Metacritic Rating & 896 & 0.3698 & 2.04e-30\\
-Rating & Metacritic Rating & 887 & 0.5242 & 9.34e-64\\
+Backlogs & Usuarios & 1101 & 0.4133 & 1.14e-46\\
+Backlogs & Metacritic & 896 & 0.4330 & 3.10e-42\\
+Wishlist & Usuarios & 1101 & 0.5035 & 7.76e-72\\
+Wishlist & Metacritic & 896 & 0.3698 & 2.04e-30\\
+Usuarios & Metacritic & 887 & 0.5242 & 9.34e-64\\
 \bottomrule\end{longtable}
 
 \subsection{Usuarios y prensa}
@@ -5173,6 +5189,23 @@ No se reporta silhouette para un solo grupo válido. La etiqueta $-1$ significa 
 \begin{figure}[htbp]\centering\includegraphics[width=\linewidth,height=.44\textheight,keepaspectratio]{figuras/clustering_03_dbscan_kdistancia.png}
 \caption{Curva utilizada para seleccionar eps en Python.}\end{figure}\FloatBarrier
 
+\subsection{Agrupamiento jerárquico con Ward}
+Aplicamos Ward con distancia euclidiana sobre los mismos 887 juegos y las mismas seis variables transformadas que K-Means. Se compararon cortes de dos a diez grupos y se eligió el de mayor silueta. Con dos grupos, Ward obtuvo tamaños de 558 y 329 juegos. El dendrograma presenta las últimas fusiones y resume cuántos juegos contiene cada rama.
+
+\begin{longtable}{p{0.174\textwidth}p{0.174\textwidth}p{0.174\textwidth}p{0.174\textwidth}p{0.174\textwidth}}
+\caption{Comparación de los cortes elegidos por silueta en el mismo espacio.}\\
+\toprule
+Método & Grupos & Silueta & Davies--Bouldin & Calinski--Harabasz\\\midrule\endfirsthead
+Método & Grupos & Silueta & Davies--Bouldin & Calinski--Harabasz\\\midrule\endhead
+K-Means & 2 & 0.3188 & 1.1824 & 542.9068\\
+Ward & 2 & 0.2807 & 1.3300 & 409.7150\\
+\bottomrule\end{longtable}
+
+K-Means obtuvo mayor silueta y Calinski--Harabasz, y menor Davies--Bouldin. Los tres índices favorecen K-Means en esta muestra y con esta representación. Los perfiles se interpretan mediante sus variables originales. El mapa PCA solo proyecta los grupos ya ajustados.
+
+\begin{figure}[htbp]\centering\includegraphics[width=\linewidth,height=.42\textheight,keepaspectratio]{figuras/clase_ward_dendrograma.png}
+\caption{Últimas fusiones del dendrograma de Ward. Cada etiqueta entre paréntesis indica la cantidad de juegos representada.}\end{figure}\FloatBarrier
+
 \section{Clasificación supervisada}\label{sec:clasificacion}
 \subsection{Definición de popularidad relativa}
 Comparamos conceptualmente dos objetivos. Solo Plays es más simple y representa alcance acumulado; el índice compuesto incorpora interés pendiente, aunque da dos tercios del peso a Wishlist y Backlogs, dos señales relacionadas. Se eligió el índice por ese alcance más amplio y se declara la redundancia como limitación:
@@ -5187,10 +5220,10 @@ Las entradas del Pipeline son géneros, organizaciones, década y las dos notas.
 \subsection{Representación y comparación de modelos}
 Los géneros se codifican multi-hot con hasta quince categorías y frecuencia mínima veinte dentro de cada ajuste. Las organizaciones usan frecuencia mínima diez; Otro se activa si no hay ninguna organización conocida. Las notas se imputan por mediana entrenada. La década se codifica mediante one-hot, conservando una categoría de ausencia.
 
-La referencia es DummyClassifier con la clase más frecuente. CategoricalNB discretiza las notas en cinco intervalos; se prefiere a ajustar gaussianas sobre decenas de indicadores binarios raros, reconociendo la pérdida de resolución y la independencia aproximada. Se comparan además árbol CART y Random Forest. La selección se cierra por F1 macro media de CV antes de evaluar la prueba.
+La referencia es DummyClassifier con la clase más frecuente. CategoricalNB discretiza las notas en cinco intervalos; se prefiere a ajustar gaussianas sobre decenas de indicadores binarios raros, reconociendo la pérdida de resolución y la independencia aproximada. Se comparan además árbol CART, Random Forest y una red neuronal MLP. Se probaron capas ocultas de 16 y 32 neuronas con activación tanh, optimizador L-BFGS y regularización L2. El ajuste elegido usa 32 neuronas y alpha de 5. La selección se cierra por F1 macro media de CV antes de evaluar la prueba.
 
 \begin{longtable}{p{0.174\textwidth}p{0.174\textwidth}p{0.174\textwidth}p{0.174\textwidth}p{0.174\textwidth}}
-\caption{Comparación de producción. Exactitud expresada como fracción; prueba independiente de 222 casos.}\\
+\caption{Comparación de candidatos en la prueba reservada de 222 casos. Exactitud expresada como fracción.}\\
 \toprule
 Modelo & F1 CV & Desv CV & Exactitud prueba & F1 prueba\\\midrule\endfirsthead
 Modelo & F1 CV & Desv CV & Exactitud prueba & F1 prueba\\\midrule\endhead
@@ -5198,21 +5231,34 @@ Dummy & 0.1678 & 0.0031 & 0.3018 & 0.1546\\
 Naive Bayes & 0.5490 & 0.0625 & 0.5090 & 0.4925\\
 Árbol CART & 0.5053 & 0.0458 & 0.5315 & 0.5119\\
 Random Forest & 0.5567 & 0.0451 & 0.5676 & 0.5577\\
+Red neuronal MLP & 0.5608 & 0.0679 & 0.5090 & 0.5008\\
 \bottomrule\end{longtable}
 
-Random Forest obtiene el mejor F1 de CV, 0.5567. Sus 200 árboles usan semilla 42, profundidad sin límite y mínimo de cinco ejemplos por hoja. En prueba logra F1 macro 0.5577 y exactitud 56.76\,\%, frente a F1 0.1546 de Dummy. La diferencia es amplia dentro de esta partición, pero no se realizó una prueba de significancia ni validación externa.
+La MLP obtiene el mayor F1 macro medio de validación cruzada, 0.5608 frente a 0.5567 de Random Forest. La diferencia de 0.0041 es pequeña y no se sometió a una prueba de significancia. En la prueba reservada, la MLP obtiene F1 macro 0.5008 y exactitud de 50.90\,\%. Random Forest alcanza F1 macro 0.5577 y exactitud de 56.76\,\% en esos mismos juegos. La app carga la MLP según la regla fijada de selección por validación cruzada.
 
-La matriz, en orden bajo, medio y alto para filas reales y columnas predichas, es:
-\begin{equation}\begin{pmatrix}43&14&10\\32&27&21\\9&10&56\end{pmatrix}.\end{equation}
-Al revisar la matriz se observa que la clase media es el problema más claro del modelo: de ochenta juegos que realmente pertenecían a ese nivel, solamente veintisiete fueron identificados correctamente. Los demás se repartieron entre bajo y alto. Esto nos muestra que no era suficiente presentar únicamente la exactitud general, porque esa cifra podía ocultar una dificultad importante. Una explicación posible es que los juegos cercanos a las fronteras de los terciles compartan atributos con ambos extremos, aunque este experimento no permite demostrar que esa sea la causa.
+La matriz de la MLP, en orden bajo, medio y alto para filas reales y columnas predichas, es:
+\begin{equation}\begin{pmatrix}40&17&10\\31&23&26\\10&15&50\end{pmatrix}.\end{equation}
+La clase media recupera 23 de 80 casos, 28.75\,\%. La comparación utiliza una prueba histórica que el equipo ya había observado en corridas anteriores. Haría falta una muestra externa para medir generalización prospectiva.
 \subsection{Interpretación y revisión del entrenamiento}
-La importancia por permutación mide la caída de F1 macro al permutar entradas crudas en prueba, con treinta repeticiones y semilla 42. Rating y Metacritic aportan las mayores caídas medias. No es una atribución causal; las variables correlacionadas pueden compartir información. Las barras muestran desviación de repeticiones, no intervalos de confianza inferenciales.
+La web muestra la importancia por reducción de impureza de Gini de Random Forest, el bosque incluido en la comparación. Se suman las contribuciones de las columnas codificadas de cada variable original. La importancia describe las divisiones aprendidas por ese bosque y depende de la codificación y del número de atributos disponibles por variable. La MLP se revisa con su matriz, casos de prueba y escenarios. Los CSV de permutación se conservan como diagnóstico complementario del modelo activo.
 
-\begin{figure}[htbp]\centering\includegraphics[width=\linewidth,height=.51\textheight,keepaspectratio]{figuras/graficas_permutacion_corregida.jpg}
-\caption{Importancia por permutación mostrada en la web. Las cifras se separan del extremo de las barras de error.}\end{figure}\FloatBarrier
+\begin{longtable}{p{0.435\textwidth}p{0.435\textwidth}}
+\caption{Importancia agrupada por variable original en Random Forest.}\\
+\toprule
+Variable & Importancia relativa\\\midrule\endfirsthead
+Variable & Importancia relativa\\\midrule\endhead
+Metacritic & 23.95\%\\
+Usuarios & 19.81\%\\
+Década & 11.08\%\\
+Organización & 12.57\%\\
+Géneros & 32.59\%\\
+\bottomrule\end{longtable}
+
+\begin{figure}[htbp]\centering\includegraphics[width=\linewidth,height=.48\textheight,keepaspectratio]{figuras/gini_web.png}
+\caption{Importancia de Gini del bosque comparado en la página Modelo.}\end{figure}\FloatBarrier
 
 \begin{longtable}{p{0.29\textwidth}p{0.29\textwidth}p{0.29\textwidth}}
-\caption{Auditoría adicional con el vigente y siete variantes del bosque, usando únicamente entrenamiento.}\\
+\caption{Auditoría histórica con el bosque original y siete variantes, usando únicamente entrenamiento.}\\
 \toprule
 Candidato & F1 CV & Recall medio CV\\\midrule\endfirsthead
 Candidato & F1 CV & Recall medio CV\\\midrule\endhead
@@ -5226,7 +5272,7 @@ RF\_\allowbreak{}revision\_\allowbreak{}7 & 0.5368 & 0.3491\\
 RF\_\allowbreak{}revision\_\allowbreak{}6 & 0.5300 & 0.3623\\
 \bottomrule\end{longtable}
 
-Se hicieron ochenta ajustes, ocho candidatos por diez pliegues, variando mínimo por hoja, ponderación y número de variables por división. El criterio previo de sustitución exigía al menos 0.01 de mejora en F1 macro y superioridad en seis pliegues. Ninguna variante superó la media del modelo vigente y no se reemplazó el artefacto.
+Se hicieron ochenta ajustes, ocho candidatos por diez pliegues, variando mínimo por hoja, ponderación y número de variables por división. El criterio previo de sustitución exigía al menos 0.01 de mejora en F1 macro y superioridad en seis pliegues. Ninguna de esas variantes superó al bosque de referencia de esa revisión. La MLP se incorporó después como familia adicional.
 
 La búsqueda amplía la exploración sobre los mismos pliegues y no es una CV anidada. La prueba histórica ya fue observada. Por ello no afirmamos que estas medias midan mejora prospectiva ni presentamos un entrenamiento nuevo como mejor solo por haberlo ejecutado.
 \section{Corridas gráficas y contraste con Weka}\label{sec:weka}
@@ -5240,7 +5286,7 @@ NaiveBayes & 50.8969 & 0.5033 & 0.5030\\
 J48 & 51.0090 & 0.5063 & 0.5060\\
 RandomForest & 53.4753 & 0.5300 & 0.5300\\
 \bottomrule\end{tabular}\end{table}
-\begin{figure}[htbp]\centering\includegraphics[width=\linewidth,height=.6\textheight,keepaspectratio]{figuras/RandomForest.png}
+\begin{figure}[htbp]\centering\includegraphics[width=\linewidth,height=.44\textheight,keepaspectratio]{figuras/RandomForest.png}
 \caption{Evidencia de la corrida gráfica de RandomForest en Weka; incluye resumen, métricas por clase y matriz.}\end{figure}\FloatBarrier
 
 RandomForest fue el mejor de las cuatro corridas, con 477 aciertos. Su recall de medio fue 0.360, lo que coincide cualitativamente con la dificultad de la clase central en Python. Sin embargo, no se debe comparar directamente su 53.4753\,\% con el 56.76\,\% de prueba de la app: son poblaciones y protocolos distintos.
@@ -5259,24 +5305,21 @@ Weka DBSCAN, con eps 1.666296 y minPoints doce, agrupó los 887 casos en un solo
 \begin{figure}[htbp]\centering\includegraphics[width=\linewidth,height=.52\textheight,keepaspectratio]{figuras/dbscan_resultado.png}
 \caption{Salida original de DBSCAN en Weka. Un grupo dominante no demuestra múltiples segmentos de mercado.}\end{figure}\FloatBarrier
 
-Orange no produjo evaluaciones utilizables. Hubo cierres en Qt/Cocoa al emplear selectores; se probaron instalación local, recuperación y reinicio del lienzo, importación CSV y TAB y un lanzador con selectores Qt. El cierre de esta vía se documentó como desviación del plan. Power BI no se utilizó y no hay una corrida MLP que pueda reportarse.
+Orange no produjo evaluaciones utilizables. Hubo cierres en Qt/Cocoa al emplear selectores; se probaron instalación local, recuperación y reinicio del lienzo, importación CSV y TAB y un lanzador con selectores Qt. El cierre de esta vía se documentó como desviación del plan. Power BI no se utilizó. La corrida MLP se realizó en Python.
 \section{Aplicación y demostración}\label{sec:web}
 La web se implementó en Streamlit con cuatro páginas. Inicio presenta alcance, límites y consulta del catálogo. Exploración ofrece señales, brechas y perfiles; Predicción recibe atributos crudos y muestra la clase y sus probabilidades; Modelo documenta resultados por algoritmo, errores por clase y el diagnóstico de ausencias. El artefacto incluye su preprocesamiento y los vecinos se calculan exclusivamente en el espacio predictivo de entrenamiento.
 
 El formulario utiliza géneros, organización, década y notas. No solicita Plays ni listas de interés porque serían las señales con las que se construyó la respuesta. Las pruebas comparan sus salidas con el Pipeline y usan el orden real de clases; una inversión entre el orden de las probabilidades y el de las etiquetas habría producido una interfaz errónea aun con un buen modelo.
 
-\begin{figure}[htbp]\centering\includegraphics[width=\linewidth,height=.44\textheight,keepaspectratio]{figuras/inicio_actual.jpg}
-\caption{Página Inicio capturada durante la integración del documento, el 9 de noviembre de 2026.}\end{figure}\FloatBarrier
+\begin{figure}[htbp]\centering\includegraphics[width=\linewidth,height=.48\textheight,keepaspectratio]{figuras/dashboard_interactivo.png}
+\caption{Dashboard con filtros e indicadores de la consulta.}\end{figure}\FloatBarrier
 
-\begin{figure}[htbp]\centering\includegraphics[width=\linewidth,height=.5\textheight,keepaspectratio]{figuras/formulario_verificado.jpg}
-\caption{Demostración verificada: Adventure y RPG, Otro, década 2020, Rating 5 y Metacritic 100 producen alto con 54.1 por ciento no calibrado.}\end{figure}\FloatBarrier
+\begin{figure}[htbp]\centering\includegraphics[width=\linewidth,height=.48\textheight,keepaspectratio]{figuras/comparacion_mlp.png}
+\caption{Comparación de los cinco candidatos con puntos y segmentos de desviación estándar en CV.}\end{figure}\FloatBarrier
 
-En ese caso, ocultar Metacritic manteniendo Rating cinco cambia la clase a bajo con 44.2\,\%. El cálculo coincide con el modelo guardado; no es un error de etiqueta del formulario. Se añadió un aviso visible de imputación porque la ausencia de prensa no implica mala recepción. Esta sensibilidad muestra el límite de usar cobertura de prensa en un catálogo curado, incluso sin una bandera explícita de ausencia como predictor.
+Exploración incluye filtros por género, década y calificaciones. El dashboard actualiza indicadores y la selección de puntos de la dispersión acota la tabla y el CSV. El selector de agrupamiento ofrece K-Means y Ward. El dendrograma resume el ajuste completo y el mapa PCA responde a los filtros de la consulta. Pearson, Spearman y la corrección de comparaciones múltiples quedan en la sección complementaria de brechas.
 
-\begin{figure}[htbp]\centering\includegraphics[width=\linewidth,height=.48\textheight,keepaspectratio]{figuras/sin_critica_verificado.jpg}
-\caption{Aviso y resultado del caso sin calificación crítica. El cambio no se interpreta como certeza de baja popularidad.}\end{figure}\FloatBarrier
-
-La identidad gráfica combina azul marino, morado, cian y dorado con fuente cómic local. Se centralizaron colores, se separaron etiquetas de barras de error, se quitaron marcas logarítmicas menores amontonadas y se dio ancho suficiente a las figuras. En móvil, las gráficas densas conservan lectura mediante desplazamiento horizontal dentro del panel. Estos cambios son de presentación: no alteran escalas estadísticas ni mediciones.
+La web conserva la identidad azul marino, morado, cian y dorado. Se ajustaron títulos, etiquetas y anchos para escritorio y pantallas estrechas. La gráfica de comparación usa puntos para las métricas y segmentos de una desviación estándar para el F1 de CV.
 
 Se corrigió también el mínimo visual artificial de dos por ciento en las barras de probabilidad y la etiqueta que confundía una organización no frecuente con un estudio independiente. Los inputs validan escalas y dejan los nulos a la imputación entrenada. Las probabilidades no están calibradas y no se presentan como posibilidades actuariales de éxito.
 
@@ -5292,44 +5335,34 @@ El escenario de referencia utiliza Adventure y RPG, organización Otro y década
 \caption{Escenarios hipotéticos calculados con el Pipeline guardado. La última columna muestra la mayor probabilidad, sin calibrar.}\\\hline
 Caso&Situación&Rating&Prensa&Predicción&Probabilidad\\\hline\endfirsthead
 Caso&Situación&Rating&Prensa&Predicción&Probabilidad\\\hline\endhead
-S1 & Notas bajas & 1.0 & 45 & bajo & 60.0\%\\\hline
-S2 & Notas altas & 4.8 & 99 & alto & 54.1\%\\\hline
-S3 & Usuarios altos y prensa baja & 4.8 & 45 & bajo & 43.9\%\\\hline
-S4 & Usuarios bajos y prensa alta & 1.0 & 99 & alto & 38.2\%\\\hline
-S5 & Usuarios altos sin prensa & 4.8 & Ausente & bajo & 44.2\%\\\hline
-S6 & Cambio de organización & 4.8 & 99 & alto & 58.7\%\\\hline
-S7 & Cambio de década & 4.8 & 99 & alto & 57.2\%\\\hline
-S8 & Cambio de género & 4.8 & 99 & alto & 49.7\%\\\hline
+S1 & Notas bajas & 1.0 & 45 & bajo & 78.6\%\\\hline
+S2 & Notas altas & 4.8 & 99 & medio & 46.9\%\\\hline
+S3 & Usuarios altos y prensa baja & 4.8 & 45 & bajo & 63.4\%\\\hline
+S4 & Usuarios bajos y prensa alta & 1.0 & 99 & bajo & 56.6\%\\\hline
+S5 & Usuarios altos sin prensa & 4.8 & Ausente & bajo & 61.6\%\\\hline
+S6 & Cambio de organización & 4.8 & 99 & alto & 65.6\%\\\hline
+S7 & Cambio de década & 4.8 & 99 & medio & 38.7\%\\\hline
+S8 & Cambio de género & 4.8 & 99 & alto & 41.4\%\\\hline
 \end{longtable}
-Al comparar S1 y S2 se observa el comportamiento que esperaríamos en una primera revisión: con ambas notas bajas se estima bajo y con ambas altas se estima alto. Sin embargo, los casos cruzados muestran una situación menos sencilla. S3 tiene Rating de 4.8 y prensa de 45, pero el modelo responde bajo con 43.9\,\%. En S4 sucede lo contrario: Rating de 1.0 y prensa de 99 producen alto con solamente 38.2\,\%. Es la clase con mayor probabilidad, pero ni siquiera alcanza la mitad. Esto impide presentar esa etiqueta como una respuesta segura.
+La tabla muestra cómo responde la MLP cuando se modifican las notas y los demás atributos. S2, con ambas notas altas, estima popularidad media. S5 conserva el Rating de S2 y oculta Metacritic. En ese caso se estima la clase baja y se usa la mediana aprendida para sustituir el faltante. Los escenarios S6 a S8 ilustran la sensibilidad a organización, década y género. Las probabilidades son salidas del modelo y carecen de calibración.
 
-S5 conserva la calificación de usuarios de S2 y oculta Metacritic. La predicción cambia de alto a bajo, con 44.2\,\% para bajo. Esta comparación cuestiona una lectura demasiado simple de la pantalla: que falte una nota no significa que la prensa haya evaluado mal al juego. El resultado aparece porque el Pipeline sustituye el dato ausente por su mediana entrenada y el bosque utiliza esa entrada junto con las demás variables. La web conserva un aviso para que esa situación no pase desapercibida.
-
-También se observa que cambiar únicamente la organización o la década modifica las probabilidades, aunque en estos ejemplos se mantiene la clase alta. No podemos concluir que Nintendo o una década causen popularidad; solo estamos describiendo cómo responde un modelo entrenado sobre este catálogo. En S8, cambiar los géneros por Shooter deja alto como primera clase con 49.7\,\%, otra respuesta que debe leerse con cautela.
 \begin{figure}[htbp]\centering\includegraphics[width=\linewidth]{figuras/sensibilidad_escenarios.png}\caption{Veinticinco combinaciones de Rating y Metacritic con el resto de atributos fijos. La etiqueta es la clase estimada y el color muestra la probabilidad no calibrada de alto.}\end{figure}\FloatBarrier
-\subsection{Resultados capturados en el formulario}
-\begin{figure}[htbp]\centering\includegraphics[width=\linewidth,height=.49\textheight,keepaspectratio]{figuras/escenario_S1.jpg}\caption{S1. Notas bajas: Rating 1.0 y prensa 45. Se muestra la clase baja como referencia del contraste.}\end{figure}\FloatBarrier
-\begin{figure}[htbp]\centering\includegraphics[width=\linewidth,height=.49\textheight,keepaspectratio]{figuras/escenario_S2.jpg}\caption{S2. Notas altas: Rating 4.8 y prensa 99. El resultado alto tiene una probabilidad de 54.1 por ciento.}\end{figure}\FloatBarrier
-\begin{figure}[htbp]\centering\includegraphics[width=\linewidth,height=.49\textheight,keepaspectratio]{figuras/escenario_S3.jpg}\caption{S3. Opiniones cruzadas: Rating 4.8 y prensa 45. El resultado bajo alcanza 43.9 por ciento.}\end{figure}\FloatBarrier
-\begin{figure}[htbp]\centering\includegraphics[width=\linewidth,height=.49\textheight,keepaspectratio]{figuras/escenario_S4.jpg}\caption{S4. Opiniones cruzadas: Rating 1.0 y prensa 99. Alto es la primera clase con 38.2 por ciento, sin mayoría absoluta.}\end{figure}\FloatBarrier
-\begin{figure}[htbp]\centering\includegraphics[width=\linewidth,height=.49\textheight,keepaspectratio]{figuras/escenario_S5.jpg}\caption{S5. Rating 4.8 y prensa ausente. El aviso explica la imputación; el perfil contextual no es la clase del clasificador.}\end{figure}\FloatBarrier
-En S5 la pantalla puede mostrar una clase baja y un perfil contextual de tracción alta. No son dos respuestas del mismo clasificador: el perfil se adjunta desde los vecinos y sus clusters, mientras que la clase proviene del bosque. Que ambos utilicen atributos parecidos no convierte al perfil en una validación independiente de la predicción.
+\subsection{Verificación del formulario}
+\begin{figure}[htbp]\centering\includegraphics[width=\linewidth,height=.49\textheight,keepaspectratio]{figuras/prediccion_mlp_web.png}\caption{Ejecución del formulario en la web con la MLP activa.}\end{figure}\FloatBarrier
 \subsection{Contraejemplos con juegos del conjunto de prueba}
 Para no quedarnos solamente con escenarios inventados, seleccionamos un acierto y un error por cada clase real. Dentro de cada caso se tomó el registro con mayor probabilidad máxima del modelo. Esta selección es posterior a observar las predicciones y busca ilustrar sus límites; no sirve para estimar una nueva exactitud ni representa una muestra aleatoria de casos.
 \begin{longtable}{p{.35\textwidth}p{.12\textwidth}p{.12\textwidth}p{.12\textwidth}p{.15\textwidth}}
 \caption{Aciertos y errores reales frente al objetivo de popularidad del proyecto. No se usa ventas como verdad de referencia.}\\\hline
 Juego&Clase real&Predicción&Resultado&Probabilidad\\\hline\endfirsthead
 Juego&Clase real&Predicción&Resultado&Probabilidad\\\hline\endhead
-Resident Evil 4: Wii Edition (ID 1335) & bajo & alto & Error & 66.8\%\\\hline
-Pokémon Unite (ID 1054) & bajo & bajo & Acierto & 77.2\%\\\hline
-Uncharted: The Nathan Drake Collection (ID 658) & medio & alto & Error & 69.8\%\\\hline
-Pokémon Red (ID 1050) & medio & medio & Acierto & 52.0\%\\\hline
-Jet Set Radio (ID 1057) & alto & bajo & Error & 49.2\%\\\hline
-The Last of Us (ID 78) & alto & alto & Acierto & 82.4\%\\\hline
+Resident Evil 4: Wii Edition (ID 1335) & bajo & alto & Error & 89.6\%\\\hline
+Pokémon Unite (ID 1054) & bajo & bajo & Acierto & 95.0\%\\\hline
+Back 4 Blood (ID 1137) & medio & bajo & Error & 85.7\%\\\hline
+Pokémon Red (ID 1050) & medio & medio & Acierto & 80.8\%\\\hline
+Doki Doki Literature Club! (ID 111) & alto & medio & Error & 79.7\%\\\hline
+The Last of Us (ID 78) & alto & alto & Acierto & 97.5\%\\\hline
 \end{longtable}
-Uncharted: The Nathan Drake Collection es un contraejemplo importante. Su clase real es medio, pero el modelo lo coloca en alto con 69.8\,\%. Resident Evil 4: Wii Edition pertenece a bajo y también se estima alto, con 66.8\,\%. Estos casos refutan la idea de que una probabilidad elevada en la pantalla garantice que el modelo acertará. Por otro lado, The Last of Us sí se identifica como alto con 82.4\,\%; incluirlo muestra que tampoco sería correcto concluir, a partir de los errores, que el modelo nunca funciona.
-
-Jet Set Radio permite ver el error en sentido contrario: su nivel real es alto y la estimación es bajo, con 49.2\,\%. La comparación se hace contra los terciles y la referencia de entrenamiento utilizados en el proyecto. Que un juego sea conocido fuera de Backloggd no cambia esa definición ni convierte la clasificación en un juicio sobre su calidad.
+Los tres errores de la tabla muestran que una probabilidad máxima alta puede acompañar una clasificación equivocada. La comparación usa los terciles de entrenamiento y los conteos observados de Backloggd. Los tres aciertos sirven para contrastar cómo se comporta el mismo modelo cuando coincide con esa etiqueta.
 
 Para estos registros se conservaron ID, listas completas de género y organización, calificaciones, década, conteos y probabilidades. La comprobación numérica se hizo directamente con las entradas crudas del Pipeline. No se presenta una captura del formulario como réplica exacta de un registro con varias organizaciones o categorías que el formulario no permite seleccionar: esa distinción evita confundir una demostración simplificada con una reproducción del dato real.
 \subsection{Cómo comprobamos la clase real de los ejemplos}
@@ -5337,26 +5370,26 @@ Los cortes de entrenamiento son 0.362294 y 0.626682. Bajo corresponde a un índi
 \begin{longtable}{p{.1\textwidth}p{.14\textwidth}p{.14\textwidth}p{.14\textwidth}p{.14\textwidth}p{.13\textwidth}}\caption{Señales observadas que permiten contrastar la clase real de los ejemplos. Los ID se corresponden con el archivo de evidencia.}\\\hline ID&Plays&Wishlist&Backlogs&Índice&Clase real\\\hline\endfirsthead ID&Plays&Wishlist&Backlogs&Índice&Clase real\\\hline\endhead
 1335 & 1100 & 76 & 213 & 0.1327 & bajo\\\hline
 1054 & 4500 & 65 & 184 & 0.2702 & bajo\\\hline
-658 & 4300 & 319 & 1300 & 0.5708 & medio\\\hline
+1137 & 2900 & 335 & 489 & 0.4170 & medio\\\hline
 1050 & 8800 & 154 & 425 & 0.4482 & medio\\\hline
-1057 & 3500 & 671 & 1900 & 0.6788 & alto\\\hline
+111 & 14000 & 460 & 1500 & 0.7390 & alto\\\hline
 78 & 17000 & 1400 & 2000 & 0.8959 & alto\\\hline
 \end{longtable}
 \subsection{Qué aprendimos de las pruebas}
 Los escenarios permiten cuestionar dos expectativas del planteamiento inicial: una calificación alta no basta para asignar popularidad alta en todos los casos y una probabilidad mayor tampoco garantiza una predicción correcta. La ausencia de prensa, el género y la organización cambian el espacio de entrada, mientras que la clase real depende de actividad e interés observados que deliberadamente no se entregan como predictores.
 
-Por eso la aplicación debe entenderse como una estimación orientativa que ayuda a contrastar situaciones. Los contraejemplos no se utilizaron para volver a escoger parámetros sobre la prueba. La forma adecuada de evaluar una mejora futura sería reservar una muestra temporal nueva y establecer antes los criterios de comparación. Reentrenar hasta que desaparezcan estos seis errores solo memorizaría una parte de la evaluación que ya conocemos.
+Por eso la aplicación debe entenderse como una estimación orientativa que ayuda a contrastar situaciones. Los contraejemplos no se utilizaron para volver a escoger parámetros sobre la prueba. La forma adecuada de evaluar una mejora futura sería reservar una muestra temporal nueva y establecer antes los criterios de comparación. Reentrenar hasta que desaparezcan los errores elegidos solo memorizaría una parte de la evaluación que ya conocemos.
 
 \section{Plan real frente a la línea base}\label{sec:plan}
 La línea base del anteproyecto v2.0 programaba actividades del 1 de octubre al 25 de noviembre de 2026. El equipo declara que las actividades técnicas realizadas cumplieron el calendario previsto. La tabla contrasta ese plan con los productos disponibles y las desviaciones de alcance documentadas. No se asignan fechas exactas de terminación porque no se cuenta con un registro por actividad; la entrega y exposición académicas se distinguen de la ejecución técnica.
 \begin{longtable}{p{.22\textwidth}p{.19\textwidth}p{.49\textwidth}}
-\caption{Línea base frente a evidencia disponible al 9 de noviembre de 2026.}\\\toprule Actividad & Línea base & Estado real y justificación\\\midrule\endfirsthead
+\caption{Línea base frente a evidencia disponible al 11 de noviembre de 2026.}\\\toprule Actividad & Línea base & Estado real y justificación\\\midrule\endfirsthead
 Actividad&Línea base&Estado real y justificación\\\midrule\endhead
 Anteproyecto y revisión & 1--5 octubre & Documento v2.0 conservado como antecedente; auditorías posteriores revisaron su alcance. No se reconstruye su fecha de terminación.\\
 Limpieza y validación & 6--15 octubre & Scripts, dataset y log disponibles. Se recibe un maestro ya curado y se auditan decisiones heredadas.\\
 EDA y correlaciones & 15--29 octubre & Tablas y figuras ejecutadas. Se distingue asociación de brecha y se exige cobertura mínima por grupo.\\
-Clustering e interpretación & 29 octubre--10 noviembre & K-Means y DBSCAN ejecutados en Python y Weka; DBSCAN no produjo varios perfiles útiles.\\
-Clasificación & 5--11 noviembre & Cuatro familias de producción evaluadas. Se reemplazó la comparación MLP prevista por bosque; no hay resultado MLP.\\
+Clustering e interpretación & 29 octubre--10 noviembre & K-Means y DBSCAN quedaron documentados en Python y Weka. La vista principal compara K-Means con Ward.\\
+Clasificación & 5--11 noviembre & Cinco candidatos evaluados. Se incorporó la MLP prevista y se seleccionó por validación cruzada.\\
 Arquitectura y web & 8--16 noviembre & Web funcional comprobada al corte, anterior al fin planeado; no se atribuyen horas de adelanto sin bitácora temporal completa.\\
 Despliegue público & 16--18 noviembre & Cancelado por preferencia de mantener datos y modelos locales; demo en localhost.\\
 Evaluación en Orange & Durante modelado & Descartada por cierres; Weka sí conserva seis corridas gráficas.\\
@@ -5369,7 +5402,7 @@ El objetivo de inspección se cumple con un esquema comprobado, log de preparaci
 
 El objetivo de relaciones se cumple con Pearson, Spearman, tamaños y p-valores segmentados. La hipótesis de coincidencia perfecta entre comunidad y prensa no se sostiene. Tampoco puede concluirse que un género sea mejor oportunidad comercial por su correlación o por su brecha media: esas medidas no evalúan demanda no satisfecha, competencia ni ingresos.
 
-En la parte de agrupamiento se obtuvieron dos perfiles con K-Means que permiten resumir diferencias de actividad, interés y recepción. Sin embargo, DBSCAN no encontró varios segmentos útiles con la configuración establecida. Esto también forma parte del resultado: el hecho de aplicar un algoritmo no obliga a que aparezcan los grupos que esperábamos. Los nombres de los perfiles se utilizaron para explicar sus promedios y no para afirmar que todo el mercado se divide de esa manera.
+K-Means y Ward produjeron dos grupos. Los tres índices internos favorecen K-Means en el mismo espacio de datos. Los grupos resumen diferencias de actividad, interés y recepción en esta muestra.
 
 El clasificador supera a la referencia en la partición disponible, pero sigue confundiendo especialmente la clase media. Su etiqueta es un tercil artificial y depende de una referencia histórica del catálogo. Una predicción no puede comprobarse contra ventas ni contra el futuro solo porque el formulario funcione; son validaciones distintas.
 
@@ -5379,7 +5412,7 @@ Después de realizar el análisis, podemos concluir que la idea inicial de revis
 
 K-Means ofrece una síntesis interpretable de dos niveles conjuntos de actividad y recepción, pero no demuestra mercados naturales. DBSCAN no generó una segmentación múltiple útil bajo el protocolo fijado. Conservar ese resultado, y la diferencia de ruido entre Weka y Python, permite explicar lo que cada herramienta produjo sin acomodarlo a una expectativa.
 
-En cuanto a la predicción, sí se logró construir un modelo que supera a la referencia mayoritaria, pero los resultados no permiten decir que pueda decidir por sí solo qué videojuego tendrá éxito. La clase media siguió siendo difícil y los escenarios mostraron que algunas respuestas cambian bastante cuando falta la nota de prensa. También se entrenaron siete variantes adicionales del bosque y ninguna mejoró el criterio de validación utilizado. Por eso se conservó el modelo que ya teníamos, en lugar de presentar como mejora un cambio que no estaba respaldado por sus resultados.
+La clasificación funciona de manera reproducible y supera a Dummy, pero su rendimiento es moderado y la clase media conserva baja recuperación. La MLP ganó por el criterio de CV fijado y Random Forest logró el mayor F1 en la prueba reservada. La evidencia apoya distinguir selección, desempeño en prueba y generalización a datos nuevos.
 
 La web convierte el análisis en una demostración consultable y mantiene visibles los límites de las estimaciones. La ausencia de Metacritic puede alterar mucho una respuesta y requiere cautela. Para estudiar nuevos lanzamientos o rentabilidad necesitaríamos una muestra temporal externa, métricas comerciales observadas, control de plataforma y fecha, y un diseño específico para esa pregunta.
 
@@ -5387,7 +5420,7 @@ Por tanto, resolvemos la exploración de recepción y popularidad relativa dentr
 \section{Reproducibilidad y alcance de la verificación}
 El repositorio organiza original en data/raw, derivados en data/clean, código en src, artefactos en models, pruebas en tests y evidencias en reports. Los scripts usan pathlib y semilla 42 cuando el método dispone de aleatoriedad. La carpeta de este documento copia figuras y tablas para poder compilar sin rutas absolutas ni conexión a los directorios originales.
 
-Se aprobaron 101 pruebas en la ejecución completa más reciente de la suite; la revisión específica anterior de inferencia, modelo, pipeline y visualización incluyó 39 pruebas. Las 222 predicciones almacenadas coinciden con el artefacto; las probabilidades son válidas y los vecinos contienen solo IDs de entrenamiento en el mismo espacio. Veinte archivos de datos y modelos conservaron sus hashes durante esa revisión. Esto comprueba integridad e implementación, no la verdad externa de cada calificación.
+Se aprobaron 102 pruebas en la ejecución completa más reciente de la suite; la revisión específica anterior de inferencia, modelo, pipeline y visualización incluyó 39 pruebas. Las 222 predicciones almacenadas coinciden con el artefacto; las probabilidades son válidas y los vecinos contienen solo IDs de entrenamiento en el mismo espacio. Los hashes del manifiesto vinculan los resultados vigentes con sus entradas y artefactos. Esto comprueba integridad e implementación, no la verdad externa de cada calificación.
 
 El informe se puede compilar con \texttt{latexmk -pdf main.tex}. El manifiesto local identifica hashes de las evidencias copiadas. La bibliografía distingue documentos metodológicos y fuentes de software de las mediciones propias del proyecto. La consulta al sitio de Kaggle confirma su identificación, pero no sustituye el archivo local por una versión actual del servicio.
 
@@ -5408,20 +5441,19 @@ Fuentes & Bibliografía APA y referencias internas a evidencias.\\\bottomrule\en
 \begin{enumerate}
 \item Abrir Inicio y explicar que el maestro tiene 1,117 registros y el antecedente 1,512; mostrar la limitación de ventas.
 \item En Exploración, cambiar Plays a Wishlist y distinguir asociación de brecha. Identificar el tamaño de pares del grupo consultado.
-\item En Modelo, leer la matriz: medio tiene 27 aciertos de 80. Explicar por qué esto limita una exactitud global moderada.
-\item En Predicción, seleccionar Adventure y RPG, organización Otro, década 2020, Rating cinco y Metacritic cien. La evidencia guardada muestra alto con 54.1\,\%.
-\item Ocultar Metacritic y enviar de nuevo: bajo con 44.2\,\%. Mostrar el aviso y explicar sensibilidad, imputación y probabilidades sin calibrar.
+\item En Modelo, leer la matriz: medio tiene 23 aciertos de 80. Explicar por qué esto limita una exactitud global moderada.
+\item En Predicción, probar el formulario con la MLP. Usar los valores de la tabla de escenarios para reproducir S2 y S5 y comparar qué sucede al ocultar Metacritic.
+\item En Exploración, alternar K-Means y Ward, revisar el dendrograma y explicar la comparación de índices.
 \item Abrir las capturas originales de Weka y contrastar 892 casos de CV con 222 de prueba de producción. No atribuir silhouette de Python ni resultados a Orange.
 \end{enumerate}
 \section{Fuentes locales y trazabilidad}
 La inspección y limpieza están en reports/inspeccion.md y limpieza\_log.md. Las relaciones, perfiles y sensibilidad se conservan en reports/clustering.md y sus CSV. Las métricas de producción están en models/metadata.json y reports/modelo\_comparacion.csv. El contraste entre herramientas está en reports/tables/comparativo\_herramientas.csv. Las seis corridas y capturas están en reports/weka y su respaldo ZIP verificado. La revisión adicional de predicción se conserva en reports/revision\_predicciones, incluyendo auditoria.json, decision.json y la bitácora unificada de esa carpeta.
 
 Los nombres completos se conservan en el manifiesto y las tablas copiadas. No se atribuyen nuevas corridas a las capturas históricas. El PDF de criterios del profesor se adjunta como evidencia/rubrica\_proyecto.pdf y se utiliza como guía de cobertura, no como fuente de mediciones.
+\section{Vinculación con las presentaciones de la materia}
+El proyecto aplica la preparación y exploración de datos de Descubrimiento de Conocimiento, y el dashboard como capa de consulta de Arquitectura. Del Proceso de Minería de Datos se incorporaron Naive Bayes, CART, Random Forest, MLP, K-Means, Ward y PCA. Las métricas de clasificación y agrupamiento siguen los ejemplos de Evaluación de MD. La gráfica de Gini sigue el ejemplo del bosque en Evaluación de MD, p.~66. Ward se describe en las pp.~101--107 y la comparación interna de agrupamientos en las pp.~108--115. Las páginas corresponden al orden de los archivos PDF. La visualización y explicación de límites retoman Aplicación de la Minería de Datos.
 \section{Capturas actuales de la aplicación}
-Las siguientes capturas se tomaron durante la integración de este documento, tras iniciar el servidor local. Se distinguen de las evidencias históricas de Weka y de los casos de predicción ya verificados. Weka permaneció cerrado.
-\begin{figure}[htbp]\centering\includegraphics[width=\linewidth]{figuras/exploracion_actual.jpg}\caption{Página Exploración capturada al corte documental.}\end{figure}\FloatBarrier
-\begin{figure}[htbp]\centering\includegraphics[width=\linewidth]{figuras/prediccion_actual.jpg}\caption{Página Predicción y acceso al formulario crudo.}\end{figure}\FloatBarrier
-\begin{figure}[htbp]\centering\includegraphics[width=\linewidth]{figuras/modelo_actual.jpg}\caption{Página Modelo con métricas del artefacto vigente.}\end{figure}\FloatBarrier
+\begin{figure}[htbp]\centering\includegraphics[width=\linewidth]{figuras/ward_web.png}\caption{Dendrograma en la vista de agrupamiento del dashboard.}\end{figure}\FloatBarrier
 \nocite{chaki2023popular,chapman2000crisp,pedregosa2011scikit,mckinney2010pandas,frank2016weka,ester1996dbscan}
 \clearpage\pagestyle{referencias}\printbibliography[heading=bibintoc,title={Referencias}]
 \end{document}

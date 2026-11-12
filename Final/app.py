@@ -26,6 +26,8 @@ setup(
     compact_menu=False,
 )
 
+st.page_link('pages/1_Exploracion.py', label='Abrir dashboard interactivo')
+
 df, bundle, analysis = resources()
 metricas_modelo = bundle['metricas']
 

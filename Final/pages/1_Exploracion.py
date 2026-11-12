@@ -1,5 +1,8 @@
 """Página 1 — Exploración (EDA, Brecha Usuarios-Crítica y Perfiles de Clustering)."""
+import hashlib
 import importlib
+import json
+from textwrap import wrap
 import numpy as np
 import pandas as pd
 import plotly.express as px
@@ -12,128 +15,84 @@ import src.ui as _ui
 if not hasattr(_ui, 'asset_b64') or getattr(_ui, '_UI_VERSION', None) != 'p5-v8-neon':
     importlib.reload(_ui)
 
-from src.config import CLEAN
+from src.config import CLEAN, REPORTS
 from src.visualizacion import COLOR_SENALES
 from src.ui import (
-    asset_b64,
     manual_checks,
-    p5_plotly_layout,
     read_report,
-    render_html,
-    render_lb_rb_nav,
     resources,
     section_banner,
     setup,
 )
 
+from vista_graficas import mostrar_grafica
+
 setup(
-    'Exploración y Brecha Usuarios–Crítica',
-    'Análisis Exploratorio (EDA) · Interacción en Escala Logarítmica · Discrepancia Prensa vs. Comunidad',
+    'Dashboard de videojuegos',
+    'Explora actividad, recepción y perfiles del catálogo',
     transition='about',
     menu_idx=1,
     compact_menu=True,
 )
-
-render_lb_rb_nav('EXPLORACION // EDA & BRECHA')
 
 df, bundle, analysis = resources()
 elegibles = df.loc[df['elegible_analisis']].copy()
 elegibles['rating_100_vista'] = elegibles['Rating'] * 20.0
 elegibles['brecha_vista'] = elegibles['rating_100_vista'] - elegibles['critica_verificada_csv']
 
-# ---------------------------------------------------------------------------
-# 1. FILTROS INTERACTIVOS EN BARRA LATERAL ESTILIZADA
-# ---------------------------------------------------------------------------
-with st.sidebar:
-    st.markdown(
-        '<div class="p5-font" style="font-size:1.25rem;color:var(--accent);margin-top:0.5rem;">'
-        'FILTROS TACTICOS // EDA</div>',
-        unsafe_allow_html=True,
-    )
-    todos_generos = sorted({g for row in elegibles['generos'] for g in row})
-    generos_sel = st.multiselect(
-        'Filtrar por género',
-        options=todos_generos,
-        default=[],
-        placeholder='Todos los géneros',
-    )
-    decadas_disp = sorted(int(d) for d in elegibles['decada'].dropna().unique() if int(d) > 0)
-    decadas_sel = st.multiselect(
-        'Filtrar por década',
-        options=decadas_disp,
-        default=[],
-        format_func=lambda d: f'{d}s',
-        placeholder='Todas las décadas',
-    )
-    rango_rating = st.slider(
-        'Rango de Rating de Usuarios (0–5)',
-        min_value=0.0,
-        max_value=5.0,
-        value=(0.0, 5.0),
-        step=0.1,
-    )
-    rango_meta = st.slider(
-        'Rango de Metacritic (0–100)',
-        min_value=0,
-        max_value=100,
-        value=(0, 100),
-        step=1,
-    )
+def restablecer_filtros():
+    st.session_state['eda_revision_filtros'] = revision_filtros + 1
+    limpiar_seleccion()
+
+
+def limpiar_seleccion():
+    st.session_state['eda_revision_seleccion'] = st.session_state.get('eda_revision_seleccion', 0) + 1
+
+
+revision_filtros = st.session_state.get('eda_revision_filtros', 0)
+with st.expander('Filtros del dashboard', expanded=True):
+    primera, segunda = st.columns(2)
+    with primera:
+        generos_sel = st.multiselect(
+            'Géneros', sorted({g for fila in elegibles['generos'] for g in fila}),
+            placeholder='Todos los géneros', key=f'eda_generos_{revision_filtros}',
+        )
+        rango_rating = st.slider(
+            'Rating de usuarios (0–5)', 0.0, 5.0, (0.0, 5.0), .1,
+            key=f'eda_rating_{revision_filtros}',
+        )
+    with segunda:
+        decadas_sel = st.multiselect(
+            'Décadas', sorted(int(d) for d in elegibles['decada'].dropna().unique() if d > 0),
+            format_func=lambda d: f'{d}s', placeholder='Todas las décadas',
+            key=f'eda_decadas_{revision_filtros}',
+        )
+        rango_meta = st.slider(
+            'Metacritic (0–100)', 0, 100, (0, 100), key=f'eda_meta_{revision_filtros}',
+        )
+    st.button('Restablecer filtros', on_click=restablecer_filtros)
+    st.caption('Los géneros se combinan por coincidencia con cualquiera de los seleccionados. '
+               'Al acotar una escala de calificación se excluyen los juegos sin esa nota.')
 
 filtrado = elegibles.copy()
 if generos_sel:
     filtrado = filtrado[filtrado['generos'].map(lambda gs: any(g in gs for g in generos_sel))]
 if decadas_sel:
     filtrado = filtrado[filtrado['decada'].isin(decadas_sel)]
-filtrado = filtrado[
-    filtrado['Rating'].isna()
-    | filtrado['Rating'].between(rango_rating[0], rango_rating[1])
-]
-filtrado = filtrado[
-    filtrado['critica_verificada_csv'].isna()
-    | filtrado['critica_verificada_csv'].between(rango_meta[0], rango_meta[1])
-]
+if rango_rating != (0.0, 5.0):
+    filtrado = filtrado[filtrado['Rating'].between(*rango_rating)]
+if rango_meta != (0, 100):
+    filtrado = filtrado[filtrado['critica_verificada_csv'].between(*rango_meta)]
 
-cat_corr = read_report('clustering_03_correlaciones_catalogo.csv').iloc[0]
-brecha_media_global = float(elegibles['brecha_vista'].dropna().mean())
-brecha_abs_global = float(elegibles['brecha_vista'].dropna().abs().mean())
-
-newsign_b64 = asset_b64('img/newsign.png')
-icon1_b64 = asset_b64('img/icon1.png')
-icon2_b64 = asset_b64('img/icon2.png')
-icon3_b64 = asset_b64('img/icon3.png')
-
-render_html(
-    f"""
-    <div class="sc-info-bar-list">
-        <div class="sc-info-bar-wrap selected">
-            <img class="sc-info-bar-new" src="data:image/png;base64,{newsign_b64}" alt=""/>
-            <div class="sc-info-bar">
-                <div class="sc-info-bar-icon-wrap"><img class="sc-info-bar-icon" src="data:image/png;base64,{icon1_b64}" alt=""/></div>
-                <span class="sc-info-bar-text">TITULOS FILTRADOS EN VISTA ACTUAL</span>
-                <span class="sc-info-bar-box">COHORTE</span>
-                <span class="sc-info-bar-count">{len(filtrado):,} / {len(elegibles):,}</span>
-            </div>
-        </div>
-        <div class="sc-info-bar-wrap">
-            <div class="sc-info-bar">
-                <div class="sc-info-bar-icon-wrap"><img class="sc-info-bar-icon" src="data:image/png;base64,{icon2_b64}" alt=""/></div>
-                <span class="sc-info-bar-text">CORRELACION CATALOGO (N = {int(cat_corr['n'])} PARES VERIFICADOS)</span>
-                <span class="sc-info-bar-box">PEARSON / SPEARMAN</span>
-                <span class="sc-info-bar-count">r = {cat_corr['pearson_r']:.3f} · ρ = {cat_corr['spearman_rho']:.3f}</span>
-            </div>
-        </div>
-        <div class="sc-info-bar-wrap">
-            <div class="sc-info-bar">
-                <div class="sc-info-bar-icon-wrap"><img class="sc-info-bar-icon" src="data:image/png;base64,{icon3_b64}" alt=""/></div>
-                <span class="sc-info-bar-text">BRECHA TIPICA GLOBAL (RATING × 20 − METACRITIC)</span>
-                <span class="sc-info-bar-box">|Δ| MEDIA</span>
-                <span class="sc-info-bar-count">{brecha_abs_global:.2f} PTS ({brecha_media_global:+.2f})</span>
-            </div>
-        </div>
-    </div>
-    """
-)
+pares_filtrados = filtrado.dropna(subset=['Rating', 'critica_verificada_csv']).copy()
+mediana_plays = filtrado['Plays'].median() if filtrado['Plays'].notna().any() else None
+brecha_absoluta = pares_filtrados['brecha_vista'].abs().mean()
+with st.container(key='dashboard_indicadores'):
+    indicadores = st.columns(4)
+    indicadores[0].metric('Juegos filtrados', f'{len(filtrado):,} / {len(elegibles):,}')
+    indicadores[1].metric('Pares con ambas notas', f'{len(pares_filtrados):,}')
+    indicadores[2].metric('Mediana de Plays', f'{mediana_plays:,.0f}' if mediana_plays is not None else '—')
+    indicadores[3].metric('Brecha absoluta media', f'{brecha_absoluta:.2f} pts' if len(pares_filtrados) else '—')
 
 # ---------------------------------------------------------------------------
 # 2. DISTRIBUCIÓN DE INTERACCIÓN (PLAYS, WISHLIST, BACKLOGS) EN ESCALA LOG
@@ -173,8 +132,9 @@ if filas_gen:
 
     fig_box = px.box(
         df_gen_top,
-        x='Genero',
-        y=senal_sel,
+        x=senal_sel,
+        y='Genero',
+        orientation='h',
         category_orders={'Genero': orden_gen},
         color_discrete_sequence=[PALETA['primary']],
         points='outliers',
@@ -185,14 +145,10 @@ if filas_gen:
         line=dict(color=PALETA['secondary'], width=1.5),
         fillcolor='rgba(165, 107, 255, 0.75)',
     )
-    fig_box.update_yaxes(type='log', title_text=f'{senal_sel} (Escala Log10)')
-    fig_box.update_xaxes(title_text='Género')
-    p5_plotly_layout(
-        fig_box,
-        title=f'Distribución Logarítmica de {senal_sel} por Género',
-        height=440,
-    )
-    st.plotly_chart(fig_box, use_container_width=True)
+    fig_box.update_xaxes(type='log', title_text=f'{senal_sel} · escala logarítmica')
+    fig_box.update_yaxes(autorange='reversed')
+    mostrar_grafica(fig_box, f'Distribución de {senal_sel} por género',
+                    alto=max(360, 28 * len(orden_gen) + 80))
 
     # Comparativa simultánea de medianas log10 de Plays, Wishlist y Backlogs
     resumen_tres = []
@@ -221,22 +177,20 @@ if filas_gen:
             fig_bar_log.add_trace(
                 go.Bar(
                     name=senal,
-                    x=df_med['Genero'],
-                    y=df_med[senal],
+                    x=df_med[senal],
+                    y=df_med['Genero'],
+                    orientation='h',
                     marker_color=colores_bar[senal],
                     marker_line_color='#000000',
                     marker_line_width=1.5,
                 )
             )
         fig_bar_log.update_layout(barmode='group')
-        fig_bar_log.update_yaxes(type='log', title_text='Mediana de Conteos (Escala Log10)')
-        fig_bar_log.update_xaxes(title_text='Género')
-        p5_plotly_layout(
-            fig_bar_log,
-            title='Comparativa de Medianas por Género: Plays vs. Backlogs vs. Wishlist',
-            height=410,
-        )
-        st.plotly_chart(fig_bar_log, use_container_width=True)
+        fig_bar_log.update_xaxes(type='log', title_text='Mediana · escala logarítmica')
+        fig_bar_log.update_yaxes(categoryorder='array', categoryarray=orden_gen, autorange='reversed')
+        mostrar_grafica(fig_bar_log, 'Medianas de Plays, Backlogs y Wishlist',
+                        alto=max(380, 33 * len(orden_gen) + 125))
+
 else:
     st.info('No hay registros con los filtros actuales para construir la distribución por género.')
 
@@ -248,13 +202,13 @@ section_banner(
     'Diagrama de Dispersión y Densidad Conjunta en Pares Elegibles',
 )
 
-pares_filtrados = filtrado.dropna(subset=['Rating', 'critica_verificada_csv']).copy()
 modo_scatter = st.radio(
     'Modo de visualización conjunta',
     options=['Dispersión + Contornos de Densidad', 'Mapa de Calor 2D (Densidad)', 'Solo Dispersión'],
     horizontal=True,
 )
 
+juegos_consulta = filtrado
 if len(pares_filtrados):
     if modo_scatter == 'Mapa de Calor 2D (Densidad)':
         fig_sc = px.density_heatmap(
@@ -293,9 +247,10 @@ if len(pares_filtrados):
                     [
                         pares_filtrados['anio'].fillna(0).astype(int),
                         pares_filtrados['brecha_vista'].round(1),
+                        pares_filtrados['id_juego'],
                     ],
                     axis=-1,
-                ),
+                ).tolist(),
                 hovertemplate=(
                     '<b>%{text}</b> (%{customdata[0]})<br>'
                     'Metacritic: %{x:.0f} / 100<br>'
@@ -321,21 +276,50 @@ if len(pares_filtrados):
                 x=x_ref,
                 y=x_ref / 20.0,
                 mode='lines',
-                name='Paridad exacta (Rating×20 = Metacritic)',
+                name='Paridad',
                 line=dict(color=PALETA['accent'], width=2, dash='dash'),
             )
         )
         fig_sc.update_xaxes(title_text='Metacritic Rating (Escala 0–100)')
         fig_sc.update_yaxes(title_text='Rating de Usuarios (Escala 0–5)')
 
-    p5_plotly_layout(
-        fig_sc,
-        title='Relación entre Calificación de Prensa (Metacritic) y Comunidad (Rating)',
-        height=460,
-    )
-    st.plotly_chart(fig_sc, use_container_width=True)
+    fig_sc.update_xaxes(title_text='Metacritic (0–100)')
+    fig_sc.update_yaxes(title_text='Usuarios (0–5)')
+    if modo_scatter == 'Mapa de Calor 2D (Densidad)':
+        fig_sc.update_coloraxes(colorbar=dict(title='Juegos', thickness=10))
+        mostrar_grafica(fig_sc, 'Densidad de calificaciones', alto=430)
+    else:
+        st.caption('Selecciona puntos, un rectángulo o un lazo para consultar esos juegos en la tabla.')
+        huella_pares = hashlib.sha256(pares_filtrados['id_juego'].to_numpy(dtype='int64').tobytes()).hexdigest()[:16]
+        revision = st.session_state.get('eda_revision_seleccion', 0)
+        seleccion = mostrar_grafica(
+            fig_sc, 'Calificaciones de usuarios y prensa', alto=430,
+            key=f'recepcion_{modo_scatter}_{huella_pares}_{revision}', on_select='rerun',
+            selection_mode=('points', 'box', 'lasso'),
+        )
+        ids_seleccion = {
+            int(datos[2])
+            for punto in seleccion.selection.points
+            if isinstance(datos := punto.get('customdata'), (list, tuple)) and len(datos) >= 3
+        }
+        if ids_seleccion:
+            st.button('Quitar selección de la gráfica', on_click=limpiar_seleccion)
+            juegos_consulta = filtrado[filtrado['id_juego'].isin(ids_seleccion)]
 else:
     st.info('No hay pares completos de Rating y Metacritic bajo los filtros seleccionados.')
+
+st.subheader('Juegos de la consulta')
+cantidad = len(juegos_consulta)
+resultado = 'juego' if cantidad == 1 else 'juegos'
+st.caption(f'{cantidad:,} {resultado} en la tabla. La selección del gráfico acota esta consulta y su CSV.')
+columnas = ['Title', 'anio', 'Rating', 'critica_verificada_csv', 'brecha_vista', 'Plays', 'Backlogs', 'Wishlist']
+consulta = juegos_consulta[columnas].rename(columns={
+    'Title': 'Juego', 'anio': 'Año', 'Rating': 'Usuarios', 'critica_verificada_csv': 'Metacritic',
+    'brecha_vista': 'Brecha (pts)',
+})
+st.dataframe(consulta, hide_index=True, width='stretch', height=300)
+st.download_button('Descargar juegos de la consulta', consulta.to_csv(index=False).encode('utf-8'),
+                   'consulta_dashboard.csv', 'text/csv', disabled=consulta.empty)
 
 # ---------------------------------------------------------------------------
 # 4. ANÁLISIS DE LA BRECHA USUARIOS-CRÍTICA POR GÉNERO Y ESTUDIO
@@ -345,6 +329,7 @@ section_banner(
     'Rating Escalado a 100 (Rating × 20) vs. Metacritic por Género y Organización',
 )
 
+st.caption('Comparación descriptiva sobre los pares completos del catálogo elegible.')
 st.write(
     'Definimos la brecha en escala homogénea de 100 puntos como '
     r'$\text{Brecha} = (\text{Rating} \times 20) - \text{Metacritic}$. '
@@ -374,9 +359,9 @@ metrica_orden = st.selectbox(
     'Métrica de desacuerdo a graficar',
     options=['brecha_absoluta_media', 'brecha_media'],
     format_func=lambda m: (
-        'Brecha absoluta media |Rating×20 − Metacritic| (Magnitud del desacuerdo)'
+        'Brecha absoluta media'
         if m == 'brecha_absoluta_media'
-        else 'Brecha media con signo (Rating×20 − Metacritic)'
+        else 'Brecha media con signo'
     ),
 )
 
@@ -392,8 +377,6 @@ fig_gap = go.Figure(
         y=df_plot_b['grupo'],
         orientation='h',
         marker=dict(color=colores_brecha, line=dict(color=PALETA['text-primary'], width=1)),
-        text=df_plot_b[metrica_orden].map(lambda v: f'{v:.2f} pts'),
-        textposition='outside',
         customdata=np.stack(
             [
                 df_plot_b['n'],
@@ -409,14 +392,13 @@ fig_gap = go.Figure(
         ),
     )
 )
-fig_gap.update_xaxes(title_text='Puntos sobre escala 0–100')
-fig_gap.update_yaxes(title_text=dim_brecha)
-p5_plotly_layout(
-    fig_gap,
-    title=f'Desacuerdo Usuarios–Crítica por {dim_brecha} (Amarillo = Mayor Desacuerdo)',
-    height=max(420, len(df_plot_b) * 26),
-)
-st.plotly_chart(fig_gap, use_container_width=True)
+etiquetas_grupos = [wrap(grupo, width=16) for grupo in df_plot_b['grupo']]
+fig_gap.update_xaxes(title_text='Brecha (pts)')
+fig_gap.update_yaxes(tickmode='array', tickvals=df_plot_b['grupo'],
+                     ticktext=['<br>'.join(lineas) for lineas in etiquetas_grupos])
+alto_por_grupo = max(32, 14 * max(map(len, etiquetas_grupos), default=1) + 8)
+titulo_brecha = 'Brecha por género' if dim_brecha == 'Género' else 'Brecha por organización'
+mostrar_grafica(fig_gap, titulo_brecha, alto=max(420, len(df_plot_b) * alto_por_grupo + 60))
 
 configuracion_corr = {
     'grupo': 'Grupo',
@@ -431,7 +413,13 @@ configuracion_corr = {
     'spearman_q_bh': st.column_config.NumberColumn('q BH Spearman', format='%.2e'),
 }
 
-with st.expander('Ver tabla completa de correlaciones y brechas con corrección Benjamini–Hochberg (FDR)'):
+with st.expander('Análisis complementario de correlaciones y corrección por comparaciones múltiples'):
+    correlacion = read_report('clustering_03_correlaciones_catalogo.csv').iloc[0]
+    st.caption(
+        f'Catálogo elegible completo: Pearson r = {correlacion["pearson_r"]:.3f}, '
+        f'Spearman ρ = {correlacion["spearman_rho"]:.3f} ({int(correlacion["n"]):,} pares). '
+        'La comparación por grupo usa este mismo alcance.'
+    )
     columnas_tabla = [
         'grupo',
         'n',
@@ -462,28 +450,43 @@ with st.expander('Ver tabla completa de correlaciones y brechas con corrección 
 # ---------------------------------------------------------------------------
 section_banner(
     'Perfiles de Popularidad y Recepción (Clustering Fase 4A)',
-    'Proyección PCA 2D y Diagnóstico K-Means / DBSCAN sobre 6 Variables',
+    'K-Means y agrupamiento jerárquico con enlace de Ward',
 )
 
 profiles = pd.read_csv(CLEAN / 'dataset_con_clusters.csv')
-resumen_perfiles = read_report('clustering_03_perfiles.csv')
-method = st.radio('Algoritmo de agrupamiento a inspeccionar', ['kmeans', 'dbscan'], horizontal=True)
+metodo = st.radio('Método de agrupamiento', ['K-Means', 'Ward'], horizontal=True)
+comparacion = read_report('clase_comparacion_clustering.csv')
+st.caption('Mismos juegos y variables para ambos métodos. Cada corte se eligió por silueta entre 2 y 10 grupos.')
+st.dataframe(comparacion, hide_index=True, width='stretch', column_config={
+    'metodo': 'Método', 'k': 'Grupos',
+    'silhouette': st.column_config.NumberColumn('Silueta ↑', format='%.3f'),
+    'davies_bouldin': st.column_config.NumberColumn('Davies–Bouldin ↓', format='%.3f'),
+    'calinski_harabasz': st.column_config.NumberColumn('Calinski–Harabasz ↑', format='%.1f'),
+})
 
-if method == 'dbscan' and analysis['dbscan_clusters'] < 2:
-    st.warning(
-        'DBSCAN identifica un núcleo denso principal (cluster 0) y 21 casos atípicos de densidad (-1); '
-        'no separa múltiples segmentos comerciales.'
-    )
+agrupados = profiles[profiles.incluido_clustering & profiles['id_juego'].isin(filtrado['id_juego'])].copy()
+if metodo == 'Ward':
+    asignaciones = read_report('clase_ward_asignaciones.csv')
+    agrupados = agrupados.merge(asignaciones, on='id_juego', validate='one_to_one')
+    columna = 'cluster_ward'
+    resumen = read_report('clase_ward_perfiles.csv')
+    arbol = json.loads((REPORTS / 'clase_ward_dendrograma.json').read_text())
+    figura_ward = go.Figure()
+    for x, y in zip(arbol['x'], arbol['y']):
+        figura_ward.add_trace(go.Scatter(x=x, y=y, mode='lines', line=dict(color=PALETA['primary']),
+                                         showlegend=False, hovertemplate='Distancia %{y:.2f}<extra></extra>'))
+    figura_ward.update_xaxes(tickmode='array', tickvals=[5+10*i for i in range(len(arbol['hojas']))],
+                             ticktext=arbol['hojas'], tickangle=-45, title_text='Ramas resumidas')
+    figura_ward.update_yaxes(title_text='Distancia de Ward')
+    mostrar_grafica(figura_ward, 'Dendrograma de Ward', alto=360)
+    st.caption('Vista de las 12 últimas ramas del ajuste completo. Los paréntesis indican cuántos juegos resume cada rama.')
+else:
+    columna = 'cluster_kmeans'
+    resumen = read_report('clustering_03_perfiles.csv').query("metodo == 'kmeans'")
 
-column = f'cluster_{method}'
-st.dataframe(
-    resumen_perfiles[resumen_perfiles.metodo.eq(method)],
-    hide_index=True,
-    width='stretch',
-)
-
-agrupados = profiles[profiles.incluido_clustering].copy()
-agrupados['perfil'] = agrupados[column].astype(int).astype(str)
+st.caption('La tabla describe los grupos completos. El mapa PCA responde a los filtros del dashboard.')
+st.dataframe(resumen, hide_index=True, width='stretch')
+agrupados['perfil'] = agrupados[columna].astype(int).astype(str)
 
 fig_pca = px.scatter(
     agrupados,
@@ -492,27 +495,25 @@ fig_pca = px.scatter(
     color='perfil',
     hover_name='Title',
     hover_data=['Release Date', 'Rating', 'Metacritic Rating', 'Plays'],
-    color_discrete_sequence=[PALETA['primary'], PALETA['accent'], PALETA['secondary'], PALETA['text-primary']],
+    color_discrete_map={'0': PALETA['primary'], '1': PALETA['accent'], '-1': PALETA['secondary']},
     labels={
-        'componente_1': 'Componente Principal 1 (Tracción / Popularidad)',
-        'componente_2': 'Componente Principal 2 (Recepción Crítica / Usuarios)',
+        'componente_1': 'Componente 1',
+        'componente_2': 'Componente 2',
         'perfil': 'Cluster',
     },
 )
 fig_pca.update_traces(marker=dict(size=7, opacity=0.85, line=dict(width=0.7, color='#000000')))
-p5_plotly_layout(
-    fig_pca,
-    title=f'Mapa PCA 2D ({sum(analysis["pca_varianza"]):.1%} Varianza Explicada) — {method.upper()}',
-    height=430,
-)
-st.plotly_chart(fig_pca, use_container_width=True)
+if agrupados.empty:
+    st.info('La consulta no contiene juegos con coordenadas PCA.')
+else:
+    mostrar_grafica(fig_pca, f'PCA · {metodo} · {sum(analysis["pca_varianza"]):.1%} de varianza explicada', alto=430)
 
-with st.expander('Comparar k=2, k=3 y k=4, selección de hiperparámetros y validación cruzada con Weka'):
+with st.expander('Selección de grupos y comparación de K-Means con Weka'):
     st.markdown('**Comparación de alternativas k=2, k=3 y k=4:**')
     st.dataframe(read_report('clustering_03_alternativas_k.csv'), hide_index=True, width='stretch')
     st.markdown('**Búsqueda de parámetros:**')
     st.dataframe(
-        read_report('clustering_03_seleccion_kmeans.csv' if method == 'kmeans' else 'clustering_03_sensibilidad_dbscan.csv'),
+        read_report('clustering_03_seleccion_kmeans.csv' if metodo == 'K-Means' else 'clase_ward_cortes.csv'),
         hide_index=True,
         width='stretch',
     )

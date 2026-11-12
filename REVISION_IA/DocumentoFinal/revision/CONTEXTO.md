@@ -1262,34 +1262,32 @@ Contenido no textual o tabla de datos: consultar el original para inspección vi
 
 ## verificacion.json
 
-Ruta: `DocumentoFinal/revision/verificacion.json` · Bytes: 1072 · SHA-256: `81207318dfba815c38c59298fcc99b71ddfdbdaa80a64b4f2b2eafa923d1dd5d`
+Ruta: `DocumentoFinal/revision/verificacion.json` · Bytes: 654 · SHA-256: `938b51801639ef51b88d9751aef24058a8463d4279d370b4920edcbf20bdb285`
 
 ````text
 {
-  "paginas": 41,
-  "figuras": 21,
-  "capturas_web_nuevas": 5,
+  "paginas": 34,
+  "figuras": 15,
+  "pruebas_cierre": 102,
+  "referencias_indefinidas": 0,
+  "desbordamientos_horizontales": 0,
+  "modelo": "MLPClassifier",
+  "modelo_sha256": "1f1dc0d785c54056044ff5612e9b636fbaabb0ee154774fbc766b7b13349f9af",
   "escenarios_hipoteticos": 8,
   "combinaciones_sensibilidad": 25,
   "casos_reales": 6,
-  "errores_reales": 3,
-  "aciertos_reales": 3,
-  "compilacion": "correcta con latexmk y biber",
-  "referencias_indefinidas": 0,
-  "desbordamientos_horizontales": 0,
-  "preambulo_original_conservado": true,
-  "revision_visual": "41 páginas inspeccionadas; página 27 revisada de nuevo tras separar etiquetas de la rejilla",
-  "probabilidades": "Sumas y clase de máxima probabilidad verificadas en 14 casos documentados",
-  "modelo_sha256": "ee362dae946d18981714171de2d66c0b93fc00a364e6990f698ed3b68ae8550e",
-  "modelo_sin_cambios": true,
-  "nota_estadistica": "Los escenarios hipotéticos no tienen verdad conocida. Los seis casos reales son ilustraciones posteriores de la prueba, no validación independiente.",
-  "pruebas_cierre": 101,
+  "probabilidades": "Sumas y clase de máxima probabilidad verificadas en 14 casos",
+  "comparacion_ward": "ARI 1.0 con sklearn; tres métricas de cada método recalculadas",
   "paginas_modificadas_revisadas": [
-    34,
-    37
+    3,
+    4,
+    14,
+    16,
+    17,
+    27,
+    32
   ],
-  "anclas_duplicadas": 0,
-  "calendario": "Cumplimiento técnico declarado por el equipo; no se asignan fechas exactas."
+  "compilacion": "correcta con latexmk y biber"
 }
 
 ````

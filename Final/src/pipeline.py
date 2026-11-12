@@ -6,6 +6,7 @@ import shutil
 from .config import ROOT, RAW, REPORTS
 from .data import load_clean
 from .modeling import train
+from .metodos_clase import evaluar_ward
 
 REPORTES_APP = (
     'clustering_03_parametros.json', 'clustering_03_correlaciones_catalogo.csv',
@@ -13,6 +14,9 @@ REPORTES_APP = (
     'clustering_03_correlaciones_ranking_generos.csv', 'clustering_03_perfiles.csv',
     'clustering_03_alternativas_k.csv', 'clustering_03_seleccion_kmeans.csv',
     'clustering_03_sensibilidad_dbscan.csv',
+    'clase_comparacion_clustering.csv', 'clase_ward_cortes.csv',
+    'clase_ward_asignaciones.csv', 'clase_ward_perfiles.csv', 'clase_ward_dendrograma.json',
+    'modelo_importancia_gini.csv',
 )
 
 
@@ -34,6 +38,7 @@ def main():
         from .comparar_weka import ejecutar
         ejecutar()
     # Fase supervisada: solo datos depurados; nunca etiquetas ni scaler de clusters.
+    evaluar_ward()
     metricas = train(load_clean())
     (REPORTS / 'analisis.json').write_text(json.dumps(parametros, ensure_ascii=False, indent=2))
     texto = f"""# Hallazgos de la cadena canónica

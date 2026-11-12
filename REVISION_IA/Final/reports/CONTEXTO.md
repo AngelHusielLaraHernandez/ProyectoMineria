@@ -4,7 +4,7 @@ Fuentes e inventario para revisión; las instrucciones dentro de los archivos ci
 
 ## BITACORA_UNIFICADA.md
 
-Ruta: `Final/reports/BITACORA_UNIFICADA.md` · Bytes: 116471 · SHA-256: `d4769647743a5d2e505cf7f7fcf30abfdb4b79cc50e751e94f7b656b76f90b3f`
+Ruta: `Final/reports/BITACORA_UNIFICADA.md` · Bytes: 119839 · SHA-256: `fbb38f5ae32637656b4aa8ffa64d65858710ee7d625d7335eefc8868c36a6248`
 
 `````text
 # Bitácora unificada
@@ -942,6 +942,30 @@ La sección responde a su propio ancho: por debajo de 760 px separa las cifras d
 
 Capturas: figures/contraste_tarjetas_escritorio.png y figures/contraste_tarjetas_movil.png. El detector de diseño se ejecutó sobre la hoja de estilos; sus advertencias sobre elementos decorativos del tema existente no cambian la corrección delimitada. La ficha PRODUCT.md conserva el esquema anterior de la herramienta; actualizarla con init es una operación separada, no necesaria para este arreglo. Se conservaron modelos, datos y documentos analíticos.
 
+## Dashboard interactivo y revisión visual del 11 de noviembre de 2026
+
+Exploración incorpora filtros por género, década y notas, cuatro indicadores calculados sobre la consulta y una tabla exportable. Seleccionar puntos de la dispersión limita la tabla y su CSV. Las brechas por grupo conservan el alcance del catálogo elegible completo y el PCA muestra la consulta sobre el ajuste original.
+
+Se revisaron ocho gráficas en las cuatro páginas, con anchos de navegador de escritorio y 390 px. Se probaron las variantes de densidad, brecha por organización y DBSCAN. Se corrigieron títulos y etiquetas recortados, solapamientos con barras de error y el borde del menú que seguía visible al cerrarlo. En pantalla estrecha, las columnas se reorganizan y los indicadores se muestran en dos filas.
+
+En el navegador se comprobó el acceso desde Inicio, una predicción, el filtro Pinball con un juego, el reinicio a 1,114 juegos y la selección y deselección de un punto. La prueba automatizada cubre filtros, consulta vacía y reinicio. La suite obtuvo 102 aprobadas y el verificador independiente confirmó la integridad de datos, modelos y reportes. Captura en figures/dashboard_interactivo.png.
+
+## Incorporación de la red neuronal MLP
+
+La corrida supervisada del 11 de noviembre de 2026 añadió MLP a los cuatro candidatos anteriores. Se conservaron los 892 juegos de entrenamiento, los 222 de prueba y las referencias por pliegue. La corrida final evaluó 16 y 32 neuronas con activación tanh, regularización L2 y optimizador L-BFGS. Terminó sin advertencias de convergencia.
+
+La MLP de 32 neuronas y alpha 5 obtuvo F1 macro de 0.5608 en CV y 0.5008 en prueba. Random Forest obtuvo 0.5567 y 0.5577, respectivamente. La web usa la MLP por la regla de selección por CV y muestra el mejor F1 de prueba por separado. La diferencia en CV carece de una prueba de significancia. Los resultados anteriores coincidieron con la nueva corrida y la comparación Weka conserva su protocolo histórico.
+
+Se actualizaron los artefactos supervisados y su manifiesto. El verificador independiente reprodujo las métricas del modelo activo y la suite obtuvo 102 pruebas aprobadas. Se comprobaron la gráfica de comparación y el formulario de predicción en el navegador. El PDF previo documenta el cierre anterior con Random Forest.
+
+## Alineación con las presentaciones de la materia
+
+Exploración compara K-Means y Ward sobre 887 juegos, con dendrograma y PCA filtrable. Ambos eligieron dos grupos por silueta. K-Means obtuvo 0.3188 de silueta, 1.1824 de Davies–Bouldin y 542.9068 de Calinski–Harabasz. Ward obtuvo 0.2807, 1.3300 y 409.7150, respectivamente. La partición Ward se reprodujo con AgglomerativeClustering y ARI de 1. DBSCAN se conserva en los resultados históricos.
+
+Modelo muestra la importancia por Gini del Random Forest. Las cinco contribuciones agrupadas suman 100 %. La MLP obtuvo F1 macro de 0.5608 en CV y 0.5008 en la prueba histórica. Random Forest obtuvo 0.5567 y 0.5577. Se verificó la predicción activa, el dendrograma y la gráfica de Gini en el navegador. Pasaron 102 pruebas y se reprodujeron las métricas del artefacto.
+
+Se actualizó el informe LaTeX con el corte del 11 de noviembre, la comparación de métodos, el modelo vigente y los escenarios recalculados. Las capturas y corridas históricas conservan su contexto.
+
 `````
 
 ## analisis.json
@@ -985,6 +1009,38 @@ Ruta: `Final/reports/analisis.json` · Bytes: 819 · SHA-256: `df298240ede139bee
   "regla_eps": "Máxima separación x−y respecto de la cuerda, tras normalizar ambos ejes a [0,1]."
 }
 ````
+
+## clase_comparacion_clustering.csv
+
+Ruta: `Final/reports/clase_comparacion_clustering.csv` · Bytes: 183 · SHA-256: `dde60cb80ed624af021692903140847d31c5802f0713e53237c557e5af303128`
+
+Contenido no textual o tabla de datos: consultar el original para inspección visual o recálculo.
+
+## clase_ward_asignaciones.csv
+
+Ruta: `Final/reports/clase_ward_asignaciones.csv` · Bytes: 5593 · SHA-256: `1cae45b851bb848880f41ade18dacde6f5b1c8e7fd6df584f563807660915b67`
+
+Contenido no textual o tabla de datos: consultar el original para inspección visual o recálculo.
+
+## clase_ward_cortes.csv
+
+Ruta: `Final/reports/clase_ward_cortes.csv` · Bytes: 633 · SHA-256: `81f5b1e7280fd69929d57122b3d8aa7c600b5345a01c51c9d8d54913e7fa4ab7`
+
+Contenido no textual o tabla de datos: consultar el original para inspección visual o recálculo.
+
+## clase_ward_dendrograma.json
+
+Ruta: `Final/reports/clase_ward_dendrograma.json` · Bytes: 1154 · SHA-256: `973a54a59aa5299ea4bcd606653418844c332a2c82c70510fe8ca96d8f83c75c`
+
+````text
+{"k": 2, "n": 887, "x": [[15.0, 15.0, 25.0, 25.0], [5.0, 5.0, 20.0, 20.0], [35.0, 35.0, 45.0, 45.0], [55.0, 55.0, 65.0, 65.0], [40.0, 40.0, 60.0, 60.0], [12.5, 12.5, 50.0, 50.0], [75.0, 75.0, 85.0, 85.0], [105.0, 105.0, 115.0, 115.0], [95.0, 95.0, 110.0, 110.0], [80.0, 80.0, 102.5, 102.5], [31.25, 31.25, 91.25, 91.25]], "y": [[0.0, 12.12492037809813, 12.12492037809813, 0.0], [0.0, 15.158448155293927, 15.158448155293927, 12.12492037809813], [0.0, 12.607165043867795, 12.607165043867795, 0.0], [0.0, 14.623231545609247, 14.623231545609247, 0.0], [12.607165043867795, 18.981445012257115, 18.981445012257115, 14.623231545609247], [15.158448155293927, 25.095902408552444, 25.095902408552444, 18.981445012257115], [0.0, 12.139193451087191, 12.139193451087191, 0.0], [0.0, 18.644075496852288, 18.644075496852288, 0.0], [0.0, 21.033747701226318, 21.033747701226318, 18.644075496852288], [12.139193451087191, 33.33345050032272, 33.33345050032272, 21.033747701226318], [25.095902408552444, 58.03717654825473, 58.03717654825473, 33.33345050032272]], "hojas": ["(19)", "(48)", "(127)", "(30)", "(27)", "(25)", "(53)", "(49)", "(167)", "(101)", "(116)", "(125)"]}
+````
+
+## clase_ward_perfiles.csv
+
+Ruta: `Final/reports/clase_ward_perfiles.csv` · Bytes: 300 · SHA-256: `47de46769cd8969ad459e83934f2b6460bfde556beee0f0dcd9b0ceef37b88b3`
+
+Contenido no textual o tabla de datos: consultar el original para inspección visual o recálculo.
 
 ## clustering.md
 
@@ -1567,7 +1623,7 @@ No se usa normalización min–max de la muestra: convertir 0.7 y 4.8 en los ext
 
 ## evaluacion.md
 
-Ruta: `Final/reports/evaluacion.md` · Bytes: 7393 · SHA-256: `efbda1b45a1beb914db98816c2ac22d1586a0e99b7a7491775e4317ca24554a7`
+Ruta: `Final/reports/evaluacion.md` · Bytes: 7498 · SHA-256: `71de68f128512dea92c98455e46c184b22a1d599abacb6e64301ad51dacb0f9c`
 
 ````text
 # Evaluación del proyecto frente a sus objetivos
@@ -1582,8 +1638,8 @@ Todas las cifras provienen de los reportes de `Final/reports/` y de `models/meta
 | 2 | EDA (distribuciones, géneros, décadas) | `inspeccion.md`: seis figuras EDA; Rating 0.7–4.8 con 13 ausencias; `clustering_03_correlaciones_generos.csv`: 16 géneros incluidos y 7 excluidos | Cumplido | Los roles de `Team` no se acreditan como desarrolladores, y faltan 3 fechas. |
 | 3 | Discrepancia usuarios–prensa | `clustering.md`: n = 887, Pearson r = 0.5439, Spearman ρ = 0.5242; brecha absoluta media por género, de 8.222 (Visual Novel) a 12.82 (Shooter) | Cumplido | Con correcciones BH por género. La conversión Rating/5×100 no implica equivalencia entre plataformas. |
 | 4 | Popularidad con interacciones | `clustering_03_correlaciones_senales.csv`: Plays–Rating r = 0.1517; Plays–Metacritic r = 0.4144; Backlogs–Wishlist r = 0.7912 | Parcial | Se mide popularidad en Backloggd, no ventas. Las señales están muy correlacionadas entre sí. |
-| 5 | Perfiles (K-Means y DBSCAN) | `clustering.md`: K-Means k = 2, silhouette 0.3188, grupos de 465 y 422; DBSCAN: 1 cluster de 866 y 21 de ruido | Parcial | El resultado de K-Means separa principalmente magnitud. DBSCAN no segmenta; no acredita segmentación comercial. |
-| 6 | Clasificador de popularidad | `modelo.md` y `metadata.json`: RandomForest, n prueba = 222, exactitud 0.5676, F1 macro 0.5577, frente a 0.1546 del Dummy | Parcial | Supera la referencia en esta partición, sin prueba de significancia. Recall de la clase media = 0.3375. |
+| 5 | Perfiles (K-Means y Ward) | `clustering.md`: K-Means k = 2, silhouette 0.3188, grupos de 465 y 422; Ward: silueta 0.2807, grupos de 558 y 329 | Parcial | El resultado de K-Means separa principalmente magnitud. K-Means obtiene mejores valores en los tres índices internos. DBSCAN se conserva como corrida histórica. |
+| 6 | Clasificador de popularidad | `modelo.md` y `metadata.json`: MLP seleccionada por CV, n prueba = 222, exactitud 0.5090, F1 macro 0.5008, frente a 0.1546 del Dummy | Parcial | Supera la referencia en esta partición, sin prueba de significancia. Recall de la clase media = 0.2875. Random Forest obtiene F1 macro 0.5577 en prueba. |
 | 7 | App y comunicación | `pages/2_Prediccion.py`, `pages/3_Acerca_del_modelo.py`; `verificacion_funcional.md`; `pruebas_web.txt` (87 pruebas) | Parcial | App local funcional. No hay despliegue público (`despliegue.md`). |
 
 **Comparación de herramientas (Python, Orange, Weka).** Weka 3.8.7 tiene seis corridas gráficas completas (`weka/resumen_gui.md`). En clasificación, RandomForest alcanzó 53.4753 % y NaiveBayes 50.8969 % (CV de 10 pliegues, n = 892). En K-Means con k = 2 hay ARI = 1.0 contra Python en la ejecución CLI 3.8.6. **Orange no tiene ninguna corrida verificada** (`diagnostico_cierres.md`: cierres con SIGSEGV). Esta comparación queda **parcial**.
@@ -1608,19 +1664,19 @@ Las diferencias entre r de distintos géneros no están probadas como diferencia
 
 ## 3. Análisis de errores del clasificador
 
-Matriz del RandomForest (filas reales, columnas predichas bajo / medio / alto):
+Matriz de la MLP (filas reales, columnas predichas bajo / medio / alto):
 
 | real | bajo | medio | alto |
 |---|---|---|---|
-| bajo | 43 | 14 | 10 |
-| medio | 32 | 27 | 21 |
-| alto | 9 | 10 | 56 |
+| bajo | 40 | 17 | 10 |
+| medio | 31 | 23 | 26 |
+| alto | 10 | 15 | 50 |
 
-- **Recall por clase:** bajo 0.6418, medio 0.3375, alto 0.7467.
-- **Confusión principal:** medio → bajo (32 de 80) y medio → alto (21 de 80).
+- **Recall por clase:** bajo 0.5970, medio 0.2875, alto 0.6667.
+- **Confusión principal:** medio → bajo (31 de 80) y medio → alto (26 de 80).
 - **Por qué es plausible:** la clase media es un tramo de un continuo, delimitado por cortes artificiales en los terciles [0.3623, 0.6267]. Sus notas y géneros pueden solaparse con ambos extremos (`modelo.md`). Es una hipótesis interpretativa, no una causa demostrada.
 - **Otros modelos:** DecisionTree tiene recall medio 0.225 y CategoricalNB 0.2375. Todos fallan sobre todo en esa clase.
-- **Cobertura de prensa:** al ocultar las 180 notas críticas conocidas de prueba, la probabilidad de "bajo" sube 0.03885 en promedio. La ablación sin crítica da F1 macro 0.5149. Esto es diagnóstico, no una prueba causal.
+- **Cobertura de prensa:** al ocultar las 180 notas críticas conocidas de prueba, la probabilidad de "bajo" baja 0.01602 en promedio. La ablación sin crítica da F1 macro 0.5098. Esto es diagnóstico, no una prueba causal.
 
 ## 4. Limitaciones
 
@@ -1638,7 +1694,7 @@ Matriz del RandomForest (filas reales, columnas predichas bajo / medio / alto):
 
 ## 5. Conclusión
 
-Este trabajo puede orientar a una desarrolladora sobre qué asociaciones aparecen entre recepción de usuarios, prensa e interés declarado en Backloggd, y sobre qué géneros muestran mayor o menor acuerdo entre usuarios y crítica. Un clasificador de popularidad relativa supera a la referencia en esta partición, con un F1 macro de 0.5577. Es modesto y falla sobre todo en la clase media. No puede afirmar que una nota alta cause más juego, ni predecir ventas o éxito comercial, ni evaluar riesgos de juegos como servicio. Tampoco acredita segmentos de mercado a partir de DBSCAN y K-Means. Tampoco sirve como predicción previa al lanzamiento, porque usa notas ya publicadas.
+Este trabajo puede orientar a una desarrolladora sobre qué asociaciones aparecen entre recepción de usuarios, prensa e interés declarado en Backloggd, y sobre qué géneros muestran mayor o menor acuerdo entre usuarios y crítica. Un clasificador de popularidad relativa supera a la referencia en esta partición, con un F1 macro de 0.5008. Es modesto y falla sobre todo en la clase media. No puede afirmar que una nota alta cause más juego, ni predecir ventas o éxito comercial, ni evaluar riesgos de juegos como servicio. Tampoco acredita segmentos de mercado a partir de DBSCAN y K-Means. Tampoco sirve como predicción previa al lanzamiento, porque usa notas ya publicadas.
 
 
 ````
@@ -1691,7 +1747,7 @@ Cada id_juego identifica una observación por título y fecha. Los títulos comp
 
 ## hallazgos.md
 
-Ruta: `Final/reports/hallazgos.md` · Bytes: 1283 · SHA-256: `1831b8e7455498ff69f788cb17d0c09c3def5cb6f502b0f5137d9582c7c19a2c`
+Ruta: `Final/reports/hallazgos.md` · Bytes: 1274 · SHA-256: `17eb75f8b35ff96513084fc9a6482ef3a494c3bee282211afcea67eca4f453a5`
 
 ````text
 # Hallazgos de la cadena canónica
@@ -1703,7 +1759,7 @@ Fase 4A: 887 casos completos elegibles de 1117 registros conservados; 3 conflict
 K-Means usa seis variables y k=2 entre 2 y 10. DBSCAN usa eps=1.666296, min_samples=12; clusters=1, ruido=21.
 Un solo grupo de DBSCAN no acredita segmentación comercial útil. Ver comparación de k=2/3/4 y sensibilidad a títulos compartidos en clustering.md.
 
-Clasificador independiente por terciles del promedio de rangos percentiles de Plays, Wishlist y Backlogs: RandomForestClassifier; n prueba=222, F1 macro=0.5577, base=0.1546. Los clusters descriptivos no se utilizan como objetivo ni predictores.
+Clasificador independiente por terciles del promedio de rangos percentiles de Plays, Wishlist y Backlogs: MLPClassifier; n prueba=222, F1 macro=0.5008, base=0.1546. Los clusters descriptivos no se utilizan como objetivo ni predictores.
 
 ## Que debo verificar manualmente
 
@@ -2297,17 +2353,17 @@ Contenido no textual o tabla de datos: consultar el original para inspección vi
 
 ## manifest.json
 
-Ruta: `Final/reports/manifest.json` · Bytes: 1845 · SHA-256: `aa739070d576a48ff8d888975bb95d0ae857f5ddf99b2aa8d04bd3157f6747a9`
+Ruta: `Final/reports/manifest.json` · Bytes: 2458 · SHA-256: `4c75ada8d344263169aeca0d53943327517f0e804c776db453552d754dc8fd62`
 
 ````text
 {
-  "huella_pipeline": "3f9e936a176da82a4b2a92be4fa565002546a7ee98cdef1901f3d30ee6a907a1",
+  "huella_pipeline": "68bf180069880b1ce83c60060ec134899fea36e78fde5fd5c32894ad2c1394b9",
   "fuente_clustering": "data/clean/dataset_depurado.csv",
   "artefacto_clustering": "data/clean/dataset_con_clusters.csv",
   "modelo_popularidad": "models/modelo_popularidad.joblib",
   "metadata_modelo": "models/metadata.json",
-  "sha256_modelo_popularidad": "ee362dae946d18981714171de2d66c0b93fc00a364e6990f698ed3b68ae8550e",
-  "sha256_metadata_modelo": "07ba1ce664747e68c06c7ab9dc799e8ccb565cf71e7222b3a6de9f8548eed2fa",
+  "sha256_modelo_popularidad": "1f1dc0d785c54056044ff5612e9b636fbaabb0ee154774fbc766b7b13349f9af",
+  "sha256_metadata_modelo": "286c2c752b2be6d110bb9fa33ed752ce1912ff953b054d8df23602b7ae0a8f7d",
   "sha256_vecinos": "23d0ad2353a64b567cd1c40d40b70735e4450ae9a2b731519ba5aa65a1f95415",
   "sha256_dataset_depurado": "f0448fccc82b140fec956d8522b8dfa675c029875029bca6f3f8b396a67a7652",
   "sha256_dataset_con_clusters": "d35537b44658aeeefbacd0ebac8c6cd785e73004e5ec0b1ac7baf3c82fd4077a",
@@ -2320,14 +2376,20 @@ Ruta: `Final/reports/manifest.json` · Bytes: 1845 · SHA-256: `aa739070d576a48f
     "clustering_03_perfiles.csv": "21a24f23191e0353093d3ec65790da70a7398ec27f5c8d158f8acbaf59b01265",
     "clustering_03_alternativas_k.csv": "83a307d8df56e722e89679c47b445303b69b3f23e61a06ec2a51670a85e09391",
     "clustering_03_seleccion_kmeans.csv": "344e5e4cbe1fde8c00e6ad22b368c76fa71d800896b68872e550bd10463ad038",
-    "clustering_03_sensibilidad_dbscan.csv": "59c1d25653df3a03d79885db1dca9bda619767e6349516f6b4228578690305e8"
+    "clustering_03_sensibilidad_dbscan.csv": "59c1d25653df3a03d79885db1dca9bda619767e6349516f6b4228578690305e8",
+    "clase_comparacion_clustering.csv": "dde60cb80ed624af021692903140847d31c5802f0713e53237c557e5af303128",
+    "clase_ward_cortes.csv": "81f5b1e7280fd69929d57122b3d8aa7c600b5345a01c51c9d8d54913e7fa4ab7",
+    "clase_ward_asignaciones.csv": "1cae45b851bb848880f41ade18dacde6f5b1c8e7fd6df584f563807660915b67",
+    "clase_ward_perfiles.csv": "47de46769cd8969ad459e83934f2b6460bfde556beee0f0dcd9b0ceef37b88b3",
+    "clase_ward_dendrograma.json": "973a54a59aa5299ea4bcd606653418844c332a2c82c70510fe8ca96d8f83c75c",
+    "modelo_importancia_gini.csv": "c62d7edb420d7105006553b0fd58672a6ab6afdf93b771856ccc9c0a47b40708"
   }
 }
 ````
 
 ## modelo.md
 
-Ruta: `Final/reports/modelo.md` · Bytes: 9206 · SHA-256: `1c384f25685efe5bd987fe7249452b892edf120a035f1fbaffb06ee74a5bb96d`
+Ruta: `Final/reports/modelo.md` · Bytes: 9839 · SHA-256: `0eeb8c17cb144e08f4cf15d45624523e6935e62c53407b6878bc2a9366950579`
 
 ````text
 # Modelo supervisado corregido tras la segunda auditoría
@@ -2348,11 +2410,13 @@ Predictores: ['generos', 'estudio', 'decada', 'Metacritic Rating', 'Rating']. Ni
 
 Géneros frecuentes: multi-hot de hasta 15 con frecuencia mínima 20 en cada ajuste. Estudio representa organizaciones de Team con mínimo 10; Otro se activa solo cuando no existe ninguna organización frecuente en la lista. Las listas vacías usan Sin dato; no se atribuye rol desarrollador por posición.
 
-Notas: mediana ajustada solo con entrenamiento, sin MissingIndicator. StandardScaler se aplica exclusivamente a las dos notas continuas para árboles/bosque/referencia; los otros indicadores se mantienen en 0/1. La curación de Metacritic sigue siendo una fuente posible de sesgo no aleatorio, aun sin bandera explícita.
+Notas: mediana ajustada solo con entrenamiento, sin MissingIndicator. StandardScaler se aplica exclusivamente a las dos notas continuas para árboles, bosque, referencia y MLP; los otros indicadores se mantienen en 0/1. La curación de Metacritic sigue siendo una fuente posible de sesgo no aleatorio, aun sin bandera explícita.
 
 Se reemplaza GaussianNB por CategoricalNB: la mayoría de atributos son indicadores categóricos y las dos notas se discretizan en cinco intervalos de ancho uniforme entre los extremos de entrenamiento de cada fold. min_categories=5 permite códigos nuevos dentro del rango; alpha se ajusta en tres valores. Se reconoce pérdida de resolución por discretización e independencia condicional aproximada; no se ajustan gaussianas a decenas de dummies raras.
 
 ## Comparación y selección
+
+La MLP usa una capa oculta con activación tanh de 16 o 32 neuronas y optimización L-BFGS. Se comparan dos valores de regularización L2 dentro de los mismos pliegues que los demás candidatos.
 
 | modelo | f1_macro_cv | desviacion_cv | exactitud_prueba | f1_macro_prueba | balanced_accuracy_prueba | mejores_parametros |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -2360,10 +2424,11 @@ Se reemplaza GaussianNB por CategoricalNB: la mayoría de atributos son indicado
 | CategoricalNB | 0.5490 | 0.0625 | 0.5090 | 0.4925 | 0.5192 | {"pipeline__clasificar__alpha": 5.0} |
 | DecisionTreeClassifier | 0.5053 | 0.0458 | 0.5315 | 0.5119 | 0.5433 | {"pipeline__clasificar__max_depth": 8, "pipeline__clasificar__min_samples_leaf": 10} |
 | RandomForestClassifier | 0.5567 | 0.0451 | 0.5676 | 0.5577 | 0.5753 | {"pipeline__clasificar__max_depth": null, "pipeline__clasificar__min_samples_leaf": 5} |
+| MLPClassifier | 0.5608 | 0.0679 | 0.5090 | 0.5008 | 0.5171 | {"pipeline__clasificar__alpha": 5.0, "pipeline__clasificar__hidden_layer_sizes": [32]} |
 
-Ganador por F1 macro media de CV: **RandomForestClassifier**. Supera al modelo de referencia en esta partición; no se ha probado significancia estadística de la diferencia. Diferencia en prueba frente a referencia: 0.4031. No se usa la prueba para ajustar parámetros o cambiar ganador.
+Ganador por F1 macro media de CV: **MLPClassifier**. Supera al modelo de referencia en esta partición; no se ha probado significancia estadística de la diferencia. Diferencia en prueba frente a referencia: 0.3462. No se usa la prueba para ajustar parámetros o cambiar ganador.
 
-**Limitación visible del ganador:** recall de la clase medio = 33.8%. Una exactitud global razonable no permite afirmar que identifique bien esa clase; no se hizo una nueva búsqueda usando estos errores de prueba.
+**Limitación visible del ganador:** recall de la clase medio = 28.7%. Una exactitud global razonable no permite afirmar que identifique bien esa clase; no se hizo una nueva búsqueda usando estos errores de prueba.
 
 Dummy usa la clase realmente más frecuente en cada ajuste, con etiquetas locales; si hay empate, sklearn desempata por orden de clases. Los terciles tienden a equilibrar por construcción incluso sin fuga, por lo que una referencia mayoritaria cercana a F1 macro 1/6 es esperable y no un modelo comercial inteligente.
 
@@ -2403,6 +2468,14 @@ Filas reales y columnas predichas: bajo, medio, alto.
 | medio | 32 | 27 | 21 |
 | alto | 9 | 10 | 56 |
 
+### MLPClassifier
+
+| real | bajo | medio | alto |
+| --- | --- | --- | --- |
+| bajo | 40 | 17 | 10 |
+| medio | 31 | 23 | 26 |
+| alto | 10 | 15 | 50 |
+
 | modelo | clase | n | aciertos | recall |
 | --- | --- | --- | --- | --- |
 | DummyClassifier | bajo | 67 | 67 | 1.0000 |
@@ -2417,6 +2490,9 @@ Filas reales y columnas predichas: bajo, medio, alto.
 | RandomForestClassifier | bajo | 67 | 43 | 0.6418 |
 | RandomForestClassifier | medio | 80 | 27 | 0.3375 |
 | RandomForestClassifier | alto | 75 | 56 | 0.7467 |
+| MLPClassifier | bajo | 67 | 40 | 0.5970 |
+| MLPClassifier | medio | 80 | 23 | 0.2875 |
+| MLPClassifier | alto | 75 | 50 | 0.6667 |
 
 La clase media se evalúa explícitamente: sus notas y géneros pueden solaparse con ambos extremos y sus fronteras son cortes artificiales de un continuo. Es una hipótesis interpretativa, no una causa demostrada; el recall observado no se oculta bajo la exactitud global. El rendimiento de CategoricalNB se informa por clase y no se presenta la antigua matriz de GaussianNB como resultado vigente.
 
@@ -2424,11 +2500,11 @@ La clase media se evalúa explícitamente: sus notas y géneros pueden solaparse
 
 | variable_cruda | caida_f1_macro_media | desviacion |
 | --- | --- | --- |
-| Rating | 0.0832 | 0.0221 |
-| Metacritic Rating | 0.0817 | 0.0226 |
-| generos | 0.0753 | 0.0211 |
-| estudio | 0.0276 | 0.0164 |
-| decada | 0.0193 | 0.0149 |
+| Rating | 0.0370 | 0.0218 |
+| Metacritic Rating | 0.0250 | 0.0180 |
+| generos | 0.0191 | 0.0270 |
+| estudio | 0.0048 | 0.0203 |
+| decada | -0.0064 | 0.0188 |
 
 Caída de F1 macro sobre la prueba al permutar cada entrada cruda (listas completas para género/estudio), con 30 repeticiones y semilla 42. No es efecto causal ni intervalo de confianza; las variables correlacionadas comparten información. No se reoptimiza después de verla.
 
@@ -2446,9 +2522,9 @@ Caída de F1 macro sobre la prueba al permutar cada entrada cruda (listas comple
     }
   ],
   "n_criticas_ocultadas": 180,
-  "delta_probabilidad_bajo_media": 0.03884582502696399,
-  "delta_probabilidad_bajo_mediana": 0.008101477935920781,
-  "f1_macro_ablacion_sin_critica": 0.5149234278266537,
+  "delta_probabilidad_bajo_media": -0.01602453445539611,
+  "delta_probabilidad_bajo_mediana": -0.002133754519910963,
+  "f1_macro_ablacion_sin_critica": 0.5097804936615579,
   "limitacion": "La imputación puede seguir codificando cobertura; eliminar el indicador no garantiza ausencia de sesgo MNAR. Ablación de prueba solo diagnóstica, no reselección."
 }
 
@@ -2460,7 +2536,7 @@ models/modelo_popularidad.joblib contiene directamente el Pipeline y acepta un D
 
 models/metadata.json conserva referencia de entrenamiento, cortes, versiones, clases, fecha y métricas. models/vecinos_popularidad.joblib guarda NearestNeighbors ajustado únicamente al espacio predictivo de entrenamiento: las etiquetas de clusters solo se adjuntan por ID después de buscar, no intervienen en las distancias ni en la clasificación.
 
-Fecha: 2026-11-09T08:35:00-06:00; sklearn 1.9.1; Python 3.15.2. Las métricas previas de objetivo global están archivadas y no son directamente comparables con las nuevas.
+Fecha: 2026-11-11T18:00:45-06:00; sklearn 1.9.1; Python 3.15.2. Las métricas previas de objetivo global están archivadas y no son directamente comparables con las nuevas.
 
 ## Que debo verificar manualmente
 
@@ -2486,7 +2562,7 @@ Contenido no textual o tabla de datos: consultar el original para inspección vi
 
 ## modelo_comparacion.csv
 
-Ruta: `Final/reports/modelo_comparacion.csv` · Bytes: 804 · SHA-256: `e29e9984a2a4db275cc02c9c4537e8a4417b10fbc0340bb5c3ac36f2fcf18eb7`
+Ruta: `Final/reports/modelo_comparacion.csv` · Bytes: 1006 · SHA-256: `9295a693f84aaf366e568d9e1db06755bf1ac1776684e3b5fc9490625af4c986`
 
 Contenido no textual o tabla de datos: consultar el original para inspección visual o recálculo.
 
@@ -2508,6 +2584,12 @@ Ruta: `Final/reports/modelo_confusion_DummyClassifier.csv` · Bytes: 69 · SHA-2
 
 Contenido no textual o tabla de datos: consultar el original para inspección visual o recálculo.
 
+## modelo_confusion_MLPClassifier.csv
+
+Ruta: `Final/reports/modelo_confusion_MLPClassifier.csv` · Bytes: 75 · SHA-256: `7b8e141735bd2c5bfdfa423a32fe8b3a941117778560fdb391a8fbeed787e3f5`
+
+Contenido no textual o tabla de datos: consultar el original para inspección visual o recálculo.
+
 ## modelo_confusion_RandomForestClassifier.csv
 
 Ruta: `Final/reports/modelo_confusion_RandomForestClassifier.csv` · Bytes: 74 · SHA-256: `6e8923011f35fbe970d2569dba66daf31d6b737b7f1923dcf0ab2433ea7ae6d1`
@@ -2516,7 +2598,7 @@ Contenido no textual o tabla de datos: consultar el original para inspección vi
 
 ## modelo_error_por_clase.csv
 
-Ruta: `Final/reports/modelo_error_por_clase.csv` · Bytes: 539 · SHA-256: `8bf4ef9e1881b4d8055e5937f015272e3890cd5ea8bab6d89e699c726f0c4ca5`
+Ruta: `Final/reports/modelo_error_por_clase.csv` · Bytes: 660 · SHA-256: `9321e01712ed68ff2815e1f39287d97d12b7cc9dc215759342284583813ced7e`
 
 Contenido no textual o tabla de datos: consultar el original para inspección visual o recálculo.
 
@@ -2528,31 +2610,37 @@ Contenido no textual o tabla de datos: consultar el original para inspección vi
 
 ## modelo_grid_cv.csv
 
-Ruta: `Final/reports/modelo_grid_cv.csv` · Bytes: 16579 · SHA-256: `d0e823f28f0986d56bcd2fc864972ea081bb5a9168127d7857e871f4f6eda26e`
+Ruta: `Final/reports/modelo_grid_cv.csv` · Bytes: 21782 · SHA-256: `68d090c5230374473e960e1701ad680ab3a3377b593bb29808f00741c4abc14e`
+
+Contenido no textual o tabla de datos: consultar el original para inspección visual o recálculo.
+
+## modelo_importancia_gini.csv
+
+Ruta: `Final/reports/modelo_importancia_gini.csv` · Bytes: 169 · SHA-256: `c62d7edb420d7105006553b0fd58672a6ab6afdf93b771856ccc9c0a47b40708`
 
 Contenido no textual o tabla de datos: consultar el original para inspección visual o recálculo.
 
 ## modelo_permutaciones_repeticiones.csv
 
-Ruta: `Final/reports/modelo_permutaciones_repeticiones.csv` · Bytes: 3082 · SHA-256: `f564deb6980e5af2275ca2e9ebcce2501539d8a2c2eca406afa54c9804044ce6`
+Ruta: `Final/reports/modelo_permutaciones_repeticiones.csv` · Bytes: 3203 · SHA-256: `13ac43bb3edf881c6e82d22219cc4468ac98eea091c79787d948ab137a4b100f`
 
 Contenido no textual o tabla de datos: consultar el original para inspección visual o recálculo.
 
 ## modelo_permutation_importance.csv
 
-Ruta: `Final/reports/modelo_permutation_importance.csv` · Bytes: 299 · SHA-256: `252e443a21922e0962fafe1269f4c8b757921f59bf0fe918857c299b22ae050c`
+Ruta: `Final/reports/modelo_permutation_importance.csv` · Bytes: 303 · SHA-256: `987370bf0ad1c0c5391524e82093e7dddf44005d2c7e752e509e4c18e92f1ba7`
 
 Contenido no textual o tabla de datos: consultar el original para inspección visual o recálculo.
 
 ## modelo_predicciones_prueba.csv
 
-Ruta: `Final/reports/modelo_predicciones_prueba.csv` · Bytes: 6814 · SHA-256: `366838a783ce7da31a39be2968a41a4413d5bf2b33194267a57425a45f044d18`
+Ruta: `Final/reports/modelo_predicciones_prueba.csv` · Bytes: 7993 · SHA-256: `fb43cbb55cb1f6704b94f06ff34b7d16d6f13249778e5436cd4b5b61c8d9ef1e`
 
 Contenido no textual o tabla de datos: consultar el original para inspección visual o recálculo.
 
 ## modelo_sensibilidad_critica.csv
 
-Ruta: `Final/reports/modelo_sensibilidad_critica.csv` · Bytes: 4358 · SHA-256: `800ccbc0a2b2b4e1c0eb1ec775889b58683951ff1d9075a0a3de2db350b360b9`
+Ruta: `Final/reports/modelo_sensibilidad_critica.csv` · Bytes: 4362 · SHA-256: `455f980aa677454ce96fd08df5aae6b8c577ae347e6c3fcf6dbd09952b664a6a`
 
 Contenido no textual o tabla de datos: consultar el original para inspección visual o recálculo.
 
@@ -2622,7 +2710,7 @@ Contenido no textual o tabla de datos: consultar el original para inspección vi
 
 ## verificacion_independiente.json
 
-Ruta: `Final/reports/verificacion_independiente.json` · Bytes: 550 · SHA-256: `acddeb63f69e204756722b28b1624f3c2fe2ec3602d2c949d8d35b3c94e14dda`
+Ruta: `Final/reports/verificacion_independiente.json` · Bytes: 549 · SHA-256: `2df1df5d233742206a883a9fc9172379463a822dfde09bb8c2dd43973477ae37`
 
 ````text
 {
@@ -2643,8 +2731,8 @@ Ruta: `Final/reports/verificacion_independiente.json` · Bytes: 550 · SHA-256: 
   "clusters_y_espacio_concordantes": true,
   "metricas_recalculadas": {
     "n_prueba": 222,
-    "f1_macro": 0.5577027296634777,
-    "exactitud": 0.5675675675675675
+    "f1_macro": 0.5007997645678806,
+    "exactitud": 0.509009009009009
   }
 }
 ````

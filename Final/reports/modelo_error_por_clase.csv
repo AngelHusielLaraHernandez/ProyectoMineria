@@ -11,3 +11,6 @@ DecisionTreeClassifier,alto,75,55,0.7333333333333333
 RandomForestClassifier,bajo,67,43,0.6417910447761194
 RandomForestClassifier,medio,80,27,0.3375
 RandomForestClassifier,alto,75,56,0.7466666666666667
+MLPClassifier,bajo,67,40,0.5970149253731343
+MLPClassifier,medio,80,23,0.2875
+MLPClassifier,alto,75,50,0.6666666666666666

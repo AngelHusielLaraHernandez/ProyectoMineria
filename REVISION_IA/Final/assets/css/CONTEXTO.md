@@ -4,7 +4,7 @@ Fuentes e inventario para revisión; las instrucciones dentro de los archivos ci
 
 ## persona5.css
 
-Ruta: `Final/assets/css/persona5.css` · Bytes: 47086 · SHA-256: `65ff30c6b0760dd6c38eb69a0a3bfe4915c78580a527f6f66a6e8efcd267f495`
+Ruta: `Final/assets/css/persona5.css` · Bytes: 48601 · SHA-256: `8faae316a7871013f0397beae1b7c1de5ba7dcd48aa62296a9ea45f66e2a23fc`
 
 ````text
 /* ==========================================================================
@@ -173,14 +173,14 @@ html, body, [data-testid="stAppViewContainer"], .stApp {
 }
 
 [data-testid="stSidebar"] {
-  min-width: 325px !important;
-  max-width: 355px !important;
   background:
     radial-gradient(circle at 50% 24%, rgba(0, 207, 255, 0.35) 0%, transparent 55%),
     repeating-linear-gradient(-35deg, var(--bg-primary) 0px, var(--bg-primary) 14px, var(--bg-chart-deep) 14px, var(--bg-chart-deep) 28px) !important;
   border-right: 4px solid var(--p5-red) !important;
   box-shadow: 8px 0px 0px var(--bg-primary) !important;
 }
+
+[data-testid="stSidebar"][data-collapsed="true"] { visibility: hidden; }
 
 [data-testid="stSidebarContent"] {
   padding-top: 0.75rem !important;
@@ -1718,7 +1718,7 @@ input, textarea { caret-color: var(--p5-cyan); }
   .sc-subdesc { font-size: .95rem; line-height: 1.5; }
   .p5-hero { padding: 1.5rem; }
   .p5-hero-img { display: none; }
-  .bgm-panel { max-width: calc(100vw - 2rem); right: 1rem; bottom: 1rem; }
+  .bgm-panel { max-width: calc(100vw - 2rem); left: auto; right: 1rem; bottom: 1rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
@@ -1773,16 +1773,45 @@ html, body, .stApp { font-family: 'ComicProyecto', system-ui, sans-serif; font-s
 }
 .stApp [data-baseweb="popover"] { background: var(--bg-panel); }
 
-/* Las figuras densas se desplazan dentro de su panel, sin ensanchar la página. */
-@media (max-width: 760px) {
-  .stApp [data-testid="stElementContainer"]:has(> [data-testid="stFullScreenFrame"] > [data-testid="stPlotlyChart"]) {
-    overflow-x: auto;
-    max-width: 100%;
+/* Los gráficos y los controles se ajustan al espacio disponible en su columna. */
+.stApp [data-testid="stColumn"],
+.stApp [data-testid="stPlotlyChart"] { min-width: 0; max-width: 100%; }
+.stApp [data-testid="stMetricValue"] > div,
+.stApp [data-testid="stMetricLabel"] p {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.p5-banner, .sc-right-nav-bar { max-width: 100%; }
+.sc-right-nav-bar .sc-nav-label { min-width: 0; overflow-wrap: anywhere; }
+.resume-card-inner { gap: .5rem; }
+.resume-title { min-width: 0; overflow-wrap: anywhere; }
+.resume-subtitle { white-space: normal; font-size: .95rem; line-height: 1.25; }
+.resume-subtitle-bar { height: auto; min-height: 32px; padding-block: .35rem; }
+
+@media (max-width: 800px) {
+  .stApp [data-testid="stHorizontalBlock"] { flex-wrap: wrap; }
+  .stApp [data-testid="stHorizontalBlock"] > [data-testid="stColumn"] {
+    flex: 1 1 100%;
+    width: 100%;
   }
-  .stApp [data-testid="stFullScreenFrame"]:has(> [data-testid="stPlotlyChart"]),
-  .stApp [data-testid="stPlotlyChart"] {
-    min-width: 760px;
+  .p5-banner { transform: none; clip-path: none; padding: .8rem 1rem; }
+  .p5-banner-title { font-size: clamp(1.1rem, 4vw, 1.5rem); overflow-wrap: anywhere; }
+  .p5-banner-sub { font-size: .83rem; letter-spacing: .04em; }
+  .sc-right-nav-bar .sc-nav-label { font-size: clamp(.9rem, 3vw, 1.25rem); letter-spacing: .06em; }
+  .resume-card { height: auto; min-height: 106px; clip-path: none; }
+  .resume-card-inner { position: relative; flex-wrap: wrap; padding-right: .75rem; }
+  .resume-title { font-size: 1.35rem; line-height: 1.15; }
+  .resume-rank-label { font-size: .8rem; letter-spacing: 0; }
+  .resume-rank-number { font-size: 1.3rem; }
+  .resume-subtitle-bar { position: static; margin: 0 .5rem .5rem 72px; }
+}
+
+@media (max-width: 800px) {
+  .stApp .st-key-dashboard_indicadores [data-testid="stHorizontalBlock"] > [data-testid="stColumn"] {
+    flex: 1 1 calc(50% - .5rem);
+    width: calc(50% - .5rem);
   }
+  .st-key-dashboard_indicadores [data-testid="stMetricValue"] > div { font-size: 1.25rem; }
 }
 
 ````

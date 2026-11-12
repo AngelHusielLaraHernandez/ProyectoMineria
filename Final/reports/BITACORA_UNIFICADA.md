@@ -932,3 +932,27 @@ Streamlit sustituía max-width y object-fit de .sc-char, ampliando retratos sobr
 La sección responde a su propio ancho: por debajo de 760 px separa las cifras del texto y oculta el retrato. En Chrome se comprobaron las tres tarjetas con cursor y selección, y navegación con flechas del teclado. Se revisaron una sección de 667 px y otra de 464 px sin desbordamiento horizontal de página, restaurando después el tamaño original del navegador. Contraste del cuerpo seleccionado: 18.06:1; cuerpo sin seleccionar: 16.72:1.
 
 Capturas: figures/contraste_tarjetas_escritorio.png y figures/contraste_tarjetas_movil.png. El detector de diseño se ejecutó sobre la hoja de estilos; sus advertencias sobre elementos decorativos del tema existente no cambian la corrección delimitada. La ficha PRODUCT.md conserva el esquema anterior de la herramienta; actualizarla con init es una operación separada, no necesaria para este arreglo. Se conservaron modelos, datos y documentos analíticos.
+
+## Dashboard interactivo y revisión visual del 11 de noviembre de 2026
+
+Exploración incorpora filtros por género, década y notas, cuatro indicadores calculados sobre la consulta y una tabla exportable. Seleccionar puntos de la dispersión limita la tabla y su CSV. Las brechas por grupo conservan el alcance del catálogo elegible completo y el PCA muestra la consulta sobre el ajuste original.
+
+Se revisaron ocho gráficas en las cuatro páginas, con anchos de navegador de escritorio y 390 px. Se probaron las variantes de densidad, brecha por organización y DBSCAN. Se corrigieron títulos y etiquetas recortados, solapamientos con barras de error y el borde del menú que seguía visible al cerrarlo. En pantalla estrecha, las columnas se reorganizan y los indicadores se muestran en dos filas.
+
+En el navegador se comprobó el acceso desde Inicio, una predicción, el filtro Pinball con un juego, el reinicio a 1,114 juegos y la selección y deselección de un punto. La prueba automatizada cubre filtros, consulta vacía y reinicio. La suite obtuvo 102 aprobadas y el verificador independiente confirmó la integridad de datos, modelos y reportes. Captura en figures/dashboard_interactivo.png.
+
+## Incorporación de la red neuronal MLP
+
+La corrida supervisada del 11 de noviembre de 2026 añadió MLP a los cuatro candidatos anteriores. Se conservaron los 892 juegos de entrenamiento, los 222 de prueba y las referencias por pliegue. La corrida final evaluó 16 y 32 neuronas con activación tanh, regularización L2 y optimizador L-BFGS. Terminó sin advertencias de convergencia.
+
+La MLP de 32 neuronas y alpha 5 obtuvo F1 macro de 0.5608 en CV y 0.5008 en prueba. Random Forest obtuvo 0.5567 y 0.5577, respectivamente. La web usa la MLP por la regla de selección por CV y muestra el mejor F1 de prueba por separado. La diferencia en CV carece de una prueba de significancia. Los resultados anteriores coincidieron con la nueva corrida y la comparación Weka conserva su protocolo histórico.
+
+Se actualizaron los artefactos supervisados y su manifiesto. El verificador independiente reprodujo las métricas del modelo activo y la suite obtuvo 102 pruebas aprobadas. Se comprobaron la gráfica de comparación y el formulario de predicción en el navegador. El PDF previo documenta el cierre anterior con Random Forest.
+
+## Alineación con las presentaciones de la materia
+
+Exploración compara K-Means y Ward sobre 887 juegos, con dendrograma y PCA filtrable. Ambos eligieron dos grupos por silueta. K-Means obtuvo 0.3188 de silueta, 1.1824 de Davies–Bouldin y 542.9068 de Calinski–Harabasz. Ward obtuvo 0.2807, 1.3300 y 409.7150, respectivamente. La partición Ward se reprodujo con AgglomerativeClustering y ARI de 1. DBSCAN se conserva en los resultados históricos.
+
+Modelo muestra la importancia por Gini del Random Forest. Las cinco contribuciones agrupadas suman 100 %. La MLP obtuvo F1 macro de 0.5608 en CV y 0.5008 en la prueba histórica. Random Forest obtuvo 0.5567 y 0.5577. Se verificó la predicción activa, el dendrograma y la gráfica de Gini en el navegador. Pasaron 102 pruebas y se reprodujeron las métricas del artefacto.
+
+Se actualizó el informe LaTeX con el corte del 11 de noviembre, la comparación de métodos, el modelo vigente y los escenarios recalculados. Las capturas y corridas históricas conservan su contexto.

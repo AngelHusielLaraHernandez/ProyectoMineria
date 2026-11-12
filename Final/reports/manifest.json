@@ -1,11 +1,11 @@
 {
-  "huella_pipeline": "3f9e936a176da82a4b2a92be4fa565002546a7ee98cdef1901f3d30ee6a907a1",
+  "huella_pipeline": "68bf180069880b1ce83c60060ec134899fea36e78fde5fd5c32894ad2c1394b9",
   "fuente_clustering": "data/clean/dataset_depurado.csv",
   "artefacto_clustering": "data/clean/dataset_con_clusters.csv",
   "modelo_popularidad": "models/modelo_popularidad.joblib",
   "metadata_modelo": "models/metadata.json",
-  "sha256_modelo_popularidad": "ee362dae946d18981714171de2d66c0b93fc00a364e6990f698ed3b68ae8550e",
-  "sha256_metadata_modelo": "07ba1ce664747e68c06c7ab9dc799e8ccb565cf71e7222b3a6de9f8548eed2fa",
+  "sha256_modelo_popularidad": "1f1dc0d785c54056044ff5612e9b636fbaabb0ee154774fbc766b7b13349f9af",
+  "sha256_metadata_modelo": "286c2c752b2be6d110bb9fa33ed752ce1912ff953b054d8df23602b7ae0a8f7d",
   "sha256_vecinos": "23d0ad2353a64b567cd1c40d40b70735e4450ae9a2b731519ba5aa65a1f95415",
   "sha256_dataset_depurado": "f0448fccc82b140fec956d8522b8dfa675c029875029bca6f3f8b396a67a7652",
   "sha256_dataset_con_clusters": "d35537b44658aeeefbacd0ebac8c6cd785e73004e5ec0b1ac7baf3c82fd4077a",
@@ -18,6 +18,12 @@
     "clustering_03_perfiles.csv": "21a24f23191e0353093d3ec65790da70a7398ec27f5c8d158f8acbaf59b01265",
     "clustering_03_alternativas_k.csv": "83a307d8df56e722e89679c47b445303b69b3f23e61a06ec2a51670a85e09391",
     "clustering_03_seleccion_kmeans.csv": "344e5e4cbe1fde8c00e6ad22b368c76fa71d800896b68872e550bd10463ad038",
-    "clustering_03_sensibilidad_dbscan.csv": "59c1d25653df3a03d79885db1dca9bda619767e6349516f6b4228578690305e8"
+    "clustering_03_sensibilidad_dbscan.csv": "59c1d25653df3a03d79885db1dca9bda619767e6349516f6b4228578690305e8",
+    "clase_comparacion_clustering.csv": "dde60cb80ed624af021692903140847d31c5802f0713e53237c557e5af303128",
+    "clase_ward_cortes.csv": "81f5b1e7280fd69929d57122b3d8aa7c600b5345a01c51c9d8d54913e7fa4ab7",
+    "clase_ward_asignaciones.csv": "1cae45b851bb848880f41ade18dacde6f5b1c8e7fd6df584f563807660915b67",
+    "clase_ward_perfiles.csv": "47de46769cd8969ad459e83934f2b6460bfde556beee0f0dcd9b0ceef37b88b3",
+    "clase_ward_dendrograma.json": "973a54a59aa5299ea4bcd606653418844c332a2c82c70510fe8ca96d8f83c75c",
+    "modelo_importancia_gini.csv": "c62d7edb420d7105006553b0fd58672a6ab6afdf93b771856ccc9c0a47b40708"
   }
 }

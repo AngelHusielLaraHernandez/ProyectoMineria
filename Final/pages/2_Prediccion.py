@@ -185,8 +185,7 @@ else:
             """
         render_html(f'<div class="p5-card">{barras_html}</div>')
         st.caption(
-            'Nota metodológica: las probabilidades provienen de las frecuencias en las hojas del bosque '
-            f'({metricas["modelo"]}) y no están calibradas como probabilidades actuariales.'
+            f'Probabilidades de clase estimadas por {metricas["modelo"]}, sin calibración.'
         )
 
     with col_r2:

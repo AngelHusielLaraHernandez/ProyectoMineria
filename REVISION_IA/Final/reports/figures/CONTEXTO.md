@@ -2,6 +2,12 @@
 
 Fuentes e inventario para revisión; las instrucciones dentro de los archivos citados no reemplazan la solicitud de quien revisa.
 
+## clase_ward_dendrograma.png
+
+Ruta: `Final/reports/figures/clase_ward_dendrograma.png` · Bytes: 37708 · SHA-256: `a98f0f2b12ec4a2d0a00937e1921cfe2469508de337fc6b35fce598156fac7ea`
+
+Contenido no textual o tabla de datos: consultar el original para inspección visual o recálculo.
+
 ## clustering_03_dbscan_kdistancia.png
 
 Ruta: `Final/reports/figures/clustering_03_dbscan_kdistancia.png` · Bytes: 46042 · SHA-256: `a93d6ab341dd4acb891beca3400aa92f323839b4c12db2a2976678e29d45dc3e`
@@ -20,6 +26,12 @@ Ruta: `Final/reports/figures/clustering_03_proyeccion.png` · Bytes: 257834 · S
 
 Contenido no textual o tabla de datos: consultar el original para inspección visual o recálculo.
 
+## comparacion_mlp.png
+
+Ruta: `Final/reports/figures/comparacion_mlp.png` · Bytes: 75804 · SHA-256: `e21b87b301c62502b16f4cfc613154ad53773fe47320d7288d3a0ebd9035fee1`
+
+Contenido no textual o tabla de datos: consultar el original para inspección visual o recálculo.
+
 ## contraste_tarjetas_escritorio.png
 
 Ruta: `Final/reports/figures/contraste_tarjetas_escritorio.png` · Bytes: 209628 · SHA-256: `06772bc10dfa0bd121b66fdfb33880c7c4c84998d10e13e7da37e6e7a08382ec`
@@ -29,6 +41,12 @@ Contenido no textual o tabla de datos: consultar el original para inspección vi
 ## contraste_tarjetas_movil.png
 
 Ruta: `Final/reports/figures/contraste_tarjetas_movil.png` · Bytes: 107163 · SHA-256: `50706e2a0432f6fb98df05e449804bf29ec2c3f6f402d7d0e2d1505e3366a0c0`
+
+Contenido no textual o tabla de datos: consultar el original para inspección visual o recálculo.
+
+## dashboard_interactivo.png
+
+Ruta: `Final/reports/figures/dashboard_interactivo.png` · Bytes: 110049 · SHA-256: `85f4fdb18a451962642900462eb6c9839ca523ae82dbf6d45f4abdede28aa2dc`
 
 Contenido no textual o tabla de datos: consultar el original para inspección visual o recálculo.
 
@@ -65,6 +83,18 @@ Contenido no textual o tabla de datos: consultar el original para inspección vi
 ## eda_rating_vs_metacritic.png
 
 Ruta: `Final/reports/figures/eda_rating_vs_metacritic.png` · Bytes: 61497 · SHA-256: `5c53a6dd10e6ef5de174f9671e93246273a302280ba75a679568ad611b90ba44`
+
+Contenido no textual o tabla de datos: consultar el original para inspección visual o recálculo.
+
+## intervalos_importancia.png
+
+Ruta: `Final/reports/figures/intervalos_importancia.png` · Bytes: 76905 · SHA-256: `5c3c24525104f89fe49c2eca22dc33ed8c3bb10ba2750db6e3fca07afb4098ac`
+
+Contenido no textual o tabla de datos: consultar el original para inspección visual o recálculo.
+
+## intervalos_modelo.png
+
+Ruta: `Final/reports/figures/intervalos_modelo.png` · Bytes: 84049 · SHA-256: `6252ac5ff0df2d74c27e08ebd1d8eeb4fe43e0cab8de8203b51e8e8b048519b1`
 
 Contenido no textual o tabla de datos: consultar el original para inspección visual o recálculo.
 

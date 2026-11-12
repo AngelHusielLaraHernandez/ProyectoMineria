@@ -29,7 +29,7 @@ def main():
               'DocumentoFinal. Los archivos históricos se identifican por su ruta. '
               'No atribuir métricas de una revisión antigua al modelo vigente.\n',
               'El equipo declara cumplido el calendario técnico; no se inventan fechas '
-              'exactas. Suite completa de cierre: 101 pruebas aprobadas. No hay '
+              'exactas. La bitácora del proyecto registra las verificaciones vigentes. No hay '
               'resultados de Orange ni despliegue público.\n',
               'Los CSV/ARFF/TAB, binarios, imágenes, ZIP y fuentes grandes se enumeran '
               'con tamaño y hash, sin volcar datos ni imágenes como texto. Para '

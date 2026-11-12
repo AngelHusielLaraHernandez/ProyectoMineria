@@ -8,6 +8,12 @@ Ruta: `DocumentoFinal/tablas/busqueda_resumen.csv` · Bytes: 621 · SHA-256: `08
 
 Contenido no textual o tabla de datos: consultar el original para inspección visual o recálculo.
 
+## clase_comparacion_clustering.csv
+
+Ruta: `DocumentoFinal/tablas/clase_comparacion_clustering.csv` · Bytes: 183 · SHA-256: `dde60cb80ed624af021692903140847d31c5802f0713e53237c557e5af303128`
+
+Contenido no textual o tabla de datos: consultar el original para inspección visual o recálculo.
+
 ## clustering_03_correlaciones_generos.csv
 
 Ruta: `DocumentoFinal/tablas/clustering_03_correlaciones_generos.csv` · Bytes: 4359 · SHA-256: `5869c0c310fe9e29da498effb41c0134dcb473c8d659db8004a7d7b7f5a1cdda`
@@ -40,7 +46,13 @@ Contenido no textual o tabla de datos: consultar el original para inspección vi
 
 ## modelo_comparacion.csv
 
-Ruta: `DocumentoFinal/tablas/modelo_comparacion.csv` · Bytes: 804 · SHA-256: `e29e9984a2a4db275cc02c9c4537e8a4417b10fbc0340bb5c3ac36f2fcf18eb7`
+Ruta: `DocumentoFinal/tablas/modelo_comparacion.csv` · Bytes: 1006 · SHA-256: `9295a693f84aaf366e568d9e1db06755bf1ac1776684e3b5fc9490625af4c986`
+
+Contenido no textual o tabla de datos: consultar el original para inspección visual o recálculo.
+
+## modelo_importancia_gini.csv
+
+Ruta: `DocumentoFinal/tablas/modelo_importancia_gini.csv` · Bytes: 169 · SHA-256: `c62d7edb420d7105006553b0fd58672a6ab6afdf93b771856ccc9c0a47b40708`
 
 Contenido no textual o tabla de datos: consultar el original para inspección visual o recálculo.
 
