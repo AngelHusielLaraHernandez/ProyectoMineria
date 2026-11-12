@@ -5,7 +5,7 @@
     "real": "bajo",
     "prediccion": "alto",
     "acierto": false,
-    "probabilidad_maxima": 0.8962994150630624,
+    "probabilidad_maxima": 0.6684665448473315,
     "Plays": 1100.0,
     "Wishlist": 76.0,
     "Backlogs": 213.0,
@@ -22,9 +22,9 @@
     "Rating": 4.4,
     "Metacritic": 91.0,
     "probabilidades": {
-      "alto": 0.8962994150630624,
-      "bajo": 0.0377525676158464,
-      "medio": 0.06594801732109117
+      "alto": 0.6684665448473315,
+      "bajo": 0.08935785908152606,
+      "medio": 0.24217559607114222
     }
   },
   {
@@ -33,7 +33,7 @@
     "real": "bajo",
     "prediccion": "bajo",
     "acierto": true,
-    "probabilidad_maxima": 0.9502326177365681,
+    "probabilidad_maxima": 0.7715811749543512,
     "Plays": 4500.0,
     "Wishlist": 65.0,
     "Backlogs": 184.0,
@@ -49,36 +49,38 @@
     "Rating": 2.7,
     "Metacritic": 70.0,
     "probabilidades": {
-      "alto": 0.000697734096383338,
-      "bajo": 0.9502326177365681,
-      "medio": 0.049069648167048376
+      "alto": 0.05151646177093161,
+      "bajo": 0.7715811749543512,
+      "medio": 0.17690236327471673
     }
   },
   {
-    "id_juego": 1137,
-    "titulo": "Back 4 Blood",
+    "id_juego": 658,
+    "titulo": "Uncharted: The Nathan Drake Collection",
     "real": "medio",
-    "prediccion": "bajo",
+    "prediccion": "alto",
     "acierto": false,
-    "probabilidad_maxima": 0.8567213802407476,
-    "Plays": 2900.0,
-    "Wishlist": 335.0,
-    "Backlogs": 489.0,
-    "indice": 0.41704035874439466,
+    "probabilidad_maxima": 0.6983971867015208,
+    "Plays": 4300.0,
+    "Wishlist": 319.0,
+    "Backlogs": 1300.0,
+    "indice": 0.570814648729447,
     "generos": [
+      "Adventure",
+      "Platform",
       "Shooter"
     ],
     "estudio": [
-      "Warner Bros. Interactive Entertainment",
-      "Turtle Rock Studios"
+      "Naughty Dog",
+      "Sony Computer Entertainment, Inc. (SCEI)"
     ],
-    "decada": 2020,
-    "Rating": 2.5,
-    "Metacritic": 77.0,
+    "decada": 2010,
+    "Rating": 4.1,
+    "Metacritic": 86.0,
     "probabilidades": {
-      "alto": 0.011548234160186344,
-      "bajo": 0.8567213802407476,
-      "medio": 0.13173038559906602
+      "alto": 0.6983971867015208,
+      "bajo": 0.09558917580731595,
+      "medio": 0.20601363749116358
     }
   },
   {
@@ -87,7 +89,7 @@
     "real": "medio",
     "prediccion": "medio",
     "acierto": true,
-    "probabilidad_maxima": 0.8081365688044989,
+    "probabilidad_maxima": 0.5198829656017434,
     "Plays": 8800.0,
     "Wishlist": 154.0,
     "Backlogs": 425.0,
@@ -105,37 +107,36 @@
     "Rating": 3.4,
     "Metacritic": null,
     "probabilidades": {
-      "alto": 0.1133384435190292,
-      "bajo": 0.07852498767647191,
-      "medio": 0.8081365688044989
+      "alto": 0.25742434866068536,
+      "bajo": 0.22269268573757106,
+      "medio": 0.5198829656017434
     }
   },
   {
-    "id_juego": 111,
-    "titulo": "Doki Doki Literature Club!",
+    "id_juego": 1057,
+    "titulo": "Jet Set Radio",
     "real": "alto",
-    "prediccion": "medio",
+    "prediccion": "bajo",
     "acierto": false,
-    "probabilidad_maxima": 0.7968512917026201,
-    "Plays": 14000.0,
-    "Wishlist": 460.0,
-    "Backlogs": 1500.0,
-    "indice": 0.7389760837070254,
+    "probabilidad_maxima": 0.49152792529567263,
+    "Plays": 3500.0,
+    "Wishlist": 671.0,
+    "Backlogs": 1900.0,
+    "indice": 0.6787849669015588,
     "generos": [
-      "Adventure",
-      "Indie",
-      "Visual Novel"
+      "Platform"
     ],
     "estudio": [
-      "Team Salvato"
+      "BlitWorks",
+      "Sega"
     ],
     "decada": 2010,
-    "Rating": 3.3,
-    "Metacritic": 78.0,
+    "Rating": 3.7,
+    "Metacritic": 70.0,
     "probabilidades": {
-      "alto": 0.08912285683093057,
-      "bajo": 0.11402585146644932,
-      "medio": 0.7968512917026201
+      "alto": 0.13003255527395496,
+      "bajo": 0.49152792529567263,
+      "medio": 0.3784395194303722
     }
   },
   {
@@ -144,7 +145,7 @@
     "real": "alto",
     "prediccion": "alto",
     "acierto": true,
-    "probabilidad_maxima": 0.974551664282916,
+    "probabilidad_maxima": 0.8235016355289921,
     "Plays": 17000.0,
     "Wishlist": 1400.0,
     "Backlogs": 2000.0,
@@ -161,9 +162,9 @@
     "Rating": 4.2,
     "Metacritic": 95.0,
     "probabilidades": {
-      "alto": 0.974551664282916,
-      "bajo": 0.0072490383463705635,
-      "medio": 0.018199297370713435
+      "alto": 0.8235016355289921,
+      "bajo": 0.053934428207451146,
+      "medio": 0.12256393626355631
     }
   }
 ]

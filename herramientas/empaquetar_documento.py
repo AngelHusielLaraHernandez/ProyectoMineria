@@ -11,7 +11,7 @@ DOCUMENTO = RAIZ / 'DocumentoFinal'
 def main():
     nombres = ['main.tex', 'main.pdf', 'Portada.tex', 'referencias.bib',
                'README.md', 'generar_documento.py', 'ajustar_formato_redaccion.py',
-               'analizar_escenarios.py', 'BITACORA_UNIFICADA.md',
+               'analizar_escenarios.py', 'sincronizar_auditoria.py', 'BITACORA_UNIFICADA.md',
                'revision/verificacion.json']
     archivos = [DOCUMENTO / n for n in nombres]
     for carpeta in ['figuras', 'tablas', 'evidencias', 'portada_img']:

@@ -23,6 +23,9 @@ REPORTES_APP = (
     'tables/perfiles_clusters.csv', 'tables/metricas_clusters.csv', 'tables/bic_gmm.csv',
     'tables/popularidad_genero.csv', 'tables/popularidad_estudio.csv',
     'tables/correlacion_catalogo.csv', 'tables/procedencia_datos.csv', 'tables/parametros_clustering.csv',
+    'tables/correlacion_generos.csv', 'tables/correlacion_organizaciones.csv', 'tables/catalogo_resumen.json',
+    'tables/clase_ward_asignaciones.csv', 'tables/clustering_03_alternativas_k.csv',
+    'tables/modelo_error_por_clase.csv',
 )
 
 

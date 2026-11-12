@@ -218,7 +218,7 @@
 \section*{Resumen}\addcontentsline{toc}{section}{Resumen}
 Este proyecto tiene como finalidad analizar de forma práctica cómo se relacionan la opinión de los jugadores, la crítica especializada y la popularidad que alcanza un videojuego dentro de Backloggd. La idea surge porque normalmente se utiliza una calificación para hablar del éxito de un título, aunque esa nota no nos dice cuántas personas lo juegan ni cuántas tienen interés en hacerlo. Para atender esta situación se revisaron las calificaciones y las métricas de interacción por separado, después se buscaron grupos de juegos similares y finalmente se construyó una aplicación que permite consultar los resultados y probar un modelo supervisado.
 
-El original designado, \texttt{games\_curated.csv}, contiene 1,117 registros y 42 columnas; 1,114 son elegibles para el análisis principal y 887 tienen las seis variables completas para clustering. Pearson entre usuarios y prensa es 0.5439 en esos 887 pares. K-Means y Ward seleccionaron dos grupos, con siluetas de 0.3188 y 0.2807. La MLP activa en la web obtiene 50.90\,\% de exactitud y F1 macro de 0.5008 sobre 222 casos de prueba. Random Forest obtiene 0.5577 de F1 macro en esa misma prueba. En Weka, RandomForest obtiene 53.4753\,\% con validación cruzada de diez pliegues sobre 892 registros exportados. Las evaluaciones no son equivalentes y se presentan por separado.
+El original designado, \texttt{games\_curated.csv}, contiene 1,117 registros y 42 columnas; 1,114 son elegibles para el análisis principal y 887 tienen las seis variables completas para clustering. Pearson entre usuarios y prensa es 0.5439 en esos 887 pares. K-Means y Ward seleccionaron dos grupos, con siluetas de 0.3188 y 0.2807. Random Forest es el modelo activo. Obtuvo 56.76\,\% de exactitud y F1 macro de 0.5577 sobre 222 juegos de prueba. En Weka, RandomForest obtiene 53.4753\,\% con validación cruzada de diez pliegues sobre 892 registros exportados. Las evaluaciones no son equivalentes y se presentan por separado.
 
 La aplicación permite explorar los hallazgos, enviar atributos crudos al Pipeline y consultar vecinos del entrenamiento. El resultado más importante es que podemos describir diferencias de recepción y popularidad dentro del catálogo, pero no demostrar rentabilidad, causalidad ni riesgo financiero de juegos como servicio. La clase media y la cobertura de prensa limitan la utilidad predictiva.
 
@@ -254,7 +254,7 @@ El antecedente de 1,512 registros se reconstruye hasta el maestro de 1,117, con 
 
 Las correlaciones y el clustering completo usan 887 casos elegibles con las notas y señales necesarias. Las ausencias no son ruido de DBSCAN ni una categoría de popularidad. La selección de juegos visibles en Backloggd implica sesgo de cobertura y supervivencia; las conclusiones se limitan al catálogo y al corte disponible.
 \section{Estrategia a seguir}\label{sec:estrategia}
-Adoptamos CRISP-DM como estructura de trabajo \parencite{chapman2000crisp}. Sus seis fases organizan la comprensión del problema, la inspección, la preparación, el modelado, la evaluación y la entrega. No las confundimos con los nombres de scripts: \texttt{03\_clustering.py} corresponde a tareas de modelado y evaluación, no a una tercera fase de negocio.
+Adoptamos CRISP-DM como estructura de trabajo. El método fue desarrollado por un consorcio de empresas, entre ellas Daimler-Benz, SPSS y NCR \parencite{chapman2000crisp}. Sus seis fases organizan la comprensión del problema, la inspección, la preparación, el modelado, la evaluación y la entrega. No las confundimos con los nombres de scripts: \texttt{03\_clustering.py} corresponde a tareas de modelado y evaluación, no a una tercera fase de negocio.
 
 El proceso fue iterativo. Las auditorías obligaron a revisar la procedencia de las notas, la definición del objetivo y las separaciones del entrenamiento. La propuesta propia en Python consiste en integrar estas salvaguardas en Pipelines, recalcular referencias del objetivo dentro de cada pliegue y verificar la inferencia del formulario. La complejidad adicional no se justifica por agregar un modelo más, sino por evitar que una comparación favorable provenga de fuga de información.
 
@@ -391,9 +391,11 @@ Shooter & 223 & 12.8206 & 0.5596\\
 \bottomrule\end{longtable}
 
 Visual Novel aparece con menor distancia media entre notas, pero su correlación no es positiva de forma concluyente. Esto muestra por qué distinguimos coincidencia de niveles y asociación: que dos series tengan notas cercanas no implica que ordenen los juegos de la misma forma. Los p-valores segmentados son exploratorios; el proyecto también conserva ajustes por comparaciones múltiples en las tablas originales.
+La brecha usuarios--crítica es un atributo sintético calculado a partir de las dos notas en una escala común.
+
 \section{Clustering y perfiles del catálogo}\label{sec:clustering}
 \subsection{Transformación y elección de K-Means}
-Se utilizaron Plays, Playing, Backlogs, Wishlist, Rating y Metacritic Rating. Los cuatro conteos reciben $\log(1+x)$ y después se estandarizan las seis variables. Con ello reducimos la asimetría de los conteos y evitamos que las unidades de una sola variable dominen la distancia. El género no entra a la distancia; sirve para interpretar la composición posterior.
+Se utilizaron Plays, Playing, Backlogs, Wishlist, Rating y Metacritic Rating. Los cuatro conteos reciben $\log(1+x)$ y después se aplica estandarización z-score a las seis variables. Con ello reducimos la asimetría de los conteos y evitamos que las unidades de una sola variable dominen la distancia. El género no entra a la distancia; sirve para interpretar la composición posterior.
 
 K-Means se evaluó de $k=2$ a $10$, con semilla 42 y treinta inicializaciones. La elección de dos grupos maximiza silhouette, 0.3188; los valores de $k=3$ y $k=4$ son 0.2377 y 0.2268. La inercia disminuye al aumentar grupos, por lo que no se usa su mínimo como una regla automática para escoger el mayor $k$.
 
@@ -449,41 +451,63 @@ K-Means obtuvo mayor silueta y Calinski--Harabasz, y menor Davies--Bouldin. Los 
 \begin{figure}[htbp]\centering\includegraphics[width=\linewidth,height=.42\textheight,keepaspectratio]{figuras/clase_ward_dendrograma.png}
 \caption{Últimas fusiones del dendrograma de Ward. Cada etiqueta entre paréntesis indica la cantidad de juegos representada.}\end{figure}\FloatBarrier
 
+La mezcla gaussiana obtuvo el menor BIC con 3 componentes (11335.98). Este criterio describe el ajuste probabilístico de la mezcla. Se conservan los cortes de K-Means y Ward elegidos por silueta. DBSCAN queda como descripción de densidad y casos atípicos.
+\begin{figure}[htbp]\centering\includegraphics[width=\linewidth]{figuras/pca_tres_metodos.png}\caption{Proyección exploratoria de las mismas dos componentes principales para los tres métodos.}\end{figure}\FloatBarrier
 \section{Clasificación supervisada}\label{sec:clasificacion}
 \subsection{Definición de popularidad relativa}
 Comparamos conceptualmente dos objetivos. Solo Plays es más simple y representa alcance acumulado; el índice compuesto incorpora interés pendiente, aunque da dos tercios del peso a Wishlist y Backlogs, dos señales relacionadas. Se eligió el índice por ese alcance más amplio y se declara la redundancia como limitación:
 \begin{equation}I(x)=\frac{P_{\mathrm{train}}(Plays_x)+P_{\mathrm{train}}(Wishlist_x)+P_{\mathrm{train}}(Backlogs_x)}{3}.\end{equation}
-Los percentiles se ajustan como rangos medios divididos entre el tamaño del entrenamiento; para datos externos se interpolan entre valores distintos y se usan cero y uno fuera de sus extremos. Dos cortes en los terciles del índice de entrenamiento definen bajo, medio y alto, preservando empates. Estos niveles son relativos al catálogo popular, no umbrales absolutos de toda la industria.
+Los percentiles se ajustan como rangos medios divididos entre el tamaño del entrenamiento; para datos externos se interpolan entre valores distintos y se usan cero y uno fuera de sus extremos. Aplicamos una discretización no supervisada de igual frecuencia por terciles. Los cortes de entrenamiento definen bajo, medio y alto y preservan los empates. Estos niveles son relativos al catálogo popular, no umbrales absolutos de toda la industria.
+Para describir el catálogo elegible completo se calcularon aparte los cortes 0.362807 y 0.623728 sobre 1114 juegos. La evaluación estima su referencia en cada ajuste, de modo que los conteos de validación y prueba queden reservados.
 \subsection{Separación y prevención de fuga}
 Antes de definir etiquetas se aplica GroupShuffleSplit por título normalizado, semilla 42 y proporción aproximada 80/20: 892 registros de entrenamiento y 222 de prueba. No se exige estratificar clases que todavía no están definidas. La referencia del objetivo se calcula con entrenamiento y se aplica a ambos conjuntos.
 
-La selección utiliza StratifiedGroupKFold de diez pliegues. Dentro de cada ajuste se recalculan referencia y cortes del objetivo, categorías e imputaciones usando solo el subentrenamiento. Las etiquetas de entrenamiento externo organizan los estratos, pero la puntuación de cada validación usa la referencia local. Esta distinción evita que la definición del objetivo conozca los conteos de la validación.
+La evaluación usa validación estratificada por grupos de título, con diez pliegues externos repetidos cinco veces y búsqueda interna de tres pliegues. Se usan las mismas particiones para los cinco modelos y semillas reproducibles a partir de 42. Dentro de cada ajuste se recalculan referencia y cortes del objetivo, categorías e imputaciones usando solo el subentrenamiento. Las etiquetas de entrenamiento externo organizan los estratos, pero la puntuación de cada validación usa la referencia local. Esta distinción evita que la definición del objetivo conozca los conteos de la validación.
 
 Las entradas del Pipeline son géneros, organizaciones, década y las dos notas. Ninguno de los cuatro conteos, el índice de popularidad, los clusters, PCA ni las banderas de procedencia entra al clasificador. El preprocesamiento forma parte del artefacto y recibe atributos crudos, tanto en las pruebas como en la web.
 \subsection{Representación y comparación de modelos}
 Los géneros se codifican multi-hot con hasta quince categorías y frecuencia mínima veinte dentro de cada ajuste. Las organizaciones usan frecuencia mínima diez; Otro se activa si no hay ninguna organización conocida. Las notas se imputan por mediana entrenada. La década se codifica mediante one-hot, conservando una categoría de ausencia.
 
-La referencia es DummyClassifier con la clase más frecuente. CategoricalNB discretiza las notas en cinco intervalos; se prefiere a ajustar gaussianas sobre decenas de indicadores binarios raros, reconociendo la pérdida de resolución y la independencia aproximada. Se comparan además árbol CART, Random Forest y una red neuronal MLP. Se probaron capas ocultas de 16 y 32 neuronas con activación tanh, optimizador L-BFGS y regularización L2. El ajuste elegido usa 32 neuronas y alpha de 5. La selección se cierra por F1 macro media de CV antes de evaluar la prueba.
+La referencia es DummyClassifier con la clase más frecuente. CategoricalNB discretiza las notas en cinco intervalos; se prefiere a ajustar gaussianas sobre decenas de indicadores binarios raros, reconociendo la pérdida de resolución y la independencia aproximada. Se comparan además árbol CART, Random Forest y una red neuronal MLP. Se probaron capas ocultas de 16 y 32 neuronas con activación tanh, optimizador L-BFGS y regularización L2.
 
-\begin{longtable}{p{0.174\textwidth}p{0.174\textwidth}p{0.174\textwidth}p{0.174\textwidth}p{0.174\textwidth}}
-\caption{Comparación de candidatos en la prueba reservada de 222 casos. Exactitud expresada como fracción.}\\
-\toprule
-Modelo & F1 CV & Desv CV & Exactitud prueba & F1 prueba\\\midrule\endfirsthead
-Modelo & F1 CV & Desv CV & Exactitud prueba & F1 prueba\\\midrule\endhead
-Dummy & 0.1678 & 0.0031 & 0.3018 & 0.1546\\
-Naive Bayes & 0.5490 & 0.0625 & 0.5090 & 0.4925\\
-Árbol CART & 0.5053 & 0.0458 & 0.5315 & 0.5119\\
-Random Forest & 0.5567 & 0.0451 & 0.5676 & 0.5577\\
-Red neuronal MLP & 0.5608 & 0.0679 & 0.5090 & 0.5008\\
+\begin{longtable}{p{.20\textwidth}p{.13\textwidth}p{.126\textwidth}p{.126\textwidth}p{.126\textwidth}p{.126\textwidth}}
+\caption{Validación externa anidada. Media y desviación estándar de los pliegues.}\\\toprule
+Modelo & Exactitud (\%) & F1 macro & F1 pond. & Kappa & AUC OvR\\\midrule\endfirsthead
+Modelo & Exactitud (\%) & F1 macro & F1 pond. & Kappa & AUC OvR\\\midrule\endhead
+Referencia mayoritaria & 33.30 $\pm$ 1.12 & 0.166 $\pm$ 0.004 & 0.166 $\pm$ 0.010 & 0.000 $\pm$ 0.000 & 0.500 $\pm$ 0.000\\
+Naive Bayes categórico & 54.24 $\pm$ 5.33 & 0.531 $\pm$ 0.054 & 0.531 $\pm$ 0.055 & 0.314 $\pm$ 0.080 & 0.722 $\pm$ 0.036\\
+Árbol CART & 50.00 $\pm$ 4.58 & 0.490 $\pm$ 0.047 & 0.491 $\pm$ 0.048 & 0.250 $\pm$ 0.069 & 0.676 $\pm$ 0.047\\
+Random Forest & 55.83 $\pm$ 4.64 & 0.550 $\pm$ 0.047 & 0.550 $\pm$ 0.048 & 0.337 $\pm$ 0.070 & 0.744 $\pm$ 0.034\\
+Red neuronal MLP & 55.80 $\pm$ 5.66 & 0.554 $\pm$ 0.056 & 0.554 $\pm$ 0.056 & 0.337 $\pm$ 0.085 & 0.738 $\pm$ 0.038\\
 \bottomrule\end{longtable}
+\subsection{Comparación estadística de los modelos}
+La t pareada se corrige por la razón entre los tamaños de validación y ajuste \parencite{nadeau2003}. Wilcoxon, Friedman y Nemenyi se presentan como contrastes complementarios \parencite{demsar2006}. Las particiones repetidas se solapan, por lo que los tres contrastes de rangos se interpretan como exploratorios.
+\begin{longtable}{p{.25\textwidth}p{.44\textwidth}p{.16\textwidth}}
+\caption{Contrastes pareados de F1 macro del bosque y prueba global.}\\\toprule
+Prueba & Comparación & p-valor\\\midrule\endfirsthead
+Prueba & Comparación & p-valor\\\midrule\endhead
+t corregida Nadeau--Bengio & Random Forest / Naive Bayes categórico & 0.1956\\
+Wilcoxon & Random Forest / Naive Bayes categórico & 0.0026\\
+t corregida Nadeau--Bengio & Random Forest / Árbol CART & 0.0015\\
+Wilcoxon & Random Forest / Árbol CART & $1.27\times10^{-8}$\\
+t corregida Nadeau--Bengio & Random Forest / Referencia mayoritaria & $1.16\times10^{-27}$\\
+Wilcoxon & Random Forest / Referencia mayoritaria & $7.56\times10^{-10}$\\
+t corregida Nadeau--Bengio & Random Forest / Red neuronal MLP & 0.7597\\
+Wilcoxon & Random Forest / Red neuronal MLP & 0.3876\\
+Friedman & Cinco modelos / — & $4.75\times10^{-29}$\\
+Nemenyi & Red neuronal MLP / Random Forest & 0.9956\\
+\bottomrule\end{longtable}
+Friedman dio p = $4.75\times10^{-29}$. Entre el bosque y la MLP, la t corregida dio p = 0.7597, Wilcoxon p = 0.3876 y Nemenyi p = 0.9956. La MLP obtuvo F1 macro externo 0.5538 con DE 0.0561. El bosque obtuvo 0.5495 con DE 0.0474. La diferencia es inconclusa. El bosque permanece activo por decisión de proyecto, su menor dispersión observada y la posibilidad de inspeccionar importancias por variable.
 
-La MLP obtiene el mayor F1 macro medio de validación cruzada, 0.5608 frente a 0.5567 de Random Forest. La diferencia de 0.0041 es pequeña y no se sometió a una prueba de significancia. En la prueba reservada, la MLP obtiene F1 macro 0.5008 y exactitud de 50.90\,\%. Random Forest alcanza F1 macro 0.5577 y exactitud de 56.76\,\% en esos mismos juegos. La app carga la MLP según la regla fijada de selección por validación cruzada.
+\subsection{Prueba reservada y fiabilidad}
+Random Forest es el modelo activo. Obtuvo 56.76\,\% de exactitud y F1 macro de 0.5577 sobre 222 juegos de prueba. El F1 ponderado fue 0.5540, kappa 0.3552 y ROC-AUC macro uno contra el resto 0.7379. La MLP obtuvo en la corrida histórica F1 macro 0.5008 y exactitud 50.90\,\%. El código anterior escogió por CV y después calculó las métricas de prueba de todos los candidatos. La decisión actual se tomó con esos resultados ya conocidos. Por ello, la partición sirve para comprobar la consistencia del artefacto y falta una muestra independiente para evaluar esa decisión.
 
-La matriz de la MLP, en orden bajo, medio y alto para filas reales y columnas predichas, es:
-\begin{equation}\begin{pmatrix}40&17&10\\31&23&26\\10&15&50\end{pmatrix}.\end{equation}
-La clase media recupera 23 de 80 casos, 28.75\,\%. La comparación utiliza una prueba histórica que el equipo ya había observado en corridas anteriores. Haría falta una muestra externa para medir generalización prospectiva.
+La matriz del bosque tiene filas reales y columnas predichas en orden bajo, medio y alto.
+\begin{equation}\begin{pmatrix}43&14&10\\32&27&21\\9&10&56\end{pmatrix}.\end{equation}
+La clase media recupera 27 de 80 juegos, 33.75\,\%. El Brier multiclase, como suma de errores cuadrados por clase, fue 0.5570. La pérdida logarítmica fue 0.9274. La web permite explorar la fracción observada por intervalos de probabilidad y ver cuántos juegos aporta cada intervalo.
+\begin{figure}[htbp]\centering\includegraphics[width=.75\linewidth]{figuras/fiabilidad_rf.png}\caption{Curva de fiabilidad uno contra el resto en la partición de prueba.}\end{figure}\FloatBarrier
 \subsection{Interpretación y revisión del entrenamiento}
-La web muestra la importancia por reducción de impureza de Gini de Random Forest, el bosque incluido en la comparación. Se suman las contribuciones de las columnas codificadas de cada variable original. La importancia describe las divisiones aprendidas por ese bosque y depende de la codificación y del número de atributos disponibles por variable. La MLP se revisa con su matriz, casos de prueba y escenarios. Los CSV de permutación se conservan como diagnóstico complementario del modelo activo.
+La web muestra la importancia por reducción de impureza de Gini de Random Forest, el modelo activo de la web. Se suman las contribuciones de las columnas codificadas de cada variable original. La importancia describe las divisiones aprendidas por ese bosque y depende de la codificación y del número de atributos disponibles por variable. El bosque se revisa con su matriz, casos de prueba y escenarios. Los CSV de permutación se conservan como diagnóstico complementario del modelo activo.
 
 \begin{longtable}{p{0.435\textwidth}p{0.435\textwidth}}
 \caption{Importancia agrupada por variable original en Random Forest.}\\
@@ -498,7 +522,7 @@ Géneros & 32.59\%\\
 \bottomrule\end{longtable}
 
 \begin{figure}[htbp]\centering\includegraphics[width=\linewidth,height=.48\textheight,keepaspectratio]{figuras/gini_web.png}
-\caption{Importancia de Gini del bosque comparado en la página Modelo.}\end{figure}\FloatBarrier
+\caption{Importancia de Gini del bosque en la página Modelo.}\end{figure}\FloatBarrier
 
 \begin{longtable}{p{0.29\textwidth}p{0.29\textwidth}p{0.29\textwidth}}
 \caption{Auditoría histórica con el bosque original y siete variantes, usando únicamente entrenamiento.}\\
@@ -532,11 +556,7 @@ RandomForest & 53.4753 & 0.5300 & 0.5300\\
 \begin{figure}[htbp]\centering\includegraphics[width=\linewidth,height=.44\textheight,keepaspectratio]{figuras/RandomForest.png}
 \caption{Evidencia de la corrida gráfica de RandomForest en Weka; incluye resumen, métricas por clase y matriz.}\end{figure}\FloatBarrier
 
-RandomForest fue el mejor de las cuatro corridas, con 477 aciertos. Su recall de medio fue 0.360, lo que coincide cualitativamente con la dificultad de la clase central en Python. Sin embargo, no se debe comparar directamente su 53.4753\,\% con el 56.76\,\% de prueba de la app: son poblaciones y protocolos distintos.
-
-La comparación de enlace de Python usa los mismos 892 registros y 52 atributos numéricos exportados. Allí Random Forest obtiene 54.8206\,\% y F1 macro 0.5442. Las particiones Java y sklearn no son idénticas, la semilla de CV de la sesión Weka no se recuperó, y los algoritmos difieren: J48 no es CART; Weka NaiveBayes no garantiza estimadores numéricos iguales a GaussianNB. Weka RandomForest usa cien árboles y semilla del estimador uno, frente a cien y 42 en el enlace de Python.
-
-Además, el preprocesamiento de los archivos exportados ocurre antes de la CV de enlace. Ese contraste sirve para comparación descriptiva entre herramientas, pero no sustituye el protocolo de producción con categorías e imputaciones locales por pliegue. El archivo comparativo conserva también evaluaciones de Python sobre 1,117 y 1,114 casos, identificando cada universo.
+RandomForest alcanzó la mayor exactitud de las corridas gráficas de clasificación. Random Forest es el modelo activo. Obtuvo 56.76\,\% de exactitud y F1 macro de 0.5577 sobre 222 juegos de prueba. Weka evalúa mediante CV sobre los atributos exportados. Python ajusta el preprocesamiento y los cortes dentro de cada pliegue, agrupa por título y usa CV anidada. J48 corresponde a C4.5 y el árbol de Python a CART. Los estimadores numéricos de Weka NaiveBayes difieren de la discretización de CategoricalNB.
 
 En SimpleKMeans se usaron dos grupos y semilla 42. Se obtuvieron 477 y 410 casos tras nueve iteraciones; en Python fueron 465 y 422. Los centros de Weka son positivos en las seis variables para el primer grupo y negativos para el segundo, compatibles con una separación por magnitud conjunta. La suma de cuadrados de Weka, 76.6310, no se compara con la de Python como si ambas configuraciones de distancia fueran idénticas.
 
@@ -548,7 +568,7 @@ Weka DBSCAN, con eps 1.666296 y minPoints doce, agrupó los 887 casos en un solo
 \begin{figure}[htbp]\centering\includegraphics[width=\linewidth,height=.52\textheight,keepaspectratio]{figuras/dbscan_resultado.png}
 \caption{Salida original de DBSCAN en Weka. Un grupo dominante no demuestra múltiples segmentos de mercado.}\end{figure}\FloatBarrier
 
-Orange no produjo evaluaciones utilizables. Hubo cierres en Qt/Cocoa al emplear selectores; se probaron instalación local, recuperación y reinicio del lienzo, importación CSV y TAB y un lanzador con selectores Qt. El cierre de esta vía se documentó como desviación del plan. Power BI no se utilizó. La corrida MLP se realizó en Python.
+Orange no produjo evaluaciones utilizables. Hubo cierres en Qt/Cocoa al emplear selectores; se probaron instalación local, recuperación y reinicio del lienzo, importación CSV y TAB y un lanzador con selectores Qt. El cierre de esta vía se documentó como desviación del plan. Power BI no se utilizó. El único reintento sin interfaz abortó porque la compilación de Qt requería NEON. Las métricas de Orange quedaron sin valores. La corrida de MLP se realizó en Python.
 \section{Aplicación y demostración}\label{sec:web}
 La web se implementó en Streamlit con cuatro páginas. Inicio presenta alcance, límites y consulta del catálogo. Exploración ofrece señales, brechas y perfiles; Predicción recibe atributos crudos y muestra la clase y sus probabilidades; Modelo documenta resultados por algoritmo, errores por clase y el diagnóstico de ausencias. El artefacto incluye su preprocesamiento y los vecinos se calculan exclusivamente en el espacio predictivo de entrenamiento.
 
@@ -557,10 +577,8 @@ El formulario utiliza géneros, organización, década y notas. No solicita Play
 \begin{figure}[htbp]\centering\includegraphics[width=\linewidth,height=.48\textheight,keepaspectratio]{figuras/dashboard_interactivo.png}
 \caption{Dashboard con filtros e indicadores de la consulta.}\end{figure}\FloatBarrier
 
-\begin{figure}[htbp]\centering\includegraphics[width=\linewidth,height=.48\textheight,keepaspectratio]{figuras/comparacion_mlp.png}
-\caption{Comparación de los cinco candidatos con puntos y segmentos de desviación estándar en CV.}\end{figure}\FloatBarrier
 
-Exploración incluye filtros por género, década y calificaciones. El dashboard actualiza indicadores y la selección de puntos de la dispersión acota la tabla y el CSV. El selector de agrupamiento ofrece K-Means y Ward. El dendrograma resume el ajuste completo y el mapa PCA responde a los filtros de la consulta. Pearson, Spearman y la corrección de comparaciones múltiples quedan en la sección complementaria de brechas.
+Exploración incluye filtros por género, década y calificaciones. El dashboard actualiza indicadores y la selección de puntos de la dispersión acota la tabla y el CSV. El selector de agrupamiento ofrece K-Means, Ward y DBSCAN. El dendrograma resume el ajuste completo y el mapa PCA responde a los filtros de la consulta. Pearson, Spearman y la corrección de comparaciones múltiples quedan en la sección complementaria de brechas.
 
 La web conserva la identidad azul marino, morado, cian y dorado. Se ajustaron títulos, etiquetas y anchos para escritorio y pantallas estrechas. La gráfica de comparación usa puntos para las métricas y segmentos de una desviación estándar para el F1 de CV.
 
@@ -578,32 +596,32 @@ El escenario de referencia utiliza Adventure y RPG, organización Otro y década
 \caption{Escenarios hipotéticos calculados con el Pipeline guardado. La última columna muestra la mayor probabilidad, sin calibrar.}\\\hline
 Caso&Situación&Rating&Prensa&Predicción&Probabilidad\\\hline\endfirsthead
 Caso&Situación&Rating&Prensa&Predicción&Probabilidad\\\hline\endhead
-S1 & Notas bajas & 1.0 & 45 & bajo & 78.6\%\\\hline
-S2 & Notas altas & 4.8 & 99 & medio & 46.9\%\\\hline
-S3 & Usuarios altos y prensa baja & 4.8 & 45 & bajo & 63.4\%\\\hline
-S4 & Usuarios bajos y prensa alta & 1.0 & 99 & bajo & 56.6\%\\\hline
-S5 & Usuarios altos sin prensa & 4.8 & Ausente & bajo & 61.6\%\\\hline
-S6 & Cambio de organización & 4.8 & 99 & alto & 65.6\%\\\hline
-S7 & Cambio de década & 4.8 & 99 & medio & 38.7\%\\\hline
-S8 & Cambio de género & 4.8 & 99 & alto & 41.4\%\\\hline
+S1 & Notas bajas & 1.0 & 45 & bajo & 60.0\%\\\hline
+S2 & Notas altas & 4.8 & 99 & alto & 54.1\%\\\hline
+S3 & Usuarios altos y prensa baja & 4.8 & 45 & bajo & 43.9\%\\\hline
+S4 & Usuarios bajos y prensa alta & 1.0 & 99 & alto & 38.2\%\\\hline
+S5 & Usuarios altos sin prensa & 4.8 & Ausente & bajo & 44.2\%\\\hline
+S6 & Cambio de organización & 4.8 & 99 & alto & 58.7\%\\\hline
+S7 & Cambio de década & 4.8 & 99 & alto & 57.2\%\\\hline
+S8 & Cambio de género & 4.8 & 99 & alto & 49.7\%\\\hline
 \end{longtable}
-La tabla muestra cómo responde la MLP cuando se modifican las notas y los demás atributos. S2, con ambas notas altas, estima popularidad media. S5 conserva el Rating de S2 y oculta Metacritic. En ese caso se estima la clase baja y se usa la mediana aprendida para sustituir el faltante. Los escenarios S6 a S8 ilustran la sensibilidad a organización, década y género. Las probabilidades son salidas del modelo y carecen de calibración.
+Al ingresar las dos notas altas de S2, el bosque estima la clase alto. Al ocultar Metacritic en S5, estima la clase bajo. Las probabilidades se obtienen del Pipeline guardado y carecen de calibración.
 
 \begin{figure}[htbp]\centering\includegraphics[width=\linewidth]{figuras/sensibilidad_escenarios.png}\caption{Veinticinco combinaciones de Rating y Metacritic con el resto de atributos fijos. La etiqueta es la clase estimada y el color muestra la probabilidad no calibrada de alto.}\end{figure}\FloatBarrier
 \subsection{Verificación del formulario}
-\begin{figure}[htbp]\centering\includegraphics[width=\linewidth,height=.49\textheight,keepaspectratio]{figuras/prediccion_mlp_web.png}\caption{Ejecución del formulario en la web con la MLP activa.}\end{figure}\FloatBarrier
+La auditoría reprodujo una predicción del formulario con Random Forest y la contrastó con el Pipeline guardado.
 \subsection{Contraejemplos con juegos del conjunto de prueba}
 Para no quedarnos solamente con escenarios inventados, seleccionamos un acierto y un error por cada clase real. Dentro de cada caso se tomó el registro con mayor probabilidad máxima del modelo. Esta selección es posterior a observar las predicciones y busca ilustrar sus límites; no sirve para estimar una nueva exactitud ni representa una muestra aleatoria de casos.
 \begin{longtable}{p{.35\textwidth}p{.12\textwidth}p{.12\textwidth}p{.12\textwidth}p{.15\textwidth}}
 \caption{Aciertos y errores reales frente al objetivo de popularidad del proyecto. No se usa ventas como verdad de referencia.}\\\hline
 Juego&Clase real&Predicción&Resultado&Probabilidad\\\hline\endfirsthead
 Juego&Clase real&Predicción&Resultado&Probabilidad\\\hline\endhead
-Resident Evil 4: Wii Edition (ID 1335) & bajo & alto & Error & 89.6\%\\\hline
-Pokémon Unite (ID 1054) & bajo & bajo & Acierto & 95.0\%\\\hline
-Back 4 Blood (ID 1137) & medio & bajo & Error & 85.7\%\\\hline
-Pokémon Red (ID 1050) & medio & medio & Acierto & 80.8\%\\\hline
-Doki Doki Literature Club! (ID 111) & alto & medio & Error & 79.7\%\\\hline
-The Last of Us (ID 78) & alto & alto & Acierto & 97.5\%\\\hline
+Resident Evil 4: Wii Edition (ID 1335) & bajo & alto & Error & 66.8\%\\\hline
+Pokémon Unite (ID 1054) & bajo & bajo & Acierto & 77.2\%\\\hline
+Uncharted: The Nathan Drake Collection (ID 658) & medio & alto & Error & 69.8\%\\\hline
+Pokémon Red (ID 1050) & medio & medio & Acierto & 52.0\%\\\hline
+Jet Set Radio (ID 1057) & alto & bajo & Error & 49.2\%\\\hline
+The Last of Us (ID 78) & alto & alto & Acierto & 82.4\%\\\hline
 \end{longtable}
 Los tres errores de la tabla muestran que una probabilidad máxima alta puede acompañar una clasificación equivocada. La comparación usa los terciles de entrenamiento y los conteos observados de Backloggd. Los tres aciertos sirven para contrastar cómo se comporta el mismo modelo cuando coincide con esa etiqueta.
 
@@ -613,9 +631,9 @@ Los cortes de entrenamiento son 0.362294 y 0.626682. Bajo corresponde a un índi
 \begin{longtable}{p{.1\textwidth}p{.14\textwidth}p{.14\textwidth}p{.14\textwidth}p{.14\textwidth}p{.13\textwidth}}\caption{Señales observadas que permiten contrastar la clase real de los ejemplos. Los ID se corresponden con el archivo de evidencia.}\\\hline ID&Plays&Wishlist&Backlogs&Índice&Clase real\\\hline\endfirsthead ID&Plays&Wishlist&Backlogs&Índice&Clase real\\\hline\endhead
 1335 & 1100 & 76 & 213 & 0.1327 & bajo\\\hline
 1054 & 4500 & 65 & 184 & 0.2702 & bajo\\\hline
-1137 & 2900 & 335 & 489 & 0.4170 & medio\\\hline
+658 & 4300 & 319 & 1300 & 0.5708 & medio\\\hline
 1050 & 8800 & 154 & 425 & 0.4482 & medio\\\hline
-111 & 14000 & 460 & 1500 & 0.7390 & alto\\\hline
+1057 & 3500 & 671 & 1900 & 0.6788 & alto\\\hline
 78 & 17000 & 1400 & 2000 & 0.8959 & alto\\\hline
 \end{longtable}
 \subsection{Qué aprendimos de las pruebas}
@@ -624,22 +642,23 @@ Los escenarios permiten cuestionar dos expectativas del planteamiento inicial: u
 Por eso la aplicación debe entenderse como una estimación orientativa que ayuda a contrastar situaciones. Los contraejemplos no se utilizaron para volver a escoger parámetros sobre la prueba. La forma adecuada de evaluar una mejora futura sería reservar una muestra temporal nueva y establecer antes los criterios de comparación. Reentrenar hasta que desaparezcan los errores elegidos solo memorizaría una parte de la evaluación que ya conocemos.
 
 \section{Plan real frente a la línea base}\label{sec:plan}
-La línea base del anteproyecto v2.0 programaba actividades del 1 de octubre al 25 de noviembre de 2026. El equipo declara que las actividades técnicas realizadas cumplieron el calendario previsto. La tabla contrasta ese plan con los productos disponibles y las desviaciones de alcance documentadas. No se asignan fechas exactas de terminación porque no se cuenta con un registro por actividad; la entrega y exposición académicas se distinguen de la ejecución técnica.
-\begin{longtable}{p{.22\textwidth}p{.19\textwidth}p{.49\textwidth}}
-\caption{Línea base frente a evidencia disponible al 11 de noviembre de 2026.}\\\toprule Actividad & Línea base & Estado real y justificación\\\midrule\endfirsthead
-Actividad&Línea base&Estado real y justificación\\\midrule\endhead
-Anteproyecto y revisión & 1--5 octubre & Documento v2.0 conservado como antecedente; auditorías posteriores revisaron su alcance. No se reconstruye su fecha de terminación.\\
-Limpieza y validación & 6--15 octubre & Scripts, dataset y log disponibles. Se recibe un maestro ya curado y se auditan decisiones heredadas.\\
-EDA y correlaciones & 15--29 octubre & Tablas y figuras ejecutadas. Se distingue asociación de brecha y se exige cobertura mínima por grupo.\\
-Clustering e interpretación & 29 octubre--10 noviembre & K-Means y DBSCAN quedaron documentados en Python y Weka. La vista principal compara K-Means con Ward.\\
-Clasificación & 5--11 noviembre & Cinco candidatos evaluados. Se incorporó la MLP prevista y se seleccionó por validación cruzada.\\
-Arquitectura y web & 8--16 noviembre & Web funcional comprobada al corte, anterior al fin planeado; no se atribuyen horas de adelanto sin bitácora temporal completa.\\
-Despliegue público & 16--18 noviembre & Cancelado por preferencia de mantener datos y modelos locales; demo en localhost.\\
-Evaluación en Orange & Durante modelado & Descartada por cierres; Weka sí conserva seis corridas gráficas.\\
-Documento y revisión & 10--24 noviembre & Integración al corte actual con evidencia y bibliografía. No se afirma entrega formal al profesor.\\
-Entrega y demo & 25 noviembre & Fecha planificada; ejecución local verificada, presentación académica aún no acreditada.\\\bottomrule
-\end{longtable}
-Las principales desviaciones no fueron simples cambios de calendario: se sustituyó el target de perfil de cluster por terciles de popularidad, se corrigió la procedencia de notas y se recalculó el objetivo dentro de la validación. También se abandonó Orange y se mantuvo la app local. Estos ajustes reducen el alcance respecto de promesas iniciales, pero hacen que lo reportado sea comprobable.
+El equipo declara que las actividades técnicas realizadas cumplieron el calendario previsto. Las fechas de Git registran la primera evidencia disponible por producto y pueden corresponder a una entrega agrupada posterior. La fecha exacta de terminación de cada actividad requiere respaldo adicional.
+\begin{longtable}{p{.19\textwidth}p{.15\textwidth}p{.18\textwidth}p{.36\textwidth}}
+\caption{Línea base y primera evidencia fechada en Git por producto.}\\\toprule
+Actividad & Línea base & Fecha Git & Evidencia y justificación\\\midrule\endfirsthead
+Actividad & Línea base & Fecha Git & Evidencia y justificación\\\midrule\endhead
+Anteproyecto y revisión & 1--5 oct. & 2026-10-07 (707324c) & Versión base conservada. [PENDIENTE: confirmar equipo]\\
+Preparación y limpieza & 6--15 oct. & 2026-11-08 (79a573c) & El maestro ya estaba curado. [PENDIENTE: confirmar equipo]\\
+EDA y correlaciones & 15--29 oct. & 2026-11-08 (79a573c) & Esquema, rangos y cobertura documentados. [PENDIENTE: confirmar equipo]\\
+Clustering & 29 oct.--10 nov. & 2026-11-08 (79a573c) & K-Means, Ward y DBSCAN. [PENDIENTE: confirmar equipo]\\
+Clasificación & 5--11 nov. & 2026-11-08 (79a573c) & Evaluación anidada incorporada en revisión. [PENDIENTE: confirmar equipo]\\
+Weka & Durante modelado & 2026-11-08 (79a573c) & Evidencia gráfica. [PENDIENTE: confirmar equipo]\\
+Web & 8--16 nov. & 2026-11-08 (bcd38d6) & Ejecución local. [PENDIENTE: confirmar equipo]\\
+Despliegue público & 16--18 nov. & Sin registro & Descartado por decisión de conservar los datos localmente.\\
+Evaluación en Orange & Durante modelado & Sin registro & Parcial. Cierres de Qt documentados.\\
+Documento y revisión & 10--24 nov. & 2026-11-09 (5db3c30) & Fuente versionada. [PENDIENTE: confirmar equipo]\\
+Entrega y demo & 25 nov. & Sin registro & La fecha de exposición sigue siendo una fecha planificada.\\
+\bottomrule\end{longtable}
 \section{Evaluación de los objetivos y discusión}\label{sec:discusion}
 El objetivo de inspección se cumple con un esquema comprobado, log de preparación, pruebas y conservación del maestro. La existencia de tres conflictos históricos impide afirmar que todos los registros tengan verificación semántica externa. Se conserva esa incertidumbre en la elegibilidad en vez de escoger el máximo o promediar variantes de forma arbitraria.
 
@@ -649,13 +668,15 @@ K-Means y Ward produjeron dos grupos. Los tres índices internos favorecen K-Mea
 
 El clasificador supera a la referencia en la partición disponible, pero sigue confundiendo especialmente la clase media. Su etiqueta es un tercil artificial y depende de una referencia histórica del catálogo. Una predicción no puede comprobarse contra ventas ni contra el futuro solo porque el formulario funcione; son validaciones distintas.
 
-La propuesta propia integra control de procedencia, objetivo local, agrupación por título, inferencia cruda y pruebas de interfaz. Esto aporta trazabilidad respecto de una corrida aislada. Aun así, la CV no anidada y la ausencia de validación externa limitan cualquier comparación predictiva más fuerte.
+La propuesta propia integra control de procedencia, objetivo local, agrupación por título, inferencia cruda y pruebas de interfaz. Esto aporta trazabilidad respecto de una corrida aislada. Aun así, la evaluación repetida comparte juegos entre particiones y falta una muestra externa para medir generalización prospectiva.
+\subsection{Ética y alcance de uso}
+La unidad del análisis es el juego. Las señales representan interacciones agregadas de Backloggd y no permiten reconstruir trayectorias individuales. La presencia de reseñas de prensa y la visibilidad del catálogo pueden estar relacionadas con la popularidad histórica. El clasificador puede favorecer géneros con mayor presencia en la muestra y desfavorecer propuestas de nicho. Usamos la predicción como estimación orientativa. Los datos carecen de ventas observadas y no permiten evaluar rentabilidad ni riesgo de juegos como servicio.
 \section{Conclusiones}\label{sec:conclusiones}
 Después de realizar el análisis, podemos concluir que la idea inicial de revisar varios indicadores sí fue útil. Las calificaciones nos ayudaron a entender la recepción, mientras que Plays, Backlogs y Wishlist mostraron diferencias de alcance e interés que no se veían solamente con una nota. La relación entre usuarios y prensa fue positiva, aunque moderada, por lo que tampoco sería correcto asumir que ambas opiniones siempre coinciden.
 
 K-Means ofrece una síntesis interpretable de dos niveles conjuntos de actividad y recepción, pero no demuestra mercados naturales. DBSCAN no generó una segmentación múltiple útil bajo el protocolo fijado. Conservar ese resultado, y la diferencia de ruido entre Weka y Python, permite explicar lo que cada herramienta produjo sin acomodarlo a una expectativa.
 
-La clasificación funciona de manera reproducible y supera a Dummy, pero su rendimiento es moderado y la clase media conserva baja recuperación. La MLP ganó por el criterio de CV fijado y Random Forest logró el mayor F1 en la prueba reservada. La evidencia apoya distinguir selección, desempeño en prueba y generalización a datos nuevos.
+La clasificación funciona de manera reproducible y supera a Dummy, pero su rendimiento es moderado y la clase media conserva baja recuperación. La MLP obtuvo el mayor F1 macro medio en la validación anidada. La diferencia frente a Random Forest no fue concluyente y se mantuvo el bosque activo. La evidencia apoya distinguir selección, desempeño en prueba y generalización a datos nuevos.
 
 La web convierte el análisis en una demostración consultable y mantiene visibles los límites de las estimaciones. La ausencia de Metacritic puede alterar mucho una respuesta y requiere cautela. Para estudiar nuevos lanzamientos o rentabilidad necesitaríamos una muestra temporal externa, métricas comerciales observadas, control de plataforma y fecha, y un diseño específico para esa pregunta.
 
@@ -685,8 +706,8 @@ Fuentes & Bibliografía APA y referencias internas a evidencias.\\\bottomrule\en
 \item Abrir Inicio y explicar que el maestro tiene 1,117 registros y el antecedente 1,512; mostrar la limitación de ventas.
 \item En Exploración, cambiar Plays a Wishlist y distinguir asociación de brecha. Identificar el tamaño de pares del grupo consultado.
 \item En Modelo, leer la matriz: medio tiene 23 aciertos de 80. Explicar por qué esto limita una exactitud global moderada.
-\item En Predicción, probar el formulario con la MLP. Usar los valores de la tabla de escenarios para reproducir S2 y S5 y comparar qué sucede al ocultar Metacritic.
-\item En Exploración, alternar K-Means y Ward, revisar el dendrograma y explicar la comparación de índices.
+\item En Predicción, probar el formulario con Random Forest. Usar los valores de la tabla de escenarios para reproducir S2 y S5 y comparar qué sucede al ocultar Metacritic.
+\item En Exploración, alternar K-Means, Ward y DBSCAN, revisar el dendrograma y explicar la comparación de índices.
 \item Abrir las capturas originales de Weka y contrastar 892 casos de CV con 222 de prueba de producción. No atribuir silhouette de Python ni resultados a Orange.
 \end{enumerate}
 \section{Fuentes locales y trazabilidad}

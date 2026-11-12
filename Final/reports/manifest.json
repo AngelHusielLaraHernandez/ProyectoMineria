@@ -1,5 +1,5 @@
 {
-  "huella_pipeline": "b9f1a2665082aef70daf524d14d3bee5070d68b77461e77466f335630dd0ba26",
+  "huella_pipeline": "96175134afe57030cd4753ce39b3ec9b7bbfe1e17dda2f3a338be80f61c44327",
   "fuente_clustering": "data/clean/dataset_depurado.csv",
   "artefacto_clustering": "data/clean/dataset_con_clusters.csv",
   "modelo_popularidad": "models/modelo_popularidad.joblib",
@@ -36,6 +36,12 @@
     "tables/popularidad_estudio.csv": "551dfaa2ce07c24c0bfb49368b7975fa29a0c09159de03905599aab1d479e1cf",
     "tables/correlacion_catalogo.csv": "73efe968de1a24e4d8f7418e59345b20b71f5730d3c8f7dc9eb65b64b7ee2175",
     "tables/procedencia_datos.csv": "6c156173c3445446b5b86c15141e8fc834a25a0015159d9bdf5be813b56af673",
-    "tables/parametros_clustering.csv": "dc86135bd16b8a4f088709bf3d5a2653e06c4d826665318171dbd2228e904478"
+    "tables/parametros_clustering.csv": "ab8f54f29d8097030b9a9efa2c0dd20c54ff184f355cfea15a37219a11b88664",
+    "tables/correlacion_generos.csv": "5869c0c310fe9e29da498effb41c0134dcb473c8d659db8004a7d7b7f5a1cdda",
+    "tables/correlacion_organizaciones.csv": "86304ee58a3749c71dbfed9eded58fee43a3d7dd81232f33082909e42f53cd95",
+    "tables/catalogo_resumen.json": "41de4dfb2a24e87fab61779d57873e862c081fd91b941fce11678a25991e59c5",
+    "tables/clase_ward_asignaciones.csv": "1cae45b851bb848880f41ade18dacde6f5b1c8e7fd6df584f563807660915b67",
+    "tables/clustering_03_alternativas_k.csv": "83a307d8df56e722e89679c47b445303b69b3f23e61a06ec2a51670a85e09391",
+    "tables/modelo_error_por_clase.csv": "9321e01712ed68ff2815e1f39287d97d12b7cc9dc215759342284583813ced7e"
   }
 }

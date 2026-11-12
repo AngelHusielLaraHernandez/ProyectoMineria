@@ -1,24 +1,16 @@
 {
   "paginas": 34,
-  "figuras": 15,
+  "figuras": 23,
   "pruebas_cierre": 102,
   "referencias_indefinidas": 0,
   "desbordamientos_horizontales": 0,
-  "modelo": "MLPClassifier",
-  "modelo_sha256": "1f1dc0d785c54056044ff5612e9b636fbaabb0ee154774fbc766b7b13349f9af",
+  "modelo": "RandomForestClassifier",
+  "modelo_sha256": "ca5cee53f35cf5c0f8bc6f7af482593261d4409844eb15d5359788b1009825c1",
+  "pdf_sha256": "9f250a1fdbbf4e57019924b01f42454655cbf93c51f551b70603f97289114b95",
   "escenarios_hipoteticos": 8,
   "combinaciones_sensibilidad": 25,
   "casos_reales": 6,
-  "probabilidades": "Sumas y clase de máxima probabilidad verificadas en 14 casos",
-  "comparacion_ward": "ARI 1.0 con sklearn; tres métricas de cada método recalculadas",
-  "paginas_modificadas_revisadas": [
-    3,
-    4,
-    14,
-    16,
-    17,
-    27,
-    32
-  ],
-  "compilacion": "correcta con latexmk y biber"
+  "probabilidades": "Sumas y clases máximas verificadas en escenarios y contraejemplos.",
+  "paginas_renderizadas_y_revisadas": 34,
+  "compilacion": "Correcta con latexmk y biber."
 }

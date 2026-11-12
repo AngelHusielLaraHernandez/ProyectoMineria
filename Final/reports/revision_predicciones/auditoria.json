@@ -1,4 +1,6 @@
 {
+  "modelo": "RandomForestClassifier",
+  "python": "3.14.6",
   "n_entrenamiento": 892,
   "n_prueba": 222,
   "exactitud_prueba": 0.5675675675675675,
@@ -30,5 +32,5 @@
   "probabilidades_validas": true,
   "vecinos_solo_entrenamiento_y_mismo_espacio": true,
   "objetivo_reproducido": true,
-  "sha256_modelo": "ee362dae946d18981714171de2d66c0b93fc00a364e6990f698ed3b68ae8550e"
+  "sha256_modelo": "ca5cee53f35cf5c0f8bc6f7af482593261d4409844eb15d5359788b1009825c1"
 }

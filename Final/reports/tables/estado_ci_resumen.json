@@ -1,0 +1,13 @@
+{
+  "total": 52,
+  "antes": {
+    "Completado": 37,
+    "Parcial": 14,
+    "Descartado": 1
+  },
+  "despues": {
+    "Completado": 41,
+    "Parcial": 10,
+    "Descartado": 1
+  }
+}

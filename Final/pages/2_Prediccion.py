@@ -192,7 +192,7 @@ else:
     with col_r2:
         # 2. Perfil de mercado (Cluster asignado por contexto de vecinos K-Means)
         clusters_validos = vecinos['cluster_kmeans'].dropna().astype(int)
-        perfiles_tabla = read_report('clustering_03_perfiles.csv').query('metodo == "kmeans"')
+        perfiles_tabla = read_report('tables/perfiles_clusters.csv').query('metodo == "K-Means"')
         if len(clusters_validos):
             cluster_modal = int(clusters_validos.mode().iloc[0])
             fila_perfil = perfiles_tabla[perfiles_tabla['cluster'].astype(int) == cluster_modal]
@@ -201,19 +201,15 @@ else:
                 if len(fila_perfil)
                 else 'Perfil intermedio del catálogo'
             )
-            etiqueta_comercial = (
-                'Tracción Alta y Recepción Superior (Cluster 0)'
-                if cluster_modal == 0
-                else 'Nicho / Recepción y Alcance Moderados (Cluster 1)'
-            )
+            etiqueta_perfil = f'Grupo K-Means {cluster_modal}'
         else:
             cluster_modal = -1
             desc_perfil = 'Sin cluster K-Means asignado en vecinos con crítica completa'
-            etiqueta_comercial = 'Perfil en evaluación'
+            etiqueta_perfil = 'Perfil en evaluación'
 
         # 4. Brecha típica contextual del género principal seleccionado
         genero_principal = generos_seleccionados[0]
-        tabla_gen_corr = read_report('clustering_03_correlaciones_generos.csv')
+        tabla_gen_corr = read_report('tables/correlacion_generos.csv')
         fila_gen = tabla_gen_corr[tabla_gen_corr['grupo'] == genero_principal]
         if len(fila_gen) and pd.notna(fila_gen.iloc[0]['brecha_absoluta_media']):
             brecha_abs_gen = float(fila_gen.iloc[0]['brecha_absoluta_media'])
@@ -243,7 +239,7 @@ else:
                     2 // PERFIL DE MERCADO ASOCIADO (CLUSTER)
                 </div>
                 <div style="font-family:'ComicProyecto',sans-serif;font-size:1.5rem;color:var(--text-primary);">
-                    {etiqueta_comercial}
+                    {etiqueta_perfil}
                 </div>
                 <p style="font-size:0.9rem;color:#dddddd;margin:0.25rem 0 0.9rem 0;">
                     {desc_perfil} (según mayoría de vecinos cercanos en Fase 4A; el cluster no entra como predictor al modelo supervisado).

@@ -50,9 +50,23 @@ def ejecutar(raiz=ROOT):
     informes, limpio = raiz / 'reports', raiz / 'data/clean'
     tablas = informes / 'tables'
     tablas.mkdir(exist_ok=True)
-    correlacion = pd.read_csv(informes / 'clustering_03_correlaciones_catalogo.csv')
-    correlacion.to_csv(tablas / 'correlacion_catalogo.csv', index=False)
+    for nombre in ('catalogo', 'generos', 'organizaciones', 'senales'):
+        fuente = informes / f'clustering_03_correlaciones_{nombre}.csv'
+        pd.read_csv(fuente).to_csv(tablas / f'correlacion_{nombre}.csv', index=False)
+    for nombre in ['clustering_03_alternativas_k.csv', 'clase_ward_asignaciones.csv',
+                   'clase_comparacion_clustering.csv', 'clase_ward_cortes.csv',
+                   'clustering_03_perfiles.csv', 'clustering_03_correlaciones_ranking_generos.csv']:
+        (tablas / nombre).write_bytes((informes / nombre).read_bytes())
+    weka = informes / 'weka/comparacion.csv'
+    if weka.exists():
+        (tablas / 'weka_clustering_cli.csv').write_bytes(weka.read_bytes())
     depurado = pd.read_csv(limpio / 'dataset_depurado.csv')
+    catalogo = {'n': len(depurado), 'anio_min': int(depurado.anio.min()), 'anio_max': int(depurado.anio.max())}
+    for origen, clave in [('generos', 'generos'), ('Team', 'organizaciones')]:
+        frecuencias = depurado[origen].map(fase.lista).explode().dropna().value_counts()
+        catalogo[f'n_{clave}'] = len(frecuencias)
+        catalogo[f'top_{clave}'] = [{'grupo': k, 'n': int(v)} for k, v in frecuencias.head(3).items()]
+    (tablas / 'catalogo_resumen.json').write_text(json.dumps(catalogo, ensure_ascii=False, indent=2) + '\n')
     cohorte = depurado.loc[depurado.elegible_analisis].copy()
     cohorte['_generos'] = cohorte.generos.map(fase.lista)
     cohorte['_organizaciones'] = cohorte.Team.map(fase.lista)
@@ -65,7 +79,7 @@ def ejecutar(raiz=ROOT):
     salida['cluster_ward'] = pd.read_csv(informes / 'clase_ward_asignaciones.csv').set_index('id_juego').loc[orden.id_juego, 'cluster_ward'].to_numpy()
     salida['_generos'] = salida.generos.map(fase.lista)
     parametros = json.loads((informes / 'clustering_03_parametros.json').read_text())
-    pd.DataFrame([parametros]).to_csv(tablas / 'parametros_clustering.csv', index=False)
+    pd.DataFrame([dict(parametros, pca_varianza_total=sum(parametros['pca_varianza']))]).to_csv(tablas / 'parametros_clustering.csv', index=False)
     elegidos = {'K-Means': 'cluster_kmeans', 'Ward': 'cluster_ward', 'DBSCAN': 'cluster_dbscan'}
     cuadros = []
     for metodo, columna in elegidos.items():

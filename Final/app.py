@@ -1,5 +1,6 @@
 """Página de Inicio: Observatorio de Videojuegos — Edición Phantom Thieves (Persona 5 UI)."""
 import importlib
+import json
 import streamlit as st
 
 import src.ui as _ui
@@ -7,7 +8,7 @@ import src.ui as _ui
 if not hasattr(_ui, 'asset_b64') or getattr(_ui, '_UI_VERSION', None) != 'p5-v8-neon':
     importlib.reload(_ui)
 
-from src.config import SIGNALS
+from src.config import REPORTS, SIGNALS
 from src.ui import (
     asset_b64,
     manual_checks,
@@ -36,6 +37,10 @@ linaje = read_report('tables/procedencia_datos.csv').set_index('etapa')
 n_maestro = linaje.loc['Maestro curado', 'filas']
 n_antecedente = linaje.loc['Antecedente enriquecido', 'filas']
 asociacion = read_report('tables/correlacion_catalogo.csv').iloc[0]
+catalogo = json.loads((REPORTS / 'tables/catalogo_resumen.json').read_text())
+umbral_pares = read_report('tables/parametros_clustering.csv').iloc[0].minimo_pares_correlacion
+preparador = bundle['pipeline'].named_steps['preparar'].named_transformers_
+decadas = [int(x) for x in preparador['decada'].named_steps['codificar'].categories_[0] if x >= 0]
 
 # ---------------------------------------------------------------------------
 # 1. CABECERA HERO ("TAKE YOUR HEART" CON ASSETS/IMG/)
@@ -212,12 +217,13 @@ render_html(
 # ---------------------------------------------------------------------------
 # 2. MÉTRICAS GENERALES (KPIs) — CONFIDANT RANK CARDS & DETAIL PANEL (ResumePage.jsx)
 # ---------------------------------------------------------------------------
-anios_validos = df['anio'].dropna().astype(int)
-rango_temporal = f'{int(anios_validos.min())}–{int(anios_validos.max())}' if len(anios_validos) else '1980–2023'
+rango_temporal = f"{catalogo['anio_min']}–{catalogo['anio_max']}"
 generos_unicos = sorted({g for row in df['generos'] for g in row})
-estudios_unicos = sorted({org for row in df['organizaciones'] for org in row})
-frecuencias_generos = df['generos'].explode().dropna().value_counts()
-top_generos = frecuencias_generos.head(3)
+top_generos = catalogo['top_generos']
+top_org = catalogo['top_organizaciones']
+
+def formato_grupo(fila):
+    return f"{fila['grupo']} ({fila['n']})"
 
 render_html(
     f"""
@@ -248,11 +254,11 @@ render_html(
                         <div class="resume-title">HORIZONTE</div>
                         <div class="resume-rank">
                             <div class="resume-rank-label">SPAN</div>
-                            <div class="resume-rank-number">1980-25</div>
+                            <div class="resume-rank-number">{rango_temporal}</div>
                         </div>
                     </div>
                     <div class="resume-subtitle-bar">
-                        <div class="resume-subtitle">COBERTURA HISTORICA {rango_temporal} (ANALISIS HASTA 2025)</div>
+                        <div class="resume-subtitle">COBERTURA HISTORICA {rango_temporal}</div>
                     </div>
                 </div>
             </div>
@@ -264,11 +270,11 @@ render_html(
                         <div class="resume-title">GENEROS</div>
                         <div class="resume-rank">
                             <div class="resume-rank-label">TAXON</div>
-                            <div class="resume-rank-number">{len(generos_unicos)}</div>
+                            <div class="resume-rank-number">{catalogo['n_generos']}</div>
                         </div>
                     </div>
                     <div class="resume-subtitle-bar">
-                        <div class="resume-subtitle">MULTI-ETIQUETA CON 15 GENEROS FRECUENTES EN EL MODELO</div>
+                        <div class="resume-subtitle">MULTI-ETIQUETA CON {len(preparador['generos'].vocabulario_)} GÉNEROS FRECUENTES EN EL MODELO</div>
                     </div>
                 </div>
             </div>
@@ -280,7 +286,7 @@ render_html(
                         <div class="resume-title">ESTUDIOS</div>
                         <div class="resume-rank">
                             <div class="resume-rank-label">TEAMS</div>
-                            <div class="resume-rank-number">{len(estudios_unicos):,}</div>
+                            <div class="resume-rank-number">{catalogo['n_organizaciones']:,}</div>
                         </div>
                     </div>
                     <div class="resume-subtitle-bar">
@@ -301,7 +307,7 @@ render_html(
                 <div class="resume-detail-list">
                     <div class="resume-detail-row">
                         <div class="resume-detail-row-index">01</div>
-                        <div class="resume-detail-row-title">Registros Históricos Originales</div>
+                        <div class="resume-detail-row-title">Registros del Antecedente Enriquecido</div>
                         <div class="resume-detail-status">{n_antecedente:,} FILAS</div>
                     </div>
                     <div class="resume-detail-row">
@@ -317,7 +323,7 @@ render_html(
                     <div class="resume-detail-row">
                         <div class="resume-detail-row-index">04</div>
                         <div class="resume-detail-row-title">Pares Elegibles con Ambas Notas</div>
-                        <div class="resume-detail-status">{analysis['n_completos']:,} PARES</div>
+                        <div class="resume-detail-status">{int(asociacion.n):,} PARES</div>
                     </div>
                 </div>
             </div>
@@ -326,7 +332,7 @@ render_html(
                 <div class="resume-detail-top">
                     <div class="resume-detail-top-index">02</div>
                     <div class="resume-detail-top-title">TEMPORAL LOG</div>
-                    <div class="resume-detail-top-progress">1980-25</div>
+                    <div class="resume-detail-top-progress">{rango_temporal}</div>
                 </div>
                 <div class="resume-detail-list">
                     <div class="resume-detail-row">
@@ -337,12 +343,12 @@ render_html(
                     <div class="resume-detail-row">
                         <div class="resume-detail-row-index">02</div>
                         <div class="resume-detail-row-title">Horizonte Analítico del Proyecto</div>
-                        <div class="resume-detail-status">1980–2025</div>
+                        <div class="resume-detail-status">{rango_temporal}</div>
                     </div>
                     <div class="resume-detail-row">
                         <div class="resume-detail-row-index">03</div>
                         <div class="resume-detail-row-title">Décadas Codificadas One-Hot</div>
-                        <div class="resume-detail-status">1980s A 2020s</div>
+                        <div class="resume-detail-status">{decadas[0]}s a {decadas[-1]}s</div>
                     </div>
                     <div class="resume-detail-row">
                         <div class="resume-detail-row-index">04</div>
@@ -356,23 +362,23 @@ render_html(
                 <div class="resume-detail-top">
                     <div class="resume-detail-top-index">03</div>
                     <div class="resume-detail-top-title">GENRE TAXONOMY</div>
-                    <div class="resume-detail-top-progress">{len(generos_unicos)} GEN</div>
+                    <div class="resume-detail-top-progress">{catalogo['n_generos']} GEN</div>
                 </div>
                 <div class="resume-detail-list">
                     <div class="resume-detail-row">
                         <div class="resume-detail-row-index">01</div>
                         <div class="resume-detail-row-title">Género Dominante en Catálogo</div>
-                        <div class="resume-detail-status">{top_generos.index[0]} ({top_generos.iloc[0]})</div>
+                        <div class="resume-detail-status">{formato_grupo(top_generos[0])}</div>
                     </div>
                     <div class="resume-detail-row">
                         <div class="resume-detail-row-index">02</div>
                         <div class="resume-detail-row-title">Segundo y Tercer Género</div>
-                        <div class="resume-detail-status">{' / '.join(f'{g} ({n})' for g, n in top_generos.iloc[1:].items())}</div>
+                        <div class="resume-detail-status">{' / '.join(map(formato_grupo, top_generos[1:]))}</div>
                     </div>
                     <div class="resume-detail-row">
                         <div class="resume-detail-row-index">03</div>
                         <div class="resume-detail-row-title">Umbral de Correlación por Grupo</div>
-                        <div class="resume-detail-status">MINIMO 20 PARES</div>
+                        <div class="resume-detail-status">MÍNIMO {umbral_pares} PARES</div>
                     </div>
                     <div class="resume-detail-row">
                         <div class="resume-detail-row-index">04</div>
@@ -386,23 +392,23 @@ render_html(
                 <div class="resume-detail-top">
                     <div class="resume-detail-top-index">04</div>
                     <div class="resume-detail-top-title">STUDIOS &amp; TEAMS</div>
-                    <div class="resume-detail-top-progress">{len(estudios_unicos)} ORG</div>
+                    <div class="resume-detail-top-progress">{catalogo['n_organizaciones']} ORG</div>
                 </div>
                 <div class="resume-detail-list">
                     <div class="resume-detail-row">
                         <div class="resume-detail-row-index">01</div>
                         <div class="resume-detail-row-title">Organización con Mayor Presencia</div>
-                        <div class="resume-detail-status">NINTENDO (170)</div>
+                        <div class="resume-detail-status">{formato_grupo(top_org[0])}</div>
                     </div>
                     <div class="resume-detail-row">
                         <div class="resume-detail-row-index">02</div>
                         <div class="resume-detail-row-title">Siguientes por Volumen</div>
-                        <div class="resume-detail-status">CAPCOM / SQUARE ENIX</div>
+                        <div class="resume-detail-status">{' / '.join(map(formato_grupo, top_org[1:]))}</div>
                     </div>
                     <div class="resume-detail-row">
                         <div class="resume-detail-row-index">03</div>
                         <div class="resume-detail-row-title">Frecuencia Mínima en Modelo</div>
-                        <div class="resume-detail-status">&gt;= 10 TITULOS</div>
+                        <div class="resume-detail-status">&gt;= {preparador['estudio'].min_frecuencia} TÍTULOS</div>
                     </div>
                     <div class="resume-detail-row">
                         <div class="resume-detail-row-index">04</div>
@@ -425,7 +431,7 @@ render_html(
         <div class="p5-callout-title">⚠️ AVISO METODOLOGICO Y LIMITACIONES DEL ESTUDIO (CALLING CARD)</div>
         <ul style="margin:0;padding-left:1.25rem;color:#f2f2f2;line-height:1.55;font-size:0.95rem;">
             <li><strong>Sesgo de supervivencia hacia juegos populares:</strong> La muestra original procede de listados curados de Backloggd con alta visibilidad comunitaria; no representa una muestra aleatoria de todos los lanzamientos comerciales de la industria.</li>
-            <li><strong>Ausencia de fracasos comerciales puros:</strong> Los niveles de popularidad (<em>bajo</em>, <em>medio</em>, <em>alto</em>) son <strong>relativos a los terciles del conjunto de entrenamiento</strong> dentro de este catálogo popular, no absolutos respecto al mercado global.</li>
+            <li><strong>Popularidad relativa:</strong> Los niveles de popularidad (<em>bajo</em>, <em>medio</em>, <em>alto</em>) son <strong>relativos a los terciles del conjunto de entrenamiento</strong> dentro de este catálogo popular, no absolutos respecto al mercado global.</li>
             <li><strong>Advertencia sobre datos de ventas:</strong> Las señales <code>Plays</code>, <code>Playing</code>, <code>Backlogs</code> y <code>Wishlist</code> reflejan registros de actividad en plataforma social en un corte temporal; <strong>no equivalen a unidades vendidas ni a ingresos en USD</strong>.</li>
         </ul>
     </div>

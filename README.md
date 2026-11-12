@@ -8,7 +8,9 @@ La implementación vigente está en **Final/** y el documento de entrega en **Do
 - [Índice para revisión por otras IAs](REVISION_IA/INDICE.md).
 - [Registro consolidado de cierre](Final/reports/BITACORA_UNIFICADA.md).
 
-Desde Final, ejecutar `.venv/bin/python -m streamlit run app.py` para la web y `.venv/bin/python -m pytest -q` para las pruebas. La suite de cierre tiene 102 pruebas aprobadas. El equipo declara cumplido el calendario técnico; no se inventan fechas exactas de terminación.
+Desde la raíz, ejecuta `Final/.venv/bin/python -m streamlit run Final/app.py` para abrir la web. El entorno validado es Python 3.14.6 y el modelo activo es Random Forest. La [evaluación externa de los cinco modelos](Final/reports/tables/comparativo_modelos.csv), la [prueba del bosque](Final/reports/tables/metricas_prueba.csv) y los [metadatos](Final/models/metadata.json) respaldan las cifras del informe.
+
+La [preparación para Streamlit Community Cloud](Final/reports/despliegue.md) recoge las comprobaciones de licencia y configuración para una eventual publicación autorizada.
 
 ## Organización
 

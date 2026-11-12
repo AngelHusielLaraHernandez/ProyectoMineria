@@ -362,6 +362,7 @@ def escribir_reporte(informes, m, tabla, perm, matrices):
                             'aciertos': int(mat[i, i]), 'recall': float(mat[i, i]/mat[i].sum()) if mat[i].sum() else 0})
     errores = pd.DataFrame(errores)
     errores.to_csv(informes / 'modelo_error_por_clase.csv', index=False)
+    errores.to_csv(informes / 'tables/modelo_error_por_clase.csv', index=False)
     bloques += [tabla_md(errores), '',
         'La clase media se evalúa explícitamente: sus notas y géneros pueden solaparse con ambos extremos y sus fronteras son cortes artificiales de un continuo. Es una hipótesis interpretativa, no una causa demostrada; el recall observado no se oculta bajo la exactitud global. El rendimiento de CategoricalNB se informa por clase y no se presenta la antigua matriz de GaussianNB como resultado vigente.', '',
         '## Permutation importance', '', tabla_md(perm), '',

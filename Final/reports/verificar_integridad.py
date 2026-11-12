@@ -2,15 +2,21 @@
 from pathlib import Path
 import hashlib
 import json
+import sys
 
 import joblib
 import numpy as np
 import pandas as pd
 from scipy.stats import pearsonr, spearmanr
-from sklearn.metrics import accuracy_score, confusion_matrix, f1_score
+from sklearn.metrics import accuracy_score, confusion_matrix, f1_score, log_loss, cohen_kappa_score, roc_auc_score
 from sklearn.preprocessing import StandardScaler
 
 raiz = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(raiz))
+from src.evaluacion_anidada import METRICAS, contrastar
+from src.pipeline import huella_pipeline
+from src.objetivo import ajustar_referencia
+
 limpio = pd.read_csv(raiz / 'data/clean/dataset_depurado.csv')
 clusters = pd.read_csv(raiz / 'data/clean/dataset_con_clusters.csv')
 juegos = pd.read_csv(raiz / 'data/clean/juegos_modelo.csv')
@@ -33,6 +39,7 @@ for clave, ruta in archivos.items():
     assert hashlib.sha256((raiz / ruta).read_bytes()).hexdigest() == manifest['sha256_' + clave], ruta
 for nombre, huella in manifest['sha256_reportes_app'].items():
     assert hashlib.sha256((raiz / 'reports' / nombre).read_bytes()).hexdigest() == huella, nombre
+assert manifest['huella_pipeline'] == huella_pipeline()
 salida['artefactos_y_reportes_concuerdan'] = True
 
 assert len(limpio) == len(clusters) == 1117
@@ -77,5 +84,53 @@ acc = accuracy_score(prueba.nivel_popularidad, pred)
 np.testing.assert_allclose([f1, acc], [meta['metricas']['f1_macro'], meta['metricas']['exactitud']])
 np.testing.assert_array_equal(confusion_matrix(prueba.nivel_popularidad, pred, labels=meta['clases']), meta['metricas']['matriz_confusion'])
 salida['metricas_recalculadas'] = {'n_prueba': len(prueba), 'f1_macro': f1, 'exactitud': acc}
+tablas = raiz / 'reports/tables'
+proba = modelo.predict_proba(prueba[meta['variables']])
+np.testing.assert_allclose(proba.sum(axis=1), 1)
+uno_hot = np.asarray(prueba.nivel_popularidad)[:, None] == modelo.classes_[None, :]
+metricas = {
+    'exactitud_pct': 100 * acc, 'f1_macro': f1,
+    'f1_ponderado': f1_score(prueba.nivel_popularidad, pred, average='weighted'),
+    'kappa': cohen_kappa_score(prueba.nivel_popularidad, pred),
+    'roc_auc_ovr': roc_auc_score(prueba.nivel_popularidad, proba, multi_class='ovr'),
+    'brier_multiclase': np.mean(np.sum((proba - uno_hot) ** 2, axis=1)),
+    'log_loss': log_loss(prueba.nivel_popularidad, proba),
+}
+publicadas = pd.read_csv(tablas / 'metricas_prueba.csv').iloc[0]
+for clave, valor in metricas.items():
+    np.testing.assert_allclose(valor, [publicadas[clave], meta['metricas'][clave]])
+np.testing.assert_array_equal(pd.read_csv(tablas / 'matriz_confusion.csv').set_index('real'),
+                              meta['metricas']['matriz_confusion'])
+calibracion = pd.read_csv(tablas / 'calibracion.csv')
+for i, clase in enumerate(modelo.classes_):
+    total = 0
+    for intervalo in calibracion.loc[calibracion.clase.eq(clase)].itertuples():
+        superior = proba[:, i] <= 1 if intervalo.limite_superior == 1 else proba[:, i] < intervalo.limite_superior
+        grupo = (proba[:, i] >= intervalo.limite_inferior) & superior
+        assert int(grupo.sum()) == intervalo.n
+        np.testing.assert_allclose([proba[grupo, i].mean(), uno_hot[grupo, i].mean()],
+                                   [intervalo.probabilidad_media, intervalo.fraccion_observada])
+        total += intervalo.n
+    assert total == len(prueba)
+cv = pd.read_csv(tablas / 'cv_externa_folds.csv')
+resumen = pd.read_csv(tablas / 'comparativo_modelos.csv').set_index('modelo')
+assert len(cv) == 250 and cv.groupby(['repeticion', 'fold']).modelo.nunique().eq(5).all()
+for metrica in METRICAS:
+    por_modelo = cv.groupby('modelo')[metrica]
+    np.testing.assert_allclose(por_modelo.mean().reindex(resumen.index), resumen[metrica + '_media'])
+    np.testing.assert_allclose(por_modelo.std().reindex(resumen.index), resumen[metrica + '_de'])
+np.testing.assert_allclose(contrastar(cv).p_valor, pd.read_csv(tablas / 'comparacion_estadistica.csv').p_valor, atol=1e-13)
+np.testing.assert_allclose(ajustar_referencia(juegos)['cortes'], meta['terciles_descriptivos_catalogo']['cortes'])
+for clave in ['genero', 'estudio']:
+    grupos = pd.read_csv(tablas / f'popularidad_{clave}.csv')
+    assert grupos.n_juegos.ge(20).all()
+    assert grupos.loc[grupos.n.lt(20), ['pearson_r', 'spearman_rho']].isna().all().all()
+pca = pd.read_csv(tablas / 'pca_clusters.csv')
+assert len(pca) == int(mascara.sum()) and pca.id_juego.is_unique
+perfiles = pd.read_csv(tablas / 'perfiles_clusters.csv')
+assert perfiles.groupby('metodo').n.sum().eq(len(pca)).all()
+salida['auditoria_integral'] = {'modelo': meta['modelo'], 'python': meta['python'], 'filas_cv': len(cv),
+                               'metricas_prueba': metricas, 'matriz_y_calibracion_reproducidas': True,
+                               'resumen_cv_y_p_valores_recalculados': True, 'perfiles_y_terciles_revisados': True}
 (raiz / 'reports/verificacion_independiente.json').write_text(json.dumps(salida, ensure_ascii=False, indent=2), encoding='utf-8')
 print(json.dumps(salida, ensure_ascii=False, indent=2))

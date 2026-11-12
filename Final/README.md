@@ -8,15 +8,15 @@ Proyecto de minería de datos sobre un catálogo curado de videojuegos de Backlo
 
 ```bash
 cd Final
-python3 -m venv .venv && source .venv/bin/activate
+python3.14 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 streamlit run app.py          # http://localhost:8501
 pytest -q                     # pruebas
 ```
 > [!NOTE]
-> En caso de regenerar datos, clústeres y modelos es necesario ejecutar el script `python -m src.pipeline`.
+> En caso de regenerar datos, clústeres y modelos es necesario ejecutar el script `python src/run_all.py`.
 
-`requirements.txt` fija las versiones (`scikit-learn==1.9.1`, igual que `models/metadata.json`). `requirements-lock.txt` guarda el entorno completo. Se validó con Python 3.14. Los entornos `.venv`, `.venv314` y `.cache` no se versionan.
+`requirements.txt` fija las versiones (`scikit-learn==1.9.1`, igual que `models/metadata.json`). `requirements-lock.txt` guarda el entorno completo. El entorno `.venv` y el modelo se verificaron con Python 3.14.6. En la auditoría se recreó el entorno reutilizando los paquetes locales de esa versión porque el índice no estaba accesible. `pip check` pasó. La versión menor figura en `.python-version`. [Metadatos del modelo](models/metadata.json).
 
 ## 2. Código fuente (`src/`)
 
@@ -30,7 +30,7 @@ pytest -q                     # pruebas
 | `comparar_weka.py` | K-Means de Weka 3.8.6 por CLI sobre el mismo espacio (`--descargar` baja los JAR) → `reports/weka/`. |
 | `objetivo.py` | Define el índice de popularidad (promedio de rangos percentiles de Plays, Wishlist, Backlogs) y los terciles, ajustados solo con entrenamiento. |
 | `features.py` | Preprocesamiento: géneros multi-hot, estudio, década, notas con mediana. |
-| `04_modelo.py` | Compara Dummy, CategoricalNB, DecisionTree, RandomForest y MLP con `StratifiedGroupKFold` de 10 pliegues. Guarda `models/`. |
+| `04_modelo.py` | Compara Dummy, CategoricalNB, CART, Random Forest y MLP en CV anidada de 10 pliegues por 5 repeticiones. Guarda el bosque como modelo activo. |
 | `similitud.py` | `NearestNeighbors` en el espacio predictivo, solo con entrenamiento. |
 | `config.py`, `data.py`, `analysis.py`, `modeling.py` | Rutas, carga con caché y adaptadores para la app. |
 | `ui.py` | Tema Persona 5: CSS, fuente en Base64, menú lateral, audio, tema Plotly. |
@@ -50,13 +50,19 @@ pytest -q                     # pruebas
 | Página | Archivo | Contenido |
 |---|---|---|
 | Inicio | `app.py` | Hero, propósito, KPIs, aviso de limitaciones. |
-| Exploración | `pages/1_Exploracion.py` | Dashboard con filtros, indicadores, selección de juegos en la dispersión, tabla y descarga CSV. Incluye distribuciones, brechas, comparación K-Means/Ward, dendrograma y mapas PCA. |
+| Exploración | `pages/1_Exploracion.py` | Dashboard con filtros, indicadores, selección de juegos en la dispersión, tabla y descarga CSV. Incluye distribuciones, brechas, comparación K-Means, Ward y DBSCAN, dendrograma y mapas PCA. |
 | Predicción | `pages/2_Prediccion.py` | Formulario, probabilidades (bajo/medio/alto, sin calibrar) y 5 vecinos similares. |
-| Acerca del modelo | `pages/3_Acerca_del_modelo.py` | Comparación de modelos, matriz de confusión e importancia por Gini del bosque comparado. |
+| Acerca del modelo | `pages/3_Acerca_del_modelo.py` | Comparación de modelos, contrastes, matriz de confusión, importancia Gini y fiabilidad del bosque activo. |
 
-Recursos: `assets/css/persona5.css`, `assets/js/interacciones.js`, `assets/fonts/Persona5main.ttf`, `assets/audio/` (BGM y efecto de selección), `assets/img/`. El tema oscuro está en `.streamlit/config.toml`. Los modelos y datos se cachean con `@st.cache_resource` y `@st.cache_data`. Todas las rutas usan `pathlib.Path` relativo a `Final/`. Si falta un artefacto, la app indica ejecutar `python -m src.pipeline`.
+Recursos: `assets/css/persona5.css`, `assets/js/interacciones.js`, `assets/fonts/Persona5main.ttf`, `assets/audio/` (BGM y efecto de selección), `assets/img/`. El tema oscuro está en `.streamlit/config.toml`. Los modelos y datos se cachean con `@st.cache_resource` y `@st.cache_data`. Todas las rutas usan `pathlib.Path` relativo a `Final/`. Si falta un artefacto, la app indica ejecutar `python src/run_all.py`.
 
-## 5. Notas importantes
+## 5. Resultados y despliegue
+
+La MLP tuvo mayor F1 macro medio en CV anidada. Random Forest tuvo menor dispersión y sigue activo. Los contrastes de esa pareja son inconclusos. Los resultados de la MLP en prueba pertenecen a la corrida histórica. [Comparativo externo](reports/tables/comparativo_modelos.csv), [contrastes](reports/tables/comparacion_estadistica.csv) y [prueba del bosque](reports/tables/metricas_prueba.csv).
+
+Los cortes globales son descriptivos. El Pipeline y las referencias de evaluación se ajustan con los datos de entrenamiento de cada pliegue. El modelo ofrece una estimación orientativa de interacciones de Backloggd y puede desfavorecer géneros de nicho. El estudio carece de ventas observadas.
+
+Para simular el arranque de Community Cloud desde la raíz Git, ejecuta `Final/.venv/bin/python -m streamlit run Final/app.py`. La entrada usa `Final/requirements.txt` y la configuración de la raíz. La guía enlaza la documentación oficial, la selección de Python y la revisión de derechos.
 
 - No hay despliegue público (ver `reports/despliegue.md`).
 - Orange no tiene corridas verificadas. Weka sí (ver `reports/weka/BITACORA_UNIFICADA.md`).

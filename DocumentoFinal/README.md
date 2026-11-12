@@ -1,19 +1,24 @@
 # Documento final
 
-Compilar desde esta carpeta con `latexmk -pdf -interaction=nonstopmode main.tex`. Requiere LaTeX, biblatex APA y biber.
+El [PDF](main.pdf) se compila con la plantilla del anteproyecto. Incluye las pruebas estadísticas, los resultados de Random Forest, las corridas gráficas de Weka, los escenarios de predicción y el plan respaldado por fechas de Git. La bibliografía usa biblatex con estilo APA.
 
-`ajustar_formato_redaccion.py` reconstruye la versión revisada usando el generador base y la plantilla original; la compilación de main.tex es autónoma con las figuras incluidas. Fecha de corte: 11 de noviembre de 2026. No se atribuye entrega formal ni publicación pública.
+## Compilar
 
-## Versión revisada con el formato del anteproyecto
+Desde esta carpeta, con LaTeX y biber instalados:
 
-El archivo vigente es `main.tex`, con portada en `Portada.tex` y escudos en `portada_img`. Su preámbulo procede de `Proyecto/main.tex`: conserva encabezados, márgenes, estilos del índice, numeración y espaciado del anteproyecto. La copia anterior se conserva en `version_anterior` y no es la versión vigente.
+```bash
+latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+```
 
-Para regenerar desde el workspace, ejecutar primero `Final/.venv/bin/python DocumentoFinal/analizar_escenarios.py` y después `python3 DocumentoFinal/ajustar_formato_redaccion.py`. Este último utiliza el generador base, restaura la plantilla y aplica la redacción y escenarios revisados. No ejecutar solo `generar_documento.py` para reconstruir la versión final: ese archivo es el generador base de la versión previa.
+## Regenerar desde el repositorio local
 
-La compilación es autónoma: `latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex` desde esta carpeta, sin regenerar nada. Requiere la distribución TeX y biber.
+Desde la raíz, con el entorno Python de Final activo:
 
-Los escenarios hipotéticos no tienen una clase real conocida; los contraejemplos corresponden a seis registros de la prueba histórica y se seleccionaron después de observar errores y aciertos. No constituyen una validación independiente. Los ocho escenarios y la rejilla se recalcularon con la MLP. La captura de la página Predicción documenta una ejecución del formulario. No se reentrenó ni cambió el modelo para acomodar los ejemplos.
+```bash
+Final/.venv/bin/python DocumentoFinal/analizar_escenarios.py
+python3 DocumentoFinal/ajustar_formato_redaccion.py
+latexmk -pdf -interaction=nonstopmode -halt-on-error -cd DocumentoFinal/main.tex
+python3 herramientas/empaquetar_documento.py
+```
 
-## Cierre y revisión por otras IAs
-
-El equipo declara cumplido el calendario técnico, sin asignar fechas exactas no registradas. La suite completa aprobó 102 pruebas en el cierre. Los logs históricos de cada carpeta se reúnen en BITACORA_UNIFICADA.md; los resultados cuantitativos y las capturas se conservan separados. El paquete REVISION_IA, en la raíz, contiene una ficha por carpeta con código y documentación para revisión.
+Las tablas se alimentan de `Final/reports/tables/` y `Final/models/metadata.json`. Los escenarios son hipotéticos y los contraejemplos proceden de la prueba histórica ya observada. El registro de Git acredita la primera evidencia disponible, con independencia de cuándo se terminó cada actividad. La aplicación se ejecuta localmente.

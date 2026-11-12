@@ -1,9 +1,9 @@
 id,escenario,generos,organizaciones,decada,metacritic,rating,prediccion,p_alto,p_bajo,p_medio
-S1,Notas bajas,"['Adventure', 'RPG']",['Otro'],2020,45.0,1.0,bajo,0.024709216246924653,0.7856088712884108,0.18968191246466454
-S2,Notas altas,"['Adventure', 'RPG']",['Otro'],2020,99.0,4.8,medio,0.3642178402326618,0.16670624906177417,0.46907591070556415
-S3,Usuarios altos y prensa baja,"['Adventure', 'RPG']",['Otro'],2020,45.0,4.8,bajo,0.011175747745535702,0.6337399671898403,0.3550842850646239
-S4,Usuarios bajos y prensa alta,"['Adventure', 'RPG']",['Otro'],2020,99.0,1.0,bajo,0.0804394838533213,0.56597282925134,0.3535876868953387
-S5,Usuarios altos sin prensa,"['Adventure', 'RPG']",['Otro'],2020,,4.8,bajo,0.1800233838641886,0.6161544573148573,0.2038221588209541
-S6,Cambio de organización,"['Adventure', 'RPG']",['Nintendo'],2020,99.0,4.8,alto,0.65647546113451,0.050318432284600395,0.29320610658088964
-S7,Cambio de década,"['Adventure', 'RPG']",['Otro'],1980,99.0,4.8,medio,0.38674478235785464,0.22648014163816976,0.38677507600397565
-S8,Cambio de género,['Shooter'],['Otro'],2020,99.0,4.8,alto,0.4141998066856576,0.20879069754399057,0.37700949577035187
+S1,Notas bajas,"['Adventure', 'RPG']",['Otro'],2020,45.0,1.0,bajo,0.11482340781897761,0.5996677783176304,0.28550881386339216
+S2,Notas altas,"['Adventure', 'RPG']",['Otro'],2020,99.0,4.8,alto,0.5408269453085124,0.20861964106899933,0.25055341362248806
+S3,Usuarios altos y prensa baja,"['Adventure', 'RPG']",['Otro'],2020,45.0,4.8,bajo,0.20911329702511197,0.4393136619116028,0.35157304106328496
+S4,Usuarios bajos y prensa alta,"['Adventure', 'RPG']",['Otro'],2020,99.0,1.0,alto,0.3824562843459407,0.30789091633601195,0.30965279931804734
+S5,Usuarios altos sin prensa,"['Adventure', 'RPG']",['Otro'],2020,,4.8,bajo,0.2779815193893014,0.44206113209632525,0.27995734851437365
+S6,Cambio de organización,"['Adventure', 'RPG']",['Nintendo'],2020,99.0,4.8,alto,0.587149162448355,0.1514191359361513,0.2614317016154936
+S7,Cambio de década,"['Adventure', 'RPG']",['Otro'],1980,99.0,4.8,alto,0.5719369254431956,0.1919206007241524,0.2361424738326517
+S8,Cambio de género,['Shooter'],['Otro'],2020,99.0,4.8,alto,0.4966212185337543,0.24060322520525224,0.2627755562609934

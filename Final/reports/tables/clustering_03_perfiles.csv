@@ -1,0 +1,5 @@
+metodo,cluster,n,perfil_propuesto,generos_dominantes,media_Plays,media_Playing,media_Backlogs,media_Wishlist,media_Rating,media_Metacritic Rating
+kmeans,0,465,Actividad e interés superiores al promedio; recepción superior al promedio,Adventure: 352 (75.7%); RPG: 187 (40.2%); Shooter: 129 (27.7%),7680.61935483871,337.4193548387097,2021.909677419355,1053.2774193548387,3.9092473118279574,86.26021505376345
+kmeans,1,422,Actividad e interés inferiores al promedio; recepción inferior al promedio,Adventure: 246 (58.3%); RPG: 99 (23.5%); Shooter: 94 (22.3%),2980.6824644549765,67.95734597156398,476.11137440758296,246.22748815165878,3.378199052132701,78.01421800947867
+dbscan,-1,21,Atípicos de densidad (ruido; no es un cluster),Adventure: 12 (57.1%); Strategy: 7 (33.3%); Shooter: 6 (28.6%),3348.2380952380954,146.0952380952381,280.2857142857143,120.42857142857143,2.923809523809524,68.04761904761905
+dbscan,0,866,Actividad e interés superiores al promedio; recepción superior al promedio,Adventure: 586 (67.7%); RPG: 283 (32.7%); Shooter: 217 (25.1%),5495.407621247113,210.75057736720555,1310.878752886836,682.6247113163972,3.674364896073903,82.68360277136259

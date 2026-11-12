@@ -284,7 +284,7 @@ with col_d1:
 with col_d2:
     st.markdown(f'**Recall por clase para {len(tabla_comp)} modelos**')
     st.caption('Prueba actual del bosque y resultados históricos para los demás candidatos.')
-    err_df = read_report('modelo_error_por_clase.csv')
+    err_df = read_report('tables/modelo_error_por_clase.csv')
     st.dataframe(
         err_df,
         hide_index=True,

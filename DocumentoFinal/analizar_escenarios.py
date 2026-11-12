@@ -50,3 +50,17 @@ for clase in ['bajo','medio','alto']:
 (out/'contraejemplos.json').write_text(json.dumps(seleccion,ensure_ascii=False,indent=2));pd.DataFrame(seleccion).to_csv(out/'contraejemplos.csv',index=False)
 print(pd.DataFrame(filas)[['id','prediccion','p_alto','p_medio','p_bajo']].to_string(index=False))
 print(pd.DataFrame(seleccion)[['titulo','real','prediccion','acierto','probabilidad_maxima']].to_string(index=False))
+
+tablas = F / 'reports/tables'
+pd.DataFrame(filas).to_csv(tablas / 'escenarios_prediccion.csv', index=False)
+pd.DataFrame(seleccion).to_csv(tablas / 'contraejemplos_prediccion.csv', index=False)
+calibracion = pd.read_csv(tablas / 'calibracion.csv')
+fig, ax = plt.subplots(figsize=(6, 4), layout='constrained')
+ax.plot([0, 1], [0, 1], color='#50545e', linestyle=':', label='Referencia ideal')
+for (clase, grupo), color in zip(calibracion.groupby('clase'), ['#116e78', '#563b8a', '#a54a2a']):
+    ax.plot(grupo.probabilidad_media, grupo.fraccion_observada, 'o-', label=clase.title(), color=color)
+ax.set(xlabel='Probabilidad media estimada', ylabel='Fracción observada',
+       xlim=(0, 1), ylim=(0, 1))
+ax.legend()
+fig.savefig(D / 'figuras/fiabilidad_rf.png', dpi=180)
+plt.close(fig)

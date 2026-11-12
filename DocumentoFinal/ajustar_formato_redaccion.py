@@ -17,7 +17,7 @@ inicio=r'''\begin{document}
 \pagestyle{indice}\thispagestyle{indice}\hypersetup{linkcolor=black}\tableofcontents\thispagestyle{indice}}
 \newpage\setcounter{page}{1}\hypersetup{pageanchor=true}\singlespacing
 '''
-port=(P/'Portada.tex').read_text().replace('Anteproyecto','Proyecto final').replace('Análisis del mercado de videojuegos mediante minería de datos','Análisis de recepción y popularidad de videojuegos mediante minería de datos').replace('Fecha de Entrega:','Fecha de corte:').replace('30 de Septiembre del 2026','11 de noviembre de 2026').replace('Versión 2.0 -- actualizada el 8 de noviembre del 2026','Versión final revisada -- evidencia al 11 de noviembre de 2026').replace('[1cm]','[0.45cm]').replace('\\Huge','\\LARGE')
+port=(P/'Portada.tex').read_text().replace('Anteproyecto','Proyecto final').replace('Análisis del mercado de videojuegos mediante minería de datos','Análisis de recepción y popularidad de videojuegos mediante minería de datos').replace('Fecha de Entrega:','Fecha de corte:').replace('30 de Septiembre del 2026','12 de noviembre de 2026').replace('Versión 2.0 -- actualizada el 8 de noviembre del 2026','Versión final revisada -- evidencia al 12 de noviembre de 2026').replace('[1cm]','[0.45cm]').replace('\\Huge','\\LARGE')
 (D/'Portada.tex').write_text(port)
 # Se conserva la organización de inicio del anteproyecto.
 head,rest=body.split(r'\section{Introducción y problemática}',1)
@@ -109,3 +109,6 @@ for t,l in labels.items():body=body.replace('\\section{'+t+'}','\\section{'+t+'}
 for a,b in {'Sección 2: objetivo general':'Sección~\\ref{sec:objetivos}: objetivo general','Sección 3: origen':'Sección~\\ref{sec:contexto}: origen','Sección 4: CRISP-DM':'Sección~\\ref{sec:estrategia}: CRISP-DM','Sección 2: criterios':'Sección~\\ref{sec:objetivos}: criterios','Sección 11: ventanas':'Sección~\\ref{sec:plan}: ventanas','Secciones 5--8: preparación':'Secciones~\\ref{sec:preparacion}--\\ref{sec:clasificacion}: preparación','Secciones 8--10: Python':'Secciones~\\ref{sec:clasificacion}--\\ref{sec:web}: Python','Secciones 6--9 y 12--13: resultados':'Secciones~\\ref{sec:eda}--\\ref{sec:weka} y \\ref{sec:discusion}--\\ref{sec:conclusiones}: resultados'}.items():body=body.replace(a,b)
 body=body.replace(r'\printbibliography[heading=bibintoc,title={Referencias}]',r'\clearpage\pagestyle{referencias}\printbibliography[heading=bibintoc,title={Referencias}]')
 (D/'main.tex').write_text(pre+inicio+body)
+
+from sincronizar_auditoria import actualizar
+actualizar()

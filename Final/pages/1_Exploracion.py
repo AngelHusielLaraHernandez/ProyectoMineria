@@ -145,8 +145,9 @@ if filas_gen:
         line=dict(color=PALETA['secondary'], width=1.5),
         fillcolor='rgba(165, 107, 255, 0.75)',
     )
-    fig_box.update_xaxes(type='log', title_text=f'{senal_sel} · escala logarítmica')
-    fig_box.update_yaxes(autorange='reversed')
+    fig_box.update_xaxes(type='log', title_text=f'{senal_sel} (interacciones, escala logarítmica)')
+    fig_box.update_yaxes(autorange='reversed', title_text='Género')
+    st.caption('Vistas exploratorias de los juegos filtrados. Los ejes logarítmicos muestran conteos positivos.')
     mostrar_grafica(fig_box, f'Distribución de {senal_sel} por género',
                     alto=max(360, 28 * len(orden_gen) + 80))
 
@@ -186,8 +187,8 @@ if filas_gen:
                 )
             )
         fig_bar_log.update_layout(barmode='group')
-        fig_bar_log.update_xaxes(type='log', title_text='Mediana · escala logarítmica')
-        fig_bar_log.update_yaxes(categoryorder='array', categoryarray=orden_gen, autorange='reversed')
+        fig_bar_log.update_xaxes(type='log', title_text='Mediana de interacciones (escala logarítmica)')
+        fig_bar_log.update_yaxes(categoryorder='array', categoryarray=orden_gen, autorange='reversed', title_text='Género')
         mostrar_grafica(fig_bar_log, 'Medianas de Plays, Backlogs y Wishlist',
                         alto=max(380, 33 * len(orden_gen) + 125))
 
@@ -344,9 +345,9 @@ dim_brecha = st.radio(
 )
 
 archivo_corr = (
-    'clustering_03_correlaciones_generos.csv'
+    'tables/correlacion_generos.csv'
     if dim_brecha == 'Género'
-    else 'clustering_03_correlaciones_organizaciones.csv'
+    else 'tables/correlacion_organizaciones.csv'
 )
 if dim_brecha != 'Género':
     st.warning(
@@ -394,10 +395,11 @@ fig_gap = go.Figure(
 )
 etiquetas_grupos = [wrap(grupo, width=16) for grupo in df_plot_b['grupo']]
 fig_gap.update_xaxes(title_text='Brecha (pts)')
-fig_gap.update_yaxes(tickmode='array', tickvals=df_plot_b['grupo'],
+fig_gap.update_yaxes(title_text=dim_brecha, tickmode='array', tickvals=df_plot_b['grupo'],
                      ticktext=['<br>'.join(lineas) for lineas in etiquetas_grupos])
 alto_por_grupo = max(32, 14 * max(map(len, etiquetas_grupos), default=1) + 8)
 titulo_brecha = 'Brecha por género' if dim_brecha == 'Género' else 'Brecha por organización'
+st.caption('Vista informativa. Diferencia de notas en la escala común de 0 a 100.')
 mostrar_grafica(fig_gap, titulo_brecha, alto=max(420, len(df_plot_b) * alto_por_grupo + 60))
 
 configuracion_corr = {
@@ -414,7 +416,7 @@ configuracion_corr = {
 }
 
 with st.expander('Análisis complementario de correlaciones y corrección por comparaciones múltiples'):
-    correlacion = read_report('clustering_03_correlaciones_catalogo.csv').iloc[0]
+    correlacion = read_report('tables/correlacion_catalogo.csv').iloc[0]
     st.caption(
         f'Catálogo elegible completo: Pearson r = {correlacion["pearson_r"]:.3f}, '
         f'Spearman ρ = {correlacion["spearman_rho"]:.3f} ({int(correlacion["n"]):,} pares). '
@@ -474,7 +476,7 @@ st.dataframe(comparacion, hide_index=True, width='stretch', column_config={
 
 agrupados = profiles[profiles.incluido_clustering & profiles['id_juego'].isin(filtrado['id_juego'])].copy()
 if metodo == 'Ward':
-    asignaciones = read_report('clase_ward_asignaciones.csv')
+    asignaciones = read_report('tables/clase_ward_asignaciones.csv')
     agrupados = agrupados.merge(asignaciones, on='id_juego', validate='one_to_one')
     columna = 'cluster_ward'
     arbol = json.loads((REPORTS / 'clase_ward_dendrograma.json').read_text())
@@ -493,7 +495,7 @@ else:
 resumen = read_report('tables/perfiles_clusters.csv').loc[lambda t: t.metodo.eq(metodo)]
 if metodo == 'DBSCAN':
     st.caption(f'Con eps={parametros.dbscan_eps:.4f} y min_samples={parametros.dbscan_min_samples}, '
-               f'quedaron {parametros.dbscan_clusters} grupos y {parametros.dbscan_ruido} juegos marcados como ruido.')
+               f'grupos detectados: {parametros.dbscan_clusters}. Juegos marcados como ruido: {parametros.dbscan_ruido}.')
 st.caption('La tabla informa sobre los grupos completos. El mapa exploratorio de PCA responde a los filtros del dashboard.')
 st.dataframe(resumen, hide_index=True, width='stretch')
 agrupados['perfil'] = agrupados[columna].astype(int).map(lambda x: 'Ruido' if x == -1 else f'Grupo {x}')
@@ -516,11 +518,11 @@ fig_pca.update_traces(marker=dict(size=7, opacity=0.85, line=dict(width=0.7, col
 if agrupados.empty:
     st.info('La consulta no contiene juegos con coordenadas PCA.')
 else:
-    mostrar_grafica(fig_pca, f'PCA · {metodo} · {sum(analysis["pca_varianza"]):.1%} de varianza explicada', alto=430)
+    mostrar_grafica(fig_pca, f'PCA · {metodo} · {parametros.pca_varianza_total:.1%} de varianza explicada', alto=430)
 
 with st.expander('Selección de grupos y comparación de K-Means con Weka'):
     st.markdown('**Comparación de alternativas k=2, k=3 y k=4:**')
-    st.dataframe(read_report('clustering_03_alternativas_k.csv'), hide_index=True, width='stretch')
+    st.dataframe(read_report('tables/clustering_03_alternativas_k.csv'), hide_index=True, width='stretch')
     st.markdown('**Búsqueda de parámetros:**')
     st.dataframe(
         metricas_clusters.loc[metricas_clusters.metodo.eq(metodo)].dropna(axis=1, how='all'),
@@ -531,7 +533,7 @@ with st.expander('Selección de grupos y comparación de K-Means con Weka'):
     st.dataframe(read_report('tables/bic_gmm.csv'), hide_index=True, width='stretch')
     try:
         st.markdown('**Comparación reproducible contra Weka 3.8.6:**')
-        st.dataframe(read_report('weka/comparacion.csv'), hide_index=True, width='stretch')
+        st.dataframe(read_report('tables/weka_clustering_cli.csv'), hide_index=True, width='stretch')
     except FileNotFoundError:
         st.info('Reporte de Weka no encontrado en este entorno.')
 

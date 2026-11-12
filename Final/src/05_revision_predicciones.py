@@ -22,7 +22,7 @@ from src.features import lista_cruda
 from src.objetivo import aplicar_referencia, ajustar_referencia, CLASES, ClasificadorObjetivoLocal
 
 
-def ejecutar():
+def ejecutar(solo_integridad=False):
     salida = RAIZ / 'reports/revision_predicciones'
     salida.mkdir(exist_ok=True, parents=True)
     datos = pd.read_csv(RAIZ / 'data/clean/juegos_modelo.csv')
@@ -50,7 +50,7 @@ def ejecutar():
     assert np.allclose(por_id, nn['vecinos']._fit_X)
     ref = ajustar_referencia(tr)
     assert ref['cortes'] == meta['definicion_objetivo']['cortes']
-    filas_auditoria = {'n_entrenamiento':len(tr), 'n_prueba':len(te),
+    filas_auditoria = {'modelo': meta['modelo'], 'python': meta['python'], 'n_entrenamiento':len(tr), 'n_prueba':len(te),
         'exactitud_prueba':accuracy_score(te.nivel_popularidad,pred), 'f1_macro_prueba':f1,
         'f1_ponderado_prueba':f1_score(te.nivel_popularidad,pred,average='weighted'),
         'recall_por_clase':dict(zip(CLASES,recall_score(te.nivel_popularidad,pred,labels=CLASES,average=None))),
@@ -60,6 +60,8 @@ def ejecutar():
         'sha256_modelo':hashlib.sha256((RAIZ/'models/modelo_popularidad.joblib').read_bytes()).hexdigest()}
     (salida/'auditoria.json').write_text(json.dumps(filas_auditoria,ensure_ascii=False,indent=2))
     print('Auditoría de integridad completada.',flush=True)
+    if solo_integridad:
+        return filas_auditoria
     modulo = importlib.import_module('src.04_modelo')
     contexto = tr[[*FEATURES, 'Plays','Wishlist','Backlogs','id_juego']].reset_index(drop=True)
     folds = [(np.flatnonzero(tr.fold_validacion.to_numpy()!=n),np.flatnonzero(tr.fold_validacion.to_numpy()==n)) for n in range(1,11)]
@@ -105,5 +107,8 @@ def ejecutar():
     return decision
 
 
-if __name__=='__main__':
-    ejecutar()
+if __name__ == '__main__':
+    import argparse
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--solo-integridad', action='store_true')
+    ejecutar(parser.parse_args().solo_integridad)
