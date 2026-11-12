@@ -1,6 +1,6 @@
-modelo,f1_macro_cv,desviacion_cv,exactitud_prueba,f1_macro_prueba,balanced_accuracy_prueba,mejores_parametros
-DummyClassifier,0.16776371135838186,0.0031079390068919897,0.30180180180180183,0.15455594002306805,0.3333333333333333,{}
-CategoricalNB,0.5490076772558734,0.06247316133182854,0.509009009009009,0.49246153246608254,0.5192330016583748,"{""pipeline__clasificar__alpha"": 5.0}"
-DecisionTreeClassifier,0.5053348598452977,0.04576945678704888,0.5315315315315315,0.5119270486584638,0.5433250414593699,"{""pipeline__clasificar__max_depth"": 8, ""pipeline__clasificar__min_samples_leaf"": 10}"
-RandomForestClassifier,0.5566561802699771,0.045090449320740876,0.5675675675675675,0.5577027296634777,0.5753192371475954,"{""pipeline__clasificar__max_depth"": null, ""pipeline__clasificar__min_samples_leaf"": 5}"
-MLPClassifier,0.5607870550207656,0.06787159489040459,0.509009009009009,0.5007997645678804,0.5170605306799336,"{""pipeline__clasificar__alpha"": 5.0, ""pipeline__clasificar__hidden_layer_sizes"": [32]}"
+modelo,f1_macro_cv,desviacion_cv,origen_prueba,mejores_parametros,exactitud_prueba,f1_macro_prueba,balanced_accuracy_prueba
+DummyClassifier,0.16649077696789719,0.004258467770934469,Prueba histórica congelada,{},0.30180180180180183,0.15455594002306805,0.3333333333333333
+CategoricalNB,0.5308057953243732,0.05402624590046653,Prueba histórica congelada,"{""pipeline__clasificar__alpha"": 5.0}",0.509009009009009,0.49246153246608254,0.5192330016583748
+DecisionTreeClassifier,0.4904317348323029,0.047072174597874224,Prueba histórica congelada,"{""pipeline__clasificar__max_depth"": 8, ""pipeline__clasificar__min_samples_leaf"": 10}",0.5315315315315315,0.5119270486584638,0.5433250414593699
+RandomForestClassifier,0.549542965974718,0.04735652082174356,Prueba actual,"{""pipeline__clasificar__max_depth"": null, ""pipeline__clasificar__min_samples_leaf"": 5}",0.5675675675675675,0.5577027296634777,0.5753192371475954
+MLPClassifier,0.5538136491103881,0.05613800956754156,Prueba histórica congelada,"{""pipeline__clasificar__alpha"": 5.0, ""pipeline__clasificar__hidden_layer_sizes"": [32]}",0.509009009009009,0.5007997645678804,0.5170605306799336

@@ -24,17 +24,22 @@ Se reemplaza GaussianNB por CategoricalNB: la mayoría de atributos son indicado
 
 La MLP usa una capa oculta con activación tanh de 16 o 32 neuronas y optimización L-BFGS. Se comparan dos valores de regularización L2 dentro de los mismos pliegues que los demás candidatos.
 
-| modelo | f1_macro_cv | desviacion_cv | exactitud_prueba | f1_macro_prueba | balanced_accuracy_prueba | mejores_parametros |
-| --- | --- | --- | --- | --- | --- | --- |
-| DummyClassifier | 0.1678 | 0.0031 | 0.3018 | 0.1546 | 0.3333 | {} |
-| CategoricalNB | 0.5490 | 0.0625 | 0.5090 | 0.4925 | 0.5192 | {"pipeline__clasificar__alpha": 5.0} |
-| DecisionTreeClassifier | 0.5053 | 0.0458 | 0.5315 | 0.5119 | 0.5433 | {"pipeline__clasificar__max_depth": 8, "pipeline__clasificar__min_samples_leaf": 10} |
-| RandomForestClassifier | 0.5567 | 0.0451 | 0.5676 | 0.5577 | 0.5753 | {"pipeline__clasificar__max_depth": null, "pipeline__clasificar__min_samples_leaf": 5} |
-| MLPClassifier | 0.5608 | 0.0679 | 0.5090 | 0.5008 | 0.5171 | {"pipeline__clasificar__alpha": 5.0, "pipeline__clasificar__hidden_layer_sizes": [32]} |
+| modelo | f1_macro_cv | desviacion_cv | origen_prueba | mejores_parametros | exactitud_prueba | f1_macro_prueba | balanced_accuracy_prueba |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| DummyClassifier | 0.1665 | 0.0043 | Prueba histórica congelada | {} | 0.3018 | 0.1546 | 0.3333 |
+| CategoricalNB | 0.5308 | 0.0540 | Prueba histórica congelada | {"pipeline__clasificar__alpha": 5.0} | 0.5090 | 0.4925 | 0.5192 |
+| DecisionTreeClassifier | 0.4904 | 0.0471 | Prueba histórica congelada | {"pipeline__clasificar__max_depth": 8, "pipeline__clasificar__min_samples_leaf": 10} | 0.5315 | 0.5119 | 0.5433 |
+| RandomForestClassifier | 0.5495 | 0.0474 | Prueba actual | {"pipeline__clasificar__max_depth": null, "pipeline__clasificar__min_samples_leaf": 5} | 0.5676 | 0.5577 | 0.5753 |
+| MLPClassifier | 0.5538 | 0.0561 | Prueba histórica congelada | {"pipeline__clasificar__alpha": 5.0, "pipeline__clasificar__hidden_layer_sizes": [32]} | 0.5090 | 0.5008 | 0.5171 |
 
-Ganador por F1 macro media de CV: **MLPClassifier**. Supera al modelo de referencia en esta partición; no se ha probado significancia estadística de la diferencia. Diferencia en prueba frente a referencia: 0.3462. No se usa la prueba para ajustar parámetros o cambiar ganador.
+Modelo activo por decisión de proyecto: **RandomForestClassifier**. Supera al modelo de referencia en esta partición; no se ha probado significancia estadística de la diferencia. Diferencia en prueba frente a referencia: 0.4031.
+La evaluación externa repite diez pliegues estratificados por grupos cinco veces, con semillas 42 a 46 compartidas por los cinco modelos. Una búsqueda de tres pliegues internos escoge parámetros para cada evaluación externa. La búsqueda final en diez pliegues solo sirve para ajustar el artefacto sobre entrenamiento.
+El catálogo elegible completo tiene 1114 juegos y cortes descriptivos [0.36280670257330944, 0.6237283064033513]. La evaluación y la inferencia usan la referencia de entrenamiento para impedir que los conteos reservados intervengan en los cortes.
+La evaluación previa produjo resultados de prueba de los candidatos, incluida la MLP. El código archivado seleccionaba por CV antes de calcular la prueba, pero la decisión actual se toma con esos resultados ya conocidos. Esta prueba reutiliza la misma partición histórica y no constituye una confirmación independiente de la decisión de producción. Solo se recalcula la prueba del Random Forest.
+Brier multiclase (suma sobre clases) = 0.5570. Log-loss = 0.9274. La fiabilidad por clase usa diez intervalos fijos y registra el número de observaciones en tables/calibracion.csv.
+Los contrastes sobre F1 macro están en tables/comparacion_estadistica.csv. La t de Nadeau–Bengio corrige por la razón entre tamaños de validación y ajuste. Wilcoxon, Friedman y Nemenyi son complementarios: el solapamiento de los pliegues limita sus supuestos de independencia. Una diferencia no significativa no demuestra equivalencia.
 
-**Limitación visible del ganador:** recall de la clase medio = 28.7%. Una exactitud global razonable no permite afirmar que identifique bien esa clase; no se hizo una nueva búsqueda usando estos errores de prueba.
+**Limitación visible del ganador:** recall de la clase medio = 33.8%. Una exactitud global razonable no permite afirmar que identifique bien esa clase; no se hizo una nueva búsqueda usando estos errores de prueba.
 
 Dummy usa la clase realmente más frecuente en cada ajuste, con etiquetas locales; si hay empate, sklearn desempata por orden de clases. Los terciles tienden a equilibrar por construcción incluso sin fuga, por lo que una referencia mayoritaria cercana a F1 macro 1/6 es esperable y no un modelo comercial inteligente.
 
@@ -106,11 +111,11 @@ La clase media se evalúa explícitamente: sus notas y géneros pueden solaparse
 
 | variable_cruda | caida_f1_macro_media | desviacion |
 | --- | --- | --- |
-| Rating | 0.0370 | 0.0218 |
-| Metacritic Rating | 0.0250 | 0.0180 |
-| generos | 0.0191 | 0.0270 |
-| estudio | 0.0048 | 0.0203 |
-| decada | -0.0064 | 0.0188 |
+| Rating | 0.0832 | 0.0221 |
+| Metacritic Rating | 0.0817 | 0.0226 |
+| generos | 0.0753 | 0.0211 |
+| estudio | 0.0276 | 0.0164 |
+| decada | 0.0193 | 0.0149 |
 
 Caída de F1 macro sobre la prueba al permutar cada entrada cruda (listas completas para género/estudio), con 30 repeticiones y semilla 42. No es efecto causal ni intervalo de confianza; las variables correlacionadas comparten información. No se reoptimiza después de verla.
 
@@ -128,9 +133,9 @@ Caída de F1 macro sobre la prueba al permutar cada entrada cruda (listas comple
     }
   ],
   "n_criticas_ocultadas": 180,
-  "delta_probabilidad_bajo_media": -0.01602453445539611,
-  "delta_probabilidad_bajo_mediana": -0.002133754519910963,
-  "f1_macro_ablacion_sin_critica": 0.5097804936615579,
+  "delta_probabilidad_bajo_media": 0.03884582502696399,
+  "delta_probabilidad_bajo_mediana": 0.008101477935920781,
+  "f1_macro_ablacion_sin_critica": 0.5149234278266537,
   "limitacion": "La imputación puede seguir codificando cobertura; eliminar el indicador no garantiza ausencia de sesgo MNAR. Ablación de prueba solo diagnóstica, no reselección."
 }
 
@@ -142,7 +147,7 @@ models/modelo_popularidad.joblib contiene directamente el Pipeline y acepta un D
 
 models/metadata.json conserva referencia de entrenamiento, cortes, versiones, clases, fecha y métricas. models/vecinos_popularidad.joblib guarda NearestNeighbors ajustado únicamente al espacio predictivo de entrenamiento: las etiquetas de clusters solo se adjuntan por ID después de buscar, no intervienen en las distancias ni en la clasificación.
 
-Fecha: 2026-11-11T18:00:45-06:00; sklearn 1.9.1; Python 3.15.2. Las métricas previas de objetivo global están archivadas y no son directamente comparables con las nuevas.
+Fecha: 2026-11-12T10:57:17-06:00; sklearn 1.9.1; Python 3.14.6. Las métricas previas de objetivo global están archivadas y no son directamente comparables con las nuevas.
 
 ## Que debo verificar manualmente
 

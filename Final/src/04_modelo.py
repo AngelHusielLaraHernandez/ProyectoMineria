@@ -33,6 +33,7 @@ from sklearn.preprocessing import FunctionTransformer, OneHotEncoder, StandardSc
 from sklearn.tree import DecisionTreeClassifier
 
 from src.config import FEATURES, SEED
+from src.evaluacion_anidada import ACTIVO, PLIEGUES_INTERNOS, REPETICIONES, evaluar, guardar_calibracion, puntuar
 from src.features import CategoriasFrecuentes, lista_cruda
 from src.objetivo import (CAMPOS_OBJETIVO, CLASES, ajustar_referencia, aplicar_referencia,
                           ClasificadorObjetivoLocal, puntuar_objetivo_local)
@@ -136,6 +137,12 @@ def entrenar_datos(entrada, raiz=RAIZ):
     informes, modelos, limpio = raiz / 'reports', raiz / 'models', raiz / 'data/clean'
     for p in [informes, modelos, limpio]:
         p.mkdir(parents=True, exist_ok=True)
+    tablas = informes / 'tables'
+    tablas.mkdir(exist_ok=True)
+    referencia_catalogo = ajustar_referencia(df)
+    pd.DataFrame([{'n': len(df), 'tercil_1': referencia_catalogo['cortes'][0],
+                   'tercil_2': referencia_catalogo['cortes'][1]}]).to_csv(tablas / 'terciles_catalogo.csv', index=False)
+    resumen_externo, contrastes = evaluar(contexto.iloc[tr], y_train, grupos, candidatos, construir_pipeline, tablas)
     busquedas, filas_cv, resultados = {}, [], []
     for nombre, (estimador, grid) in candidatos.items():
         grid_local = {f'pipeline__{k}': v for k, v in grid.items()}
@@ -148,23 +155,48 @@ def entrenar_datos(entrada, raiz=RAIZ):
                 filas_cv.append({'modelo': nombre, 'candidato': i, 'fold': fold+1,
                                  'parametros': json.dumps(parametros, sort_keys=True),
                                  'f1_macro': float(busqueda.cv_results_[f'split{fold}_test_score'][i])})
-    # La selección se cierra antes de consultar la prueba.
-    mejor_nombre = max(candidatos, key=lambda n: busquedas[n].best_score_)
+    # La decisión de producción queda fijada antes de la evaluación de esta corrida.
+    mejor_nombre = ACTIVO
     mejor = busquedas[mejor_nombre].best_estimator_.pipeline_
     matrices, predicciones = {}, pd.DataFrame({'id_juego': df.id_juego.iloc[te].to_numpy(), 'real': y_test})
+    pred_activo = mejor.predict(X_test)
+    proba_activo = mejor.predict_proba(X_test)
+    metricas_prueba = puntuar(y_test, pred_activo, proba_activo, mejor.classes_)
+    metricas_prueba.update(guardar_calibracion(tablas, y_test, proba_activo, mejor.classes_))
+    historico = tablas / 'prueba_historica_predicciones.csv'
+    if not historico.exists():
+        historico = RAIZ / 'reports/tables/prueba_historica_predicciones.csv'
+    if historico.exists():
+        previas = pd.read_csv(historico)
+        if not previas[['id_juego', 'real']].equals(predicciones):
+            previas = pd.DataFrame()
+    else:
+        previas = pd.DataFrame()
     for nombre, busqueda in busquedas.items():
-        pred = busqueda.best_estimator_.pipeline_.predict(X_test)
-        predicciones[nombre] = pred
-        matriz = confusion_matrix(y_test, pred, labels=CLASES)
-        matrices[nombre] = matriz.tolist()
-        pd.DataFrame(matriz, index=CLASES, columns=CLASES).rename_axis('real / predicha').to_csv(informes / f'modelo_confusion_{nombre}.csv')
-        resultados.append({'modelo': nombre, 'f1_macro_cv': float(busqueda.best_score_),
-                           'desviacion_cv': float(busqueda.cv_results_['std_test_score'][busqueda.best_index_]),
-                           'exactitud_prueba': accuracy_score(y_test, pred),
-                           'f1_macro_prueba': f1_score(y_test, pred, labels=CLASES, average='macro', zero_division=0),
-                           'balanced_accuracy_prueba': balanced_accuracy_score(y_test, pred),
-                           'mejores_parametros': json.dumps(busqueda.best_params_, sort_keys=True)})
+        if nombre == mejor_nombre:
+            pred, origen = pred_activo, 'Prueba actual'
+        elif nombre in previas:
+            pred, origen = previas[nombre], 'Prueba histórica congelada'
+        elif nombre == 'DummyClassifier':
+            pred, origen = np.repeat(pd.Series(y_train).mode().iloc[0], len(y_test)), 'Referencia mayoritaria analítica'
+        else:
+            pred, origen = None, 'Sin prueba comparable'
+        fila = {'modelo': nombre, 'f1_macro_cv': resumen_externo.loc[nombre, 'f1_macro_media'],
+                'desviacion_cv': resumen_externo.loc[nombre, 'f1_macro_de'], 'origen_prueba': origen,
+                'mejores_parametros': json.dumps(busqueda.best_params_, sort_keys=True)}
+        if pred is not None:
+            predicciones[nombre] = pred
+            matriz = confusion_matrix(y_test, pred, labels=CLASES)
+            matrices[nombre] = matriz.tolist()
+            pd.DataFrame(matriz, index=CLASES, columns=CLASES).rename_axis('real / predicha').to_csv(informes / f'modelo_confusion_{nombre}.csv')
+            fila.update(exactitud_prueba=accuracy_score(y_test, pred),
+                        f1_macro_prueba=f1_score(y_test, pred, labels=CLASES, average='macro', zero_division=0),
+                        balanced_accuracy_prueba=balanced_accuracy_score(y_test, pred))
+        resultados.append(fila)
+    pd.DataFrame(matrices[mejor_nombre], index=CLASES, columns=CLASES).rename_axis('real').to_csv(tablas / 'matriz_confusion.csv')
+    pd.DataFrame([{'modelo': mejor_nombre, 'n': len(te), **metricas_prueba}]).to_csv(tablas / 'metricas_prueba.csv', index=False)
     tabla = pd.DataFrame(resultados)
+    tabla.to_csv(tablas / 'comparacion_prueba_actual_e_historica.csv', index=False)
     tabla.to_csv(informes / 'modelo_comparacion.csv', index=False)
     pd.DataFrame(filas_cv).to_csv(informes / 'modelo_grid_cv.csv', index=False)
     predicciones.to_csv(informes / 'modelo_predicciones_prueba.csv', index=False)
@@ -191,14 +223,16 @@ def entrenar_datos(entrada, raiz=RAIZ):
     metadata = {'version_sklearn': sklearn.__version__, 'python': platform.python_version(), 'fecha': fecha,
                 'zona_horaria': 'America/Mexico_City', 'semilla': SEED, 'modelo': mejor_nombre,
                 'variables': FEATURES, 'clases': CLASES, 'orden_probabilidades': mejor.classes_.tolist(),
-                'definicion_objetivo': definicion, 'alternativa_solo_plays': {'cortes': definicion_plays['cortes'],
+                'definicion_objetivo': definicion,
+                'terciles_descriptivos_catalogo': {'n': len(df), 'cortes': referencia_catalogo['cortes']}, 'alternativa_solo_plays': {'cortes': definicion_plays['cortes'],
                     'fraccion_etiquetas_coincidentes': float((y == alternativa.nivel_popularidad).mean())},
                 'n_cohorte': len(df), 'n_entrenamiento': len(tr), 'n_prueba': len(te),
                 'particion': {'test_size': .2, 'estratificada': False, 'sin_titulos_compartidos': True,
                               'regla': 'GroupShuffleSplit, una partición independiente de los conteos/etiquetas; aproximadamente 80/20 por grupos.',
                               'intentos': 1},
                 'validacion': {'pliegues': 10, 'estratificada': True, 'agrupacion': 'grupo_titulo',
-                               'metodo': 'StratifiedGroupKFold', 'seleccion': 'Mayor F1 macro media en CV; referencia del target y preprocesador ajustados por fold.',
+                               'metodo': 'StratifiedGroupKFold anidado', 'repeticiones': REPETICIONES, 'pliegues_internos': PLIEGUES_INTERNOS,
+                               'seleccion': 'Random Forest fijado para producción. Búsqueda interna por F1 macro y evaluación externa independiente.',
                                'etiquetas_para_organizar_estratos': 'Referencia externa de entrenamiento; no se usa para fit/score de los folds.'},
                 'distribuciones': {nombre: pd.Series(valores).value_counts().to_dict() for nombre, valores in [('catalogo', y), ('entrenamiento', y_train), ('prueba', y_test)]},
                 'mejores_parametros': busquedas[mejor_nombre].best_params_,
@@ -206,8 +240,11 @@ def entrenar_datos(entrada, raiz=RAIZ):
                              'balanced_accuracy': float(final.balanced_accuracy_prueba), 'f1_macro_referencia': float(base.f1_macro_prueba),
                              'diferencia_f1_referencia': diferencia, 'f1_macro_cv': float(final.f1_macro_cv),
                              'matriz_confusion': matrices[mejor_nombre],
-                             'reporte_clases': classification_report(y_test, mejor.predict(X_test), labels=CLASES, output_dict=True, zero_division=0)},
-                'comparacion_modelos': resultados, 'evaluacion_referencia': juicio,
+                             **metricas_prueba,
+                             'reporte_clases': classification_report(y_test, pred_activo, labels=CLASES, output_dict=True, zero_division=0)},
+                'comparacion_modelos': json.loads(tabla.to_json(orient='records')), 'evaluacion_referencia': juicio,
+                'evaluacion_anidada': resumen_externo.reset_index().to_dict(orient='records'),
+                'comparacion_estadistica': json.loads(contrastes.to_json(orient='records')),
                 'preprocesamiento': {'generos': 'Multi-hot: hasta 15 con frecuencia >=20 en cada entrenamiento; resto/nuevos a Otro.',
                                      'estudio': 'Miembros de Team con frecuencia >=10; Otro solo si no hay miembro frecuente; no se acredita rol desarrollador.',
                                      'notas': 'Mediana ajustada en entrenamiento, sin indicadores de ausencia; scaler solo de notas, o bins para CategoricalNB.',
@@ -304,7 +341,12 @@ def escribir_reporte(informes, m, tabla, perm, matrices):
         '## Comparación y selección', '',
         'La MLP usa una capa oculta con activación tanh de 16 o 32 neuronas y optimización L-BFGS. Se comparan dos valores de regularización L2 dentro de los mismos pliegues que los demás candidatos.', '',
         tabla_md(tabla), '',
-        f'Ganador por F1 macro media de CV: **{m["modelo"]}**. {m["evaluacion_referencia"]} Diferencia en prueba frente a referencia: {m["metricas"]["diferencia_f1_referencia"]:.4f}. No se usa la prueba para ajustar parámetros o cambiar ganador.', '',
+        f'Modelo activo por decisión de proyecto: **{m["modelo"]}**. {m["evaluacion_referencia"]} Diferencia en prueba frente a referencia: {m["metricas"]["diferencia_f1_referencia"]:.4f}.',
+        'La evaluación externa repite diez pliegues estratificados por grupos cinco veces, con semillas 42 a 46 compartidas por los cinco modelos. Una búsqueda de tres pliegues internos escoge parámetros para cada evaluación externa. La búsqueda final en diez pliegues solo sirve para ajustar el artefacto sobre entrenamiento.',
+        f'El catálogo elegible completo tiene {m["terciles_descriptivos_catalogo"]["n"]} juegos y cortes descriptivos {m["terciles_descriptivos_catalogo"]["cortes"]}. La evaluación y la inferencia usan la referencia de entrenamiento para impedir que los conteos reservados intervengan en los cortes.',
+        'La evaluación previa produjo resultados de prueba de los candidatos, incluida la MLP. El código archivado seleccionaba por CV antes de calcular la prueba, pero la decisión actual se toma con esos resultados ya conocidos. Esta prueba reutiliza la misma partición histórica y no constituye una confirmación independiente de la decisión de producción. Solo se recalcula la prueba del Random Forest.',
+        f'Brier multiclase (suma sobre clases) = {m["metricas"]["brier_multiclase"]:.4f}. Log-loss = {m["metricas"]["log_loss"]:.4f}. La fiabilidad por clase usa diez intervalos fijos y registra el número de observaciones en tables/calibracion.csv.',
+        'Los contrastes sobre F1 macro están en tables/comparacion_estadistica.csv. La t de Nadeau–Bengio corrige por la razón entre tamaños de validación y ajuste. Wilcoxon, Friedman y Nemenyi son complementarios: el solapamiento de los pliegues limita sus supuestos de independencia. Una diferencia no significativa no demuestra equivalencia.', '',
         f'**Limitación visible del ganador:** recall de la clase medio = {m["metricas"]["reporte_clases"]["medio"]["recall"]:.1%}. Una exactitud global razonable no permite afirmar que identifique bien esa clase; no se hizo una nueva búsqueda usando estos errores de prueba.', '',
         'Dummy usa la clase realmente más frecuente en cada ajuste, con etiquetas locales; si hay empate, sklearn desempata por orden de clases. Los terciles tienden a equilibrar por construcción incluso sin fuga, por lo que una referencia mayoritaria cercana a F1 macro 1/6 es esperable y no un modelo comercial inteligente.', '',
         '## Matrices y análisis de error por clase', '', 'Filas reales y columnas predichas: bajo, medio, alto.', '']

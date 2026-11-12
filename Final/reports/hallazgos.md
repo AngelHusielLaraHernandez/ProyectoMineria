@@ -7,7 +7,7 @@ Fase 4A: 887 casos completos elegibles de 1117 registros conservados; 3 conflict
 K-Means usa seis variables y k=2 entre 2 y 10. DBSCAN usa eps=1.666296, min_samples=12; clusters=1, ruido=21.
 Un solo grupo de DBSCAN no acredita segmentación comercial útil. Ver comparación de k=2/3/4 y sensibilidad a títulos compartidos en clustering.md.
 
-Clasificador independiente por terciles del promedio de rangos percentiles de Plays, Wishlist y Backlogs: MLPClassifier; n prueba=222, F1 macro=0.5008, base=0.1546. Los clusters descriptivos no se utilizan como objetivo ni predictores.
+Clasificador independiente por terciles del promedio de rangos percentiles de Plays, Wishlist y Backlogs: RandomForestClassifier; n prueba=222, F1 macro=0.5577, base=0.1546. Los clusters descriptivos no se utilizan como objetivo ni predictores.
 
 ## Que debo verificar manualmente
 

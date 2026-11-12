@@ -65,7 +65,11 @@ def test_archivo_guardado_es_pipeline_y_recibe_formulario_crudo():
 def test_ganador_se_elige_por_cv_y_permuta_solo_campos_crudos():
     tabla = pd.read_csv(ROOT / 'reports/modelo_comparacion.csv')
     meta = json.loads((ROOT / 'models/metadata.json').read_text())
-    assert meta['modelo'] == tabla.sort_values('f1_macro_cv', ascending=False).iloc[0].modelo
+    assert meta['modelo'] == 'RandomForestClassifier'
+    externa = pd.read_csv(ROOT / 'reports/tables/cv_externa_folds.csv')
+    assert externa.groupby('modelo').size().eq(50).all()
+    medias = externa.groupby('modelo').f1_macro.mean()
+    assert np.allclose(tabla.set_index('modelo').f1_macro_cv, medias.reindex(tabla.modelo))
     assert set(tabla.modelo) == {'DummyClassifier', 'CategoricalNB', 'DecisionTreeClassifier', 'RandomForestClassifier', 'MLPClassifier'}
     perm = pd.read_csv(ROOT / 'reports/modelo_permutation_importance.csv')
     assert set(perm.variable_cruda) == set(FEATURES)

@@ -269,6 +269,29 @@ def ejecutar(raiz=RAIZ):
         archivo.write(f'Estado: {historia["estado"]}. Esta corrida no elimina las 395 filas históricas: ya no están en el maestro de entrada. ')
         archivo.write('Ver trazabilidad_historica.md, deduplicacion_historica.csv y conflictos_historicos.csv para decisiones por ID. ' if ids_pendientes else '')
         archivo.write('No confundir 0 descartes actuales con ausencia de decisiones anteriores.\n\n## Que debo verificar manualmente\n\n- Resolver los conflictos heredados y usar id_juego para relacionar tablas.\n')
+    tablas = informes / 'tables'
+    tablas.mkdir(exist_ok=True)
+    dimensiones = [{'etapa': 'Anteproyecto', 'filas': 1512, 'columnas': 15,
+                    'evidencia': 'Proyecto/main.tex. Dimensiones declaradas, sin el CSV exacto para cotejo.'}]
+    if historia['estado'] != 'sin antecedente':
+        antecedente = pd.read_csv(raiz / 'data/historical/games_actualizado_metacritic.csv')
+        dimensiones.append({'etapa': 'Antecedente enriquecido', 'filas': len(antecedente), 'columnas': len(antecedente.columns),
+                            'evidencia': 'CSV local. Incluye procedencia de crítica y cuatro estimaciones financieras o comerciales.'})
+        dimensiones.append({'etapa': 'Reconstrucción del maestro', 'filas': historia['filas_maestro'],
+                            'columnas': historia['columnas_reconstruidas'],
+                            'evidencia': f"{historia['descartes_heredados']} descartes heredados por título y fecha. Columnas derivadas de calendario, listas, notas, logaritmos y banderas."})
+    dimensiones.extend([
+        {'etapa': 'Maestro curado', 'filas': len(datos) + len(descartados),
+         'columnas': len(pd.read_csv(entrada, nrows=0).columns), 'evidencia': 'CSV designado como original para el pipeline actual.'},
+        {'etapa': 'Depurado actual', 'filas': len(datos), 'columnas': len(datos.columns), 'evidencia': 'Salida de la fase de limpieza.'},
+    ])
+    pd.DataFrame(dimensiones).to_csv(tablas / 'procedencia_datos.csv', index=False)
+    with (informes / 'limpieza_log.md').open('a', encoding='utf-8') as archivo:
+        archivo.write('\n## Dimensiones y linaje del insumo\n\n')
+        archivo.write('| Etapa | Filas | Columnas | Evidencia |\n|---|---:|---:|---|\n')
+        for fila in dimensiones:
+            archivo.write(f"| {fila['etapa']} | {fila['filas']} | {fila['columnas']} | {fila['evidencia']} |\n")
+        archivo.write('\nEl maestro curado es un archivo distinto del insumo de 15 columnas descrito en el anteproyecto. El origen exacto de las adiciones entre esa versión y el antecedente de 20 columnas no está documentado. La conciliación verificable comienza en el antecedente local. Los campos económicos estimados se excluyen de las conclusiones y del modelo.\n')
     if entrada.read_bytes() != contenido:
         raise RuntimeError('La fuente cambió durante la ejecución; revisar antes de usar las salidas.')
     print(f'Limpieza completada: {bitacora.inicial} → {len(datos)} juegos; {len(largo)} pertenencias de género. Ver reports/limpieza_log.md.')
