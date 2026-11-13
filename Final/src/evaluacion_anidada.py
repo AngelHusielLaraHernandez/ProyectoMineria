@@ -98,7 +98,7 @@ def contrastar(detalle):
                                         'delta_f1_macro_a_menos_b', 'estadistico', 'p_valor'])
 
 
-def guardar_calibracion(tablas, real, proba, clases):
+def guardar_calibracion(tablas, real, proba, clases, nombre='calibracion.csv'):
     """Brier multiclase sin reescalar y fiabilidad OvR por intervalos fijos."""
     from sklearn.metrics import log_loss
     observada = np.asarray(real)[:, None] == np.asarray(clases)[None, :]
@@ -113,6 +113,6 @@ def guardar_calibracion(tablas, real, proba, clases):
                               'limite_superior': limites[b+1], 'n': int(mascara.sum()),
                               'probabilidad_media': proba[mascara, i].mean(),
                               'fraccion_observada': observada[mascara, i].mean()})
-    pd.DataFrame(filas).to_csv(tablas / 'calibracion.csv', index=False)
+    pd.DataFrame(filas).to_csv(tablas / nombre, index=False)
     return {'brier_multiclase': float(np.mean(np.sum((proba - observada) ** 2, axis=1))),
             'log_loss': float(log_loss(real, proba, labels=clases))}

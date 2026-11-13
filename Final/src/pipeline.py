@@ -18,14 +18,16 @@ REPORTES_APP = (
     'clustering_03_sensibilidad_dbscan.csv',
     'clase_comparacion_clustering.csv', 'clase_ward_cortes.csv',
     'clase_ward_asignaciones.csv', 'clase_ward_perfiles.csv', 'clase_ward_dendrograma.json',
-    'tables/modelo_importancia_gini.csv', 'tables/calibracion.csv', 'tables/comparativo_modelos.csv',
+    'tables/modelo_importancia_gini.csv', 'tables/calibracion.csv', 'tables/calibracion_ajustada.csv',
+    'tables/comparativo_modelos.csv',
     'tables/comparacion_estadistica.csv', 'tables/comparacion_prueba_actual_e_historica.csv',
     'tables/perfiles_clusters.csv', 'tables/metricas_clusters.csv', 'tables/bic_gmm.csv',
     'tables/popularidad_genero.csv', 'tables/popularidad_estudio.csv',
     'tables/correlacion_catalogo.csv', 'tables/procedencia_datos.csv', 'tables/parametros_clustering.csv',
     'tables/correlacion_generos.csv', 'tables/correlacion_organizaciones.csv', 'tables/catalogo_resumen.json',
     'tables/clase_ward_asignaciones.csv', 'tables/clustering_03_alternativas_k.csv',
-    'tables/modelo_error_por_clase.csv',
+    'tables/modelo_error_por_clase.csv', 'tables/evidencia_comercial.csv',
+    'tables/weka_clustering_cli.csv',
 )
 
 

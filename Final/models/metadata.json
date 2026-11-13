@@ -2896,5 +2896,16 @@
     "limitacion": "La imputación puede seguir codificando cobertura; eliminar el indicador no garantiza ausencia de sesgo MNAR. Ablación de prueba solo diagnóstica, no reselección."
   },
   "formato_artefacto": "Pipeline serializado por valor con cloudpickle; compatible con joblib.load sin src en PYTHONPATH.",
-  "cloudpickle": "3.1.2"
+  "cloudpickle": "3.1.2",
+  "calibracion_web": {
+    "metodo": "Escalado de temperatura",
+    "temperatura": 0.6416086453638389,
+    "n_ajuste": 892,
+    "pliegues": 10,
+    "n_prueba": 222,
+    "metricas_prueba": {
+      "brier_multiclase": 0.5508045199041678,
+      "log_loss": 0.9101768405677682
+    }
+  }
 }

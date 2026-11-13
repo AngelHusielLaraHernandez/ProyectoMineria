@@ -20,6 +20,10 @@ El Brier multiclase es 0.5570 y el log-loss 0.9274. La [curva por intervalos](ta
 
 ## Herramientas y aplicación
 
-El [comparativo](tables/comparativo_herramientas.csv) conserva la CV anidada de Python y las corridas gráficas de Weka con sus diferencias de protocolo. Las salidas y capturas de Weka, los hashes y los datos de entrada se contrastaron. Orange quedó sin métricas después de los cierres de Qt/Cocoa y del reintento sin interfaz. [Bitácora de herramientas](codex_log.md).
+El [comparativo](tables/comparativo_herramientas.csv) conserva la CV anidada de Python y las corridas gráficas de Weka con sus diferencias de protocolo. Las salidas y capturas de Weka, los hashes y los datos de entrada se contrastaron. Orange quedó sin métricas después de los cierres de Qt/Cocoa y del reintento sin interfaz. [Verificación de Weka y Orange](verificacion_weka_orange.md) · [Bitácora histórica de herramientas](BITACORA_UNIFICADA.md).
 
-La app funciona localmente y muestra exploración, inferencia y evaluación. La estimación describe interacciones observadas en Backloggd. Puede favorecer géneros populares y desfavorecer los de nicho. El estudio trabaja a nivel de juego y no de persona. Los datos carecen de ventas observadas y no permiten medir rentabilidad o riesgo de juegos como servicio. [Estado de publicación](despliegue.md).
+La app funciona localmente y muestra exploración, inferencia y evaluación. La estimación describe interacciones observadas en Backloggd. Puede favorecer géneros populares y desfavorecer los de nicho. El estudio trabaja a nivel de juego y no de persona. El catálogo de entrenamiento carece de ventas y costos observados por juego, por lo que no permite estimar la rentabilidad ni el riesgo comercial de los juegos como servicio. [Estado de publicación](despliegue.md).
+
+## Evidencia comercial complementaria
+
+Los casos publicados por editoras documentan cierres, ventas y efectos en estudios. El [reporte de riesgo comercial](riesgo_comercial.md) detalla cómo estimar una tasa de pérdida por género con ingresos y costos comparables, y cómo evaluar decisiones de inversión con seguimiento posterior.

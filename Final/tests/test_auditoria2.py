@@ -162,7 +162,7 @@ def test_vecinos_no_necesitan_conteos_y_son_solo_entrenamiento():
     assert {'cluster_kmeans', 'cluster_dbscan'} <= set(vecinos)
 
 
-def test_pantalla_error_tematica_cuando_falta_artefacto(monkeypatch):
+def test_pantalla_error_cuando_falta_artefacto(monkeypatch, caplog):
     import src.ui as ui
     mensajes_error = []
     detenidos = []
@@ -171,7 +171,8 @@ def test_pantalla_error_tematica_cuando_falta_artefacto(monkeypatch):
     monkeypatch.setattr(ui.st, 'stop', lambda: detenidos.append(True))
     ui.resources()
     assert detenidos == [True]
-    assert any('CRITICAL ALERT / MISSION FAILED' in m and 'python -m src.pipeline' in m for m in mensajes_error)
+    assert mensajes_error == ['No se pudo cargar el observatorio. Recarga la página para volver a intentarlo.']
+    assert 'Falta modelo_popularidad.joblib' in caplog.text
 
 
 def test_recarga_automatica_si_src_ui_estaba_en_memoria_antigua(monkeypatch):

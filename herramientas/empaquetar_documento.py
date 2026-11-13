@@ -10,12 +10,15 @@ DOCUMENTO = RAIZ / 'DocumentoFinal'
 
 def main():
     nombres = ['main.tex', 'main.pdf', 'Portada.tex', 'referencias.bib',
-               'README.md', 'generar_documento.py', 'ajustar_formato_redaccion.py',
-               'analizar_escenarios.py', 'sincronizar_auditoria.py', 'BITACORA_UNIFICADA.md',
+               'informe.tex', 'cifras_informe.tex',
+               'README.md', 'ajustar_formato_redaccion.py',
+               'analizar_escenarios.py', 'BITACORA_UNIFICADA.md',
                'revision/verificacion.json']
     archivos = [DOCUMENTO / n for n in nombres]
-    for carpeta in ['figuras', 'tablas', 'evidencias', 'portada_img']:
-        archivos.extend(a for a in (DOCUMENTO / carpeta).rglob('*') if a.is_file())
+    for carpeta in ['figuras', 'tablas', 'evidencias', 'portada_img', 'revision']:
+        archivos.extend(a for a in (DOCUMENTO / carpeta).rglob('*')
+                        if a.is_file() and not any(p.startswith('.') for p in a.relative_to(DOCUMENTO).parts)
+                        and (carpeta != 'revision' or a.name == 'BITACORA_UNIFICADA.md'))
     manifiesto = {a.relative_to(DOCUMENTO).as_posix():
                   hashlib.sha256(a.read_bytes()).hexdigest() for a in sorted(archivos)}
     (DOCUMENTO / 'MANIFIESTO.json').write_text(json.dumps(manifiesto, ensure_ascii=False, indent=2) + '\n')

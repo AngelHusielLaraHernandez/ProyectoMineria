@@ -42,3 +42,55 @@ def test_tema_logaritmico_conserva_escala_datos_y_rango():
     assert fig.layout.yaxis.dtick == 1
     assert list(fig.layout.yaxis.range) == [1, 3]
     assert list(fig.data[0].y) == [10, 100, 1000]
+
+
+def test_p5_plotly_layout_usa_font_sans_y_margen_superior_minimo():
+    from src.ui import p5_plotly_layout
+    from src.visualizacion import FONT_SANS
+
+    fig_sin_titulo = p5_plotly_layout(go.Figure(go.Scatter(x=[1, 2], y=[3, 4])), title='')
+    assert fig_sin_titulo.layout.margin.t >= 44
+    assert fig_sin_titulo.layout.font.family == FONT_SANS
+    assert fig_sin_titulo.layout.title.font.family == FONT_SANS
+    assert fig_sin_titulo.layout.legend.font.family == FONT_SANS
+    assert fig_sin_titulo.layout.hoverlabel.font.family == FONT_SANS
+    assert fig_sin_titulo.layout.xaxis.tickfont.family == FONT_SANS
+    assert fig_sin_titulo.layout.xaxis.title.font.family == FONT_SANS
+    assert fig_sin_titulo.layout.yaxis.tickfont.family == FONT_SANS
+    assert fig_sin_titulo.layout.yaxis.title.font.family == FONT_SANS
+
+    titulo_largo = 'Distribución comparativa de señales de popularidad en el catálogo completo'
+    fig_con_titulo = p5_plotly_layout(go.Figure(go.Bar(x=['A'], y=[1])), title=titulo_largo)
+    assert fig_con_titulo.layout.margin.t >= 48 >= 44
+    assert fig_con_titulo.layout.font.family == FONT_SANS
+
+
+def test_vista_graficas_mostrar_grafica_preserva_fuente_margen_y_toimage(monkeypatch):
+    import vista_graficas
+    from src.visualizacion import FONT_SANS
+
+    capturado = {}
+    monkeypatch.setattr(vista_graficas.st, 'subheader', lambda texto: capturado.setdefault('titulo', texto))
+    monkeypatch.setattr(
+        vista_graficas.st,
+        'plotly_chart',
+        lambda fig, **kwargs: capturado.update({'fig': fig, 'kwargs': kwargs}) or 'ok',
+    )
+
+    fig = go.Figure(go.Bar(x=[10, 20], y=['A', 'B'], orientation='h'))
+    resultado = vista_graficas.mostrar_grafica(fig, 'Gráfica de prueba', alto=390)
+
+    assert resultado == 'ok'
+    assert capturado['titulo'] == 'Gráfica de prueba'
+    fig_out = capturado['fig']
+    assert fig_out.layout.font.family == FONT_SANS
+    assert fig_out.layout.xaxis.tickfont.family == FONT_SANS
+    assert fig_out.layout.yaxis.tickfont.family == FONT_SANS
+    assert fig_out.layout.xaxis.automargin is True
+    assert fig_out.layout.yaxis.automargin is True
+    assert fig_out.layout.margin.t >= 48 >= 44
+    assert fig_out.layout.legend.font.size == 12
+    config = capturado['kwargs']['config']
+    assert config['displaylogo'] is False
+    assert config['responsive'] is True
+    assert 'toImage' not in config.get('modeBarButtonsToRemove', [])

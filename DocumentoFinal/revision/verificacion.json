@@ -1,16 +1,59 @@
 {
-  "paginas": 34,
-  "figuras": 23,
-  "pruebas_cierre": 102,
+  "paginas": 21,
+  "figuras": 18,
+  "pruebas_cierre": 144,
   "referencias_indefinidas": 0,
-  "desbordamientos_horizontales": 0,
+  "desbordamientos": 0,
   "modelo": "RandomForestClassifier",
   "modelo_sha256": "ca5cee53f35cf5c0f8bc6f7af482593261d4409844eb15d5359788b1009825c1",
-  "pdf_sha256": "9f250a1fdbbf4e57019924b01f42454655cbf93c51f551b70603f97289114b95",
-  "escenarios_hipoteticos": 8,
-  "combinaciones_sensibilidad": 25,
-  "casos_reales": 6,
-  "probabilidades": "Sumas y clases máximas verificadas en escenarios y contraejemplos.",
-  "paginas_renderizadas_y_revisadas": 34,
-  "compilacion": "Correcta con latexmk y biber."
+  "pdf_sha256": "82961284abdf6cecdf6f2d6f8e52b0b0ac4b66cfa79a8df515a5abd7ab049a57",
+  "casos_comerciales_verificados": 4,
+  "capturas_web_actualizadas": [
+    "web_actividad_nueva.jpg",
+    "web_inicio_nueva.jpg",
+    "web_exploracion_nueva.jpg",
+    "web_comercial_nueva.jpg",
+    "web_modelo_nueva.jpg",
+    "web_prediccion_formulario.jpg",
+    "web_prediccion_resultado.jpg",
+    "web_prediccion_sin_nota.jpg",
+    "web_calibracion.jpg",
+    "web_niveles_popularidad.jpg",
+    "web_juegos_destacados.jpg",
+    "web_juegos_parecidos.jpg",
+    "web_bitacora_algoritmos.jpg",
+    "web_conclusion_prediccion.jpg"
+  ],
+  "prediccion_comprobada": {
+    "con_prensa": {
+      "clase": "bajo",
+      "alto": 27.4,
+      "medio": 27.8,
+      "bajo": 44.9
+    },
+    "sin_prensa": {
+      "clase": "bajo",
+      "alto": 25.6,
+      "medio": 27.0,
+      "bajo": 47.5
+    }
+  },
+  "paginas_renderizadas_y_revisadas": 1,
+  "compilacion": "Correcta con latexmk y biber.",
+  "citas_autor_anio_en_el_cuerpo": 0,
+  "tildes_en_texto_pdf": 0,
+  "paginas_renderizadas": 21,
+  "resumen_eliminado": true,
+  "leyenda_portada_eliminada": true,
+  "calibracion_web": {
+    "metodo": "Escalado de temperatura",
+    "temperatura": 0.6416086453638389,
+    "n_ajuste": 892,
+    "pliegues": 10,
+    "n_prueba": 222,
+    "metricas_prueba": {
+      "brier_multiclase": 0.5508045199041678,
+      "log_loss": 0.9101768405677682
+    }
+  }
 }

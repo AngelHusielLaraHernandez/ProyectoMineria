@@ -1,9 +1,12 @@
-"""Módulo UI/UX Persona 5 (Port fiel de PruebasMenu/persona5-website-theme) y caché de artefactos."""
+"""Módulo UI/UX Persona 5 accesible y caché de artefactos."""
 import base64
 import hashlib
+import html
 import json
-import unicodedata
+import logging
+import pickle
 import textwrap
+import unicodedata
 from pathlib import Path
 
 import joblib
@@ -15,7 +18,7 @@ import streamlit.components.v1 as components
 
 from .config import CLEAN, MODELS, RAW, REPORTS, ROOT
 from .data import load_clean
-from .visualizacion import PALETA, COLORWAY
+from .visualizacion import COLORWAY, FONT_SANS, PALETA
 
 ASSETS = ROOT / 'assets'
 FONTS_DIR = ASSETS / 'fonts'
@@ -30,7 +33,7 @@ P5_COLORS = {
     'yellow': PALETA['accent'], 'cyan': PALETA['primary'],
 }
 P5_COLORWAY = COLORWAY
-_UI_VERSION = 'p5-v8-neon'
+_UI_VERSION = 'p5-v12-portadas'
 
 
 def _p5_ascii(text: str) -> str:
@@ -58,9 +61,17 @@ def asset_b64(rel_path: str) -> str:
 
 
 @st.cache_data(show_spinner=False)
+def _audio_bytes(rel_path: str) -> bytes:
+    """Lee un archivo de audio en caché para evitar lecturas repetidas por rerun."""
+    ruta = ASSETS / Path(rel_path)
+    return ruta.read_bytes() if ruta.exists() else b''
+
+
+@st.cache_data(show_spinner=False)
 def _build_global_css(css_hash: str, font_hash: str) -> str:
-    """Construye el tema con la fuente cómic local y caché ligada a sus bytes."""
-    font_b64 = base64.b64encode((FONTS_DIR / 'Persona5main.ttf').read_bytes()).decode('ascii')
+    """Construye el tema con fuente display en caché ligada a sus bytes."""
+    font_path = FONTS_DIR / 'Persona5main.ttf'
+    font_b64 = base64.b64encode(font_path.read_bytes()).decode('ascii') if font_path.exists() else ''
     font_face = ''
     if font_b64:
         font_face = (
@@ -80,18 +91,19 @@ def _build_global_css(css_hash: str, font_hash: str) -> str:
 def inject_p5_css() -> None:
     """Inyecta el tema visual Persona 5 y la tipografía Base64 en la vista actual."""
     css_file = CSS_DIR / 'persona5.css'
+    font_path = FONTS_DIR / 'Persona5main.ttf'
     css_hash = hashlib.sha256(css_file.read_bytes()).hexdigest() if css_file.exists() else 'v0'
-    font_hash = hashlib.sha256((FONTS_DIR / 'Persona5main.ttf').read_bytes()).hexdigest()
+    font_hash = hashlib.sha256(font_path.read_bytes()).hexdigest() if font_path.exists() else 'v0'
     st.markdown(_build_global_css(css_hash, font_hash), unsafe_allow_html=True)
 
 
 def render_page_transition(variant: str = 'default') -> None:
-    """Renderiza las cortinas de transición animadas exactas de PageTransition.jsx."""
+    """Renderiza las cortinas de transición animadas respetando dvh/dvw y prefers-reduced-motion."""
     if variant == 'about':
         panels = [
-            (PALETA['bg-primary'], '-12vh', '-18vw', '86vw', '0s', 999),
-            (PALETA['text-primary'], '24vh', '-10vw', '72vw', '0.05s', 998),
-            (PALETA['text-primary'], '58vh', '-14vw', '82vw', '0.10s', 997),
+            (PALETA['bg-primary'], '-12dvh', '-18dvw', '86dvw', '0s', 999),
+            (PALETA['text-primary'], '24dvh', '-10dvw', '72dvw', '0.05s', 998),
+            (PALETA['text-primary'], '58dvh', '-14dvw', '82dvw', '0.10s', 997),
         ]
         items_html = ''.join(
             f'<div class="p5-trans-panel" style="background:{c};top:{t};left:{l};width:{w};animation-delay:{d};z-index:{z};"></div>'
@@ -99,10 +111,10 @@ def render_page_transition(variant: str = 'default') -> None:
         )
     elif variant == 'resume':
         cards = [
-            ('14vh', PALETA['bg-chart'], '0s', 'none', 999),
-            ('31vh', PALETA['text-primary'], '0.05s', '10px 0 0 #00CFFF', 998),
-            ('48vh', PALETA['text-primary'], '0.10s', '10px 0 0 #00CFFF', 997),
-            ('65vh', PALETA['bg-chart'], '0.15s', 'none', 996),
+            ('14dvh', PALETA['bg-chart'], '0s', 'none', 999),
+            ('31dvh', PALETA['text-primary'], '0.05s', '10px 0 0 #00CFFF', 998),
+            ('48dvh', PALETA['text-primary'], '0.10s', '10px 0 0 #00CFFF', 997),
+            ('65dvh', PALETA['bg-chart'], '0.15s', 'none', 996),
         ]
         items_html = ''.join(
             f'<div class="p5-trans-card" style="top:{t};background:{c};animation-delay:{d};box-shadow:{sh};z-index:{z};"></div>'
@@ -110,9 +122,9 @@ def render_page_transition(variant: str = 'default') -> None:
         )
     else:
         stripes = [
-            (PALETA['bg-primary'], '72vw', '24vw', '0s', 999),
-            (PALETA['primary'], '80vw', '14vw', '0.06s', 998),
-            (PALETA['text-primary'], '88vw', '8vw', '0.12s', 997),
+            (PALETA['bg-primary'], '72dvw', '24dvw', '0s', 999),
+            (PALETA['primary'], '80dvw', '14dvw', '0.06s', 998),
+            (PALETA['text-primary'], '88dvw', '8dvw', '0.12s', 997),
         ]
         items_html = ''.join(
             f'<div class="p5-trans-stripe" style="background:{c};left:{l};width:{w};animation-delay:{d};z-index:{z};"></div>'
@@ -129,56 +141,60 @@ def render_page_transition(variant: str = 'default') -> None:
 
 
 def render_p5_main_menu(active_idx: int = 0, compact: bool = False) -> None:
-    """Renderiza el único menú principal estilo P5Menu.jsx exclusivamente dentro de la barra lateral izquierda."""
+    """Renderiza el único menú principal estilo Persona 5 en la barra lateral izquierda."""
     items = [
-        {'idx': 0, 'label': 'INICIO',      'font': 38, 'ox': 6,  'oy': 0, 'sx': -6, 'sy': 6},
-        {'idx': 1, 'label': 'EXPLORACION', 'font': 24, 'ox': 4, 'oy': 6, 'sx': -9, 'sy': -5},
-        {'idx': 2, 'label': 'PREDICCION',  'font': 26, 'ox': 4, 'oy': 6, 'sx': -3, 'sy': -3},
-        {'idx': 3, 'label': 'MODELO',      'font': 38, 'ox': 12, 'oy': 6, 'sx': -5, 'sy': 5},
+        {'idx': 0, 'label': 'INICIO',      'font': '2.15rem', 'ox': 6,  'oy': 0, 'sx': -6, 'sy': 6},
+        {'idx': 1, 'label': 'EXPLORACIÓN', 'font': '1.45rem', 'ox': 4,  'oy': 6, 'sx': -9, 'sy': -5},
+        {'idx': 2, 'label': 'PREDICCIÓN',  'font': '1.55rem', 'ox': 4,  'oy': 6, 'sx': -3, 'sy': -3},
+        {'idx': 3, 'label': 'MODELO',      'font': '2.15rem', 'ox': 12, 'oy': 6, 'sx': -5, 'sy': 5},
     ]
 
-    joker_b64 = asset_b64('img/P5_Joker_Chain_Chronicle_1.png')
+    arte_menu = ('link', 'mario', 'spider-man', 'god-of-war')
+    arte_b64 = asset_b64(f'img/juegos/{arte_menu[active_idx]}.webp')
     art_html = (
-        f'<img class="p5-stage-art" src="data:image/png;base64,{joker_b64}" alt=""/>'
-        if joker_b64 else ''
+        f'<img class="p5-stage-art" src="data:image/webp;base64,{arte_b64}" alt="" aria-hidden="true"/>'
+        if arte_b64 else ''
     )
 
     rutas = ['/', '/Exploracion', '/Prediccion', '/Acerca_del_modelo']
     rows_html = ''
     for i, item in enumerate(items):
-        is_act = 'active' if i == active_idx else ''
+        is_active = i == active_idx
+        is_act = 'active' if is_active else ''
+        aria_curr = ' aria-current="page"' if is_active else ''
         fs = item['font']
         ox = item['ox']
         oy = item['oy']
         delay = i * 80
         rows_html += (
-            f'<a href="{rutas[i]}" target="_self" class="p5-row {is_act}" aria-label="{item["label"]}" data-nav-index="{item["idx"]}" '
+            f'<a href="{rutas[i]}" target="_self" class="p5-row {is_act}" aria-label="{item["label"]}"{aria_curr} data-nav-index="{item["idx"]}" '
             f'style="margin-left:{ox}px;margin-top:{oy}px;animation-delay:{delay}ms;">'
             f'<div class="p5-glow"></div>'
             f'<div class="p5-skew-wrap" style="transform:skewX({item["sx"]}deg) skewY({item["sy"]}deg);">'
             f'<div class="p5-shadow-tri"></div>'
             f'<div class="p5-highlight"></div>'
             f'<div class="p5-label-wrap">'
-            f'<span class="p5-label-base p5-label-dark" style="font-size:{fs}px;">{item["label"]}</span>'
-            f'<span class="p5-label-base p5-label-bright" aria-hidden="true" style="font-size:{fs}px;">{item["label"]}</span>'
+            f'<span class="p5-label-base p5-label-dark" style="font-size:{fs};">{item["label"]}</span>'
+            f'<span class="p5-label-base p5-label-bright" aria-hidden="true" style="font-size:{fs};">{item["label"]}</span>'
             f'</div>'
             f'</div>'
             f'</a>'
         )
 
+    compact_attr = 'true' if compact else 'false'
     html_block = (
-        f'<div class="p5-menu-stage">'
+        f'<div class="p5-menu-stage" data-compact="{compact_attr}">'
         f'{art_html}'
-        f'<div class="p5-name-tag">'
-        f'<span>Phantom\'s</span>'
-        f'<span>persona</span>'
+        f'<div class="p5-name-tag" aria-hidden="true">'
+        f'<span>Observatorio</span>'
+        f'<span>Videojuegos</span>'
         f'</div>'
-        f'<nav class="p5-menu" aria-label="Persona 5 Sidebar Menu">'
+        f'<nav class="p5-menu" aria-label="Navegación principal">'
         f'{rows_html}'
         f'</nav>'
-        f'<div class="p5-hint">'
-        f'<span class="p5-hint-key">HOVER</span><span>SELECT</span>'
-        f'<span class="p5-hint-key">CLICK</span><span>GO</span>'
+        f'<div class="p5-hint" aria-hidden="true">'
+        f'<span class="p5-hint-key">CURSOR</span><span>ELEGIR</span>'
+        f'<span class="p5-hint-key">CLIC</span><span>ABRIR</span>'
         f'</div>'
         f'</div>'
     )
@@ -187,147 +203,56 @@ def render_p5_main_menu(active_idx: int = 0, compact: bool = False) -> None:
 
 
 def render_lb_rb_nav(label: str) -> None:
-    """Renderiza el cabezal animado ◄ LB [LABEL] RB ► de Socials.jsx / AboutMe.jsx."""
-    clean_label = _p5_ascii(label)
+    """Renderiza el cabezal decorativo de sección."""
+    clean_label = html.escape(_p5_ascii(label))
     render_html(
         f"""
         <div class="sc-right-nav-bar">
-            <span class="sc-nav-arrow left">◄</span>
-            <span class="sc-nav-btn">LB</span>
+            <span class="sc-nav-arrow left" aria-hidden="true">◄</span>
+            <span class="sc-nav-btn" aria-hidden="true">LB</span>
             <span class="sc-nav-label">{clean_label}</span>
-            <span class="sc-nav-btn">RB</span>
-            <span class="sc-nav-arrow right">►</span>
+            <span class="sc-nav-btn" aria-hidden="true">RB</span>
+            <span class="sc-nav-arrow right" aria-hidden="true">►</span>
         </div>
         """
     )
 
 
 def _inject_parent_interactive_engine() -> None:
-    """Inyecta en window.parent el motor de audio (BGM fade 450ms + select.mp3) y eventos de menús P5."""
+    """Inyecta en window.parent el motor de SFX (select.mp3) y eventos accesibles de pestañas."""
     select_b64 = asset_b64('audio/select.mp3')
-    bgm_b64 = ''
-    # Para BGM pesado (7.7 MB), solo lo inyectamos una vez en window.parent para no repetir transferencia
-    bgm_path = AUDIO_DIR / 'background.mp3'
-    if bgm_path.exists() and not st.session_state.get('_p5_bgm_injected', False):
-        bgm_b64 = base64.b64encode(bgm_path.read_bytes()).decode('ascii')
-        st.session_state['_p5_bgm_injected'] = True
-
     motor_interactivo = (ASSETS / "js/interacciones.js").read_text(encoding="utf-8")
     sfx_desactivado = json.dumps(not st.session_state.get('p5_sfx_toggle', True))
     js_code = f"""
     <script>
     (function() {{
-      const doc = window.parent.document;
-      const win = window.parent;
-      win.__p5SfxDisabled = {sfx_desactivado};
+      try {{
+        const win = window.parent;
+        const doc = win && win.document;
+        if (!win || !doc) return;
+        win.__p5SfxDisabled = {sfx_desactivado};
 
-      // 1. Registrar select.mp3 y playSelectSound() idéntico a src/utils/audio.js
-      if ("{select_b64}" && !win.__p5SelectSrc) {{
-        win.__p5SelectSrc = "data:audio/mp3;base64,{select_b64}";
-      }}
-      if ("{bgm_b64}" && !win.__p5BgmSrc) {{
-        win.__p5BgmSrc = "data:audio/mp3;base64,{bgm_b64}";
-      }}
-
-      win.playSelectSound = function() {{
-        if (win.__p5SfxDisabled) return;
-        if (!win.__p5SelectSrc) return;
-        try {{
-          const a = new win.Audio(win.__p5SelectSrc);
-          a.volume = 0.5;
-          a.play().catch(function(){{}});
-        }} catch (e) {{}}
-      }};
-
-      // 2. Montar el panel flotante .bgm-panel de App.jsx en window.parent.document.body
-      if (!doc.getElementById('p5-floating-bgm-panel') && win.__p5BgmSrc) {{
-        const BGM_STATE_KEY = 'p5-bgm-enabled';
-        const BGM_VOLUME_KEY = 'p5-bgm-volume';
-        const FADE_MS = 450;
-        let savedVol = parseFloat(win.localStorage.getItem(BGM_VOLUME_KEY));
-        if (!Number.isFinite(savedVol)) savedVol = 0.45;
-        savedVol = Math.min(1, Math.max(0, savedVol));
-
-        const panel = doc.createElement('div');
-        panel.id = 'p5-floating-bgm-panel';
-        panel.className = 'bgm-panel';
-        panel.innerHTML = `
-          <audio id="p5-bgm-audio" loop preload="none" src="${{win.__p5BgmSrc}}"></audio>
-          <button id="p5-bgm-toggle-btn" class="bgm-toggle" type="button">BGM OFF</button>
-          <div class="bgm-slider-wrap" aria-label="Background music volume">
-            <span class="bgm-slider-label">VOL</span>
-            <input id="p5-bgm-vol-slider" class="bgm-slider" type="range" min="0" max="1" step="0.01" value="${{savedVol}}" />
-            <span id="p5-bgm-vol-val" class="bgm-slider-value">${{Math.round(savedVol * 100)}}</span>
-          </div>
-        `;
-        doc.body.appendChild(panel);
-
-        const audio = panel.querySelector('#p5-bgm-audio');
-        const btn = panel.querySelector('#p5-bgm-toggle-btn');
-        const slider = panel.querySelector('#p5-bgm-vol-slider');
-        const valSpan = panel.querySelector('#p5-bgm-vol-val');
-        let isPlaying = false;
-        let fadeRaf = null;
-
-        function stopFade() {{
-          if (fadeRaf) {{
-            win.cancelAnimationFrame(fadeRaf);
-            fadeRaf = null;
-          }}
+        if ("{select_b64}" && !win.__p5SelectSrc) {{
+          win.__p5SelectSrc = "data:audio/mp3;base64,{select_b64}";
         }}
 
-        function fadeTo(target, done) {{
-          stopFade();
-          const start = audio.volume;
-          const diff = target - start;
-          const begin = win.performance.now();
-          function tick(now) {{
-            const p = Math.min(1, (now - begin) / FADE_MS);
-            audio.volume = Math.min(1, Math.max(0, start + diff * p));
-            if (p < 1) {{
-              fadeRaf = win.requestAnimationFrame(tick);
-              return;
-            }}
-            fadeRaf = null;
-            if (done) done();
-          }}
-          fadeRaf = win.requestAnimationFrame(tick);
-        }}
+        win.playSelectSound = function() {{
+          if (win.__p5SfxDisabled || !win.__p5SelectSrc) return;
+          const now = Date.now();
+          if (win.__p5LastSfxAt && now - win.__p5LastSfxAt < 120) return;
+          win.__p5LastSfxAt = now;
+          try {{
+            const a = new win.Audio(win.__p5SelectSrc);
+            a.volume = 0.45;
+            a.play().catch(function(){{}});
+          }} catch (e) {{}}
+        }};
 
-        btn.addEventListener('click', function() {{
-          win.playSelectSound();
-          if (isPlaying) {{
-            fadeTo(0, function() {{
-              audio.pause();
-              audio.currentTime = 0;
-              isPlaying = false;
-              btn.classList.remove('on');
-              btn.textContent = 'BGM OFF';
-              win.localStorage.setItem(BGM_STATE_KEY, '0');
-            }});
-          }} else {{
-            stopFade();
-            audio.volume = 0;
-            audio.play().then(function() {{
-              fadeTo(parseFloat(slider.value));
-              isPlaying = true;
-              btn.classList.add('on');
-              btn.textContent = 'BGM ON';
-              win.localStorage.setItem(BGM_STATE_KEY, '1');
-            }}).catch(function(){{}});
-          }}
-          btn.blur();
-        }});
+        const staleFloating = doc.getElementById('p5-floating-bgm-panel');
+        if (staleFloating) staleFloating.remove();
 
-        slider.addEventListener('input', function(e) {{
-          const v = parseFloat(e.target.value);
-          valSpan.textContent = String(Math.round(v * 100));
-          if (isPlaying) audio.volume = v;
-          win.localStorage.setItem(BGM_VOLUME_KEY, String(v));
-        }});
-      }}
-
-      {motor_interactivo}
+        {motor_interactivo}
+      }} catch (err) {{}}
     }})();
     </script>
     """
@@ -335,75 +260,40 @@ def _inject_parent_interactive_engine() -> None:
 
 
 def render_sidebar_audio() -> None:
-    """Controles de audio compactos en barra lateral sincronizados con el panel flotante BGM."""
+    """Controles de audio unificados y accesibles dentro de la barra lateral."""
     with st.sidebar:
-        icon_b64 = asset_b64('img/icon1.png')
-        icon_html = (
-            f'<img src="data:image/png;base64,{icon_b64}" width="22" '
-            f'style="vertical-align:middle;margin-right:6px;" alt="P5"/>'
-            if icon_b64 else ''
-        )
         render_html(
             f"""
-            <div style="border-top:2px solid #00CFFF;padding-top:0.65rem;margin-top:0.2rem;margin-bottom:0.4rem;">
-                <div class="p5-font" style="font-size:1.05rem;color:var(--accent);letter-spacing:0.06em;">
-                    {icon_html}PHANTOM SOUND
-                </div>
+            <div class="p5-audio-section">
+                <h2 class="p5-font p5-audio-heading">AUDIO DEL OBSERVATORIO</h2>
             </div>
             """
         )
-        sfx_on = st.toggle('SFX de menú (select.mp3)', value=True, key='p5_sfx_toggle')
-        bgm_on = st.toggle('Reproductor BGM alternativo', value=False, key='p5_bgm_toggle')
+        st.session_state.setdefault('p5_sfx_toggle', True)
+        st.session_state.setdefault('p5_bgm_toggle', False)
+        st.toggle('Efectos de sonido (SFX)', key='p5_sfx_toggle')
+        bgm_on = st.toggle('Música de fondo (BGM)', key='p5_bgm_toggle')
         if bgm_on:
-            bgm_path = AUDIO_DIR / 'background.mp3'
-            if bgm_path.exists():
-                st.audio(bgm_path.read_bytes(), format='audio/mp3', loop=True, autoplay=True)
-        if sfx_on and st.session_state.pop('_trigger_select_sfx', False):
-            sfx_b64 = asset_b64('audio/select.mp3')
-            if sfx_b64:
-                render_html(
-                    f'<audio autoplay style="display:none">'
-                    f'<source src="data:audio/mp3;base64,{sfx_b64}" type="audio/mp3">'
-                    f'</audio>'
+            bgm_bytes = _audio_bytes('audio/background.mp3')
+            if bgm_bytes:
+                render_html('<p class="p5-bgm-note">Pista ambiental (usa el control integrado para pausar o ajustar volumen):</p>')
+                st.audio(
+                    bgm_bytes,
+                    format='audio/mp3',
+                    loop=True,
+                    autoplay=True,
+                    alt='Música de fondo del Observatorio',
                 )
 
 
 def trigger_select_sfx() -> None:
-    """Marca la reproducción del efecto select.mp3 tras presionar un botón principal."""
-    st.session_state['_trigger_select_sfx'] = True
+    """Mantiene compatibilidad de API; el SFX inmediato se dispara sin duplicados en el clic."""
+    return None
 
 
 def render_critical_alert(detalle: str) -> None:
-    """Pantalla de error temática ('CRITICAL ALERT / MISSION FAILED') cuando faltan artefactos."""
-    inject_p5_css()
-    char_b64 = asset_b64('img/jokerface2.png')
-    img_html = (
-        f'<img src="data:image/png;base64,{char_b64}" width="110" '
-        f'style="float:right;margin-left:1rem;filter:drop-shadow(4px 4px 0 #000);" alt="Alert"/>'
-        if char_b64 else ''
-    )
-    render_html(
-        f"""
-        <div class="p5-critical-alert">
-            {img_html}
-            <div class="p5-critical-title">CRITICAL ALERT // MISSION FAILED</div>
-            <p style="font-size:1.05rem;color:var(--text-primary);margin-bottom:0.6rem;">
-                No se encontraron o no pudieron validarse los artefactos de datos o modelos requeridos para iniciar el Observatorio Phantom Thieves.
-            </p>
-            <p style="font-family:monospace;background:var(--bg-primary);padding:0.6rem 0.9rem;border:1px solid #00CFFF;color:var(--accent);">
-                Detalle técnico: {detalle}
-            </p>
-            <p style="font-size:0.98rem;color:var(--text-primary);margin-top:0.8rem;margin-bottom:0.3rem;">
-                <strong>Instrucciones de recuperación:</strong> Ejecuta el pipeline de entrenamiento desde la carpeta <code>Final/</code>:
-            </p>
-            <pre style="background:#000000;color:var(--accent);padding:0.75rem;border:2px solid #F5F7FF;">cd Final · python -m src.pipeline · streamlit run app.py</pre>
-        </div>
-        """
-    )
-    st.error(
-        f'CRITICAL ALERT / MISSION FAILED — {detalle}. '
-        'Ejecuta `python -m src.pipeline` desde la carpeta `Final/` y recarga la página.'
-    )
+    logging.getLogger(__name__).error('No se pudo cargar el observatorio: %s', detalle)
+    st.error('No se pudo cargar el observatorio. Recarga la página para volver a intentarlo.')
 
 
 @st.cache_data(show_spinner=False)
@@ -458,7 +348,7 @@ def resources():
     )
     try:
         return _resources(huella_pipeline(), estado)
-    except (ValueError, FileNotFoundError, ImportError, OSError, KeyError) as error:
+    except (ValueError, FileNotFoundError, ImportError, OSError, KeyError, EOFError, pickle.UnpicklingError) as error:
         render_critical_alert(str(error))
         st.stop()
 
@@ -504,6 +394,8 @@ def _resources(huella, estado):
     metricas = load_metadata(meta_hash)
     if metricas.get('version_sklearn') != sklearn.__version__:
         main()
+        dep_hash = _file_sha256(CLEAN / 'dataset_depurado.csv') or ''
+        clu_hash = _file_sha256(CLEAN / 'dataset_con_clusters.csv') or ''
         mod_hash = _file_sha256(MODELS / 'modelo_popularidad.joblib') or ''
         vec_hash = _file_sha256(MODELS / 'vecinos_popularidad.joblib') or ''
         meta_hash = _file_sha256(MODELS / 'metadata.json') or ''
@@ -520,15 +412,17 @@ def setup(
     menu_idx: int = 0,
     compact_menu: bool = True,
 ) -> None:
-    """Configura la página con transiciones PageTransition.jsx, menú único en barra lateral P5Menu.jsx y motor de audio."""
+    """Configura la página con transiciones por cambio de vista, menú único en barra lateral y audio accesible."""
     st.set_page_config(
-        page_title=f'{title} · P5 Data Observatory',
-        page_icon='🎭',
+        page_title=f'{title} · Observatorio de Videojuegos',
+        page_icon='🎮',
         layout='wide',
         initial_sidebar_state='auto',
     )
     inject_p5_css()
-    render_page_transition(transition)
+    if st.session_state.get('_p5_active_page_idx') != menu_idx:
+        st.session_state['_p5_active_page_idx'] = menu_idx
+        render_page_transition(transition)
     render_p5_main_menu(active_idx=menu_idx, compact=compact_menu)
     render_sidebar_audio()
     st.title(_p5_ascii(title))
@@ -537,77 +431,68 @@ def setup(
 
 
 def section_banner(title: str, subtitle: str = '') -> None:
-    """Renderiza un banner inclinado estilo cómic Persona 5."""
-    clean_title = _p5_ascii(title)
-    sub_html = f'<div class="p5-banner-sub">{subtitle}</div>' if subtitle else ''
+    """Renderiza un banner de sección semántico estilo Persona 5."""
+    clean_title = html.escape(_p5_ascii(title))
+    clean_sub = html.escape(str(subtitle)) if subtitle else ''
+    sub_html = f'<p class="p5-banner-sub">{clean_sub}</p>' if clean_sub else ''
     render_html(
         f"""
-        <div class="p5-banner">
-            <div class="p5-banner-title">{clean_title}</div>
+        <section class="p5-banner">
+            <h2 class="p5-banner-title">{clean_title}</h2>
             {sub_html}
-        </div>
+        </section>
         """
     )
 
 
 def p5_plotly_layout(fig: go.Figure, title: str = '', height: int = 430) -> go.Figure:
-    """Aplica el tema personalizado Persona 5 a cualquier figura de Plotly."""
+    """Aplica el tema personalizado Persona 5 accesible a cualquier figura de Plotly."""
     lineas_titulo = textwrap.wrap(_p5_ascii(title).upper(), width=56) if title else []
     fig.update_layout(
         title=dict(
             text='<br>'.join(lineas_titulo),
-            font=dict(family='ComicProyecto, sans-serif', size=18, color=PALETA['text-primary']),
+            font=dict(family=FONT_SANS, size=18, color=PALETA['text-primary']),
             x=0.01,
         ),
         paper_bgcolor=PALETA['bg-chart-deep'],
         plot_bgcolor=PALETA['bg-chart'],
-        font=dict(family='ComicProyecto, sans-serif', size=13, color=PALETA['text-primary']),
+        font=dict(family=FONT_SANS, size=13, color=PALETA['text-primary']),
         colorway=P5_COLORWAY,
         height=height,
-        margin=dict(l=64, r=32, t=35 + 26 * len(lineas_titulo) if title else 28, b=64),
+        margin=dict(l=64, r=32, t=max(48, 38 + 24 * len(lineas_titulo)) if title else 44, b=64),
         legend=dict(
             bgcolor=PALETA['bg-panel'],
             bordercolor=PALETA['primary'],
             borderwidth=1,
-            font=dict(color=PALETA['text-primary'], size=12),
+            font=dict(family=FONT_SANS, color=PALETA['text-primary'], size=12),
         ),
         hoverlabel=dict(
             bgcolor=PALETA['bg-primary'],
             bordercolor=PALETA['primary'],
-            font=dict(family='ComicProyecto, sans-serif', size=13, color=PALETA['text-primary']),
+            font=dict(family=FONT_SANS, size=13, color=PALETA['text-primary']),
         ),
     )
     fig.update_xaxes(
         gridcolor=PALETA['grid-color'],
         zerolinecolor=PALETA['purple-deep'],
         linecolor=PALETA['primary'],
-        tickfont=dict(color=PALETA['text-secondary']),
+        tickfont=dict(family=FONT_SANS, size=12, color=PALETA['text-secondary']),
         automargin=True,
-        title_font=dict(family='ComicProyecto, sans-serif', size=16, color=PALETA['accent']),
+        title_font=dict(family=FONT_SANS, size=14, color=PALETA['accent']),
     )
     fig.update_yaxes(
         gridcolor=PALETA['grid-color'],
         zerolinecolor=PALETA['purple-deep'],
         linecolor=PALETA['primary'],
-        tickfont=dict(color=PALETA['text-secondary']),
+        tickfont=dict(family=FONT_SANS, size=12, color=PALETA['text-secondary']),
         automargin=True,
-        title_font=dict(family='ComicProyecto, sans-serif', size=16, color=PALETA['accent']),
+        title_font=dict(family=FONT_SANS, size=14, color=PALETA['accent']),
     )
     # Solo etiquetas de potencias de diez: evita dígitos menores amontonados.
     for eje in list(fig.select_xaxes()) + list(fig.select_yaxes()):
         if eje.type == 'log':
             eje.update(dtick=1, tickformat='~s', minor=dict(showgrid=False, ticks=''))
     return fig
-
-
-def manual_checks() -> None:
-    """Expander de verificación metodológica manual."""
-    with st.expander('Qué debo verificar manualmente (Protocolo de Auditoría)'):
-        st.write(
-            'Confirma escala de Rating (0–5 vs 0–100), procedencia y plataforma de Metacritic, '
-            'roles de Team (desarrollador vs publisher), fecha de captura de Backloggd, '
-            'versiones multiplataforma y licencia antes de interpretar o redistribuir.'
-        )
 
 
 @st.cache_data(show_spinner=False)

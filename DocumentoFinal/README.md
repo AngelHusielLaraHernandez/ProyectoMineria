@@ -1,6 +1,8 @@
 # Documento final
 
-El [PDF](main.pdf) se compila con la plantilla del anteproyecto. Incluye las pruebas estadísticas, los resultados de Random Forest, las corridas gráficas de Weka, los escenarios de predicción y el plan respaldado por fechas de Git. La bibliografía usa biblatex con estilo APA.
+El [PDF](main.pdf) usa la plantilla del anteproyecto. Explica las gráficas, los resultados de Random Forest y Weka, y la configuración del formulario de predicción con capturas de la web vigente. La bibliografía usa biblatex con estilo APA.
+
+Las secciones 4.1 y 4.2 incorporan evidencia publicada por las editoras y el diseño para evaluar pérdidas por género. El datasheet del apéndice A describe el catálogo y sus cambios. La [tabla de evidencia comercial](tablas/evidencia_comercial.csv) se incluye en el paquete LaTeX.
 
 ## Compilar
 

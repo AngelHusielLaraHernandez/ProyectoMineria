@@ -4056,3 +4056,39 @@ PDF statistics:
 
 
 ````
+
+## Evidencia comercial y juegos como servicio · 12 de noviembre de 2026
+
+Se incorporaron las secciones 4.1 y 4.2 sobre casos documentados y comparación de pérdidas por género. La primera toma el texto y las citas de `tablas/evidencia_comercial.csv`. La segunda define una cohorte comparable y una ventana de 24 meses para evaluar la recuperación de costos.
+
+Se cotejaron los cuatro casos y sus seis fuentes con la web, se corrigió la redacción que podía confundir los datos de Backloggd con las publicaciones de las editoras y se revisó la compilación. El PDF final tiene 35 páginas. La tabla y la verificación del PDF forman parte del paquete LaTeX.
+
+## Redacción y capturas para la entrega · 12 de noviembre de 2026
+
+El informe conserva la plantilla del anteproyecto y explica las gráficas y la predicción con ejemplos. Los detalles de ejecución se conservan en la documentación técnica. Las capturas vigentes muestran Inicio, Exploración, los casos comerciales, Modelo y el formulario de Predicción.
+
+Para el ejemplo del informe se comprobó con el modelo guardado que, con nota de prensa de 82 y calificación de usuarios de 3.9, la clase estimada es baja con 40.6 %. Al marcar la ausencia de la nota de prensa se mantiene la clase baja, con 42.2 %. Las 143 pruebas del proyecto pasaron y se revisó el PDF compilado.
+
+## Revisión de la redacción y las fuentes
+
+Se reescribieron las explicaciones con el orden de los trabajos de referencia: qué se hizo, qué se ve y qué indica el resultado. Se quitaron las citas dentro de los párrafos, incluidos los casos de juegos como servicio. Las fuentes quedan en Referencias. Se recompilaron y revisaron las 19 páginas del informe.
+
+## Orden de la entrega y revisión del PDF
+
+Se retiró el resumen del inicio y del índice, y se quitó la leyenda de versión de la portada. Se conservó la fecha de corte. El PDF compiló con 18 páginas. Se conservaron las 13 figuras incluidas en el informe y las evidencias de la entrega. Las imágenes de revisión de página completa se retiraron después de revisar la portada, el índice y la primera página del contenido. Los scripts reemplazados quedaron en el ZIP histórico.
+
+## Calibracion y capturas de la web
+
+El informe explica el ajuste de probabilidades y compara Brier y log-loss en los mismos 222 juegos de prueba. Se actualizaron cinco capturas de la web y se reprodujeron los ejemplos con y sin nota de prensa.
+
+## Imagenes de videojuegos
+
+Se actualizaron siete capturas de la web para mostrar las imagenes de videojuegos y el menu nuevo. El ZIP de LaTeX incluye los creditos de las imagenes.
+
+## Capturas de tarjetas
+
+Se agregaron las capturas de Juegos parecidos y la bitacora de algoritmos al informe. Se revisaron ambas figuras en el PDF y se actualizaron los creditos.
+
+## Conclusion de Prediccion
+
+Se agrego un ejemplo de la conclusion personalizada y se documento la consulta de portadas en Steam y la alternativa con organizaciones del catalogo.

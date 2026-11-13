@@ -1,15 +1,154 @@
-"""Restaura la plantilla del anteproyecto y añade discusión verificable de escenarios."""
+"""Actualiza las cifras y compone el informe con la plantilla del anteproyecto."""
+import csv
+import json
 from pathlib import Path
-import json,re,runpy
-D=Path(__file__).resolve().parent;P=D.parent/'Proyecto'
-runpy.run_path(str(D/'generar_documento.py'))
-s=(D/'main.tex').read_text();body=s.split(r'\section*{Resumen}',1)[1]
-body=r'\section*{Resumen}'+body
-body=body.replace(r'\tableofcontents\clearpage','')
-# El preámbulo se toma del anteproyecto, no de una plantilla aproximada.
-pre=(P/'main.tex').read_text().split(r'\begin{document}',1)[0]
-pre+=r'\usepackage{caption}\captionsetup[table]{skip=8pt}'+'\n'
-inicio=r'''\begin{document}
+import shutil
+import unicodedata
+
+DOCUMENTO = Path(__file__).resolve().parent
+RAIZ = DOCUMENTO.parent
+REPORTES = RAIZ / 'Final/reports'
+TABLAS = REPORTES / 'tables'
+MODELOS = {
+    'DummyClassifier': 'Referencia mayoritaria',
+    'CategoricalNB': 'Naive Bayes categórico',
+    'DecisionTreeClassifier': 'Árbol de decisión',
+    'RandomForestClassifier': 'Random Forest',
+    'MLPClassifier': 'Red neuronal',
+}
+
+
+def leer(nombre):
+    with (TABLAS / f'{nombre}.csv').open(encoding='utf-8', newline='') as archivo:
+        return list(csv.DictReader(archivo))
+
+
+def escapar(valor):
+    especiales = {'&': r'\&', '%': r'\%', '_': r'\_', '#': r'\#', '$': r'\$',
+                  '{': r'\{', '}': r'\}', '–': '--', '—': '---'}
+    return ''.join(especiales.get(c, c) for c in str(valor))
+
+
+def sin_acentos(texto):
+    """Quita los acentos y conserva la ñ y la diéresis."""
+    descompuesto = unicodedata.normalize('NFD', texto)
+    return unicodedata.normalize('NFC', ''.join(
+        c for c in descompuesto if c not in '\u0300\u0301\u0302\u030c'
+    ))
+
+
+def tabla(titulo, columnas, alineacion, filas):
+    encabezado = ' & '.join(map(escapar, columnas)) + r'\\'
+    return '\n'.join([
+        r'\begin{table}[!htbp]', r'\centering\small', r'\caption{' + titulo + '}',
+        r'\begin{tabular}{' + alineacion + '}', r'\toprule', encabezado, r'\midrule',
+        *(' & '.join(map(escapar, fila)) + r'\\' for fila in filas),
+        r'\bottomrule', r'\end{tabular}', r'\end{table}', r'\FloatBarrier',
+    ])
+
+
+def cifras():
+    correlacion = leer('correlacion_catalogo')[0]
+    procedencia = {fila['etapa']: fila for fila in leer('procedencia_datos')}
+    h = procedencia['Antecedente enriquecido']
+    d = procedencia['Maestro curado']
+    p = leer('metricas_prueba')[0]
+    metadata = json.loads((RAIZ / 'Final/models/metadata.json').read_text(encoding='utf-8'))
+    calibracion = metadata['calibracion_web']
+    m = leer('matriz_confusion')
+    db = next(f for f in leer('metricas_clusters') if f['metodo'] == 'DBSCAN' and float(f['factor_eps']) == 1)
+    test = next(f for f in leer('comparacion_estadistica')
+                if f['prueba'].startswith('t corregida') and f['modelo_b'] == 'MLPClassifier')
+    casos_comerciales = leer('evidencia_comercial')
+    escenarios = {f['id']: f for f in leer('escenarios_prediccion')}
+    casos = leer('contraejemplos_prediccion')
+    errores = [f for f in casos if f['acierto'].lower() == 'false']
+    generos = {'Adventure': 'Aventura', 'RPG': 'Rol', 'Shooter': 'Disparos', 'Platform': 'Plataformas'}
+    asociaciones = []
+    for nombre, cantidad in [('correlacion_generos', 4), ('correlacion_organizaciones', 3)]:
+        grupos = [f for f in leer(nombre) if f['estado'] == 'incluido']
+        for f in sorted(grupos, key=lambda f: int(f['n']), reverse=True)[:cantidad]:
+            asociaciones.append((generos.get(f['grupo'], f['grupo']), f['n'],
+                                  f"{float(f['pearson_r']):.3f}", f"{float(f['spearman_rho']):.3f}",
+                                  f"{float(f['brecha_absoluta_media']):.2f}"))
+    return {
+        'Historico': f"{int(h['filas']):,}", 'Catalogo': f"{int(d['filas']):,}",
+        'Descartes': int(h['filas']) - int(d['filas']), 'Elegibles': f"{int(correlacion['n_juegos']):,}",
+        'Pares': correlacion['n'], 'PearsonGlobal': f"{float(correlacion['pearson_r']):.4f}",
+        'SpearmanGlobal': f"{float(correlacion['spearman_rho']):.4f}",
+        'JuegosPrueba': p['n'], 'ExactitudPrueba': f"{float(p['exactitud_pct']):.2f}" + r'\,\%',
+        'FPrueba': f"{float(p['f1_macro']):.4f}", 'GruposDbscan': db['k'], 'RuidoDbscan': db['ruido'],
+        'PComparacion': f"$p={float(test['p_valor']):.4f}$",
+        'JuegosCalibracion': calibracion['n_ajuste'],
+        'MetricasCalibracion': tabla('Calidad de las probabilidades en los juegos de prueba.',
+            ['Medida', 'Antes del ajuste', 'Despues del ajuste'], 'lrr',
+            [(nombre, f"{metadata['metricas'][clave]:.4f}", f"{calibracion['metricas_prueba'][clave]:.4f}")
+             for nombre, clave in [('Brier multiclase', 'brier_multiclase'), ('Log-loss', 'log_loss')]]),
+        'AsociacionGrupos': tabla('Relación y separación de notas en grupos con más pares.',
+            ['Grupo', 'Pares', 'Pearson', 'Spearman', 'Brecha media absoluta'], 'lrrrr', asociaciones),
+        'SilTitulo': tabla('Comparación de los cortes seleccionados.',
+            ['Método', 'Grupos', 'Silueta', 'Calinski--Harabasz', 'Davies--Bouldin'], 'lrrrr',
+            [(f['metodo'], f['k'], f"{float(f['silhouette']):.3f}",
+              f"{float(f['calinski_harabasz']):.1f}", f"{float(f['davies_bouldin']):.3f}")
+             for f in leer('clase_comparacion_clustering')]),
+        'EscenariosNotas': tabla('Ejemplo con los mismos géneros, organización y década.',
+            ['Prueba', 'Usuarios', 'Prensa', 'Nivel estimado'], 'lrrl',
+            [(nombre, f['rating'], f['metacritic'] or 'Ausente', f['prediccion'].capitalize())
+             for nombre, f in [('Con ambas notas', escenarios['S2']), ('Sin nota de prensa', escenarios['S5'])]]),
+        'EjemplosError': tabla('Juegos de prueba en los que el modelo asignó otro nivel.',
+            ['Juego', 'Nivel real', 'Nivel asignado'], r'p{.52\linewidth}ll',
+            [(f['titulo'], f['real'].capitalize(), f['prediccion'].capitalize()) for f in errores]),
+        'PlanTrabajo': tabla('Actividades planeadas y primera evidencia fechada de su realización.',
+            ['Actividad', 'Periodo planeado', 'Evidencia fechada'], 'lll',
+            [(f['actividad'], f['baseline'].replace('--', '–'), f['evidencia_git'])
+             for f in leer('plan_baseline_git') if f['evidencia_git']]),
+        'TotalMedio': sum(int(m[1][c]) for c in ('bajo', 'medio', 'alto')), 'AciertosMedio': m[1]['medio'],
+        'ComparacionModelos': tabla('Resultados promedio de la comparación en Python.',
+            ['Modelo', 'Exactitud (%)', 'F1 macro', 'Variación del F1'], 'lrrr',
+            [(MODELOS[f['modelo']], f"{float(f['exactitud_pct_media']):.2f}", f"{float(f['f1_macro_media']):.4f}",
+              f"{float(f['f1_macro_de']):.4f}") for f in leer('comparativo_modelos')]),
+        'MatrizConfusion': tabla('Juegos por nivel real y nivel asignado en la prueba.',
+            ['Nivel real', 'Asignado bajo', 'Asignado medio', 'Asignado alto'], 'lrrr',
+            [(f['real'].capitalize(), f['bajo'], f['medio'], f['alto']) for f in m]),
+        'ResultadosWeka': tabla('Resultados de clasificación en Weka.',
+            ['Modelo', 'Exactitud (%)', 'F1 macro', 'F1 ponderado'], 'lrrr',
+            [(f['modelo'], f"{float(f['exactitud_pct']):.2f}", f"{float(f['f1_macro']):.3f}",
+              f"{float(f['f1_ponderado']):.3f}") for f in leer('comparativo_herramientas')
+             if f['herramienta'].startswith('Weka') and f['exactitud_pct']]),
+        'Perfiles': tabla('Promedios de los grupos de K-Means.',
+            ['Grupo', 'Juegos', 'Partidas registradas', 'Juegos pendientes', 'Nota de usuarios'], 'lrrrr',
+            [(f['cluster'], f['n'], f"{float(f['media_Plays']):,.0f}", f"{float(f['media_Backlogs']):,.0f}",
+              f"{float(f['media_Rating']):.2f}") for f in leer('perfiles_clusters') if f['metodo'] == 'K-Means']),
+        'ProcedenciaDatos': tabla('Tamaño del catálogo en cada etapa.', ['Etapa', 'Registros', 'Columnas'], 'lrr',
+            [(nombre, f['filas'], f['columnas']) for nombre, f in
+             [('Anteproyecto (tamaño declarado)', procedencia['Anteproyecto']), ('Versión con notas de prensa', h),
+              ('Catálogo con el que trabajamos', d), ('Datos después de limpiar', procedencia['Depurado actual'])]]),
+        'CasosComerciales': '\n\n'.join(
+            r'\noindent\textbf{' + escapar(f['juego']) + '.} ' + escapar(f['evidencia'])
+            for f in casos_comerciales),
+        'FuentesComerciales': ','.join(f[campo] for f in casos_comerciales
+                                     for campo in ('cita', 'cita_contexto') if f[campo]),
+    }
+
+
+def main():
+    plantilla = (RAIZ / 'Proyecto/main.tex').read_text(encoding='utf-8')
+    preambulo = plantilla.split(r'\begin{document}', 1)[0]
+    preambulo += r'''
+\usepackage{xurl}
+\usepackage{caption}
+\captionsetup[table]{skip=8pt}
+\addto\captionsspanish{\renewcommand{\contentsname}{Indice}}
+\setcounter{tocdepth}{1}
+\newcommand{\captura}[3]{%
+  \begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\linewidth,height=.40\textheight,keepaspectratio]{figuras/#1}
+  \caption{#2}\label{#3}
+  \end{figure}\FloatBarrier
+}
+'''
+    portada = r'''\begin{document}
 \hypersetup{pageanchor=false}
 \begin{titlepage}\input{Portada.tex}\end{titlepage}
 \newpage
@@ -17,98 +156,12 @@ inicio=r'''\begin{document}
 \pagestyle{indice}\thispagestyle{indice}\hypersetup{linkcolor=black}\tableofcontents\thispagestyle{indice}}
 \newpage\setcounter{page}{1}\hypersetup{pageanchor=true}\singlespacing
 '''
-port=(P/'Portada.tex').read_text().replace('Anteproyecto','Proyecto final').replace('Análisis del mercado de videojuegos mediante minería de datos','Análisis de recepción y popularidad de videojuegos mediante minería de datos').replace('Fecha de Entrega:','Fecha de corte:').replace('30 de Septiembre del 2026','12 de noviembre de 2026').replace('Versión 2.0 -- actualizada el 8 de noviembre del 2026','Versión final revisada -- evidencia al 12 de noviembre de 2026').replace('[1cm]','[0.45cm]').replace('\\Huge','\\LARGE')
-(D/'Portada.tex').write_text(port)
-# Se conserva la organización de inicio del anteproyecto.
-head,rest=body.split(r'\section{Introducción y problemática}',1)
-blocks=re.split(r'(?=\\section\{)',r'\section{Introducción y problemática}'+rest)
-blocks=[b for b in blocks if b]
-intro,objs,ctx,est=blocks[:4]
-objs=objs.replace('Objetivos y expectativas','Objetivos del proyecto');ctx=ctx.replace('Contexto del conjunto de datos','Contexto del proyecto');est=est.replace('Estrategia y metodología aplicada','Estrategia a seguir');intro=intro.replace('Introducción y problemática','Problemática a atender')
-body=head+objs+ctx+est+intro+''.join(blocks[4:])
-# Ajustes de redacción guiados por la explicación continua del anteproyecto.
-reemplazos={
-'En este proyecto analizamos la recepción y popularidad relativa de los videojuegos a partir de registros de Backloggd y notas de prensa incorporadas al archivo curado. Partimos de un problema: una calificación alta no equivale necesariamente a una comunidad grande, y el interés pendiente tampoco equivale a ventas. Por eso distinguimos las notas, la actividad acumulada y las listas de interés antes de construir perfiles y un clasificador.':
-'Este proyecto tiene como finalidad analizar de forma práctica cómo se relacionan la opinión de los jugadores, la crítica especializada y la popularidad que alcanza un videojuego dentro de Backloggd. La idea surge porque normalmente se utiliza una calificación para hablar del éxito de un título, aunque esa nota no nos dice cuántas personas lo juegan ni cuántas tienen interés en hacerlo. Para atender esta situación se revisaron las calificaciones y las métricas de interacción por separado, después se buscaron grupos de juegos similares y finalmente se construyó una aplicación que permite consultar los resultados y probar un modelo supervisado.',
-'Analizar la relación entre recepción y popularidad relativa en el catálogo curado de videojuegos mediante correlaciones, agrupamiento y clasificación supervisada, y presentar resultados verificables en una aplicación local de Streamlit.':
-'Aplicar técnicas de minería de datos sobre el catálogo de videojuegos contenido en games\\_curated.csv para analizar la diferencia entre la valoración de la comunidad y la crítica especializada, reconocer cómo se distribuyen la actividad y el interés de los jugadores, encontrar grupos de títulos con características similares y estimar su nivel de popularidad relativa mediante un modelo supervisado. Los resultados se integran en una aplicación web local para que puedan explorarse y contrastarse con ejemplos concretos.',
-'El punto de partida fue entender qué significa que un videojuego tenga éxito. En una plataforma social podemos encontrar un juego con buena recepción y pocos registros de actividad, o un juego muy conocido cuya calificación no sea particularmente alta. Si juntamos estas situaciones en una sola medida, perdemos la diferencia entre calidad percibida, alcance e interés.':
-'La problemática principal es que el éxito de un videojuego no se puede explicar con un solo indicador. Por ejemplo, un título puede tener una calificación alta porque quienes lo jugaron quedaron satisfechos, pero eso no significa que haya llegado a una comunidad numerosa. También puede suceder lo contrario: un juego conocido puede acumular muchos registros de actividad y al mismo tiempo recibir opiniones divididas. Si únicamente revisamos la nota, estaríamos dejando fuera una parte importante de lo que sucede con ese videojuego.',
-'Lo que sí podemos atender es la falta de una lectura conjunta de los indicadores disponibles. Contrastamos la recepción de usuarios y prensa, distinguimos actividad e interés y evaluamos si los atributos de un juego permiten estimar su posición relativa en este catálogo. La finalidad es apoyar la exploración y formular preguntas mejor delimitadas, no sustituir un estudio de mercado.':
-'Por esta razón, el proyecto se concentró en utilizar los datos que sí teníamos disponibles: las opiniones, los registros de juego y las listas de interés. Esto nos permite comparar situaciones diferentes dentro del catálogo y revisar si un modelo puede reconocerlas a partir del género, la organización, la década y las calificaciones. El resultado puede servir para orientar una exploración del mercado, aunque por sí solo no reemplaza un estudio de ventas o rentabilidad.',
-'Los faltantes de notas permanecen ausentes en los análisis descriptivos. La imputación por mediana se reserva al modelo y se ajusta únicamente con su entrenamiento. La nota crítica analítica usa la procedencia documentada en el maestro y deja fuera las estimaciones propias. Esto valida coherencia interna de etiquetas, no una comprobación externa de cada Metascore.':
-'Una decisión importante fue no llenar las calificaciones faltantes durante el análisis descriptivo. Si asignábamos una nota promedio antes de comparar usuarios y prensa, estaríamos agregando información que no estaba realmente en el archivo. Por eso las correlaciones utilizan únicamente los pares disponibles. La mediana se utiliza después, cuando el modelo necesita una entrada completa, y se calcula solamente con los datos de entrenamiento. De la misma forma, las notas marcadas como estimaciones propias no se tratan como una opinión independiente de la prensa.',
-'Un juego con muchas listas pendientes puede tener demanda potencial dentro de la plataforma, pero también puede acumular espera sin convertirse en actividad. Por esta razón evitamos llamar éxito comercial a un valor alto del índice.':
-'Esto quiere decir que aparecer en muchas listas no garantiza que esas personas finalmente jueguen el título. El interés pendiente y la actividad ya registrada nos hablan de momentos distintos. Por eso un índice alto se interpreta como una posición alta dentro del catálogo y no como una cantidad de ventas.',
-'La clase medio solo recupera 27 de 80 casos, 33.75\\,\\%. Por ello una cifra global moderada no significa que identifique correctamente todos los niveles. La cercanía entre las fronteras artificiales de terciles es una posible explicación del solapamiento, no una causa demostrada por el experimento.':
-'Al revisar la matriz se observa que la clase media es el problema más claro del modelo: de ochenta juegos que realmente pertenecían a ese nivel, solamente veintisiete fueron identificados correctamente. Los demás se repartieron entre bajo y alto. Esto nos muestra que no era suficiente presentar únicamente la exactitud general, porque esa cifra podía ocultar una dificultad importante. Una explicación posible es que los juegos cercanos a las fronteras de los terciles compartan atributos con ambos extremos, aunque este experimento no permite demostrar que esa sea la causa.',
-'La clasificación funciona de manera reproducible y supera a Dummy, pero su rendimiento es moderado y la clase media conserva baja recuperación. Las siete variantes adicionales no mejoraron el F1 de CV, por lo que mantener el modelo existente fue una decisión sustentada en resultados, no falta de entrenamiento. Más complejidad no habría sido una mejora por sí misma.':
-'En cuanto a la predicción, sí se logró construir un modelo que supera a la referencia mayoritaria, pero los resultados no permiten decir que pueda decidir por sí solo qué videojuego tendrá éxito. La clase media siguió siendo difícil y los escenarios mostraron que algunas respuestas cambian bastante cuando falta la nota de prensa. También se entrenaron siete variantes adicionales del bosque y ninguna mejoró el criterio de validación utilizado. Por eso se conservó el modelo que ya teníamos, en lugar de presentar como mejora un cambio que no estaba respaldado por sus resultados.',
-'El análisis confirma que no conviene reducir la situación de un videojuego a una sola cifra. Las notas resumen recepción, Plays aproxima alcance registrado y las listas aportan interés pendiente. Al separarlas observamos una asociación moderada entre usuarios y prensa y diferencias entre grupos, sin convertirlas en explicaciones causales.':
-'Después de realizar el análisis, podemos concluir que la idea inicial de revisar varios indicadores sí fue útil. Las calificaciones nos ayudaron a entender la recepción, mientras que Plays, Backlogs y Wishlist mostraron diferencias de alcance e interés que no se veían solamente con una nota. La relación entre usuarios y prensa fue positiva, aunque moderada, por lo que tampoco sería correcto asumir que ambas opiniones siempre coinciden.',
-'El objetivo de perfiles se cumple de forma descriptiva con dos grupos K-Means. DBSCAN aporta un resultado negativo para segmentación múltiple, que también es un hallazgo. La silhouette moderada y la dominancia de magnitud conjunta aconsejan no convertir los nombres de los grupos en categorías naturales o permanentes del mercado.':
-'En la parte de agrupamiento se obtuvieron dos perfiles con K-Means que permiten resumir diferencias de actividad, interés y recepción. Sin embargo, DBSCAN no encontró varios segmentos útiles con la configuración establecida. Esto también forma parte del resultado: el hecho de aplicar un algoritmo no obliga a que aparezcan los grupos que esperábamos. Los nombres de los perfiles se utilizaron para explicar sus promedios y no para afirmar que todo el mercado se divide de esa manera.'
-}
-for a,b in reemplazos.items():body=body.replace(a,b)
-# Lectura prudente de p-valores que alcanzan el límite numérico.
-body=body.replace('pares completos para cada comparación.', 'pares completos para cada comparación. Un p impreso como cero corresponde al límite numérico del cálculo, no a una probabilidad matemática exactamente nula.')
-# Bloque nuevo con casos hipotéticos y errores reales, elaborado de datos del artefacto.
-hip=json.loads((D/'evidencias/escenarios/hipoteticos.json').read_text());real=json.loads((D/'evidencias/escenarios/contraejemplos.json').read_text())
-def e(x):return str(x).replace('&',r'\&').replace('_',r'\_').replace('%',r'\%')
-casos=r'''\section{Escenarios de predicción y contrastación del modelo}\label{sec:escenarios}
-\subsection{Qué queríamos comprobar con los escenarios}
-Después de revisar la exactitud general, todavía quedaba una pregunta importante: ¿cómo se comporta el modelo cuando cambiamos las características de un videojuego? Para responderla planteamos situaciones concretas y mantuvimos fijas las demás entradas. La intención no fue buscar ejemplos que hicieran ver bien al modelo, sino mostrar qué información parece pesar en sus respuestas y en qué situaciones conviene cuestionarlas.
+    datos = '\n'.join(rf'\newcommand{{\{clave}}}{{{valor}}}' for clave, valor in cifras().items())
+    (DOCUMENTO / 'cifras_informe.tex').write_text(sin_acentos(datos) + '\n', encoding='utf-8')
+    cuerpo = r'\input{cifras_informe.tex}' + '\n' + (DOCUMENTO / 'informe.tex').read_text(encoding='utf-8')
+    (DOCUMENTO / 'main.tex').write_text(preambulo + portada + sin_acentos(cuerpo), encoding='utf-8')
+    shutil.copyfile(TABLAS / 'evidencia_comercial.csv', DOCUMENTO / 'tablas/evidencia_comercial.csv')
 
-Se separaron dos tipos de prueba. Los escenarios hipotéticos permiten revisar sensibilidad, pero no tienen una clase real observada; por eso no pueden demostrar por sí solos que una respuesta sea correcta o incorrecta. Para refutar predicciones concretas también recuperamos juegos del conjunto de prueba y comparamos la clase estimada con la clase calculada a partir de sus señales de popularidad. Estos ejemplos ya forman parte de la evaluación histórica: no constituyen una muestra nueva ni una nueva medición del rendimiento.
-\subsection{Escenarios con cambios controlados}
-El escenario de referencia utiliza Adventure y RPG, organización Otro y década de 2020. En S1 a S5 únicamente se modifican las calificaciones y la presencia de prensa. S6 cambia la organización a Nintendo; S7 cambia la década a 1980; S8 utiliza Shooter. Se trata de comparaciones de entradas del mismo modelo, no de afirmaciones causales sobre esas organizaciones o géneros.
-\begin{longtable}{p{.08\textwidth}p{.28\textwidth}p{.11\textwidth}p{.11\textwidth}p{.12\textwidth}p{.14\textwidth}}
-\caption{Escenarios hipotéticos calculados con el Pipeline guardado. La última columna muestra la mayor probabilidad, sin calibrar.}\\\hline
-Caso&Situación&Rating&Prensa&Predicción&Probabilidad\\\hline\endfirsthead
-Caso&Situación&Rating&Prensa&Predicción&Probabilidad\\\hline\endhead
-'''
-for h in hip:
- prob=max(h['p_alto'],h['p_medio'],h['p_bajo']);crit='Ausente' if h['metacritic'] is None else str(h['metacritic'])
- casos+=' & '.join(map(e,[h['id'],h['escenario'],h['rating'],crit,h['prediccion'],f'{prob:.1%}']))+r'\\\hline'+'\n'
-casos+=r'''\end{longtable}
-La tabla muestra cómo responde la MLP cuando se modifican las notas y los demás atributos. S2, con ambas notas altas, estima popularidad media. S5 conserva el Rating de S2 y oculta Metacritic. En ese caso se estima la clase baja y se usa la mediana aprendida para sustituir el faltante. Los escenarios S6 a S8 ilustran la sensibilidad a organización, década y género. Las probabilidades son salidas del modelo y carecen de calibración.
 
-\begin{figure}[htbp]\centering\includegraphics[width=\linewidth]{figuras/sensibilidad_escenarios.png}\caption{Veinticinco combinaciones de Rating y Metacritic con el resto de atributos fijos. La etiqueta es la clase estimada y el color muestra la probabilidad no calibrada de alto.}\end{figure}\FloatBarrier
-\subsection{Contraejemplos con juegos del conjunto de prueba}
-Para no quedarnos solamente con escenarios inventados, seleccionamos un acierto y un error por cada clase real. Dentro de cada caso se tomó el registro con mayor probabilidad máxima del modelo. Esta selección es posterior a observar las predicciones y busca ilustrar sus límites; no sirve para estimar una nueva exactitud ni representa una muestra aleatoria de casos.
-\begin{longtable}{p{.35\textwidth}p{.12\textwidth}p{.12\textwidth}p{.12\textwidth}p{.15\textwidth}}
-\caption{Aciertos y errores reales frente al objetivo de popularidad del proyecto. No se usa ventas como verdad de referencia.}\\\hline
-Juego&Clase real&Predicción&Resultado&Probabilidad\\\hline\endfirsthead
-Juego&Clase real&Predicción&Resultado&Probabilidad\\\hline\endhead
-'''
-for h in real:casos+=' & '.join(map(e,[h['titulo']+' (ID '+str(h['id_juego'])+')',h['real'],h['prediccion'],'Acierto' if h['acierto'] else 'Error',f"{h['probabilidad_maxima']:.1%}"]))+r'\\\hline'+'\n'
-casos+=r'''\end{longtable}
-Los tres errores de la tabla muestran que una probabilidad máxima alta puede acompañar una clasificación equivocada. La comparación usa los terciles de entrenamiento y los conteos observados de Backloggd. Los tres aciertos sirven para contrastar cómo se comporta el mismo modelo cuando coincide con esa etiqueta.
-
-Para estos registros se conservaron ID, listas completas de género y organización, calificaciones, década, conteos y probabilidades. La comprobación numérica se hizo directamente con las entradas crudas del Pipeline. No se presenta una captura del formulario como réplica exacta de un registro con varias organizaciones o categorías que el formulario no permite seleccionar: esa distinción evita confundir una demostración simplificada con una reproducción del dato real.
-\subsection{Qué aprendimos de las pruebas}
-Los escenarios permiten cuestionar dos expectativas del planteamiento inicial: una calificación alta no basta para asignar popularidad alta en todos los casos y una probabilidad mayor tampoco garantiza una predicción correcta. La ausencia de prensa, el género y la organización cambian el espacio de entrada, mientras que la clase real depende de actividad e interés observados que deliberadamente no se entregan como predictores.
-
-Por eso la aplicación debe entenderse como una estimación orientativa que ayuda a contrastar situaciones. Los contraejemplos no se utilizaron para volver a escoger parámetros sobre la prueba. La forma adecuada de evaluar una mejora futura sería reservar una muestra temporal nueva y establecer antes los criterios de comparación. Reentrenar hasta que desaparezcan los errores elegidos solo memorizaría una parte de la evaluación que ya conocemos.
-'''
-# Inserción anterior al plan; las referencias de la rúbrica se corrigen con etiquetas.
-capturas = r"""\subsection{Verificación del formulario}
-\begin{figure}[htbp]\centering\includegraphics[width=\linewidth,height=.49\textheight,keepaspectratio]{figuras/prediccion_mlp_web.png}\caption{Ejecución del formulario en la web con la MLP activa.}\end{figure}\FloatBarrier
-"""
-casos = casos.replace(r'\subsection{Contraejemplos con juegos del conjunto de prueba}',capturas+r'\subsection{Contraejemplos con juegos del conjunto de prueba}')
-meta=json.loads((D.parent/'Final/models/metadata.json').read_text());c1,c2=meta['definicion_objetivo']['cortes']
-senales = r'\subsection{Cómo comprobamos la clase real de los ejemplos}'+'\n'+f'Los cortes de entrenamiento son {c1:.6f} y {c2:.6f}. Bajo corresponde a un índice menor o igual al primer corte; medio supera el primero sin rebasar el segundo; alto supera el segundo. La tabla conserva los conteos y el índice calculado frente a esa referencia, no frente a una referencia ajustada con estos seis casos.\n'
-senales += r'\begin{longtable}{p{.1\textwidth}p{.14\textwidth}p{.14\textwidth}p{.14\textwidth}p{.14\textwidth}p{.13\textwidth}}\caption{Señales observadas que permiten contrastar la clase real de los ejemplos. Los ID se corresponden con el archivo de evidencia.}\\\hline ID&Plays&Wishlist&Backlogs&Índice&Clase real\\\hline\endfirsthead ID&Plays&Wishlist&Backlogs&Índice&Clase real\\\hline\endhead'+'\n'
-for h in real:
- senales += ' & '.join(map(e,[h['id_juego'],int(h['Plays']),int(h['Wishlist']),int(h['Backlogs']),f"{h['indice']:.4f}",h['real']]))+r'\\\hline'+'\n'
-senales += r'\end{longtable}'+'\n'
-casos = casos.replace(r'\subsection{Qué aprendimos de las pruebas}',senales+r'\subsection{Qué aprendimos de las pruebas}')
-body=body.replace(r'\section{Plan real frente a la línea base}',casos+'\n'+r'\section{Plan real frente a la línea base}')
-labels={'Objetivos del proyecto':'objetivos','Contexto del proyecto':'contexto','Estrategia a seguir':'estrategia','Plan real frente a la línea base':'plan','Preparación y control de calidad':'preparacion','Análisis exploratorio y recepción':'eda','Clustering y perfiles del catálogo':'clustering','Clasificación supervisada':'clasificacion','Corridas gráficas y contraste con Weka':'weka','Aplicación y demostración':'web','Evaluación de los objetivos y discusión':'discusion','Conclusiones':'conclusiones'}
-for t,l in labels.items():body=body.replace('\\section{'+t+'}','\\section{'+t+'}\\label{sec:'+l+'}')
-for a,b in {'Sección 2: objetivo general':'Sección~\\ref{sec:objetivos}: objetivo general','Sección 3: origen':'Sección~\\ref{sec:contexto}: origen','Sección 4: CRISP-DM':'Sección~\\ref{sec:estrategia}: CRISP-DM','Sección 2: criterios':'Sección~\\ref{sec:objetivos}: criterios','Sección 11: ventanas':'Sección~\\ref{sec:plan}: ventanas','Secciones 5--8: preparación':'Secciones~\\ref{sec:preparacion}--\\ref{sec:clasificacion}: preparación','Secciones 8--10: Python':'Secciones~\\ref{sec:clasificacion}--\\ref{sec:web}: Python','Secciones 6--9 y 12--13: resultados':'Secciones~\\ref{sec:eda}--\\ref{sec:weka} y \\ref{sec:discusion}--\\ref{sec:conclusiones}: resultados'}.items():body=body.replace(a,b)
-body=body.replace(r'\printbibliography[heading=bibintoc,title={Referencias}]',r'\clearpage\pagestyle{referencias}\printbibliography[heading=bibintoc,title={Referencias}]')
-(D/'main.tex').write_text(pre+inicio+body)
-
-from sincronizar_auditoria import actualizar
-actualizar()
+if __name__ == '__main__':
+    main()

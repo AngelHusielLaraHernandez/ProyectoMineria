@@ -105,7 +105,7 @@ imagen(b,'reports/weka/RandomForest.png','Corrida gráfica original de RandomFor
 p(b,'Las seis corridas gráficas conservan salidas y capturas locales: SimpleKMeans, DBSCAN, ZeroR, NaiveBayes, J48 y RandomForest. Esta revisión no reejecuta Weka ni cambia sus resultados. El script verificar_weka.py recalcula sus matrices de clasificación y conserva los hashes de las fuentes.')
 p(b,'Orange se descartó por cierres de la aplicación en Qt y Cocoa al usar selectores de archivos. Se probaron la instalación local, recuperación y reinicio del lienzo, CSV y TAB, además de un lanzador con selectores Qt. No hay métricas de Orange en este informe; no se le atribuye ninguna salida de Weka.')
 p(b,'La popularidad se refiere a rangos percentiles relativos de Plays, Wishlist y Backlogs. La muestra tiene sesgo de visibilidad comunitaria; Team no separa desarrolladores y publishers. Las notas con origen estimado se excluyen como evidencia independiente de prensa. Las columnas financieras estimadas del maestro no se utilizan para demostrar éxito comercial.')
-fuente(b,'Trazabilidad principal: data/raw/games_curated.csv; reports/inspeccion.md; reports/trazabilidad_historica.md; reports/weka/; reports/codex_log.md; reports/tables/comparativo_herramientas.csv; reports/revision_predicciones/.')
+fuente(b,'Trazabilidad principal: data/raw/games_curated.csv; reports/inspeccion.md; reports/trazabilidad_historica.md; reports/weka/; reports/BITACORA_UNIFICADA.md; reports/tables/comparativo_herramientas.csv; reports/revision_predicciones/.')
 
 # Documento de texto con el mismo contenido y tablas editables.
 md=[]

@@ -41,12 +41,12 @@
   },
   {
     "origen": "DocumentoFinal/revision/revisada/actualizada.log",
-    "destino": "DocumentoFinal/revision/revisada/BITACORA_UNIFICADA.md",
+    "destino": "DocumentoFinal/revision/BITACORA_UNIFICADA.md",
     "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
   },
   {
     "origen": "DocumentoFinal/revision/revisada/render.log",
-    "destino": "DocumentoFinal/revision/revisada/BITACORA_UNIFICADA.md",
+    "destino": "DocumentoFinal/revision/BITACORA_UNIFICADA.md",
     "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
   },
   {
@@ -67,7 +67,7 @@
   {
     "origen": "Final/reports/codex_log.md",
     "destino": "Final/reports/BITACORA_UNIFICADA.md",
-    "sha256": "a63d3ef391b28ef4347b91659c43e6a051a72573d8f436262f431990d82eecce"
+    "sha256": "69c350019671e5140c3bc6b621703b0e2b4a0ee14ae5aed56f830d60c6e0dfa2"
   },
   {
     "origen": "Final/reports/correcciones_auditoria.md",
@@ -145,6 +145,11 @@
     "sha256": "8d7495477ba5dea4b508007189f4ad4ddf0fc47d3c2429bc6d1e38f63f60f093"
   },
   {
+    "origen": "Final/reports/archivo_pre_auditoria/reports/ejecucion.txt",
+    "destino": "Final/reports/BITACORA_UNIFICADA.md",
+    "sha256": "65aad5431c101ded61f6c64fb735dce72305f8769058e42469cd48c36cf8a790"
+  },
+  {
     "origen": "Final/reports/tables/comparativo_herramientas_notas.md",
     "destino": "Final/reports/tables/BITACORA_UNIFICADA.md",
     "sha256": "04d42dea8485c335ebc0f0072228ff91cdf1b77a5168f6859d37e1ea8918ee31"
@@ -190,11 +195,6 @@
     "sha256": "d8963fe932f6957b471ee8a0a0f820eaf2f2e75957fe1adb3a0942593e55c1f5"
   },
   {
-    "origen": "Final/reports/archivo_pre_auditoria/reports/ejecucion.txt",
-    "destino": "Final/reports/archivo_pre_auditoria/reports/BITACORA_UNIFICADA.md",
-    "sha256": "65aad5431c101ded61f6c64fb735dce72305f8769058e42469cd48c36cf8a790"
-  },
-  {
     "origen": "Final/reports/weka/cierre_weka_2026_11_09.md",
     "destino": "Final/reports/weka/BITACORA_UNIFICADA.md",
     "sha256": "cfe77d950e13a3887e238074f93ad985bd62fd9870a262c0d29cf23ff53ee1c4"
@@ -223,11 +223,6 @@
     "origen": "Final/reports/weka/revision_respaldo.md",
     "destino": "Final/reports/weka/BITACORA_UNIFICADA.md",
     "sha256": "c2ffa83066679bce6ccdbeeaffe992844b6a32d56ac1ef12e83adfcc64abc0ab"
-  },
-  {
-    "origen": "Final/reports/weka/.home/wekafiles/weka.log",
-    "destino": "Final/reports/weka/.home/wekafiles/BITACORA_UNIFICADA.md",
-    "sha256": "3b3ca92d29950d24559cde0cfa49662ac14f08d290a46a3f230a4dcea8fac836"
   },
   {
     "origen": "Final/reports/orange/diagnostico_cierres.md",

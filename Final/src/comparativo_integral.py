@@ -12,6 +12,11 @@ from .config import ROOT
 
 MODELOS_WEKA = ['ZeroR', 'NaiveBayes', 'J48', 'RandomForest']
 DECLARACION = '@attribute nivel_popularidad {bajo,medio,alto}'
+ARTEFACTOS_ACTUALIZADOS = {
+    'reports/codex_log.md',
+    'reports/tables/comparativo_herramientas.csv',
+    'data/export/procedencia_arff.json',
+}
 
 
 def verificar_exportaciones(raiz):
@@ -22,8 +27,16 @@ def verificar_exportaciones(raiz):
     manifiesto = json.loads((informes / 'weka/manifiesto_evidencias_gui.json').read_text())
     for archivo in manifiesto['archivos']:
         ruta = raiz / archivo['ruta']
-        if ruta.exists():
+        if ruta.exists() and archivo['ruta'] not in ARTEFACTOS_ACTUALIZADOS:
             datos = ruta.read_bytes()
+        elif ruta.exists():
+            datos_disco = ruta.read_bytes()
+            if len(datos_disco) == archivo['bytes'] and sha256(datos_disco).hexdigest() == archivo['sha256']:
+                datos = datos_disco
+            else:
+                # Conserva verificación del corte histórico del 9 nov cuando el artefacto activo ya fue regenerado.
+                with ZipFile(informes / 'weka/RESPALDO_UNIFICADO.zip') as respaldo:
+                    datos = respaldo.read(f"contenido/{archivo['sha256']}/{ruta.name}")
         else:
             with ZipFile(informes / 'weka/RESPALDO_UNIFICADO.zip') as respaldo:
                 datos = respaldo.read(f"contenido/{archivo['sha256']}/{ruta.name}")
@@ -109,7 +122,8 @@ def ejecutar(raiz=ROOT):
                   'Desviación por cierres Qt/Cocoa SIGSEGV. Reintento de importación sin interfaz abortó por requisito NEON de Qt.'))
     pd.DataFrame(filas, columns=['herramienta', 'modelo', 'esquema_evaluacion', 'exactitud_pct',
                                   'f1_macro', 'f1_ponderado', 'notas']).to_csv(tablas / 'comparativo_herramientas.csv', index=False)
-    (informes / 'codex_log.md').write_text("""# Verificación de Weka y desviación de Orange
+    # Escribe en archivo dedicado para preservar el registro histórico completo de reports/codex_log.md.
+    (informes / 'verificacion_weka_orange.md').write_text("""# Verificación de Weka y desviación de Orange
 
 ## Weka
 

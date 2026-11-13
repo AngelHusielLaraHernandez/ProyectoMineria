@@ -118,3 +118,15 @@ Estado: verificado. Esta corrida no elimina las 395 filas históricas: ya no est
 ## Que debo verificar manualmente
 
 - Resolver los conflictos heredados y usar id_juego para relacionar tablas.
+
+## Dimensiones y linaje del insumo
+
+| Etapa | Filas | Columnas | Evidencia |
+|---|---:|---:|---|
+| Anteproyecto | 1512 | 15 | Proyecto/main.tex. Dimensiones declaradas, sin el CSV exacto para cotejo. |
+| Antecedente enriquecido | 1512 | 20 | CSV local. Incluye procedencia de crítica y cuatro estimaciones financieras o comerciales. |
+| Reconstrucción del maestro | 1117 | 42 | 395 descartes heredados por título y fecha. Columnas derivadas de calendario, listas, notas, logaritmos y banderas. |
+| Maestro curado | 1117 | 42 | CSV designado como original para el pipeline actual. |
+| Depurado actual | 1117 | 38 | Salida de la fase de limpieza. |
+
+El maestro curado es un archivo distinto del insumo de 15 columnas descrito en el anteproyecto. El origen exacto de las adiciones entre esa versión y el antecedente de 20 columnas no está documentado. La conciliación verificable comienza en el antecedente local. Los campos económicos estimados se excluyen de las conclusiones y del modelo.

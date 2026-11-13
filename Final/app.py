@@ -1,17 +1,22 @@
-"""Página de Inicio: Observatorio de Videojuegos — Edición Phantom Thieves (Persona 5 UI)."""
+"""Página de inicio del Observatorio de Videojuegos."""
 import importlib
 import json
+import sys
 import streamlit as st
 
-import src.ui as _ui
+import src.data as _data
 
-if not hasattr(_ui, 'asset_b64') or getattr(_ui, '_UI_VERSION', None) != 'p5-v8-neon':
-    importlib.reload(_ui)
+if getattr(_data, '_MOD_VERSION', None) != 'p5-v12-portadas':
+    if 'src.config' in sys.modules:
+        importlib.reload(sys.modules['src.config'])
+    _data = importlib.reload(_data)
+    _data.asegurar_modulos_vigentes(config_recargado=True)
+else:
+    _data.asegurar_modulos_vigentes()
 
 from src.config import REPORTS, SIGNALS
 from src.ui import (
     asset_b64,
-    manual_checks,
     read_report,
     render_html,
     render_lb_rb_nav,
@@ -22,53 +27,53 @@ from src.ui import (
 
 setup(
     'Observatorio de Videojuegos',
-    'Phantom Thieves Edition · Menú Interactivo Persona 5 · Backloggd & Metacritic',
+    'Actividad y calificaciones en Backloggd y Metacritic',
     transition='default',
     menu_idx=0,
     compact_menu=False,
 )
 
-st.page_link('pages/1_Exploracion.py', label='Abrir dashboard interactivo')
-st.info('El observatorio mide interacciones de Backloggd. El modelo ofrece una estimación orientativa que puede favorecer géneros populares y desfavorecer géneros de nicho. Los datos no incluyen ventas observadas.')
-
 df, bundle, analysis = resources()
 metricas_modelo = bundle['metricas']
 linaje = read_report('tables/procedencia_datos.csv').set_index('etapa')
-n_maestro = linaje.loc['Maestro curado', 'filas']
-n_antecedente = linaje.loc['Antecedente enriquecido', 'filas']
+n_maestro = int(linaje.loc['Maestro curado', 'filas'])
+n_antecedente = int(linaje.loc['Antecedente enriquecido', 'filas'])
+n_elegibles = int(df['elegible_analisis'].sum())
+n_fechas_no_interp = (
+    int(df['fecha_no_interpretable'].sum())
+    if 'fecha_no_interpretable' in df
+    else int(df['decada'].isna().sum())
+)
 asociacion = read_report('tables/correlacion_catalogo.csv').iloc[0]
-catalogo = json.loads((REPORTS / 'tables/catalogo_resumen.json').read_text())
+catalogo = json.loads((REPORTS / 'tables/catalogo_resumen.json').read_text(encoding='utf-8'))
 umbral_pares = read_report('tables/parametros_clustering.csv').iloc[0].minimo_pares_correlacion
 preparador = bundle['pipeline'].named_steps['preparar'].named_transformers_
 decadas = [int(x) for x in preparador['decada'].named_steps['codificar'].categories_[0] if x >= 0]
 
-# ---------------------------------------------------------------------------
-# 1. CABECERA HERO ("TAKE YOUR HEART" CON ASSETS/IMG/)
-# ---------------------------------------------------------------------------
-hero_b64 = asset_b64('img/hero.png')
-joker_b64 = asset_b64('img/jokerface2.png')
-hero_img_html = (
-    f'<img class="p5-hero-img" src="data:image/png;base64,{joker_b64}" alt="Phantom Thieves"/>'
-    if joker_b64 else ''
+st.page_link('pages/1_Exploracion.py', label='Abrir panel interactivo de exploración')
+st.info(
+    'La predicción toma como referencia los juegos registrados en Backloggd y puede representar menos a los '
+    'géneros de nicho. '
+    'Los casos publicados por editoras se pueden consultar en Exploración.'
 )
-logo_img_html = (
-    f'<img src="data:image/png;base64,{hero_b64}" width="175" '
-    f'style="filter:drop-shadow(4px 4px 0 #000);margin-bottom:0.4rem;" alt="Take Your Heart"/>'
-    if hero_b64 else ''
+
+# ---------------------------------------------------------------------------
+# 1. CABECERA PRINCIPAL
+# ---------------------------------------------------------------------------
+halo_b64 = asset_b64('img/juegos/halo.webp')
+hero_img_html = (
+    f'<img class="p5-hero-img" src="data:image/webp;base64,{halo_b64}" alt="Master Chief en Halo Infinite"/>'
+    if halo_b64 else ''
 )
 
 render_html(
     f"""
     <div class="p5-hero">
         <div>
-            {logo_img_html}
-            <div class="p5-hero-badge">PHANTOM THIEVES DATA OBSERVATORY // SHUJIN ACADEMY</div>
-            <div class="p5-hero-title">TAKE YOUR HEART: BRECHA CRITICA Y POPULARIDAD</div>
+            <div class="p5-hero-title">Notas y popularidad de los videojuegos</div>
             <p class="p5-hero-sub">
-                Investigación empírica sobre la industria del videojuego: contrastamos la recepción de la
-                comunidad de jugadores (Backloggd) frente a la prensa especializada (Metacritic), evaluamos
-                la actividad y el interés registrados, y describimos perfiles de recepción y popularidad.
-                El catálogo no permite medir pérdidas ni riesgo comercial de <em>Games as a Service (GaaS)</em>.
+                Comparamos las notas de los jugadores con las de la prensa. Después revisamos qué juegos
+                aparecen más como jugados, cuáles siguen pendientes y cuáles están en las listas de deseos.
             </p>
         </div>
         {hero_img_html}
@@ -77,36 +82,35 @@ render_html(
 )
 
 # ---------------------------------------------------------------------------
-# 2. PROPÓSITO DEL PROYECTO — BARRAS DESLIZANTES DE PERSONAJES (Socials.jsx / AboutMe.jsx)
+# 2. PROPÓSITO DEL PROYECTO
 # ---------------------------------------------------------------------------
-render_lb_rb_nav('MISSION BRIEFING // PARTY')
+render_lb_rb_nav('QUÉ REVISAMOS')
 
-char1_b64 = asset_b64('img/char1.png')
-char2_b64 = asset_b64('img/char2.png')
-char3_b64 = asset_b64('img/char3.png')
+zelda_b64 = asset_b64('img/juegos/zelda.webp')
+kratos_b64 = asset_b64('img/juegos/god-of-war.webp')
+mario_b64 = asset_b64('img/juegos/mario.webp')
 
 render_html(
     f"""
-    <div class="sc-root" role="region" aria-label="Propósito Ejecutivo del Proyecto">
-        <!-- BAR 1: LEADER // INDUSTRIA -->
+    <div class="sc-root" role="region" aria-label="Temas del observatorio">
+        <!-- BAR 1: LÍDER // INDUSTRIA -->
         <div class="sc-bar-outer active">
             <div class="sc-bar-red"></div>
             <div class="sc-bar">
-                <img class="sc-char" src="data:image/png;base64,{char1_b64}" alt=""/>
                 <div class="sc-bar-fill"></div>
                 <div class="sc-bar-shade"></div>
                 <div class="sc-bar-content">
-                    <div class="sc-role">LEADER</div>
+                    <img class="sc-char sc-art-zelda" src="data:image/webp;base64,{zelda_b64}" alt=""/>
                     <div class="sc-main">
-                        <div class="sc-label">01 // INDUSTRIA &amp; TRACCION</div>
+                        <div class="sc-label">ACTIVIDAD E INTERÉS</div>
                         <div class="sc-subdesc">
-                            Separamos alcance acumulado (Plays) de interés pendiente (Wishlist / Backlogs) sobre los {n_maestro:,} registros del maestro games_curated.csv; el antecedente histórico contiene {n_antecedente:,} registros.
+                            Para el análisis usamos {n_elegibles:,} de los {n_maestro:,} juegos del catálogo. Separamos los que la gente marcó como jugados de los que guardó en pendientes o en su lista de deseos.
                         </div>
                     </div>
                     <div class="sc-stats">
                         <div class="sc-stat">
                             <div class="sc-stat-top">
-                                <span class="sc-stat-tag" style="color:var(--primary);border-color:var(--primary);">HIST</span>
+                                <span class="sc-stat-tag" style="color:var(--primary);border-color:var(--primary);">ANTES</span>
                                 <span class="sc-stat-num">{n_antecedente:,}</span>
                             </div>
                             <div class="sc-stat-bars">
@@ -116,7 +120,7 @@ render_html(
                         </div>
                         <div class="sc-stat">
                             <div class="sc-stat-top">
-                                <span class="sc-stat-tag" style="color:var(--secondary);border-color:var(--secondary);">MAESTRO</span>
+                                <span class="sc-stat-tag" style="color:var(--secondary);border-color:var(--secondary);">CATÁLOGO</span>
                                 <span class="sc-stat-num">{n_maestro:,}</span>
                             </div>
                             <div class="sc-stat-bars">
@@ -129,25 +133,24 @@ render_html(
             </div>
         </div>
 
-        <!-- BAR 2: PARTY // BRECHA USUARIOS VS CRITICA -->
+        <!-- BAR 2: ALIADO // BRECHA USUARIOS VS CRÍTICA -->
         <div class="sc-bar-outer">
             <div class="sc-bar-red"></div>
             <div class="sc-bar">
-                <img class="sc-char" src="data:image/png;base64,{char2_b64}" alt=""/>
                 <div class="sc-bar-fill"></div>
                 <div class="sc-bar-shade"></div>
                 <div class="sc-bar-content">
-                    <div class="sc-role">PARTY</div>
+                    <img class="sc-char sc-art-kratos" src="data:image/webp;base64,{kratos_b64}" alt=""/>
                     <div class="sc-main">
-                        <div class="sc-label">02 // BRECHA COMUNIDAD-PRENSA</div>
+                        <div class="sc-label">NOTAS DE JUGADORES Y PRENSA</div>
                         <div class="sc-subdesc">
-                            Correlación moderada (r = {asociacion.pearson_r:.3f} en {int(asociacion.n):,} pares elegibles según CSV). La brecha y la asociación por género y organización se consultan en Exploración; Team no acredita funciones de desarrollador.
+                            En los {int(asociacion.n):,} juegos con las dos notas, cuando una sube la otra suele subir también. En Exploración se puede ver cuánto se separan por género y por organización.
                         </div>
                     </div>
                     <div class="sc-stats">
                         <div class="sc-stat">
                             <div class="sc-stat-top">
-                                <span class="sc-stat-tag" style="color:var(--primary);border-color:var(--primary);">PAIRS</span>
+                                <span class="sc-stat-tag" style="color:var(--primary);border-color:var(--primary);">PARES</span>
                                 <span class="sc-stat-num">{int(asociacion.n):,}</span>
                             </div>
                             <div class="sc-stat-bars">
@@ -170,25 +173,24 @@ render_html(
             </div>
         </div>
 
-        <!-- BAR 3: PARTY // RIESGOS GAAS & INFERENCIA -->
+        <!-- BAR 3: ALIADO // RIESGOS GAAS E INFERENCIA -->
         <div class="sc-bar-outer">
             <div class="sc-bar-red"></div>
             <div class="sc-bar">
-                <img class="sc-char" src="data:image/png;base64,{char3_b64}" alt=""/>
                 <div class="sc-bar-fill"></div>
                 <div class="sc-bar-shade"></div>
                 <div class="sc-bar-content">
-                    <div class="sc-role">PARTY</div>
+                    <img class="sc-char sc-art-mario" src="data:image/webp;base64,{mario_b64}" alt=""/>
                     <div class="sc-main">
-                        <div class="sc-label">03 // RIESGO GAAS &amp; MODELADO</div>
+                        <div class="sc-label">ESTIMACIÓN DE POPULARIDAD</div>
                         <div class="sc-subdesc">
-                            Estimamos popularidad relativa y consultamos cinco vecinos del entrenamiento. No hay una variable de juegos como servicio ni datos de rentabilidad para cuantificar su riesgo.
+                            En Predicción puedes cambiar los datos de un lanzamiento, ver qué nivel estima el modelo y consultar cinco juegos parecidos.
                         </div>
                     </div>
                     <div class="sc-stats">
                         <div class="sc-stat">
                             <div class="sc-stat-top">
-                                <span class="sc-stat-tag" style="color:var(--primary);border-color:var(--primary);">F1 TEST</span>
+                                <span class="sc-stat-tag" style="color:var(--primary);border-color:var(--primary);">F1 PRUEBA</span>
                                 <span class="sc-stat-num">{metricas_modelo['metricas']['f1_macro']:.3f}</span>
                             </div>
                             <div class="sc-stat-bars">
@@ -198,7 +200,7 @@ render_html(
                         </div>
                         <div class="sc-stat">
                             <div class="sc-stat-top">
-                                <span class="sc-stat-tag" style="color:var(--secondary);border-color:var(--secondary);">KNN</span>
+                                <span class="sc-stat-tag" style="color:var(--secondary);border-color:var(--secondary);">VECINOS</span>
                                 <span class="sc-stat-num">TOP 5</span>
                             </div>
                             <div class="sc-stat-bars">
@@ -215,7 +217,7 @@ render_html(
 )
 
 # ---------------------------------------------------------------------------
-# 2. MÉTRICAS GENERALES (KPIs) — CONFIDANT RANK CARDS & DETAIL PANEL (ResumePage.jsx)
+# 2. MÉTRICAS GENERALES (INDICADORES) — TARJETAS Y PANEL DE DETALLE
 # ---------------------------------------------------------------------------
 rango_temporal = f"{catalogo['anio_min']}–{catalogo['anio_max']}"
 generos_unicos = sorted({g for row in df['generos'] for g in row})
@@ -229,20 +231,20 @@ render_html(
     f"""
     <div class="resume-grid">
         <div class="resume-stack">
-            <div class="resume-list-tag">LIST // KPIS</div>
+            <div class="resume-list-tag">LISTA // INDICADORES</div>
 
             <div class="resume-card-wrap active" data-detail-target="kpi-1">
                 <div class="resume-card">
                     <div class="resume-badge"><div class="resume-badge-text">I</div></div>
                     <div class="resume-card-inner">
-                        <div class="resume-title">CATALOGO</div>
+                        <div class="resume-title">CATÁLOGO</div>
                         <div class="resume-rank">
-                            <div class="resume-rank-label">TOTAL</div>
+                            <div class="resume-rank-label">JUEGOS</div>
                             <div class="resume-rank-number">{len(df):,}</div>
                         </div>
                     </div>
                     <div class="resume-subtitle-bar">
-                        <div class="resume-subtitle">{n_maestro:,} REGISTROS EN EL MAESTRO CURADO; ANTECEDENTE HISTORICO DE {n_antecedente:,}</div>
+                        <div class="resume-subtitle">{n_elegibles:,} JUEGOS INCLUIDOS EN EL ANÁLISIS</div>
                     </div>
                 </div>
             </div>
@@ -253,12 +255,12 @@ render_html(
                     <div class="resume-card-inner">
                         <div class="resume-title">HORIZONTE</div>
                         <div class="resume-rank">
-                            <div class="resume-rank-label">SPAN</div>
+                            <div class="resume-rank-label">RANGO</div>
                             <div class="resume-rank-number">{rango_temporal}</div>
                         </div>
                     </div>
                     <div class="resume-subtitle-bar">
-                        <div class="resume-subtitle">COBERTURA HISTORICA {rango_temporal}</div>
+                        <div class="resume-subtitle">COBERTURA HISTÓRICA {rango_temporal}</div>
                     </div>
                 </div>
             </div>
@@ -267,9 +269,9 @@ render_html(
                 <div class="resume-card">
                     <div class="resume-badge"><div class="resume-badge-text">III</div></div>
                     <div class="resume-card-inner">
-                        <div class="resume-title">GENEROS</div>
+                        <div class="resume-title">GÉNEROS</div>
                         <div class="resume-rank">
-                            <div class="resume-rank-label">TAXON</div>
+                            <div class="resume-rank-label">TOTAL</div>
                             <div class="resume-rank-number">{catalogo['n_generos']}</div>
                         </div>
                     </div>
@@ -285,29 +287,29 @@ render_html(
                     <div class="resume-card-inner">
                         <div class="resume-title">ESTUDIOS</div>
                         <div class="resume-rank">
-                            <div class="resume-rank-label">TEAMS</div>
+                            <div class="resume-rank-label">EQUIPOS</div>
                             <div class="resume-rank-number">{catalogo['n_organizaciones']:,}</div>
                         </div>
                     </div>
                     <div class="resume-subtitle-bar">
-                        <div class="resume-subtitle">ORGANIZACIONES ANALIZADAS EN EL CAMPO TEAM DE BACKLOGGD</div>
+                        <div class="resume-subtitle">ESTUDIOS Y EDITORAS EN BACKLOGGD</div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- PANELES DE DETALLE DINÁMICOS (ResumePage.jsx .resume-detail-panel) -->
+        <!-- PANELES DE DETALLE DINÁMICOS -->
         <div>
             <div class="resume-detail-panel" data-detail-id="kpi-1" style="display:block;">
                 <div class="resume-detail-top">
                     <div class="resume-detail-top-index">01</div>
-                    <div class="resume-detail-top-title">CATALOGO LOG</div>
+                    <div class="resume-detail-top-title">LOS JUEGOS DEL CATÁLOGO</div>
                     <div class="resume-detail-top-progress">{n_maestro:,}</div>
                 </div>
                 <div class="resume-detail-list">
                     <div class="resume-detail-row">
                         <div class="resume-detail-row-index">01</div>
-                        <div class="resume-detail-row-title">Registros del Antecedente Enriquecido</div>
+                        <div class="resume-detail-row-title">Registros antes de revisar los repetidos</div>
                         <div class="resume-detail-status">{n_antecedente:,} FILAS</div>
                     </div>
                     <div class="resume-detail-row">
@@ -317,12 +319,12 @@ render_html(
                     </div>
                     <div class="resume-detail-row">
                         <div class="resume-detail-row-index">03</div>
-                        <div class="resume-detail-row-title">Cohorte Elegible Sin Conflicto</div>
+                        <div class="resume-detail-row-title">Juegos que usamos para el análisis</div>
                         <div class="resume-detail-status">{metricas_modelo['n_cohorte']:,} CASOS</div>
                     </div>
                     <div class="resume-detail-row">
                         <div class="resume-detail-row-index">04</div>
-                        <div class="resume-detail-row-title">Pares Elegibles con Ambas Notas</div>
+                        <div class="resume-detail-row-title">Juegos con las dos notas</div>
                         <div class="resume-detail-status">{int(asociacion.n):,} PARES</div>
                     </div>
                 </div>
@@ -331,7 +333,7 @@ render_html(
             <div class="resume-detail-panel" data-detail-id="kpi-2" style="display:none;">
                 <div class="resume-detail-top">
                     <div class="resume-detail-top-index">02</div>
-                    <div class="resume-detail-top-title">TEMPORAL LOG</div>
+                    <div class="resume-detail-top-title">COBERTURA TEMPORAL</div>
                     <div class="resume-detail-top-progress">{rango_temporal}</div>
                 </div>
                 <div class="resume-detail-list">
@@ -352,8 +354,8 @@ render_html(
                     </div>
                     <div class="resume-detail-row">
                         <div class="resume-detail-row-index">04</div>
-                        <div class="resume-detail-row-title">Títulos sin Fecha Conocida</div>
-                        <div class="resume-detail-status">DECADA -1</div>
+                        <div class="resume-detail-row-title">Fechas no Interpretables</div>
+                        <div class="resume-detail-status">{n_fechas_no_interp} CASOS · DÉCADA -1</div>
                     </div>
                 </div>
             </div>
@@ -361,13 +363,13 @@ render_html(
             <div class="resume-detail-panel" data-detail-id="kpi-3" style="display:none;">
                 <div class="resume-detail-top">
                     <div class="resume-detail-top-index">03</div>
-                    <div class="resume-detail-top-title">GENRE TAXONOMY</div>
-                    <div class="resume-detail-top-progress">{catalogo['n_generos']} GEN</div>
+                    <div class="resume-detail-top-title">TAXONOMÍA DE GÉNEROS</div>
+                    <div class="resume-detail-top-progress">{catalogo['n_generos']} GÉN</div>
                 </div>
                 <div class="resume-detail-list">
                     <div class="resume-detail-row">
                         <div class="resume-detail-row-index">01</div>
-                        <div class="resume-detail-row-title">Género Dominante en Catálogo</div>
+                        <div class="resume-detail-row-title">Género con más juegos en el catálogo ({n_maestro:,})</div>
                         <div class="resume-detail-status">{formato_grupo(top_generos[0])}</div>
                     </div>
                     <div class="resume-detail-row">
@@ -383,7 +385,7 @@ render_html(
                     <div class="resume-detail-row">
                         <div class="resume-detail-row-index">04</div>
                         <div class="resume-detail-row-title">Codificación en Clasificador</div>
-                        <div class="resume-detail-status">MULTI-HOT + OTRO</div>
+                        <div class="resume-detail-status">MULTI-ETIQUETA + OTRO</div>
                     </div>
                 </div>
             </div>
@@ -391,13 +393,13 @@ render_html(
             <div class="resume-detail-panel" data-detail-id="kpi-4" style="display:none;">
                 <div class="resume-detail-top">
                     <div class="resume-detail-top-index">04</div>
-                    <div class="resume-detail-top-title">STUDIOS &amp; TEAMS</div>
+                    <div class="resume-detail-top-title">ESTUDIOS Y EDITORAS</div>
                     <div class="resume-detail-top-progress">{catalogo['n_organizaciones']} ORG</div>
                 </div>
                 <div class="resume-detail-list">
                     <div class="resume-detail-row">
                         <div class="resume-detail-row-index">01</div>
-                        <div class="resume-detail-row-title">Organización con Mayor Presencia</div>
+                        <div class="resume-detail-row-title">Organización con más juegos ({n_maestro:,})</div>
                         <div class="resume-detail-status">{formato_grupo(top_org[0])}</div>
                     </div>
                     <div class="resume-detail-row">
@@ -412,8 +414,8 @@ render_html(
                     </div>
                     <div class="resume-detail-row">
                         <div class="resume-detail-row-index">04</div>
-                        <div class="resume-detail-row-title">Respaldo para Estudios Independientes</div>
-                        <div class="resume-detail-status">CLASE OTRO</div>
+                        <div class="resume-detail-row-title">Organizaciones con pocos juegos en el catálogo</div>
+                        <div class="resume-detail-status">OPCIÓN «OTRO»</div>
                     </div>
                 </div>
             </div>
@@ -423,28 +425,12 @@ render_html(
 )
 
 # ---------------------------------------------------------------------------
-# 3. AVISO DE LIMITACIONES METODOLÓGICAS (CALLOUT ROJO / OSCURO)
+# 3. EXPLORADOR DEL CATÁLOGO
 # ---------------------------------------------------------------------------
-render_html(
-    """
-    <div class="p5-callout-warning">
-        <div class="p5-callout-title">⚠️ AVISO METODOLOGICO Y LIMITACIONES DEL ESTUDIO (CALLING CARD)</div>
-        <ul style="margin:0;padding-left:1.25rem;color:#f2f2f2;line-height:1.55;font-size:0.95rem;">
-            <li><strong>Sesgo de supervivencia hacia juegos populares:</strong> La muestra original procede de listados curados de Backloggd con alta visibilidad comunitaria; no representa una muestra aleatoria de todos los lanzamientos comerciales de la industria.</li>
-            <li><strong>Popularidad relativa:</strong> Los niveles de popularidad (<em>bajo</em>, <em>medio</em>, <em>alto</em>) son <strong>relativos a los terciles del conjunto de entrenamiento</strong> dentro de este catálogo popular, no absolutos respecto al mercado global.</li>
-            <li><strong>Advertencia sobre datos de ventas:</strong> Las señales <code>Plays</code>, <code>Playing</code>, <code>Backlogs</code> y <code>Wishlist</code> reflejan registros de actividad en plataforma social en un corte temporal; <strong>no equivalen a unidades vendidas ni a ingresos en USD</strong>.</li>
-        </ul>
-    </div>
-    """
-)
-
-# ---------------------------------------------------------------------------
-# 4. EXPLORADOR RÁPIDO DEL CATÁLOGO MAESTRO
-# ---------------------------------------------------------------------------
-section_banner('Explorador Rápido del Catálogo', 'Consulta Directa de Títulos y Señales de Popularidad')
+section_banner('Busca un juego en el catálogo', 'Filtra por género o escribe parte del título')
 
 a, b = st.columns([2, 1])
-query = a.text_input('Buscar título', placeholder='Escribe parte del nombre (ej. Persona, Zelda, Elden Ring)')
+query = a.text_input('Buscar título', placeholder='Escribe parte del nombre (ej. Halo, Zelda, Elden Ring)')
 genre = b.selectbox('Género', ['Todos', *generos_unicos])
 
 view = df[df['Title'].str.contains(query, case=False, regex=False, na=False)]
@@ -453,12 +439,12 @@ if genre != 'Todos':
 
 labels = {
     'popularidad_indice': 'Índice de popularidad',
-    'critica_verificada_csv': 'Prensa según CSV (Metacritic)',
+    'critica_verificada_csv': 'Nota de prensa (Metacritic)',
     'Rating': 'Valoración de usuarios (0–5)',
-    'Plays': 'Plays · alcance acumulado',
-    'Playing': 'Playing · actividad',
-    'Backlogs': 'Backlogs · pendientes',
-    'Wishlist': 'Wishlist · deseos',
+    'Plays': 'Marcados como jugados',
+    'Playing': 'Jugando actualmente',
+    'Backlogs': 'Pendientes',
+    'Wishlist': 'Lista de deseos',
 }
 order = st.selectbox(
     'Ordenar por',
@@ -466,14 +452,7 @@ order = st.selectbox(
     format_func=labels.get,
 )
 
-st.caption(
-    f'Juegos visibles: {len(view):,} de {len(df):,} registros únicos por título y fecha. '
-    'Conteos de una captura; no son ventas.'
-)
-st.caption(
-    'El índice usa solo percentiles de Plays, Wishlist y Backlogs contra la referencia de entrenamiento. '
-    'Playing se muestra como contexto y solo interviene en el EDA/clustering.'
-)
+st.caption(f'Se muestran {len(view):,} de {len(df):,} juegos del catálogo.')
 
 shown = view.sort_values(order, ascending=False)[
     [
@@ -489,34 +468,44 @@ shown = view.sort_values(order, ascending=False)[
 ]
 
 if len(shown):
+    columnas_visibles = [
+        'Title',
+        'anio',
+        'Rating',
+        'critica_verificada_csv',
+        *SIGNALS,
+        'popularidad_indice',
+    ]
     st.dataframe(
         shown,
         hide_index=True,
         width='stretch',
+        column_order=columnas_visibles,
         column_config={
             'Title': 'Videojuego',
             'anio': st.column_config.NumberColumn('Año', format='%d'),
-            'critica_verificada_csv': 'Prensa según CSV',
+            'Rating': st.column_config.NumberColumn('Usuarios (0–5)', format='%.2f'),
+            'critica_verificada_csv': st.column_config.NumberColumn('Nota de prensa', format='%d'),
+            'Plays': st.column_config.NumberColumn('Marcados como jugados', format='%d'),
+            'Playing': st.column_config.NumberColumn('Jugando actualmente', format='%d'),
+            'Backlogs': st.column_config.NumberColumn('Pendientes', format='%d'),
+            'Wishlist': st.column_config.NumberColumn('Lista de deseos', format='%d'),
             'popularidad_indice': st.column_config.NumberColumn('Índice de popularidad', format='%.3f'),
         },
     )
     st.download_button(
         'Descargar esta consulta (CSV)',
         shown.to_csv(index=False).encode('utf-8'),
-        'consulta_phantom_thieves.csv',
+        'consulta_catalogo_videojuegos.csv',
         'text/csv',
     )
 else:
     st.info('No hay coincidencias. Cambia el título o selecciona Todos en género.')
 
-with st.expander('Cómo se define el Índice de Popularidad (Sin Fuga de Información)'):
-    st.latex(r'I=\frac{P_{\text{train}}(\text{Plays})+P_{\text{train}}(\text{Wishlist})+P_{\text{train}}(\text{Backlogs})}{3}')
+with st.expander('Cómo calculamos la popularidad'):
     st.write(
-        'P se ajusta con rangos medios/N solo en la partición de entrenamiento (n = 892). '
-        'Para los demás juegos se interpola contra esa referencia congelada: 0 por debajo del mínimo '
-        'y 1 por encima del máximo de entrenamiento. Las tres señales pesan lo mismo; Wishlist y Backlogs '
-        'representan interés pendiente y están correlacionadas. Playing se muestra como contexto, pero no '
-        'construye el objetivo ni entra al clasificador. No es una medida de ventas o rentabilidad.'
+        'Primero ordenamos los juegos por cuántas veces se marcaron como jugados, cuántas veces '
+        'se guardaron en pendientes y cuántas veces aparecieron en listas de deseos. Después '
+        'sacamos el promedio del lugar que ocupó cada juego en esas tres listas. Usamos los '
+        'juegos de entrenamiento como referencia para que todos se comparen en la misma escala.'
     )
-
-manual_checks()

@@ -12,7 +12,8 @@ import re
 RAIZ = Path(__file__).resolve().parents[1]
 NOMBRE = 'BITACORA_UNIFICADA.md'
 EXCLUIDOS = {'.git', '.venv', '.venv314', 'node_modules', '__pycache__',
-             '.cache', '.pytest_cache', 'REVISION_IA', 'dist', 'build'}
+             '.cache', '.pytest_cache', 'REVISION_IA', 'dist', 'build',
+             '.repositorios_locales', '.home', '.preferencias', 'cache_matplotlib'}
 
 
 def seleccion(archivo):
@@ -20,7 +21,7 @@ def seleccion(archivo):
     if set(relativo.parts) & EXCLUIDOS or archivo.name == NOMBRE:
         return False
     if archivo.suffix == '.log':
-        return True
+        return not archivo.with_suffix('.tex').is_file()
     if archivo.suffix == '.txt':
         return bool(re.search(r'^(pruebas|ejecucion|build_log|compilacion)', archivo.name))
     if archivo.suffix != '.md' or 'reports' not in relativo.parts:

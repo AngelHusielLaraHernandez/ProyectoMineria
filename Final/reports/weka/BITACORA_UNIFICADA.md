@@ -24,7 +24,7 @@ Se revisaron los entregables pedidos para Weka 3.8.7. No se encontraron corridas
 
 Se volvió a abrir Explorer y se cargó clasificacion.arff. La interfaz confirmó 892 instancias, 53 atributos y Class: nivel_popularidad (Nom). Evidencia nueva: [captura actual de Explorer](revision_explorer_2026_11_09.jpg). Las clases del archivo contienen alto=297, medio=297 y bajo=298.
 
-Auditoría detallada: [auditoria_cierre_2026_11_09.json](auditoria_cierre_2026_11_09.json). Los resultados de rendimiento siguen en [resumen_gui.md](resumen_gui.md).
+Auditoría detallada: [auditoria_cierre_2026_11_09.json](auditoria_cierre_2026_11_09.json). Los resultados de rendimiento siguen en [resumen_gui.md (sección consolidada)](#origen-finalreportswekaresumen_guimd).
 
 ## Que debo verificar manualmente
 
@@ -150,7 +150,7 @@ Se registran sin modificar las corridas: Python reporta tamaños 465 y 422 para 
 
 ## Auditoría de cierre — 9 de noviembre de 2026
 
-Se completó la comprobación de los seis entregables de Weka, los archivos de entrada, las capturas y el comparativo. No se encontraron pendientes en ese alcance. Véase [cierre_weka_2026_11_09.md](cierre_weka_2026_11_09.md). Se verificaron las corridas guardadas; no se ejecutaron nuevos entrenamientos durante esta revisión.
+Se completó la comprobación de los seis entregables de Weka, los archivos de entrada, las capturas y el comparativo. No se encontraron pendientes en ese alcance. Véase [cierre_weka_2026_11_09.md (sección consolidada)](#origen-finalreportswekacierre_weka_2026_11_09md). Se verificaron las corridas guardadas; no se ejecutaron nuevos entrenamientos durante esta revisión.
 
 ## Que debo verificar manualmente
 
@@ -161,7 +161,7 @@ Se completó la comprobación de los seis entregables de Weka, los archivos de e
 
 ## Actualización de comparación
 
-Las salidas gráficas originales de este informe se conservan. El nuevo comparativo calcula F1 macro y resuelve los F1 indefinidos de ZeroR desde su matriz, con procedencia explícita; véase [metodología y verificación](../tables/comparativo_herramientas_notas.md). Los protocolos de evaluación actuales están identificados en el CSV y no deben inferirse del comparativo histórico.
+Las salidas gráficas originales de este informe se conservan. El nuevo comparativo calcula F1 macro y resuelve los F1 indefinidos de ZeroR desde su matriz, con procedencia explícita; véase [metodología y verificación (bitácora de tables)](../tables/BITACORA_UNIFICADA.md#origen-finalreportstablescomparativo_herramientas_notasmd). Los protocolos de evaluación actuales están identificados en el CSV y no deben inferirse del comparativo histórico.
 
 ````
 
@@ -196,3 +196,10 @@ Primero se guardó una captura nueva de la ventana actual y un respaldo local; d
 ## Cierre de organización
 
 Los 5 respaldos ZIP anteriores se reunieron sin pérdida en RESPALDO_UNIFICADO.zip. Se verificaron las 242 entradas contra sus hashes; las salidas gráficas originales y capturas siguen disponibles fuera del ZIP. El índice del respaldo identifica cada procedencia.
+
+### Referencias vigentes tras la consolidación
+
+- `cierre_weka_2026_11_09.md` → [sección consolidada en esta bitácora](#origen-finalreportswekacierre_weka_2026_11_09md) (respaldo original en `RESPALDO_UNIFICADO.zip`).
+- `resumen_gui.md` → [sección consolidada en esta bitácora](#origen-finalreportswekaresumen_guimd) (respaldo original en `RESPALDO_UNIFICADO.zip`).
+- `../tables/comparativo_herramientas_notas.md` → [bitácora de tables](../tables/BITACORA_UNIFICADA.md#origen-finalreportstablescomparativo_herramientas_notasmd) y [comparativo vigente](../tables/comparativo_herramientas.csv).
+- `reports/codex_log.md` → [bitácora histórica restaurada](../codex_log.md) y [verificación vigente Weka/Orange](../verificacion_weka_orange.md).

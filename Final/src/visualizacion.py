@@ -1,15 +1,20 @@
 """Tokens y etiquetas compartidos; no transforma datos ni escalas estadísticas."""
 
+_MOD_VERSION = 'p5-v12-portadas'
+
 PALETA = {
     'bg-primary': '#050D22', 'bg-panel': '#15254A',
     'bg-chart': '#170D37', 'bg-chart-deep': '#100B29',
-    'primary': '#00CFFF', 'secondary': '#8B9CFF',
+    'primary': '#00CFFF', 'primary-dark': '#0E7490',
+    'secondary': '#8B9CFF',
     'purple-neon': '#A56BFF', 'purple-deep': '#6D42D8',
+    'purple-banner': '#3B2386',
     'accent': '#FFD166', 'text-primary': '#F5F7FF',
     'text-secondary': '#C8CDEB', 'border-primary': '#00CFFF',
-    'border-purple': '#A56BFF', 'grid-color': 'rgba(165, 107, 255, 0.18)',
+    'border-purple': '#A56BFF', 'grid-color': 'rgba(165, 107, 255, 0.36)',
 }
-COLOR_SENALES = { 'Plays': PALETA['primary'], 'Backlogs': PALETA['secondary'], 'Wishlist': PALETA['accent'] }
+FONT_SANS = 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
+COLOR_SENALES = {'Plays': PALETA['primary'], 'Backlogs': PALETA['secondary'], 'Wishlist': PALETA['accent']}
 COLORWAY = [PALETA[k] for k in ('primary', 'secondary', 'accent', 'purple-neon', 'purple-deep')]
 
 
@@ -36,7 +41,7 @@ def etiquetas_fuera_del_error(fig, indice_traza=0, desplazamiento_categoria=0.0,
             xanchor='left' if horizontal else 'center',
             yanchor='middle' if horizontal else 'bottom',
             xshift=10 if horizontal else 0, yshift=0 if horizontal else 10,
-            font=dict(family='ComicProyecto, sans-serif', size=13, color=PALETA['text-primary']),
+            font=dict(family=FONT_SANS, size=13, color=PALETA['text-primary']),
             bgcolor=PALETA['bg-chart'], borderpad=2,
         )
     return fig

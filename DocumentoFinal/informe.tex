@@ -1,0 +1,195 @@
+\section{Objetivos del proyecto}
+\begin{itemize}
+\item Revisar como se relacionan las notas de usuarios y prensa en el catalogo, por genero y por organizacion.
+\item Comparar la actividad acumulada, la actividad actual, los juegos pendientes y las listas de deseos para entender que muestra cada indicador.
+\item Buscar grupos de juegos con actividad, interes y recepcion parecidos.
+\item Estimar el nivel de popularidad de un juego a partir de su genero, organizacion, decada y calificaciones, y revisar en que casos se equivoca el modelo.
+\item Mostrar los resultados en una aplicacion donde se puedan filtrar los juegos y probar los parametros de una prediccion.
+\end{itemize}
+
+\section{Datos del proyecto}
+\subsection{De donde salen los datos}
+Primero usamos como base un catalogo de Backloggd que Arnab Chaki publico en Kaggle. Antes de hacer el analisis ya se habian agregado las notas de Metacritic. Esa version tenia \Historico\ registros y, despues de revisar titulos y fechas repetidos, quedaron \Catalogo. En el datasheet, en el apartado~\ref{sec:datos-cambios}, se ve cuantos registros habia en cada paso. Si dos juegos tienen el mismo nombre, tambien revisamos la fecha para distinguirlos.
+
+\subsection{Que significan las columnas}
+\begin{description}
+\item[Partidas registradas.] Es el conteo acumulado de registros de personas que marcaron el juego como jugado en Backloggd. Una persona puede haberlo marcado aunque ya no lo este jugando.
+\item[Jugando actualmente.] Es cuantas personas lo tenian marcado como juego en curso al momento de recopilar los datos.
+\item[Juegos pendientes.] Es cuantas personas lo agregaron a su lista para jugarlo mas adelante.
+\item[Lista de deseos.] Es cuantas personas lo agregaron a la lista de titulos que les interesan.
+\item[Calificacion de usuarios y nota de prensa.] La primera va de 0 a 5 y la segunda de 0 a 100. Cuando comparamos las dos notas, primero las ponemos en la misma escala.
+\item[Generos, organizacion y fecha.] Un juego puede tener mas de un genero. El campo de organizaciones puede incluir a estudios y editoras. De la fecha se obtiene la decada de lanzamiento.
+\end{description}
+
+\section{Como se hizo el analisis}
+Para ordenar el trabajo seguimos CRISP-DM. Primero vimos que queriamos averiguar y que datos teniamos para hacerlo. Despues limpiamos el catalogo, hicimos las graficas y probamos los grupos y las predicciones. Al final pusimos los resultados en Streamlit para poder revisar que pasa al cambiar los datos del formulario.
+
+\subsection{Preparacion de los datos}
+Lo primero que revisamos fue como venian los conteos. Si un dato viene como 1.2 mil, hay que leerlo como 1,200. En este caso los conteos ya venian como numeros. Tambien revisamos las fechas y dejamos sin decada los juegos cuya fecha no se pudo leer. Un mismo juego puede ser de aventura y de rol, asi que lo contamos en ambos cuando comparamos generos.
+
+Para comparar las notas usamos los juegos que tenian las dos. Algunas cifras que venian en la columna de prensa se habian estimado, asi que las dejamos fuera de esa comparacion. Ahora bien, si queremos probar un juego en la web y no tenemos su nota de prensa, podemos marcar esa opcion. Lo que hace el modelo en ese caso es usar la mediana, que es la nota que queda en medio al ordenar las notas de entrenamiento.
+
+\section{Problematica a atender}
+Una nota alta nos dice que a quienes calificaron el juego les gusto. Ahora bien, para saber que tanto se jugo o si la gente tiene ganas de jugarlo tenemos que ver los otros conteos. En los juegos como servicio hay otra pregunta. Si se sigue gastando en mantener el juego despues del lanzamiento, ¿cuanto de lo que se gasto se llega a recuperar?
+
+\subsection{Que encontramos en los casos publicados}
+\CasosComerciales
+
+En estos casos cada empresa dio un dato distinto. En uno sabemos que se cerro el juego y se devolvio el dinero. En otro sabemos cuantas copias se vendieron en cierto tiempo. Para decir que genero tuvo mas juegos con perdidas tendriamos que conocer cuanto ingreso y cuanto costo cada juego, incluyendo los que recuperaron su dinero y los que quedaron por debajo.
+
+\subsection{Como se podria comparar el riesgo por genero}
+Para hacer esa comparacion primero escogeriamos juegos que salieron en fechas parecidas. Despues sumariamos los gastos de desarrollo, publicidad y operacion, y revisariamos si cada juego los recupero en sus primeros 24 meses. Tambien separariamos los juegos como servicio y tomariamos en cuenta el presupuesto, la plataforma, el tamaño del estudio y si el juego ya venia de una franquicia. Si queremos saber si una prediccion ayuda a evitar perdidas, habria que comparar que paso con proyectos donde si se uso el modelo y proyectos que siguieron el proceso habitual.
+
+\section{Que vimos en las graficas}
+\subsection{Actividad e interes por genero}
+En la figura~\ref{fig:actividad} lo que vemos es una fila por genero. La linea de cada caja nos dice que conteo quedo a la mitad y la caja nos muestra donde se concentra la mitad central de los juegos. Los puntos que quedan aparte son juegos con conteos alejados del resto. Si dos generos tienen la linea casi en el mismo lugar, podemos ver cual tiene los juegos mas dispersos fijandonos en cual caja es mas larga.
+
+Ahora bien, si vemos los numeros de abajo, de 100 a 1,000 hay el mismo espacio que de 1,000 a 10,000. Esto pasa porque cada salto multiplica por diez. Usamos esa escala para que en la misma grafica alcancen a verse los juegos que tienen pocos registros y los que tienen muchos.
+
+\captura{web_actividad_nueva.jpg}{Distribucion de actividad por genero en la pestaña Señales de actividad.}{fig:actividad}
+
+\subsection{Como se comparan usuarios y prensa}
+Primero pasamos la nota de usuarios a la escala de 100. Por ejemplo, 4 de 5 se vuelve 80. Si para el mismo juego la prensa puso 90, al restar quedan $-10$ puntos. El signo menos nos dice que la prensa le dio mas y el 10 nos dice por cuanto.
+
+De los juegos que tenian las dos notas usamos \Pares. Pearson nos dio \PearsonGlobal\ y Spearman \SpearmanGlobal. Lo que nos dicen esos numeros es que las notas suelen moverse en el mismo sentido. Pearson usa los valores de las notas y Spearman se fija en el lugar que ocupa cada juego al ordenarlas. Para hacer el calculo por genero u organizacion usamos grupos con al menos 20 juegos con las dos notas.
+
+\AsociacionGrupos
+
+En la tabla podemos ver el caso de Disparos. La relacion sale positiva y, al mismo tiempo, hay casi 13 puntos de diferencia entre notas en promedio. Pensemos en dos listas donde los primeros juegos son los mismos, pero una lista tiene calificaciones mas altas. Los juegos quedan en lugares parecidos aunque las notas no sean iguales.
+
+\subsection{Como escogimos la cantidad de grupos}
+Para hacer los grupos usamos cuatro conteos y las dos notas. Como los conteos pueden venir en miles y una de las notas llega a 5, primero ajustamos los conteos grandes y despues pusimos las seis medidas en una escala que se pudiera comparar. De esa forma, el conteo no domina el grupo solo porque su numero es mas grande.
+
+La grafica de la izquierda de la figura~\ref{fig:kmeans} nos muestra que tan cerca quedan los juegos del centro de su grupo. En la de la derecha, el punto mas alto queda en dos grupos. A ese valor le llamamos silueta y nos ayuda a ver que tan bien se separan los grupos. Para Ward tambien quedaron dos. Si vemos el arbol de la figura~\ref{fig:ward}, las ramas que se juntan abajo corresponden a grupos mas parecidos. Las que se unen arriba estaban mas separadas.
+
+\captura{clustering_03_kmeans.png}{Comparacion de cortes para K-Means. A la derecha se muestra la separacion entre grupos.}{fig:kmeans}
+\captura{clase_ward_dendrograma.png}{Arbol de Ward. Los numeros entre parentesis indican cuantos juegos resume cada rama.}{fig:ward}
+
+\SilTitulo
+
+En la tabla buscamos valores altos en Silueta y Calinski--Harabasz y un valor bajo en Davies--Bouldin. En este caso, al usar los mismos juegos, K-Means quedo mejor en las tres medidas.
+
+\Perfiles
+Lo que se ve al comparar los promedios es que un grupo reune juegos con mas actividad, mas pendientes y notas mas altas. En el otro grupo esos numeros son menores. Como estamos viendo promedios, puede haber juegos individuales que se salgan de ese patron.
+
+Con DBSCAN revisamos donde se juntaban muchos puntos. Nos dio \GruposDbscan\ grupo y dejo \RuidoDbscan\ juegos aparte porque tenian pocos vecinos cercanos. En la figura~\ref{fig:pca}, cada punto es un juego y el color nos dice en que grupo quedo. Los dos ejes resumen las seis medidas. Si vemos el panel de DBSCAN, aparece un conjunto grande y unos cuantos puntos separados.
+
+\captura{pca_tres_metodos.png}{Mapa de juegos con los grupos de K-Means, Ward y DBSCAN.}{fig:pca}
+
+\section{El modelo de popularidad}
+\subsection{Que aprende el modelo}
+Primero ordenamos los juegos tres veces. Una por partidas registradas, otra por deseos y otra por pendientes. De los tres lugares que tuvo cada juego sacamos un promedio. Despues separamos los juegos en tres partes de tamaño parecido. De ahi salen los niveles bajo, medio y alto. Cuando le pedimos al modelo que estime uno de esos niveles, le damos el genero, la organizacion, la decada y las dos notas. Los tres conteos sirven para saber cual era el nivel del juego y comprobar si le atino.
+
+Apartamos \JuegosPrueba\ juegos para la prueba final. Con los demas hicimos diez bloques. Entrenamos con nueve y revisamos el que quedo fuera, hasta pasar por todos. Volvimos a formar los bloques cinco veces. La configuracion se escogio con los datos usados para entrenar en cada vuelta y mantuvimos juntos los registros con el mismo titulo.
+
+\subsection{Como se eligio el modelo para la web}
+\ComparacionModelos
+
+La exactitud nos dice cuantos juegos quedaron en el nivel correcto. El F1 macro le da el mismo peso a cada nivel, asi que tambien toma en cuenta como salio el que mas le cuesta al modelo. Si vemos los promedios, la red neuronal quedo un poco arriba. La prueba que compara esa diferencia dio \PComparacion. Con ese resultado todavia no podemos decir cual rinde mejor. Para la web dejamos Random Forest porque sus resultados cambiaron menos entre vueltas y podemos revisar que datos uso mas.
+
+\subsection{Que paso en la prueba}
+\MatrizConfusion
+
+En la diagonal estan los aciertos. En la fila de nivel medio vemos que acerto \AciertosMedio\ de \TotalMedio. Si seguimos leyendo esa fila, vemos cuantos quedaron como bajos y cuantos como altos. El resultado de toda la prueba fue \ExactitudPrueba\ de exactitud y \FPrueba\ de F1 macro. Como ya habiamos probado la red neuronal con esos mismos juegos, para saber como saldria con lanzamientos nuevos tendriamos que probar con otro grupo.
+
+Para ver un error concreto, en la tabla de abajo aparece Resident Evil 4: Wii Edition. Segun los conteos del catalogo quedo en el nivel bajo y el modelo lo puso en alto. Lo podemos comparar con los otros ejemplos para ver en que niveles se equivoco, usando como referencia las partidas registradas, los pendientes y los deseos.
+
+\EjemplosError
+
+\subsection{Como ajustamos las probabilidades}
+Si a varios juegos les damos cerca de 70\,\% de probabilidad de quedar en alto, esperamos que alrededor de siete de cada diez terminen en ese nivel. Para acercar los porcentajes a lo que observamos usamos un ajuste llamado escalado de temperatura. Lo calculamos con \JuegosCalibracion\ juegos de entrenamiento. Para obtener el porcentaje de cada juego usamos un bosque que se entreno dejando fuera su bloque. Despues comparamos los porcentajes con y sin el ajuste en los \JuegosPrueba\ juegos apartados para la prueba.
+
+\MetricasCalibracion
+
+Las dos medidas bajaron en esta prueba. Brier compara las tres probabilidades con el nivel que realmente obtuvo cada juego. Log-loss aumenta sobre todo cuando el modelo asigna una probabilidad muy baja al nivel que si ocurrio. El ajuste cambia los porcentajes y mantiene el nivel con la barra mas larga.
+
+En la pagina Modelo podemos elegir alto, medio o bajo. En la figura~\ref{fig:fiabilidad} elegimos alto. Cada punto agrupa juegos a los que el bosque les dio porcentajes parecidos. Abajo leemos la probabilidad media y a la izquierda vemos que parte de esos juegos quedo en alto. Si el punto cae sobre la diagonal, los dos porcentajes coinciden. La linea morada muestra los valores originales y la azul los ajustados.
+
+\captura{web_calibracion.jpg}{Probabilidades antes y despues del ajuste para el nivel alto en la pagina Modelo.}{fig:fiabilidad}
+
+\section{Comparacion con Weka}
+Tambien hicimos la comparacion en Weka. Lo que vemos en la parte de arriba de la figura~\ref{fig:weka} es cuantos juegos acerto el bosque. Abajo se ve cuales confundio con otro nivel. En Weka salio con la exactitud mas alta de los cuatro modelos. En ese caso la prueba se hizo por diez bloques. En la web mostramos el porcentaje obtenido con los juegos que se dejaron aparte para la prueba final.
+
+\ResultadosWeka
+\captura{RandomForest.png}{Resultado del bosque en Weka, con exactitud y matriz de aciertos y errores.}{fig:weka}
+
+\section{Como usamos la aplicacion}
+Primero abrimos Inicio. Desde ahi podemos pasar a Exploracion para cambiar el genero, la decada o el rango de notas y ver como cambia la consulta. En la parte de arriba estan las pestañas de actividad, notas, grupos y casos comerciales. Si queremos ver los aciertos y errores de la prueba entramos a Modelo.
+
+\captura{web_inicio_nueva.jpg}{Inicio del observatorio con arte de Halo Infinite y Link en el menu lateral.}{fig:inicio}
+\captura{web_juegos_destacados.jpg}{Tarjetas de Inicio con imagenes de Zelda, God of War y Super Mario Odyssey.}{fig:juegos-destacados}
+\captura{web_exploracion_nueva.jpg}{Filtros y pestañas del tablero de exploracion.}{fig:exploracion}
+\captura{web_comercial_nueva.jpg}{Caso comercial en la pestaña de juegos como servicio.}{fig:comercial}
+\captura{web_modelo_nueva.jpg}{Ficha de Random Forest en la pagina Modelo.}{fig:modelo}
+\captura{web_bitacora_algoritmos.jpg}{Bitacora con los cinco algoritmos y el detalle de la red neuronal seleccionada.}{fig:bitacora-algoritmos}
+
+\subsection{Como se configuran los parametros de prediccion}
+Para hacer la prueba entramos a Prediccion. En la figura~\ref{fig:formulario} se ve el formulario. Para repetir lo que aparece en la captura, dejamos los valores asi.
+
+\begin{enumerate}
+\item Elegimos uno o varios generos. En este caso dejamos Aventura y Rol, que aparecen como \emph{Adventure} y \emph{RPG} en el menu.
+\item En organizacion dejamos «Otro / Organizacion no frecuente». Esta opcion sirve cuando la organizacion no aparece entre las opciones del modelo.
+\item Seleccionamos la decada de 2020. La decada se refiere al lanzamiento que queremos representar.
+\item Dejamos 82 de 100 en la nota de prensa y 3.9 de 5 en la calificacion de usuarios. Si no conocemos la de prensa, podemos marcar la casilla que simula su ausencia.
+\item Presionamos «Analizar lanzamiento» y revisamos el nivel, las tres barras y los juegos similares.
+\end{enumerate}
+
+\captura{web_prediccion_formulario.jpg}{Formulario de Prediccion con el fondo de Spider-Man 2 y los valores del ejemplo.}{fig:formulario}
+
+\subsection{Como se lee el resultado}
+Con estos valores la web nos regreso el nivel bajo. En la figura~\ref{fig:prediccion}, la barra de bajo quedo en 44.9\,\%, la de medio en 27.8\,\% y la de alto en 27.4\,\%. Bajo es el nivel que el bosque estima como mas probable para este ejemplo.
+
+Si abrimos el menu debajo de las barras, podemos ver los dos cortes del indice y donde empieza cada nivel, como en la figura~\ref{fig:niveles}. Los cortes se calcularon con los juegos de entrenamiento. El indice resume partidas registradas, pendientes y listas de deseos. Los porcentajes de las barras indican que tan probable estima el bosque que el juego caiga en cada rango de ese indice.
+
+\captura{web_prediccion_resultado.jpg}{Probabilidades calibradas con nota de prensa de 82.}{fig:prediccion}
+\captura{web_niveles_popularidad.jpg}{Menu desplegado con la definicion y los cortes de los tres niveles.}{fig:niveles}
+
+Debajo del resultado podemos revisar los cinco juegos que mas se parecen a los datos del formulario. En la figura~\ref{fig:juegos-parecidos} cada juego aparece con su portada, su año y la distancia calculada. Una distancia menor indica que el juego se parece mas al ejemplo que ingresamos.
+
+\captura{web_juegos_parecidos.jpg}{Juegos parecidos para el ejemplo de Aventura y Rol con nota de prensa de 82.}{fig:juegos-parecidos}
+
+Cuando falta una portada local, la web busca el titulo y el año en la tienda de Steam. Si no encuentra una ficha que coincida, muestra la organizacion que figura en el catalogo.
+
+\subsubsection*{Conclusion de la consulta}
+Cada consulta explica cual de los tres niveles quedo primero y por cuantos puntos porcentuales. Tambien muestra las notas que se usaron. Si quitamos la nota de prensa, indica con que valor se completo. En la figura~\ref{fig:conclusion-prediccion} dejamos Aventura y Rol, y cambiamos las notas a 5 de 5 y 100 de 100. El nivel alto obtuvo 65.4\,\% y el nivel medio quedo segundo con 19.7\,\%.
+
+\captura{web_conclusion_prediccion.jpg}{Conclusion que genero la web con las notas de usuarios y prensa al maximo.}{fig:conclusion-prediccion}
+
+\subsubsection*{Prueba sin nota de prensa}
+Dejamos todo igual y marcamos la casilla para quitar la nota de Metacritic. Al volver a presionar el boton, la figura~\ref{fig:sinnnota} muestra que el nivel se mantuvo en bajo y que la barra subio a 47.5\,\%. En ese caso se completo la nota con el valor de en medio de las notas de entrenamiento. Mas abajo se muestran cinco juegos del entrenamiento con caracteristicas parecidas a las que elegimos.
+
+\captura{web_prediccion_sin_nota.jpg}{Probabilidades calibradas al simular que falta la nota de prensa.}{fig:sinnnota}
+
+Despues hicimos otra prueba con 4.8 de usuarios y 99 de prensa. Dejamos los generos, la organizacion y la decada como estaban. Con las dos notas salio alto y al quitar la de prensa salio bajo. La tabla de abajo deja los valores para repetir esa prueba.
+
+\EscenariosNotas
+
+\section{Conclusiones}
+Despues de revisar los resultados vimos que una sola nota deja fuera parte de lo que pasa con un juego. Hay casos donde la gente lo tiene en deseos o en pendientes y todavia no lo marca como jugado. Tambien hay juegos donde la prensa dio mas puntos que los usuarios. Al tener los datos por separado podemos ver cual de esas cosas esta pasando.
+
+Con los grupos pudimos ver que juegos se parecen por actividad y por notas. En la prediccion se ve que el bosque separo mejor los niveles bajo y alto que el nivel medio. Ademas, trabajamos con juegos que aparecen en Backloggd, asi que los generos con poca presencia pueden quedar menos representados.
+
+En cuanto a los juegos como servicio, ya podemos mostrar ejemplos de lo que publicaron las empresas. Para responder que genero pierde mas dinero todavia necesitamos tener los ingresos y costos de juegos comparables. Lo que si podemos probar en la web es como cambia la popularidad estimada cuando cambiamos las entradas del formulario.
+
+\appendix
+\section{Datasheet del catalogo}
+\label{sec:datasheet}
+\subsection{Como quedo el catalogo}
+\label{sec:datos-cambios}
+\ProcedenciaDatos
+
+La version que ya tenia notas de prensa traia \Historico\ registros. Cuando repetimos la revision por nombre y fecha, vimos que \Descartes\ filas habian quedado fuera porque repetian esos dos datos. Al volver a limpiar el catalogo con el que trabajamos se mantuvieron sus \Catalogo\ registros.
+
+\subsection{Cuantos juegos entraron en las comparaciones}
+Hubo tres registros con diferencias que no pudimos aclarar. Los dejamos en el catalogo y los apartamos de los calculos principales. De ahi quedaron \Elegibles\ juegos para revisar. De esos, \Pares\ tenian completos los datos que usamos para comparar notas y formar grupos. Si sumamos por genero, un mismo juego puede aparecer en varias filas.
+
+\section{Plan de trabajo}
+En la primera columna vemos la actividad. En las siguientes esta cuando pensabamos hacerla y cuando quedo el primer registro que encontramos. Si se guardaron varias actividades juntas, esa fecha puede ser posterior al dia en que se hicieron.
+
+\PlanTrabajo
+
+\nocite{chaki2023popular,chapman2000crisp,frank2016weka,\FuentesComerciales}
+\clearpage
+\pagestyle{referencias}
+\printbibliography[heading=bibintoc,title={Referencias}]
+\end{document}

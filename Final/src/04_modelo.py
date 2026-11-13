@@ -32,6 +32,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import FunctionTransformer, OneHotEncoder, StandardScaler, KBinsDiscretizer
 from sklearn.tree import DecisionTreeClassifier
 
+from src.calibracion import calibrar_modelo
 from src.config import FEATURES, SEED
 from src.evaluacion_anidada import ACTIVO, PLIEGUES_INTERNOS, REPETICIONES, evaluar, guardar_calibracion, puntuar
 from src.features import CategoriasFrecuentes, lista_cruda
@@ -272,6 +273,7 @@ def entrenar_datos(entrada, raiz=RAIZ):
     export['fold_validacion'] = pd.Series(pd.NA, index=export.index, dtype='Int64')
     for fold, (_, validacion) in enumerate(folds, 1):
         export.loc[tr[validacion], 'fold_validacion'] = fold
+    metadata['calibracion_web'] = calibrar_modelo(mejor, export.iloc[tr], export.iloc[te], tablas)
     for c in ['generos', 'estudio', 'organizaciones']:
         if c in export:
             export[c] = export[c].map(lambda v: json.dumps(lista_cruda(v), ensure_ascii=False))
@@ -379,7 +381,7 @@ def escribir_reporte(informes, m, tabla, perm, matrices):
         '- Procedencia de notas y sesgo de cobertura; la mediana puede conservar señales indirectas de ausencia.',
         '- Identidad de juegos homónimos y roles de Team; los tres conflictos históricos siguen excluidos.',
         '- Vecinos como similitud de atributos declarados, no recomendaciones de éxito ni causalidad.',
-        '- Probabilidades no calibradas y límites de la clase media.', '']
+        '- Límites de la clase media y fiabilidad de los porcentajes calibrados en nuevos catálogos.', '']
     (informes / 'modelo.md').write_text('\n'.join(bloques), encoding='utf-8')
 
 

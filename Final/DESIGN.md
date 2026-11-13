@@ -1,16 +1,18 @@
-# Interfaz de consulta académica
+# Interfaz del Observatorio de Videojuegos (Identidad Persona 5 accesible)
 
-Modo: operar. Navegación lateral de Streamlit, encabezados breves y una tarea principal por página.
-Tablas y formularios nativos: conservan teclado, foco y adaptación de Streamlit. Los gráficos muestran unidades y alcance.
+Modo: consulta e inferencia académica con temática visual oscura Persona 5 (azul medianoche y neón cian/morado). La navegación principal reside exclusivamente en la barra lateral personalizada (`showSidebarNavigation = false` en `.streamlit/config.toml`), con encabezados semánticos y tareas delimitadas por página.
+Las tablas, selectores y formularios conservan la semántica nativa, teclado, foco visible (`:focus-visible` sin recorte de `clip-path`) y adaptación responsiva de Streamlit. Los gráficos muestran unidades, marcadores/símbolos diferenciados y margen superior suficiente para no quedar cubiertos por la barra de herramientas.
 
-## Tokens
+## Tokens y tipografía
 
-Fuente: sans serif nativa, escala tipográfica de Streamlit.
-Fondo `#fafaf7`, superficie secundaria `#eeeee8`, texto `#202d2b`, acción `#17645b`.
-Sin animaciones decorativas ni métricas presentadas como garantía de éxito.
+- **Tipografía**: `'ComicProyecto'` (`Persona5main.ttf`) reservada exclusivamente para encabezados display (`.p5-banner-title`, `.p5-hero-title`, `.sc-role`, `.p5-row`); `sans-serif` del sistema con `tabular-nums` en cuerpo, tablas, formularios, tarjetas KPI y ejes/hover de Plotly.
+- **Paleta y contraste WCAG AA (>= 4.5:1)**:
+  - Fondo principal `#050D22`, panel `#15254A`, lienzo de gráficas `#170D37` / `#100B29`.
+  - Acento cian neón `#00CFFF` sobre fondos oscuros (10.46:1); variante `#0E7490` para rellenos interactivos con texto blanco (`primaryColor` en `config.toml`, 5.36:1) y cifras sobre fondos claros (5.01:1).
+  - Acentos secundarios `#8B9CFF`, `#A56BFF`, `#3B2386` (gradiente de banners), `#FFD166`, texto `#F5F7FF` y secundario `#C8CDEB`.
+- **Movimiento y preferencias del sistema**: Transiciones de página ejecutadas únicamente al cambiar de vista (`session_state`), animaciones activadas de forma explícita con `@media (prefers-reduced-motion: no-preference)`, barras de desplazamiento adaptadas (`scrollbar-color`, `scrollbar-width: auto`, `scrollbar-gutter: stable`) y soporte para `@media (prefers-contrast: more)` y `@media (forced-colors: active)`.
 
 ## Estados y evidencia
 
-Filtros con estado vacío; errores de preparación con recuperación explícita; predicción solicitada mediante formulario.
-Se probaron las cuatro páginas, la búsqueda vacía y la predicción con valores ausentes mediante AppTest.
-La consulta principal se revisó visualmente en Chrome. El alcance visual no equivale a una auditoría completa de accesibilidad.
+Filtros con estado vacío; errores de preparación con recuperación explícita (`CRITICAL ALERT / MISSION FAILED`); audio unificado y accesible en la barra lateral sin paneles flotantes superpuestos; predicción solicitada mediante formulario.
+Se prueban las cuatro páginas, búsqueda vacía, caché de recursos y predicción con valores ausentes mediante `AppTest` y `pytest`.

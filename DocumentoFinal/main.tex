@@ -207,7 +207,19 @@
     urlcolor=cyan
 }
 
-\usepackage{caption}\captionsetup[table]{skip=8pt}
+
+\usepackage{xurl}
+\usepackage{caption}
+\captionsetup[table]{skip=8pt}
+\addto\captionsspanish{\renewcommand{\contentsname}{Indice}}
+\setcounter{tocdepth}{1}
+\newcommand{\captura}[3]{%
+  \begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\linewidth,height=.40\textheight,keepaspectratio]{figuras/#1}
+  \caption{#2}\label{#3}
+  \end{figure}\FloatBarrier
+}
 \begin{document}
 \hypersetup{pageanchor=false}
 \begin{titlepage}\input{Portada.tex}\end{titlepage}
@@ -215,509 +227,199 @@
 {\makeatletter\let\ps@plain\ps@indice\makeatother
 \pagestyle{indice}\thispagestyle{indice}\hypersetup{linkcolor=black}\tableofcontents\thispagestyle{indice}}
 \newpage\setcounter{page}{1}\hypersetup{pageanchor=true}\singlespacing
-\section*{Resumen}\addcontentsline{toc}{section}{Resumen}
-Este proyecto tiene como finalidad analizar de forma práctica cómo se relacionan la opinión de los jugadores, la crítica especializada y la popularidad que alcanza un videojuego dentro de Backloggd. La idea surge porque normalmente se utiliza una calificación para hablar del éxito de un título, aunque esa nota no nos dice cuántas personas lo juegan ni cuántas tienen interés en hacerlo. Para atender esta situación se revisaron las calificaciones y las métricas de interacción por separado, después se buscaron grupos de juegos similares y finalmente se construyó una aplicación que permite consultar los resultados y probar un modelo supervisado.
+\input{cifras_informe.tex}
+\section{Objetivos del proyecto}
+\begin{itemize}
+\item Revisar como se relacionan las notas de usuarios y prensa en el catalogo, por genero y por organizacion.
+\item Comparar la actividad acumulada, la actividad actual, los juegos pendientes y las listas de deseos para entender que muestra cada indicador.
+\item Buscar grupos de juegos con actividad, interes y recepcion parecidos.
+\item Estimar el nivel de popularidad de un juego a partir de su genero, organizacion, decada y calificaciones, y revisar en que casos se equivoca el modelo.
+\item Mostrar los resultados en una aplicacion donde se puedan filtrar los juegos y probar los parametros de una prediccion.
+\end{itemize}
 
-El original designado, \texttt{games\_curated.csv}, contiene 1,117 registros y 42 columnas; 1,114 son elegibles para el análisis principal y 887 tienen las seis variables completas para clustering. Pearson entre usuarios y prensa es 0.5439 en esos 887 pares. K-Means y Ward seleccionaron dos grupos, con siluetas de 0.3188 y 0.2807. Random Forest es el modelo activo. Obtuvo 56.76\,\% de exactitud y F1 macro de 0.5577 sobre 222 juegos de prueba. En Weka, RandomForest obtiene 53.4753\,\% con validación cruzada de diez pliegues sobre 892 registros exportados. Las evaluaciones no son equivalentes y se presentan por separado.
+\section{Datos del proyecto}
+\subsection{De donde salen los datos}
+Primero usamos como base un catalogo de Backloggd que Arnab Chaki publico en Kaggle. Antes de hacer el analisis ya se habian agregado las notas de Metacritic. Esa version tenia \Historico\ registros y, despues de revisar titulos y fechas repetidos, quedaron \Catalogo. En el datasheet, en el apartado~\ref{sec:datos-cambios}, se ve cuantos registros habia en cada paso. Si dos juegos tienen el mismo nombre, tambien revisamos la fecha para distinguirlos.
 
-La aplicación permite explorar los hallazgos, enviar atributos crudos al Pipeline y consultar vecinos del entrenamiento. El resultado más importante es que podemos describir diferencias de recepción y popularidad dentro del catálogo, pero no demostrar rentabilidad, causalidad ni riesgo financiero de juegos como servicio. La clase media y la cobertura de prensa limitan la utilidad predictiva.
+\subsection{Que significan las columnas}
+\begin{description}
+\item[Partidas registradas.] Es el conteo acumulado de registros de personas que marcaron el juego como jugado en Backloggd. Una persona puede haberlo marcado aunque ya no lo este jugando.
+\item[Jugando actualmente.] Es cuantas personas lo tenian marcado como juego en curso al momento de recopilar los datos.
+\item[Juegos pendientes.] Es cuantas personas lo agregaron a su lista para jugarlo mas adelante.
+\item[Lista de deseos.] Es cuantas personas lo agregaron a la lista de titulos que les interesan.
+\item[Calificacion de usuarios y nota de prensa.] La primera va de 0 a 5 y la segunda de 0 a 100. Cuando comparamos las dos notas, primero las ponemos en la misma escala.
+\item[Generos, organizacion y fecha.] Un juego puede tener mas de un genero. El campo de organizaciones puede incluir a estudios y editoras. De la fecha se obtiene la decada de lanzamiento.
+\end{description}
 
-\section{Objetivos del proyecto}\label{sec:objetivos}
-\subsection{Objetivo general}
-Aplicar técnicas de minería de datos sobre el catálogo de videojuegos contenido en games\_curated.csv para analizar la diferencia entre la valoración de la comunidad y la crítica especializada, reconocer cómo se distribuyen la actividad y el interés de los jugadores, encontrar grupos de títulos con características similares y estimar su nivel de popularidad relativa mediante un modelo supervisado. Los resultados se integran en una aplicación web local para que puedan explorarse y contrastarse con ejemplos concretos.
-\subsection{Objetivos específicos}
+\section{Como se hizo el analisis}
+Para ordenar el trabajo seguimos CRISP-DM. Primero vimos que queriamos averiguar y que datos teniamos para hacerlo. Despues limpiamos el catalogo, hicimos las graficas y probamos los grupos y las predicciones. Al final pusimos los resultados en Streamlit para poder revisar que pasa al cambiar los datos del formulario.
+
+\subsection{Preparacion de los datos}
+Lo primero que revisamos fue como venian los conteos. Si un dato viene como 1.2 mil, hay que leerlo como 1,200. En este caso los conteos ya venian como numeros. Tambien revisamos las fechas y dejamos sin decada los juegos cuya fecha no se pudo leer. Un mismo juego puede ser de aventura y de rol, asi que lo contamos en ambos cuando comparamos generos.
+
+Para comparar las notas usamos los juegos que tenian las dos. Algunas cifras que venian en la columna de prensa se habian estimado, asi que las dejamos fuera de esa comparacion. Ahora bien, si queremos probar un juego en la web y no tenemos su nota de prensa, podemos marcar esa opcion. Lo que hace el modelo en ese caso es usar la mediana, que es la nota que queda en medio al ordenar las notas de entrenamiento.
+
+\section{Problematica a atender}
+Una nota alta nos dice que a quienes calificaron el juego les gusto. Ahora bien, para saber que tanto se jugo o si la gente tiene ganas de jugarlo tenemos que ver los otros conteos. En los juegos como servicio hay otra pregunta. Si se sigue gastando en mantener el juego despues del lanzamiento, ¿cuanto de lo que se gasto se llega a recuperar?
+
+\subsection{Que encontramos en los casos publicados}
+\CasosComerciales
+
+En estos casos cada empresa dio un dato distinto. En uno sabemos que se cerro el juego y se devolvio el dinero. En otro sabemos cuantas copias se vendieron en cierto tiempo. Para decir que genero tuvo mas juegos con perdidas tendriamos que conocer cuanto ingreso y cuanto costo cada juego, incluyendo los que recuperaron su dinero y los que quedaron por debajo.
+
+\subsection{Como se podria comparar el riesgo por genero}
+Para hacer esa comparacion primero escogeriamos juegos que salieron en fechas parecidas. Despues sumariamos los gastos de desarrollo, publicidad y operacion, y revisariamos si cada juego los recupero en sus primeros 24 meses. Tambien separariamos los juegos como servicio y tomariamos en cuenta el presupuesto, la plataforma, el tamaño del estudio y si el juego ya venia de una franquicia. Si queremos saber si una prediccion ayuda a evitar perdidas, habria que comparar que paso con proyectos donde si se uso el modelo y proyectos que siguieron el proceso habitual.
+
+\section{Que vimos en las graficas}
+\subsection{Actividad e interes por genero}
+En la figura~\ref{fig:actividad} lo que vemos es una fila por genero. La linea de cada caja nos dice que conteo quedo a la mitad y la caja nos muestra donde se concentra la mitad central de los juegos. Los puntos que quedan aparte son juegos con conteos alejados del resto. Si dos generos tienen la linea casi en el mismo lugar, podemos ver cual tiene los juegos mas dispersos fijandonos en cual caja es mas larga.
+
+Ahora bien, si vemos los numeros de abajo, de 100 a 1,000 hay el mismo espacio que de 1,000 a 10,000. Esto pasa porque cada salto multiplica por diez. Usamos esa escala para que en la misma grafica alcancen a verse los juegos que tienen pocos registros y los que tienen muchos.
+
+\captura{web_actividad_nueva.jpg}{Distribucion de actividad por genero en la pestaña Señales de actividad.}{fig:actividad}
+
+\subsection{Como se comparan usuarios y prensa}
+Primero pasamos la nota de usuarios a la escala de 100. Por ejemplo, 4 de 5 se vuelve 80. Si para el mismo juego la prensa puso 90, al restar quedan $-10$ puntos. El signo menos nos dice que la prensa le dio mas y el 10 nos dice por cuanto.
+
+De los juegos que tenian las dos notas usamos \Pares. Pearson nos dio \PearsonGlobal\ y Spearman \SpearmanGlobal. Lo que nos dicen esos numeros es que las notas suelen moverse en el mismo sentido. Pearson usa los valores de las notas y Spearman se fija en el lugar que ocupa cada juego al ordenarlas. Para hacer el calculo por genero u organizacion usamos grupos con al menos 20 juegos con las dos notas.
+
+\AsociacionGrupos
+
+En la tabla podemos ver el caso de Disparos. La relacion sale positiva y, al mismo tiempo, hay casi 13 puntos de diferencia entre notas en promedio. Pensemos en dos listas donde los primeros juegos son los mismos, pero una lista tiene calificaciones mas altas. Los juegos quedan en lugares parecidos aunque las notas no sean iguales.
+
+\subsection{Como escogimos la cantidad de grupos}
+Para hacer los grupos usamos cuatro conteos y las dos notas. Como los conteos pueden venir en miles y una de las notas llega a 5, primero ajustamos los conteos grandes y despues pusimos las seis medidas en una escala que se pudiera comparar. De esa forma, el conteo no domina el grupo solo porque su numero es mas grande.
+
+La grafica de la izquierda de la figura~\ref{fig:kmeans} nos muestra que tan cerca quedan los juegos del centro de su grupo. En la de la derecha, el punto mas alto queda en dos grupos. A ese valor le llamamos silueta y nos ayuda a ver que tan bien se separan los grupos. Para Ward tambien quedaron dos. Si vemos el arbol de la figura~\ref{fig:ward}, las ramas que se juntan abajo corresponden a grupos mas parecidos. Las que se unen arriba estaban mas separadas.
+
+\captura{clustering_03_kmeans.png}{Comparacion de cortes para K-Means. A la derecha se muestra la separacion entre grupos.}{fig:kmeans}
+\captura{clase_ward_dendrograma.png}{Arbol de Ward. Los numeros entre parentesis indican cuantos juegos resume cada rama.}{fig:ward}
+
+\SilTitulo
+
+En la tabla buscamos valores altos en Silueta y Calinski--Harabasz y un valor bajo en Davies--Bouldin. En este caso, al usar los mismos juegos, K-Means quedo mejor en las tres medidas.
+
+\Perfiles
+Lo que se ve al comparar los promedios es que un grupo reune juegos con mas actividad, mas pendientes y notas mas altas. En el otro grupo esos numeros son menores. Como estamos viendo promedios, puede haber juegos individuales que se salgan de ese patron.
+
+Con DBSCAN revisamos donde se juntaban muchos puntos. Nos dio \GruposDbscan\ grupo y dejo \RuidoDbscan\ juegos aparte porque tenian pocos vecinos cercanos. En la figura~\ref{fig:pca}, cada punto es un juego y el color nos dice en que grupo quedo. Los dos ejes resumen las seis medidas. Si vemos el panel de DBSCAN, aparece un conjunto grande y unos cuantos puntos separados.
+
+\captura{pca_tres_metodos.png}{Mapa de juegos con los grupos de K-Means, Ward y DBSCAN.}{fig:pca}
+
+\section{El modelo de popularidad}
+\subsection{Que aprende el modelo}
+Primero ordenamos los juegos tres veces. Una por partidas registradas, otra por deseos y otra por pendientes. De los tres lugares que tuvo cada juego sacamos un promedio. Despues separamos los juegos en tres partes de tamaño parecido. De ahi salen los niveles bajo, medio y alto. Cuando le pedimos al modelo que estime uno de esos niveles, le damos el genero, la organizacion, la decada y las dos notas. Los tres conteos sirven para saber cual era el nivel del juego y comprobar si le atino.
+
+Apartamos \JuegosPrueba\ juegos para la prueba final. Con los demas hicimos diez bloques. Entrenamos con nueve y revisamos el que quedo fuera, hasta pasar por todos. Volvimos a formar los bloques cinco veces. La configuracion se escogio con los datos usados para entrenar en cada vuelta y mantuvimos juntos los registros con el mismo titulo.
+
+\subsection{Como se eligio el modelo para la web}
+\ComparacionModelos
+
+La exactitud nos dice cuantos juegos quedaron en el nivel correcto. El F1 macro le da el mismo peso a cada nivel, asi que tambien toma en cuenta como salio el que mas le cuesta al modelo. Si vemos los promedios, la red neuronal quedo un poco arriba. La prueba que compara esa diferencia dio \PComparacion. Con ese resultado todavia no podemos decir cual rinde mejor. Para la web dejamos Random Forest porque sus resultados cambiaron menos entre vueltas y podemos revisar que datos uso mas.
+
+\subsection{Que paso en la prueba}
+\MatrizConfusion
+
+En la diagonal estan los aciertos. En la fila de nivel medio vemos que acerto \AciertosMedio\ de \TotalMedio. Si seguimos leyendo esa fila, vemos cuantos quedaron como bajos y cuantos como altos. El resultado de toda la prueba fue \ExactitudPrueba\ de exactitud y \FPrueba\ de F1 macro. Como ya habiamos probado la red neuronal con esos mismos juegos, para saber como saldria con lanzamientos nuevos tendriamos que probar con otro grupo.
+
+Para ver un error concreto, en la tabla de abajo aparece Resident Evil 4: Wii Edition. Segun los conteos del catalogo quedo en el nivel bajo y el modelo lo puso en alto. Lo podemos comparar con los otros ejemplos para ver en que niveles se equivoco, usando como referencia las partidas registradas, los pendientes y los deseos.
+
+\EjemplosError
+
+\subsection{Como ajustamos las probabilidades}
+Si a varios juegos les damos cerca de 70\,\% de probabilidad de quedar en alto, esperamos que alrededor de siete de cada diez terminen en ese nivel. Para acercar los porcentajes a lo que observamos usamos un ajuste llamado escalado de temperatura. Lo calculamos con \JuegosCalibracion\ juegos de entrenamiento. Para obtener el porcentaje de cada juego usamos un bosque que se entreno dejando fuera su bloque. Despues comparamos los porcentajes con y sin el ajuste en los \JuegosPrueba\ juegos apartados para la prueba.
+
+\MetricasCalibracion
+
+Las dos medidas bajaron en esta prueba. Brier compara las tres probabilidades con el nivel que realmente obtuvo cada juego. Log-loss aumenta sobre todo cuando el modelo asigna una probabilidad muy baja al nivel que si ocurrio. El ajuste cambia los porcentajes y mantiene el nivel con la barra mas larga.
+
+En la pagina Modelo podemos elegir alto, medio o bajo. En la figura~\ref{fig:fiabilidad} elegimos alto. Cada punto agrupa juegos a los que el bosque les dio porcentajes parecidos. Abajo leemos la probabilidad media y a la izquierda vemos que parte de esos juegos quedo en alto. Si el punto cae sobre la diagonal, los dos porcentajes coinciden. La linea morada muestra los valores originales y la azul los ajustados.
+
+\captura{web_calibracion.jpg}{Probabilidades antes y despues del ajuste para el nivel alto en la pagina Modelo.}{fig:fiabilidad}
+
+\section{Comparacion con Weka}
+Tambien hicimos la comparacion en Weka. Lo que vemos en la parte de arriba de la figura~\ref{fig:weka} es cuantos juegos acerto el bosque. Abajo se ve cuales confundio con otro nivel. En Weka salio con la exactitud mas alta de los cuatro modelos. En ese caso la prueba se hizo por diez bloques. En la web mostramos el porcentaje obtenido con los juegos que se dejaron aparte para la prueba final.
+
+\ResultadosWeka
+\captura{RandomForest.png}{Resultado del bosque en Weka, con exactitud y matriz de aciertos y errores.}{fig:weka}
+
+\section{Como usamos la aplicacion}
+Primero abrimos Inicio. Desde ahi podemos pasar a Exploracion para cambiar el genero, la decada o el rango de notas y ver como cambia la consulta. En la parte de arriba estan las pestañas de actividad, notas, grupos y casos comerciales. Si queremos ver los aciertos y errores de la prueba entramos a Modelo.
+
+\captura{web_inicio_nueva.jpg}{Inicio del observatorio con arte de Halo Infinite y Link en el menu lateral.}{fig:inicio}
+\captura{web_juegos_destacados.jpg}{Tarjetas de Inicio con imagenes de Zelda, God of War y Super Mario Odyssey.}{fig:juegos-destacados}
+\captura{web_exploracion_nueva.jpg}{Filtros y pestañas del tablero de exploracion.}{fig:exploracion}
+\captura{web_comercial_nueva.jpg}{Caso comercial en la pestaña de juegos como servicio.}{fig:comercial}
+\captura{web_modelo_nueva.jpg}{Ficha de Random Forest en la pagina Modelo.}{fig:modelo}
+\captura{web_bitacora_algoritmos.jpg}{Bitacora con los cinco algoritmos y el detalle de la red neuronal seleccionada.}{fig:bitacora-algoritmos}
+
+\subsection{Como se configuran los parametros de prediccion}
+Para hacer la prueba entramos a Prediccion. En la figura~\ref{fig:formulario} se ve el formulario. Para repetir lo que aparece en la captura, dejamos los valores asi.
+
 \begin{enumerate}
-\item Verificar el esquema, las escalas, los faltantes y la procedencia del maestro, conservando su integridad y documentando cada transformación.
-\item Estimar Pearson y Spearman entre notas, reportando tamaño muestral y p-valor por catálogo, género y organización, con un mínimo de veinte pares completos por grupo.
-\item Describir Plays, Playing, Backlogs y Wishlist; distinguir actividad observada de interés pendiente sin equipararlas a ventas.
-\item Comparar K-Means y Ward de dos a diez grupos sobre seis variables transformadas, informando métricas internas y tamaños. Conservar DBSCAN como contraste exploratorio histórico.
-\item Comparar una referencia mayoritaria, Naive Bayes, árbol y bosque para clasificar terciles de popularidad con entradas que no incluyan las señales del objetivo.
-\item Verificar el formulario contra el Pipeline guardado y ofrecer una demo local con exploración, predicción y explicación de las limitaciones.
+\item Elegimos uno o varios generos. En este caso dejamos Aventura y Rol, que aparecen como \emph{Adventure} y \emph{RPG} en el menu.
+\item En organizacion dejamos «Otro / Organizacion no frecuente». Esta opcion sirve cuando la organizacion no aparece entre las opciones del modelo.
+\item Seleccionamos la decada de 2020. La decada se refiere al lanzamiento que queremos representar.
+\item Dejamos 82 de 100 en la nota de prensa y 3.9 de 5 en la calificacion de usuarios. Si no conocemos la de prensa, podemos marcar la casilla que simula su ausencia.
+\item Presionamos «Analizar lanzamiento» y revisamos el nivel, las tres barras y los juegos similares.
 \end{enumerate}
-\subsection{Expectativas y criterios de aceptación}
-Esperábamos encontrar relaciones entre las notas, perfiles interpretables y un clasificador superior a una referencia mayoritaria. Estas expectativas se comprueban con evidencia, no por la apariencia de las gráficas. Una correlación no equivale a acuerdo; un grupo dominante no basta para afirmar segmentación útil; una exactitud superior al azar no garantiza buen desempeño en cada clase.
-
-El proyecto se considera funcional cuando las tablas y predicciones se reproducen, las transformaciones no usan información de prueba y la aplicación muestra los resultados del artefacto real. La capacidad para predecir éxito comercial queda fuera del criterio de aceptación porque no puede verificarse con este archivo.
-\section{Contexto del proyecto}\label{sec:contexto}
-\subsection{Origen y unidad de análisis}
-El antecedente se atribuye al conjunto de Arnab Chaki publicado en Kaggle, construido con información de Backloggd \parencite{chaki2023popular}. El archivo que el usuario designó como original es una versión ya curada, no una descarga virgen del catálogo público. Contiene datos adicionales, incluidas notas y estimaciones. La portada del dataset menciona 1980--2023, pero el maestro local tiene cobertura histórica hasta 2025; no sustituimos una cosa por la otra.
-
-La unidad analítica se identifica por \texttt{id\_juego}. El mismo título puede aparecer con otra fecha, por lo que las uniones no se realizan solo por nombre. Hay 35 registros de 17 títulos repetidos en fechas distintas. Para particionar el modelo sí agrupamos nombres normalizados, de forma conservadora, para que versiones del mismo título no aparezcan a ambos lados de la evaluación.
-\subsection{Variables y escalas verificadas}
-Rating corresponde a usuarios en escala de cero a cinco; su rango observado es 0.7 a 4.8, con trece ausencias. La nota original de Metacritic tiene valores de 45 a 99; la escala de referencia de prensa es cero a cien. Los extremos observados no se usan como denominadores de normalización.
-
-Plays representa registros de juego; Playing contextualiza actividad en curso; Backlogs y Wishlist reflejan interés registrado. No son personas únicas verificadas, copias vendidas ni ingresos. Genres y Team son listas. Team puede mezclar organizaciones con papeles distintos y no acredita por sí mismo cuál desarrolló o publicó el juego.
-
-El maestro incluye columnas financieras estimadas. No se utilizan para concluir que un título fue rentable. Asimismo, 218 notas marcadas como estimaciones propias no se aceptan como evidencia independiente de prensa: en el antecedente, 214 estimaciones con Rating siguen una relación lineal tras redondear. Incluirlas inflaría artificialmente la relación que se desea estudiar.
-\subsection{Poblaciones y sesgos}
-El antecedente de 1,512 registros se reconstruye hasta el maestro de 1,117, con 395 descartes históricos documentados. Esto no significa que la limpieza actual haya eliminado 395 filas: recibe un maestro ya curado y conserva sus 1,117 registros. Tres conflictos históricos se mantienen señalados y se excluyen del análisis principal; quedan 1,114 elegibles.
-
-Las correlaciones y el clustering completo usan 887 casos elegibles con las notas y señales necesarias. Las ausencias no son ruido de DBSCAN ni una categoría de popularidad. La selección de juegos visibles en Backloggd implica sesgo de cobertura y supervivencia; las conclusiones se limitan al catálogo y al corte disponible.
-\section{Estrategia a seguir}\label{sec:estrategia}
-Adoptamos CRISP-DM como estructura de trabajo. El método fue desarrollado por un consorcio de empresas, entre ellas Daimler-Benz, SPSS y NCR \parencite{chapman2000crisp}. Sus seis fases organizan la comprensión del problema, la inspección, la preparación, el modelado, la evaluación y la entrega. No las confundimos con los nombres de scripts: \texttt{03\_clustering.py} corresponde a tareas de modelado y evaluación, no a una tercera fase de negocio.
-
-El proceso fue iterativo. Las auditorías obligaron a revisar la procedencia de las notas, la definición del objetivo y las separaciones del entrenamiento. La propuesta propia en Python consiste en integrar estas salvaguardas en Pipelines, recalcular referencias del objetivo dentro de cada pliegue y verificar la inferencia del formulario. La complejidad adicional no se justifica por agregar un modelo más, sino por evitar que una comparación favorable provenga de fuga de información.
-
-Las herramientas cumplen papeles distintos: pandas prepara y verifica tablas; matplotlib produce figuras de reporte; scikit-learn entrena y evalúa; Weka aporta corridas gráficas de una herramienta de la materia; Streamlit y Plotly presentan resultados interactivos; LaTeX integra la documentación. El uso del Pipeline facilita mantener el mismo preprocesamiento en validación e inferencia \parencite{pedregosa2011scikit,sklearncv}.
-\section{Problemática a atender}
-La problemática principal es que el éxito de un videojuego no se puede explicar con un solo indicador. Por ejemplo, un título puede tener una calificación alta porque quienes lo jugaron quedaron satisfechos, pero eso no significa que haya llegado a una comunidad numerosa. También puede suceder lo contrario: un juego conocido puede acumular muchos registros de actividad y al mismo tiempo recibir opiniones divididas. Si únicamente revisamos la nota, estaríamos dejando fuera una parte importante de lo que sucede con ese videojuego.
-
-La preocupación del anteproyecto por las apuestas a géneros y juegos como servicio sirvió para plantear el problema. Sin embargo, los datos no contienen una identificación confiable de GaaS ni ingresos, costos y ventas observados. Por ello no atribuimos fracasos comerciales a la elección de un género ni presentamos el modelo como una herramienta para evitar pérdidas. Esa relación requeriría otras fuentes y otro diseño de estudio.
-
-Por esta razón, el proyecto se concentró en utilizar los datos que sí teníamos disponibles: las opiniones, los registros de juego y las listas de interés. Esto nos permite comparar situaciones diferentes dentro del catálogo y revisar si un modelo puede reconocerlas a partir del género, la organización, la década y las calificaciones. El resultado puede servir para orientar una exploración del mercado, aunque por sí solo no reemplaza un estudio de ventas o rentabilidad.
-\section{Preparación y control de calidad}\label{sec:preparacion}
-Los campos numéricos se interpretan con una función que reconoce sufijos K y M, espacios y nulos; un texto inválido no se convierte silenciosamente a cero. No obstante, los seis conteos del maestro ya eran numéricos: la limpieza actual no se adjudica conversiones que no realizó. Las pruebas sí incluyen casos como 999, 1K y 1.5M.
-
-Las fechas se convierten a un formato común y generan año y década. Se mantienen tres fechas ausentes con sus indicadores en lugar de inventarlas. Los géneros se conservan como listas y se expanden a una tabla larga de 2,682 pertenencias. El género principal es una convención de presentación, no una taxonomía dominante demostrada; un juego participa en cada género declarado cuando hacemos análisis por género.
-
-Una decisión importante fue no llenar las calificaciones faltantes durante el análisis descriptivo. Si asignábamos una nota promedio antes de comparar usuarios y prensa, estaríamos agregando información que no estaba realmente en el archivo. Por eso las correlaciones utilizan únicamente los pares disponibles. La mediana se utiliza después, cuando el modelo necesita una entrada completa, y se calcula solamente con los datos de entrenamiento. De la misma forma, las notas marcadas como estimaciones propias no se tratan como una opinión independiente de la prensa.
-
-La normalización y la brecha se definen como:
-\begin{equation} R_{100}=\frac{R}{5}\,100,\qquad \Delta=R_{100}-M.\end{equation}
-Un signo positivo indica que la valoración de usuarios normalizada es mayor. La brecha absoluta mide distancia entre puntuaciones, mientras que Pearson mide asociación. No aplicamos min--max con los extremos de la muestra porque cambiaría el significado de la brecha cada vez que cambia el catálogo.
-
-La limpieza registra conteos antes y después de cada paso y conserva el maestro. Los indicadores de conflicto y elegibilidad permiten conservar filas para trazabilidad sin introducirlas en la evaluación principal. Los hashes aportan una comprobación adicional de integridad, pero no garantizan que la fuente histórica carezca de errores.
-\section{Análisis exploratorio y recepción}\label{sec:eda}
-\subsection{Actividad e interés}
-La distribución de actividad e interés es asimétrica. Por eso presentamos conteos con escala logarítmica para que los títulos de menor alcance no desaparezcan frente a los más conocidos. Logaritmar la visualización no crea popularidad nueva ni cambia el orden de los juegos.
-
-Plays se interpreta como alcance registrado y Backlogs y Wishlist como interés pendiente. Playing se conserva como contexto de actividad. Esto quiere decir que aparecer en muchas listas no garantiza que esas personas finalmente jueguen el título. El interés pendiente y la actividad ya registrada nos hablan de momentos distintos. Por eso un índice alto se interpreta como una posición alta dentro del catálogo y no como una cantidad de ventas.
-
-\begin{figure}[htbp]\centering\includegraphics[width=\linewidth,height=.42\textheight,keepaspectratio]{figuras/eda_plays_log.png}
-\caption{Distribución de Plays en la inspección del maestro. Fuente: figura reproducible del proyecto.}\end{figure}\FloatBarrier
-
-\begin{figure}[htbp]\centering\includegraphics[width=\linewidth,height=.48\textheight,keepaspectratio]{figuras/graficas_logaritmicas_corregidas.jpg}
-\caption{Captura histórica de la distribución por género en la aplicación. Escala logarítmica y etiquetas mayores legibles.}\end{figure}\FloatBarrier
-
-\begin{longtable}{p{0.174\textwidth}p{0.174\textwidth}p{0.174\textwidth}p{0.174\textwidth}p{0.174\textwidth}}
-\caption{Relaciones de rango entre señales y notas; pares completos para cada comparación. Un p impreso como cero corresponde al límite numérico del cálculo, no a una probabilidad matemática exactamente nula.}\\
-\toprule
-Variable A & Variable B & Pares & Spearman & p Spearman\\\midrule\endfirsthead
-Variable A & Variable B & Pares & Spearman & p Spearman\\\midrule\endhead
-Plays & Playing & 1114 & 0.5471 & 5.44e-88\\
-Plays & Backlogs & 1114 & 0.5973 & 1.15e-108\\
-Plays & Wishlist & 1114 & 0.3413 & 8.70e-32\\
-Plays & Usuarios & 1101 & 0.0874 & 3.72e-03\\
-Plays & Metacritic & 896 & 0.4230 & 3.29e-40\\
-Playing & Backlogs & 1114 & 0.7505 & 3.14e-202\\
-Playing & Wishlist & 1114 & 0.7013 & 1.13e-165\\
-Playing & Usuarios & 1101 & 0.4017 & 5.98e-44\\
-Playing & Metacritic & 896 & 0.3458 & 1.45e-26\\
-Backlogs & Wishlist & 1114 & 0.8542 & 0.00e+00\\
-Backlogs & Usuarios & 1101 & 0.4133 & 1.14e-46\\
-Backlogs & Metacritic & 896 & 0.4330 & 3.10e-42\\
-Wishlist & Usuarios & 1101 & 0.5035 & 7.76e-72\\
-Wishlist & Metacritic & 896 & 0.3698 & 2.04e-30\\
-Usuarios & Metacritic & 887 & 0.5242 & 9.34e-64\\
-\bottomrule\end{longtable}
-
-\subsection{Usuarios y prensa}
-En el catálogo elegible, Pearson es 0.5439 con $p=1.936\times10^{-69}$ y Spearman es 0.5242 con $p=9.34\times10^{-64}$, sobre 887 pares completos. La asociación positiva es moderada; el p-valor pequeño no transforma esa asociación en acuerdo perfecto ni en efecto causal.
-
-Para grupos se exige un mínimo de veinte pares válidos, no simplemente veinte filas. Los géneros se superponen: sus tamaños no deben sumarse para obtener el total de juegos. Los estudios se presentan como organizaciones de Team y no como desarrolladores confirmados. La comprobación con Spearman reduce la dependencia de una relación estrictamente lineal, pero tampoco demuestra acuerdo.
-
-\begin{longtable}{p{0.174\textwidth}p{0.174\textwidth}p{0.174\textwidth}p{0.174\textwidth}p{0.174\textwidth}}
-\caption{Correlaciones por género. La tabla conserva las filas reportadas; las exclusiones se documentan en la evidencia.}\\
-\toprule
-Género & Pares & Pearson & p Pearson & Spearman\\\midrule\endfirsthead
-Género & Pares & Pearson & p Pearson & Spearman\\\midrule\endhead
-Adventure & 598 & 0.5746 & 7.92e-54 & 0.5443\\
-RPG & 286 & 0.5014 & 1.30e-19 & 0.5175\\
-Shooter & 223 & 0.5596 & 8.89e-20 & 0.5286\\
-Platform & 188 & 0.6428 & 2.68e-23 & 0.5525\\
-Indie & 166 & 0.5383 & 7.45e-14 & 0.5536\\
-Puzzle & 110 & 0.3601 & 1.12e-04 & 0.4500\\
-Strategy & 94 & 0.4340 & 1.24e-05 & 0.3373\\
-Brawler & 97 & 0.6160 & 1.87e-11 & 0.6150\\
-Simulator & 79 & 0.5347 & 3.85e-07 & 0.5026\\
-Turn Based Strategy & 51 & 0.2514 & 7.52e-02 & 0.3820\\
-Fighting & 46 & 0.6188 & 4.58e-06 & 0.5826\\
-Arcade & 39 & 0.7548 & 2.83e-08 & 0.6229\\
-Visual Novel & 27 & -0.1042 & 6.05e-01 & -0.1382\\
-Tactical & 37 & 0.3467 & 3.55e-02 & 0.3602\\
-Racing & 31 & 0.4916 & 4.98e-03 & 0.4357\\
-Point-and-Click & 27 & 0.6546 & 2.12e-04 & 0.6395\\
-Music & 18 & No aplica & No aplica & No aplica\\
-Sport & 18 & No aplica & No aplica & No aplica\\
-Card \& Board Game & 10 & No aplica & No aplica & No aplica\\
-Real Time Strategy & 9 & No aplica & No aplica & No aplica\\
-Quiz/Trivia & 2 & No aplica & No aplica & No aplica\\
-MOBA & 2 & No aplica & No aplica & No aplica\\
-Pinball & 1 & No aplica & No aplica & No aplica\\
-\bottomrule\end{longtable}
-
-Los resultados no sostienen que todos los géneros tengan la misma relación. Arcade presenta $r=0.7548$ con 39 pares, mientras que Visual Novel tiene $r=-0.1042$ con 27 y $p=0.605$. En este último grupo no hay evidencia suficiente de asociación lineal distinta de cero. Comparar coeficientes de grupos superpuestos no constituye una prueba formal de diferencia entre géneros.
-
-\begin{longtable}{p{0.217\textwidth}p{0.217\textwidth}p{0.217\textwidth}p{0.217\textwidth}}
-\caption{Asociaciones de las primeras doce organizaciones reportadas, ordenadas por cobertura.}\\
-\toprule
-Organización & Pares & Pearson & p Pearson\\\midrule\endfirsthead
-Organización & Pares & Pearson & p Pearson\\\midrule\endhead
-Nintendo & 125 & 0.4410 & 2.64e-07\\
-Capcom & 51 & 0.6717 & 6.80e-08\\
-Square Enix & 49 & 0.5977 & 5.77e-06\\
-Sega & 31 & 0.6937 & 1.51e-05\\
-Electronic Arts & 42 & 0.5580 & 1.23e-04\\
-Konami & 22 & 0.6180 & 2.17e-03\\
-Activision & 26 & 0.4132 & 3.59e-02\\
-Bandai Namco Entertainment & 25 & 0.7966 & 1.90e-06\\
-Ubisoft Entertainment & 27 & 0.6419 & 3.08e-04\\
-Atlus & 23 & 0.5554 & 5.93e-03\\
-Sony Interactive Entertainment & 22 & 0.7309 & 1.12e-04\\
-Nintendo EAD & 15 & No aplica & No aplica\\
-\bottomrule\end{longtable}
-
-\begin{longtable}{p{0.217\textwidth}p{0.217\textwidth}p{0.217\textwidth}p{0.217\textwidth}}
-\caption{Orden de géneros por menor distancia absoluta media entre puntuaciones.}\\
-\toprule
-Género & Pares & Brecha absoluta & Pearson\\\midrule\endfirsthead
-Género & Pares & Brecha absoluta & Pearson\\\midrule\endhead
-Visual Novel & 27 & 8.2222 & -0.1042\\
-Brawler & 97 & 8.9588 & 0.6160\\
-Point-and-Click & 27 & 9.0000 & 0.6546\\
-Arcade & 39 & 9.0513 & 0.7548\\
-RPG & 286 & 9.3462 & 0.5014\\
-Indie & 166 & 9.5422 & 0.5383\\
-Turn Based Strategy & 51 & 9.5686 & 0.2514\\
-Puzzle & 110 & 9.9818 & 0.3601\\
-Adventure & 598 & 10.1070 & 0.5746\\
-Simulator & 79 & 10.1646 & 0.5347\\
-Platform & 188 & 10.5532 & 0.6428\\
-Tactical & 37 & 11.0270 & 0.3467\\
-Strategy & 94 & 11.8936 & 0.4340\\
-Racing & 31 & 12.0000 & 0.4916\\
-Fighting & 46 & 12.0217 & 0.6188\\
-Shooter & 223 & 12.8206 & 0.5596\\
-\bottomrule\end{longtable}
-
-Visual Novel aparece con menor distancia media entre notas, pero su correlación no es positiva de forma concluyente. Esto muestra por qué distinguimos coincidencia de niveles y asociación: que dos series tengan notas cercanas no implica que ordenen los juegos de la misma forma. Los p-valores segmentados son exploratorios; el proyecto también conserva ajustes por comparaciones múltiples en las tablas originales.
-La brecha usuarios--crítica es un atributo sintético calculado a partir de las dos notas en una escala común.
-
-\section{Clustering y perfiles del catálogo}\label{sec:clustering}
-\subsection{Transformación y elección de K-Means}
-Se utilizaron Plays, Playing, Backlogs, Wishlist, Rating y Metacritic Rating. Los cuatro conteos reciben $\log(1+x)$ y después se aplica estandarización z-score a las seis variables. Con ello reducimos la asimetría de los conteos y evitamos que las unidades de una sola variable dominen la distancia. El género no entra a la distancia; sirve para interpretar la composición posterior.
-
-K-Means se evaluó de $k=2$ a $10$, con semilla 42 y treinta inicializaciones. La elección de dos grupos maximiza silhouette, 0.3188; los valores de $k=3$ y $k=4$ son 0.2377 y 0.2268. La inercia disminuye al aumentar grupos, por lo que no se usa su mínimo como una regla automática para escoger el mayor $k$.
-
-\begin{figure}[htbp]\centering\includegraphics[width=\linewidth,height=.45\textheight,keepaspectratio]{figuras/clustering_03_kmeans.png}
-\caption{Inercia y silhouette para la selección de k. Fuente: ejecución de Python.}\end{figure}\FloatBarrier
-
-Los grupos de Python contienen 465 y 422 juegos. El primero combina mayor actividad, interés y notas medias: Plays 7,680.62, Wishlist 1,053.28 y Rating 3.91; el segundo registra Plays 2,980.68, Wishlist 246.23 y Rating 3.38. Los nombres propuestos describen esas diferencias y no certifican segmentos comerciales naturales.
-
-Adventure aparece en ambos perfiles, por lo que su predominio no distingue por sí solo una oportunidad de mercado. Además, la primera separación resume magnitud conjunta: las alternativas con tres y cuatro grupos se conservaron para explorar combinaciones sin cambiar la selección por conveniencia narrativa. La figura PCA es una proyección descriptiva y no las dimensiones con las que se entrenó K-Means.
-
-\begin{figure}[htbp]\centering\includegraphics[width=\linewidth,height=.48\textheight,keepaspectratio]{figuras/clustering_03_proyeccion.png}
-\caption{Proyección de los casos agrupables. Los ejes reducidos se utilizan para visualización, no para definir el objetivo supervisado.}\end{figure}\FloatBarrier
-
-\begin{longtable}{p{0.29\textwidth}p{0.29\textwidth}p{0.29\textwidth}}
-\caption{Cinco ejemplos descriptivos por grupo K-Means, próximos al centro del perfil en el espacio transformado.}\\
-\toprule
-Grupo & ID & Juego\\\midrule\endfirsthead
-Grupo & ID & Juego\\\midrule\endhead
-0 & 1056 & The Messenger\\
-0 & 304 & Dragon Age: Origins\\
-0 & 172 & Metroid: Zero Mission\\
-0 & 980 & The Legend of Zelda: Majora's Mask 3D\\
-0 & 517 & Luigi's Mansion 3\\
-1 & 1360 & Sonic Rush Adventure\\
-1 & 1420 & Black\\
-1 & 1375 & Toy Story 2: Buzz Lightyear to the Rescue!\\
-1 & 1398 & Shantae: Half-Genie Hero\\
-1 & 1338 & Condemned: Criminal Origins\\
-\bottomrule\end{longtable}
-
-\subsection{DBSCAN y puntos atípicos}
-La elección de eps usa la curva de distancia al vecino y una regla geométrica reproducible sobre la curva normalizada. Se obtuvo eps de 1.666296, con doce vecinos mínimos. DBSCAN encontró un grupo válido y 21 puntos de ruido, 2.37\,\% de los 887 agrupables.
-
-No se reporta silhouette para un solo grupo válido. La etiqueta $-1$ significa ruido dentro de los casos analizados; una etiqueta vacía significa que el juego no fue agrupable por ausencia o conflicto. DBSCAN no aportó aquí una segmentación múltiple útil del mercado: funcionó como descripción de núcleo y atípicos. Forzar eps para producir más perfiles hubiera ocultado este resultado.
-
-\begin{figure}[htbp]\centering\includegraphics[width=\linewidth,height=.44\textheight,keepaspectratio]{figuras/clustering_03_dbscan_kdistancia.png}
-\caption{Curva utilizada para seleccionar eps en Python.}\end{figure}\FloatBarrier
-
-\subsection{Agrupamiento jerárquico con Ward}
-Aplicamos Ward con distancia euclidiana sobre los mismos 887 juegos y las mismas seis variables transformadas que K-Means. Se compararon cortes de dos a diez grupos y se eligió el de mayor silueta. Con dos grupos, Ward obtuvo tamaños de 558 y 329 juegos. El dendrograma presenta las últimas fusiones y resume cuántos juegos contiene cada rama.
-
-\begin{longtable}{p{0.174\textwidth}p{0.174\textwidth}p{0.174\textwidth}p{0.174\textwidth}p{0.174\textwidth}}
-\caption{Comparación de los cortes elegidos por silueta en el mismo espacio.}\\
-\toprule
-Método & Grupos & Silueta & Davies--Bouldin & Calinski--Harabasz\\\midrule\endfirsthead
-Método & Grupos & Silueta & Davies--Bouldin & Calinski--Harabasz\\\midrule\endhead
-K-Means & 2 & 0.3188 & 1.1824 & 542.9068\\
-Ward & 2 & 0.2807 & 1.3300 & 409.7150\\
-\bottomrule\end{longtable}
-
-K-Means obtuvo mayor silueta y Calinski--Harabasz, y menor Davies--Bouldin. Los tres índices favorecen K-Means en esta muestra y con esta representación. Los perfiles se interpretan mediante sus variables originales. El mapa PCA solo proyecta los grupos ya ajustados.
-
-\begin{figure}[htbp]\centering\includegraphics[width=\linewidth,height=.42\textheight,keepaspectratio]{figuras/clase_ward_dendrograma.png}
-\caption{Últimas fusiones del dendrograma de Ward. Cada etiqueta entre paréntesis indica la cantidad de juegos representada.}\end{figure}\FloatBarrier
-
-La mezcla gaussiana obtuvo el menor BIC con 3 componentes (11335.98). Este criterio describe el ajuste probabilístico de la mezcla. Se conservan los cortes de K-Means y Ward elegidos por silueta. DBSCAN queda como descripción de densidad y casos atípicos.
-\begin{figure}[htbp]\centering\includegraphics[width=\linewidth]{figuras/pca_tres_metodos.png}\caption{Proyección exploratoria de las mismas dos componentes principales para los tres métodos.}\end{figure}\FloatBarrier
-\section{Clasificación supervisada}\label{sec:clasificacion}
-\subsection{Definición de popularidad relativa}
-Comparamos conceptualmente dos objetivos. Solo Plays es más simple y representa alcance acumulado; el índice compuesto incorpora interés pendiente, aunque da dos tercios del peso a Wishlist y Backlogs, dos señales relacionadas. Se eligió el índice por ese alcance más amplio y se declara la redundancia como limitación:
-\begin{equation}I(x)=\frac{P_{\mathrm{train}}(Plays_x)+P_{\mathrm{train}}(Wishlist_x)+P_{\mathrm{train}}(Backlogs_x)}{3}.\end{equation}
-Los percentiles se ajustan como rangos medios divididos entre el tamaño del entrenamiento; para datos externos se interpolan entre valores distintos y se usan cero y uno fuera de sus extremos. Aplicamos una discretización no supervisada de igual frecuencia por terciles. Los cortes de entrenamiento definen bajo, medio y alto y preservan los empates. Estos niveles son relativos al catálogo popular, no umbrales absolutos de toda la industria.
-Para describir el catálogo elegible completo se calcularon aparte los cortes 0.362807 y 0.623728 sobre 1114 juegos. La evaluación estima su referencia en cada ajuste, de modo que los conteos de validación y prueba queden reservados.
-\subsection{Separación y prevención de fuga}
-Antes de definir etiquetas se aplica GroupShuffleSplit por título normalizado, semilla 42 y proporción aproximada 80/20: 892 registros de entrenamiento y 222 de prueba. No se exige estratificar clases que todavía no están definidas. La referencia del objetivo se calcula con entrenamiento y se aplica a ambos conjuntos.
-
-La evaluación usa validación estratificada por grupos de título, con diez pliegues externos repetidos cinco veces y búsqueda interna de tres pliegues. Se usan las mismas particiones para los cinco modelos y semillas reproducibles a partir de 42. Dentro de cada ajuste se recalculan referencia y cortes del objetivo, categorías e imputaciones usando solo el subentrenamiento. Las etiquetas de entrenamiento externo organizan los estratos, pero la puntuación de cada validación usa la referencia local. Esta distinción evita que la definición del objetivo conozca los conteos de la validación.
-
-Las entradas del Pipeline son géneros, organizaciones, década y las dos notas. Ninguno de los cuatro conteos, el índice de popularidad, los clusters, PCA ni las banderas de procedencia entra al clasificador. El preprocesamiento forma parte del artefacto y recibe atributos crudos, tanto en las pruebas como en la web.
-\subsection{Representación y comparación de modelos}
-Los géneros se codifican multi-hot con hasta quince categorías y frecuencia mínima veinte dentro de cada ajuste. Las organizaciones usan frecuencia mínima diez; Otro se activa si no hay ninguna organización conocida. Las notas se imputan por mediana entrenada. La década se codifica mediante one-hot, conservando una categoría de ausencia.
-
-La referencia es DummyClassifier con la clase más frecuente. CategoricalNB discretiza las notas en cinco intervalos; se prefiere a ajustar gaussianas sobre decenas de indicadores binarios raros, reconociendo la pérdida de resolución y la independencia aproximada. Se comparan además árbol CART, Random Forest y una red neuronal MLP. Se probaron capas ocultas de 16 y 32 neuronas con activación tanh, optimizador L-BFGS y regularización L2.
-
-\begin{longtable}{p{.20\textwidth}p{.13\textwidth}p{.126\textwidth}p{.126\textwidth}p{.126\textwidth}p{.126\textwidth}}
-\caption{Validación externa anidada. Media y desviación estándar de los pliegues.}\\\toprule
-Modelo & Exactitud (\%) & F1 macro & F1 pond. & Kappa & AUC OvR\\\midrule\endfirsthead
-Modelo & Exactitud (\%) & F1 macro & F1 pond. & Kappa & AUC OvR\\\midrule\endhead
-Referencia mayoritaria & 33.30 $\pm$ 1.12 & 0.166 $\pm$ 0.004 & 0.166 $\pm$ 0.010 & 0.000 $\pm$ 0.000 & 0.500 $\pm$ 0.000\\
-Naive Bayes categórico & 54.24 $\pm$ 5.33 & 0.531 $\pm$ 0.054 & 0.531 $\pm$ 0.055 & 0.314 $\pm$ 0.080 & 0.722 $\pm$ 0.036\\
-Árbol CART & 50.00 $\pm$ 4.58 & 0.490 $\pm$ 0.047 & 0.491 $\pm$ 0.048 & 0.250 $\pm$ 0.069 & 0.676 $\pm$ 0.047\\
-Random Forest & 55.83 $\pm$ 4.64 & 0.550 $\pm$ 0.047 & 0.550 $\pm$ 0.048 & 0.337 $\pm$ 0.070 & 0.744 $\pm$ 0.034\\
-Red neuronal MLP & 55.80 $\pm$ 5.66 & 0.554 $\pm$ 0.056 & 0.554 $\pm$ 0.056 & 0.337 $\pm$ 0.085 & 0.738 $\pm$ 0.038\\
-\bottomrule\end{longtable}
-\subsection{Comparación estadística de los modelos}
-La t pareada se corrige por la razón entre los tamaños de validación y ajuste \parencite{nadeau2003}. Wilcoxon, Friedman y Nemenyi se presentan como contrastes complementarios \parencite{demsar2006}. Las particiones repetidas se solapan, por lo que los tres contrastes de rangos se interpretan como exploratorios.
-\begin{longtable}{p{.25\textwidth}p{.44\textwidth}p{.16\textwidth}}
-\caption{Contrastes pareados de F1 macro del bosque y prueba global.}\\\toprule
-Prueba & Comparación & p-valor\\\midrule\endfirsthead
-Prueba & Comparación & p-valor\\\midrule\endhead
-t corregida Nadeau--Bengio & Random Forest / Naive Bayes categórico & 0.1956\\
-Wilcoxon & Random Forest / Naive Bayes categórico & 0.0026\\
-t corregida Nadeau--Bengio & Random Forest / Árbol CART & 0.0015\\
-Wilcoxon & Random Forest / Árbol CART & $1.27\times10^{-8}$\\
-t corregida Nadeau--Bengio & Random Forest / Referencia mayoritaria & $1.16\times10^{-27}$\\
-Wilcoxon & Random Forest / Referencia mayoritaria & $7.56\times10^{-10}$\\
-t corregida Nadeau--Bengio & Random Forest / Red neuronal MLP & 0.7597\\
-Wilcoxon & Random Forest / Red neuronal MLP & 0.3876\\
-Friedman & Cinco modelos / — & $4.75\times10^{-29}$\\
-Nemenyi & Red neuronal MLP / Random Forest & 0.9956\\
-\bottomrule\end{longtable}
-Friedman dio p = $4.75\times10^{-29}$. Entre el bosque y la MLP, la t corregida dio p = 0.7597, Wilcoxon p = 0.3876 y Nemenyi p = 0.9956. La MLP obtuvo F1 macro externo 0.5538 con DE 0.0561. El bosque obtuvo 0.5495 con DE 0.0474. La diferencia es inconclusa. El bosque permanece activo por decisión de proyecto, su menor dispersión observada y la posibilidad de inspeccionar importancias por variable.
-
-\subsection{Prueba reservada y fiabilidad}
-Random Forest es el modelo activo. Obtuvo 56.76\,\% de exactitud y F1 macro de 0.5577 sobre 222 juegos de prueba. El F1 ponderado fue 0.5540, kappa 0.3552 y ROC-AUC macro uno contra el resto 0.7379. La MLP obtuvo en la corrida histórica F1 macro 0.5008 y exactitud 50.90\,\%. El código anterior escogió por CV y después calculó las métricas de prueba de todos los candidatos. La decisión actual se tomó con esos resultados ya conocidos. Por ello, la partición sirve para comprobar la consistencia del artefacto y falta una muestra independiente para evaluar esa decisión.
-
-La matriz del bosque tiene filas reales y columnas predichas en orden bajo, medio y alto.
-\begin{equation}\begin{pmatrix}43&14&10\\32&27&21\\9&10&56\end{pmatrix}.\end{equation}
-La clase media recupera 27 de 80 juegos, 33.75\,\%. El Brier multiclase, como suma de errores cuadrados por clase, fue 0.5570. La pérdida logarítmica fue 0.9274. La web permite explorar la fracción observada por intervalos de probabilidad y ver cuántos juegos aporta cada intervalo.
-\begin{figure}[htbp]\centering\includegraphics[width=.75\linewidth]{figuras/fiabilidad_rf.png}\caption{Curva de fiabilidad uno contra el resto en la partición de prueba.}\end{figure}\FloatBarrier
-\subsection{Interpretación y revisión del entrenamiento}
-La web muestra la importancia por reducción de impureza de Gini de Random Forest, el modelo activo de la web. Se suman las contribuciones de las columnas codificadas de cada variable original. La importancia describe las divisiones aprendidas por ese bosque y depende de la codificación y del número de atributos disponibles por variable. El bosque se revisa con su matriz, casos de prueba y escenarios. Los CSV de permutación se conservan como diagnóstico complementario del modelo activo.
-
-\begin{longtable}{p{0.435\textwidth}p{0.435\textwidth}}
-\caption{Importancia agrupada por variable original en Random Forest.}\\
-\toprule
-Variable & Importancia relativa\\\midrule\endfirsthead
-Variable & Importancia relativa\\\midrule\endhead
-Metacritic & 23.95\%\\
-Usuarios & 19.81\%\\
-Década & 11.08\%\\
-Organización & 12.57\%\\
-Géneros & 32.59\%\\
-\bottomrule\end{longtable}
-
-\begin{figure}[htbp]\centering\includegraphics[width=\linewidth,height=.48\textheight,keepaspectratio]{figuras/gini_web.png}
-\caption{Importancia de Gini del bosque en la página Modelo.}\end{figure}\FloatBarrier
-
-\begin{longtable}{p{0.29\textwidth}p{0.29\textwidth}p{0.29\textwidth}}
-\caption{Auditoría histórica con el bosque original y siete variantes, usando únicamente entrenamiento.}\\
-\toprule
-Candidato & F1 CV & Recall medio CV\\\midrule\endfirsthead
-Candidato & F1 CV & Recall medio CV\\\midrule\endhead
-Vigente & 0.5567 & 0.3385\\
-RF\_\allowbreak{}revision\_\allowbreak{}3 & 0.5510 & 0.3289\\
-RF\_\allowbreak{}revision\_\allowbreak{}2 & 0.5508 & 0.3592\\
-RF\_\allowbreak{}revision\_\allowbreak{}4 & 0.5427 & 0.2942\\
-RF\_\allowbreak{}revision\_\allowbreak{}1 & 0.5403 & 0.3796\\
-RF\_\allowbreak{}revision\_\allowbreak{}5 & 0.5374 & 0.3794\\
-RF\_\allowbreak{}revision\_\allowbreak{}7 & 0.5368 & 0.3491\\
-RF\_\allowbreak{}revision\_\allowbreak{}6 & 0.5300 & 0.3623\\
-\bottomrule\end{longtable}
-
-Se hicieron ochenta ajustes, ocho candidatos por diez pliegues, variando mínimo por hoja, ponderación y número de variables por división. El criterio previo de sustitución exigía al menos 0.01 de mejora en F1 macro y superioridad en seis pliegues. Ninguna de esas variantes superó al bosque de referencia de esa revisión. La MLP se incorporó después como familia adicional.
-
-La búsqueda amplía la exploración sobre los mismos pliegues y no es una CV anidada. La prueba histórica ya fue observada. Por ello no afirmamos que estas medias midan mejora prospectiva ni presentamos un entrenamiento nuevo como mejor solo por haberlo ejecutado.
-\section{Corridas gráficas y contraste con Weka}\label{sec:weka}
-Weka Explorer 3.8.7 es la herramienta de la materia utilizada para contrastar clasificación y clustering \parencite{frank2016weka,wekaweb}. Se conservaron las salidas completas y capturas de seis corridas. No se atribuyen a Orange los resultados de Weka.
-
-La clasificación usa 892 instancias y 53 atributos, incluida nivel\_popularidad nominal, con diez pliegues. Las cuatro matrices se recalcularon: cada una suma 892 y sus diagonales reproducen la exactitud mostrada por el programa. El F1 macro se obtiene del promedio simple de F Measure por clase impreso; el ponderado se toma de Weighted Avg salvo ZeroR, donde los valores no definidos se resuelven desde la matriz y se identifican como calculados.
-
-\begin{table}[htbp]\centering\caption{Clasificación en Weka sobre 892 casos.}\begin{tabular}{lrrr}\toprule Modelo&Exactitud (\%)&F1 macro&F1 ponderado\\\midrule
-ZeroR & 33.0717 & 0.2533 & 0.2533\\
-NaiveBayes & 50.8969 & 0.5033 & 0.5030\\
-J48 & 51.0090 & 0.5063 & 0.5060\\
-RandomForest & 53.4753 & 0.5300 & 0.5300\\
-\bottomrule\end{tabular}\end{table}
-\begin{figure}[htbp]\centering\includegraphics[width=\linewidth,height=.44\textheight,keepaspectratio]{figuras/RandomForest.png}
-\caption{Evidencia de la corrida gráfica de RandomForest en Weka; incluye resumen, métricas por clase y matriz.}\end{figure}\FloatBarrier
-
-RandomForest alcanzó la mayor exactitud de las corridas gráficas de clasificación. Random Forest es el modelo activo. Obtuvo 56.76\,\% de exactitud y F1 macro de 0.5577 sobre 222 juegos de prueba. Weka evalúa mediante CV sobre los atributos exportados. Python ajusta el preprocesamiento y los cortes dentro de cada pliegue, agrupa por título y usa CV anidada. J48 corresponde a C4.5 y el árbol de Python a CART. Los estimadores numéricos de Weka NaiveBayes difieren de la discretización de CategoricalNB.
-
-En SimpleKMeans se usaron dos grupos y semilla 42. Se obtuvieron 477 y 410 casos tras nueve iteraciones; en Python fueron 465 y 422. Los centros de Weka son positivos en las seis variables para el primer grupo y negativos para el segundo, compatibles con una separación por magnitud conjunta. La suma de cuadrados de Weka, 76.6310, no se compara con la de Python como si ambas configuraciones de distancia fueran idénticas.
-
-\begin{figure}[htbp]\centering\includegraphics[width=\linewidth,height=.55\textheight,keepaspectratio]{figuras/kmeans_resultado.png}
-\caption{Salida gráfica de SimpleKMeans en Weka. Los centroides corresponden a las variables exportadas transformadas.}\end{figure}\FloatBarrier
-
-Weka DBSCAN, con eps 1.666296 y minPoints doce, agrupó los 887 casos en un solo grupo sin ruido. Python dejó veintiún puntos como ruido. Compartir parámetros nominales no demuestra equivalencia de la distancia interna de EuclideanDistance y la implementación de sklearn. No se modificaron resultados ni se ajustó eps para forzar coincidencia.
-
-\begin{figure}[htbp]\centering\includegraphics[width=\linewidth,height=.52\textheight,keepaspectratio]{figuras/dbscan_resultado.png}
-\caption{Salida original de DBSCAN en Weka. Un grupo dominante no demuestra múltiples segmentos de mercado.}\end{figure}\FloatBarrier
-
-Orange no produjo evaluaciones utilizables. Hubo cierres en Qt/Cocoa al emplear selectores; se probaron instalación local, recuperación y reinicio del lienzo, importación CSV y TAB y un lanzador con selectores Qt. El cierre de esta vía se documentó como desviación del plan. Power BI no se utilizó. El único reintento sin interfaz abortó porque la compilación de Qt requería NEON. Las métricas de Orange quedaron sin valores. La corrida de MLP se realizó en Python.
-\section{Aplicación y demostración}\label{sec:web}
-La web se implementó en Streamlit con cuatro páginas. Inicio presenta alcance, límites y consulta del catálogo. Exploración ofrece señales, brechas y perfiles; Predicción recibe atributos crudos y muestra la clase y sus probabilidades; Modelo documenta resultados por algoritmo, errores por clase y el diagnóstico de ausencias. El artefacto incluye su preprocesamiento y los vecinos se calculan exclusivamente en el espacio predictivo de entrenamiento.
-
-El formulario utiliza géneros, organización, década y notas. No solicita Plays ni listas de interés porque serían las señales con las que se construyó la respuesta. Las pruebas comparan sus salidas con el Pipeline y usan el orden real de clases; una inversión entre el orden de las probabilidades y el de las etiquetas habría producido una interfaz errónea aun con un buen modelo.
-
-\begin{figure}[htbp]\centering\includegraphics[width=\linewidth,height=.48\textheight,keepaspectratio]{figuras/dashboard_interactivo.png}
-\caption{Dashboard con filtros e indicadores de la consulta.}\end{figure}\FloatBarrier
-
-
-Exploración incluye filtros por género, década y calificaciones. El dashboard actualiza indicadores y la selección de puntos de la dispersión acota la tabla y el CSV. El selector de agrupamiento ofrece K-Means, Ward y DBSCAN. El dendrograma resume el ajuste completo y el mapa PCA responde a los filtros de la consulta. Pearson, Spearman y la corrección de comparaciones múltiples quedan en la sección complementaria de brechas.
-
-La web conserva la identidad azul marino, morado, cian y dorado. Se ajustaron títulos, etiquetas y anchos para escritorio y pantallas estrechas. La gráfica de comparación usa puntos para las métricas y segmentos de una desviación estándar para el F1 de CV.
-
-Se corrigió también el mínimo visual artificial de dos por ciento en las barras de probabilidad y la etiqueta que confundía una organización no frecuente con un estudio independiente. Los inputs validan escalas y dejan los nulos a la imputación entrenada. Las probabilidades no están calibradas y no se presentan como posibilidades actuariales de éxito.
-
-La aplicación se entrega para ejecución local con \texttt{streamlit run app.py} desde Final. No se desplegó en Community Cloud ni se subió el dataset a GitHub por instrucción del usuario. La demo local satisface la comprobación funcional, pero no equivale a una publicación accesible públicamente.
-\section{Escenarios de predicción y contrastación del modelo}\label{sec:escenarios}
-\subsection{Qué queríamos comprobar con los escenarios}
-Después de revisar la exactitud general, todavía quedaba una pregunta importante: ¿cómo se comporta el modelo cuando cambiamos las características de un videojuego? Para responderla planteamos situaciones concretas y mantuvimos fijas las demás entradas. La intención no fue buscar ejemplos que hicieran ver bien al modelo, sino mostrar qué información parece pesar en sus respuestas y en qué situaciones conviene cuestionarlas.
-
-Se separaron dos tipos de prueba. Los escenarios hipotéticos permiten revisar sensibilidad, pero no tienen una clase real observada; por eso no pueden demostrar por sí solos que una respuesta sea correcta o incorrecta. Para refutar predicciones concretas también recuperamos juegos del conjunto de prueba y comparamos la clase estimada con la clase calculada a partir de sus señales de popularidad. Estos ejemplos ya forman parte de la evaluación histórica: no constituyen una muestra nueva ni una nueva medición del rendimiento.
-\subsection{Escenarios con cambios controlados}
-El escenario de referencia utiliza Adventure y RPG, organización Otro y década de 2020. En S1 a S5 únicamente se modifican las calificaciones y la presencia de prensa. S6 cambia la organización a Nintendo; S7 cambia la década a 1980; S8 utiliza Shooter. Se trata de comparaciones de entradas del mismo modelo, no de afirmaciones causales sobre esas organizaciones o géneros.
-\begin{longtable}{p{.08\textwidth}p{.28\textwidth}p{.11\textwidth}p{.11\textwidth}p{.12\textwidth}p{.14\textwidth}}
-\caption{Escenarios hipotéticos calculados con el Pipeline guardado. La última columna muestra la mayor probabilidad, sin calibrar.}\\\hline
-Caso&Situación&Rating&Prensa&Predicción&Probabilidad\\\hline\endfirsthead
-Caso&Situación&Rating&Prensa&Predicción&Probabilidad\\\hline\endhead
-S1 & Notas bajas & 1.0 & 45 & bajo & 60.0\%\\\hline
-S2 & Notas altas & 4.8 & 99 & alto & 54.1\%\\\hline
-S3 & Usuarios altos y prensa baja & 4.8 & 45 & bajo & 43.9\%\\\hline
-S4 & Usuarios bajos y prensa alta & 1.0 & 99 & alto & 38.2\%\\\hline
-S5 & Usuarios altos sin prensa & 4.8 & Ausente & bajo & 44.2\%\\\hline
-S6 & Cambio de organización & 4.8 & 99 & alto & 58.7\%\\\hline
-S7 & Cambio de década & 4.8 & 99 & alto & 57.2\%\\\hline
-S8 & Cambio de género & 4.8 & 99 & alto & 49.7\%\\\hline
-\end{longtable}
-Al ingresar las dos notas altas de S2, el bosque estima la clase alto. Al ocultar Metacritic en S5, estima la clase bajo. Las probabilidades se obtienen del Pipeline guardado y carecen de calibración.
-
-\begin{figure}[htbp]\centering\includegraphics[width=\linewidth]{figuras/sensibilidad_escenarios.png}\caption{Veinticinco combinaciones de Rating y Metacritic con el resto de atributos fijos. La etiqueta es la clase estimada y el color muestra la probabilidad no calibrada de alto.}\end{figure}\FloatBarrier
-\subsection{Verificación del formulario}
-La auditoría reprodujo una predicción del formulario con Random Forest y la contrastó con el Pipeline guardado.
-\subsection{Contraejemplos con juegos del conjunto de prueba}
-Para no quedarnos solamente con escenarios inventados, seleccionamos un acierto y un error por cada clase real. Dentro de cada caso se tomó el registro con mayor probabilidad máxima del modelo. Esta selección es posterior a observar las predicciones y busca ilustrar sus límites; no sirve para estimar una nueva exactitud ni representa una muestra aleatoria de casos.
-\begin{longtable}{p{.35\textwidth}p{.12\textwidth}p{.12\textwidth}p{.12\textwidth}p{.15\textwidth}}
-\caption{Aciertos y errores reales frente al objetivo de popularidad del proyecto. No se usa ventas como verdad de referencia.}\\\hline
-Juego&Clase real&Predicción&Resultado&Probabilidad\\\hline\endfirsthead
-Juego&Clase real&Predicción&Resultado&Probabilidad\\\hline\endhead
-Resident Evil 4: Wii Edition (ID 1335) & bajo & alto & Error & 66.8\%\\\hline
-Pokémon Unite (ID 1054) & bajo & bajo & Acierto & 77.2\%\\\hline
-Uncharted: The Nathan Drake Collection (ID 658) & medio & alto & Error & 69.8\%\\\hline
-Pokémon Red (ID 1050) & medio & medio & Acierto & 52.0\%\\\hline
-Jet Set Radio (ID 1057) & alto & bajo & Error & 49.2\%\\\hline
-The Last of Us (ID 78) & alto & alto & Acierto & 82.4\%\\\hline
-\end{longtable}
-Los tres errores de la tabla muestran que una probabilidad máxima alta puede acompañar una clasificación equivocada. La comparación usa los terciles de entrenamiento y los conteos observados de Backloggd. Los tres aciertos sirven para contrastar cómo se comporta el mismo modelo cuando coincide con esa etiqueta.
-
-Para estos registros se conservaron ID, listas completas de género y organización, calificaciones, década, conteos y probabilidades. La comprobación numérica se hizo directamente con las entradas crudas del Pipeline. No se presenta una captura del formulario como réplica exacta de un registro con varias organizaciones o categorías que el formulario no permite seleccionar: esa distinción evita confundir una demostración simplificada con una reproducción del dato real.
-\subsection{Cómo comprobamos la clase real de los ejemplos}
-Los cortes de entrenamiento son 0.362294 y 0.626682. Bajo corresponde a un índice menor o igual al primer corte; medio supera el primero sin rebasar el segundo; alto supera el segundo. La tabla conserva los conteos y el índice calculado frente a esa referencia, no frente a una referencia ajustada con estos seis casos.
-\begin{longtable}{p{.1\textwidth}p{.14\textwidth}p{.14\textwidth}p{.14\textwidth}p{.14\textwidth}p{.13\textwidth}}\caption{Señales observadas que permiten contrastar la clase real de los ejemplos. Los ID se corresponden con el archivo de evidencia.}\\\hline ID&Plays&Wishlist&Backlogs&Índice&Clase real\\\hline\endfirsthead ID&Plays&Wishlist&Backlogs&Índice&Clase real\\\hline\endhead
-1335 & 1100 & 76 & 213 & 0.1327 & bajo\\\hline
-1054 & 4500 & 65 & 184 & 0.2702 & bajo\\\hline
-658 & 4300 & 319 & 1300 & 0.5708 & medio\\\hline
-1050 & 8800 & 154 & 425 & 0.4482 & medio\\\hline
-1057 & 3500 & 671 & 1900 & 0.6788 & alto\\\hline
-78 & 17000 & 1400 & 2000 & 0.8959 & alto\\\hline
-\end{longtable}
-\subsection{Qué aprendimos de las pruebas}
-Los escenarios permiten cuestionar dos expectativas del planteamiento inicial: una calificación alta no basta para asignar popularidad alta en todos los casos y una probabilidad mayor tampoco garantiza una predicción correcta. La ausencia de prensa, el género y la organización cambian el espacio de entrada, mientras que la clase real depende de actividad e interés observados que deliberadamente no se entregan como predictores.
-
-Por eso la aplicación debe entenderse como una estimación orientativa que ayuda a contrastar situaciones. Los contraejemplos no se utilizaron para volver a escoger parámetros sobre la prueba. La forma adecuada de evaluar una mejora futura sería reservar una muestra temporal nueva y establecer antes los criterios de comparación. Reentrenar hasta que desaparezcan los errores elegidos solo memorizaría una parte de la evaluación que ya conocemos.
-
-\section{Plan real frente a la línea base}\label{sec:plan}
-El equipo declara que las actividades técnicas realizadas cumplieron el calendario previsto. Las fechas de Git registran la primera evidencia disponible por producto y pueden corresponder a una entrega agrupada posterior. La fecha exacta de terminación de cada actividad requiere respaldo adicional.
-\begin{longtable}{p{.19\textwidth}p{.15\textwidth}p{.18\textwidth}p{.36\textwidth}}
-\caption{Línea base y primera evidencia fechada en Git por producto.}\\\toprule
-Actividad & Línea base & Fecha Git & Evidencia y justificación\\\midrule\endfirsthead
-Actividad & Línea base & Fecha Git & Evidencia y justificación\\\midrule\endhead
-Anteproyecto y revisión & 1--5 oct. & 2026-10-07 (707324c) & Versión base conservada. [PENDIENTE: confirmar equipo]\\
-Preparación y limpieza & 6--15 oct. & 2026-11-08 (79a573c) & El maestro ya estaba curado. [PENDIENTE: confirmar equipo]\\
-EDA y correlaciones & 15--29 oct. & 2026-11-08 (79a573c) & Esquema, rangos y cobertura documentados. [PENDIENTE: confirmar equipo]\\
-Clustering & 29 oct.--10 nov. & 2026-11-08 (79a573c) & K-Means, Ward y DBSCAN. [PENDIENTE: confirmar equipo]\\
-Clasificación & 5--11 nov. & 2026-11-08 (79a573c) & Evaluación anidada incorporada en revisión. [PENDIENTE: confirmar equipo]\\
-Weka & Durante modelado & 2026-11-08 (79a573c) & Evidencia gráfica. [PENDIENTE: confirmar equipo]\\
-Web & 8--16 nov. & 2026-11-08 (bcd38d6) & Ejecución local. [PENDIENTE: confirmar equipo]\\
-Despliegue público & 16--18 nov. & Sin registro & Descartado por decisión de conservar los datos localmente.\\
-Evaluación en Orange & Durante modelado & Sin registro & Parcial. Cierres de Qt documentados.\\
-Documento y revisión & 10--24 nov. & 2026-11-09 (5db3c30) & Fuente versionada. [PENDIENTE: confirmar equipo]\\
-Entrega y demo & 25 nov. & Sin registro & La fecha de exposición sigue siendo una fecha planificada.\\
-\bottomrule\end{longtable}
-\section{Evaluación de los objetivos y discusión}\label{sec:discusion}
-El objetivo de inspección se cumple con un esquema comprobado, log de preparación, pruebas y conservación del maestro. La existencia de tres conflictos históricos impide afirmar que todos los registros tengan verificación semántica externa. Se conserva esa incertidumbre en la elegibilidad en vez de escoger el máximo o promediar variantes de forma arbitraria.
-
-El objetivo de relaciones se cumple con Pearson, Spearman, tamaños y p-valores segmentados. La hipótesis de coincidencia perfecta entre comunidad y prensa no se sostiene. Tampoco puede concluirse que un género sea mejor oportunidad comercial por su correlación o por su brecha media: esas medidas no evalúan demanda no satisfecha, competencia ni ingresos.
-
-K-Means y Ward produjeron dos grupos. Los tres índices internos favorecen K-Means en el mismo espacio de datos. Los grupos resumen diferencias de actividad, interés y recepción en esta muestra.
-
-El clasificador supera a la referencia en la partición disponible, pero sigue confundiendo especialmente la clase media. Su etiqueta es un tercil artificial y depende de una referencia histórica del catálogo. Una predicción no puede comprobarse contra ventas ni contra el futuro solo porque el formulario funcione; son validaciones distintas.
-
-La propuesta propia integra control de procedencia, objetivo local, agrupación por título, inferencia cruda y pruebas de interfaz. Esto aporta trazabilidad respecto de una corrida aislada. Aun así, la evaluación repetida comparte juegos entre particiones y falta una muestra externa para medir generalización prospectiva.
-\subsection{Ética y alcance de uso}
-La unidad del análisis es el juego. Las señales representan interacciones agregadas de Backloggd y no permiten reconstruir trayectorias individuales. La presencia de reseñas de prensa y la visibilidad del catálogo pueden estar relacionadas con la popularidad histórica. El clasificador puede favorecer géneros con mayor presencia en la muestra y desfavorecer propuestas de nicho. Usamos la predicción como estimación orientativa. Los datos carecen de ventas observadas y no permiten evaluar rentabilidad ni riesgo de juegos como servicio.
-\section{Conclusiones}\label{sec:conclusiones}
-Después de realizar el análisis, podemos concluir que la idea inicial de revisar varios indicadores sí fue útil. Las calificaciones nos ayudaron a entender la recepción, mientras que Plays, Backlogs y Wishlist mostraron diferencias de alcance e interés que no se veían solamente con una nota. La relación entre usuarios y prensa fue positiva, aunque moderada, por lo que tampoco sería correcto asumir que ambas opiniones siempre coinciden.
-
-K-Means ofrece una síntesis interpretable de dos niveles conjuntos de actividad y recepción, pero no demuestra mercados naturales. DBSCAN no generó una segmentación múltiple útil bajo el protocolo fijado. Conservar ese resultado, y la diferencia de ruido entre Weka y Python, permite explicar lo que cada herramienta produjo sin acomodarlo a una expectativa.
-
-La clasificación funciona de manera reproducible y supera a Dummy, pero su rendimiento es moderado y la clase media conserva baja recuperación. La MLP obtuvo el mayor F1 macro medio en la validación anidada. La diferencia frente a Random Forest no fue concluyente y se mantuvo el bosque activo. La evidencia apoya distinguir selección, desempeño en prueba y generalización a datos nuevos.
-
-La web convierte el análisis en una demostración consultable y mantiene visibles los límites de las estimaciones. La ausencia de Metacritic puede alterar mucho una respuesta y requiere cautela. Para estudiar nuevos lanzamientos o rentabilidad necesitaríamos una muestra temporal externa, métricas comerciales observadas, control de plataforma y fecha, y un diseño específico para esa pregunta.
-
-Por tanto, resolvemos la exploración de recepción y popularidad relativa dentro del catálogo y entregamos una herramienta local verificable. No demostramos reducción de pérdidas ni capacidad para anticipar éxito comercial de juegos como servicio. La conclusión se limita deliberadamente a la evidencia que tenemos.
-\section{Reproducibilidad y alcance de la verificación}
-El repositorio organiza original en data/raw, derivados en data/clean, código en src, artefactos en models, pruebas en tests y evidencias en reports. Los scripts usan pathlib y semilla 42 cuando el método dispone de aleatoriedad. La carpeta de este documento copia figuras y tablas para poder compilar sin rutas absolutas ni conexión a los directorios originales.
-
-Se aprobaron 102 pruebas en la ejecución completa más reciente de la suite; la revisión específica anterior de inferencia, modelo, pipeline y visualización incluyó 39 pruebas. Las 222 predicciones almacenadas coinciden con el artefacto; las probabilidades son válidas y los vecinos contienen solo IDs de entrenamiento en el mismo espacio. Los hashes del manifiesto vinculan los resultados vigentes con sus entradas y artefactos. Esto comprueba integridad e implementación, no la verdad externa de cada calificación.
-
-El informe se puede compilar con \texttt{latexmk -pdf main.tex}. El manifiesto local identifica hashes de las evidencias copiadas. La bibliografía distingue documentos metodológicos y fuentes de software de las mediciones propias del proyecto. La consulta al sitio de Kaggle confirma su identificación, pero no sustituye el archivo local por una versión actual del servicio.
-
-La documentación y el código recibieron apoyo de asistentes de inteligencia artificial, incluidas operaciones gráficas autorizadas y revisión automatizada. Los resultados se verificaron contra archivos y pruebas; no se presenta esa asistencia como validación humana independiente de cada dato. La responsabilidad académica y la aprobación final corresponden al equipo autor.
+
+\captura{web_prediccion_formulario.jpg}{Formulario de Prediccion con el fondo de Spider-Man 2 y los valores del ejemplo.}{fig:formulario}
+
+\subsection{Como se lee el resultado}
+Con estos valores la web nos regreso el nivel bajo. En la figura~\ref{fig:prediccion}, la barra de bajo quedo en 44.9\,\%, la de medio en 27.8\,\% y la de alto en 27.4\,\%. Bajo es el nivel que el bosque estima como mas probable para este ejemplo.
+
+Si abrimos el menu debajo de las barras, podemos ver los dos cortes del indice y donde empieza cada nivel, como en la figura~\ref{fig:niveles}. Los cortes se calcularon con los juegos de entrenamiento. El indice resume partidas registradas, pendientes y listas de deseos. Los porcentajes de las barras indican que tan probable estima el bosque que el juego caiga en cada rango de ese indice.
+
+\captura{web_prediccion_resultado.jpg}{Probabilidades calibradas con nota de prensa de 82.}{fig:prediccion}
+\captura{web_niveles_popularidad.jpg}{Menu desplegado con la definicion y los cortes de los tres niveles.}{fig:niveles}
+
+Debajo del resultado podemos revisar los cinco juegos que mas se parecen a los datos del formulario. En la figura~\ref{fig:juegos-parecidos} cada juego aparece con su portada, su año y la distancia calculada. Una distancia menor indica que el juego se parece mas al ejemplo que ingresamos.
+
+\captura{web_juegos_parecidos.jpg}{Juegos parecidos para el ejemplo de Aventura y Rol con nota de prensa de 82.}{fig:juegos-parecidos}
+
+Cuando falta una portada local, la web busca el titulo y el año en la tienda de Steam. Si no encuentra una ficha que coincida, muestra la organizacion que figura en el catalogo.
+
+\subsubsection*{Conclusion de la consulta}
+Cada consulta explica cual de los tres niveles quedo primero y por cuantos puntos porcentuales. Tambien muestra las notas que se usaron. Si quitamos la nota de prensa, indica con que valor se completo. En la figura~\ref{fig:conclusion-prediccion} dejamos Aventura y Rol, y cambiamos las notas a 5 de 5 y 100 de 100. El nivel alto obtuvo 65.4\,\% y el nivel medio quedo segundo con 19.7\,\%.
+
+\captura{web_conclusion_prediccion.jpg}{Conclusion que genero la web con las notas de usuarios y prensa al maximo.}{fig:conclusion-prediccion}
+
+\subsubsection*{Prueba sin nota de prensa}
+Dejamos todo igual y marcamos la casilla para quitar la nota de Metacritic. Al volver a presionar el boton, la figura~\ref{fig:sinnnota} muestra que el nivel se mantuvo en bajo y que la barra subio a 47.5\,\%. En ese caso se completo la nota con el valor de en medio de las notas de entrenamiento. Mas abajo se muestran cinco juegos del entrenamiento con caracteristicas parecidas a las que elegimos.
+
+\captura{web_prediccion_sin_nota.jpg}{Probabilidades calibradas al simular que falta la nota de prensa.}{fig:sinnnota}
+
+Despues hicimos otra prueba con 4.8 de usuarios y 99 de prensa. Dejamos los generos, la organizacion y la decada como estaban. Con las dos notas salio alto y al quitar la de prensa salio bajo. La tabla de abajo deja los valores para repetir esa prueba.
+
+\EscenariosNotas
+
+\section{Conclusiones}
+Despues de revisar los resultados vimos que una sola nota deja fuera parte de lo que pasa con un juego. Hay casos donde la gente lo tiene en deseos o en pendientes y todavia no lo marca como jugado. Tambien hay juegos donde la prensa dio mas puntos que los usuarios. Al tener los datos por separado podemos ver cual de esas cosas esta pasando.
+
+Con los grupos pudimos ver que juegos se parecen por actividad y por notas. En la prediccion se ve que el bosque separo mejor los niveles bajo y alto que el nivel medio. Ademas, trabajamos con juegos que aparecen en Backloggd, asi que los generos con poca presencia pueden quedar menos representados.
+
+En cuanto a los juegos como servicio, ya podemos mostrar ejemplos de lo que publicaron las empresas. Para responder que genero pierde mas dinero todavia necesitamos tener los ingresos y costos de juegos comparables. Lo que si podemos probar en la web es como cambia la popularidad estimada cuando cambiamos las entradas del formulario.
+
 \appendix
-\section{Correspondencia con la rúbrica}
-\begin{longtable}{p{.25\textwidth}p{.65\textwidth}}\toprule Rubro& Evidencia en el documento\\\midrule
-Objetivo & Sección~\ref{sec:objetivos}: objetivo general delimitado y seis objetivos verificables.\\
-Contexto & Sección~\ref{sec:contexto}: origen, maestro curado, unidad analítica, escalas y sesgos.\\
-Estrategia & Sección~\ref{sec:estrategia}: CRISP-DM y función de herramientas.\\
-Expectativas & Sección~\ref{sec:objetivos}: criterios comprobables y alcance excluido.\\
-Plan baseline y real & Sección~\ref{sec:plan}: ventanas originales, evidencia al corte y desviaciones.\\
-Metodología & Secciones~\ref{sec:preparacion}--\ref{sec:clasificacion}: preparación, relaciones, clustering y clasificación.\\
-Herramientas y propuesta & Secciones~\ref{sec:clasificacion}--\ref{sec:web}: Python, corridas Weka y demo local; Orange sin resultados.\\
-Resultados y conclusiones & Secciones~\ref{sec:eda}--\ref{sec:weka} y \ref{sec:discusion}--\ref{sec:conclusiones}: resultados positivos, negativos y límites.\\
-Fuentes & Bibliografía APA y referencias internas a evidencias.\\\bottomrule\end{longtable}
-\section{Guion reproducible de la demostración}
-\begin{enumerate}
-\item Abrir Inicio y explicar que el maestro tiene 1,117 registros y el antecedente 1,512; mostrar la limitación de ventas.
-\item En Exploración, cambiar Plays a Wishlist y distinguir asociación de brecha. Identificar el tamaño de pares del grupo consultado.
-\item En Modelo, leer la matriz: medio tiene 23 aciertos de 80. Explicar por qué esto limita una exactitud global moderada.
-\item En Predicción, probar el formulario con Random Forest. Usar los valores de la tabla de escenarios para reproducir S2 y S5 y comparar qué sucede al ocultar Metacritic.
-\item En Exploración, alternar K-Means, Ward y DBSCAN, revisar el dendrograma y explicar la comparación de índices.
-\item Abrir las capturas originales de Weka y contrastar 892 casos de CV con 222 de prueba de producción. No atribuir silhouette de Python ni resultados a Orange.
-\end{enumerate}
-\section{Fuentes locales y trazabilidad}
-La inspección y limpieza están en reports/inspeccion.md y limpieza\_log.md. Las relaciones, perfiles y sensibilidad se conservan en reports/clustering.md y sus CSV. Las métricas de producción están en models/metadata.json y reports/modelo\_comparacion.csv. El contraste entre herramientas está en reports/tables/comparativo\_herramientas.csv. Las seis corridas y capturas están en reports/weka y su respaldo ZIP verificado. La revisión adicional de predicción se conserva en reports/revision\_predicciones, incluyendo auditoria.json, decision.json y la bitácora unificada de esa carpeta.
+\section{Datasheet del catalogo}
+\label{sec:datasheet}
+\subsection{Como quedo el catalogo}
+\label{sec:datos-cambios}
+\ProcedenciaDatos
 
-Los nombres completos se conservan en el manifiesto y las tablas copiadas. No se atribuyen nuevas corridas a las capturas históricas. El PDF de criterios del profesor se adjunta como evidencia/rubrica\_proyecto.pdf y se utiliza como guía de cobertura, no como fuente de mediciones.
-\section{Vinculación con las presentaciones de la materia}
-El proyecto aplica la preparación y exploración de datos de Descubrimiento de Conocimiento, y el dashboard como capa de consulta de Arquitectura. Del Proceso de Minería de Datos se incorporaron Naive Bayes, CART, Random Forest, MLP, K-Means, Ward y PCA. Las métricas de clasificación y agrupamiento siguen los ejemplos de Evaluación de MD. La gráfica de Gini sigue el ejemplo del bosque en Evaluación de MD, p.~66. Ward se describe en las pp.~101--107 y la comparación interna de agrupamientos en las pp.~108--115. Las páginas corresponden al orden de los archivos PDF. La visualización y explicación de límites retoman Aplicación de la Minería de Datos.
-\section{Capturas actuales de la aplicación}
-\begin{figure}[htbp]\centering\includegraphics[width=\linewidth]{figuras/ward_web.png}\caption{Dendrograma en la vista de agrupamiento del dashboard.}\end{figure}\FloatBarrier
-\nocite{chaki2023popular,chapman2000crisp,pedregosa2011scikit,mckinney2010pandas,frank2016weka,ester1996dbscan}
-\clearpage\pagestyle{referencias}\printbibliography[heading=bibintoc,title={Referencias}]
+La version que ya tenia notas de prensa traia \Historico\ registros. Cuando repetimos la revision por nombre y fecha, vimos que \Descartes\ filas habian quedado fuera porque repetian esos dos datos. Al volver a limpiar el catalogo con el que trabajamos se mantuvieron sus \Catalogo\ registros.
+
+\subsection{Cuantos juegos entraron en las comparaciones}
+Hubo tres registros con diferencias que no pudimos aclarar. Los dejamos en el catalogo y los apartamos de los calculos principales. De ahi quedaron \Elegibles\ juegos para revisar. De esos, \Pares\ tenian completos los datos que usamos para comparar notas y formar grupos. Si sumamos por genero, un mismo juego puede aparecer en varias filas.
+
+\section{Plan de trabajo}
+En la primera columna vemos la actividad. En las siguientes esta cuando pensabamos hacerla y cuando quedo el primer registro que encontramos. Si se guardaron varias actividades juntas, esa fecha puede ser posterior al dia en que se hicieron.
+
+\PlanTrabajo
+
+\nocite{chaki2023popular,chapman2000crisp,frank2016weka,\FuentesComerciales}
+\clearpage
+\pagestyle{referencias}
+\printbibliography[heading=bibintoc,title={Referencias}]
 \end{document}

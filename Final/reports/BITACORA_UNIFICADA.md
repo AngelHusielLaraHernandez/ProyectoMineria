@@ -5,9 +5,10 @@ Consolidación sin pérdida de los registros de esta carpeta. Cada bloque identi
 
 ## Origen: Final/reports/codex_log.md
 
-SHA-256: `a63d3ef391b28ef4347b91659c43e6a051a72573d8f436262f431990d82eecce`
+SHA-256: `69c350019671e5140c3bc6b621703b0e2b4a0ee14ae5aed56f830d60c6e0dfa2`
 
 ````text
+# Bitácora técnica y de herramientas (`codex_log.md`)
 
 ## 2026-11-08T16:28:05-06:00 — Web y preparación de la fase gráfica
 
@@ -231,6 +232,12 @@ Esperar instrucciones del usuario por el error de arranque y respuesta sobre Ora
 - En navegador se probaron los extremos de los sliders, el envío del formulario y la ausencia de Metacritic. Adventure y RPG, Otro, década 2020, Rating 5 y Metacritic 100: alto 54.1 %. Al ocultar Metacritic: bajo 44.2 %. Coincide con los cálculos directos; se documenta sensibilidad a cobertura. Capturas: formulario_verificado.jpg y sin_critica_verificado.jpg en reports/revision_predicciones.
 - Pasaron 39 pruebas de inferencia, modelo, pipeline y visualización. Datos y modelos conservaron sus hashes: 20 archivos sin cambios. Registros: pruebas.txt e integridad_final.json en reports/revision_predicciones.
 - Se generó reports/hallazgos_weka_web.docx con fuente Markdown. Se renderizaron e inspeccionaron las siete páginas y se corrigió un borde heredado del estilo Title. Las imágenes y el PDF de render se conservan solo para revisión interna en reports/revision_predicciones/render_documento.
+
+## 2026-11-12 — Entorno local (HW-PC-1.0), verificación de Weka y desviación de Orange
+
+- **Entorno local (`HW-PC-1.0` / `CONFIG-ENV-1.0`)**: ejecución verificada en **macOS** con **Python 3.14.6**, `scikit-learn 1.9.1`, `Final/.venv` reconstruido reutilizando paquetes locales sin acceso al índice PyPI (`pip check` aprobado; ejecución mediante `Final/.venv/bin/python -m ...`), y Java OpenJDK para Weka CLI 3.8.6 y Explorer GUI 3.8.7. Metadatos en [metadata.json](../models/metadata.json) y dependencias en [requirements.txt](../requirements.txt).
+- **Verificación de Weka (`ACT-11`, `CONFIGTEC-1.0`)**: se verificaron por SHA-256 las salidas y capturas del manifiesto gráfico de Explorer 3.8.7 (`tables/verificacion_weka_entradas.csv`, `tables/comparativo_herramientas.csv`) y el ARFF nominal `data/export/clasificacion.arff` (`bajo,medio,alto`), contrastando matrices, aciertos y exactitud sin repetir la sesión gráfica.
+- **Desviación de Orange (`ACT-11`, `CONFIGTEC-1.0`)**: Orange 3.40.0 sufrió cierres nativos `SIGSEGV` de Qt/Cocoa en macOS al operar selectores de archivos; el único reintento sin interfaz con `import Orange` abortó con código `134` (`Incompatible processor. This Qt build requires the following features: neon`). El detalle consolidado de herramientas generado por `src/comparativo_integral.py` se registra en [verificacion_weka_orange.md](verificacion_weka_orange.md).
 
 ````
 
@@ -943,6 +950,9 @@ En el navegador se comprobó el acceso desde Inicio, una predicción, el filtro 
 
 ## Incorporación de la red neuronal MLP
 
+> [!NOTE] Nota histórica (actualizada al cierre del 12 de noviembre de 2026)
+> Esta sección y la siguiente (*Alineación con las presentaciones de la materia*) documentan el paso intermedio del 11 de noviembre bajo validación cruzada 1×10 histórica (`0.5608` vs. `0.5567` en `tables/prueba_historica_modelos.csv`). El 12 de noviembre ese criterio fue sustituido por la evaluación externa anidada **10×5** y el retorno a **`RandomForestClassifier`** como modelo activo (véase el bloque de cierre al final de esta bitácora).
+
 La corrida supervisada del 11 de noviembre de 2026 añadió MLP a los cuatro candidatos anteriores. Se conservaron los 892 juegos de entrenamiento, los 222 de prueba y las referencias por pliegue. La corrida final evaluó 16 y 32 neuronas con activación tanh, regularización L2 y optimizador L-BFGS. Terminó sin advertencias de convergencia.
 
 La MLP de 32 neuronas y alpha 5 obtuvo F1 macro de 0.5608 en CV y 0.5008 en prueba. Random Forest obtuvo 0.5567 y 0.5577, respectivamente. La web usa la MLP por la regla de selección por CV y muestra el mejor F1 de prueba por separado. La diferencia en CV carece de una prueba de significancia. Los resultados anteriores coincidieron con la nueva corrida y la comparación Weka conserva su protocolo histórico.
@@ -956,3 +966,69 @@ Exploración compara K-Means y Ward sobre 887 juegos, con dendrograma y PCA filt
 Modelo muestra la importancia por Gini del Random Forest. Las cinco contribuciones agrupadas suman 100 %. La MLP obtuvo F1 macro de 0.5608 en CV y 0.5008 en la prueba histórica. Random Forest obtuvo 0.5567 y 0.5577. Se verificó la predicción activa, el dendrograma y la gráfica de Gini en el navegador. Pasaron 102 pruebas y se reprodujeron las métricas del artefacto.
 
 Se actualizó el informe LaTeX con el corte del 11 de noviembre, la comparación de métodos, el modelo vigente y los escenarios recalculados. Las capturas y corridas históricas conservan su contexto.
+
+## Evidencia comercial y juegos como servicio · 12 de noviembre de 2026
+
+Se incorporaron Concord, XDefiant, Helldivers 2 y Forspoken a la [tabla de evidencia comercial](tables/evidencia_comercial.csv). Se cotejaron seis publicaciones de sus editoras. Se registraron cierres, reembolsos, ventas reportadas y efectos en estudios con el alcance declarado por cada fuente.
+
+Exploración incorporó un selector con los cuatro casos y sus fuentes. El PDF integra la misma tabla como fuente de sus secciones 4.1 y 4.2. El [reporte de riesgo comercial](riesgo_comercial.md) define la recuperación de costos en 24 meses y el diseño para comparar géneros entre juegos comparables.
+
+Se comprobó cada opción y sus enlaces en el navegador local, se cotejaron las citas del PDF con la tabla y pasaron las 102 pruebas. La verificación independiente confirmó la integridad del maestro y del modelo activo. La evidencia pública documenta casos individuales. Sigue faltando una cohorte con ingresos y costos por juego para calcular una tasa de pérdidas por género.
+
+## Retorno a Random Forest como modelo activo y cierre de coherencia · 12 de noviembre de 2026
+
+En la corrida vigente del 12 de noviembre de 2026 (`models/metadata.json`, Python 3.14.6, scikit-learn 1.9.1) se retomó **`RandomForestClassifier`** como modelo activo en producción y en la aplicación web, reemplazando la selección intermedia por `MLPClassifier` documentada en los bloques previos del 11 de noviembre:
+
+- **Evaluación externa anidada 10×5** (`tables/comparativo_modelos.csv`, 50 pliegues por modelo): `MLPClassifier` registró F1 macro media de `0.5538 ± 0.0561` (exactitud `55.80 %`, AUC OvR `0.7382`) frente a `RandomForestClassifier` con `0.5495 ± 0.0474` (exactitud `55.83 %`, AUC OvR `0.7440`).
+- **Contrastes pareados y múltiples** (`tables/comparacion_estadistica.csv`): la diferencia entre `RandomForestClassifier` y `MLPClassifier` no resulta estadísticamente significativa (`t` corregida de Nadeau–Bengio `p = 0.7597`, Wilcoxon `p = 0.3876`, Nemenyi `p = 0.9956`). Se conservó `RandomForestClassifier` por menor dispersión entre pliegues, disponibilidad de importancia de variables por Gini y criterio del equipo.
+- **Evaluación sobre el conjunto de prueba reservado** (`n = 222`, `tables/metricas_prueba.csv` y `tables/matriz_confusion.csv`): **F1 macro `0.5577`**, **exactitud `0.5676` (`56.76 %`)**, F1 ponderado `0.5540`, kappa `0.3552`, AUC OvR `0.7379`, Brier multiclase `0.5570` y log-loss `0.9274`. La clase media obtiene `27` aciertos de `80` (`33.75 %`).
+- **Trazabilidad de herramientas y bitácoras**: `src/comparativo_integral.py` escribe la verificación específica de Weka 3.8.7 y la desviación de Orange 3.40.0 en [verificacion_weka_orange.md](verificacion_weka_orange.md) sin sobrescribir el registro histórico completo preservado en [codex_log.md](codex_log.md).
+
+## Registro de archivo_pre_auditoria
+
+# Bitácora unificada
+
+Consolidación sin pérdida de los registros de esta carpeta. Cada bloque identifica su archivo de origen y su huella. Las cifras de revisiones anteriores son históricas; no sustituyen los modelos, tablas y reportes vigentes. No se fusionan las salidas originales de Weka ni el log de limpieza requerido por el pipeline.
+
+
+## Origen: Final/reports/archivo_pre_auditoria/reports/ejecucion.txt
+
+SHA-256: `65aad5431c101ded61f6c64fb735dce72305f8769058e42469cd48c36cf8a790`
+
+````text
+# Hallazgos calculados
+
+Fuente original designada: `Proyecto/data/processed/games_curated.csv`.
+Copia inmutable: `data/raw/games_curated.csv`. SHA-256: `b23cc1c4c23e65171bbe8a3436c358773cee15b8e11b446261cd575daa625acd`.
+Se observaron 1117 filas, 42 columnas y 0 repeticiones de título y fecha.
+Títulos con conflictos analíticos en esta fuente: 0; filas en conflicto: 0.
+Quedan 1117 videojuegos por título y fecha; años [1980, 2025].
+
+Pearson usuarios–prensa: n=890, r=0.5444, IC95 % [0.4965, 0.5891].
+Es asociación lineal, no diferencia de medias ni causalidad. La procedencia Metacritic es una etiqueta del CSV, no una auditoría externa.
+Los grupos con menos de 10 pares o sin variación quedan sin estimación; los CSV por grupo incluyen n, IC y q de Benjamini–Hochberg.
+
+K-Means eligió k=2 por silhouette entre 2 y 8. DBSCAN usa eps=1.0 y min_samples=5.
+Su selección cumplió el criterio de cobertura y silhouette: True. Ver tablas completas y medianas antes de nombrar perfiles.
+
+Clasificador elegido en validación interna: bosque_aleatorio.
+Prueba reservada: 222 juegos; accuracy=0.5856, balanced accuracy=0.5732, F1 macro=0.5649.
+F1 macro de la base mayoritaria: 0.1846. Los cortes del índice son [5.836372019227446, 6.6798754404763105].
+
+La popularidad es relativa a esta muestra de Backloggd. No mide ventas, ingresos, rentabilidad ni fracaso de juegos como servicio.
+Las notas son posteriores al lanzamiento; el clasificador describe popularidad contemporánea y no constituye un pronóstico previo al estreno.
+
+## Que debo verificar manualmente
+
+- Escala teórica de Rating y enlaces de procedencia de Metacritic, incluyendo plataforma y fecha de cada nota.
+- Roles reales de Team: no se puede atribuir un resultado a desarrolladores con esta columna sin curarla.
+- Fecha del scrape, redondeo de conteos, títulos con versiones distintas y fechas TBD.
+- Sesgo de selección de juegos populares y dependencia entre juegos de una misma franquicia o estudio.
+- Sensibilidad del índice a sus pesos iguales y estabilidad de clusters en otras muestras.
+
+
+````
+
+## Orden de la entrega
+
+Los tres conjuntos reemplazados de resultados se pueden recuperar del commit local `482dafd` en `Final/reports/archivo_*`. La bitácora de herramientas se integró arriba con su contenido completo. La salida de limpieza, el diagnóstico de Orange y los resultados originales de Weka conservan sus archivos.

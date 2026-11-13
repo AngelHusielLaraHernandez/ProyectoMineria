@@ -1,0 +1,187 @@
+\newcommand{\Historico}{1,512}
+\newcommand{\Catalogo}{1,117}
+\newcommand{\Descartes}{395}
+\newcommand{\Elegibles}{1,114}
+\newcommand{\Pares}{887}
+\newcommand{\PearsonGlobal}{0.5439}
+\newcommand{\SpearmanGlobal}{0.5242}
+\newcommand{\JuegosPrueba}{222}
+\newcommand{\ExactitudPrueba}{56.76\,\%}
+\newcommand{\FPrueba}{0.5577}
+\newcommand{\GruposDbscan}{1}
+\newcommand{\RuidoDbscan}{21}
+\newcommand{\PComparacion}{$p=0.7597$}
+\newcommand{\JuegosCalibracion}{892}
+\newcommand{\MetricasCalibracion}{\begin{table}[!htbp]
+\centering\small
+\caption{Calidad de las probabilidades en los juegos de prueba.}
+\begin{tabular}{lrr}
+\toprule
+Medida & Antes del ajuste & Despues del ajuste\\
+\midrule
+Brier multiclase & 0.5570 & 0.5508\\
+Log-loss & 0.9274 & 0.9102\\
+\bottomrule
+\end{tabular}
+\end{table}
+\FloatBarrier}
+\newcommand{\AsociacionGrupos}{\begin{table}[!htbp]
+\centering\small
+\caption{Relacion y separacion de notas en grupos con mas pares.}
+\begin{tabular}{lrrrr}
+\toprule
+Grupo & Pares & Pearson & Spearman & Brecha media absoluta\\
+\midrule
+Aventura & 598 & 0.575 & 0.544 & 10.11\\
+Rol & 286 & 0.501 & 0.517 & 9.35\\
+Disparos & 223 & 0.560 & 0.529 & 12.82\\
+Plataformas & 188 & 0.643 & 0.553 & 10.55\\
+Nintendo & 125 & 0.441 & 0.461 & 9.74\\
+Capcom & 51 & 0.672 & 0.541 & 9.18\\
+Square Enix & 49 & 0.598 & 0.598 & 7.39\\
+\bottomrule
+\end{tabular}
+\end{table}
+\FloatBarrier}
+\newcommand{\SilTitulo}{\begin{table}[!htbp]
+\centering\small
+\caption{Comparacion de los cortes seleccionados.}
+\begin{tabular}{lrrrr}
+\toprule
+Metodo & Grupos & Silueta & Calinski--Harabasz & Davies--Bouldin\\
+\midrule
+K-Means & 2 & 0.319 & 542.9 & 1.182\\
+Ward & 2 & 0.281 & 409.7 & 1.330\\
+\bottomrule
+\end{tabular}
+\end{table}
+\FloatBarrier}
+\newcommand{\EscenariosNotas}{\begin{table}[!htbp]
+\centering\small
+\caption{Ejemplo con los mismos generos, organizacion y decada.}
+\begin{tabular}{lrrl}
+\toprule
+Prueba & Usuarios & Prensa & Nivel estimado\\
+\midrule
+Con ambas notas & 4.8 & 99.0 & Alto\\
+Sin nota de prensa & 4.8 & Ausente & Bajo\\
+\bottomrule
+\end{tabular}
+\end{table}
+\FloatBarrier}
+\newcommand{\EjemplosError}{\begin{table}[!htbp]
+\centering\small
+\caption{Juegos de prueba en los que el modelo asigno otro nivel.}
+\begin{tabular}{p{.52\linewidth}ll}
+\toprule
+Juego & Nivel real & Nivel asignado\\
+\midrule
+Resident Evil 4: Wii Edition & Bajo & Alto\\
+Uncharted: The Nathan Drake Collection & Medio & Alto\\
+Jet Set Radio & Alto & Bajo\\
+\bottomrule
+\end{tabular}
+\end{table}
+\FloatBarrier}
+\newcommand{\PlanTrabajo}{\begin{table}[!htbp]
+\centering\small
+\caption{Actividades planeadas y primera evidencia fechada de su realizacion.}
+\begin{tabular}{lll}
+\toprule
+Actividad & Periodo planeado & Evidencia fechada\\
+\midrule
+Anteproyecto y revision & 1--5 oct. & 2026-10-07\\
+Preparacion y limpieza & 6--15 oct. & 2026-11-08\\
+EDA y correlaciones & 15--29 oct. & 2026-11-08\\
+Clustering & 29 oct.--10 nov. & 2026-11-08\\
+Clasificacion & 5--11 nov. & 2026-11-08\\
+Weka & Durante modelado & 2026-11-08\\
+Web & 8--16 nov. & 2026-11-08\\
+Documento y revision & 10--24 nov. & 2026-11-09\\
+\bottomrule
+\end{tabular}
+\end{table}
+\FloatBarrier}
+\newcommand{\TotalMedio}{80}
+\newcommand{\AciertosMedio}{27}
+\newcommand{\ComparacionModelos}{\begin{table}[!htbp]
+\centering\small
+\caption{Resultados promedio de la comparacion en Python.}
+\begin{tabular}{lrrr}
+\toprule
+Modelo & Exactitud (\%) & F1 macro & Variacion del F1\\
+\midrule
+Referencia mayoritaria & 33.30 & 0.1665 & 0.0043\\
+Naive Bayes categorico & 54.24 & 0.5308 & 0.0540\\
+Arbol de decision & 50.00 & 0.4904 & 0.0471\\
+Random Forest & 55.83 & 0.5495 & 0.0474\\
+Red neuronal & 55.80 & 0.5538 & 0.0561\\
+\bottomrule
+\end{tabular}
+\end{table}
+\FloatBarrier}
+\newcommand{\MatrizConfusion}{\begin{table}[!htbp]
+\centering\small
+\caption{Juegos por nivel real y nivel asignado en la prueba.}
+\begin{tabular}{lrrr}
+\toprule
+Nivel real & Asignado bajo & Asignado medio & Asignado alto\\
+\midrule
+Bajo & 43 & 14 & 10\\
+Medio & 32 & 27 & 21\\
+Alto & 9 & 10 & 56\\
+\bottomrule
+\end{tabular}
+\end{table}
+\FloatBarrier}
+\newcommand{\ResultadosWeka}{\begin{table}[!htbp]
+\centering\small
+\caption{Resultados de clasificacion en Weka.}
+\begin{tabular}{lrrr}
+\toprule
+Modelo & Exactitud (\%) & F1 macro & F1 ponderado\\
+\midrule
+ZeroR & 33.07 & 0.253 & 0.253\\
+NaiveBayes & 50.90 & 0.503 & 0.503\\
+J48 & 51.01 & 0.506 & 0.506\\
+RandomForest & 53.48 & 0.530 & 0.530\\
+\bottomrule
+\end{tabular}
+\end{table}
+\FloatBarrier}
+\newcommand{\Perfiles}{\begin{table}[!htbp]
+\centering\small
+\caption{Promedios de los grupos de K-Means.}
+\begin{tabular}{lrrrr}
+\toprule
+Grupo & Juegos & Partidas registradas & Juegos pendientes & Nota de usuarios\\
+\midrule
+0 & 465 & 7,681 & 2,022 & 3.91\\
+1 & 422 & 2,981 & 476 & 3.38\\
+\bottomrule
+\end{tabular}
+\end{table}
+\FloatBarrier}
+\newcommand{\ProcedenciaDatos}{\begin{table}[!htbp]
+\centering\small
+\caption{Tamaño del catalogo en cada etapa.}
+\begin{tabular}{lrr}
+\toprule
+Etapa & Registros & Columnas\\
+\midrule
+Anteproyecto (tamaño declarado) & 1512 & 15\\
+Version con notas de prensa & 1512 & 20\\
+Catalogo con el que trabajamos & 1117 & 42\\
+Datos despues de limpiar & 1117 & 38\\
+\bottomrule
+\end{tabular}
+\end{table}
+\FloatBarrier}
+\newcommand{\CasosComerciales}{\noindent\textbf{Concord.} PlayStation anuncio la retirada del juego y el reembolso de compras de PS5 y PC. Despues confirmo el cierre definitivo de Concord y el cierre de Firewalk Studios.
+
+\noindent\textbf{XDefiant.} Ubisoft anuncio el fin del desarrollo, comunico que mantendria los servidores activos hasta el 3 de junio de 2025 y anuncio el cierre de dos estudios de produccion. Señalo dificultades para retener a suficientes jugadores.
+
+\noindent\textbf{Helldivers 2.} Sony clasifico el juego como servicio y reporto 12 millones de unidades vendidas en conjunto en PS5 y PC al 5 de mayo de 2024. La cifra es una estimacion de Sony del volumen vendido al consumidor.
+
+\noindent\textbf{Forspoken.} Square Enix califico de debiles las ventas del juego en su presentacion de resultados. La observacion describe el desempeño reportado por la editora.}
+\newcommand{\FuentesComerciales}{hulst2024firewalk,ellis2024concord,ubisoft2024xdefiant,sony2024suplemento,sony2024resultados,squareenix2023forspoken}
