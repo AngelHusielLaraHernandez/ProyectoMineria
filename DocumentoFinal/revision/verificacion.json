@@ -1,12 +1,12 @@
 {
-  "paginas": 21,
-  "figuras": 18,
+  "paginas": 23,
+  "figuras": 21,
   "pruebas_cierre": 144,
   "referencias_indefinidas": 0,
   "desbordamientos": 0,
   "modelo": "RandomForestClassifier",
   "modelo_sha256": "ca5cee53f35cf5c0f8bc6f7af482593261d4409844eb15d5359788b1009825c1",
-  "pdf_sha256": "82961284abdf6cecdf6f2d6f8e52b0b0ac4b66cfa79a8df515a5abd7ab049a57",
+  "pdf_sha256": "a5e0b83ed2b0db15f2331a4cc1c5fc6d93a29ad379f6eeba3b4d2cc2524e1db3",
   "casos_comerciales_verificados": 4,
   "capturas_web_actualizadas": [
     "web_actividad_nueva.jpg",
@@ -38,11 +38,11 @@
       "bajo": 47.5
     }
   },
-  "paginas_renderizadas_y_revisadas": 1,
+  "paginas_renderizadas_y_revisadas": 2,
   "compilacion": "Correcta con latexmk y biber.",
   "citas_autor_anio_en_el_cuerpo": 0,
   "tildes_en_texto_pdf": 0,
-  "paginas_renderizadas": 21,
+  "paginas_renderizadas": 23,
   "resumen_eliminado": true,
   "leyenda_portada_eliminada": true,
   "calibracion_web": {

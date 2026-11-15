@@ -4,7 +4,7 @@ import streamlit as st
 
 from src.ui import p5_plotly_layout
 
-_MOD_VERSION = 'p5-v12-portadas'
+_MOD_VERSION = 'p5-v14-menu'
 
 
 def mostrar_grafica(figura, titulo, *, alto=400, **opciones):

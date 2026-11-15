@@ -8,12 +8,13 @@ import pandas as pd
 from .config import CLEAN, MODELS, REPORTS
 from .objetivo import aplicar_referencia
 
-_MOD_VERSION = 'p5-v12-portadas'
+_MOD_VERSION = 'p5-v14-menu'
 _MODULOS_ORDENADOS = (
     ('src.visualizacion', ()),
     ('src.data', ('src.config',)),
     ('src.inferencia', ('src.config',)),
     ('src.portadas', ()),
+    ('src.lectura_prediccion', ()),
     ('src.similitud', ('src.config',)),
     ('src.ui', ('src.config', 'src.data', 'src.visualizacion')),
     ('vista_graficas', ('src.ui',)),

@@ -8,7 +8,7 @@ from urllib.parse import urlencode, urlsplit
 from urllib.request import Request, urlopen
 
 
-_MOD_VERSION = 'p5-v12-portadas'
+_MOD_VERSION = 'p5-v14-menu'
 
 PORTADAS_LOCALES = {
     'Halo Infinite': 'halo',

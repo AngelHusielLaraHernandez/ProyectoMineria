@@ -8,7 +8,7 @@ import streamlit as st
 
 import src.data as _data
 
-if getattr(_data, '_MOD_VERSION', None) != 'p5-v12-portadas':
+if getattr(_data, '_MOD_VERSION', None) != 'p5-v14-menu':
     if 'src.config' in sys.modules:
         importlib.reload(sys.modules['src.config'])
     _data = importlib.reload(_data)
@@ -18,7 +18,7 @@ else:
 
 from src.similitud import cinco_vecinos
 from src.inferencia import predecir_formulario
-from src.lectura_prediccion import concluir_prediccion
+from src.lectura_prediccion import comparar_probabilidad_alta, concluir_prediccion
 from src.portadas import PORTADAS_LOCALES, PORTADAS_ORIGINALES, buscar_portadas
 from src.ui import (
     _p5_ascii,
@@ -37,7 +37,7 @@ setup(
     'Predicción de popularidad',
     'Prueba cómo cambia el nivel al modificar los datos de un juego.',
     transition='resume',
-    menu_idx=2,
+    menu_idx=3,
     compact_menu=True,
 )
 
@@ -259,11 +259,25 @@ else:
         )
 
     st.subheader('Conclusión de esta consulta')
-    notas_medias = prep.named_transformers_['notas'].named_steps['imputar'].statistics_
-    lectura, contexto = concluir_prediccion(fila.iloc[0], prediccion, mapa_probs, notas_medias[0])
+    imputador = prep.named_transformers_['notas'].named_steps['imputar']
+    medianas = dict(zip(imputador.feature_names_in_, imputador.statistics_))
+    prob_alta = mapa_probs['alto']
+    with st.container(border=True):
+        st.markdown(f'**Probabilidad de éxito: {prob_alta:.1%}**')
+        st.caption('Éxito entendido como alcanzar popularidad alta en Backloggd.')
+    lectura, contexto = concluir_prediccion(fila.iloc[0], prediccion, mapa_probs, medianas['Metacritic Rating'])
     st.markdown(lectura)
     st.markdown(html.escape(contexto))
-    st.caption('El resultado estima la actividad y el interés relativos en Backloggd.')
+    st.caption('Popularidad alta significa quedar en el rango superior del índice de partidas registradas, pendientes y listas de deseos en Backloggd. Para evaluar éxito comercial hacen falta datos de ventas y costos.')
+    comparaciones = comparar_probabilidad_alta(
+        pipeline, fila, prob_alta, metricas['calibracion_web']['temperatura'], medianas,
+    )
+    if comparaciones:
+        st.markdown('**Cómo cambia la probabilidad de popularidad alta**')
+        st.caption('En cada escenario cambiamos un dato del formulario y dejamos los demás como están. Son estimaciones del modelo para esos escenarios.')
+        for descripcion, alternativa, cambio in comparaciones:
+            diferencia = f'{cambio:+.1f} puntos porcentuales' if abs(cambio) >= 0.05 else 'sin cambio al redondear'
+            st.markdown(f'- {html.escape(descripcion)} → **{alternativa:.1%}** ({diferencia}).')
 
     section_banner(
         'Cinco juegos parecidos',

@@ -9,7 +9,7 @@ import streamlit as st
 
 from .config import CLEAN, MODELS
 
-_MOD_VERSION = 'p5-v12-portadas'
+_MOD_VERSION = 'p5-v14-menu'
 
 
 def _hash_archivo(ruta: Path) -> str:

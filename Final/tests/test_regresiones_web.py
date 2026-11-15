@@ -387,9 +387,9 @@ def test_recarga_en_caliente_actualiza_modulos_obsoletos(monkeypatch):
 
     sim_vigente = sys.modules['src.similitud']
     assert 'vecinos' in inspect.signature(sim_vigente.cinco_vecinos).parameters
-    assert getattr(sys.modules['src.ui'], '_UI_VERSION', None) == 'p5-v12-portadas'
+    assert getattr(sys.modules['src.ui'], '_UI_VERSION', None) == 'p5-v14-menu'
     for nombre in ('src.data', 'src.inferencia', 'src.similitud', 'src.visualizacion', 'vista_graficas'):
-        assert getattr(sys.modules[nombre], '_MOD_VERSION', None) == 'p5-v12-portadas'
+        assert getattr(sys.modules[nombre], '_MOD_VERSION', None) == 'p5-v14-menu'
 
     # Incluso si _MOD_VERSION coincidiera, detectar firma antigua de cinco_vecinos debe recargar src.similitud.
     monkeypatch.setattr(sim_vigente, 'cinco_vecinos', lambda fila, pipeline: None)

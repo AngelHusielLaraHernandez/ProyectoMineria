@@ -5,7 +5,7 @@ from .calibracion import aplicar_temperatura
 from .config import FEATURES
 from .features import lista_cruda
 
-_MOD_VERSION = 'p5-v12-portadas'
+_MOD_VERSION = 'p5-v14-menu'
 
 
 def predecir_formulario(pipeline, generos, estudio, decada, metacritic, rating, *, temperatura=None):

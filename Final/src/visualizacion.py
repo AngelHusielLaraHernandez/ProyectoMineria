@@ -1,6 +1,6 @@
 """Tokens y etiquetas compartidos; no transforma datos ni escalas estadísticas."""
 
-_MOD_VERSION = 'p5-v12-portadas'
+_MOD_VERSION = 'p5-v14-menu'
 
 PALETA = {
     'bg-primary': '#050D22', 'bg-panel': '#15254A',

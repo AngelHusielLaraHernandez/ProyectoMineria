@@ -6,7 +6,7 @@ import streamlit as st
 
 import src.data as _data
 
-if getattr(_data, '_MOD_VERSION', None) != 'p5-v12-portadas':
+if getattr(_data, '_MOD_VERSION', None) != 'p5-v14-menu':
     if 'src.config' in sys.modules:
         importlib.reload(sys.modules['src.config'])
     _data = importlib.reload(_data)

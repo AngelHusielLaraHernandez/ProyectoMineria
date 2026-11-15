@@ -9,7 +9,7 @@ import streamlit as st
 
 import src.data as _data
 
-if getattr(_data, '_MOD_VERSION', None) != 'p5-v12-portadas':
+if getattr(_data, '_MOD_VERSION', None) != 'p5-v14-menu':
     if 'src.config' in sys.modules:
         importlib.reload(sys.modules['src.config'])
     _data = importlib.reload(_data)
@@ -34,7 +34,7 @@ setup(
     'Cómo salió el modelo',
     'Compara los modelos y revisa en qué niveles se equivocaron.',
     transition='default',
-    menu_idx=3,
+    menu_idx=2,
     compact_menu=True,
 )
 
@@ -85,9 +85,9 @@ section_banner(
 
 tabla_comp = read_report('tables/comparacion_prueba_actual_e_historica.csv').copy()
 nombres_legibles = {
-    'DummyClassifier': 'DummyClassifier (Base Mayoritaria)',
-    'CategoricalNB': 'Naive Bayes (CategoricalNB Discretizado)',
-    'DecisionTreeClassifier': 'Árbol de Decisión (CART)',
+    'DummyClassifier': 'Referencia mayoritaria',
+    'CategoricalNB': 'Naive Bayes',
+    'DecisionTreeClassifier': 'Árbol de decisión',
     'RandomForestClassifier': 'Random Forest',
     'MLPClassifier': 'Red neuronal MLP',
 }
@@ -100,7 +100,13 @@ nombres_cortos = {
 }
 tabla_comp['Algoritmo'] = tabla_comp['modelo'].map(lambda m: nombres_legibles.get(m, m))
 
-# Menú de candidatos (configuración e historial de validación). La tabla inferior concentra métricas comparadas.
+explicaciones = {
+    'RandomForestClassifier': 'Combina las predicciones de muchos árboles para elegir un nivel de popularidad.',
+    'MLPClassifier': 'Aprende combinaciones entre los datos del juego para estimar su nivel de popularidad.',
+    'CategoricalNB': 'Agrupa las notas en rangos y estima qué nivel es más probable según los géneros, la organización y los demás datos del juego.',
+    'DecisionTreeClassifier': 'Sigue una serie de preguntas sobre el juego hasta asignarle un nivel.',
+    'DummyClassifier': 'Siempre elige el nivel más frecuente del entrenamiento. Sirve como punto de partida para comparar los demás modelos.',
+}
 arte_algoritmos = {
     'RandomForestClassifier': 'halo',
     'MLPClassifier': 'spider-man',
@@ -117,9 +123,12 @@ for idx_m, row_m in orden_sp.iterrows():
     disp_style = 'block' if es_activo else 'none'
     tag_txt = 'MODELO ACTIVO' if es_activo else 'CANDIDATO COMPARADO'
     nombre_corto = html.escape(nombres_cortos.get(row_m['modelo'], str(row_m['modelo'])), quote=True)
-    algoritmo_html = html.escape(str(row_m['Algoritmo']), quote=True)
     origen_html = html.escape(str(row_m['origen_prueba']), quote=True)
     params_html = html.escape(str(row_m['mejores_parametros']), quote=True)
+    explicacion = explicaciones.get(row_m['modelo'], 'Clasifica los juegos en niveles de popularidad.')
+    total_prueba = metricas['n_prueba']
+    exactitud = row_m['exactitud_prueba']
+    aciertos = round(exactitud * total_prueba)
     arte = arte_algoritmos.get(row_m['modelo'], 'zelda')
     arte_b64 = asset_b64(f'img/juegos/{arte}.webp')
     sp_left_html += f"""
@@ -127,7 +136,7 @@ for idx_m, row_m in orden_sp.iterrows():
         <img class="sp-item-art" src="data:image/webp;base64,{arte_b64}" alt=""/>
         <div>
             <div class="sp-item-title">{nombre_corto}</div>
-            <div class="sp-item-stack">F1 CV: {row_m['f1_macro_cv']:.4f} · F1 PRUEBA: {row_m['f1_macro_prueba']:.4f}</div>
+            <div class="sp-item-stack">{exactitud:.1%} de exactitud en prueba</div>
         </div>
     </div>
     """
@@ -136,12 +145,16 @@ for idx_m, row_m in orden_sp.iterrows():
         <div class="sp-tag">{tag_txt}</div>
         <div class="sp-right-title">{nombre_corto}</div>
         <div class="sp-right-summary">
-            <strong>{algoritmo_html}</strong><br/>
-            F1 macro en CV externa (10 × 5): {row_m['f1_macro_cv']:.4f} (±{row_m['desviacion_cv']:.4f})<br/>
-            Alcance de prueba (n={metricas["n_prueba"]}): {origen_html}<br/>
-            Nota: consulta todas las métricas numéricas comparadas en la tabla inferior.
+            <p>{explicacion}</p>
+            <p><strong>{exactitud:.1%} de exactitud en prueba.</strong> Acertó el nivel de {aciertos} de {total_prueba} juegos.</p>
+            <p><strong>F1 macro en prueba {row_m['f1_macro_prueba']:.3f}.</strong> Da el mismo peso a los niveles bajo, medio y alto.</p>
         </div>
-        <div class="sp-link">PARÁMETROS: {params_html}</div>
+        <details class="sp-link">
+            <summary>Detalles técnicos</summary>
+            <div>F1 macro en validación cruzada (10 × 5) de {row_m['f1_macro_cv']:.4f} (±{row_m['desviacion_cv']:.4f}).</div>
+            <div>Origen de la prueba: {origen_html}</div>
+            <div>Parámetros: {params_html}</div>
+        </details>
     </div>
     """
 
@@ -167,11 +180,18 @@ st.dataframe(
         'Algoritmo': 'Algoritmo',
         'f1_macro_cv': st.column_config.NumberColumn('F1 macro CV externa', format='%.4f'),
         'desviacion_cv': st.column_config.NumberColumn('Desv. Est. CV', format='%.4f'),
-        'exactitud_prueba': st.column_config.NumberColumn('Exactitud (Prueba)', format='%.4f'),
+        'exactitud_prueba': st.column_config.NumberColumn('Exactitud en prueba', format='percent'),
         'f1_macro_prueba': st.column_config.NumberColumn('F1 Macro (Prueba)', format='%.4f'),
         'balanced_accuracy_prueba': st.column_config.NumberColumn('Exactitud Balanceada (Prueba)', format='%.4f'),
         'origen_prueba': 'Origen de la prueba',
     },
+)
+mejor_exactitud = tabla_comp.loc[tabla_comp['exactitud_prueba'].idxmax()]
+referencia = tabla_comp.loc[tabla_comp['modelo'].eq('DummyClassifier')].iloc[0]
+st.caption(
+    f"{mejor_exactitud['Algoritmo']} tiene la mayor exactitud de las pruebas mostradas "
+    f"({mejor_exactitud['exactitud_prueba']:.1%}, frente al {referencia['exactitud_prueba']:.1%} de la referencia). "
+    "La tabla reúne la prueba actual del bosque y las pruebas históricas de los demás modelos."
 )
 
 fig_comp = go.Figure()
@@ -208,18 +228,31 @@ fig_comp.update_yaxes(
     range=[len(filas_modelos) - .5, -.5], fixedrange=True, ticklabelstandoff=8, title_text='Modelo',
 )
 mostrar_grafica(fig_comp, 'Desempeño en validación cruzada y prueba', alto=465)
-st.caption('Cada punto muestra un resultado. El tramo azul indica cuánto cambió el F1 macro entre las pruebas.')
+lider_cv = tabla_comp.loc[tabla_comp['f1_macro_cv'].idxmax()]
+lider_prueba = tabla_comp.loc[tabla_comp['f1_macro_prueba'].idxmax()]
+st.caption(
+    f"En validación cruzada, {lider_cv['Algoritmo']} logró el mayor F1 macro "
+    f"({lider_cv['f1_macro_cv']:.3f}). De los resultados de prueba mostrados, el mayor fue el de "
+    f"{lider_prueba['Algoritmo']} ({lider_prueba['f1_macro_prueba']:.3f})."
+)
 
 cv = read_report('tables/comparativo_modelos.csv').set_index('modelo')
 contrastes = read_report('tables/comparacion_estadistica.csv')
 rf, mlp = cv.loc['RandomForestClassifier'], cv.loc['MLPClassifier']
 rf_mlp = contrastes.loc[contrastes.modelo_a.eq('RandomForestClassifier') & contrastes.modelo_b.eq('MLPClassifier')]
 p_t = rf_mlp.loc[rf_mlp.prueba.str.startswith('t corregida'), 'p_valor'].iloc[0]
-st.caption(f'El F1 macro varió menos entre pruebas para Random Forest ({rf.f1_macro_de:.4f}) que la MLP ({mlp.f1_macro_de:.4f}). '
-           f'La t corregida para su diferencia da p={p_t:.4f}. La prueba de los demás candidatos es histórica.')
 with st.expander('Métricas de validación externa y contrastes'):
     st.dataframe(cv.reset_index(), hide_index=True, width='stretch')
+    st.caption(
+        f"El bosque y la red neuronal promediaron una exactitud parecida en validación "
+        f"({rf.exactitud_pct_media:.1f}% y {mlp.exactitud_pct_media:.1f}%). "
+        f"El F1 macro varió menos en el bosque ({rf.f1_macro_de:.3f} frente a {mlp.f1_macro_de:.3f})."
+    )
     st.dataframe(contrastes, hide_index=True, width='stretch')
+    st.caption(
+        f"La prueba t corregida dio un valor p de {p_t:.3f} para el bosque y la red neuronal. "
+        "Con estos datos, la prueba no muestra una diferencia clara en F1 macro entre ambos."
+    )
 
 # ---------------------------------------------------------------------------
 # 3. MATRIZ DE CONFUSIÓN Y VARIABLES MÁS INFLUYENTES (ANCHO COMPLETO)
@@ -260,7 +293,17 @@ with col_cm:
     fig_cm.update_xaxes(title_text='Clase predicha')
     fig_cm.update_yaxes(title_text='Clase real', autorange='reversed')
     mostrar_grafica(fig_cm, 'Clases reales frente a predicciones', alto=390)
-    st.caption('En la diagonal se ven los aciertos. Si sigues una fila, puedes ver en qué otros niveles quedaron los juegos.')
+    errores = matriz.copy()
+    np.fill_diagonal(errores, 0)
+    fila_error, columna_error = np.unravel_index(errores.argmax(), errores.shape)
+    if errores[fila_error, columna_error]:
+        st.caption(
+            f"El modelo acertó el nivel de {matriz.trace()} de {matriz.sum()} juegos. El error más común "
+            f"fue clasificar {errores[fila_error, columna_error]} juegos de nivel "
+            f"{clases[fila_error]} como {clases[columna_error]}."
+        )
+    else:
+        st.caption(f"El modelo acertó el nivel de los {matriz.sum()} juegos de prueba.")
 
 with col_pi:
     section_banner('Importancia de variables en Random Forest', 'Reducción de impureza de Gini')
@@ -275,8 +318,10 @@ with col_pi:
     figura_gini.update_xaxes(title_text='Importancia relativa (%)', rangemode='tozero')
     figura_gini.update_yaxes(ticklabelstandoff=8, title_text='Entrada del modelo')
     mostrar_grafica(figura_gini, 'Contribución a la reducción de impureza', alto=360)
+    mayor_gini = df_gini.iloc[-1]
     st.caption(
-        'Una barra más larga indica que el bosque usó más ese dato para separar los niveles.'
+        f"La entrada «{etiquetas[mayor_gini['variable']]}» aportó más a la separación de los niveles "
+        f"al construir el bosque ({mayor_gini['importancia']:.1%} de la importancia según Gini)."
     )
 
 # ---------------------------------------------------------------------------
@@ -311,6 +356,13 @@ with col_d1:
             'F1-Score': st.column_config.NumberColumn(format='%.3f'),
         },
     )
+    menor_recall = min(filas_clases, key=lambda fila: fila['Recall (Sensibilidad)'])
+    mayor_recall = max(filas_clases, key=lambda fila: fila['Recall (Sensibilidad)'])
+    st.caption(
+        f"El modelo reconoció el {mayor_recall['Recall (Sensibilidad)']:.1%} de los juegos de nivel "
+        f"{mayor_recall['Clase'].lower()} y el {menor_recall['Recall (Sensibilidad)']:.1%} de los de nivel "
+        f"{menor_recall['Clase'].lower()}. Ahí están su mejor y su peor resultado por nivel."
+    )
 
 with col_d2:
     st.markdown(f'**Recall por clase para {len(tabla_comp)} modelos**')
@@ -328,6 +380,14 @@ with col_d2:
             'aciertos': st.column_config.NumberColumn('Aciertos', format='%d'),
             'recall': st.column_config.NumberColumn('Recall', format='%.3f'),
         },
+    )
+    nivel_dificil = menor_recall['Clase']
+    filas_nivel = err_df.loc[err_df['clase'].eq(nivel_dificil)]
+    mejor_nivel = filas_nivel.loc[filas_nivel['recall'].idxmax()]
+    nombre_nivel = nombres_legibles.get(mejor_nivel['modelo'], mejor_nivel['modelo'])
+    st.caption(
+        f"De los resultados mostrados para el nivel {nivel_dificil.lower()}, {nombre_nivel} reconoció "
+        f"la mayor proporción de juegos ({mejor_nivel['aciertos']} de {mejor_nivel['n']})."
     )
 
 section_banner('Calibración de probabilidades', 'Compara los porcentajes del bosque con lo que pasó en la prueba')
@@ -347,6 +407,8 @@ for archivo, serie, color, simbolo in [
 ]:
     fiabilidad = read_report(f'tables/{archivo}')
     filas = fiabilidad.loc[fiabilidad.clase.eq(nivel)]
+    if archivo == 'calibracion_ajustada.csv':
+        grupo_mayor = filas.loc[filas['n'].idxmax()]
     curva.add_scatter(
         x=filas.probabilidad_media,
         y=filas.fraccion_observada,
@@ -360,12 +422,21 @@ for archivo, serie, color, simbolo in [
 curva.update_xaxes(title_text='Probabilidad estimada media (%)', tickformat='.0%', range=[0, 1])
 curva.update_yaxes(title_text='Fracción observada de la clase (%)', tickformat='.0%', range=[0, 1])
 mostrar_grafica(curva, f'Fiabilidad del nivel {nivel}', alto=400)
-st.caption('Cada punto agrupa juegos con probabilidades parecidas. Cuanto más cerca esté de la diagonal, '
-           'más se parece la probabilidad estimada a la frecuencia observada en ese grupo.')
+st.caption(
+    f"En el grupo más numeroso tras calibrar ({int(grupo_mayor['n'])} juegos), el bosque estimó "
+    f"en promedio un {grupo_mayor['probabilidad_media']:.1%} para el nivel {nivel}. "
+    f"El {grupo_mayor['fraccion_observada']:.1%} de ese grupo quedó realmente en ese nivel."
+)
 st.markdown(
     '| Métrica en prueba | Sin calibrar | Calibrada |\n'
     '| --- | ---: | ---: |\n'
     f'| Brier multiclase | {resumen_m["brier_multiclase"]:.4f} | {ajustada["brier_multiclase"]:.4f} |\n'
     f'| Log-loss | {resumen_m["log_loss"]:.4f} | {ajustada["log_loss"]:.4f} |'
 )
-st.caption('En ambas métricas, un valor más bajo indica mejores probabilidades en esta prueba.')
+mejoras_calibracion = sum(ajustada[campo] < resumen_m[campo] for campo in ('brier_multiclase', 'log_loss'))
+if mejoras_calibracion == 2:
+    st.caption("Con la calibración bajaron los dos errores. En esta prueba, las probabilidades ajustadas se acercaron más a los resultados reales.")
+elif mejoras_calibracion == 1:
+    st.caption("Con la calibración bajó uno de los dos errores. La mejora en esta prueba dependió de la medida.")
+else:
+    st.caption("En esta prueba, los dos errores fueron menores o iguales con las probabilidades originales.")

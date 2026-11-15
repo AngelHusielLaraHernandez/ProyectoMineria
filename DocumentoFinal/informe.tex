@@ -113,6 +113,18 @@ Tambien hicimos la comparacion en Weka. Lo que vemos en la parte de arriba de la
 \ResultadosWeka
 \captura{RandomForest.png}{Resultado del bosque en Weka, con exactitud y matriz de aciertos y errores.}{fig:weka}
 
+La figura~\ref{fig:weka-grupos} coloca los mismos 887 juegos en dos ejes. K-Means los separo en grupos de 477 y 410. Para repetir esa corrida usamos Weka 3.8.6 y semilla 42. Para DBSCAN usamos las asignaciones guardadas de Explorer 3.8.7. En esa corrida, los 887 juegos quedaron en un solo grupo.
+
+\captura{weka_grupos.png}{Dispersion de K-Means y DBSCAN dibujada con las asignaciones de Weka.}{fig:weka-grupos}
+
+En la figura~\ref{fig:weka-bosque}, la curva ROC muestra como cambia la deteccion del nivel alto al mover el umbral. La repeticion en Weka 3.8.6 con diez bloques dio un area de 0.815. La matriz de la derecha viene de la salida guardada de Explorer 3.8.7. Ahi se ve que el bosque acerto 107 casos de nivel medio y asigno los otros 190 a alto o bajo.
+
+\captura{weka_bosque.png}{Curva ROC del nivel alto en Weka 3.8.6 y matriz de la corrida guardada en Explorer 3.8.7.}{fig:weka-bosque}
+
+El arbol J48 empieza por revisar si el juego tiene el genero de lucha. En la figura~\ref{fig:weka-j48} se ven las primeras ramas del arbol de 201 nodos. Las casillas «Sigue» indican donde hay mas preguntas en la salida de Weka.
+
+\captura{weka_j48.png}{Primeros niveles del arbol J48 a partir de la salida guardada de Weka.}{fig:weka-j48}
+
 \section{Como usamos la aplicacion}
 Primero abrimos Inicio. Desde ahi podemos pasar a Exploracion para cambiar el genero, la decada o el rango de notas y ver como cambia la consulta. En la parte de arriba estan las pestañas de actividad, notas, grupos y casos comerciales. Si queremos ver los aciertos y errores de la prueba entramos a Modelo.
 

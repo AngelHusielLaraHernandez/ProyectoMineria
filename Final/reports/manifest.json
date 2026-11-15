@@ -1,5 +1,5 @@
 {
-  "huella_pipeline": "bd1e1651a284a0d2e52388938f25470c2431ebbb8414a25bc0f450275654e393",
+  "huella_pipeline": "81416120eaeb96198de0f2a3c811564385776e68a8b923960bdd0b4a8feb2442",
   "fuente_clustering": "data/clean/dataset_depurado.csv",
   "artefacto_clustering": "data/clean/dataset_con_clusters.csv",
   "modelo_popularidad": "models/modelo_popularidad.joblib",

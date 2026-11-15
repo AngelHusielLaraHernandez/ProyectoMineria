@@ -12,7 +12,7 @@ import streamlit as st
 
 import src.data as _data
 
-if getattr(_data, '_MOD_VERSION', None) != 'p5-v12-portadas':
+if getattr(_data, '_MOD_VERSION', None) != 'p5-v14-menu':
     if 'src.config' in sys.modules:
         importlib.reload(sys.modules['src.config'])
     _data = importlib.reload(_data)
@@ -108,7 +108,7 @@ tab_actividad, tab_recepcion, tab_clustering, tab_riesgo = st.tabs([
     'Recepción y brecha',
     'Segmentación (Clustering)',
     'Riesgo comercial (GaaS)',
-])
+], key='dashboard_pestana', on_change='rerun')
 
 # ---------------------------------------------------------------------------
 # 2. DISTRIBUCIÓN DE INTERACCIÓN (PLAYS, WISHLIST, BACKLOGS) EN ESCALA LOG

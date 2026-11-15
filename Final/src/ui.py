@@ -33,7 +33,7 @@ P5_COLORS = {
     'yellow': PALETA['accent'], 'cyan': PALETA['primary'],
 }
 P5_COLORWAY = COLORWAY
-_UI_VERSION = 'p5-v12-portadas'
+_UI_VERSION = 'p5-v14-menu'
 
 
 def _p5_ascii(text: str) -> str:
@@ -145,18 +145,18 @@ def render_p5_main_menu(active_idx: int = 0, compact: bool = False) -> None:
     items = [
         {'idx': 0, 'label': 'INICIO',      'font': '2.15rem', 'ox': 6,  'oy': 0, 'sx': -6, 'sy': 6},
         {'idx': 1, 'label': 'EXPLORACIÓN', 'font': '1.45rem', 'ox': 4,  'oy': 6, 'sx': -9, 'sy': -5},
-        {'idx': 2, 'label': 'PREDICCIÓN',  'font': '1.55rem', 'ox': 4,  'oy': 6, 'sx': -3, 'sy': -3},
-        {'idx': 3, 'label': 'MODELO',      'font': '2.15rem', 'ox': 12, 'oy': 6, 'sx': -5, 'sy': 5},
+        {'idx': 2, 'label': 'MODELO',      'font': '2.15rem', 'ox': 12, 'oy': 6, 'sx': -5, 'sy': 5},
+        {'idx': 3, 'label': 'PREDICCIÓN',  'font': '1.55rem', 'ox': 4,  'oy': 6, 'sx': -3, 'sy': -3},
     ]
 
-    arte_menu = ('link', 'mario', 'spider-man', 'god-of-war')
+    arte_menu = ('link', 'mario', 'god-of-war', 'spider-man')
     arte_b64 = asset_b64(f'img/juegos/{arte_menu[active_idx]}.webp')
     art_html = (
         f'<img class="p5-stage-art" src="data:image/webp;base64,{arte_b64}" alt="" aria-hidden="true"/>'
         if arte_b64 else ''
     )
 
-    rutas = ['/', '/Exploracion', '/Prediccion', '/Acerca_del_modelo']
+    rutas = ['/', '/Exploracion', '/Acerca_del_modelo', '/Prediccion']
     rows_html = ''
     for i, item in enumerate(items):
         is_active = i == active_idx

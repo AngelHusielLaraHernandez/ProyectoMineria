@@ -4092,3 +4092,7 @@ Se agregaron las capturas de Juegos parecidos y la bitacora de algoritmos al inf
 ## Conclusion de Prediccion
 
 Se agrego un ejemplo de la conclusion personalizada y se documento la consulta de portadas en Steam y la alternativa con organizaciones del catalogo.
+
+## Graficas de Weka
+
+Se incorporaron las dispersiones de K-Means y DBSCAN, la curva ROC del nivel alto, la matriz de errores y las primeras ramas de J48. Las figuras se dibujaron con las salidas guardadas y con una repeticion de K-Means y Random Forest en Weka 3.8.6. La version de cada corrida se indica en el informe.
