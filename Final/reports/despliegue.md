@@ -1,6 +1,14 @@
 # DEPLOY-1.0 · Preparación para Streamlit Community Cloud
 
-**Estado: descartado en la entrega actual.** Se acordó conservar el catálogo, los modelos y sus derivados localmente. La aplicación se comprobó en localhost. Para una publicación futura hacen falta autorización, derechos de redistribución y una prueba en el entorno de alojamiento.
+**Estado: preparación local para un enlace público.** La entrada es `Final/app.py`, las dependencias están en `Final/requirements.txt` y Git ya contiene la configuración de Streamlit en la raíz. La rama local es `main`. Falta seleccionar y autorizar los archivos que se alojarán.
+
+## Qué necesita la aplicación
+
+- **Código y recursos de interfaz.** La entrada, las tres páginas, los módulos de `src`, `vista_graficas.py`, la configuración de Streamlit y los recursos que carga la interfaz.
+- **Catálogo y reportes.** El arranque actual valida el catálogo fuente, el catálogo depurado, los grupos y las tablas del manifiesto. Inicio y Exploración permiten descargar consultas. Antes de preparar un repositorio público hay que decidir qué datos y recursos podrá servir esa versión.
+- **Predicción.** El modelo entrenado, sus metadatos de calibración y el índice de juegos parecidos. Estos artefactos deben corresponder al catálogo y al manifiesto de la versión que se despliegue.
+
+Para conservar el original en local, la versión pública necesita una fuente alternativa autorizada y artefactos generados y probados con ella. Copiar solo el código dejaría incompleto el arranque actual.
 
 ## Licencia y alcance de publicación
 
@@ -8,7 +16,7 @@ La [ficha original de Kaggle](https://www.kaggle.com/datasets/arnabchaki/popular
 
 El repositorio local contiene datos y binarios ya rastreados en el historial. `.gitignore` protege secretos y archivos futuros, pero no elimina material previamente versionado. Antes de publicar, la fuente de despliegue debe ser una exportación saneada con archivos autorizados y sin el historial local privado. Para publicar una demo con datos y recursos distintos, regenerar los artefactos compatibles con esa demo y probar las cuatro páginas.
 
-## Checklist para cuando se autorice la publicación
+## Verificaciones para la publicación
 
 - [ ] Confirmar la licencia en la ficha de Kaggle y su versión. Confirmar por separado permisos sobre datos agregados, textos y recursos visuales y sonoros, o sustituir el material que carezca de autorización.
 - [ ] Revisar el inventario de los archivos del repositorio de despliegue y su historial. Incluir exclusivamente recursos autorizados y los artefactos que la app necesita. Comprobar que no haya secretos, historial privado ni evidencia gráfica con datos que no se autorizaron.

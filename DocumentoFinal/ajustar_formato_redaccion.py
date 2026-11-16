@@ -101,7 +101,7 @@ def cifras():
         'PlanTrabajo': tabla('Actividades planeadas y primera evidencia fechada de su realización.',
             ['Actividad', 'Periodo planeado', 'Evidencia fechada'], 'lll',
             [(f['actividad'], f['baseline'].replace('--', '–'), f['evidencia_git'])
-             for f in leer('plan_baseline_git') if f['evidencia_git']]),
+             for f in leer('plan_baseline_git') if f['evidencia_git'] and f['actividad'] != 'Web']),
         'TotalMedio': sum(int(m[1][c]) for c in ('bajo', 'medio', 'alto')), 'AciertosMedio': m[1]['medio'],
         'ComparacionModelos': tabla('Resultados promedio de la comparación en Python.',
             ['Modelo', 'Exactitud (%)', 'F1 macro', 'Variación del F1'], 'lrrr',
