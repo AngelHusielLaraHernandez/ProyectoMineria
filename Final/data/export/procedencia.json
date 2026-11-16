@@ -1,0 +1,12 @@
+{
+  "clustering.csv": {
+    "fuente": "data/clean/clustering_espacio.csv",
+    "sha256_fuente": "9b0627ba170dba5eed9b1fc22fe02020d175f07d71addd91280279cfe43f8a1d",
+    "sha256_export": "9b0627ba170dba5eed9b1fc22fe02020d175f07d71addd91280279cfe43f8a1d"
+  },
+  "clasificacion.csv": {
+    "fuente": "data/clean/entrenamiento_orange.csv",
+    "sha256_fuente": "f1040a9670bf08c0a717d39951971c3ec0335bf605b2b69b228f26b0d38c9908",
+    "sha256_export": "f1040a9670bf08c0a717d39951971c3ec0335bf605b2b69b228f26b0d38c9908"
+  }
+}

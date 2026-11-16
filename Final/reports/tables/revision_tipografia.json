@@ -1,0 +1,63 @@
+[
+  {
+    "antipattern": "side-tab",
+    "name": "Side-tab accent border",
+    "description": "Thick colored border on one side of a card — the most recognizable tell of AI-generated UIs. Use a subtler accent or remove it entirely.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "/Users/angellara/Documents/NovenoSemestre/ProyectoMineria/Final/assets/css/persona5.css",
+    "line": 172,
+    "snippet": "border-right: 4px solid var(--p5-red) !important"
+  },
+  {
+    "antipattern": "side-tab",
+    "name": "Side-tab accent border",
+    "description": "Thick colored border on one side of a card — the most recognizable tell of AI-generated UIs. Use a subtler accent or remove it entirely.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "/Users/angellara/Documents/NovenoSemestre/ProyectoMineria/Final/assets/css/persona5.css",
+    "line": 1438,
+    "snippet": "border-left: 7px solid var(--p5-red)"
+  },
+  {
+    "antipattern": "side-tab",
+    "name": "Side-tab accent border",
+    "description": "Thick colored border on one side of a card — the most recognizable tell of AI-generated UIs. Use a subtler accent or remove it entirely.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "/Users/angellara/Documents/NovenoSemestre/ProyectoMineria/Final/assets/css/persona5.css",
+    "line": 1447,
+    "snippet": "border-left: 9px solid var(--p5-yellow)"
+  },
+  {
+    "antipattern": "side-tab",
+    "name": "Side-tab accent border",
+    "description": "Thick colored border on one side of a card — the most recognizable tell of AI-generated UIs. Use a subtler accent or remove it entirely.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "/Users/angellara/Documents/NovenoSemestre/ProyectoMineria/Final/assets/css/persona5.css",
+    "line": 1590,
+    "snippet": "border-right: 3px solid var(--p5-yellow)"
+  },
+  {
+    "antipattern": "side-tab",
+    "name": "Side-tab accent border",
+    "description": "Thick colored border on one side of a card — the most recognizable tell of AI-generated UIs. Use a subtler accent or remove it entirely.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "/Users/angellara/Documents/NovenoSemestre/ProyectoMineria/Final/assets/css/persona5.css",
+    "line": 1614,
+    "snippet": "border-left: 6px solid var(--p5-red)"
+  },
+  {
+    "antipattern": "bounce-easing",
+    "name": "Bounce or elastic easing",
+    "description": "Bounce and elastic easing feel dated and tacky. Real objects decelerate smoothly — use exponential easing (ease-out-quart/quint/expo) instead.",
+    "severity": "advisory",
+    "category": "slop",
+    "file": "/Users/angellara/Documents/NovenoSemestre/ProyectoMineria/Final/assets/css/persona5.css",
+    "line": 316,
+    "snippet": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+    "advisory": true
+  }
+]

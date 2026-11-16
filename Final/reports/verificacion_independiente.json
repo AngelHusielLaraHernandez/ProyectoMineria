@@ -1,0 +1,39 @@
+{
+  "original_intacto": true,
+  "artefactos_y_reportes_concuerdan": true,
+  "filas_y_brecha": {
+    "conservadas": 1117,
+    "agrupadas": 887,
+    "no_agrupadas": 230
+  },
+  "correlacion_recalculada": {
+    "n": 887,
+    "pearson_r": 0.5439095219775958,
+    "pearson_p": 1.9359671271969552e-69,
+    "spearman_rho": 0.5241770101377499,
+    "spearman_p": 9.340096498724198e-64
+  },
+  "clusters_y_espacio_concordantes": true,
+  "metricas_recalculadas": {
+    "n_prueba": 222,
+    "f1_macro": 0.5577027296634777,
+    "exactitud": 0.5675675675675675
+  },
+  "auditoria_integral": {
+    "modelo": "RandomForestClassifier",
+    "python": "3.14.6",
+    "filas_cv": 250,
+    "metricas_prueba": {
+      "exactitud_pct": 56.75675675675676,
+      "f1_macro": 0.5577027296634777,
+      "f1_ponderado": 0.5539995111974958,
+      "kappa": 0.3551783607152583,
+      "roc_auc_ovr": 0.7378585640662519,
+      "brier_multiclase": 0.5569691743670414,
+      "log_loss": 0.9273825951102835
+    },
+    "matriz_y_calibracion_reproducidas": true,
+    "resumen_cv_y_p_valores_recalculados": true,
+    "perfiles_y_terciles_revisados": true
+  }
+}

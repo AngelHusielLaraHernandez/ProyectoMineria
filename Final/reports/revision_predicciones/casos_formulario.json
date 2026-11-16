@@ -1,0 +1,56 @@
+[
+  {
+    "generos": [
+      "Adventure",
+      "RPG"
+    ],
+    "estudio": [
+      "Otro"
+    ],
+    "decada": 2020,
+    "Metacritic Rating": 82,
+    "Rating": 3.9,
+    "clase": "bajo",
+    "probabilidades": {
+      "alto": 0.2955592390655418,
+      "bajo": 0.40592126624713165,
+      "medio": 0.29851949468732686
+    }
+  },
+  {
+    "generos": [
+      "Adventure",
+      "RPG"
+    ],
+    "estudio": [
+      "Otro"
+    ],
+    "decada": 2020,
+    "Metacritic Rating": 100,
+    "Rating": 5,
+    "clase": "alto",
+    "probabilidades": {
+      "alto": 0.5408269453085124,
+      "bajo": 0.20861964106899933,
+      "medio": 0.25055341362248806
+    }
+  },
+  {
+    "generos": [
+      "Adventure",
+      "RPG"
+    ],
+    "estudio": [
+      "Otro"
+    ],
+    "decada": 2020,
+    "Metacritic Rating": null,
+    "Rating": 5,
+    "clase": "bajo",
+    "probabilidades": {
+      "alto": 0.2779815193893014,
+      "bajo": 0.44206113209632525,
+      "medio": 0.27995734851437365
+    }
+  }
+]

@@ -1,0 +1,21 @@
+metodo,cluster,id_juego,juego
+kmeans,0,1056,The Messenger
+kmeans,0,304,Dragon Age: Origins
+kmeans,0,172,Metroid: Zero Mission
+kmeans,0,980,The Legend of Zelda: Majora's Mask 3D
+kmeans,0,517,Luigi's Mansion 3
+kmeans,1,1360,Sonic Rush Adventure
+kmeans,1,1420,Black
+kmeans,1,1375,Toy Story 2: Buzz Lightyear to the Rescue!
+kmeans,1,1398,Shantae: Half-Genie Hero
+kmeans,1,1338,Condemned: Criminal Origins
+dbscan,-1,109,League of Legends
+dbscan,-1,276,Shadow the Hedgehog
+dbscan,-1,610,Marvel Snap
+dbscan,-1,661,Paladins
+dbscan,-1,667,Wanted: Dead
+dbscan,0,1110,Professor Layton and the Curious Village
+dbscan,0,656,Fire Emblem: The Sacred Stones
+dbscan,0,666,Persona 4 Arena Ultimax
+dbscan,0,622,Sunset Overdrive
+dbscan,0,758,Phoenix Wright: Ace Attorney - Spirit of Justice

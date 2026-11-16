@@ -1,0 +1,53 @@
+atributo_arff,variable
+variable_0,generos__Adventure
+variable_1,generos__RPG
+variable_2,generos__Shooter
+variable_3,generos__Platform
+variable_4,generos__Indie
+variable_5,generos__Puzzle
+variable_6,generos__Strategy
+variable_7,generos__Brawler
+variable_8,generos__Simulator
+variable_9,generos__Fighting
+variable_10,generos__Turn Based Strategy
+variable_11,generos__Arcade
+variable_12,generos__Visual Novel
+variable_13,generos__Racing
+variable_14,generos__Tactical
+variable_15,generos__Otro
+variable_16,generos__Sin dato
+variable_17,estudio__Nintendo
+variable_18,estudio__Capcom
+variable_19,estudio__Square Enix
+variable_20,estudio__Sega
+variable_21,estudio__Electronic Arts
+variable_22,estudio__Konami
+variable_23,estudio__Bandai Namco Entertainment
+variable_24,estudio__Activision
+variable_25,estudio__Ubisoft Entertainment
+variable_26,estudio__Atlus
+variable_27,estudio__Sony Interactive Entertainment
+variable_28,estudio__Nintendo EAD
+variable_29,estudio__Game Freak
+variable_30,estudio__WB Games
+variable_31,estudio__Bethesda Softworks
+variable_32,estudio__Sony Computer Entertainment
+variable_33,estudio__Square
+variable_34,estudio__Ubisoft Montreal
+variable_35,"estudio__Intelligent Systems Co., Ltd."
+variable_36,estudio__Sonic Team
+variable_37,"estudio__Sony Computer Entertainment, Inc. (SCEI)"
+variable_38,estudio__Devolver Digital
+variable_39,estudio__FromSoftware
+variable_40,estudio__Annapurna Interactive
+variable_41,estudio__Microsoft Game Studios
+variable_42,estudio__Otro
+variable_43,estudio__Sin dato
+variable_44,decada__decada_-1.0
+variable_45,decada__decada_1980.0
+variable_46,decada__decada_1990.0
+variable_47,decada__decada_2000.0
+variable_48,decada__decada_2010.0
+variable_49,decada__decada_2020.0
+variable_50,notas__Metacritic Rating
+variable_51,notas__Rating

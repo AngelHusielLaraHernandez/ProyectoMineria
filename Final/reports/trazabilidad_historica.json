@@ -1,0 +1,24 @@
+{
+  "estado": "verificado",
+  "sha256_historico": "6073f43d0c0bd5722b03789ff51c97c4ecd53686cdedbef93fc69d0c990245b6",
+  "sha256_maestro": "b23cc1c4c23e65171bbe8a3436c358773cee15b8e11b446261cd575daa625acd",
+  "filas_historicas": 1512,
+  "filas_maestro": 1117,
+  "descartes_heredados": 395,
+  "grupos_con_diferencias": 13,
+  "grupos_con_conflicto_analitico": 3,
+  "ids_analiticos_pendientes": [
+    117,
+    140,
+    296
+  ],
+  "columnas_reconstruidas": 42,
+  "diferencias_reconstruccion": [],
+  "critica_estimada_maestro": 218,
+  "estimaciones_con_rating": 214,
+  "coeficientes_ajuste_sintetico": [
+    8.583326609989347,
+    50.95839691488483
+  ],
+  "residuo_maximo_tras_redondear": 0.0
+}

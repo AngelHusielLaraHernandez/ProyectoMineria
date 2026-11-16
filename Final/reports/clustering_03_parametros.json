@@ -1,0 +1,35 @@
+{
+  "sha256_entrada": "f0448fccc82b140fec956d8522b8dfa675c029875029bca6f3f8b396a67a7652",
+  "semilla": 42,
+  "variables": [
+    "Plays",
+    "Playing",
+    "Backlogs",
+    "Wishlist",
+    "Rating",
+    "Metacritic Rating"
+  ],
+  "log1p": [
+    "Plays",
+    "Playing",
+    "Backlogs",
+    "Wishlist"
+  ],
+  "n_entrada": 1117,
+  "n_completos": 887,
+  "n_excluidos_clustering": 230,
+  "n_cohorte_analitica": 1114,
+  "n_conflictos_historicos": 3,
+  "minimo_pares_correlacion": 20,
+  "kmeans_k": 2,
+  "dbscan_eps": 1.6662963557646437,
+  "dbscan_min_samples": 12,
+  "dbscan_ruido": 21,
+  "dbscan_clusters": 1,
+  "dbscan_silhouette_sin_ruido": null,
+  "pca_varianza": [
+    0.5838385635506382,
+    0.16724298816152772
+  ],
+  "regla_eps": "Máxima separación x−y respecto de la cuerda, tras normalizar ambos ejes a [0,1]."
+}

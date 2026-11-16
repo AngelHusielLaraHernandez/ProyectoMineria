@@ -1,0 +1,70 @@
+{
+  "estado": "Sin pendientes en los entregables solicitados de Weka",
+  "clases": {
+    "alto": 297,
+    "medio": 297,
+    "bajo": 298
+  },
+  "comprobaciones": [
+    {
+      "elemento": "clustering",
+      "filas": 887,
+      "columnas": 6,
+      "CSV_ARFF_identicos": true
+    },
+    {
+      "elemento": "clasificacion",
+      "filas": 892,
+      "columnas": 53,
+      "CSV_ARFF_identicos": true
+    },
+    {
+      "elemento": "ZeroR",
+      "salida_completa": true,
+      "matriz_verificada": true,
+      "comparativo_exacto": true,
+      "captura_valida": true
+    },
+    {
+      "elemento": "NaiveBayes",
+      "salida_completa": true,
+      "matriz_verificada": true,
+      "comparativo_exacto": true,
+      "captura_valida": true
+    },
+    {
+      "elemento": "J48",
+      "salida_completa": true,
+      "matriz_verificada": true,
+      "comparativo_exacto": true,
+      "captura_valida": true
+    },
+    {
+      "elemento": "RandomForest",
+      "salida_completa": true,
+      "matriz_verificada": true,
+      "comparativo_exacto": true,
+      "captura_valida": true
+    },
+    {
+      "elemento": "SimpleKMeans",
+      "k": 2,
+      "semilla": 42,
+      "centroides_seis_variables": true,
+      "tamanos": [
+        477,
+        410
+      ]
+    },
+    {
+      "elemento": "DBSCAN",
+      "epsilon": 1.666296,
+      "minPoints": 12,
+      "asignaciones": 887,
+      "etiquetas": {
+        "0": 887
+      }
+    }
+  ],
+  "nota": "Se verificaron las corridas guardadas; esta revisión no ejecutó nuevos entrenamientos. Explorer quedó abierto con clasificacion.arff, 892 instancias, 53 atributos y clase nominal nivel_popularidad."
+}

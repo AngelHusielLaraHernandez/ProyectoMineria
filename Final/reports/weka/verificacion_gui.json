@@ -1,0 +1,148 @@
+{
+  "fecha": "2026-11-08T19:23:33.499228-06:00",
+  "version_weka": "3.8.7",
+  "origen": "Salidas del panel de Explorer; no son ejecuciones CLI.",
+  "clasificacion": {
+    "ZeroR": {
+      "exactitud_porcentaje_mostrado": "33.0717",
+      "f1_ponderado_mostrado": "?",
+      "instancias": 892,
+      "aciertos_mostrados": 295,
+      "matriz": [
+        [
+          87,
+          210,
+          0
+        ],
+        [
+          90,
+          208,
+          0
+        ],
+        [
+          90,
+          207,
+          0
+        ]
+      ],
+      "matriz_verificada": true,
+      "salida": "reports/weka/ZeroR.txt",
+      "captura": "reports/weka/ZeroR.png",
+      "sha256_salida": "abc7807ce09733680834ddcfcbf72f7a71f72e62ad1d519db547385bc4fe1cad"
+    },
+    "NaiveBayes": {
+      "exactitud_porcentaje_mostrado": "50.8969",
+      "f1_ponderado_mostrado": "0.503",
+      "instancias": 892,
+      "aciertos_mostrados": 454,
+      "matriz": [
+        [
+          193,
+          28,
+          76
+        ],
+        [
+          47,
+          164,
+          87
+        ],
+        [
+          101,
+          99,
+          97
+        ]
+      ],
+      "matriz_verificada": true,
+      "salida": "reports/weka/NaiveBayes.txt",
+      "captura": "reports/weka/NaiveBayes.png",
+      "sha256_salida": "5aac3e1f7f662eb504b71c7f77d1e31f2121a15ba7771c97b630a65bfd3027c6"
+    },
+    "J48": {
+      "exactitud_porcentaje_mostrado": "51.009",
+      "f1_ponderado_mostrado": "0.506",
+      "instancias": 892,
+      "aciertos_mostrados": 455,
+      "matriz": [
+        [
+          193,
+          29,
+          75
+        ],
+        [
+          42,
+          160,
+          96
+        ],
+        [
+          91,
+          104,
+          102
+        ]
+      ],
+      "matriz_verificada": true,
+      "salida": "reports/weka/J48.txt",
+      "captura": "reports/weka/J48.png",
+      "sha256_salida": "88ceace97d84c7c67628688f9876a4d3de22c07935e6111dd954f3c401a88c8c"
+    },
+    "RandomForest": {
+      "exactitud_porcentaje_mostrado": "53.4753",
+      "f1_ponderado_mostrado": "0.530",
+      "instancias": 892,
+      "aciertos_mostrados": 477,
+      "matriz": [
+        [
+          195,
+          29,
+          73
+        ],
+        [
+          39,
+          175,
+          84
+        ],
+        [
+          89,
+          101,
+          107
+        ]
+      ],
+      "matriz_verificada": true,
+      "salida": "reports/weka/RandomForest.txt",
+      "captura": "reports/weka/RandomForest.png",
+      "sha256_salida": "bed5274c54f92bc20ff70c7d64d600839b65e76ea4860e88d8e003dcd5bb47df"
+    }
+  },
+  "kmeans": {
+    "n": 887,
+    "k": 2,
+    "semilla": 42,
+    "tamanos": [
+      477,
+      410
+    ],
+    "suma_verificada": true
+  },
+  "dbscan": {
+    "paquete": "optics_dbScan",
+    "version_paquete": "1.0.6",
+    "instalado_y_cargado_verificado_en_gui": true,
+    "n": 887,
+    "atributos": 6,
+    "epsilon": 1.666296,
+    "minPoints": 12,
+    "opciones_distancia_mostradas": "weka.core.EuclideanDistance -R first-last",
+    "clusters_mostrados": 1,
+    "instancias_cluster_0_mostradas": 887,
+    "porcentaje_mostrado": "100%",
+    "asignaciones_verificadas": 887,
+    "etiquetas": {
+      "0": 887
+    },
+    "ruido_verificado": 0,
+    "criterio_ruido": "Las 887 asignaciones de la salida están etiquetadas 0; no hay etiquetas de ruido. Weka muestra 887 (100%) en Clustered Instances.",
+    "salida": "reports/weka/dbscan.txt",
+    "captura": "reports/weka/dbscan_resultado.png",
+    "sha256_salida": "7d0866476ee480a90daee39e1469861c532b52da9dbef7bfb9c05eedcf11de94"
+  },
+  "estado_weka": "Seis corridas gráficas completas: SimpleKMeans, DBSCAN, ZeroR, NaiveBayes, J48 y RandomForest."
+}

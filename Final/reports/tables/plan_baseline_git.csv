@@ -1,0 +1,12 @@
+actividad,baseline,evidencia_git,revision,ruta,estado,justificacion_desviacion
+Anteproyecto y revisión,1--5 oct.,2026-10-07,707324c,Proyecto/main.tex,Versión base conservada.,[PENDIENTE: confirmar equipo]
+Preparación y limpieza,6--15 oct.,2026-11-08,79a573c,Final/src/02_limpieza.py,El maestro ya estaba curado.,[PENDIENTE: confirmar equipo]
+EDA y correlaciones,15--29 oct.,2026-11-08,79a573c,Final/src/01_inspeccion.py,"Esquema, rangos y cobertura documentados.",[PENDIENTE: confirmar equipo]
+Clustering,29 oct.--10 nov.,2026-11-08,79a573c,Final/src/03_clustering.py,"K-Means, Ward y DBSCAN.",[PENDIENTE: confirmar equipo]
+Clasificación,5--11 nov.,2026-11-08,79a573c,Final/src/04_modelo.py,Evaluación anidada incorporada en revisión.,[PENDIENTE: confirmar equipo]
+Weka,Durante modelado,2026-11-08,79a573c,Final/reports/weka/kmeans.txt,Evidencia gráfica.,[PENDIENTE: confirmar equipo]
+Web,8--16 nov.,2026-11-08,bcd38d6,Final/app.py,Ejecución local.,[PENDIENTE: confirmar equipo]
+Despliegue público,16--18 nov.,,,,Descartado por decisión de conservar los datos localmente.,Descartado por decisión de conservar los datos localmente.
+Evaluación en Orange,Durante modelado,,,,Parcial. Cierres de Qt documentados.,Parcial. Cierres de Qt documentados.
+Documento y revisión,10--24 nov.,2026-11-09,5db3c30,DocumentoFinal/main.tex,Fuente versionada.,[PENDIENTE: confirmar equipo]
+Entrega y demo,25 nov.,,,,La fecha de exposición sigue siendo una fecha planificada.,La fecha de exposición sigue siendo una fecha planificada.

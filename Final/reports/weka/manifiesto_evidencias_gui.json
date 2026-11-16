@@ -1,0 +1,267 @@
+{
+  "fecha": "2026-11-09T11:41:15.431069-06:00",
+  "alcance": "Respaldo local de evidencias gráficas de Weka; sin resultados de Orange ni algoritmos CLI anteriores.",
+  "archivos": [
+    {
+      "ruta": "reports/weka/kmeans.txt",
+      "bytes": 1554,
+      "sha256": "b6be17cf0eaf134d171be3850e8e4c683ef631592cb3e142195ae0358191983a"
+    },
+    {
+      "ruta": "reports/weka/dbscan.txt",
+      "bytes": 76228,
+      "sha256": "7d0866476ee480a90daee39e1469861c532b52da9dbef7bfb9c05eedcf11de94"
+    },
+    {
+      "ruta": "reports/weka/ZeroR.txt",
+      "bytes": 3346,
+      "sha256": "abc7807ce09733680834ddcfcbf72f7a71f72e62ad1d519db547385bc4fe1cad"
+    },
+    {
+      "ruta": "reports/weka/NaiveBayes.txt",
+      "bytes": 20846,
+      "sha256": "5aac3e1f7f662eb504b71c7f77d1e31f2121a15ba7771c97b630a65bfd3027c6"
+    },
+    {
+      "ruta": "reports/weka/J48.txt",
+      "bytes": 17362,
+      "sha256": "88ceace97d84c7c67628688f9876a4d3de22c07935e6111dd954f3c401a88c8c"
+    },
+    {
+      "ruta": "reports/weka/RandomForest.txt",
+      "bytes": 3521,
+      "sha256": "bed5274c54f92bc20ff70c7d64d600839b65e76ea4860e88d8e003dcd5bb47df"
+    },
+    {
+      "ruta": "reports/weka/kmeans_resultado.png",
+      "bytes": 580823,
+      "sha256": "a6f5223cb9b6f6d0cbeb70cc3da84f89396cd8fc68fa2195d4e8f7fc63548e00"
+    },
+    {
+      "ruta": "reports/weka/dbscan_resultado.png",
+      "bytes": 955565,
+      "sha256": "a5b1fd50d6f42054ceff60a26a5528d8813b86d1efebff71e5d0053d85f30ee2"
+    },
+    {
+      "ruta": "reports/weka/ZeroR.png",
+      "bytes": 597808,
+      "sha256": "b7859929328baea3540730ab9e0494eec18e983a56f8fb5d1c26ddb77f91766f"
+    },
+    {
+      "ruta": "reports/weka/NaiveBayes.png",
+      "bytes": 623033,
+      "sha256": "ef00fe5af3442fbbaa129aeef2a23c3c42e642d69773f6924fd261ada6056928"
+    },
+    {
+      "ruta": "reports/weka/J48.png",
+      "bytes": 630962,
+      "sha256": "72296d14f03af1520c8e07ca86310cb171b5a1b7f46b189701f3df514e184afd"
+    },
+    {
+      "ruta": "reports/weka/RandomForest.png",
+      "bytes": 675186,
+      "sha256": "75fd874d38afb1b00f10cf700ec2a5adede66120ac7d87f702d4d0c7a6367d8c"
+    },
+    {
+      "ruta": "reports/weka/kmeans_parametros.png",
+      "bytes": 315719,
+      "sha256": "02701adf007ea00754e5a08b072612409728475c99ad457ce314f52f1bd78f27"
+    },
+    {
+      "ruta": "reports/weka/dbscan_parametros.png",
+      "bytes": 193074,
+      "sha256": "0893afea5b536cf905d0d8d1d2a212e68370679a22cc5ab5d25d1d83b5ccaa3e"
+    },
+    {
+      "ruta": "reports/weka/dbscan_paquete_instalado.png",
+      "bytes": 744567,
+      "sha256": "d116101ee2b08af4959b56657aceebbc52e1708afbe6c2cfef50ec082b55761f"
+    },
+    {
+      "ruta": "reports/weka/preprocess_887_6.png",
+      "bytes": 328737,
+      "sha256": "4a12b27fee62542fd9e54b8a1a0f0860013d9a9b9d17eadb01afc3cf06c17e9e"
+    },
+    {
+      "ruta": "reports/weka/preprocess_clasificacion_892_53.png",
+      "bytes": 474369,
+      "sha256": "3528c55e62a3c2c4756a4c20a396350944a355ef5094a225e4023b394bf2da93"
+    },
+    {
+      "ruta": "reports/weka/verificacion_final_ventana.png",
+      "bytes": 925607,
+      "sha256": "db55f2c6708c8697f387317f5753d787c2132ebcf87b75c995378729edd6cde4"
+    },
+    {
+      "ruta": "reports/weka/resumen_gui.md",
+      "bytes": 4663,
+      "sha256": "f22bbd098d5928e5a0a0cbe41bc9f8aaea474a31d4bda0df47fd9cf1bc42ec79"
+    },
+    {
+      "ruta": "reports/weka/verificacion_gui.json",
+      "bytes": 3665,
+      "sha256": "be902c717117cd70c74115abe9422a476a27290227664fa7c08563b005dbc584"
+    },
+    {
+      "ruta": "reports/weka/clic_weka.js",
+      "bytes": 1778,
+      "sha256": "a18f25837076eaf480e513a9f0f678a35b2eaf9805b14458b690ba6f430755e1"
+    },
+    {
+      "ruta": "reports/codex_log.md",
+      "bytes": 41008,
+      "sha256": "80327a2bc336276b80dfa348bf5fa60425122364968c66c5270d91e4d5054dce"
+    },
+    {
+      "ruta": "reports/tables/comparativo_herramientas.csv",
+      "bytes": 14198,
+      "sha256": "16e8e53c939be9db1802c5da0d55f5c474484408a5b3dc5aa4f3ac5413066893"
+    },
+    {
+      "ruta": "data/export/procedencia_arff.json",
+      "bytes": 721,
+      "sha256": "c4f04f6eb9a09996254dbcf51015019e1b522963fe3b284cb25a9a1a3bc8691c"
+    },
+    {
+      "ruta": "reports/weka/capturas_originales_jpeg/kmeans_resultado.jpg",
+      "bytes": 375510,
+      "sha256": "0b8e0b0cbf449189b3e9e1003676ad081605321116834da5ee59b1346ff32af2"
+    },
+    {
+      "ruta": "reports/weka/capturas_originales_jpeg/dbscan_resultado.jpg",
+      "bytes": 632626,
+      "sha256": "764cab40e6644b9f38d3db5e999cb46efa59847754796ab7af598f7e61c55839"
+    },
+    {
+      "ruta": "reports/weka/capturas_originales_jpeg/ZeroR.jpg",
+      "bytes": 369757,
+      "sha256": "5bf5855dbbfabc490600a2b84b17daad9634618f25b6e7bc3d9379bb1ec6b322"
+    },
+    {
+      "ruta": "reports/weka/capturas_originales_jpeg/NaiveBayes.jpg",
+      "bytes": 388942,
+      "sha256": "3183edf0097177d334337adae81965d64b6745681817a9130eee0e2a26c3db6f"
+    },
+    {
+      "ruta": "reports/weka/capturas_originales_jpeg/J48.jpg",
+      "bytes": 393832,
+      "sha256": "2cf229718717fc3574bc2af3c45de908c0ddfc74a4273c560ebfdff745fbefa2"
+    },
+    {
+      "ruta": "reports/weka/capturas_originales_jpeg/RandomForest.jpg",
+      "bytes": 417861,
+      "sha256": "17df8a4eb2e4bfc4b3fa628b4a94265ce9c36fd8c7d0922c4b938ea201bc86e6"
+    },
+    {
+      "ruta": "reports/weka/capturas_originales_jpeg/kmeans_parametros.jpg",
+      "bytes": 201718,
+      "sha256": "2ff878e825f3e6fcb0055d9a40a69d57016a8074007afb72febc748b07414dfd"
+    },
+    {
+      "ruta": "reports/weka/capturas_originales_jpeg/dbscan_parametros.jpg",
+      "bytes": 127518,
+      "sha256": "078094306545235ed1c67e4468cee9bad306737338cc4ebeb5d38395cfb61451"
+    },
+    {
+      "ruta": "reports/weka/capturas_originales_jpeg/dbscan_paquete_instalado.jpg",
+      "bytes": 488781,
+      "sha256": "1555840562cc1419d058e30801225e554784bb42e370f0ff4dfa58a7d34d74e4"
+    },
+    {
+      "ruta": "reports/weka/capturas_originales_jpeg/preprocess_887_6.jpg",
+      "bytes": 281696,
+      "sha256": "ddd1c3c24514a7ceca94436e617187d1a0612c22544d6c8df476dae5ad46df25"
+    },
+    {
+      "ruta": "reports/weka/capturas_originales_jpeg/preprocess_clasificacion_892_53.jpg",
+      "bytes": 338311,
+      "sha256": "777b212a752b5a8e951352cf07a10fac9983ad477db5b92a6033994a7e60da47"
+    },
+    {
+      "ruta": "reports/weka/capturas_originales_jpeg/verificacion_final_ventana.jpg",
+      "bytes": 624234,
+      "sha256": "521b7bdc5119b1c28295646d2e41cb7b242b0d994ce3a2e7fec17a7da82da6f0"
+    },
+    {
+      "ruta": "reports/weka/conversion_capturas.json",
+      "bytes": 5286,
+      "sha256": "faa3a6f86b515d59e45a1f383580bf405eeeff13f3a68d45da111685d9d0b7bd"
+    },
+    {
+      "ruta": "reports/weka/revision_respaldo.md",
+      "bytes": 1849,
+      "sha256": "c2ffa83066679bce6ccdbeeaffe992844b6a32d56ac1ef12e83adfcc64abc0ab"
+    },
+    {
+      "ruta": "reports/weka/cierre_weka_2026_11_09.md",
+      "bytes": 2000,
+      "sha256": "cfe77d950e13a3887e238074f93ad985bd62fd9870a262c0d29cf23ff53ee1c4"
+    },
+    {
+      "ruta": "reports/weka/auditoria_cierre_2026_11_09.json",
+      "bytes": 1641,
+      "sha256": "e40d7fd52f04c7f67a654c8f0cfe301d0e34bfedba7b8de7ddf424c99e539549"
+    },
+    {
+      "ruta": "reports/weka/revision_explorer_2026_11_09.jpg",
+      "bytes": 335490,
+      "sha256": "c747aaf6b50600ba4fcc166df07612f40ed6e6b60ed5487be8ffd70d275703c4"
+    },
+    {
+      "ruta": "reports/weka/verificacion_comparativo_python_weka.json",
+      "bytes": 1469,
+      "sha256": "a3bff1c6308093cdae72d550e90b2ae5d732d2565c15800bb0f3ec76545bcd30"
+    },
+    {
+      "ruta": "reports/tables/comparativo_herramientas_notas.md",
+      "bytes": 3850,
+      "sha256": "04d42dea8485c335ebc0f0072228ff91cdf1b77a5168f6859d37e1ea8918ee31"
+    },
+    {
+      "ruta": "reports/tables/evaluar_comparabilidad.py",
+      "bytes": 8880,
+      "sha256": "1f0c178f4dba03c4922e5cf948770211637a01e7d47a9044b2bbcd57af0178cd"
+    },
+    {
+      "ruta": "reports/tables/test_comparabilidad.py",
+      "bytes": 2664,
+      "sha256": "844c10c6186a711cef430c8ac193c3241792482ee3e20e458c6cab824cd10f52"
+    },
+    {
+      "ruta": "reports/tables/comparativo_detalle.json",
+      "bytes": 31092,
+      "sha256": "0316b13e1db7522ddaa97aa671c773f02f5116bf9096fbaef4334f0071d91304"
+    },
+    {
+      "ruta": "reports/tables/comparativo_folds.csv",
+      "bytes": 97207,
+      "sha256": "4efe3a7a75dd2e00310a38045a9be880f4b289ab7be505e82e7fb05fc60dbd32"
+    },
+    {
+      "ruta": "reports/tables/comparativo_predicciones_oof.csv",
+      "bytes": 657427,
+      "sha256": "70cbe0ea4d0175e36f9be3e23347f49a8bcf586227ea7bfcb4063adf7eab1822"
+    },
+    {
+      "ruta": "reports/tables/ejecucion_comparabilidad.txt",
+      "bytes": 1796,
+      "sha256": "35889d1c98ea3ed200a69fcaf109c3021e4f824fec9bb8ab07c255558ccf35d0"
+    },
+    {
+      "ruta": "reports/tables/pruebas_comparabilidad.txt",
+      "bytes": 799,
+      "sha256": "2b2ff65dae96389433ca6e86113f21e337d44b0cbe14599aff5e8acc17b21eee"
+    },
+    {
+      "ruta": "reports/tables/pruebas_metricas_comparables.txt",
+      "bytes": 99,
+      "sha256": "d1860236036504b3d533e1a449db7d3961063c3f837f6e99c3ccfc5dfa504fe9"
+    }
+  ],
+  "capturas": {
+    "png_validos": 12,
+    "jpeg_originales_conservados": 12,
+    "igualdad_de_pixeles_verificada": true
+  },
+  "revision_cierre": "reports/weka/cierre_weka_2026_11_09.md"
+}

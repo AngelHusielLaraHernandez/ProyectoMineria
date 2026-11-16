@@ -1,0 +1,14 @@
+juego,fecha,id_conservado_historicamente,ids_del_grupo,campos_distintos,conflicto_analitico
+Elden Ring,"Feb 25, 2022",0,"[0, 326, 776]",Reviews,False
+Yakuza 0,"Mar 12, 2015",16,"[16, 342, 792]",Reviews,False
+Hi-Fi Rush,"Jan 25, 2023",21,"[21, 347, 797]",Reviews,False
+Grand Theft Auto V,"Sep 17, 2013",23,"[23, 349, 799]",Reviews,False
+Cyberpunk 2077,"Dec 09, 2020",24,"[24, 350, 800]",Reviews,False
+Fallout: New Vegas,"Oct 19, 2010",42,"[42, 368, 818]",Reviews,False
+The Witcher 3: Wild Hunt,"May 19, 2015",51,"[51, 377, 827]",Reviews,False
+League of Legends,"Oct 27, 2009",109,"[109, 855]",Reviews,False
+Yakuza Kiwami,"Jan 21, 2016",113,"[113, 393, 859]",Reviews,False
+Splatoon 3,"Sep 09, 2022",117,"[117, 397, 863]",Backlogs,True
+Guilty Gear: Strive,"Jun 11, 2021",140,"[140, 429, 895]",Playing,True
+Assassin's Creed,"Nov 13, 2007",189,"[189, 456, 971]",Reviews,False
+The Legend of Zelda: Twilight Princess,"Nov 19, 2006",296,"[296, 919, 1034]",Rating; Times Listed; Number of Reviews; Summary; Reviews; Plays; Playing; Backlogs; Wishlist,True

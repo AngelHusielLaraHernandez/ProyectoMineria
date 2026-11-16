@@ -1,0 +1,22 @@
+{
+  "data/raw/games_curated.csv": "b23cc1c4c23e65171bbe8a3436c358773cee15b8e11b446261cd575daa625acd",
+  "data/clean/diccionario_weka.csv": "c3cf64a5d5c74e02c4a7f7fb0f78b66cfaf5d25ccc155dcbb4461093a4bbaf4d",
+  "data/clean/clustering_weka.arff": "78e7c49499f1f2112d22a991a5edcc0400b5778fe7413011b71413c34433aea7",
+  "data/clean/clustering_espacio.csv": "9b0627ba170dba5eed9b1fc22fe02020d175f07d71addd91280279cfe43f8a1d",
+  "data/clean/prueba_weka.arff": "75bf00752c63bbedce8e533ba8733ffe53a85a4847057000831007d7ec51f3bd",
+  "data/clean/games_curated.csv": "b23cc1c4c23e65171bbe8a3436c358773cee15b8e11b446261cd575daa625acd",
+  "data/clean/entrenamiento_orange.csv": "f1040a9670bf08c0a717d39951971c3ec0335bf605b2b69b228f26b0d38c9908",
+  "data/clean/dataset_con_clusters.csv": "d35537b44658aeeefbacd0ebac8c6cd785e73004e5ec0b1ac7baf3c82fd4077a",
+  "data/clean/entrenamiento_weka.arff": "05f32bfce2ee083011da37866380b53a2beb6d79f627a991ec87ff29a1f04138",
+  "data/clean/dataset_depurado.csv": "f0448fccc82b140fec956d8522b8dfa675c029875029bca6f3f8b396a67a7652",
+  "data/clean/prueba_orange.csv": "1c6f667c3c34904f1ade594308cfc8efc5f25609589b74b55f3e2220608160b9",
+  "data/clean/clustering_orden.csv": "e70aea9dd1d83f78ce7b5b0aeaa7f4d7d5b85baf9cf686860cbbaba418a0128d",
+  "data/clean/juegos_modelo.csv": "cfc50959cc9e65ba6ba50004d84215e5eb06d58ce67df31cf1c8671e80457685",
+  "data/clean/duplicados_limpieza.csv": "50ce0e30026c21e4892332b916a924b85703fb494815dba160431a84a49efa6a",
+  "data/clean/generos_largo.csv": "22d1c569bad95b50f0c880296a0ac85e5c44d4939b7c2d54c72276574e30beb0",
+  "models/clustering_03.joblib": "a84cced97483f68cde7884d2422bd1e12d85d3e15edf350246417deeb43d36ff",
+  "models/modelo_popularidad.joblib": "ee362dae946d18981714171de2d66c0b93fc00a364e6990f698ed3b68ae8550e",
+  "models/metadata.json": "07ba1ce664747e68c06c7ab9dc799e8ccb565cf71e7222b3a6de9f8548eed2fa",
+  "models/referencias_folds.json": "68a602b49e37bba5d190b571b7afcd4f876957780a02bae1456635d14e4a0cf8",
+  "models/vecinos_popularidad.joblib": "23d0ad2353a64b567cd1c40d40b70735e4450ae9a2b731519ba5aa65a1f95415"
+}

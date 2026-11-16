@@ -1,0 +1,83 @@
+{
+  "java": "openjdk version \"25.0.3\" 2026-04-21 LTS\nOpenJDK Runtime Environment Temurin-25.0.3+9 (build 25.0.3+9-LTS)\nOpenJDK 64-Bit Server VM Temurin-25.0.3+9 (build 25.0.3+9-LTS, mixed mode, sharing)",
+  "sha256_dataset_depurado": "f0448fccc82b140fec956d8522b8dfa675c029875029bca6f3f8b396a67a7652",
+  "comandos": [
+    [
+      "java",
+      "-Dweka.packageManager.offline=true",
+      "-DWEKA_HOME=.cache/weka/home",
+      "-cp",
+      ".cache/weka/*",
+      "weka.clusterers.SimpleKMeans",
+      "-t",
+      "data/clean/clustering_weka.arff",
+      "-N",
+      "2",
+      "-S",
+      "42",
+      "-I",
+      "300",
+      "-init",
+      "1",
+      "-A",
+      "weka.core.EuclideanDistance -D",
+      "-p",
+      "0"
+    ],
+    [
+      "java",
+      "-Dweka.packageManager.offline=true",
+      "-DWEKA_HOME=.cache/weka/home",
+      "-cp",
+      ".cache/weka/*",
+      "weka.clusterers.SimpleKMeans",
+      "-t",
+      "data/clean/clustering_weka.arff",
+      "-N",
+      "3",
+      "-S",
+      "42",
+      "-I",
+      "300",
+      "-init",
+      "1",
+      "-A",
+      "weka.core.EuclideanDistance -D",
+      "-p",
+      "0"
+    ],
+    [
+      "java",
+      "-Dweka.packageManager.offline=true",
+      "-DWEKA_HOME=.cache/weka/home",
+      "-cp",
+      ".cache/weka/*",
+      "weka.clusterers.SimpleKMeans",
+      "-t",
+      "data/clean/clustering_weka.arff",
+      "-N",
+      "4",
+      "-S",
+      "42",
+      "-I",
+      "300",
+      "-init",
+      "1",
+      "-A",
+      "weka.core.EuclideanDistance -D",
+      "-p",
+      "0"
+    ]
+  ],
+  "sha256_arff": "78e7c49499f1f2112d22a991a5edcc0400b5778fe7413011b71413c34433aea7",
+  "jars": {
+    "weka-stable-3.8.6.jar": {
+      "url": "https://repo.maven.apache.org/maven2/nz/ac/waikato/cms/weka/weka-stable/3.8.6/weka-stable-3.8.6.jar",
+      "sha256": "932ea2f342b58fe45736389e9c426d5b5955e610d1f5f6485117f532068915e9"
+    },
+    "bounce-0.18.jar": {
+      "url": "https://repo.maven.apache.org/maven2/nz/ac/waikato/cms/weka/thirdparty/bounce/0.18/bounce-0.18.jar",
+      "sha256": "bffff1505335c02256b7ab2ccffbe4aa4d3ac9fe14c17557809b7c9d99d666ca"
+    }
+  }
+}
