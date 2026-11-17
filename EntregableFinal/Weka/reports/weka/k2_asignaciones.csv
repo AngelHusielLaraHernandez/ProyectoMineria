@@ -1,0 +1,888 @@
+id_juego,Title,cluster_weka,cluster_python
+0,Elden Ring,1,0
+1,Hades,1,0
+2,The Legend of Zelda: Breath of the Wild,1,0
+3,Undertale,1,0
+4,Hollow Knight,1,0
+5,Minecraft,1,0
+6,Omori,1,0
+7,Metroid Dread,1,0
+8,Among Us,1,0
+9,NieR: Automata,1,0
+10,Persona 5 Royal,1,0
+11,Stray,1,0
+12,God of War,1,0
+13,Portal 2,1,0
+14,Bloodborne,1,0
+15,Celeste,1,0
+17,Red Dead Redemption 2,1,0
+18,Portal,1,0
+19,Super Mario Odyssey,1,0
+20,Pokémon Legends: Arceus,1,0
+21,Hi-Fi Rush,1,0
+22,Metal Gear Rising: Revengeance,1,0
+23,Grand Theft Auto V,1,0
+24,Cyberpunk 2077,1,0
+25,God of War Ragnarök,1,0
+26,Xenoblade Chronicles 3,1,0
+27,Kirby and the Forgotten Land,1,0
+28,Disco Elysium: The Final Cut,1,0
+29,Marvel's Spider-Man,1,0
+30,Dark Souls III,1,0
+31,NieR Replicant ver.1.22474487139...,1,0
+32,Super Mario 64,1,0
+33,Super Smash Bros. Ultimate,1,0
+34,Cuphead,1,0
+35,Sekiro: Shadows Die Twice,1,0
+36,Final Fantasy VII,1,0
+37,Persona 4 Golden,1,0
+38,Genshin Impact,1,0
+39,Signalis,1,0
+40,Resident Evil Village,1,0
+41,Super Mario Galaxy,1,0
+42,Fallout: New Vegas,1,0
+43,Outer Wilds,1,0
+44,Resident Evil 2,1,0
+45,Doom,1,0
+46,Shin Megami Tensei V,1,0
+47,Bayonetta,1,0
+48,Stardew Valley,1,0
+49,The Last of Us Part II,1,0
+50,Silent Hill 2,1,0
+51,The Witcher 3: Wild Hunt,1,0
+52,Persona 5,1,0
+53,Doom Eternal,1,0
+54,The Elder Scrolls V: Skyrim,1,0
+55,Neon White,1,0
+56,Devil May Cry 5,1,0
+57,Overwatch 2,0,1
+58,Resident Evil 4,1,0
+59,Final Fantasy VII Remake,1,0
+60,Sonic Frontiers,1,0
+61,Inscryption,1,0
+62,Tunic,1,0
+63,Dark Souls,1,0
+64,The Legend of Zelda: Ocarina of Time,1,0
+67,Metal Gear Solid 2: Sons of Liberty,1,0
+69,Death Stranding,1,0
+70,Marvel's Spider-Man: Miles Morales,1,0
+71,Dark Souls: Remastered,1,0
+73,Castlevania: Symphony of the Night,1,0
+76,The Legend of Zelda: Majora's Mask,1,0
+77,Star Wars Jedi: Fallen Order,1,0
+78,The Last of Us,1,0
+79,Terraria,1,0
+80,Resident Evil 7: Biohazard,1,0
+81,Metal Gear Solid V: The Phantom Pain,1,0
+82,Overwatch,1,0
+83,Half-Life 2,1,0
+84,Fire Emblem: Three Houses,1,0
+85,Grand Theft Auto: San Andreas,1,0
+86,13 Sentinels: Aegis Rim,1,0
+87,Persona 3 FES,1,0
+88,Devil May Cry,1,0
+89,Mario Kart 8 Deluxe,1,0
+90,Fire Emblem Engage,1,0
+91,Pokémon Violet,1,0
+92,Hotline Miami,1,0
+93,Pizza Tower,1,0
+94,Psychonauts 2,1,0
+95,Metroid Prime Remastered,1,0
+96,Halo Infinite,1,0
+97,Batman: Arkham Asylum,1,0
+98,Super Mario Sunshine,1,0
+101,Xenoblade Chronicles: Definitive Edition,1,0
+102,Half-Life,1,0
+103,Marvel's Guardians of the Galaxy,1,0
+105,Cult of the Lamb,1,0
+106,Sonic Mania,1,0
+107,Horizon Zero Dawn,1,0
+108,Left 4 Dead 2,1,0
+109,League of Legends,0,1
+110,Control,1,0
+111,Doki Doki Literature Club!,1,0
+112,Batman: Arkham City,1,0
+113,Yakuza Kiwami,1,0
+114,Phoenix Wright: Ace Attorney,1,0
+115,Team Fortress 2,1,0
+116,Xenoblade Chronicles 2,1,0
+119,Katana Zero,1,0
+120,Life is Strange,1,0
+121,Dark Souls II: Scholar of the First Sin,1,0
+122,Deathloop,1,0
+123,Shadow of the Colossus,1,0
+124,Teenage Mutant Ninja Turtles: Shredder's Revenge,1,0
+125,Sifu,1,0
+127,Dishonored,1,0
+128,Metal Gear Solid 3: Snake Eater,1,0
+129,Journey,1,0
+130,Kingdom Hearts,1,0
+131,Titanfall 2,1,0
+133,Live A Live,1,0
+134,The Last of Us Remastered,1,0
+136,Rocket League,1,0
+137,Batman: Arkham Knight,1,0
+138,Bayonetta 3,1,0
+139,Disco Elysium,1,0
+141,Wii Sports,0,1
+142,Hogwarts Legacy,1,0
+143,Mario Kart Wii,1,0
+144,Resident Evil 3,1,0
+145,Unpacking,1,0
+146,Red Dead Redemption,1,0
+147,Tales of Arise,1,0
+149,Dead Space,1,0
+150,Tomb Raider,1,0
+151,Super Mario Galaxy 2,1,0
+153,What Remains of Edith Finch,1,0
+154,Monster Hunter Rise,1,0
+155,Pokémon Emerald,1,0
+156,NEO: The World Ends with You,1,0
+157,Assassin's Creed II,1,0
+158,Pokémon Scarlet,0,1
+159,Dead Space,1,0
+160,New Super Mario Bros.,1,0
+161,Shadow of the Colossus,1,0
+162,Horizon Forbidden West,1,0
+163,God of War,1,0
+164,Detroit: Become Human,1,0
+165,Final Fantasy XV,1,0
+166,Persona 5 Strikers,1,0
+167,Limbo,1,0
+168,Pokémon Platinum,1,0
+169,Stranger of Paradise: Final Fantasy Origin,1,0
+170,Killer7,1,0
+171,Grand Theft Auto IV,1,0
+172,Metroid: Zero Mission,1,0
+173,Final Fantasy X,1,0
+175,Final Fantasy IX,1,0
+176,Halo 3,1,0
+177,Metroid Fusion,1,0
+179,VA-11 Hall-A: Cyberpunk Bartender Action,1,0
+180,Dead Cells,1,0
+181,Far Cry 3,1,0
+182,The Stanley Parable: Ultra Deluxe,1,0
+183,SuperHot,1,0
+184,Plants vs. Zombies,0,1
+185,Ori and the Blind Forest,1,0
+186,Demon's Souls,1,0
+187,A Plague Tale: Innocence,1,0
+188,The Legend of Zelda: Link's Awakening,1,0
+189,Assassin's Creed,1,0
+190,Judgment,1,0
+191,Call of Duty: Black Ops,1,0
+192,Ratchet & Clank: Rift Apart,1,0
+193,Pokémon Black,1,0
+194,The Stanley Parable,1,0
+196,AI: The Somnium Files - Nirvana Initiative,1,0
+197,Ghost Trick: Phantom Detective,1,0
+198,Dragon Quest XI S: Echoes of an Elusive Age - Definitive Edition,1,0
+199,Paper Mario: The Thousand-Year Door,1,0
+200,God of War II,1,0
+201,Mass Effect 2,1,0
+202,Forza Horizon 5,1,0
+203,Metal Gear Solid V: Ground Zeroes,1,0
+204,No More Heroes III,1,0
+205,Banjo-Kazooie,1,0
+206,Astro's Playroom,0,1
+207,Call of Duty: Black Ops II,1,0
+208,The Legend of Zelda: Skyward Sword HD,1,0
+210,Subnautica,1,0
+211,Returnal,1,0
+212,New Super Mario Bros. Wii,1,0
+213,Citizen Sleeper,1,0
+216,Wolfenstein: The New Order,1,0
+217,Deus Ex,1,0
+218,BioShock 2,1,0
+219,Soul Hackers 2,0,1
+220,Enter the Gungeon,1,0
+222,Shovel Knight,1,0
+223,Firewatch,1,0
+224,Dark Souls II,1,0
+225,Blasphemous,1,0
+227,Immortality,1,0
+228,Resident Evil 6,0,1
+229,Devil May Cry 3: Dante's Awakening,1,0
+230,The Last of Us Part I,1,0
+231,Super Meat Boy,1,0
+232,Mass Effect Legendary Edition,1,0
+234,Pokémon Sword,1,0
+235,Crash Bandicoot N. Sane Trilogy,1,0
+237,Valorant,0,1
+238,Super Mario 3D World,1,0
+239,Uncharted 3: Drake's Deception,1,0
+240,Phoenix Wright: Ace Attorney - Trials and Tribulations,1,0
+242,Max Payne,1,0
+243,Five Nights at Freddy's,0,1
+245,Pokémon White,1,0
+246,Outlast,1,0
+247,Hitman 3,1,0
+248,Sable,1,0
+249,Super Smash Bros. for Wii U,0,1
+254,Superliminal,1,0
+255,Death Stranding: Director's Cut,1,0
+256,Persona 4,1,0
+258,The Sims 4,0,1
+259,Far Cry 4,1,0
+260,Sonic Forces,0,1
+261,To the Moon,1,0
+262,Baba is You,1,0
+264,Super Smash Bros.,0,1
+265,Super Mario 64 DS,0,1
+266,Halo 4,0,1
+267,Middle-earth: Shadow of Mordor,1,0
+269,Phoenix Wright: Ace Attorney Trilogy,1,0
+270,Infamous: Second Son,1,0
+271,Star Wars: Knights of the Old Republic,1,0
+272,No More Heroes 2: Desperate Struggle,1,0
+273,Kirby Super Star Ultra,1,0
+275,Katamari Damacy,1,0
+276,Shadow the Hedgehog,0,1
+277,Ōkami HD,1,0
+278,Metroid: Samus Returns,1,0
+279,Life is Strange: True Colors,1,0
+280,Pokémon Black Version 2,1,0
+282,Borderlands,1,0
+283,Hollow Knight: Voidheart Edition,1,0
+285,Shadow of the Tomb Raider,1,0
+286,Mario & Luigi: Bowser's Inside Story,1,0
+287,Ghostrunner,1,0
+288,Watch Dogs 2,1,0
+289,Mass Effect 3,1,0
+290,Goat Simulator,0,1
+291,The Elder Scrolls V: Skyrim - Special Edition,1,0
+292,Far Cry 5,1,0
+293,Call of Duty: Modern Warfare 3,0,1
+297,Bloodborne: The Old Hunters,1,0
+298,Fire Emblem Warriors: Three Hopes,1,0
+299,Super Smash Bros. for Nintendo 3DS,0,1
+302,Astral Chain,1,0
+303,DmC: Devil May Cry,1,0
+304,Dragon Age: Origins,1,0
+305,Vagrant Story,1,0
+306,Amnesia: The Dark Descent,1,0
+307,Monster Hunter Rise: Sunbreak,0,1
+308,Super Mario Maker 2,1,0
+309,Fire Emblem: The Blazing Blade,1,0
+310,LEGO Marvel Super Heroes,0,1
+311,Sonic Colors,0,1
+312,Pokémon Moon,0,1
+314,Battlefield 4,0,1
+315,Dragon Ball Z: Budokai Tenkaichi 3,0,1
+316,WarioWare: Get It Together!,0,1
+317,Beyond: Two Souls,0,1
+318,Digimon Survive,0,1
+319,Spiritfarer,1,0
+320,Little Nightmares II,1,0
+321,The Evil Within 2,1,0
+323,Sayonara Wild Hearts,1,0
+324,Metro 2033 Redux,1,0
+391,Vampire Survivors,1,0
+405,Psychonauts,1,0
+406,Fallout 4,1,0
+407,Uncharted 4: A Thief's End,1,0
+409,Silent Hill,1,0
+410,Super Smash Bros. Brawl,1,0
+411,Borderlands 2,1,0
+412,No More Heroes,1,0
+413,Ghost of Tsushima,1,0
+513,Resident Evil 2,1,0
+515,Soma,1,0
+516,The Binding of Isaac: Rebirth,1,0
+517,Luigi's Mansion 3,1,0
+518,Katamari Damacy Reroll,1,0
+519,Mario Kart 7,0,1
+520,Castle Crashers,1,0
+521,Rain World,0,1
+522,Mario Party Superstars,0,1
+523,Bully,1,0
+524,Mario Kart 64,0,1
+525,Octopath Traveler II,1,0
+526,Norco,1,0
+527,Resident Evil,1,0
+528,Assassin's Creed Odyssey,1,0
+529,Transistor,1,0
+530,The Evil Within,1,0
+531,Metal: Hellsinger,0,1
+572,Halo: The Master Chief Collection,1,0
+574,Uncharted: The Lost Legacy,1,0
+575,Resident Evil 3: Nemesis,1,0
+576,Sea of Thieves,0,1
+577,F.E.A.R.,1,0
+578,Mafia: Definitive Edition,1,0
+579,NieR,1,0
+580,The Walking Dead: Season Two,0,1
+581,Forspoken,0,1
+582,Max Payne 2: The Fall of Max Payne,1,0
+584,Dusk,1,0
+585,The Elder Scrolls III: Morrowind,1,0
+586,Rollerdrome,0,1
+588,Pokémon Sun,0,1
+589,Yu-Gi-Oh! Master Duel,0,1
+590,Injustice: Gods Among Us,0,1
+592,Final Fantasy X/X-2 HD Remaster,1,0
+593,Mortal Kombat X,0,1
+594,Shin Megami Tensei: Digital Devil Saga,1,0
+595,Star Wars: The Force Unleashed,0,1
+597,Ghost of Tsushima: Director's Cut,1,0
+598,Donkey Kong Country Returns,1,0
+599,Street Fighter III: 3rd Strike,0,1
+600,Return to Monkey Island,0,1
+601,Deus Ex: Human Revolution,1,0
+602,Spyro Reignited Trilogy,1,0
+603,Chicory: A Colorful Tale,1,0
+605,Outer Wilds: Echoes of the Eye,1,0
+606,New Super Mario Bros. 2,0,1
+607,Wolfenstein II: The New Colossus,1,0
+608,Pokémon Diamond,0,1
+609,Into the Breach,1,0
+610,Marvel Snap,0,1
+611,Nier: Automata - Game of the Yorha Edition,1,0
+612,Five Nights at Freddy's 2,0,1
+613,Mortal Kombat 11,0,1
+614,Witch on the Holy Night,0,1
+615,Dying Light 2: Stay Human,0,1
+616,Asura's Wrath,0,1
+617,Tales of Berseria,1,0
+618,Ender Lilies: Quietus of the Knights,1,0
+620,Prince of Persia: The Sands of Time,1,0
+621,Assassin's Creed Syndicate,0,1
+622,Sunset Overdrive,1,0
+623,Metal Gear Solid: Peace Walker,1,0
+624,Code Vein,0,1
+632,Mario Strikers: Battle League,0,1
+634,Resident Evil Village: Winters' Expansion,0,1
+635,Tony Hawk's Pro Skater 1+2,1,0
+636,Need for Speed: Unbound,0,1
+637,Zero Escape: Zero Time Dilemma,0,1
+638,Deus Ex: Mankind Divided,1,0
+639,Guitar Hero III: Legends of Rock,0,1
+640,Sid Meier's Civilization VI,1,0
+641,Nioh 2,1,0
+642,Gears of War,0,1
+643,Final Fantasy Tactics,1,0
+644,Deltarune,1,0
+645,Tekken 3,0,1
+646,Far Cry 6,0,1
+648,Persona 4 Golden,0,1
+650,Xenosaga Episode I: Der Wille zur Macht,1,0
+651,Everhood,0,1
+652,Don't Starve Together,0,1
+653,South Park: The Fractured But Whole,1,0
+654,God of War III: Remastered,0,1
+655,Pokémon Ruby,0,1
+656,Fire Emblem: The Sacred Stones,1,0
+658,Uncharted: The Nathan Drake Collection,1,0
+659,Persona 3 Portable,0,1
+660,Pyre,1,0
+661,Paladins,0,1
+662,Dead Space 3,0,1
+663,Devil May Cry HD Collection,1,0
+664,Bayonetta Origins: Cereza and the Lost Demon,0,1
+666,Persona 4 Arena Ultimax,1,0
+667,Wanted: Dead,0,1
+668,Luigi's Mansion: Dark Moon,1,0
+669,Gorogoa,0,1
+670,Valkyrie Elysium,0,1
+671,Castlevania: Order of Ecclesia,1,0
+672,Deadly Premonition,0,1
+673,LEGO Batman 2: DC Super Heroes,0,1
+674,Lunistice,0,1
+675,Sonic Advance,0,1
+677,Just Cause 3,0,1
+678,Suikoden II,1,0
+679,LittleBigPlanet,0,1
+683,Tales of Symphonia,1,0
+685,The Dark Pictures Anthology: Man of Medan,0,1
+687,River City Girls,0,1
+688,Sonic Origins,0,1
+690,Pikmin 2,1,0
+692,Paper Mario: The Origami King,1,0
+693,Conker's Bad Fur Day,1,0
+694,Fire Emblem: Radiant Dawn,1,0
+695,Need for Speed: Heat,0,1
+696,Skate 3,0,1
+697,Braid,0,1
+698,Metro 2033,0,1
+700,Super Mario Party,0,1
+701,Kentucky Route Zero,1,0
+702,The Legend of Zelda: Twilight Princess HD,1,0
+703,We Love Katamari,0,1
+706,Harvestella,0,1
+707,Dishonored: Death of the Outsider,0,1
+708,Life is Strange 2,0,1
+709,Banjo-Tooie,1,0
+712,Saints Row 2,0,1
+715,Tiny Tina's Wonderlands,0,1
+716,Utawarerumono: Mask of Truth,0,1
+718,Just Cause 2,0,1
+721,Jet Set Radio Future,1,0
+722,Overcooked!,0,1
+723,Shin Megami Tensei IV: Apocalypse,1,0
+724,Muse Dash,0,1
+729,Prototype,0,1
+733,Gal Guardians: Demon Purge,0,1
+734,Mortal Shell,0,1
+735,Kingdom Come: Deliverance,0,1
+737,Sleeping Dogs: Definitive Edition,0,1
+738,Resident Evil 4: Ultimate HD Edition,0,1
+739,LEGO Builder's Journey,0,1
+740,Guilty Gear Xrd: Rev 2,0,1
+741,Super Kiwi 64,0,1
+742,Infamous 2,0,1
+744,Melatonin,0,1
+745,Gungrave G.O.R.E,0,1
+748,Hitman: Blood Money,0,1
+750,The Dark Pictures Anthology: The Devil in Me,0,1
+751,Donkey Kong Country: Tropical Freeze,1,0
+753,Moonlighter,0,1
+754,Pikmin 3,1,0
+755,Five Nights at Freddy's 4,0,1
+757,Nier: Automata - The End of Yorha Edition,0,1
+758,Phoenix Wright: Ace Attorney - Spirit of Justice,1,0
+759,Crysis,0,1
+760,Fallout Shelter,0,1
+761,Sonic and the Secret Rings,0,1
+762,FTL: Faster Than Light,0,1
+764,Attack of the Friday Monsters! A Tokyo Tale,0,1
+765,Animal Crossing,0,1
+766,Fire Emblem Fates: Revelation,0,1
+767,Bloodstained: Curse of the Moon,0,1
+768,Final Fantasy XIII-2,0,1
+770,Fatal Frame II: Crimson Butterfly,0,1
+771,World of Warcraft,0,1
+773,Gang Beasts,0,1
+774,Armored Core 3,0,1
+775,Star Wars: The Force Unleashed II,0,1
+842,Fortnite,0,1
+843,Fall Guys,1,0
+844,It Takes Two,1,0
+845,BioShock,1,0
+846,Metal Gear Solid,1,0
+847,Yakuza: Like a Dragon,1,0
+848,Animal Crossing: New Horizons,1,0
+849,BioShock Infinite,1,0
+912,Mirror's Edge,1,0
+913,Bayonetta 2,1,0
+914,Sonic Generations,1,0
+915,Shin Megami Tensei: Nocturne,1,0
+916,Death's Door,1,0
+917,Devil May Cry 3: Dante's Awakening - Special Edition,1,0
+918,Assassin's Creed IV Black Flag,1,0
+920,Crisis Core: Final Fantasy VII - Reunion,1,0
+921,Metroid Prime,1,0
+923,Metal Gear Solid 4: Guns of the Patriots,1,0
+924,Atomic Heart,0,1
+925,Minecraft,0,1
+926,Resident Evil 5,1,0
+927,The World Ends with You,1,0
+928,A Hat in Time,1,0
+929,Scorn,0,1
+930,Fire Emblem: Awakening,1,0
+931,Cuphead: The Delicious Last Course,1,0
+932,Ori and the Will of the Wisps,1,0
+933,Mass Effect,1,0
+934,Return of the Obra Dinn,1,0
+935,Kingdom Hearts III,1,0
+936,Fallout 3,1,0
+937,Uncharted: Drake's Fortune,1,0
+938,"Zero Escape: Nine Hours, Nine Persons, Nine Doors",1,0
+939,Lost Judgment,1,0
+940,Super Mario 3D Land,1,0
+941,Gris,1,0
+942,Silent Hill 3,1,0
+943,Call of Duty: Modern Warfare 2,1,0
+944,The Walking Dead: Season One,1,0
+945,Mario Kart DS,0,1
+946,Apex Legends,1,0
+947,Devil May Cry 2,0,1
+948,The Legend of Zelda: Ocarina of Time 3D,1,0
+949,Twelve Minutes,0,1
+950,Demon's Souls,1,0
+951,Persona 3 Portable,1,0
+952,Rayman Legends,1,0
+953,Uncharted 2: Among Thieves,1,0
+954,Monster Hunter: World,1,0
+956,The Legend of Zelda: A Link Between Worlds,1,0
+957,Final Fantasy XIV: Endwalker,1,0
+958,The Legend of Zelda: The Minish Cap,1,0
+959,Pokémon Go,0,1
+960,Night in the Woods,1,0
+961,Shin Megami Tensei IV,1,0
+962,Kingdom Hearts II,1,0
+963,Castlevania: Aria of Sorrow,1,0
+964,Halo: Reach,1,0
+965,Grand Theft Auto: Vice City,1,0
+966,A Short Hike,1,0
+973,Assassin's Creed III,1,0
+976,Lisa,1,0
+978,The Legend of Zelda: The Wind Waker HD,1,0
+979,The Outer Worlds,1,0
+980,The Legend of Zelda: Majora's Mask 3D,1,0
+981,The Callisto Protocol,0,1
+982,The Wolf Among Us,1,0
+983,Dead Space 2,1,0
+985,Until Dawn,1,0
+986,Kid Icarus: Uprising,1,0
+987,Chained Echoes,1,0
+989,Sonic Unleashed,0,1
+990,Yakuza 5 Remastered,1,0
+991,Metal Gear Solid 3: Subsistence,1,0
+993,Devil May Cry 4,1,0
+994,Donut County,0,1
+995,Assassin's Creed Origins,1,0
+996,Ghostwire: Tokyo,0,1
+997,Yakuza 4 Remastered,1,0
+998,Call of Duty: Modern Warfare II,0,1
+999,Crash Bandicoot 4: It's About Time,1,0
+1000,Grand Theft Auto III,1,0
+1001,Dead by Daylight,0,1
+1002,Abzu,1,0
+1003,Batman: Arkham Origins,1,0
+1004,Splatoon 2,1,0
+1005,Pokémon HeartGold,1,0
+1006,Kena: Bridge of Spirits,1,0
+1007,Final Fantasy VIII,1,0
+1008,The Elder Scrolls IV: Oblivion,1,0
+1009,The Silver Case,1,0
+1011,Alan Wake,1,0
+1012,A Way Out,1,0
+1013,LEGO Batman: The Video Game,0,1
+1014,Borderlands 3,1,0
+1015,Dragon Ball FighterZ,1,0
+1016,Ico,1,0
+1017,Shin Megami Tensei III: Nocturne - HD Remaster,1,0
+1018,The Witness,1,0
+1019,Animal Crossing: New Leaf,1,0
+1020,Wo Long: Fallen Dynasty,0,1
+1021,Final Fantasy VII Remake Intergrade,1,0
+1022,Sonic Adventure 2,1,0
+1023,Destiny 2,0,1
+1043,Mario Kart 8,0,1
+1045,The Forgotten City,1,0
+1046,Untitled Goose Game,1,0
+1047,Sonic Adventure 2: Battle,0,1
+1048,Saints Row: The Third,0,1
+1049,Call of Duty: Black Ops III,0,1
+1051,Tinykin,0,1
+1052,Dragon's Dogma: Dark Arisen,1,0
+1054,Pokémon Unite,0,1
+1056,The Messenger,1,0
+1057,Jet Set Radio,1,0
+1058,Pathologic 2,1,0
+1059,Tactics Ogre: Reborn,0,1
+1060,Hyper Light Drifter,1,0
+1061,Left 4 Dead,0,1
+1062,The 25th Ward: The Silver Case,0,1
+1063,Darkest Dungeon,1,0
+1065,The Last Guardian,1,0
+1066,Drakengard 3,0,1
+1067,Half-Life 2: Episode One,1,0
+1068,Assassin's Creed Revelations,0,1
+1069,Half-Life 2: Episode Two,1,0
+1071,PowerWash Simulator,0,1
+1073,Final Fantasy XIV: Shadowbringers,1,0
+1074,Days Gone,1,0
+1075,Tom Clancy's Rainbow Six Siege,0,1
+1076,Trek to Yomi,0,1
+1078,Mario Kart: Double Dash!!,0,1
+1079,Rayman Origins,1,0
+1080,Klonoa Phantasy Reverie Series,0,1
+1081,Hitman 2,1,0
+1082,Max Payne 3,1,0
+1083,Catherine: Full Body,1,0
+1084,Kirby: Planet Robobot,1,0
+1085,Battlefield 1,0,1
+1086,Kirby’s Return to Dream Land Deluxe,0,1
+1087,Persona 2: Eternal Punishment,1,0
+1088,Star Wars Battlefront II,0,1
+1089,Super Paper Mario,1,0
+1091,Bugsnax,1,0
+1092,Star Wars: Battlefront II,0,1
+1093,Pokémon Shield,0,1
+1095,Brothers: A Tale of Two Sons,0,1
+1096,Call of Duty: Modern Warfare,0,1
+1097,GoldenEye 007,1,0
+1099,Evil West,0,1
+1100,Gravity Rush 2,1,0
+1101,Metroid Prime 2: Echoes,1,0
+1102,The Forest,0,1
+1103,CrossCode,1,0
+1105,Saints Row IV,0,1
+1106,Fallout 2,1,0
+1107,Chrono Cross,1,0
+1108,Fire Emblem: Path of Radiance,1,0
+1110,Professor Layton and the Curious Village,1,0
+1111,Ys VIII: Lacrimosa of Dana,1,0
+1112,Hotel Dusk: Room 215,1,0
+1113,Postal 2,0,1
+1114,Fez,1,0
+1115,Marvel's Midnight Suns,0,1
+1116,Streets of Rage 4,1,0
+1117,Shin Megami Tensei: Persona,1,0
+1118,Kirby's Return to Dream Land,0,1
+1120,God of War: Chains of Olympus,0,1
+1121,Splatoon,0,1
+1122,Nickelodeon All-Star Brawl,0,1
+1124,Sonic Rush,0,1
+1125,Chrono Trigger,1,0
+1126,Street Fighter V,0,1
+1127,Somerville,0,1
+1128,Bully: Scholarship Edition,1,0
+1129,Borderlands: The Pre-Sequel,0,1
+1131,Alice: Madness Returns,0,1
+1132,Super Mario 3D All-Stars,1,0
+1133,S.T.A.L.K.E.R.: Shadow of Chernobyl,1,0
+1134,JoJo’s Bizarre Adventure: All-Star Battle R,0,1
+1136,Mario + Rabbids Sparks of Hope,0,1
+1137,Back 4 Blood,0,1
+1138,Half-Life: Alyx,1,0
+1139,Hyper Demon,0,1
+1140,Mortal Kombat,0,1
+1141,Resident Evil,0,1
+1142,Call of Duty: Ghosts,0,1
+1143,Ridge Racer Type 4,0,1
+1144,Lil Gator Game,0,1
+1145,Oxenfree,1,0
+1146,Overcooked! 2,1,0
+1147,Before Your Eyes,0,1
+1148,Sly Cooper and the Thievius Raccoonus,0,1
+1149,Nobody Saves the World,0,1
+1151,Chrono Cross: The Radical Dreamers Edition,0,1
+1152,Spore,0,1
+1154,Klonoa 2: Lunatea's Veil,0,1
+1156,Planescape: Torment,1,0
+1157,Far Cry 3: Blood Dragon,0,1
+1158,BattleBlock Theater,0,1
+1159,The Beginner's Guide,0,1
+1161,Naruto Shippuden: Ultimate Ninja Storm 4,0,1
+1165,Danganronpa Another Episode: Ultra Despair Girls,0,1
+1166,The Artful Escape,0,1
+1168,Pac-Man World Re-Pac,0,1
+1169,Ib,0,1
+1170,Castlevania: Circle of the Moon,0,1
+1172,Life is Strange: Before the Storm,0,1
+1173,Darkwood,0,1
+1174,Beyond Good & Evil,1,0
+1176,Shenmue,1,0
+1178,Crash Team Racing,0,1
+1179,Carrion,0,1
+1180,Gears of War 2,0,1
+1181,Phoenix Wright: Ace Attorney - Dual Destinies,1,0
+1183,Wild Hearts,0,1
+1184,God of War: Ascension,0,1
+1185,Xenosaga Episode III: Also sprach Zarathustra,0,1
+1187,Castlevania: Harmony of Dissonance,0,1
+1188,Shantae and the Pirate's Curse,1,0
+1190,Guilty Gear XX Accent Core Plus R,0,1
+1191,Fire Emblem Fates: Birthright,0,1
+1193,Devil May Cry 5: Special Edition,0,1
+1196,Call of Duty: Advanced Warfare,0,1
+1199,Mario Kart: Super Circuit,0,1
+1200,Pokémon Shining Pearl,0,1
+1201,PUBG: Battlegrounds,0,1
+1204,Rule of Rose,0,1
+1205,Lollipop Chainsaw,0,1
+1206,Pokémon LeafGreen,0,1
+1211,Resident Evil: Revelations,0,1
+1213,Tomb Raider,0,1
+1214,FIFA 23,0,1
+1215,Battlefield: Bad Company 2,0,1
+1216,The Walking Dead: A New Frontier,0,1
+1217,Ninja Gaiden Black,1,0
+1218,Sid Meier's Civilization V,0,1
+1220,Fire Emblem: Shadow Dragon,0,1
+1221,Tomodachi Life,0,1
+1222,Downwell,0,1
+1223,SpongeBob SquarePants: Battle For Bikini Bottom,0,1
+1224,LEGO Harry Potter: Years 1-4,0,1
+1225,Dragon Quest V: Hand of the Heavenly Bride,1,0
+1227,For Honor,0,1
+1228,Sonic Lost World,0,1
+1229,Bug Fables: The Everlasting Sapling,1,0
+1230,Hyrule Warriors: Age of Calamity,1,0
+1231,LEGO Batman 3: Beyond Gotham,0,1
+1232,Moonscars,0,1
+1233,The Witcher 3: Wild Hunt - Hearts of Stone,0,1
+1234,Remnant: From the Ashes,0,1
+1235,Halo 5: Guardians,0,1
+1236,Hearthstone,0,1
+1237,Ultimate Spider-Man,0,1
+1241,Potion Craft,0,1
+1246,Dante's Inferno,0,1
+1247,Haunting Ground,0,1
+1248,Assassin's Creed Rogue,0,1
+1251,Outlast II,0,1
+1252,Elden Ring: Shadow of the Erdtree,0,1
+1272,Ni no Kuni II: Revenant Kingdom,1,0
+1275,Fable II,0,1
+1277,Axiom Verge 2,0,1
+1278,Lightning Returns: Final Fantasy XIII,0,1
+1280,F-Zero X,0,1
+1281,Chibi-Robo!,0,1
+1283,RimWorld,1,0
+1284,Professor Layton and the Miracle Mask,0,1
+1285,Mega Man X5,0,1
+1287,Disney Dreamlight Valley,0,1
+1289,Figment,0,1
+1290,"Flower, Sun, and Rain: Murder and Mystery in Paradise",0,1
+1292,Metal Gear Solid: The Twin Snakes,0,1
+1293,The Simpsons Game,0,1
+1294,Mega Man Zero 2,0,1
+1295,Gears 5,0,1
+1296,Crash of the Titans,0,1
+1297,Alan Wake Remastered,0,1
+1298,Final Fantasy XV: Royal Edition,0,1
+1299,The Witcher,0,1
+1300,Final Fantasy III,0,1
+1303,Star Wars: Battlefront,0,1
+1307,American McGee's Alice,0,1
+1308,Call of Duty,0,1
+1309,Armored Core 2,0,1
+1310,Clash of Clans,0,1
+1313,Duskers,0,1
+1314,Control: Ultimate Edition,0,1
+1315,Advance Wars,0,1
+1317,Weird West,0,1
+1318,Pokémon Mystery Dungeon: Blue Rescue Team,0,1
+1319,WarioWare Gold,0,1
+1320,Dragon Ball: Xenoverse,0,1
+1321,Call of Duty: Black Ops 4,0,1
+1323,Ape Out,0,1
+1324,WarioWare: Smooth Moves,0,1
+1326,Prince of Persia: Warrior Within,0,1
+1327,Kentucky Route Zero: TV Edition,0,1
+1328,Factorio,1,0
+1329,Scott Pilgrim vs. the World: The Game - Complete Edition,0,1
+1330,Monster Hunter 4 Ultimate,0,1
+1331,Fruit Ninja Classic,0,1
+1332,Doom,0,1
+1333,Tom Clancy's The Division,0,1
+1334,Crysis 2,0,1
+1335,Resident Evil 4: Wii Edition,0,1
+1336,Nuclear Throne,0,1
+1337,Super Hexagon,0,1
+1338,Condemned: Criminal Origins,0,1
+1339,PlayStation All-Stars Battle Royale,0,1
+1342,Mount & Blade: Warband,0,1
+1343,Monster Hunter Generations Ultimate,0,1
+1344,The Jackbox Party Pack 3,0,1
+1345,Digimon World: Next Order,0,1
+1346,Odin Sphere: Leifthrasir,0,1
+1347,Bulletstorm,0,1
+1348,The Witcher 2: Assassins of Kings,0,1
+1350,Animal Crossing: City Folk,0,1
+1353,Mario Party 4,0,1
+1354,Mario Party 3,0,1
+1355,Peggle,0,1
+1356,Plague Inc: Evolved,0,1
+1357,Star Wars: Episode III - Revenge of the Sith,0,1
+1358,Prince of Persia,0,1
+1360,Sonic Rush Adventure,0,1
+1361,Destroy All Humans!,0,1
+1363,The World Ends with You: Final Remix,0,1
+1365,Crash Team Racing Nitro-Fueled,0,1
+1366,Mega Man X6,0,1
+1368,Mark of the Ninja,0,1
+1369,Octodad: Dadliest Catch,0,1
+1370,Dragon Ball Z: Budokai Tenkaichi,0,1
+1371,The King of Fighters XV,0,1
+1372,Killing Floor 2,0,1
+1373,Ape Escape 3,0,1
+1375,Toy Story 2: Buzz Lightyear to the Rescue!,0,1
+1376,Rayman Raving Rabbids,0,1
+1377,Prototype 2,0,1
+1378,MadWorld,0,1
+1379,Call of Duty 3,0,1
+1380,Shadow Warrior,0,1
+1381,Warcraft III: The Frozen Throne,0,1
+1382,Yakuza 4,0,1
+1384,Persona 4 Arena,0,1
+1385,Scribblenauts,0,1
+1386,Rock Band 2,0,1
+1387,Armored Core 4,0,1
+1388,Rez Infinite,0,1
+1389,Plants vs. Zombies 2: It's About Time,0,1
+1390,Cadence of Hyrule: Crypt of the NecroDancer Featuring the Legend of Zelda,0,1
+1394,Pokémon Mystery Dungeon: Explorers of Time,0,1
+1396,Crash Nitro Kart,0,1
+1398,Shantae: Half-Genie Hero,0,1
+1400,Tales of Vesperia,0,1
+1401,Mega Man X8,0,1
+1403,Mario & Luigi: Superstar Saga + Bowser's Minions,0,1
+1405,Binary Domain,0,1
+1406,Shin Megami Tensei: Devil Survivor,0,1
+1407,JoJo's Bizarre Adventure: Eyes of Heaven,0,1
+1408,Audiosurf,0,1
+1411,Resistance: Fall of Man,0,1
+1412,Sniper Elite 4,0,1
+1413,Metal Gear Solid HD Collection,0,1
+1414,The Simpsons: Road Rage,0,1
+1416,Path of Exile,0,1
+1417,Machinarium,0,1
+1418,Guacamelee!,0,1
+1419,Tales of Zestiria,0,1
+1420,Black,0,1
+1421,Mario Super Sluggers,0,1
+1424,Tekken 4,0,1
+1425,Legacy of Kain: Soul Reaver,0,1
+1426,Mega Man X7,0,1
+1427,Final Fantasy I & II: Dawn of Souls,0,1
+1428,Mega Man ZX,0,1
+1430,The Missing: J.J. Macfield and the Island of Memories,0,1
+1431,Silent Hill 2: Restless Dreams,0,1
+1432,Friday the 13th: The Game,0,1
+1436,Mario vs. Donkey Kong,0,1
+1438,Remember Me,0,1
+1439,Alpha Protocol,0,1
+1440,Indivisible,0,1
+1441,Jazzpunk,0,1
+1442,Need for Speed: Hot Pursuit,0,1
+1446,Broken Age,0,1
+1447,Telling Lies,0,1
+1448,Saints Row: Gat Out of Hell,0,1
+1449,Ratchet & Clank: Size Matters,0,1
+1450,Mario Hoops 3-on-3,0,1
+1451,Mario Power Tennis,0,1
+1452,Keep Talking and Nobody Explodes,0,1
+1453,The Swapper,0,1
+1455,Gun,0,1
+1459,Ruiner,0,1
+1460,The Lord of the Rings: The Two Towers,0,1
+1462,Chivalry: Medieval Warfare,0,1
+1463,FIFA 14,0,1
+1464,Bit.Trip Runner,0,1
+1465,Pokémon Pinball: Ruby & Sapphire,0,1
+1466,FIFA 13,0,1
+1467,La-Mulana,0,1
+1468,The Warriors,0,1
+1469,Mortal Kombat XL,0,1
+1470,Anonymous;Code,0,1
+1473,Shantae and the Seven Sirens,0,1
+1474,Mega Man ZX Advent,0,1
+1475,Peggle Deluxe,0,1
+1478,Dragon Age: Origins - Awakening,0,1
+1479,Parasite Eve II,0,1
+1480,The Jackbox Party Pack,0,1
+1481,Tom Clancy's Splinter Cell: Pandora Tomorrow,0,1
+1482,Payday: The Heist,0,1
+1483,Pokémon Rumble Blast,0,1
+1484,Nicktoons Unite!,0,1
+1485,Ruined King: A League of Legends Story,0,1
+1486,Picross S3,0,1
+1489,Kingdoms of Amalur: Reckoning,0,1
+1491,Europa Universalis IV,0,1
+1493,Guitar Hero 5,0,1
+1494,Silent Hill: Homecoming,0,1
+1495,Mighty No. 9,0,1
+1498,Killzone 3,0,1
+1499,WWE SmackDown vs. Raw 2008,0,1
+1500,Children of Morta,0,1
+1501,The Godfather,0,1
+1502,Billy Hatcher and the Giant Egg,0,1
+1503,Tekken Tag Tournament 2,0,1
+1504,Bloons TD 5,0,1
+1507,Back to the Future: The Game,0,1
+1508,Team Sonic Racing,0,1
+1509,Dragon's Dogma,0,1
+1511,The LEGO Movie Videogame,0,1

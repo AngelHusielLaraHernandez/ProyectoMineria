@@ -1,0 +1,50 @@
+{
+  "fecha": "2026-11-09T11:32:41.073064-06:00",
+  "salidas_y_capturas": [
+    {
+      "modelo": "kmeans",
+      "salida": "reports/weka/kmeans.txt",
+      "captura": "reports/weka/kmeans_resultado.png",
+      "verificado": true
+    },
+    {
+      "modelo": "dbscan",
+      "salida": "reports/weka/dbscan.txt",
+      "captura": "reports/weka/dbscan_resultado.png",
+      "verificado": true
+    },
+    {
+      "modelo": "ZeroR",
+      "salida": "reports/weka/ZeroR.txt",
+      "captura": "reports/weka/ZeroR.png",
+      "verificado": true
+    },
+    {
+      "modelo": "NaiveBayes",
+      "salida": "reports/weka/NaiveBayes.txt",
+      "captura": "reports/weka/NaiveBayes.png",
+      "verificado": true
+    },
+    {
+      "modelo": "J48",
+      "salida": "reports/weka/J48.txt",
+      "captura": "reports/weka/J48.png",
+      "verificado": true
+    },
+    {
+      "modelo": "RandomForest",
+      "salida": "reports/weka/RandomForest.txt",
+      "captura": "reports/weka/RandomForest.png",
+      "verificado": true
+    }
+  ],
+  "filas_comparativo": 12,
+  "herramientas": [
+    "Python",
+    "Weka Explorer"
+  ],
+  "fuente_python": "models/metadata.json: comparacion_modelos",
+  "exactitud": "Porcentaje para ambas herramientas; Python convertido explícitamente desde proporción; Weka sin conversión.",
+  "f1": "Python macro de prueba; Weka F-Measure ponderada en CV; ? de ZeroR conservado.",
+  "orange": "Excluido por desviación del plan; sin métricas atribuidas."
+}

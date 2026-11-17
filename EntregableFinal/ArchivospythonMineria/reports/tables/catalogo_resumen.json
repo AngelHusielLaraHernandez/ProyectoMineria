@@ -1,0 +1,35 @@
+{
+  "n": 1117,
+  "anio_min": 1980,
+  "anio_max": 2025,
+  "n_generos": 23,
+  "top_generos": [
+    {
+      "grupo": "Adventure",
+      "n": 725
+    },
+    {
+      "grupo": "RPG",
+      "n": 367
+    },
+    {
+      "grupo": "Shooter",
+      "n": 261
+    }
+  ],
+  "n_organizaciones": 664,
+  "top_organizaciones": [
+    {
+      "grupo": "Nintendo",
+      "n": 172
+    },
+    {
+      "grupo": "Capcom",
+      "n": 64
+    },
+    {
+      "grupo": "Square Enix",
+      "n": 59
+    }
+  ]
+}

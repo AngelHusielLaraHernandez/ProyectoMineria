@@ -1,0 +1,300 @@
+=== Run information ===
+
+Scheme:       weka.classifiers.trees.J48 -C 0.25 -M 2
+Relation:     clasificacion
+Instances:    892
+Attributes:   53
+              generos__Adventure
+              generos__RPG
+              generos__Shooter
+              generos__Platform
+              generos__Indie
+              generos__Puzzle
+              generos__Strategy
+              generos__Brawler
+              generos__Simulator
+              generos__Fighting
+              generos__Turn Based Strategy
+              generos__Arcade
+              generos__Visual Novel
+              generos__Racing
+              generos__Tactical
+              generos__Otro
+              generos__Sin dato
+              estudio__Nintendo
+              estudio__Capcom
+              estudio__Square Enix
+              estudio__Sega
+              estudio__Electronic Arts
+              estudio__Konami
+              estudio__Bandai Namco Entertainment
+              estudio__Activision
+              estudio__Ubisoft Entertainment
+              estudio__Atlus
+              estudio__Sony Interactive Entertainment
+              estudio__Nintendo EAD
+              estudio__Game Freak
+              estudio__WB Games
+              estudio__Bethesda Softworks
+              estudio__Sony Computer Entertainment
+              estudio__Square
+              estudio__Ubisoft Montreal
+              estudio__Intelligent Systems Co., Ltd.
+              estudio__Sonic Team
+              estudio__Sony Computer Entertainment, Inc. (SCEI)
+              estudio__Devolver Digital
+              estudio__FromSoftware
+              estudio__Annapurna Interactive
+              estudio__Microsoft Game Studios
+              estudio__Otro
+              estudio__Sin dato
+              decada__decada_-1.0
+              decada__decada_1980.0
+              decada__decada_1990.0
+              decada__decada_2000.0
+              decada__decada_2010.0
+              decada__decada_2020.0
+              notas__Metacritic Rating
+              notas__Rating
+              nivel_popularidad
+Test mode:    10-fold cross-validation
+
+=== Classifier model (full training set) ===
+
+J48 pruned tree
+------------------
+
+generos__Fighting <= 0
+|   generos__Otro <= 0
+|   |   notas__Metacritic Rating <= 0.1679
+|   |   |   notas__Rating <= -2.152384
+|   |   |   |   estudio__Capcom <= 0: bajo (18.0/1.0)
+|   |   |   |   estudio__Capcom > 0: alto (3.0/1.0)
+|   |   |   notas__Rating > -2.152384
+|   |   |   |   generos__Adventure <= 0
+|   |   |   |   |   estudio__Atlus <= 0
+|   |   |   |   |   |   estudio__Square Enix <= 0
+|   |   |   |   |   |   |   generos__Brawler <= 0
+|   |   |   |   |   |   |   |   generos__Puzzle <= 0
+|   |   |   |   |   |   |   |   |   estudio__Nintendo <= 0
+|   |   |   |   |   |   |   |   |   |   decada__decada_1990.0 <= 0: bajo (61.0/19.0)
+|   |   |   |   |   |   |   |   |   |   decada__decada_1990.0 > 0
+|   |   |   |   |   |   |   |   |   |   |   generos__Shooter <= 0: medio (11.0/2.0)
+|   |   |   |   |   |   |   |   |   |   |   generos__Shooter > 0: bajo (5.0/1.0)
+|   |   |   |   |   |   |   |   |   estudio__Nintendo > 0: medio (20.0/9.0)
+|   |   |   |   |   |   |   |   generos__Puzzle > 0
+|   |   |   |   |   |   |   |   |   generos__Indie <= 0: bajo (9.0)
+|   |   |   |   |   |   |   |   |   generos__Indie > 0: alto (2.0/1.0)
+|   |   |   |   |   |   |   generos__Brawler > 0
+|   |   |   |   |   |   |   |   generos__RPG <= 0
+|   |   |   |   |   |   |   |   |   generos__Arcade <= 0
+|   |   |   |   |   |   |   |   |   |   notas__Metacritic Rating <= -1.47338: medio (2.0)
+|   |   |   |   |   |   |   |   |   |   notas__Metacritic Rating > -1.47338: alto (3.0)
+|   |   |   |   |   |   |   |   |   generos__Arcade > 0: bajo (2.0/1.0)
+|   |   |   |   |   |   |   |   generos__RPG > 0: bajo (4.0/1.0)
+|   |   |   |   |   |   estudio__Square Enix > 0: medio (8.0/2.0)
+|   |   |   |   |   estudio__Atlus > 0
+|   |   |   |   |   |   decada__decada_1990.0 <= 0: alto (5.0/1.0)
+|   |   |   |   |   |   decada__decada_1990.0 > 0: bajo (2.0/1.0)
+|   |   |   |   generos__Adventure > 0
+|   |   |   |   |   decada__decada_2010.0 <= 0
+|   |   |   |   |   |   estudio__Game Freak <= 0
+|   |   |   |   |   |   |   estudio__Konami <= 0
+|   |   |   |   |   |   |   |   notas__Metacritic Rating <= -0.379193
+|   |   |   |   |   |   |   |   |   estudio__Sonic Team <= 0: bajo (53.0/22.0)
+|   |   |   |   |   |   |   |   |   estudio__Sonic Team > 0: alto (3.0/1.0)
+|   |   |   |   |   |   |   |   notas__Metacritic Rating > -0.379193
+|   |   |   |   |   |   |   |   |   estudio__Square <= 0
+|   |   |   |   |   |   |   |   |   |   estudio__Square Enix <= 0
+|   |   |   |   |   |   |   |   |   |   |   generos__Turn Based Strategy <= 0
+|   |   |   |   |   |   |   |   |   |   |   |   generos__Brawler <= 0
+|   |   |   |   |   |   |   |   |   |   |   |   |   estudio__Nintendo <= 0
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   estudio__Annapurna Interactive <= 0
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   generos__Platform <= 0
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   estudio__Capcom <= 0
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   decada__decada_1990.0 <= 0
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   generos__Puzzle <= 0
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   notas__Metacritic Rating <= -0.24242
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   decada__decada_2000.0 <= 0: alto (4.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   decada__decada_2000.0 > 0
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   notas__Rating <= -0.106347: bajo (2.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   notas__Rating > -0.106347: medio (2.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   notas__Metacritic Rating > -0.24242
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   notas__Metacritic Rating <= 0.031127: medio (2.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   notas__Metacritic Rating > 0.031127
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   generos__Visual Novel <= 0: bajo (13.0/2.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   generos__Visual Novel > 0: medio (8.0/3.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   generos__Puzzle > 0: bajo (4.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   decada__decada_1990.0 > 0: medio (2.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   estudio__Capcom > 0: alto (2.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   generos__Platform > 0
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   notas__Rating <= 0.079656: bajo (13.0/5.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   notas__Rating > 0.079656: alto (5.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   estudio__Annapurna Interactive > 0: alto (2.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   estudio__Nintendo > 0
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   notas__Rating <= 0.079656: medio (9.0/2.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   notas__Rating > 0.079656: alto (5.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   |   generos__Brawler > 0: alto (8.0/2.0)
+|   |   |   |   |   |   |   |   |   |   |   generos__Turn Based Strategy > 0: alto (5.0/1.0)
+|   |   |   |   |   |   |   |   |   |   estudio__Square Enix > 0: medio (4.0/1.0)
+|   |   |   |   |   |   |   |   |   estudio__Square > 0: alto (3.0)
+|   |   |   |   |   |   |   estudio__Konami > 0
+|   |   |   |   |   |   |   |   generos__Platform <= 0: bajo (3.0)
+|   |   |   |   |   |   |   |   generos__Platform > 0: medio (4.0)
+|   |   |   |   |   |   estudio__Game Freak > 0
+|   |   |   |   |   |   |   notas__Rating <= 0.451663: medio (7.0/2.0)
+|   |   |   |   |   |   |   notas__Rating > 0.451663: alto (2.0)
+|   |   |   |   |   decada__decada_2010.0 > 0
+|   |   |   |   |   |   estudio__Sony Interactive Entertainment <= 0
+|   |   |   |   |   |   |   notas__Metacritic Rating <= -1.8837
+|   |   |   |   |   |   |   |   generos__Simulator <= 0: medio (6.0)
+|   |   |   |   |   |   |   |   generos__Simulator > 0
+|   |   |   |   |   |   |   |   |   notas__Rating <= -0.85036: bajo (2.0)
+|   |   |   |   |   |   |   |   |   notas__Rating > -0.85036: medio (3.0)
+|   |   |   |   |   |   |   notas__Metacritic Rating > -1.8837
+|   |   |   |   |   |   |   |   generos__Turn Based Strategy <= 0
+|   |   |   |   |   |   |   |   |   estudio__Sony Computer Entertainment <= 0
+|   |   |   |   |   |   |   |   |   |   notas__Rating <= -0.85036
+|   |   |   |   |   |   |   |   |   |   |   estudio__Ubisoft Entertainment <= 0: medio (24.0/10.0)
+|   |   |   |   |   |   |   |   |   |   |   estudio__Ubisoft Entertainment > 0: alto (3.0/1.0)
+|   |   |   |   |   |   |   |   |   |   notas__Rating > -0.85036
+|   |   |   |   |   |   |   |   |   |   |   generos__Visual Novel <= 0
+|   |   |   |   |   |   |   |   |   |   |   |   estudio__Otro <= 0
+|   |   |   |   |   |   |   |   |   |   |   |   |   estudio__Activision <= 0
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   generos__Platform <= 0
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   generos__Puzzle <= 0: alto (32.0/10.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   generos__Puzzle > 0: medio (4.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   generos__Platform > 0
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   generos__Strategy <= 0: medio (8.0/2.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   generos__Strategy > 0: alto (2.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   estudio__Activision > 0: alto (2.0)
+|   |   |   |   |   |   |   |   |   |   |   |   estudio__Otro > 0
+|   |   |   |   |   |   |   |   |   |   |   |   |   generos__RPG <= 0
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   generos__Puzzle <= 0: medio (19.0/10.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   generos__Puzzle > 0: alto (2.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   generos__RPG > 0
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   notas__Metacritic Rating <= -0.926287: medio (2.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   notas__Metacritic Rating > -0.926287: alto (10.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   generos__Visual Novel > 0
+|   |   |   |   |   |   |   |   |   |   |   |   generos__RPG <= 0
+|   |   |   |   |   |   |   |   |   |   |   |   |   generos__Indie <= 0: bajo (3.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   generos__Indie > 0: alto (3.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   |   generos__RPG > 0: bajo (2.0)
+|   |   |   |   |   |   |   |   |   estudio__Sony Computer Entertainment > 0: alto (4.0/1.0)
+|   |   |   |   |   |   |   |   generos__Turn Based Strategy > 0
+|   |   |   |   |   |   |   |   |   notas__Metacritic Rating <= 0.031127: alto (3.0/1.0)
+|   |   |   |   |   |   |   |   |   notas__Metacritic Rating > 0.031127: medio (3.0)
+|   |   |   |   |   |   estudio__Sony Interactive Entertainment > 0: alto (7.0/1.0)
+|   |   notas__Metacritic Rating > 0.1679
+|   |   |   generos__Racing <= 0
+|   |   |   |   generos__Strategy <= 0
+|   |   |   |   |   decada__decada_1990.0 <= 0
+|   |   |   |   |   |   estudio__Square Enix <= 0
+|   |   |   |   |   |   |   notas__Rating <= 0.079656
+|   |   |   |   |   |   |   |   estudio__Activision <= 0
+|   |   |   |   |   |   |   |   |   decada__decada_2000.0 <= 0
+|   |   |   |   |   |   |   |   |   |   generos__Arcade <= 0
+|   |   |   |   |   |   |   |   |   |   |   estudio__Electronic Arts <= 0: alto (36.0/10.0)
+|   |   |   |   |   |   |   |   |   |   |   estudio__Electronic Arts > 0: medio (4.0/1.0)
+|   |   |   |   |   |   |   |   |   |   generos__Arcade > 0: bajo (2.0/1.0)
+|   |   |   |   |   |   |   |   |   decada__decada_2000.0 > 0
+|   |   |   |   |   |   |   |   |   |   generos__Puzzle <= 0
+|   |   |   |   |   |   |   |   |   |   |   estudio__Microsoft Game Studios <= 0
+|   |   |   |   |   |   |   |   |   |   |   |   notas__Rating <= -0.106347
+|   |   |   |   |   |   |   |   |   |   |   |   |   notas__Rating <= -0.292351
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   generos__Adventure <= 0: alto (2.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   generos__Adventure > 0
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   notas__Metacritic Rating <= 0.441447: bajo (2.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   notas__Metacritic Rating > 0.441447: medio (8.0/3.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   notas__Rating > -0.292351: medio (7.0)
+|   |   |   |   |   |   |   |   |   |   |   |   notas__Rating > -0.106347: alto (4.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   estudio__Microsoft Game Studios > 0: medio (3.0)
+|   |   |   |   |   |   |   |   |   |   generos__Puzzle > 0: bajo (2.0)
+|   |   |   |   |   |   |   |   estudio__Activision > 0: medio (3.0/1.0)
+|   |   |   |   |   |   |   notas__Rating > 0.079656: alto (155.0/37.0)
+|   |   |   |   |   |   estudio__Square Enix > 0
+|   |   |   |   |   |   |   decada__decada_2020.0 <= 0
+|   |   |   |   |   |   |   |   notas__Rating <= 1.195676: alto (5.0)
+|   |   |   |   |   |   |   |   notas__Rating > 1.195676: medio (3.0)
+|   |   |   |   |   |   |   decada__decada_2020.0 > 0: medio (6.0/1.0)
+|   |   |   |   |   decada__decada_1990.0 > 0
+|   |   |   |   |   |   generos__Adventure <= 0: medio (3.0)
+|   |   |   |   |   |   generos__Adventure > 0
+|   |   |   |   |   |   |   notas__Rating <= 0.451663: medio (5.0/1.0)
+|   |   |   |   |   |   |   notas__Rating > 0.451663: alto (6.0)
+|   |   |   |   generos__Strategy > 0
+|   |   |   |   |   decada__decada_2020.0 <= 0
+|   |   |   |   |   |   generos__Adventure <= 0
+|   |   |   |   |   |   |   notas__Rating <= 0.451663: medio (7.0)
+|   |   |   |   |   |   |   notas__Rating > 0.451663: alto (3.0/1.0)
+|   |   |   |   |   |   generos__Adventure > 0
+|   |   |   |   |   |   |   notas__Rating <= -0.478354: medio (3.0/1.0)
+|   |   |   |   |   |   |   notas__Rating > -0.478354: alto (4.0/1.0)
+|   |   |   |   |   decada__decada_2020.0 > 0: bajo (3.0/1.0)
+|   |   |   generos__Racing > 0
+|   |   |   |   generos__Adventure <= 0
+|   |   |   |   |   notas__Rating <= -0.478354: bajo (2.0)
+|   |   |   |   |   notas__Rating > -0.478354: medio (9.0/3.0)
+|   |   |   |   generos__Adventure > 0: alto (2.0)
+|   generos__Otro > 0
+|   |   estudio__Capcom <= 0
+|   |   |   decada__decada_1990.0 <= 0
+|   |   |   |   generos__Visual Novel <= 0
+|   |   |   |   |   generos__RPG <= 0
+|   |   |   |   |   |   estudio__Nintendo <= 0: bajo (52.0/13.0)
+|   |   |   |   |   |   estudio__Nintendo > 0
+|   |   |   |   |   |   |   decada__decada_2010.0 <= 0
+|   |   |   |   |   |   |   |   notas__Rating <= -0.106347: bajo (5.0)
+|   |   |   |   |   |   |   |   notas__Rating > -0.106347: medio (4.0/1.0)
+|   |   |   |   |   |   |   decada__decada_2010.0 > 0: medio (2.0)
+|   |   |   |   |   generos__RPG > 0
+|   |   |   |   |   |   decada__decada_2010.0 <= 0: medio (5.0/1.0)
+|   |   |   |   |   |   decada__decada_2010.0 > 0
+|   |   |   |   |   |   |   generos__Puzzle <= 0: bajo (2.0)
+|   |   |   |   |   |   |   generos__Puzzle > 0: alto (2.0)
+|   |   |   |   generos__Visual Novel > 0
+|   |   |   |   |   decada__decada_2010.0 <= 0: medio (4.0)
+|   |   |   |   |   decada__decada_2010.0 > 0: alto (2.0/1.0)
+|   |   |   decada__decada_1990.0 > 0: bajo (4.0)
+|   |   estudio__Capcom > 0: medio (3.0/1.0)
+generos__Fighting > 0
+|   estudio__Ubisoft Entertainment <= 0
+|   |   estudio__WB Games <= 0
+|   |   |   estudio__Nintendo <= 0: bajo (43.0/9.0)
+|   |   |   estudio__Nintendo > 0: medio (4.0/2.0)
+|   |   estudio__WB Games > 0: medio (5.0/1.0)
+|   estudio__Ubisoft Entertainment > 0: medio (2.0)
+
+Number of Leaves  : 	101
+
+Size of the tree : 	201
+
+
+Time taken to build model: 0.17 seconds
+
+=== Stratified cross-validation ===
+=== Summary ===
+
+Correctly Classified Instances         455               51.009  %
+Incorrectly Classified Instances       437               48.991  %
+Kappa statistic                          0.2651
+Mean absolute error                      0.3572
+Root mean squared error                  0.4979
+Relative absolute error                 80.3698 %
+Root relative squared error            105.6156 %
+Total Number of Instances              892     
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.650    0.224    0.592      0.650    0.620      0.417    0.744     0.549     alto
+                 0.537    0.224    0.546      0.537    0.541      0.314    0.677     0.492     bajo
+                 0.343    0.287    0.374      0.343    0.358      0.057    0.527     0.360     medio
+Weighted Avg.    0.510    0.245    0.504      0.510    0.506      0.263    0.649     0.467     
+
+=== Confusion Matrix ===
+
+   a   b   c   <-- classified as
+ 193  29  75 |   a = alto
+  42 160  96 |   b = bajo
+  91 104 102 |   c = medio

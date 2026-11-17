@@ -1,0 +1,6 @@
+etapa,filas,columnas,evidencia
+Anteproyecto,1512,15,"Proyecto/main.tex. Dimensiones declaradas, sin el CSV exacto para cotejo."
+Antecedente enriquecido,1512,20,CSV local. Incluye procedencia de crítica y cuatro estimaciones financieras o comerciales.
+Reconstrucción del maestro,1117,42,"395 descartes heredados por título y fecha. Columnas derivadas de calendario, listas, notas, logaritmos y banderas."
+Maestro curado,1117,42,CSV designado como original para el pipeline actual.
+Depurado actual,1117,38,Salida de la fase de limpieza.

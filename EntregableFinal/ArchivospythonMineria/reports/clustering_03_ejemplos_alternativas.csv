@@ -1,0 +1,46 @@
+metodo,cluster,id_juego,juego
+kmeans_k2,0,1056,The Messenger
+kmeans_k2,0,304,Dragon Age: Origins
+kmeans_k2,0,172,Metroid: Zero Mission
+kmeans_k2,0,980,The Legend of Zelda: Majora's Mask 3D
+kmeans_k2,0,517,Luigi's Mansion 3
+kmeans_k2,1,1360,Sonic Rush Adventure
+kmeans_k2,1,1420,Black
+kmeans_k2,1,1375,Toy Story 2: Buzz Lightyear to the Rescue!
+kmeans_k2,1,1398,Shantae: Half-Genie Hero
+kmeans_k2,1,1338,Condemned: Criminal Origins
+kmeans_k3,0,159,Dead Space
+kmeans_k3,0,958,The Legend of Zelda: The Minish Cap
+kmeans_k3,0,185,Ori and the Blind Forest
+kmeans_k3,0,409,Silent Hill
+kmeans_k3,0,960,Night in the Woods
+kmeans_k3,1,1375,Toy Story 2: Buzz Lightyear to the Rescue!
+kmeans_k3,1,1489,Kingdoms of Amalur: Reckoning
+kmeans_k3,1,1464,Bit.Trip Runner
+kmeans_k3,1,1436,Mario vs. Donkey Kong
+kmeans_k3,1,1427,Final Fantasy I & II: Dawn of Souls
+kmeans_k3,2,1124,Sonic Rush
+kmeans_k3,2,767,Bloodstained: Curse of the Moon
+kmeans_k3,2,1222,Downwell
+kmeans_k3,2,712,Saints Row 2
+kmeans_k3,2,1323,Ape Out
+kmeans_k4,0,613,Mortal Kombat 11
+kmeans_k4,0,1124,Sonic Rush
+kmeans_k4,0,1222,Downwell
+kmeans_k4,0,1102,The Forest
+kmeans_k4,0,1068,Assassin's Creed Revelations
+kmeans_k4,1,159,Dead Space
+kmeans_k4,1,958,The Legend of Zelda: The Minish Cap
+kmeans_k4,1,185,Ori and the Blind Forest
+kmeans_k4,1,409,Silent Hill
+kmeans_k4,1,960,Night in the Woods
+kmeans_k4,2,1511,The LEGO Movie Videogame
+kmeans_k4,2,1464,Bit.Trip Runner
+kmeans_k4,2,1375,Toy Story 2: Buzz Lightyear to the Rescue!
+kmeans_k4,2,1489,Kingdoms of Amalur: Reckoning
+kmeans_k4,2,1350,Animal Crossing: City Folk
+kmeans_k4,3,1406,Shin Megami Tensei: Devil Survivor
+kmeans_k4,3,651,Everhood
+kmeans_k4,3,1284,Professor Layton and the Miracle Mask
+kmeans_k4,3,770,Fatal Frame II: Crimson Butterfly
+kmeans_k4,3,1403,Mario & Luigi: Superstar Saga + Bowser's Minions

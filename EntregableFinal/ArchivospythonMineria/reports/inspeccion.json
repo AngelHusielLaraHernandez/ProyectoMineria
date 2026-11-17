@@ -1,0 +1,226 @@
+{
+  "archivo_original": "Proyecto/data/processed/games_curated.csv",
+  "copia_inmutable": "data/raw/games_curated.csv",
+  "filas": 1117,
+  "columnas": 42,
+  "sha256": "b23cc1c4c23e65171bbe8a3436c358773cee15b8e11b446261cd575daa625acd",
+  "esquema": {
+    "ID Original": {
+      "tipo": "int64",
+      "faltantes": 0
+    },
+    "Title": {
+      "tipo": "str",
+      "faltantes": 0
+    },
+    "Release Date": {
+      "tipo": "str",
+      "faltantes": 0
+    },
+    "Team": {
+      "tipo": "str",
+      "faltantes": 1
+    },
+    "Rating": {
+      "tipo": "float64",
+      "faltantes": 13
+    },
+    "Times Listed": {
+      "tipo": "float64",
+      "faltantes": 0
+    },
+    "Number of Reviews": {
+      "tipo": "float64",
+      "faltantes": 0
+    },
+    "Genres": {
+      "tipo": "str",
+      "faltantes": 0
+    },
+    "Summary": {
+      "tipo": "str",
+      "faltantes": 1
+    },
+    "Reviews": {
+      "tipo": "str",
+      "faltantes": 0
+    },
+    "Plays": {
+      "tipo": "float64",
+      "faltantes": 0
+    },
+    "Playing": {
+      "tipo": "float64",
+      "faltantes": 0
+    },
+    "Backlogs": {
+      "tipo": "float64",
+      "faltantes": 0
+    },
+    "Wishlist": {
+      "tipo": "float64",
+      "faltantes": 0
+    },
+    "Metacritic Rating": {
+      "tipo": "int64",
+      "faltantes": 0
+    },
+    "Origen_calificacion": {
+      "tipo": "str",
+      "faltantes": 0
+    },
+    "ingresos_empresa_estimados_USD": {
+      "tipo": "int64",
+      "faltantes": 0
+    },
+    "gastos_estimados_USD": {
+      "tipo": "int64",
+      "faltantes": 0
+    },
+    "unidades_vendidas_estimadas": {
+      "tipo": "int64",
+      "faltantes": 0
+    },
+    "ventas_brutas_estimadas_USD": {
+      "tipo": "int64",
+      "faltantes": 0
+    },
+    "release_date": {
+      "tipo": "str",
+      "faltantes": 3
+    },
+    "year": {
+      "tipo": "float64",
+      "faltantes": 3
+    },
+    "decade": {
+      "tipo": "float64",
+      "faltantes": 3
+    },
+    "genres_list": {
+      "tipo": "str",
+      "faltantes": 0
+    },
+    "team_list": {
+      "tipo": "str",
+      "faltantes": 0
+    },
+    "n_genres": {
+      "tipo": "int64",
+      "faltantes": 0
+    },
+    "studio_main": {
+      "tipo": "str",
+      "faltantes": 1
+    },
+    "publisher_main": {
+      "tipo": "str",
+      "faltantes": 1
+    },
+    "genre_main": {
+      "tipo": "str",
+      "faltantes": 0
+    },
+    "rating_100": {
+      "tipo": "float64",
+      "faltantes": 13
+    },
+    "gap": {
+      "tipo": "float64",
+      "faltantes": 13
+    },
+    "metacritic_real": {
+      "tipo": "bool",
+      "faltantes": 0
+    },
+    "critic_score_final": {
+      "tipo": "float64",
+      "faltantes": 218
+    },
+    "critic_source": {
+      "tipo": "str",
+      "faltantes": 0
+    },
+    "gap_real": {
+      "tipo": "float64",
+      "faltantes": 227
+    },
+    "log_plays": {
+      "tipo": "float64",
+      "faltantes": 0
+    },
+    "log_wishlist": {
+      "tipo": "float64",
+      "faltantes": 0
+    },
+    "log_backlogs": {
+      "tipo": "float64",
+      "faltantes": 0
+    },
+    "log_playing": {
+      "tipo": "float64",
+      "faltantes": 0
+    },
+    "estimates_zero": {
+      "tipo": "bool",
+      "faltantes": 0
+    },
+    "has_rating": {
+      "tipo": "bool",
+      "faltantes": 0
+    },
+    "population": {
+      "tipo": "str",
+      "faltantes": 0
+    }
+  },
+  "rangos_observados": {
+    "Rating": {
+      "min": 0.7,
+      "max": 4.8
+    },
+    "Metacritic Rating": {
+      "min": 45.0,
+      "max": 99.0
+    }
+  },
+  "procedencia_critica": {
+    "Metacritic": 899,
+    "Estimacion propia": 218
+  },
+  "filas_limpias": 1117,
+  "duplicados_descartados": 0,
+  "historia": {
+    "estado": "verificado",
+    "sha256_historico": "6073f43d0c0bd5722b03789ff51c97c4ecd53686cdedbef93fc69d0c990245b6",
+    "sha256_maestro": "b23cc1c4c23e65171bbe8a3436c358773cee15b8e11b446261cd575daa625acd",
+    "filas_historicas": 1512,
+    "filas_maestro": 1117,
+    "descartes_heredados": 395,
+    "grupos_con_diferencias": 13,
+    "grupos_con_conflicto_analitico": 3,
+    "ids_analiticos_pendientes": [
+      117,
+      140,
+      296
+    ],
+    "columnas_reconstruidas": 42,
+    "diferencias_reconstruccion": [],
+    "critica_estimada_maestro": 218,
+    "estimaciones_con_rating": 214,
+    "coeficientes_ajuste_sintetico": [
+      8.583326609989347,
+      50.95839691488483
+    ],
+    "residuo_maximo_tras_redondear": 0.0
+  },
+  "rango_anios": [
+    1980,
+    2025
+  ],
+  "pares_critica_real": 890,
+  "conflictos_historicos_pendientes": 3,
+  "registros_titulo_compartido": 35,
+  "titulos_compartidos": 17,
+  "organizaciones_sin_roles": true
+}
