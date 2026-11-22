@@ -67,12 +67,50 @@ Como ampliacion del alcance del anteproyecto hicimos una web local para explorar
 En el informe agregamos una seccion sobre como se ajustaron las probabilidades, ejemplos de juegos donde el modelo se equivoco y una revision de casos publicados de juegos como servicio. Esta ultima parte ayuda a distinguir lo que podemos explicar con las señales de popularidad de lo que haria falta medir para hablar de perdidas.
 
 \section{Metodologia aplicada}
-Para ordenar el trabajo seguimos CRISP-DM. Primero vimos que queriamos averiguar y que datos teniamos para hacerlo. Despues limpiamos el catalogo, hicimos las graficas y probamos los grupos y las predicciones. Al final pusimos los resultados en Streamlit para poder revisar que pasa al cambiar los datos del formulario.
+\label{sec:metodologia}
+Usamos CRISP-DM para ordenar el proyecto desde las preguntas iniciales hasta la consulta de resultados en la web. Sus seis fases nos ayudaron a decidir que queriamos entender, con que datos podiamos hacerlo y como ibamos a revisar las respuestas. En nuestro caso, primero definimos que ibamos a medir como popularidad y despues probamos si los modelos podian estimarla con la ficha de un juego.
+
+\subsection{Comprension del problema}
+Empezamos con la pregunta de por que una buena nota no alcanza para explicar todo lo que pasa con un videojuego. De ahi salieron las preguntas sobre actividad, interes, diferencias entre jugadores y prensa, y grupos de juegos parecidos. Para poder comprobar una prediccion definimos popularidad baja, media y alta con las señales del catalogo. Al revisar la pregunta sobre juegos como servicio vimos que tambien hacian falta ingresos y costos para estudiar sus perdidas.
+
+El resultado de esta fase fue delimitar las preguntas de la seccion de problematicas y escoger que podiamos responder con los datos disponibles. Esto nos dio una referencia para decidir si cada grafica y cada modelo aportaban algo al proyecto.
+
+\subsection{Comprension de los datos}
+Revisamos las columnas, las escalas, las fechas y los datos que faltaban. El catalogo con el que trabajamos tiene \Catalogo\ juegos. La nota de usuarios va de 0 a 5 y la de prensa de 0 a 100. Tambien revisamos el origen de las notas para distinguir las que venian identificadas como Metacritic de las que se habian estimado.
+
+Con esta revision encontramos tres registros con diferencias pendientes y los apartamos de los calculos principales. Quedaron \Elegibles\ juegos elegibles y \Pares\ con las seis medidas completas para comparar notas y formar grupos. Estos conteos se conservan en el datasheet y explican por que distintas partes del analisis usan cantidades distintas de juegos.
 
 \subsection{Preparacion de los datos}
-Lo primero que revisamos fue como venian los conteos. Si un dato viene como 1.2 mil, hay que leerlo como 1,200. En este caso los conteos ya venian como numeros. Tambien revisamos las fechas y dejamos sin decada los juegos cuya fecha no se pudo leer. Un mismo juego puede ser de aventura y de rol, asi que lo contamos en ambos cuando comparamos generos.
+Preparamos la lectura de conteos con sufijos como mil o millon, aunque los conteos de este catalogo ya venian como numeros. Revisamos las fechas, obtuvimos el año y la decada, y separamos los generos para que un juego de aventura y rol pudiera aparecer en ambas comparaciones. Las fechas que no pudimos interpretar quedaron sin decada conocida.
 
-Para comparar las notas usamos los juegos que tenian las dos. Algunas cifras que venian en la columna de prensa se habian estimado, asi que las dejamos fuera de esa comparacion. Ahora bien, si queremos probar un juego en la web y no tenemos su nota de prensa, podemos marcar esa opcion. Lo que hace el modelo en ese caso es usar la mediana, que es la nota que queda en medio al ordenar las notas de entrenamiento.
+Para comparar las notas pusimos la de usuarios en la escala de 100 y usamos los juegos con ambas notas utilizables. Para formar grupos redujimos el efecto de los conteos muy grandes con una transformacion logaritmica y despues pusimos las seis medidas en una escala comparable.
+
+En la clasificacion cada genero se represento indicando si estaba presente. Las organizaciones poco frecuentes se agruparon en Otro. Las notas faltantes se completaron con la mediana aprendida en el entrenamiento. Ese ajuste se repitio dentro de cada bloque de validacion para que los datos evaluados quedaran fuera de las decisiones de preparacion.
+
+\subsection{Modelado}
+Primero usamos Pearson y Spearman para revisar como se relacionaban las notas. Despues probamos K-Means, Ward y DBSCAN para buscar grupos con actividad, interes y calificaciones parecidos. Comparamos distintos numeros de grupos y revisamos tanto su separacion como los juegos que quedaban dentro.
+
+Para predecir popularidad construimos un indice que promedia los lugares que ocupa cada juego en partidas registradas, pendientes y deseos. Los cortes entre bajo, medio y alto se aprendieron con el entrenamiento. Los modelos recibieron genero, organizacion, decada y notas como entradas. Comparamos la referencia mayoritaria, Naive Bayes, un arbol de decision, Random Forest y una red neuronal MLP. Guardamos el bosque y su preparacion juntos para que el formulario repitiera el mismo proceso.
+
+\subsection{Evaluacion}
+Separamos \JuegosCalibracion\ juegos para entrenar y \JuegosPrueba\ para la prueba. Mantuvimos juntos los registros que compartian titulo. Dentro del entrenamiento hicimos validacion cruzada de diez bloques repetida cinco veces, con un ajuste de parametros en bloques internos. Revisamos la exactitud, el F1 macro y la variacion entre vueltas antes de interpretar la matriz de aciertos y errores.
+
+El bosque obtuvo \ExactitudPrueba\ de exactitud en los juegos de prueba. El nivel medio fue el que mas le costo. Tambien revisamos ejemplos donde se equivoco y ajustamos los porcentajes con escalado de temperatura usando predicciones de entrenamiento fuera de bloque. Al comparar con Weka dejamos indicado que su evaluacion por bloques tiene diferencias frente a la prueba reservada de Python. La prueba del proyecto ya se habia observado durante las revisiones, asi que para medir como saldria con otro conjunto haria falta una evaluacion nueva.
+
+\subsection{Puesta en uso}
+Llevamos los resultados a Streamlit para consultar el catalogo, cambiar filtros y probar fichas de juegos. El formulario usa el modelo guardado para mostrar los tres niveles con sus porcentajes y una explicacion del resultado. Tambien permite ver cinco juegos con fichas parecidas.
+
+Esta fase incluye preparar la demo y explicar como leerla. Por eso agregamos la matriz, las comparaciones y los ejemplos de prediccion. Asi podemos revisar el resultado en la misma aplicacion donde se hace la consulta y explicar que señales se usaron.
+
+\subsection{Por que elegimos CRISP-DM}
+Nos sirvio porque el proyecto incluia una pregunta sobre videojuegos, varios metodos de analisis y una aplicacion para presentar los resultados. CRISP-DM deja explicitas la comprension del problema y la puesta en uso. Con esas fases pudimos conectar lo que queriamos averiguar con lo que al final se consulta en la web.
+
+KDD tambien organiza el descubrimiento de conocimiento y contempla seleccionar datos, prepararlos, buscar patrones e interpretarlos. Sus pasos coinciden con varias tareas que hicimos. Para este informe elegimos la estructura de seis fases de CRISP-DM porque nos facilito relacionar cada tarea con una pregunta y con una salida que pudieramos mostrar.
+
+SEMMA organiza el trabajo en muestreo, exploracion, modificacion, modelado y evaluacion. Esas tareas resultan utiles para desarrollar modelos. En nuestro caso tambien queriamos dejar identificadas desde el inicio las preguntas y el uso final de los resultados, por eso tomamos CRISP-DM como guia del proyecto completo.
+
+\subsection{Como regresamos a fases anteriores}
+Las fases se fueron repitiendo durante el trabajo. Cuando detectamos notas estimadas volvimos a revisar que juegos entraban en la comparacion de prensa y usuarios. Cuando vimos los errores del nivel medio regresamos a la evaluacion del modelo y a la explicacion del formulario. El ajuste de probabilidades tambien nos llevo a revisar otra vez como se mostraban los porcentajes en la web.
 
 \section{Herramientas de mineria de datos aplicadas}
 \subsection{Preparacion y analisis de las notas en Python}
@@ -248,7 +286,7 @@ La version que ya tenia notas de prensa traia \Historico\ registros. Cuando repe
 \subsection{Cuantos juegos entraron en las comparaciones}
 Hubo tres registros con diferencias que no pudimos aclarar. Los dejamos en el catalogo y los apartamos de los calculos principales. De ahi quedaron \Elegibles\ juegos para revisar. De esos, \Pares\ tenian completos los datos que usamos para comparar notas y formar grupos. Si sumamos por genero, un mismo juego puede aparecer en varias filas.
 
-\nocite{chaki2023popular,chapman2000crisp,frank2016weka,\FuentesComerciales}
+\nocite{chaki2023popular,chapman2000crisp,ibmcrisp,sassemma,fayyad1996kdd,frank2016weka,\FuentesComerciales}
 \clearpage
 \pagestyle{referencias}
 \printbibliography[heading=bibintoc,title={Fuentes bibliograficas}]

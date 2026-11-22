@@ -4096,3 +4096,7 @@ Se agrego un ejemplo de la conclusion personalizada y se documento la consulta d
 ## Graficas de Weka
 
 Se incorporaron las dispersiones de K-Means y DBSCAN, la curva ROC del nivel alto, la matriz de errores y las primeras ramas de J48. Las figuras se dibujaron con las salidas guardadas y con una repeticion de K-Means y Random Forest en Weka 3.8.6. La version de cada corrida se indica en el informe.
+
+## 17 de noviembre de 2026 · Metodologia aplicada
+
+Se amplio la seccion 6 con las seis fases de CRISP-DM y su aplicacion al catalogo, al modelo y a la consulta en Streamlit. Se agrego la justificacion frente a KDD y SEMMA, con fuentes en la bibliografia APA, y ejemplos de como se regreso a fases anteriores. Se actualiza tambien el PDF de EntregableFinal/Documentacion.

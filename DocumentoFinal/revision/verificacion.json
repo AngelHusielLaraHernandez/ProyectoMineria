@@ -1,12 +1,12 @@
 {
-  "paginas": 23,
+  "paginas": 26,
   "figuras": 21,
   "pruebas_cierre": 144,
   "referencias_indefinidas": 0,
   "desbordamientos": 0,
   "modelo": "RandomForestClassifier",
   "modelo_sha256": "ca5cee53f35cf5c0f8bc6f7af482593261d4409844eb15d5359788b1009825c1",
-  "pdf_sha256": "a5e0b83ed2b0db15f2331a4cc1c5fc6d93a29ad379f6eeba3b4d2cc2524e1db3",
+  "pdf_sha256": "8b6df2056d1b184447515d6aeea482079ad52eab00bed0cff3137c72e1685d0b",
   "casos_comerciales_verificados": 4,
   "capturas_web_actualizadas": [
     "web_actividad_nueva.jpg",
@@ -55,5 +55,21 @@
       "brier_multiclase": 0.5508045199041678,
       "log_loss": 0.9101768405677682
     }
+  },
+  "revision_metodologia": {
+    "fecha": "2026-11-17",
+    "seccion": 6,
+    "fases_crisp_dm": 6,
+    "comparacion": [
+      "KDD",
+      "SEMMA"
+    ],
+    "paginas_pdf_revisadas": [
+      6,
+      7,
+      8
+    ],
+    "referencias_indefinidas": 0,
+    "desbordamientos": 0
   }
 }
